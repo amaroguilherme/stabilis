@@ -1,6 +1,8 @@
 import math
 import pandas as pd
 
+from data.constants import SAFETY_SCORE, CRITICAL_DRUG_INTERACTIONS
+
 class ToxicityPredictor:
     def __init__(self, drugs_df_path="drugs_df.pkl"):
         print("Initializing Pharmacokinetics Engine (Bioavailability Adjustment)...")
@@ -11,57 +13,14 @@ class ToxicityPredictor:
         except:
             self.gnn_known_drugs = set()
 
-        self.safety_score = {
-            # Structure: { "name": (Half-life h, Threshold mg/L, Vd L/kg, Bioavailability F) }
-            
-            # --- MOOD STABILIZERS AND ANTICONVULSANTS ---
-            "valproic acid": (15.0, 100.0, 0.2, 0.9),   # High absorption
-            "lamotrigine": (30.0, 15.0, 1.1, 0.98),     # Nearly total absorption
-            "lithium": (24.0, 44.3, 0.5, 1.0),          # Lithium Carbonate (100% bioavailability)
-            "carbamazepine": (15.0, 12.0, 1.4, 0.8),    
-            "oxcarbazepine": (9.0, 35.0, 0.8, 0.95),
-            "topiramate": (21.0, 20.0, 0.8, 0.8),
-            "gabapentin": (6.0, 20.0, 0.8, 0.6),        # Saturable absorption (decreases at high doses)
-            "pregabalin": (6.3, 10.0, 0.5, 0.9),
-
-            # --- ANTIDEPRESSANTS ---
-            "fluoxetine": (96.0, 2.0, 35.0, 0.7),       
-            "sertraline": (26.0, 0.3, 20.0, 0.44),      # Significant first-pass effect
-            "escitalopram": (30.0, 0.2, 12.0, 0.8),     
-            "venlafaxine": (11.0, 0.8, 7.0, 0.45),       
-            "bupropion": (21.0, 0.4, 20.0, 0.14),       # Low systemic bioavailability
-            "citalopram": (35.0, 0.4, 14.0, 0.8),
-            "paroxetine": (21.0, 0.12, 17.0, 0.5),
-            "duloxetine": (12.0, 0.1, 23.0, 0.5),
-            "mirtazapine": (30.0, 0.1, 15.0, 0.5),
-            "amitriptyline": (25.0, 0.3, 14.0, 0.45),
-            
-            # --- ANTIPSYCHOTICS ---
-            "lurasidone": (18.0, 0.1, 88.0, 0.15),
-            "quetiapine": (6.0, 1.5, 10.0, 0.1),        # Critical Adjustment: Only 10% Reaches the Bloodstream
-            "aripiprazole": (75.0, 1.0, 4.9, 0.87),      
-            "haloperidol": (18.0, 0.05, 18.0, 0.6),     
-            "risperidone": (20.0, 0.1, 1.5, 0.7),
-            "olanzapine": (33.0, 0.1, 15.0, 0.6),
-            "clozapine": (14.0, 1.0, 6.0, 0.3),
-            "ziprasidone": (7.0, 0.2, 1.5, 0.6),        # It depends heavily on intake with food
-            
-            # --- ANXIOLYTICS (Benzodiazepines) ---
-            "diazepam": (48.0, 3.0, 1.1, 0.93),          
-            "clonazepam": (35.0, 0.08, 3.0, 0.9),       
-            "alprazolam": (11.0, 0.1, 0.7, 0.9),
-            "lorazepam": (14.0, 0.2, 1.3, 0.9),
-            "buspirone": (2.5, 0.01, 5.3, 0.04)         # Critical Adjustment: Only 4% Bioavailability
-        }
+        self.safety_score = SAFETY_SCORE
         
         self.drug_interaction_rules = {}
 
     def fetch_drug_interactions(self, selected_drugs):
         print("Checking for Drug Interactions...")
-        critical_drug_interactions = {
-            ("lamotrigine", "valproic acid"): (2.0, "Valproate doubles the half-life of lamotrigine."),
-            ("fluoxetine", "valproic acid"): (1.5, "Fluoxetine inhibits the metabolism of valproate.")
-        }
+        critical_drug_interactions = CRITICAL_DRUG_INTERACTIONS
+        
         for i in range(len(selected_drugs)):
             for j in range(i + 1, len(selected_drugs)):
                 d1, d2 = selected_drugs[i].lower(), selected_drugs[j].lower()
@@ -90,13 +49,20 @@ class ToxicityPredictor:
         if user_snps.get("rs4244285") == "AA":
             print("-> Slow Metabolism Detected.")
             for drug in selected_drugs:
-                if drug.lower() in ["valproic acid", "escitalopram"]:
+                if drug.lower() in [
+                    "escitalopram", "citalopram", "sertraline", 
+                    "amitriptyline", "clomipramine", "imipramine", 
+                    "diazepam", "valproic-acid"
+                ]:
                     half_life_multipliers[drug.lower()] *= 1.5
         
         if user_snps.get("rs12248560") == "CC":
             print("-> Fast Metabolism Detected.")
             for drug in selected_drugs:
-                if drug.lower() in ["quetiapine", "escitalopram", "sertraline"]:
+                if drug.lower() in [
+                    "escitalopram", "citalopram", "sertraline", 
+                    "amitriptyline", "imipramine", "venlafaxine"
+                ]:
                     half_life_multipliers[drug.lower()] *= 0.6
 
         print(f"\nWeight: {patient_weight_kg}kg | Duration: {days_to_simulate} days")

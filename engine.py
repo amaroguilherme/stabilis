@@ -90,9 +90,8 @@ class StabilisEngine:
 
     def _simulate_safety_score(self, drug_name, weight, profile):
         """Toxicity Simulator Using a Symptom-Based Virtual Genotype"""
-        #TODO: THIS IS NOT WORKING AS INTENDED
         d_clean = drug_name.lower()
-        if d_clean not in self.safety_score: return "Safety score N/A"
+        if d_clean not in self.safety_score: return "N/A"
         
         t12, threshold, vd_kg, f = self.safety_score[d_clean]
         met = profile.get("metabolismo_estimado", "padrao")
@@ -109,7 +108,7 @@ class StabilisEngine:
         ssc = (dosage * f) / (real_vd * k * 24)
         
         if ssc > threshold:
-            return f"HIGH RISK ({ssc:.2f})"
+            return f"HIGH RISK ({ssc:.2f} mg/L)"
         return f"SAFE ({ssc:.2f} mg/L)"
     
     def _calculate_target_affinity(self, profile):
