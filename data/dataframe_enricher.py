@@ -2,17 +2,30 @@ import pandas as pd
 import os
 import re
 
-from data.constants import CURATED_DRUGS
-
+from constants import CURATED_DRUGS
 
 def build_enriched_dataframe(artifacts_path="artifacts"):
-    base_drugs_df = pd.read_pickle("artifacts/drugs_df.pkl")
+    base_drugs_df = pd.read_pickle("artifacts/drugs_df_v2.pkl")
     names_path = os.path.join(artifacts_path, "drug_names.tsv")
     se_path = os.path.join(artifacts_path, "meddra_all_se.tsv.gz")
     
     names_df = pd.read_csv(names_path, sep='\t', header=None, names=['stitch_id', 'drug_name'])
     se_df = pd.read_csv(se_path, sep='\t', header=None, compression='gzip', 
                         names=['id1', 'id2', 'type', 'concept_id', 'concept_type', 'side_effect_name'])
+
+    DRUG_CLASSES = {
+        'agomelatine': 'ANTIDEPRESSANT', 'amitriptyline': 'ANTIDEPRESSANT', 'bupropion': 'ANTIDEPRESSANT',
+        'citalopram': 'ANTIDEPRESSANT', 'clomipramine': 'ANTIDEPRESSANT', 'desvenlafaxine': 'ANTIDEPRESSANT',
+        'duloxetine': 'ANTIDEPRESSANT', 'escitalopram': 'ANTIDEPRESSANT', 'fluoxetine': 'ANTIDEPRESSANT',
+        'imipramine': 'ANTIDEPRESSANT', 'mirtazapine': 'ANTIDEPRESSANT', 'nortriptyline': 'ANTIDEPRESSANT',
+        'paroxetine': 'ANTIDEPRESSANT', 'sertraline': 'ANTIDEPRESSANT', 'trazodone': 'ANTIDEPRESSANT',
+        'venlafaxine': 'ANTIDEPRESSANT', 'vortioxetine': 'ANTIDEPRESSANT', 'mianserin': 'ANTIDEPRESSANT',
+        'lithium-carbonate': 'MOOD_STABILIZER', 'valproic-acid': 'MOOD_STABILIZER', 'divalproex': 'MOOD_STABILIZER',
+        'carbamazepine': 'MOOD_STABILIZER', 'lamotrigine': 'MOOD_STABILIZER', 'oxcarbazepine': 'MOOD_STABILIZER',
+        'aripiprazole': 'ANTIPSYCHOTIC', 'quetiapine': 'ANTIPSYCHOTIC', 'olanzapine': 'ANTIPSYCHOTIC',
+        'risperidone': 'ANTIPSYCHOTIC', 'clozapine': 'ANTIPSYCHOTIC', 'lurasidone': 'ANTIPSYCHOTIC',
+        'ziprasidone': 'ANTIPSYCHOTIC', 'cariprazine': 'ANTIPSYCHOTIC', 'paliperidone': 'ANTIPSYCHOTIC'
+    }
 
     def normalize_id(stitch_id):
         s_id = str(stitch_id)
@@ -47,6 +60,15 @@ def build_enriched_dataframe(artifacts_path="artifacts"):
                 if clean_d not in risk_lookup: risk_lookup[clean_d] = set()
                 risk_lookup[clean_d].add(tag)
 
+    if 'lithium-carbonate' not in base_drugs_df['pert_iname'].values:
+        lithium_row = pd.DataFrame([{
+            'pert_iname': 'lithium-carbonate',
+            'target': 'GSK3B',
+            'risk_profile': ['RENAL', 'CARDIAC', 'METABOLIC'],
+            'is_relevant': True
+        }])
+        base_drugs_df = pd.concat([base_drugs_df, lithium_row], ignore_index=True)
+
     clin_target_map = {
         'HTR1A': '5HT1A', 'HTR2A': '5HT2A', 'HTR2C': '5HT2C',
         'HTR3A': '5HT3', 'SLC6A4': 'SERT', 'SLC6A2': 'NET', 
@@ -55,13 +77,16 @@ def build_enriched_dataframe(artifacts_path="artifacts"):
     }
 
     def normalize_targets(target_str):
-        if not isinstance(target_str, str): return ""
+        if not isinstance(target_str, str): return target_str
         targets = target_str.split('|')
         return '|'.join([clin_target_map.get(t, t) for t in targets])
 
     print("Applying molecular enrichment and translation...")
     
     def match_risks(pert_name):
+        if pert_name == 'lithium-carbonate':
+            return ['RENAL', 'CARDIAC', 'METABOLIC']
+            
         p_clean = radical_clean(pert_name)
         if not p_clean: return []
         if p_clean in risk_lookup: return list(risk_lookup[p_clean])
@@ -72,9 +97,9 @@ def build_enriched_dataframe(artifacts_path="artifacts"):
         return []
 
     base_drugs_df['risk_profile'] = base_drugs_df['pert_iname'].apply(match_risks)
-    
     base_drugs_df['target'] = base_drugs_df['target'].apply(normalize_targets)
     
+    base_drugs_df['drug_class'] = base_drugs_df['pert_iname'].map(DRUG_CLASSES).fillna('OTHER')
     base_drugs_df['is_relevant'] = base_drugs_df['pert_iname'].isin(CURATED_DRUGS)
 
     output_pkl = os.path.join(artifacts_path, "drugs_enriched.pkl")
@@ -94,7 +119,11 @@ def print_medication_list(pickle_path="artifacts/drugs_enriched.pkl"):
         
         print(f"\n--- LIST OF MEDICATIONS ({len(meds)} items) ---\n")
         print(meds)
+        print(f"\n--- {len(meds)} items ---\n")
         print("\n--- END OF LIST ---")
         
     except Exception as e:
         print(f"Error loading file: {e}")
+
+if __name__ == '__main__':
+    build_enriched_dataframe()

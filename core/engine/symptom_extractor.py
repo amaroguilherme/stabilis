@@ -68,6 +68,7 @@ class SymptomExtractor:
         
         # TODO: NEED TO MOVE TO ENGLISH
         # TODO: THIS SHOULD ONLY REPLY IF THE INCOMING TEXT IS AN ANAMNESIS
+        # TODO: THE DOCTOR SUMMARY MUST HAVE A CHARACTER LIMIT
         prompt = f"""<start_of_turn>user
         Extraia os dados clínicos do prontuário para JSON. Alvos permitidos: {self.targets}. Tags permitidas: {self.ontology}.
 

@@ -44,7 +44,7 @@ class StabilisEngine:
         self.gnn = GATClassifier(in_channels=2048, hidden_channels=64, out_channels=1, heads=4, dropout_rate=0.4)
         
         try:
-            self.gnn.load_state_dict(torch.load("artifacts/gnn_bipolar_v1.pt", weights_only=True))
+            self.gnn.load_state_dict(torch.load("artifacts/gnn_v2_stabilis.pt", weights_only=True))
             self.gnn.eval() # Inference mode
             print("-> Weights loaded successfully!")
         except Exception as e:
@@ -211,12 +211,14 @@ class StabilisEngine:
                 continue
             ai_base_score = base_scores[idx].item()
             
+            #TODO: MOOD STABILIZERS SHOULD GET A BIG BONUS IF BIPOLAR
             bonus_raw = target_bonuses.get(idx, 0.0)
             bonus_final = bonus_raw * BONUS_WEIGHT
             
             # Small "tie-breaker" bonus for clinical relevance
             tie_breaker = 0.5 if row.get('is_relevant', False) else 0.0
             
+            #TODO: ANTIDEPRESSANTS SHOULD GET A BIG PENALTY IF BIPOLAR
             penalty_raw = symptom_penalties.get(idx, 0.0)
             penalty_final = abs(penalty_raw) * PENALTY_WEIGHT 
             
