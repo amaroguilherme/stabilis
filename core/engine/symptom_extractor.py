@@ -7,8 +7,8 @@ import json
     checklist={
         "patient_id": "STB-333",
         "weight": 89.0,
-        "gender": "Masculino",
-        "base_diagnosis": "Depressão Bipolar",
+        "gender": "Masculino", #Multiple choice
+        "base_diagnosis": "Transtorno Bipolar I", #Multiple choice
         "comorbidities": ["Hipertensão", "Diabetes"],
         "habits": ["Tabagismo", "Consumo de Álcool"],
     },

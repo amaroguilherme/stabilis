@@ -1,12 +1,11 @@
 import math
 import pandas as pd
 
+from collections import Counter
 from data.constants import SAFETY_SCORE, CRITICAL_DRUG_INTERACTIONS
 
 class ToxicityPredictor:
-    def __init__(self, drugs_df_path="drugs_df.pkl"):
-        print("Initializing Pharmacokinetics Engine (Bioavailability Adjustment)...")
-        
+    def __init__(self, drugs_df_path="artifacts/drugs_enriched.pkl"):        
         try:
             self.drugs_df = pd.read_pickle(drugs_df_path)
             self.gnn_known_drugs = set(self.drugs_df['pert_iname'].str.lower().tolist())
@@ -15,84 +14,97 @@ class ToxicityPredictor:
 
         self.safety_score = SAFETY_SCORE
         
-        self.drug_interaction_rules = {}
+        self.critical_drug_interactions = CRITICAL_DRUG_INTERACTIONS
 
-    def fetch_drug_interactions(self, selected_drugs):
-        print("Checking for Drug Interactions...")
-        critical_drug_interactions = CRITICAL_DRUG_INTERACTIONS
+    def audit_and_simulate(self, prescription, patient_profile, user_snps=None):
+        """
+        prescription: list of dicts [{'name': 'lithium-carbonate', 'dose': 300, 'interval': 12}, ...]
+        """
         
-        for i in range(len(selected_drugs)):
-            for j in range(i + 1, len(selected_drugs)):
-                d1, d2 = selected_drugs[i].lower(), selected_drugs[j].lower()
-                pair = tuple(sorted([d1, d2]))
-                if pair in critical_drug_interactions:
-                    self.drug_interaction_rules[pair] = critical_drug_interactions[pair]
+        # CLINICAL REDUNDANCY & CLASS BALANCE
+        self._check_clinical_redundancy(prescription)
+        self._check_class_balance(prescription, patient_profile)
 
-    def simulate_cocktail(self, selected_drugs, dosages_mg, interval_hours, patient_weight_kg, user_snps, days_to_simulate=30):
-        print("\n" + "="*70)
-        print("Initializing cocktail simulator...")
-        print("="*70)
-        
-        self.fetch_drug_interactions(selected_drugs)
-        
-        half_life_multipliers = {drug.lower(): 1.0 for drug in selected_drugs}
-        
-        for pair, data in self.drug_interaction_rules.items():
-            mult, desc = data
-            if pair[0] in half_life_multipliers: half_life_multipliers[pair[0]] *= mult
-            if pair[1] in half_life_multipliers: half_life_multipliers[pair[1]] *= mult
-            print(f"DDI ALERT: {desc}")
+        # 2. Applying DDI and Genetics
+        selected_names = [p['name'].lower() for p in prescription]
+        half_life_multipliers = self._calculate_pk_multipliers(selected_names, user_snps)
 
-        # Applies Genetic Multipliers
-        print("\nAnalyzing DNA...")
-        
-        if user_snps.get("rs4244285") == "AA":
-            print("-> Slow Metabolism Detected.")
-            for drug in selected_drugs:
-                if drug.lower() in [
-                    "escitalopram", "citalopram", "sertraline", 
-                    "amitriptyline", "clomipramine", "imipramine", 
-                    "diazepam", "valproic-acid"
-                ]:
-                    half_life_multipliers[drug.lower()] *= 1.5
-        
-        if user_snps.get("rs12248560") == "CC":
-            print("-> Fast Metabolism Detected.")
-            for drug in selected_drugs:
-                if drug.lower() in [
-                    "escitalopram", "citalopram", "sertraline", 
-                    "amitriptyline", "imipramine", "venlafaxine"
-                ]:
-                    half_life_multipliers[drug.lower()] *= 0.6
+        # Using 1-hour steps to handle different intervals accurately
+        simulation_hours = 24 * 14 # 14 days to reach steady state for most drugs
+        blood_levels = {name: 0.0 for name in selected_names}
+        history = {name: [] for name in selected_names}
 
-        print(f"\nWeight: {patient_weight_kg}kg | Duration: {days_to_simulate} days")
-        
-        blood_concentration = {drug.lower(): 0.0 for drug in selected_drugs}
-        total_steps = int((24 / interval_hours) * days_to_simulate)
-        
-        for step in range(total_steps):
-            for drug in selected_drugs:
-                d_clean = drug.lower()
-                if d_clean not in self.safety_score: continue
+        print(f"\nSimulating for {patient_profile['peso_kg']}kg patient over 14 days...")
+
+        for hour in range(simulation_hours):
+            for drug in prescription:
+                d_name = drug['name'].lower()
+                if d_name not in self.safety_score: continue
                 
-                t12, threshold, vd_kg, f = self.safety_score[d_clean]
-                
-                # Time Adjustment
-                real_t12 = t12 * half_life_multipliers[d_clean]
+                t12, threshold, vd_kg, f = self.safety_score[d_name]
+                real_t12 = t12 * half_life_multipliers[d_name]
                 k = math.log(2) / real_t12
                 
-                # Elimination
-                blood_concentration[d_clean] *= math.exp(-k * interval_hours)
+                # Decay (1 hour step)
+                blood_levels[d_name] *= math.exp(-k * 1)
                 
-                # Intake (Adjusted for Bioavailability and Weight)
-                real_vd = vd_kg * patient_weight_kg
-                dose_absorbed = dosages_mg[d_clean] * f
-                blood_concentration[d_clean] += (dose_absorbed / real_vd)
-                
-                if blood_concentration[d_clean] > threshold:
-                    print(f"TOXICITY: {d_clean.upper()} on day {step * interval_hours / 24:.1f} ({blood_concentration[d_clean]:.2f} mg/L)")
-                    return
+                # Intake check (Is it time for a dose?)
+                if hour % drug['interval'] == 0:
+                    dose_absorbed = drug['dose'] * f
+                    real_vd = vd_kg * patient_profile['peso_kg']
+                    blood_levels[d_name] += (dose_absorbed / real_vd)
 
-        print("\nSafe treatment for the provided parameters.")
-        for d, conc in blood_concentration.items():
-            print(f"   -> {d.upper()}: {conc:.2f} mg/L (Stabilized)")
+                # Toxicity check
+                if blood_levels[d_name] > threshold:
+                    print(f"CRITICAL TOXICITY: {d_name.upper()} reached {blood_levels[d_name]:.2f} mg/L on hour {hour}")
+                    return {"status": "DANGEROUS", "culprit": d_name}
+
+        print("All blood levels stabilized below toxic thresholds.")
+        for d, level in blood_levels.items():
+            print(f"-> {d.upper()}: {level:.2f} mg/L")
+        
+        return {"status": "SAFE", "blood_levels": blood_levels}
+
+    def _check_clinical_redundancy(self, prescription):
+        """Checks if multiple drugs hit the same primary target (Mechanism Overlap)"""
+        targets_hit = []
+        for p in prescription:
+            drug_data = self.drugs_df[self.drugs_df['pert_iname'] == p['name']]
+            if not drug_data.empty:
+                targets_hit.extend(str(drug_data['target'].values[0]).split('|'))
+        
+        counts = Counter(targets_hit)
+        # Dangerous overlaps: multiple drugs hitting SERT (Serotonin Syndrome) or D2 (Parkinsonism)
+        for target in ['SERT', 'D2', 'NET']:
+            if counts[target] > 1:
+                print(f"WARNING: Redundancy detected on {target}. Risk of mechanism overdrive.")
+
+    def _calculate_pk_multipliers(self, drug_names, user_snps=None):
+        """Combines DDI and Genetics into a single list of multipliers"""
+        multipliers = {name: 1.0 for name in drug_names}
+        
+        # Apply Drug-Drug Interactions
+        for (d1, d2), (mult, desc) in self.critical_drug_interactions.items():
+            if d1 in drug_names and d2 in drug_names:
+                multipliers[d1] *= mult
+                print(f"DDI: {desc}")
+        
+        #TODO: REVISIT IT LATER WHEN TESTING EXOM FLOW
+        # Apply Genetics (Simplified for example)
+        if user_snps and user_snps.get("rs4244285") == "AA": # CYP2C19 Slow
+            for d in drug_names:
+                if d in ["escitalopram", "sertraline", "diazepam"]:
+                    multipliers[d] *= 1.5
+                    print(f"Slow metabolism for {d} (rs4244285-AA)")
+        
+        return multipliers
+
+    def _check_class_balance(self, prescription, profile):
+        """Specific clinical rules (e.g., Bipolar protection)"""
+        #TODO: THIS NEEDS TO CHANGE ONCE THE DATA MODEL IS IN PLACE
+        is_bipolar = "BIPOLAR" in profile['diagnostico_base'].upper()
+        classes = [self.drugs_df[self.drugs_df['pert_iname'] == p['name']]['drug_class'].values[0] 
+                   for p in prescription if p['name'] in self.drugs_df['pert_iname'].values]
+ 
+        if is_bipolar and "ANTIDEPRESSANT" in classes and "MOOD_STABILIZER" not in classes:
+            print("RISK: Antidepressant use in Bipolar patient without Mood Stabilizer.")
