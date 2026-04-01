@@ -25,7 +25,7 @@ class ToxicityPredictor:
         self._check_clinical_redundancy(prescription)
         self._check_class_balance(prescription, patient_profile)
 
-        # 2. Applying DDI and Genetics
+        # Applying DDI and Genetics
         selected_names = [p['name'].lower() for p in prescription]
         half_life_multipliers = self._calculate_pk_multipliers(selected_names, user_snps)
 
