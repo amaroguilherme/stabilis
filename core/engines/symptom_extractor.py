@@ -1,7 +1,12 @@
+from dotenv import load_dotenv
 from llama_cpp import Llama
-import json
 
-# TODO: CREATE A MODEL FOR THE LLM INPUT
+import json
+import os
+
+load_dotenv()
+
+# TODO: CREATE A MODEL FOR THE LLM INPUT?
 """
 {
     checklist={
@@ -17,15 +22,23 @@ import json
 """
 
 class SymptomExtractor:
-    #TODO: MOVE IT HUGGING FACE HUB
-    def __init__(self, model_path="models/gemma-2-9b-it.Q4_K_M_v0.gguf"):
-        print(f"Loading local LLM: {model_path}")
-        
-        self.llm = Llama(
-            model_path=model_path,
-            n_ctx=2048,      
-            n_gpu_layers=-1, 
-            verbose=True
+    REPO_ID = os.getenv("MODEL_REPO_ID")
+    FILENAME = os.getenv("MODEL_FILENAME")
+
+    def __init__(self):
+        print(f"Downloading model from Hugging Face Hub: {self.REPO_ID}/{self.FILENAME}")
+
+        hf_token = os.getenv("HF_TOKEN")
+        if not hf_token:
+            raise EnvironmentError("HF_TOKEN environment variable is not set. Required to access private Hugging Face repositories.")
+
+        self.llm = Llama.from_pretrained(
+            repo_id=self.REPO_ID,
+            filename=self.FILENAME,
+            n_ctx=2048,
+            n_gpu_layers=-1,
+            verbose=True,
+            token=hf_token,
         )
         
         self.ontology = """
