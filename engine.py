@@ -7,13 +7,13 @@ import math
 from qyra.interface.models.gnn import GATClassifier
 from qyra.interface.modeling_logic.translators import PharmacologyTranslator
 
-from core.engine.dna_parser import DNAParser
-from core.engine.pharmacogenomics_analyzer import PharmacogenomicsAnalyzer
-from core.engine.drug_interaction_analyzer import DrugInteractionAnalyzer
-from core.engine.symptom_extractor import SymptomExtractor
-from core.engine.toxicity_predictor import ToxicityPredictor
+from core.engines.dna_parser import DNAParser
+from core.engines.pharmacogenomics_analyzer import PharmacogenomicsAnalyzer
+from core.engines.drug_interaction_analyzer import DrugInteractionAnalyzer
+from core.engines.symptom_extractor import SymptomExtractor
+from core.engines.toxicity_predictor import ToxicityPredictor
 
-from data.constants import TARGETS_MAP
+from data.constants import TARGETS_MAP, TYPICAL_DOSING
 
 class StabilisEngine:
     def __init__(self):
@@ -101,11 +101,11 @@ class StabilisEngine:
         if met == "lento": mult = 1.5
         if met == "acelerado": mult = 0.6
         
-        # Steady-State Calculation (Simulated for Standard dosage)
-        dosage = 100.0 
+        # Steady-State Calculation using per-drug typical dose and dosing interval
+        dosage, interval = TYPICAL_DOSING.get(d_clean, (100.0, 24))
         real_vd = vd_kg * weight
         k = math.log(2) / (t12 * mult)
-        ssc = (dosage * f) / (real_vd * k * 24)
+        ssc = (dosage * f) / (real_vd * k * interval)
         
         if ssc > threshold:
             return f"HIGH RISK ({ssc:.2f} mg/L)"
