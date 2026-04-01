@@ -45,7 +45,7 @@ class SymptomExtractor:
             Map reported health issues to the following TAGS (Ignore mentions of organs if the text states they are healthy or normal.
             Pay attention to the general context and to false positives):
             - HEPATIC: Only for active pathologies (e.g., cirrhosis, hepatitis, hepatotoxicity, etc.).
-            - METABOLIC: Only for overweight, obesity, diabetes, or an explicit fear of gaining weight. Do not use if the patient is thin.
+            - METABOLIC: Use for two distinct situations: (1) existing metabolic condition — overweight, obesity, or diabetes (do NOT use this reason alone if the patient is thin); (2) weight-gain adherence risk — patient has a documented history of stopping a medication due to weight gain, or the doctor explicitly states the patient will not comply with treatment if the medication causes weight gain. Reason (2) applies regardless of current weight.
             - RENAL: Only for renal insufficiency, elevated creatinine, history of dialysis, and similar conditions.
             - MOTOR: Only for a history of tremors, akathisia, rigidity, extrapyramidal effects, and similar conditions.
             - CARDIAC: Only for arrhythmias, prolonged QT interval, cardiac pathologies, and similar conditions.
@@ -65,7 +65,8 @@ class SymptomExtractor:
                   SIGMAR1,
                   ACHE,
                   MT1, MT2,
-                  SCN, CACNA"""
+                  SCN, CACNA,
+                  GSK3B"""
                   
     def clean_json(self, raw_json):
         try:

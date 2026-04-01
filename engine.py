@@ -194,22 +194,26 @@ class StabilisEngine:
         
     def run_symptom_inference(self, checklist, doctor_summary):
         profile = self.symptom_extractor.get_profile(checklist=checklist, doctor_summary=doctor_summary)
-        profile['contraindicacoes_relativas'] = [str(r).upper() for r in profile.get('contraindicacoes_relativas', [])]
+        profile['relative_contraindications'] = [str(r).upper() for r in profile.get('relative_contraindications', [])]
 
         # Modifier Calculations
         target_bonuses = self._calculate_target_affinity(profile)
         symptom_penalties = self._calculate_symptom_modifiers(profile)
-        
+
+        is_bipolar = "TRANSTORNO BIPOLAR" in checklist.get("base_diagnosis", "").upper()
+
         with torch.no_grad():
             logits = self.gnn(self.x_tensor, self.edge_index)
             base_scores = torch.sigmoid(logits).flatten() * 100.0
 
         final_ranking = []
-        
+
         # Each match (target hit or contraindication hit) shifts the score by this many points.
         # Both bonus_raw and penalty_raw are now count-of-matches (1.0 per match), so
         # the weight is symmetric: 1 match = ±20 pts on the 0-100 scale.
         MODIFIER_WEIGHT = 20.0
+        BIPOLAR_MOOD_STABILIZER_BONUS = 60.0
+        BIPOLAR_ANTIDEPRESSANT_PENALTY = 80.0
 
         for idx, row in self.drugs_df.iterrows():
             if not row.get('is_relevant', True):
@@ -217,13 +221,15 @@ class StabilisEngine:
             ai_base_score = base_scores[idx].item()
 
             bonus_raw = target_bonuses.get(idx, 0.0)
-            bonus_final = bonus_raw * MODIFIER_WEIGHT
+            bipolar_bonus = BIPOLAR_MOOD_STABILIZER_BONUS if (is_bipolar and row.get('drug_class') == 'MOOD_STABILIZER') else 0.0
+            bonus_final = bonus_raw * MODIFIER_WEIGHT + bipolar_bonus
 
             # Small "tie-breaker" bonus for clinical relevance
             tie_breaker = 0.5 if row.get('is_relevant', False) else 0.0
 
             penalty_raw = symptom_penalties.get(idx, 0.0)
-            penalty_final = abs(penalty_raw) * MODIFIER_WEIGHT
+            bipolar_penalty = BIPOLAR_ANTIDEPRESSANT_PENALTY if (is_bipolar and row.get('drug_class') == 'ANTIDEPRESSANT') else 0.0
+            penalty_final = abs(penalty_raw) * MODIFIER_WEIGHT + bipolar_penalty
             
             final_score = ai_base_score + bonus_final + tie_breaker - penalty_final
             final_score = max(0.0, min(100.0, final_score))

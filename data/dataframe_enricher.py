@@ -64,7 +64,7 @@ def build_enriched_dataframe(artifacts_path="artifacts"):
         lithium_row = pd.DataFrame([{
             'pert_iname': 'lithium-carbonate',
             'target': 'GSK3B',
-            'risk_profile': ['RENAL', 'CARDIAC', 'METABOLIC'],
+            'risk_profile': ['RENAL', 'CARDIAC'],
             'is_relevant': True
         }])
         base_drugs_df = pd.concat([base_drugs_df, lithium_row], ignore_index=True)
@@ -85,7 +85,7 @@ def build_enriched_dataframe(artifacts_path="artifacts"):
     
     def match_risks(pert_name):
         if pert_name == 'lithium-carbonate':
-            return ['RENAL', 'CARDIAC', 'METABOLIC']
+            return ['RENAL', 'CARDIAC']
             
         p_clean = radical_clean(pert_name)
         if not p_clean: return []
