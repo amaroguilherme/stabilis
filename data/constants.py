@@ -26,10 +26,94 @@ CURATED_DRUGS = [
 ]
 
 TARGETS_MAP = {
-    'SLC6A2': 'NET', 'NOREPINEPHRINE': 'NET',
-    'SLC6A4': 'SERT', 'SEROTONIN': 'SERT',
-    'SLC6A3': 'DAT', 'DOPAMINE': 'DAT',
-    'HTR1A': '5HT1A', 'HTR2A': '5HT2A', 'HTR2C': '5HT2C'
+    # --- MONOAMINE TRANSPORTERS ---
+    'SLC6A4': 'SERT', 'SEROTONIN TRANSPORTER': 'SERT', 'SEROTONIN': 'SERT',
+    'SLC6A2': 'NET',  'NOREPINEPHRINE TRANSPORTER': 'NET', 'NOREPINEPHRINE': 'NET',
+    'SLC6A3': 'DAT',  'DOPAMINE TRANSPORTER': 'DAT', 'DOPAMINE': 'DAT',
+
+    # --- SEROTONIN RECEPTORS ---
+    'HTR1A': '5HT1A', '5-HT1A': '5HT1A', '5HT-1A': '5HT1A',
+    'HTR1B': '5HT1B', '5-HT1B': '5HT1B',
+    'HTR1D': '5HT1D', '5-HT1D': '5HT1D',
+    'HTR1E': '5HT1E', '5-HT1E': '5HT1E',
+    'HTR1F': '5HT1F', '5-HT1F': '5HT1F',
+    'HTR2A': '5HT2A', '5-HT2A': '5HT2A', '5HT-2A': '5HT2A',
+    'HTR2B': '5HT2B', '5-HT2B': '5HT2B',
+    'HTR2C': '5HT2C', '5-HT2C': '5HT2C', '5HT-2C': '5HT2C',
+    'HTR3A': '5HT3A', '5-HT3A': '5HT3A', 'HTR3': '5HT3A', '5HT3': '5HT3A', '5-HT3': '5HT3A',
+    'HTR3B': '5HT3B', '5-HT3B': '5HT3B',
+    'HTR4':  '5HT4',  '5-HT4': '5HT4',
+    'HTR5A': '5HT5A', '5-HT5A': '5HT5A',
+    'HTR6':  '5HT6',  '5-HT6': '5HT6',
+    'HTR7':  '5HT7',  '5-HT7': '5HT7',
+
+    # --- DOPAMINE RECEPTORS ---
+    'DRD1': 'DRD1', 'D1': 'DRD1', 'DOPAMINE D1': 'DRD1', 'D1 RECEPTOR': 'DRD1',
+    'DRD2': 'DRD2', 'D2': 'DRD2', 'DOPAMINE D2': 'DRD2', 'D2 RECEPTOR': 'DRD2',
+    'DRD3': 'DRD3', 'D3': 'DRD3', 'DOPAMINE D3': 'DRD3', 'D3 RECEPTOR': 'DRD3',
+    'DRD4': 'DRD4', 'D4': 'DRD4', 'DOPAMINE D4': 'DRD4', 'D4 RECEPTOR': 'DRD4',
+
+    # --- HISTAMINE RECEPTORS ---
+    'HRH1': 'H1', 'H1R': 'H1', 'HISTAMINE H1': 'H1', 'HISTAMINE H1 RECEPTOR': 'H1',
+    'HRH2': 'H2', 'H2R': 'H2', 'HISTAMINE H2': 'H2',
+    'HRH3': 'H3', 'H3R': 'H3', 'HISTAMINE H3': 'H3',
+    'HRH4': 'H4', 'H4R': 'H4', 'HISTAMINE H4': 'H4',
+
+    # --- MUSCARINIC ACETYLCHOLINE RECEPTORS ---
+    'CHRM1': 'M1', 'M1R': 'M1', 'MUSCARINIC M1': 'M1', 'MUSCARINIC 1': 'M1',
+    'CHRM2': 'M2', 'M2R': 'M2', 'MUSCARINIC M2': 'M2', 'MUSCARINIC 2': 'M2',
+    'CHRM3': 'M3', 'M3R': 'M3', 'MUSCARINIC M3': 'M3', 'MUSCARINIC 3': 'M3',
+    'CHRM4': 'M4', 'M4R': 'M4', 'MUSCARINIC M4': 'M4',
+    'CHRM5': 'M5', 'M5R': 'M5', 'MUSCARINIC M5': 'M5',
+    'ACETYLCHOLINE RECEPTOR': 'M1',  # generic muscarinic alias
+
+    # --- GABA RECEPTORS ---
+    'GABRA1': 'GABRA', 'GABRA2': 'GABRA', 'GABRA3': 'GABRA', 'GABRA5': 'GABRA',
+    'GABRB1': 'GABRA', 'GABRB2': 'GABRA', 'GABRB3': 'GABRA',
+    'GABRG2': 'GABRA', 'GABRD': 'GABRA',
+    'GABA-A': 'GABRA', 'GABAA': 'GABRA', 'GABA_A': 'GABRA',
+    'GABA-A RECEPTOR': 'GABRA', 'GABRA': 'GABRA',
+    'GABA': 'GABRA',  # generic alias
+
+    # --- GLUTAMATE / NMDA RECEPTORS ---
+    'GRIN1': 'NMDA', 'GRIN2A': 'NMDA', 'GRIN2B': 'NMDA', 'GRIN2C': 'NMDA',
+    'NMDAR': 'NMDA', 'NMDA RECEPTOR': 'NMDA', 'N-METHYL-D-ASPARTATE': 'NMDA',
+    'GRM1': 'MGLUR1', 'MGLUR1': 'MGLUR1',
+    'GRM5': 'MGLUR5', 'MGLUR5': 'MGLUR5',
+
+    # --- ADRENERGIC RECEPTORS ---
+    'ADRA1A': 'ADRA1', 'ADRA1B': 'ADRA1', 'ADRA1D': 'ADRA1',
+    'ALPHA1': 'ADRA1', 'ALPHA-1': 'ADRA1', 'ALPHA-1 ADRENERGIC': 'ADRA1',
+    'ADRA2A': 'ADRA2', 'ADRA2B': 'ADRA2', 'ADRA2C': 'ADRA2',
+    'ALPHA2': 'ADRA2', 'ALPHA-2': 'ADRA2', 'ALPHA-2 ADRENERGIC': 'ADRA2',
+    'ADRB1': 'ADRB1', 'BETA1': 'ADRB1', 'BETA-1': 'ADRB1',
+    'ADRB2': 'ADRB2', 'BETA2': 'ADRB2', 'BETA-2': 'ADRB2',
+
+    # --- MAO ENZYMES ---
+    'MAOA': 'MAOA', 'MAO-A': 'MAOA', 'MAO A': 'MAOA', 'MONOAMINE OXIDASE A': 'MAOA',
+    'MAOB': 'MAOB', 'MAO-B': 'MAOB', 'MAO B': 'MAOB', 'MONOAMINE OXIDASE B': 'MAOB',
+
+    # --- SIGMA RECEPTORS ---
+    'SIGMAR1': 'SIGMAR1', 'SIGMA-1': 'SIGMAR1', 'SIGMA1': 'SIGMAR1', 'SIGMA-1 RECEPTOR': 'SIGMAR1',
+    'SIGMAR2': 'SIGMAR2', 'SIGMA-2': 'SIGMAR2', 'SIGMA2': 'SIGMAR2',
+
+    # --- ACETYLCHOLINESTERASE ---
+    'ACHE': 'ACHE', 'ACETYLCHOLINESTERASE': 'ACHE',
+    'BCHE': 'BCHE', 'BUTYRYLCHOLINESTERASE': 'BCHE',
+
+    # --- OPIOID RECEPTORS ---
+    'OPRM1': 'OPRM1', 'MOR': 'OPRM1', 'MU OPIOID': 'OPRM1', 'MU-OPIOID RECEPTOR': 'OPRM1',
+    'OPRD1': 'OPRD1', 'DOR': 'OPRD1', 'DELTA OPIOID': 'OPRD1',
+    'OPRK1': 'OPRK1', 'KOR': 'OPRK1', 'KAPPA OPIOID': 'OPRK1',
+
+    # --- VOLTAGE-GATED ION CHANNELS (mood stabilizers) ---
+    'SCN1A': 'SCN', 'SCN2A': 'SCN', 'NAV': 'SCN', 'SODIUM CHANNEL': 'SCN',
+    'CACNA1C': 'CACNA', 'CACNA1A': 'CACNA', 'CALCIUM CHANNEL': 'CACNA',
+    'KCNQ2': 'KCNQ', 'KCNQ3': 'KCNQ', 'POTASSIUM CHANNEL': 'KCNQ',
+
+    # --- MELATONIN RECEPTORS ---
+    'MTNR1A': 'MT1', 'MT1': 'MT1', 'MELATONIN MT1': 'MT1',
+    'MTNR1B': 'MT2', 'MT2': 'MT2', 'MELATONIN MT2': 'MT2',
 }
 
 SAFETY_SCORE = {
@@ -125,6 +209,104 @@ SAFETY_SCORE = {
     "donepezil": (70.0, 0.05, 12.0, 1.0),
     "furosemide": (2.0, 10.0, 0.15, 0.6),
     "ropinirole": (6.0, 0.01, 7.5, 0.5)
+}
+
+# Structure: { "name": (dose_mg, interval_hours) }
+# Source: FDA-approved prescribing information (package inserts), maintenance doses.
+# dose_mg  — typical single-administration maintenance dose in mg
+# interval — dosing interval in hours (e.g. 8 = TID, 12 = BID, 24 = QD)
+# Fallback for unlisted drugs: (100.0, 24)
+TYPICAL_DOSING = {
+    # --- MOOD STABILIZERS AND ANTICONVULSANTS ---
+    "lithium-carbonate":         (300.0,  8),   # 900 mg/day divided TID
+    "pregabalin":                (150.0, 12),   # 300 mg/day divided BID
+    "carbamazepine":             (200.0, 12),   # 400–800 mg/day divided BID
+    "eslicarbazepine-acetate":   (800.0, 24),   # 800–1600 mg once daily
+    "ethosuximide":              (250.0, 12),   # 500 mg/day divided BID
+    "gabapentin":                (300.0,  8),   # 900 mg/day divided TID
+    "lamotrigine":               (100.0, 12),   # 100–200 mg/day divided BID
+    "oxcarbazepine":             (300.0, 12),   # 600 mg/day divided BID
+    "phenytoin":                 (100.0,  8),   # 300 mg/day divided TID
+    "topiramate":                 (25.0, 12),   # 50 mg/day divided BID (titration)
+    "valproic-acid":             (500.0,  8),   # 1500 mg/day divided TID
+
+    # --- ANTIDEPRESSANTS ---
+    "agomelatine":                (25.0, 24),   # 25 mg once daily at bedtime
+    "alaproclate":                (50.0, 12),   # 100 mg/day divided BID
+    "amitriptyline":              (25.0, 24),   # 75–150 mg once daily (or divided)
+    "amoxapine":                  (50.0,  8),   # 150 mg/day divided TID
+    "bupropion":                 (150.0, 12),   # 300 mg/day (SR: 150 mg BID)
+    "citalopram":                 (20.0, 24),   # 20–40 mg once daily
+    "clomipramine":               (25.0,  8),   # 75 mg/day divided TID
+    "desipramine":                (50.0, 24),   # 100–200 mg once daily
+    "desvenlafaxine":             (50.0, 24),   # 50 mg once daily
+    "duloxetine":                 (30.0, 12),   # 60 mg/day divided BID
+    "escitalopram":               (10.0, 24),   # 10–20 mg once daily
+    "fluoxetine":                 (20.0, 24),   # 20 mg once daily
+    "fluvoxamine":                (50.0, 12),   # 100 mg/day divided BID
+    "imipramine":                 (25.0,  8),   # 75 mg/day divided TID
+    "mirtazapine":                (15.0, 24),   # 15–45 mg once daily at bedtime
+    "nortriptyline":              (25.0,  8),   # 75 mg/day divided TID
+    "paroxetine":                 (20.0, 24),   # 20 mg once daily
+    "sertraline":                 (50.0, 24),   # 50 mg once daily
+    "tianeptine":                 (12.5,  8),   # 37.5 mg/day divided TID
+    "trazodone":                  (50.0,  8),   # 150 mg/day divided TID (IR)
+    "venlafaxine":                (37.5, 12),   # 75 mg/day divided BID (IR)
+    "vilazodone":                 (10.0, 24),   # 10–40 mg once daily
+    "vortioxetine":               (10.0, 24),   # 10–20 mg once daily
+    "mianserin":                  (10.0, 24),   # 30–90 mg once daily at bedtime
+
+    # --- ANTIPSYCHOTICS ---
+    "amisulpride":               (200.0, 12),   # 400 mg/day divided BID
+    "aripiprazole":               (10.0, 24),   # 10–30 mg once daily
+    "asenapine":                   (5.0, 12),   # 10 mg/day divided BID (sublingual)
+    "benperidol":                  (0.25,12),   # 0.25–1.5 mg/day divided BID
+    "blonanserin":                 (4.0, 12),   # 8 mg/day divided BID
+    "brexpiprazole":               (1.0, 24),   # 1–4 mg once daily
+    "cariprazine":                 (1.5, 24),   # 1.5–6 mg once daily
+    "chlorpromazine":             (25.0,  8),   # 75–150 mg/day divided TID
+    "clozapine":                  (25.0, 12),   # 25 mg BID (titration start; maintenance higher)
+    "flupentixol":                 (1.0, 12),   # 2–3 mg/day divided BID
+    "fluphenazine":                (1.0,  8),   # 2.5–10 mg/day divided TID
+    "fluspirilene":                (2.0,168),   # 2 mg IM once weekly (depot)
+    "haloperidol":                 (2.0,  8),   # 5–10 mg/day divided TID
+    "lurasidone":                 (40.0, 24),   # 40–160 mg once daily with food
+    "olanzapine":                  (5.0, 24),   # 5–20 mg once daily
+    "paliperidone":                (3.0, 24),   # 3–12 mg once daily
+    "quetiapine":                 (50.0, 12),   # 100–800 mg/day divided BID (IR)
+    "risperidone":                 (1.0, 12),   # 2–8 mg/day divided BID
+    "ziprasidone":                (40.0, 12),   # 80 mg/day divided BID with food
+    "loxapine":                   (10.0, 12),   # 20–100 mg/day divided BID
+
+    # --- ANXIOLYTICS ---
+    "diazepam":                    (5.0,  8),   # 15–30 mg/day divided TID
+    "clonazepam":                  (0.5, 12),   # 1–4 mg/day divided BID
+    "alprazolam":                  (0.25, 8),   # 0.75–4 mg/day divided TID
+    "lorazepam":                   (1.0, 12),   # 2–6 mg/day divided BID
+    "buspirone":                   (5.0,  8),   # 15 mg/day divided TID
+    "(r)-baclofen":               (10.0,  8),   # 30 mg/day divided TID
+
+    # --- OTHERS ---
+    "acarbose":                   (50.0,  8),   # 150 mg/day divided TID with meals
+    "acebutolol":                (200.0, 12),   # 400 mg/day divided BID
+    "acetazolamide":             (250.0, 12),   # 500 mg/day divided BID
+    "acyclovir":                 (200.0,  4),   # 1000 mg/day divided 5× daily (HSV)
+    "albendazole":               (400.0, 12),   # 800 mg/day divided BID with food
+    "albuterol":                   (2.0,  8),   # 6–8 mg/day divided TID (oral tablet)
+    "alectinib":                 (150.0, 12),   # 300 mg/day divided BID with food
+    "alfuzosin":                   (2.5,  8),   # 7.5 mg/day divided TID (IR)
+    "allopurinol":               (100.0, 24),   # 100–300 mg once daily
+    "amiodarone":                (200.0, 24),   # 200 mg once daily (maintenance)
+    "amlodipine":                  (5.0, 24),   # 5–10 mg once daily
+    "apixaban":                    (2.5, 12),   # 5 mg/day divided BID
+    "aspirin":                   (325.0, 24),   # 325 mg once daily (standard)
+    "atenolol":                   (25.0, 24),   # 25–100 mg once daily
+    "atorvastatin":               (10.0, 24),   # 10–80 mg once daily
+    "bortezomib":                  (1.3,168),   # 1.3 mg/m² SC/IV twice weekly (cycle-based)
+    "celecoxib":                 (100.0, 12),   # 200 mg/day divided BID
+    "donepezil":                   (5.0, 24),   # 5–10 mg once daily at bedtime
+    "furosemide":                 (20.0, 24),   # 20–40 mg once daily
+    "ropinirole":                  (0.25, 8),   # 0.75 mg/day divided TID (titration start)
 }
 
 CRITICAL_DRUG_INTERACTIONS = {
