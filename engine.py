@@ -81,7 +81,7 @@ class StabilisEngine:
             
             for rf in risk_factors:
                 if rf in drug_risks_upper:
-                    score_change -= 10.0
+                    score_change -= 1.0
             
             if score_change != 0:
                 mods[idx] = score_change
@@ -203,28 +203,28 @@ class StabilisEngine:
 
         final_ranking = []
         
-        BONUS_WEIGHT = 40.0    
-        PENALTY_WEIGHT = 100.0  
+        # Each match (target hit or contraindication hit) shifts the score by this many points.
+        # Both bonus_raw and penalty_raw are now count-of-matches (1.0 per match), so
+        # the weight is symmetric: 1 match = ±20 pts on the 0-100 scale.
+        MODIFIER_WEIGHT = 20.0
 
         for idx, row in self.drugs_df.iterrows():
             if not row.get('is_relevant', True):
                 continue
             ai_base_score = base_scores[idx].item()
-            
-            #TODO: MOOD STABILIZERS SHOULD GET A BIG BONUS IF BIPOLAR
+
             bonus_raw = target_bonuses.get(idx, 0.0)
-            bonus_final = bonus_raw * BONUS_WEIGHT
-            
+            bonus_final = bonus_raw * MODIFIER_WEIGHT
+
             # Small "tie-breaker" bonus for clinical relevance
             tie_breaker = 0.5 if row.get('is_relevant', False) else 0.0
-            
-            #TODO: ANTIDEPRESSANTS SHOULD GET A BIG PENALTY IF BIPOLAR
+
             penalty_raw = symptom_penalties.get(idx, 0.0)
-            penalty_final = abs(penalty_raw) * PENALTY_WEIGHT 
+            penalty_final = abs(penalty_raw) * MODIFIER_WEIGHT
             
             final_score = ai_base_score + bonus_final + tie_breaker - penalty_final
             final_score = max(0.0, min(100.0, final_score))
-            
+
             final_ranking.append({
                 "name": row['pert_iname'],
                 "final_score": final_score,
