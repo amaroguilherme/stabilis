@@ -65,14 +65,17 @@ class StabilisEngine:
             
     def _calculate_symptom_modifiers(self, profile):
         mods = {}
-        risk_factors = [str(v).upper().strip() for v in profile.get("contraindicacoes_relativas", [])]
+        risk_factors = [str(v).upper().strip() for v in profile.get("relative_contraindications", [])]
         
         if not risk_factors:
             return mods
 
         for idx, row in self.drugs_df.iterrows():
+            if not row.get('is_relevant', True):
+                continue
+
             score_change = 0.0
-            
+
             drug_risks = row.get('risk_profile', [])
             if isinstance(drug_risks, str):
                 drug_risks = ast.literal_eval(drug_risks) if drug_risks.startswith('[') else []
@@ -94,12 +97,12 @@ class StabilisEngine:
         if d_clean not in self.safety_score: return "N/A"
         
         t12, threshold, vd_kg, f = self.safety_score[d_clean]
-        met = profile.get("metabolismo_estimado", "padrao")
+        met = profile.get("estimated_metabolic_profile", "standard")
         
         # Virtual metabolic multiplier
         mult = 1.0
-        if met == "lento": mult = 1.5
-        if met == "acelerado": mult = 0.6
+        if met == "slow": mult = 1.5
+        if met not in ["slow", "standard"]: mult = 0.6
         
         # Steady-State Calculation using per-drug typical dose and dosing interval
         dosage, interval = TYPICAL_DOSING.get(d_clean, (100.0, 24))
@@ -114,13 +117,13 @@ class StabilisEngine:
     def _calculate_target_affinity(self, profile):
         target_bonuses = {}
         # Correct key from your last log
-        ai_raw_targets = profile.get('alvos_moleculares_prioritários', [])
+        ai_raw_targets = profile.get('priority_molecular_targets', [])
         
         # Normalize AI targets
         normalized_ai_targets = [TARGETS_MAP.get(t.strip().upper(), t.strip().upper()) for t in ai_raw_targets]
 
         for idx, row in self.drugs_df.iterrows():
-            if not row.get('is_relevant', False):
+            if not row.get('is_relevant', True):
                 continue
                 
             targets = [t.strip().upper() for t in str(row.get('target', '')).split('|')]
