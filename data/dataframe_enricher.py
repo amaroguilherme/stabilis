@@ -41,7 +41,8 @@ def build_enriched_dataframe(artifacts_path="artifacts"):
         'RENAL': ['renal failure', 'nephrotoxicity', 'renal impairment'],
         'CARDIAC': ['arrhythmia', 'qt prolonged', 'tachycardia', 'palpitations'],
         'PROLACTIN': ['hyperprolactinaemia', 'gynaecomastia', 'galactorrhoea'],
-        'MOTOR': ['extrapyramidal disorder', 'akathisia', 'tremor', 'tardive dyskinesia', 'dystonia']
+        'MOTOR': ['extrapyramidal disorder', 'akathisia', 'tremor', 'tardive dyskinesia', 'dystonia'],
+        'SEDATION': ['somnolence', 'sedation', 'drowsiness', 'lethargy', 'hypersomnia'],
     }
 
     def radical_clean(name):
@@ -64,16 +65,16 @@ def build_enriched_dataframe(artifacts_path="artifacts"):
         lithium_row = pd.DataFrame([{
             'pert_iname': 'lithium-carbonate',
             'target': 'GSK3B',
-            'risk_profile': ['RENAL', 'CARDIAC'],
+            'risk_profile': ['RENAL', 'CARDIAC', 'MOTOR'],
             'is_relevant': True
         }])
         base_drugs_df = pd.concat([base_drugs_df, lithium_row], ignore_index=True)
 
     clin_target_map = {
         'HTR1A': '5HT1A', 'HTR2A': '5HT2A', 'HTR2C': '5HT2C',
-        'HTR3A': '5HT3', 'SLC6A4': 'SERT', 'SLC6A2': 'NET', 
-        'SLC6A3': 'DAT', 'DRD2': 'D2', 'DRD3': 'D3', 'HRH1': 'H1', 
-        'CHRM1': 'M1', 'ADRA2A': 'ALPHA2A'
+        'HTR3A': '5HT3A', 'SLC6A4': 'SERT', 'SLC6A2': 'NET',
+        'SLC6A3': 'DAT', 'DRD2': 'DRD2', 'DRD3': 'DRD3', 'HRH1': 'H1',
+        'CHRM1': 'M1', 'ADRA2A': 'ADRA2',
     }
 
     def normalize_targets(target_str):
@@ -85,7 +86,7 @@ def build_enriched_dataframe(artifacts_path="artifacts"):
     
     def match_risks(pert_name):
         if pert_name == 'lithium-carbonate':
-            return ['RENAL', 'CARDIAC']
+            return ['RENAL', 'CARDIAC', 'MOTOR']
             
         p_clean = radical_clean(pert_name)
         if not p_clean: return []
