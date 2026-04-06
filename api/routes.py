@@ -2,16 +2,24 @@ from flask import Blueprint, jsonify, request
 
 from engine import StabilisEngine
 from data.constants import DRUG_NAME_PT
+from core.engines.toxicity_predictor import ToxicityPredictor
 
 analysis = Blueprint('analysis', __name__)
 
 _engine: StabilisEngine | None = None
+_toxicity: ToxicityPredictor | None = None
 
 def _get_engine() -> StabilisEngine:
     global _engine
     if _engine is None:
         _engine = StabilisEngine()
     return _engine
+
+def _get_toxicity() -> ToxicityPredictor:
+    global _toxicity
+    if _toxicity is None:
+        _toxicity = ToxicityPredictor()
+    return _toxicity
 
 
 @analysis.route("/health")
@@ -59,6 +67,39 @@ def analyze():
             "risk_profile": list(risk) if not isinstance(risk, list) else risk,
             "drug_class": item.get("drug_class", "OTHER"),
             "name_pt": DRUG_NAME_PT.get(item["name"], None),
+            "reasons": item.get("reasons", []),
         }
 
     return jsonify([serialize(item) for item in ranking])
+
+
+@analysis.route("/audit", methods=["POST"])
+def audit():
+    """
+    Body:
+    {
+        "prescription": [{"name": "lithium-carbonate", "dose": 300, "interval": 8}, ...],
+        "patient_profile": {"peso_kg": 70.0, "diagnostico_base": "Transtorno Bipolar"}
+    }
+    """
+    body = request.get_json(silent=True)
+    if not body:
+        return jsonify({"error": "Request body must be JSON."}), 400
+
+    prescription     = body.get("prescription")
+    patient_profile  = body.get("patient_profile")
+
+    if not prescription or not isinstance(prescription, list):
+        return jsonify({"error": "Missing or invalid field: prescription."}), 400
+    if not patient_profile or "peso_kg" not in patient_profile:
+        return jsonify({"error": "Missing or invalid field: patient_profile (requires peso_kg)."}), 400
+
+    try:
+        result = _get_toxicity().audit_and_simulate(
+            prescription=prescription,
+            patient_profile=patient_profile,
+        )
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    return jsonify(result)
