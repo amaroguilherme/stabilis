@@ -13,7 +13,13 @@ from core.engines.drug_interaction_analyzer import DrugInteractionAnalyzer
 from core.engines.symptom_extractor import SymptomExtractor
 from core.engines.toxicity_predictor import ToxicityPredictor
 
-from data.constants import TARGETS_MAP, TYPICAL_DOSING, TARGET_CLINICAL_MEANING, MOTOR_RISK_SUPPLEMENT, HEPATIC_RISK_EXEMPT, HEPATIC_RISK_SUPPLEMENT
+from data.constants import (
+    TARGETS_MAP, TYPICAL_DOSING, TARGET_CLINICAL_MEANING,
+    MOTOR_RISK_SUPPLEMENT, HEPATIC_RISK_EXEMPT, HEPATIC_RISK_SUPPLEMENT,
+    PROLACTIN_RISK_EXEMPT, PROLACTIN_RISK_SUPPLEMENT,
+    CARDIAC_RISK_EXEMPT, CARDIAC_RISK_SUPPLEMENT,
+    GNN_INFERENCE_EXCLUDED,
+)
 
 # ── Keyword fallback sets ──────────────────────────────────────────────────────
 # LLMs can misclassify structured comorbidity data. These keyword sets are applied
@@ -26,8 +32,11 @@ _MOTOR_KW   = {'tremor', 'distonia', 'acatisia', 'extrapiramidal', 'discinesia',
                'parkinsonismo', 'rigidez', 'travamento muscular'}
 _CARDIAC_KW = {'arritmia', 'qt', 'palpitação', 'fibrilação', 'flutter', 'cardíaco',
                'cardiopatia', 'qrs'}
-_SEDATION_KW = {'sedação diurna', 'embotamento cognitivo', 'névoa mental', 'clareza mental',
-                'sonolência', 'clareza cognitiva', 'cálculos', 'concentração'}
+_SEDATION_KW  = {'sedação diurna', 'embotamento cognitivo', 'névoa mental', 'clareza mental',
+                 'sonolência', 'clareza cognitiva', 'cálculos', 'concentração'}
+_PROLACTIN_KW = {'prolactina', 'galactorreia', 'galactorréia', 'hiperprolactinemia',
+                 'adenoma hipofisário', 'microadenoma', 'hipofisário', 'hipofisária',
+                 'prolactin-sparing'}
 
 class StabilisEngine:
     def __init__(self):
@@ -110,15 +119,31 @@ class StabilisEngine:
             if drug_name_lower in MOTOR_RISK_SUPPLEMENT and 'MOTOR' not in drug_risks_upper:
                 drug_risks_upper.append('MOTOR')
 
-            # Force HEPATIC for drugs with established hepatotoxicity that SIDER may miss
-            # due to name mismatches (e.g. "valproic acid" vs "valproic-acid").
+            # Force HEPATIC for drugs with established hepatotoxicity that SIDER may miss.
             if drug_name_lower in HEPATIC_RISK_SUPPLEMENT and 'HEPATIC' not in drug_risks_upper:
                 drug_risks_upper.append('HEPATIC')
 
-            # Strip HEPATIC from drugs that are NOT clinically hepatotoxic — SIDER over-tags
-            # drugs with isolated case reports (e.g. lamotrigine, quetiapine, gabapentin).
+            # Strip HEPATIC from drugs that are NOT clinically hepatotoxic.
             if drug_name_lower in HEPATIC_RISK_EXEMPT:
                 drug_risks_upper = [r for r in drug_risks_upper if r != 'HEPATIC']
+
+            # Force PROLACTIN for known high-prolactin drugs that SIDER may miss.
+            if drug_name_lower in PROLACTIN_RISK_SUPPLEMENT and 'PROLACTIN' not in drug_risks_upper:
+                drug_risks_upper.append('PROLACTIN')
+
+            # Strip PROLACTIN from partial D2 agonists — they are prolactin-sparing and
+            # should be preferred, not penalised, when the patient has prolactin concerns.
+            if drug_name_lower in PROLACTIN_RISK_EXEMPT:
+                drug_risks_upper = [r for r in drug_risks_upper if r != 'PROLACTIN']
+
+            # Force CARDIAC for known QT-prolonging drugs that SIDER may miss.
+            if drug_name_lower in CARDIAC_RISK_SUPPLEMENT and 'CARDIAC' not in drug_risks_upper:
+                drug_risks_upper.append('CARDIAC')
+
+            # Strip CARDIAC from antipsychotics with no meaningful QT effect — SIDER may
+            # tag them from isolated case reports, but they are actually preferred in QT long.
+            if drug_name_lower in CARDIAC_RISK_EXEMPT:
+                drug_risks_upper = [r for r in drug_risks_upper if r != 'CARDIAC']
 
             for rf in risk_factors:
                 if rf in drug_risks_upper:
@@ -183,7 +208,7 @@ class StabilisEngine:
         return target_bonuses, target_matches
 
     def _print_results(self, top_15, profile, peso):
-        print(f"\nTOP 15 - RANKING BY SYMPTOMS (Without Exome)")
+        print(f"\nTOP {len(top_15)} - RANKING BY SYMPTOMS (Without Exome)")
         print(f"{'DRUG':<22} | {'SCORE':<8} | {'SAFETY (ESTIMATED)':<22} | STATUS")
         print("-" * 75)
         
@@ -252,11 +277,12 @@ class StabilisEngine:
             doctor_summary,
         ]).lower()
 
-        if any(kw in all_text for kw in _HEPATIC_KW):  contraindications.add('HEPATIC')
-        if any(kw in all_text for kw in _RENAL_KW):    contraindications.add('RENAL')
-        if any(kw in all_text for kw in _MOTOR_KW):    contraindications.add('MOTOR')
-        if any(kw in all_text for kw in _CARDIAC_KW):  contraindications.add('CARDIAC')
-        if any(kw in all_text for kw in _SEDATION_KW): contraindications.add('SEDATION')
+        if any(kw in all_text for kw in _HEPATIC_KW):   contraindications.add('HEPATIC')
+        if any(kw in all_text for kw in _RENAL_KW):     contraindications.add('RENAL')
+        if any(kw in all_text for kw in _MOTOR_KW):     contraindications.add('MOTOR')
+        if any(kw in all_text for kw in _CARDIAC_KW):   contraindications.add('CARDIAC')
+        if any(kw in all_text for kw in _SEDATION_KW):  contraindications.add('SEDATION')
+        if any(kw in all_text for kw in _PROLACTIN_KW): contraindications.add('PROLACTIN')
 
         # LLMs frequently confuse hepatic steatosis / fatty liver with a metabolic condition.
         # Remove METABOLIC if no genuine metabolic indicator is present in the record.
@@ -270,6 +296,32 @@ class StabilisEngine:
 
         profile['relative_contraindications'] = list(contraindications)
         print("Effective contraindications (after fallback):", profile['relative_contraindications'])
+
+        # Diagnosis-based target supplement: ensure primary mechanism targets are always
+        # present even when the LLM misses them. The LLM is used for nuance; these are
+        # the non-negotiable mechanistic anchors per diagnosis category.
+        ai_targets_upper = [t.strip().upper() for t in profile.get('priority_molecular_targets', [])]
+        base_diagnosis_upper = checklist.get("base_diagnosis", "").upper()
+
+        _MANIC_TARGETS  = ['DRD2', '5HT2A', 'GSK3B', 'SCN', 'GABRA']
+        _DEPRESSIVE_TARGETS = ['SERT', 'NET', 'GSK3B']
+        _ANXIETY_TARGETS    = ['5HT1A', 'SERT', 'GABRA']
+
+        if any(k in base_diagnosis_upper for k in ('MANÍACO', 'MANIACO', 'MANIA', 'MISTO', 'MIXED')):
+            for t in _MANIC_TARGETS:
+                if t not in ai_targets_upper:
+                    ai_targets_upper.append(t)
+        elif any(k in base_diagnosis_upper for k in ('DEPRESSIV', 'DEPRESS')):
+            for t in _DEPRESSIVE_TARGETS:
+                if t not in ai_targets_upper:
+                    ai_targets_upper.append(t)
+        if any(k in base_diagnosis_upper for k in ('ANSIEDADE', 'ANXIETY', 'ANSIEDAD')):
+            for t in _ANXIETY_TARGETS:
+                if t not in ai_targets_upper:
+                    ai_targets_upper.append(t)
+
+        profile['priority_molecular_targets'] = ai_targets_upper
+        print("Effective targets (after diagnosis supplement):", profile['priority_molecular_targets'])
 
         # Modifier Calculations
         target_bonuses, target_matches = self._calculate_target_affinity(profile)
@@ -295,21 +347,51 @@ class StabilisEngine:
         for idx, row in self.drugs_df.iterrows():
             if not row.get('is_relevant', True):
                 continue
+            if str(row.get('pert_iname', '')).lower() in GNN_INFERENCE_EXCLUDED:
+                continue
             ai_base_score = base_scores[idx].item()
 
             bonus_raw = target_bonuses.get(idx, 0.0)
             bipolar_bonus = BIPOLAR_MOOD_STABILIZER_BONUS if (is_bipolar and row.get('drug_class') == 'MOOD_STABILIZER') else 0.0
-            bonus_final = bonus_raw * MODIFIER_WEIGHT + bipolar_bonus
+            bonus_final = bonus_raw * BONUS_WEIGHT + bipolar_bonus
 
             # Small "tie-breaker" bonus for clinical relevance
             tie_breaker = 0.5 if row.get('is_relevant', False) else 0.0
 
             penalty_raw = symptom_penalties.get(idx, 0.0)
             bipolar_penalty = BIPOLAR_ANTIDEPRESSANT_PENALTY if (is_bipolar and row.get('drug_class') == 'ANTIDEPRESSANT') else 0.0
-            penalty_final = abs(penalty_raw) * MODIFIER_WEIGHT + bipolar_penalty
-            
+            penalty_final = abs(penalty_raw) * PENALTY_WEIGHT + bipolar_penalty
+
             final_score = ai_base_score + bonus_final + tie_breaker - penalty_final
             final_score = max(0.0, min(100.0, final_score))
+
+            # --- Build patient-specific justification reasons ---
+            reasons = []
+
+            for t in sorted(target_matches.get(idx, [])):
+                meaning = TARGET_CLINICAL_MEANING.get(t)
+                if meaning:
+                    effect, relevance = meaning
+                    reasons.append({"type": "bonus", "text": f"{effect} — {relevance}"})
+
+            if bipolar_bonus > 0:
+                reasons.append({"type": "bonus", "text": "Estabilizador de humor: primeira linha para Transtorno Bipolar"})
+
+            if bipolar_penalty > 0:
+                reasons.append({"type": "penalty", "text": "Antidepressivo sem estabilizador de humor: risco de virada maníaca no Transtorno Bipolar"})
+
+            for tag in contraindication_matches.get(idx, []):
+                CONTRAINDICATION_LABELS = {
+                    "METABOLIC": "Risco metabólico (ganho de peso/diabetes) — conflita com a preocupação do paciente",
+                    "HEPATIC":   "Risco hepático — contraindicado em hepatopatia ativa",
+                    "RENAL":     "Risco renal — exige monitoramento rigoroso ou é contraindicado em disfunção/vulnerabilidade renal",
+                    "CARDIAC":   "Risco cardíaco (prolongamento de QT/arritmia) — monitorar em cardiopatia",
+                    "MOTOR":     "Risco motor (acatisia/distonia/tremor) — histórico de efeitos extrapiramidais",
+                    "PROLACTIN": "Risco de hiperprolactinemia — monitorar em disfunção hormonal",
+                    "SEDATION":  "Sedação diurna significativa — incompatível com a necessidade de clareza cognitiva do paciente",
+                }
+                label = CONTRAINDICATION_LABELS.get(tag, f"Risco '{tag}' presente no perfil do medicamento")
+                reasons.append({"type": "penalty", "text": label})
 
             final_ranking.append({
                 "name": row['pert_iname'],
@@ -317,9 +399,13 @@ class StabilisEngine:
                 "ai_score": ai_base_score,
                 "bonus": bonus_final,
                 "penalty": penalty_final,
-                "risk_profile": row.get('risk_profile', [])
+                "risk_profile": row.get('risk_profile', []),
+                "drug_class": row.get('drug_class', 'OTHER'),
+                "reasons": reasons,
             })
 
         final_ranking.sort(key=lambda x: x["final_score"], reverse=True)
-        #TODO: HOW TO JUSTIFY THIS CHOICE BASED ON DATA?
+        
+        self._print_results(final_ranking[:15], profile, checklist["weight"])
+        #TODO: HOW TO USE THE LLM TO JUSTIFY THIS CHOICE?
         return final_ranking

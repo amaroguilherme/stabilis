@@ -28,7 +28,7 @@ CURATED_DRUGS = [
     # Anxiolytics / sedatives
     'alprazolam', 'buspirone', 'clonazepam', 'diazepam', 'hydroxyzine', 'lorazepam',
     # Anticonvulsants with psychiatric use
-    'ethosuximide', 'gabapentin', 'phenytoin', 'pregabalin', 'primidone',
+    'gabapentin', 'phenytoin', 'pregabalin', 'primidone',
     # Antidepressant with noradrenergic focus
     'atomoxetine',
 ]
@@ -75,6 +75,54 @@ HEPATIC_RISK_SUPPLEMENT = {
     'carbamazepine',    # hepatotoxicity and cholestatic jaundice known
     'nefazodone',       # black-box warning for hepatic failure
     'felbamate',        # hepatic failure risk (rare)
+}
+
+# Antipsychotics that are 'prolactin-sparing' (partial D2 agonists or weak D2 blockers).
+# SIDER may tag them with PROLACTIN due to rare adverse event reports, but clinically
+# they do NOT elevate prolactin and should NOT be penalised when the patient has
+# hyperprolactinemia, microadenoma, or galactorrhea concerns.
+PROLACTIN_RISK_EXEMPT = {
+    'aripiprazole',    # partial D2 agonist — actually lowers prolactin
+    'cariprazine',     # partial D2/D3 agonist — prolactin-neutral
+    'brexpiprazole',   # partial D2 agonist — prolactin-sparing
+    'clozapine',       # weak D2 binding — prolactin-neutral
+    'quetiapine',      # low prolactin elevation in practice
+}
+
+# Drugs with clinically significant prolactin-elevating potential that SIDER may miss.
+PROLACTIN_RISK_SUPPLEMENT = {
+    'amisulpride',     # highest prolactin elevation of all antipsychotics
+    'sulpiride',       # D2 antagonist — very high prolactin elevation
+    'levosulpiride',   # same class as sulpiride
+    'promazine',       # phenothiazine — moderate-high prolactin elevation
+    'chlorprothixene', # thioxanthene — prolactin elevation
+}
+
+# Antipsychotics with minimal or no QT-prolonging effect.
+# SIDER may tag them as CARDIAC due to isolated case reports, but for patients
+# with QT Long Syndrome these are the PREFERRED agents and must not be penalised.
+CARDIAC_RISK_EXEMPT = {
+    'aripiprazole',    # no meaningful QT prolongation — preferred in QT long
+    'cariprazine',     # minimal QT effect
+    'brexpiprazole',   # minimal QT effect
+    'lurasidone',      # minimal QT effect — considered QT-safe
+}
+
+# Drugs with clinically significant QT-prolonging potential that SIDER may not capture
+# (e.g. due to name mismatch). Applied at inference time when CARDIAC is contraindicated.
+CARDIAC_RISK_SUPPLEMENT = {
+    'pimozide',        # significant QT risk — class IA warning
+    'thioridazine',    # QT black-box warning
+    'promazine',       # phenothiazine — known QT effects
+    'chlorprothixene', # thioxanthene — QT effects
+}
+
+# Drugs that must never appear in symptom-based inference regardless of GNN score.
+# These have indications entirely outside Stabilis's scope (Bipolar I/II, GAD).
+# They are also added to QUBO_BLACKLIST in train_repurposing.py so a future retrain
+# assigns them a near-zero base score.
+GNN_INFERENCE_EXCLUDED = {
+    'pimavanserin',   # FDA-approved ONLY for Parkinson's disease psychosis — no bipolar/GAD indication
 }
 
 TARGETS_MAP = {
