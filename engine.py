@@ -15,9 +15,15 @@ from core.engines.toxicity_predictor import ToxicityPredictor
 
 from data.constants import (
     TARGETS_MAP, TYPICAL_DOSING, TARGET_CLINICAL_MEANING,
-    MOTOR_RISK_SUPPLEMENT, HEPATIC_RISK_EXEMPT, HEPATIC_RISK_SUPPLEMENT,
+    MOTOR_RISK_SUPPLEMENT, MOTOR_RISK_EXEMPT,
+    HEPATIC_RISK_EXEMPT, HEPATIC_RISK_SUPPLEMENT,
     PROLACTIN_RISK_EXEMPT, PROLACTIN_RISK_SUPPLEMENT,
     CARDIAC_RISK_EXEMPT, CARDIAC_RISK_SUPPLEMENT,
+    RENAL_RISK_SUPPLEMENT, RENAL_RISK_EXEMPT,
+    HARD_CAP_RULES,
+    GAD_FIRST_LINE, GAD_TCA_SECOND_LINE,
+    GAD_FIRST_LINE_BONUS, GAD_TCA_PENALTY, GAD_ANTIPSYCHOTIC_PENALTY,
+    DRUG_CLASS_RUNTIME,
     GNN_INFERENCE_EXCLUDED,
 )
 
@@ -115,35 +121,31 @@ class StabilisEngine:
 
             drug_name_lower = str(row.get('pert_iname', '')).lower()
 
-            # Supplement SIDER-derived risks with hardcoded MOTOR knowledge where data is sparse.
+            # ── Supplement: add risk tags SIDER misses ───────────────────────
             if drug_name_lower in MOTOR_RISK_SUPPLEMENT and 'MOTOR' not in drug_risks_upper:
                 drug_risks_upper.append('MOTOR')
-
-            # Force HEPATIC for drugs with established hepatotoxicity that SIDER may miss.
             if drug_name_lower in HEPATIC_RISK_SUPPLEMENT and 'HEPATIC' not in drug_risks_upper:
                 drug_risks_upper.append('HEPATIC')
-
-            # Strip HEPATIC from drugs that are NOT clinically hepatotoxic.
-            if drug_name_lower in HEPATIC_RISK_EXEMPT:
-                drug_risks_upper = [r for r in drug_risks_upper if r != 'HEPATIC']
-
-            # Force PROLACTIN for known high-prolactin drugs that SIDER may miss.
             if drug_name_lower in PROLACTIN_RISK_SUPPLEMENT and 'PROLACTIN' not in drug_risks_upper:
                 drug_risks_upper.append('PROLACTIN')
-
-            # Strip PROLACTIN from partial D2 agonists — they are prolactin-sparing and
-            # should be preferred, not penalised, when the patient has prolactin concerns.
-            if drug_name_lower in PROLACTIN_RISK_EXEMPT:
-                drug_risks_upper = [r for r in drug_risks_upper if r != 'PROLACTIN']
-
-            # Force CARDIAC for known QT-prolonging drugs that SIDER may miss.
             if drug_name_lower in CARDIAC_RISK_SUPPLEMENT and 'CARDIAC' not in drug_risks_upper:
                 drug_risks_upper.append('CARDIAC')
+            if drug_name_lower in RENAL_RISK_SUPPLEMENT and 'RENAL' not in drug_risks_upper:
+                drug_risks_upper.append('RENAL')
 
-            # Strip CARDIAC from antipsychotics with no meaningful QT effect — SIDER may
-            # tag them from isolated case reports, but they are actually preferred in QT long.
+            # ── Exempt: strip risk tags SIDER over-tags ───────────────────────
+            if drug_name_lower in HEPATIC_RISK_EXEMPT:
+                drug_risks_upper = [r for r in drug_risks_upper if r != 'HEPATIC']
+            if drug_name_lower in PROLACTIN_RISK_EXEMPT:
+                drug_risks_upper = [r for r in drug_risks_upper if r != 'PROLACTIN']
             if drug_name_lower in CARDIAC_RISK_EXEMPT:
                 drug_risks_upper = [r for r in drug_risks_upper if r != 'CARDIAC']
+            if drug_name_lower in RENAL_RISK_EXEMPT:
+                drug_risks_upper = [r for r in drug_risks_upper if r != 'RENAL']
+            # MOTOR_RISK_EXEMPT: drugs that SIDER tags for rare/mild tremor but that
+            # are NOT associated with the EPS/akathisia/dystonia the patient experienced.
+            if drug_name_lower in MOTOR_RISK_EXEMPT:
+                drug_risks_upper = [r for r in drug_risks_upper if r != 'MOTOR']
 
             for rf in risk_factors:
                 if rf in drug_risks_upper:
@@ -344,26 +346,45 @@ class StabilisEngine:
         BIPOLAR_MOOD_STABILIZER_BONUS = 60.0
         BIPOLAR_ANTIDEPRESSANT_PENALTY = 80.0
 
+        _BASE_DIAG_UPPER = checklist.get("base_diagnosis", "").upper()
+        is_gad           = "TRANSTORNO DE ANSIEDADE GENERALIZADA" in _BASE_DIAG_UPPER
+        # Risk tags needed for hard-cap lookup (already fully resolved in profile)
+        active_risk_tags = {str(v).upper().strip() for v in profile.get("relative_contraindications", [])}
+
         for idx, row in self.drugs_df.iterrows():
             if not row.get('is_relevant', True):
                 continue
-            if str(row.get('pert_iname', '')).lower() in GNN_INFERENCE_EXCLUDED:
+            drug_name_lower = str(row.get('pert_iname', '')).lower()
+            if drug_name_lower in GNN_INFERENCE_EXCLUDED:
                 continue
             ai_base_score = base_scores[idx].item()
 
-            bonus_raw = target_bonuses.get(idx, 0.0)
-            bipolar_bonus = BIPOLAR_MOOD_STABILIZER_BONUS if (is_bipolar and row.get('drug_class') == 'MOOD_STABILIZER') else 0.0
-            bonus_final = bonus_raw * BONUS_WEIGHT + bipolar_bonus
+            # Use runtime drug_class override when the artifact classification is incomplete.
+            drug_class = DRUG_CLASS_RUNTIME.get(drug_name_lower, row.get('drug_class', 'OTHER'))
+
+            bonus_raw            = target_bonuses.get(idx, 0.0)
+            bipolar_bonus        = BIPOLAR_MOOD_STABILIZER_BONUS if (is_bipolar and drug_class == 'MOOD_STABILIZER') else 0.0
+            gad_first_line_bonus = GAD_FIRST_LINE_BONUS if (is_gad and drug_name_lower in GAD_FIRST_LINE) else 0.0
+            bonus_final          = bonus_raw * BONUS_WEIGHT + bipolar_bonus + gad_first_line_bonus
 
             # Small "tie-breaker" bonus for clinical relevance
             tie_breaker = 0.5 if row.get('is_relevant', False) else 0.0
 
-            penalty_raw = symptom_penalties.get(idx, 0.0)
-            bipolar_penalty = BIPOLAR_ANTIDEPRESSANT_PENALTY if (is_bipolar and row.get('drug_class') == 'ANTIDEPRESSANT') else 0.0
-            penalty_final = abs(penalty_raw) * PENALTY_WEIGHT + bipolar_penalty
+            penalty_raw     = symptom_penalties.get(idx, 0.0)
+            bipolar_penalty = BIPOLAR_ANTIDEPRESSANT_PENALTY if (is_bipolar and drug_class == 'ANTIDEPRESSANT') else 0.0
+            gad_ap_penalty  = GAD_ANTIPSYCHOTIC_PENALTY if (is_gad and drug_class == 'ANTIPSYCHOTIC') else 0.0
+            gad_tca_penalty = GAD_TCA_PENALTY if (is_gad and drug_name_lower in GAD_TCA_SECOND_LINE) else 0.0
+            penalty_final   = abs(penalty_raw) * PENALTY_WEIGHT + bipolar_penalty + gad_ap_penalty + gad_tca_penalty
 
             final_score = ai_base_score + bonus_final + tie_breaker - penalty_final
             final_score = max(0.0, min(100.0, final_score))
+
+            # Hard safety caps: drug+contraindication combos that are near-absolute
+            # contraindications — no diagnostic bonus can overcome them.
+            for (cap_drug, cap_tag), cap_max in HARD_CAP_RULES.items():
+                if drug_name_lower == cap_drug and cap_tag in active_risk_tags:
+                    final_score = min(final_score, cap_max)
+                    break
 
             # --- Build patient-specific justification reasons ---
             reasons = []

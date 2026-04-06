@@ -68,6 +68,47 @@ MOTOR_RISK_SUPPLEMENT = {
     'valproic-acid',
 }
 
+# Drugs that SIDER may tag as MOTOR due to rare adverse events (e.g. occasional akathisia
+# or mild tremor) but that are NOT associated with clinically significant EPS / dystonia.
+# These should NOT be penalised when the patient has an EPS-history MOTOR contraindication.
+MOTOR_RISK_EXEMPT = {
+    'lamotrigine',     # mild tremor possible, NOT EPS/akathisia/dystonia
+    'valproic-acid',   # dose-dependent tremor, qualitatively different from EPS
+    'aripiprazole',    # rare akathisia; used as first-line option in EPS-history patients
+    'cariprazine',     # similar to aripiprazole — partial D2 agonist, low EPS profile
+    'brexpiprazole',   # similar profile — low EPS risk
+    'escitalopram',    # rare SSRI-induced akathisia, not clinically significant EPS
+    'sertraline',      # same as escitalopram
+    'venlafaxine',     # rare, not clinically significant EPS
+    'duloxetine',      # same as venlafaxine
+    'buspirone',       # no EPS
+}
+
+# Drugs with clinically significant renal toxicity / exclusive renal clearance that SIDER
+# may miss (e.g. due to name mismatch). RENAL contraindication must always apply.
+RENAL_RISK_SUPPLEMENT = {
+    'lithium-carbonate',  # 100% renally cleared; nephrotoxic accumulation in CKD
+}
+
+# Drugs that SIDER may over-tag as RENAL due to rare adverse events or SIADH reports,
+# but that are NOT clinically nephrotoxic and do NOT require dose adjustment in mild-
+# moderate CKD. Should NOT be penalised when RENAL is the patient's contraindication.
+RENAL_RISK_EXEMPT = {
+    'lamotrigine',     # renally cleared but not nephrotoxic — safe in CKD with monitoring
+    'valproic-acid',   # hepatically metabolized — minimal renal risk
+    'carbamazepine',   # hepatic metabolism — not nephrotoxic
+    'aripiprazole',    # minimal renal effects — safe in CKD
+    'cariprazine',     # minimal renal effects
+    'brexpiprazole',   # minimal renal effects
+    'quetiapine',      # minimal renal effects — safe in CKD
+    'lurasidone',      # minimal renal effects
+    'ziprasidone',     # minimal renal effects
+    'escitalopram',    # rare SIADH/hyponatremia, NOT direct nephrotoxicity
+    'sertraline',      # same as escitalopram
+    'venlafaxine',     # same pattern
+    'duloxetine',      # same pattern
+}
+
 # Drugs whose HEPATIC risk is clinically established but may be missing from SIDER-derived
 # risk_profile (e.g. due to name mismatch in the SIDER database). Applied at inference time.
 HEPATIC_RISK_SUPPLEMENT = {
@@ -123,6 +164,114 @@ CARDIAC_RISK_SUPPLEMENT = {
 # assigns them a near-zero base score.
 GNN_INFERENCE_EXCLUDED = {
     'pimavanserin',   # FDA-approved ONLY for Parkinson's disease psychosis — no bipolar/GAD indication
+    'ethosuximide',   # absence epilepsy only — no bipolar or GAD indication
+}
+
+# Hard safety caps: certain drug + active contraindication combinations are clinical
+# contraindications that no diagnostic bonus can overcome.  When the patient flag is
+# active the drug's final score is capped at the given value regardless of GNN base,
+# bipolar bonus, or target affinity.  These are not "avoid" signals — they are
+# near-absolute contraindications where prescribing would be dangerous.
+# Key:   (drug_name_lower, RISK_TAG_UPPER)  →  max_score
+HARD_CAP_RULES = {
+    # Lithium: 100% renally cleared, accumulates in CKD → nephrotoxic
+    ('lithium-carbonate', 'RENAL'):    15.0,
+    # Valproate & carbamazepine: established hepatotoxicity + active liver disease
+    ('valproic-acid',     'HEPATIC'):  15.0,
+    ('carbamazepine',     'HEPATIC'):  15.0,
+    ('nefazodone',        'HEPATIC'):   5.0,   # black-box hepatic failure warning
+    # First-generation (typical) antipsychotics + EPS history — hard contraindication
+    ('haloperidol',       'MOTOR'):    15.0,
+    ('chlorpromazine',    'MOTOR'):    15.0,
+    ('fluphenazine',      'MOTOR'):    15.0,
+    ('perphenazine',      'MOTOR'):    15.0,
+    ('trifluoperazine',   'MOTOR'):    15.0,
+    ('thiothixene',       'MOTOR'):    15.0,
+    ('pimozide',          'MOTOR'):    15.0,
+    ('zuclopenthixol',    'MOTOR'):    15.0,
+    ('flupentixol',       'MOTOR'):    15.0,
+    ('fluspirilene',      'MOTOR'):    15.0,
+    ('chlorprothixene',   'MOTOR'):    15.0,
+    ('levomepromazine',   'MOTOR'):    15.0,
+    ('promazine',         'MOTOR'):    15.0,
+    ('bromperidol',       'MOTOR'):    15.0,
+    ('benperidol',        'MOTOR'):    15.0,
+    ('molindone',         'MOTOR'):    15.0,
+    ('loxapine',          'MOTOR'):    15.0,
+}
+
+# ── GAD-specific scoring ────────────────────────────────────────────────────
+# SSRIs, SNRIs, and buspirone are first-line for GAD per all major guidelines.
+# TCAs are effective but second/third-line due to tolerability. Antipsychotics
+# are not indicated for primary GAD without comorbid psychosis.
+
+# Bonus applied to GAD first-line drugs when diagnosis is GAD.
+GAD_FIRST_LINE_BONUS      = 30.0
+# Penalty applied to second-line TCAs when diagnosis is GAD.
+GAD_TCA_PENALTY           = 20.0
+# Penalty applied to antipsychotics when diagnosis is GAD.
+GAD_ANTIPSYCHOTIC_PENALTY = 40.0
+
+GAD_FIRST_LINE = {
+    'escitalopram', 'sertraline', 'paroxetine', 'fluoxetine', 'fluvoxamine',
+    'venlafaxine', 'duloxetine', 'vilazodone', 'buspirone',
+}
+
+GAD_TCA_SECOND_LINE = {
+    'amitriptyline', 'amoxapine', 'clomipramine', 'desipramine', 'doxepin',
+    'imipramine', 'maprotiline', 'nortriptyline', 'trimipramine',
+}
+
+# Runtime drug-class overrides.  The drugs_enriched.pkl artifact was built with a
+# partial DRUG_CLASSES dict; these entries correct the drug_class field at inference
+# time without requiring an artifact rebuild.
+DRUG_CLASS_RUNTIME = {
+    # TCAs missing from original DRUG_CLASSES
+    'amoxapine':        'ANTIDEPRESSANT',
+    'doxepin':          'ANTIDEPRESSANT',
+    'desipramine':      'ANTIDEPRESSANT',
+    'maprotiline':      'ANTIDEPRESSANT',
+    'trimipramine':     'ANTIDEPRESSANT',
+    'nefazodone':       'ANTIDEPRESSANT',
+    'tianeptine':       'ANTIDEPRESSANT',
+    'vilazodone':       'ANTIDEPRESSANT',
+    'reboxetine':       'ANTIDEPRESSANT',
+    'milnacipran':      'ANTIDEPRESSANT',
+    'atomoxetine':      'ANTIDEPRESSANT',
+    # MAOIs
+    'isocarboxazid':    'ANTIDEPRESSANT',
+    'moclobemide':      'ANTIDEPRESSANT',
+    'phenelzine':       'ANTIDEPRESSANT',
+    'selegiline':       'ANTIDEPRESSANT',
+    'tranylcypromine':  'ANTIDEPRESSANT',
+    # Antipsychotics not in original DRUG_CLASSES
+    'amisulpride':      'ANTIPSYCHOTIC',
+    'asenapine':        'ANTIPSYCHOTIC',
+    'blonanserin':      'ANTIPSYCHOTIC',
+    'brexpiprazole':    'ANTIPSYCHOTIC',
+    'iloperidone':      'ANTIPSYCHOTIC',
+    'lumateperone':     'ANTIPSYCHOTIC',
+    'perospirone':      'ANTIPSYCHOTIC',
+    'loxapine':         'ANTIPSYCHOTIC',
+    'haloperidol':      'ANTIPSYCHOTIC',
+    'chlorpromazine':   'ANTIPSYCHOTIC',
+    'promazine':        'ANTIPSYCHOTIC',
+    'fluphenazine':     'ANTIPSYCHOTIC',
+    'fluspirilene':     'ANTIPSYCHOTIC',
+    'flupentixol':      'ANTIPSYCHOTIC',
+    'perphenazine':     'ANTIPSYCHOTIC',
+    'thioridazine':     'ANTIPSYCHOTIC',
+    'trifluoperazine':  'ANTIPSYCHOTIC',
+    'thiothixene':      'ANTIPSYCHOTIC',
+    'pimozide':         'ANTIPSYCHOTIC',
+    'zuclopenthixol':   'ANTIPSYCHOTIC',
+    'chlorprothixene':  'ANTIPSYCHOTIC',
+    'levomepromazine':  'ANTIPSYCHOTIC',
+    'benperidol':       'ANTIPSYCHOTIC',
+    'bromperidol':      'ANTIPSYCHOTIC',
+    'molindone':        'ANTIPSYCHOTIC',
+    'sulpiride':        'ANTIPSYCHOTIC',
+    'levosulpiride':    'ANTIPSYCHOTIC',
 }
 
 TARGETS_MAP = {
