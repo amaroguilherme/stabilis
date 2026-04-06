@@ -42,14 +42,14 @@ class SymptomExtractor:
         )
         
         self.ontology = """
-            Map reported health issues to the following TAGS (Ignore mentions of organs if the text states they are healthy or normal.
-            Pay attention to the general context and to false positives):
-            - HEPATIC: Only for active pathologies (e.g., cirrhosis, hepatitis, hepatotoxicity, etc.).
-            - METABOLIC: Use for two distinct situations: (1) existing metabolic condition — overweight, obesity, or diabetes (do NOT use this reason alone if the patient is thin); (2) weight-gain adherence risk — patient has a documented history of stopping a medication due to weight gain, or the doctor explicitly states the patient will not comply with treatment if the medication causes weight gain. Reason (2) applies regardless of current weight.
-            - RENAL: Only for renal insufficiency, elevated creatinine, history of dialysis, and similar conditions.
-            - MOTOR: Only for a history of tremors, akathisia, rigidity, extrapyramidal effects, and similar conditions.
-            - CARDIAC: Only for arrhythmias, prolonged QT interval, cardiac pathologies, and similar conditions.
+            Map reported health issues to the following TAGS (ignore mentions of organs only if the text explicitly states they are healthy/normal; when in doubt, tag it):
+            - HEPATIC: Use for any active or recent hepatic compromise: cirrhosis, hepatitis, hepatotoxicity, elevated liver enzymes (ALT/AST/TGO/TGP alteradas), jaundice, hepatic steatosis (esteatose hepática), NAFLD/NASH, alcoholic liver disease, or doctor explicitly asking to avoid hepatotoxic drugs. IMPORTANT: fatty liver / esteatose hepática = HEPATIC, NOT METABOLIC.
+            - METABOLIC: Use ONLY for: (1) existing metabolic condition — overweight, obesity, or diabetes (do NOT use this reason alone if the patient is thin or if the concern is purely liver-related); (2) weight-gain adherence risk — patient has a documented history of stopping a medication due to weight gain, or the doctor explicitly states the patient will not comply with treatment if the medication causes weight gain. Do NOT use METABOLIC for fatty liver / liver enzyme abnormalities — those are HEPATIC.
+            - RENAL: Use for any of: (1) active renal conditions — insufficiency, elevated creatinine, dialysis; (2) renal vulnerability — history of renal sensitivity, family history of renal disease, doctor explicitly advising to avoid renal overload or nephrotoxic drugs; (3) concurrent use of ACE inhibitors (e.g., Enalapril, Lisinopril, Ramipril) combined with ANY mention of renal concern; (4) any phrase like "sensibilidade renal", "sobrecarga renal", "evitar nefrotóxicos".
+            - MOTOR: Use for ANY history of movement-related drug side effects or conditions: tremors (tremores), akathisia (acatisia), rigidity (rigidez), extrapyramidal effects (efeitos extrapiramidais, reação extrapiramidal), dystonia (distonia, travamento muscular), tardive dyskinesia (discinesia tardia), Parkinsonism, or doctor asking to avoid drugs that cause these effects. IMPORTANT: if the patient mentions having had "distonia", "travamento muscular", "tremor" or similar from a prior drug — this is MOTOR.
+            - CARDIAC: Only for arrhythmias, prolonged QT interval (QT longo), cardiac pathologies, and similar conditions.
             - PROLACTIN: Only for hyperprolactinemia, galactorrhea, or related hormonal dysfunctions.
+            - SEDATION: Use when the doctor explicitly states to avoid sedating drugs, cognitive dulling, daytime sedation, or mental fog — or when the patient's occupation/needs require cognitive clarity during the day.
         """
         
         self.targets = """
@@ -92,10 +92,35 @@ class SymptomExtractor:
         
         # TODO: THIS SHOULD ONLY REPLY IF THE INCOMING TEXT IS AN ANAMNESIS
         # TODO: THE DOCTOR SUMMARY MUST HAVE A CHARACTER LIMIT
-        prompt = f"""<start_of_turn>user
-        Extract clinical data from medical records into JSON. Targets: {self.targets}. Allowed Tags: {self.ontology}.
+        target_guidance = """
+        Target selection guidance (choose targets that would be THERAPEUTICALLY BENEFICIAL to modulate for this patient's main complaints; include ALL that apply):
+        - Depressive episode, anhedonia, lack of motivation, low energy → SERT, NET, DAT
+        - Cognitive symptoms (brain fog, poor concentration, mental fatigue) → DAT, NET, SIGMAR1
+        - Anxiety, rumination, social withdrawal → 5HT1A, SERT
+        - Insomnia, circadian disruption → MT1, MT2, H1, GABRA
+        - Psychotic symptoms, hallucinations, delusions → DRD2, 5HT2A
+        - Mania, mixed state, psychomotor agitation, irritability, pressured speech → DRD2, 5HT2A, GSK3B, SCN, GABRA
+        - Bipolar depression (with mood stabilization need) → GSK3B, SERT
+        - Suicidal ideation, impulsivity → SERT, 5HT2A
+        - Neuropathic pain, seizure threshold → GABRA, SCN, CACNA
+        - Attention, executive function, fatigue → DAT, NET
+        """
 
-        {user_input}<end_of_turn>
+        prompt = f"""<start_of_turn>user
+        Extract clinical data from medical records into a JSON object with exactly these fields:
+        - "symptoms": list of main clinical complaints in plain text
+        - "relative_contraindications": list of risk TAGS from the ontology below that apply to this patient
+        - "estimated_metabolic_profile": one of "slow", "standard", or "fast"
+        - "priority_molecular_targets": list of molecular targets from the allowed list that would be beneficial to modulate
+
+        Allowed Tags: {self.ontology}
+        Allowed Targets: {self.targets}
+        {target_guidance}
+
+        Medical record:
+        {user_input}
+
+        Respond with only the JSON object, no explanation.<end_of_turn>
         <start_of_turn>model
         """
 
