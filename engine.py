@@ -13,7 +13,21 @@ from core.engines.drug_interaction_analyzer import DrugInteractionAnalyzer
 from core.engines.symptom_extractor import SymptomExtractor
 from core.engines.toxicity_predictor import ToxicityPredictor
 
-from data.constants import TARGETS_MAP, TYPICAL_DOSING
+from data.constants import TARGETS_MAP, TYPICAL_DOSING, TARGET_CLINICAL_MEANING, MOTOR_RISK_SUPPLEMENT, HEPATIC_RISK_EXEMPT, HEPATIC_RISK_SUPPLEMENT
+
+# ── Keyword fallback sets ──────────────────────────────────────────────────────
+# LLMs can misclassify structured comorbidity data. These keyword sets are applied
+# deterministically to the checklist/summary AFTER LLM extraction to catch misses.
+_HEPATIC_KW = {'hepático', 'hepática', 'hepatite', 'esteatose', 'cirrose', 'fígado',
+               'tgo', 'tgp', 'alt', 'ast', 'hepatotóxico', 'transaminase'}
+_RENAL_KW   = {'renal', 'rim', 'creatinina', 'diálise', 'néfro', 'nefropatia',
+               'nefrotóxico', 'sobrecarga renal', 'sensibilidade renal'}
+_MOTOR_KW   = {'tremor', 'distonia', 'acatisia', 'extrapiramidal', 'discinesia',
+               'parkinsonismo', 'rigidez', 'travamento muscular'}
+_CARDIAC_KW = {'arritmia', 'qt', 'palpitação', 'fibrilação', 'flutter', 'cardíaco',
+               'cardiopatia', 'qrs'}
+_SEDATION_KW = {'sedação diurna', 'embotamento cognitivo', 'névoa mental', 'clareza mental',
+                'sonolência', 'clareza cognitiva', 'cálculos', 'concentração'}
 
 class StabilisEngine:
     def __init__(self):
@@ -43,10 +57,16 @@ class StabilisEngine:
         print("Waking Up the Neural Network...")
         self.gnn = GATClassifier(in_channels=2048, hidden_channels=64, out_channels=1, heads=4, dropout_rate=0.4)
         
+        # Prefer the psychiatry-specific weights when available.
+        weights_path = (
+            "artifacts/gnn_v3_stabilis_psychiatric.pt"
+            if os.path.exists("artifacts/gnn_v3_stabilis_psychiatric.pt")
+            else "artifacts/gnn_v2_stabilis.pt"
+        )
         try:
-            self.gnn.load_state_dict(torch.load("artifacts/gnn_v2_stabilis.pt", weights_only=True))
-            self.gnn.eval() # Inference mode
-            print("-> Weights loaded successfully!")
+            self.gnn.load_state_dict(torch.load(weights_path, weights_only=True))
+            self.gnn.eval()
+            print(f"-> Weights loaded: {weights_path}")
         except Exception as e:
             print(f"Error loading weights: {e}")
             
@@ -65,31 +85,51 @@ class StabilisEngine:
             
     def _calculate_symptom_modifiers(self, profile):
         mods = {}
+        contraindication_matches = {}  # idx -> list of matched risk tags
         risk_factors = [str(v).upper().strip() for v in profile.get("relative_contraindications", [])]
-        
+
         if not risk_factors:
-            return mods
+            return mods, contraindication_matches
 
         for idx, row in self.drugs_df.iterrows():
             if not row.get('is_relevant', True):
                 continue
 
             score_change = 0.0
+            matched = []
 
             drug_risks = row.get('risk_profile', [])
             if isinstance(drug_risks, str):
                 drug_risks = ast.literal_eval(drug_risks) if drug_risks.startswith('[') else []
-                
+
             drug_risks_upper = [str(dr).upper().strip() for dr in drug_risks]
-            
+
+            drug_name_lower = str(row.get('pert_iname', '')).lower()
+
+            # Supplement SIDER-derived risks with hardcoded MOTOR knowledge where data is sparse.
+            if drug_name_lower in MOTOR_RISK_SUPPLEMENT and 'MOTOR' not in drug_risks_upper:
+                drug_risks_upper.append('MOTOR')
+
+            # Force HEPATIC for drugs with established hepatotoxicity that SIDER may miss
+            # due to name mismatches (e.g. "valproic acid" vs "valproic-acid").
+            if drug_name_lower in HEPATIC_RISK_SUPPLEMENT and 'HEPATIC' not in drug_risks_upper:
+                drug_risks_upper.append('HEPATIC')
+
+            # Strip HEPATIC from drugs that are NOT clinically hepatotoxic — SIDER over-tags
+            # drugs with isolated case reports (e.g. lamotrigine, quetiapine, gabapentin).
+            if drug_name_lower in HEPATIC_RISK_EXEMPT:
+                drug_risks_upper = [r for r in drug_risks_upper if r != 'HEPATIC']
+
             for rf in risk_factors:
                 if rf in drug_risks_upper:
                     score_change -= 1.0
-            
+                    matched.append(rf)
+
             if score_change != 0:
                 mods[idx] = score_change
-                
-        return mods
+                contraindication_matches[idx] = matched
+
+        return mods, contraindication_matches
 
     def _simulate_safety_score(self, drug_name, weight, profile):
         """Toxicity Simulator Using a Symptom-Based Virtual Genotype"""
@@ -116,26 +156,31 @@ class StabilisEngine:
     
     def _calculate_target_affinity(self, profile):
         target_bonuses = {}
-        # Correct key from your last log
+        target_matches = {}  # idx -> set of matched target strings
         ai_raw_targets = profile.get('priority_molecular_targets', [])
-        
+
         # Normalize AI targets
         normalized_ai_targets = [TARGETS_MAP.get(t.strip().upper(), t.strip().upper()) for t in ai_raw_targets]
 
         for idx, row in self.drugs_df.iterrows():
             if not row.get('is_relevant', True):
                 continue
-                
-            targets = [t.strip().upper() for t in str(row.get('target', '')).split('|')]
+
+            # Normalize artifact targets through the same TARGETS_MAP used for LLM output.
+            # The enricher's clin_target_map stored DRD2 as "D2", but TARGETS_MAP normalises
+            # "D2" → "DRD2". Without this step quetiapine, aripiprazole, lurasidone etc.
+            # get no DRD2 bonus because "DRD2" (LLM) ≠ "D2" (artifact).
+            raw_targets = [t.strip().upper() for t in str(row.get('target', '')).split('|')]
+            targets = [TARGETS_MAP.get(t, t) for t in raw_targets]
             matches = set(normalized_ai_targets) & set(targets)
-            
+
             if matches:
                 target_bonuses[idx] = float(len(matches))
-                # Check for high-value candidates
+                target_matches[idx] = matches
                 if len(matches) >= 2:
                     print(f"EXCELLENT MATCH: {row['pert_iname']} hit {matches}")
-                
-        return target_bonuses
+
+        return target_bonuses, target_matches
 
     def _print_results(self, top_15, profile, peso):
         print(f"\nTOP 15 - RANKING BY SYMPTOMS (Without Exome)")
@@ -194,11 +239,41 @@ class StabilisEngine:
         
     def run_symptom_inference(self, checklist, doctor_summary):
         profile = self.symptom_extractor.get_profile(checklist=checklist, doctor_summary=doctor_summary)
-        profile['relative_contraindications'] = [str(r).upper() for r in profile.get('relative_contraindications', [])]
+        print("LLM raw profile:", profile)
+
+        # Normalise LLM output to uppercase strings
+        contraindications = {str(r).upper() for r in profile.get('relative_contraindications', [])}
+
+        # Keyword fallback: LLMs can misclassify structured comorbidity data.
+        # Apply deterministic keyword scan over comorbidities + summary to catch misses.
+        all_text = ' '.join([
+            ' '.join(checklist.get('comorbidities', [])),
+            ' '.join(checklist.get('habits', [])),
+            doctor_summary,
+        ]).lower()
+
+        if any(kw in all_text for kw in _HEPATIC_KW):  contraindications.add('HEPATIC')
+        if any(kw in all_text for kw in _RENAL_KW):    contraindications.add('RENAL')
+        if any(kw in all_text for kw in _MOTOR_KW):    contraindications.add('MOTOR')
+        if any(kw in all_text for kw in _CARDIAC_KW):  contraindications.add('CARDIAC')
+        if any(kw in all_text for kw in _SEDATION_KW): contraindications.add('SEDATION')
+
+        # LLMs frequently confuse hepatic steatosis / fatty liver with a metabolic condition.
+        # Remove METABOLIC if no genuine metabolic indicator is present in the record.
+        _METABOLIC_VALIDATION_KW = {
+            'obesidade', 'sobrepeso', 'diabetes', 'glicemia', 'dislipidemia',
+            'síndrome metabólica', 'ganhou peso', 'engordou', 'imc elevado',
+            'hiperglicemia', 'resistência à insulina',
+        }
+        if 'METABOLIC' in contraindications and not any(kw in all_text for kw in _METABOLIC_VALIDATION_KW):
+            contraindications.discard('METABOLIC')
+
+        profile['relative_contraindications'] = list(contraindications)
+        print("Effective contraindications (after fallback):", profile['relative_contraindications'])
 
         # Modifier Calculations
-        target_bonuses = self._calculate_target_affinity(profile)
-        symptom_penalties = self._calculate_symptom_modifiers(profile)
+        target_bonuses, target_matches = self._calculate_target_affinity(profile)
+        symptom_penalties, contraindication_matches = self._calculate_symptom_modifiers(profile)
 
         is_bipolar = "TRANSTORNO BIPOLAR" in checklist.get("base_diagnosis", "").upper()
 
@@ -208,10 +283,12 @@ class StabilisEngine:
 
         final_ranking = []
 
-        # Each match (target hit or contraindication hit) shifts the score by this many points.
-        # Both bonus_raw and penalty_raw are now count-of-matches (1.0 per match), so
-        # the weight is symmetric: 1 match = ±20 pts on the 0-100 scale.
-        MODIFIER_WEIGHT = 20.0
+        # Target bonus: 1 match = +20 pts (positive reinforcement, bounded by 0-100 cap).
+        # Contraindication penalty: 1 match = -40 pts. Deliberately asymmetric — a patient
+        # safety signal must outweigh a therapeutic signal. Without this asymmetry, the
+        # bipolar mood-stabilizer bonus (+60) drowns out a hepatotoxicity or motor-risk flag.
+        BONUS_WEIGHT = 20.0
+        PENALTY_WEIGHT = 40.0
         BIPOLAR_MOOD_STABILIZER_BONUS = 60.0
         BIPOLAR_ANTIDEPRESSANT_PENALTY = 80.0
 
