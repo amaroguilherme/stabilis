@@ -1,29 +1,81 @@
 CURATED_DRUGS = [
-    'agomelatine', 'alaproclate', 'amisulpride', 'amitriptyline', 'amoxapine', 
-    'aripiprazole', 'asenapine', 'atomoxetine', 'baclofen', 'benperidol', 
-    'benztropine-mesylate', 'biperiden', 'blonanserin', 'brexpiprazole', 
-    'bromocriptine', 'bromperidol', 'bupropion', 'buspirone', 'carbamazepine', 
-    'cariprazine', 'chlorpromazine', 'chlorprothixene', 'citalopram', 
-    'clomipramine', 'clonazepam', 'clonidine', 'clozapine', 'desipramine', 
-    'desvenlafaxine', 'diazepam', 'donepezil', 'doxepin', 'droperidol', 
-    'duloxetine', 'escitalopram', 'eslicarbazepine-acetate', 'ethosuximide', 
-    'felbamate', 'fluoxetine', 'flupentixol', 'fluphenazine', 'fluspirilene', 
-    'fluvoxamine', 'fosphenytoin', 'gabapentin', 'galantamine', 'haloperidol', 
-    'hydroxyzine', 'iloperidone', 'imipramine', 'isocarboxazid', 'lamotrigine', 
-    'levetiracetam', 'levodopa', 'levomepromazine', 'levosulpiride', 'lithium-carbonate', 
-    'lorazepam', 'loxapine', 'lumateperone', 'lurasidone', 'maprotiline', 
-    'memantine', 'mianserin', 'milnacipran', 'mirtazapine', 'moclobemide', 
-    'molindone', 'nefazodone', 'nortriptyline', 'olanzapine', 'oxcarbazepine', 
-    'paliperidone', 'paroxetine', 'perospirone', 'perphenazine', 'phenelzine', 
-    'phenytoin', 'pimavanserin', 'pimozide', 'pramipexole', 'primidone', 
-    'prochlorperazine', 'promazine', 'promethazine', 'quetiapine', 'rasagiline', 
-    'reboxetine', 'risperidone', 'rivastigmine', 'ropinirole', 'rotigotine', 
-    'selegiline', 'sertraline', 'sulpiride', 'tetrabenazine', 'thioridazine', 
-    'thiothixene', 'tiagabine', 'tianeptine', 'tiapride', 'topiramate', 
-    'tranylcypromine', 'trazodone', 'trifluoperazine', 'trihexyphenidyl', 
-    'trimipramine', 'valproic-acid', 'venlafaxine', 'vigabatrin', 'vilazodone', 
-    'vortioxetine', 'ziprasidone', 'zolpidem', 'zonisamide', 'zuclopenthixol'
+    # Mood stabilizers
+    'lithium-carbonate', 'valproic-acid', 'carbamazepine', 'lamotrigine',
+    'oxcarbazepine', 'eslicarbazepine-acetate', 'topiramate', 'zonisamide',
+    # Antidepressants — SSRIs
+    'citalopram', 'escitalopram', 'fluoxetine', 'fluvoxamine', 'paroxetine', 'sertraline',
+    'vilazodone', 'vortioxetine',
+    # Antidepressants — SNRIs
+    'desvenlafaxine', 'duloxetine', 'milnacipran', 'reboxetine', 'venlafaxine',
+    # Antidepressants — TCAs
+    'amitriptyline', 'amoxapine', 'clomipramine', 'desipramine', 'doxepin',
+    'imipramine', 'maprotiline', 'nortriptyline', 'trimipramine',
+    # Antidepressants — other
+    'agomelatine', 'bupropion', 'mianserin', 'mirtazapine', 'nefazodone',
+    'tianeptine', 'trazodone',
+    # Antidepressants — MAOIs
+    'isocarboxazid', 'moclobemide', 'phenelzine', 'selegiline', 'tranylcypromine',
+    # Atypical antipsychotics
+    'amisulpride', 'aripiprazole', 'asenapine', 'blonanserin', 'brexpiprazole',
+    'cariprazine', 'clozapine', 'iloperidone', 'lurasidone', 'lumateperone',
+    'olanzapine', 'paliperidone', 'perospirone', 'quetiapine',
+    'risperidone', 'ziprasidone',
+    # Typical antipsychotics (clinically relevant in psychiatry)
+    'chlorpromazine', 'chlorprothixene', 'flupentixol', 'fluphenazine', 'fluspirilene',
+    'haloperidol', 'levomepromazine', 'loxapine', 'molindone', 'perphenazine',
+    'pimozide', 'promazine', 'sulpiride', 'levosulpiride', 'thioridazine',
+    'thiothixene', 'trifluoperazine', 'zuclopenthixol', 'benperidol', 'bromperidol',
+    # Anxiolytics / sedatives
+    'alprazolam', 'buspirone', 'clonazepam', 'diazepam', 'hydroxyzine', 'lorazepam',
+    # Anticonvulsants with psychiatric use
+    'ethosuximide', 'gabapentin', 'phenytoin', 'pregabalin', 'primidone',
+    # Antidepressant with noradrenergic focus
+    'atomoxetine',
 ]
+
+# Drugs whose MOTOR (EPS/tremor) risk is clinically established but may be missing
+# from SIDER-derived risk_profile in the artifact. Applied at inference time to supplement
+# the dataframe, avoiding the need to rebuild the artifact.
+# Drugs that SIDER may tag as HEPATIC due to rare/isolated adverse event reports but
+# that are NOT considered clinically hepatotoxic. The HEPATIC contraindication flag
+# should NOT penalise these drugs at inference time.
+HEPATIC_RISK_EXEMPT = {
+    'lithium-carbonate',    # renally cleared, negligible hepatic metabolism
+    'lamotrigine',          # rare SJS/DRESS but not considered hepatotoxic
+    'oxcarbazepine',        # lower hepatic risk than carbamazepine
+    'gabapentin',           # renally cleared
+    'pregabalin',           # renally cleared
+    'topiramate',           # mild hepatic effects, generally safe
+    'levetiracetam',        # renally cleared
+    'aripiprazole',         # low hepatic risk in practice
+    'lurasidone',           # low hepatic risk in practice
+    'ziprasidone',          # low hepatic risk in practice
+    'quetiapine',           # hepatic effects mild and dose-dependent
+}
+
+MOTOR_RISK_SUPPLEMENT = {
+    # Typical antipsychotics — high EPS / extrapyramidal risk
+    'haloperidol', 'chlorpromazine', 'promazine', 'fluspirilene', 'flupentixol',
+    'fluphenazine', 'perphenazine', 'thioridazine', 'trifluoperazine', 'thiothixene',
+    'pimozide', 'zuclopenthixol', 'chlorprothixene', 'levomepromazine',
+    'benperidol', 'bromperidol', 'molindone', 'loxapine',
+    # Atypical antipsychotics with notable EPS
+    'risperidone', 'paliperidone', 'amisulpride', 'sulpiride', 'levosulpiride',
+    'blonanserin',   # moderate EPS; also used primarily in Japan/Korea, not first-line globally
+    # Lithium — fine tremor is a common dose-dependent side effect
+    'lithium-carbonate',
+    # Valproic acid — dose-dependent tremor is one of its most common side effects
+    'valproic-acid',
+}
+
+# Drugs whose HEPATIC risk is clinically established but may be missing from SIDER-derived
+# risk_profile (e.g. due to name mismatch in the SIDER database). Applied at inference time.
+HEPATIC_RISK_SUPPLEMENT = {
+    'valproic-acid',    # well-established hepatotoxicity, idiosyncratic and dose-dependent
+    'carbamazepine',    # hepatotoxicity and cholestatic jaundice known
+    'nefazodone',       # black-box warning for hepatic failure
+    'felbamate',        # hepatic failure risk (rare)
+}
 
 TARGETS_MAP = {
     # --- MONOAMINE TRANSPORTERS ---
@@ -214,6 +266,70 @@ SAFETY_SCORE = {
     "donepezil": (70.0, 0.05, 12.0, 1.0),
     "furosemide": (2.0, 10.0, 0.15, 0.6),
     "ropinirole": (6.0, 0.01, 7.5, 0.5)
+}
+
+# Maps a molecular target to its clinical meaning in plain Portuguese.
+# Used to generate patient-specific justifications in run_symptom_inference.
+# Format: target -> (effect_description, relevance_hint)
+# effect_description: what the drug does by acting on this target
+# relevance_hint: the clinical context in which this target matters
+TARGET_CLINICAL_MEANING = {
+    # --- SEROTONIN RECEPTORS ---
+    "5HT1A":  ("Agonismo 5HT1A: efeito ansiolítico e antidepressivo", "indicado para ansiedade e depressão"),
+    "5HT1B":  ("Agonismo 5HT1B: modula liberação de serotonina", "relevante em depressão e enxaqueca"),
+    "5HT1D":  ("Agonismo 5HT1D: reduz liberação pré-sináptica de serotonina", "relevante em enxaqueca"),
+    "5HT2A":  ("Bloqueio 5HT2A: reduz sintomas psicóticos e melhora arquitetura do sono", "indicado para psicose e insônia"),
+    "5HT2B":  ("Ação 5HT2B: associada a risco cardiovascular", "monitorar em cardiopatias"),
+    "5HT2C":  ("Bloqueio 5HT2C: pode causar ganho de peso e aumento de apetite", "risco relevante se paciente tem preocupação com peso"),
+    "5HT3A":  ("Bloqueio 5HT3A: efeito antiemético e ansiolítico", "indicado para náusea e ansiedade"),
+    "5HT4":   ("Agonismo 5HT4: pró-cognitivo e estimulante da motilidade", "relevante em déficit cognitivo"),
+    "5HT6":   ("Bloqueio 5HT6: melhora cognitiva e efeito ansiolítico", "relevante em TDAH e ansiedade"),
+    "5HT7":   ("Bloqueio 5HT7: estabilização do ritmo circadiano e efeito antidepressivo", "indicado para insônia e depressão bipolar"),
+
+    # --- DOPAMINE RECEPTORS ---
+    "DRD1":   ("Ação em D1: modula cognição e função executiva", "relevante em TDAH e déficit cognitivo"),
+    "DRD2":   ("Bloqueio D2: controla sintomas psicóticos e maníacos", "indicado para psicose, mania e esquizofrenia"),
+    "DRD3":   ("Ação em D3: modula humor e cognição", "relevante em depressão bipolar e anedonia"),
+    "DRD4":   ("Ação em D4: regula atenção e impulsividade", "relevante em TDAH"),
+
+    # --- MONOAMINE TRANSPORTERS ---
+    "SERT":   ("Inibição de SERT: bloqueia recaptação de serotonina", "efeito antidepressivo — indicado para depressão e ansiedade"),
+    "NET":    ("Inibição de NET: bloqueia recaptação de noradrenalina", "aumenta alerta e concentração — indicado para depressão e TDAH"),
+    "DAT":    ("Inibição de DAT: bloqueia recaptação de dopamina", "efeito estimulante e antidepressivo — indicado para TDAH e anedonia"),
+
+    # --- HISTAMINE RECEPTORS ---
+    "H1":     ("Bloqueio H1: potente efeito sedativo e antiemético", "indicado para insônia — atenção ao ganho de peso"),
+    "H2":     ("Bloqueio H2: reduz secreção gástrica", "relevante em comorbidades gastrointestinais"),
+    "H3":     ("Bloqueio H3: modula liberação de histamina e cognição", "relevante em déficit cognitivo"),
+
+    # --- MUSCARINIC RECEPTORS ---
+    "M1":     ("Bloqueio M1: efeito anticolinérgico — boca seca, constipação, confusão", "risco em idosos e glaucoma"),
+    "M2":     ("Bloqueio M2: taquicardia e efeitos cardiovasculares", "monitorar em cardiopatias"),
+    "M3":     ("Bloqueio M3: retenção urinária e aumento da pressão intraocular", "risco em glaucoma e hiperplasia prostática"),
+
+    # --- GABA ---
+    "GABRA":  ("Potencialização GABAérgica: efeito ansiolítico, sedativo e anticonvulsivante", "indicado para ansiedade, insônia e convulsões"),
+
+    # --- GLUTAMATE / NMDA ---
+    "NMDA":   ("Bloqueio NMDA: efeito estabilizador de humor e neuroprotetor", "indicado para depressão refratária e mania"),
+
+    # --- ADRENERGIC RECEPTORS ---
+    "ADRA1":  ("Bloqueio alfa-1: hipotensão ortostática e sedação", "atenção em hipertensão e idosos"),
+    "ADRA2":  ("Agonismo alfa-2: reduz liberação de noradrenalina — efeito sedativo e ansiolítico", "indicado para ansiedade e abstinência"),
+    "ADRB1":  ("Bloqueio beta-1: redução da frequência cardíaca", "relevante em ansiedade somática e cardiopatias"),
+
+    # --- MAO ENZYMES ---
+    "MAOA":   ("Inibição MAO-A: aumenta serotonina, noradrenalina e dopamina", "potente antidepressivo — restrições alimentares obrigatórias"),
+    "MAOB":   ("Inibição MAO-B: aumenta dopamina", "indicado para Parkinson e depressão com anedonia"),
+
+    # --- OTHERS ---
+    "SIGMAR1":("Agonismo sigma-1: efeito neuroprotetor e antidepressivo", "indicado para depressão e psicose"),
+    "ACHE":   ("Inibição de AChE: aumenta acetilcolina — efeito pró-cognitivo", "indicado para demência e déficit cognitivo"),
+    "MT1":    ("Agonismo MT1: sincronização do ritmo circadiano", "indicado para insônia e depressão sazonal"),
+    "MT2":    ("Agonismo MT2: indução do sono e estabilização do ciclo circadiano", "indicado para insônia — sem risco de dependência"),
+    "GSK3B":  ("Inibição de GSK3B: estabilização de humor por via intracelular — mecanismo primário do lítio", "indicado para transtorno bipolar"),
+    "SCN":    ("Bloqueio de canais de sódio: estabilização de membrana neuronal e efeito anticonvulsivante", "indicado para epilepsia e mania"),
+    "CACNA":  ("Bloqueio de canais de cálcio: reduz excitabilidade neuronal", "indicado para epilepsia e transtorno bipolar"),
 }
 
 # Structure: { "name": (dose_mg, interval_hours) }
