@@ -353,3 +353,151 @@ CRITICAL_DRUG_INTERACTIONS = {
     ("fluvoxamine", "ropinirole"): (2.5, "Strong CYP1A2 inhibition by fluvoxamine can lead to ropinirole toxicity."),
     ("haloperidol", "ropinirole"): (0.0, "Pharmacodynamic antagonism: Haloperidol blocks the D2 receptors that ropinirole tries to stimulate."),
 }
+
+# Maps internal English drug name (pert_iname) to its Brazilian Portuguese commercial/generic name.
+# Fallback: formatDrugName() on the raw key.
+DRUG_NAME_PT = {
+    # --- MOOD STABILIZERS AND ANTICONVULSANTS ---
+    "lithium-carbonate":        "Carbonato de Lítio",
+    "valproic-acid":            "Ácido Valproico",
+    "carbamazepine":            "Carbamazepina",
+    "lamotrigine":              "Lamotrigina",
+    "oxcarbazepine":            "Oxcarbazepina",
+    "eslicarbazepine-acetate":  "Acetato de Eslicarbazepina",
+    "topiramate":               "Topiramato",
+    "gabapentin":               "Gabapentina",
+    "pregabalin":               "Pregabalina",
+    "phenytoin":                "Fenitoína",
+    "fosphenytoin":             "Fosfenitoína",
+    "ethosuximide":             "Etosuximida",
+    "primidone":                "Primidona",
+    "levetiracetam":            "Levetiracetam",
+    "zonisamide":               "Zonisamida",
+    "tiagabine":                "Tiagabina",
+    "vigabatrin":               "Vigabatrina",
+    "felbamate":                "Felbamato",
+
+    # --- ANTIDEPRESSANTS (SSRIs) ---
+    "fluoxetine":               "Fluoxetina",
+    "sertraline":               "Sertralina",
+    "escitalopram":             "Escitalopram",
+    "citalopram":               "Citalopram",
+    "paroxetine":               "Paroxetina",
+    "fluvoxamine":              "Fluvoxamina",
+
+    # --- ANTIDEPRESSANTS (SNRIs) ---
+    "venlafaxine":              "Venlafaxina",
+    "desvenlafaxine":           "Desvenlafaxina",
+    "duloxetine":               "Duloxetina",
+    "milnacipran":              "Milnaciprana",
+    "reboxetine":               "Reboxetina",
+
+    # --- ANTIDEPRESSANTS (Tricyclics) ---
+    "amitriptyline":            "Amitriptilina",
+    "clomipramine":             "Clomipramina",
+    "imipramine":               "Imipramina",
+    "nortriptyline":            "Nortriptilina",
+    "desipramine":              "Desipramina",
+    "doxepin":                  "Doxepina",
+    "trimipramine":             "Trimipramina",
+    "maprotiline":              "Maprotilina",
+    "amoxapine":                "Amoxapina",
+
+    # --- ANTIDEPRESSANTS (MAOIs) ---
+    "phenelzine":               "Fenelzina",
+    "tranylcypromine":          "Tranilcipromina",
+    "isocarboxazid":            "Isocarboxazida",
+    "moclobemide":              "Moclobemida",
+    "selegiline":               "Selegilina",
+    "rasagiline":               "Rasagilina",
+
+    # --- ANTIDEPRESSANTS (Atypical) ---
+    "bupropion":                "Bupropiona",
+    "mirtazapine":              "Mirtazapina",
+    "trazodone":                "Trazodona",
+    "nefazodone":               "Nefazodona",
+    "agomelatine":              "Agomelatina",
+    "tianeptine":               "Tianeptina",
+    "vilazodone":               "Vilazodona",
+    "vortioxetine":             "Vortioxetina",
+    "mianserin":                "Mianserina",
+    "alaproclate":              "Alaproclato",
+
+    # --- ANTIPSYCHOTICS (Atypical) ---
+    "clozapine":                "Clozapina",
+    "olanzapine":               "Olanzapina",
+    "risperidone":              "Risperidona",
+    "quetiapine":               "Quetiapina",
+    "aripiprazole":             "Aripiprazol",
+    "ziprasidone":              "Ziprasidona",
+    "paliperidone":             "Paliperidona",
+    "lurasidone":               "Lurasidona",
+    "asenapine":                "Asenapina",
+    "iloperidone":              "Iloperidona",
+    "cariprazine":              "Cariprazina",
+    "brexpiprazole":            "Brexpiprazol",
+    "lumateperone":             "Lumateperona",
+    "pimavanserin":             "Pimavanserina",
+    "blonanserin":              "Blonanserina",
+    "perospirone":              "Perospirone",
+
+    # --- ANTIPSYCHOTICS (Typical) ---
+    "haloperidol":              "Haloperidol",
+    "chlorpromazine":           "Clorpromazina",
+    "fluphenazine":             "Flufenazina",
+    "perphenazine":             "Perfenazina",
+    "trifluoperazine":          "Trifluoperazina",
+    "thioridazine":             "Tioridazina",
+    "levomepromazine":          "Levomepromazina",
+    "promazine":                "Promazina",
+    "chlorprothixene":          "Clorprotixeno",
+    "flupentixol":              "Flupentixol",
+    "zuclopenthixol":           "Zuclopentixol",
+    "thiothixene":              "Tiotixeno",
+    "pimozide":                 "Pimozida",
+    "droperidol":               "Droperidol",
+    "bromperidol":              "Bromperidol",
+    "benperidol":               "Benperidol",
+    "fluspirilene":             "Fluspirileno",
+    "loxapine":                 "Loxapina",
+    "molindone":                "Molindona",
+    "amisulpride":              "Amisulprida",
+    "sulpiride":                "Sulpirida",
+    "levosulpiride":            "Levosulpirida",
+    "tiapride":                 "Tiaprida",
+    "tetrabenazine":            "Tetrabenazina",
+
+    # --- ANXIOLYTICS / BENZODIAZEPINES ---
+    "diazepam":                 "Diazepam",
+    "clonazepam":               "Clonazepam",
+    "lorazepam":                "Lorazepam",
+    "alprazolam":               "Alprazolam",
+    "buspirone":                "Buspirona",
+    "hydroxyzine":              "Hidroxizina",
+    "zolpidem":                 "Zolpidem",
+
+    # --- ANTICHOLINERGICS / ANTIPARKINSON ---
+    "biperiden":                "Biperideno",
+    "trihexyphenidyl":          "Tri-hexifenidila",
+    "benztropine-mesylate":     "Mesilato de Benzatropina",
+
+    # --- ADHD / NORADRENERGIC ---
+    "atomoxetine":              "Atomoxetina",
+    "clonidine":                "Clonidina",
+
+    # --- ANTIPARKINSON / DOPAMINERGIC ---
+    "levodopa":                 "Levodopa",
+    "pramipexole":              "Pramipexol",
+    "ropinirole":               "Ropinirol",
+    "rotigotine":               "Rotigotina",
+    "bromocriptine":            "Bromocriptina",
+
+    # --- DEMENTIA ---
+    "donepezil":                "Donepezila",
+    "rivastigmine":             "Rivastigmina",
+    "galantamine":              "Galantamina",
+    "memantine":                "Memantina",
+
+    # --- MUSCLE RELAXANT ---
+    "baclofen":                 "Baclofeno",
+}
