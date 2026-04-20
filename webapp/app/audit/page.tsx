@@ -142,7 +142,7 @@ export default function AuditPage() {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/audit`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}` },
         body: JSON.stringify({
           prescription: drugs.map(({ name, dose, interval }) => ({
             name,

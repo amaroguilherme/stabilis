@@ -108,7 +108,7 @@ export default function IntakePage() {
       if (hasCurrentTreatment) {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reanalyze`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}` },
           body: JSON.stringify({
             checklist,
             doctor_summary: doctorSummary,
@@ -122,7 +122,7 @@ export default function IntakePage() {
         const payload: AnalyzeRequest = { checklist, doctor_summary: doctorSummary };
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/analyze`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}` },
           body: JSON.stringify(payload),
         });
         if (!res.ok) throw new Error(`Servidor retornou erro ${res.status}: ${res.statusText}`);
