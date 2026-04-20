@@ -73,6 +73,75 @@ def analyze():
     return jsonify([serialize(item) for item in ranking])
 
 
+@analysis.route("/reanalyze", methods=["POST"])
+def reanalyze():
+    """
+    Re-scores the drug ranking in the context of an ongoing treatment.
+
+    Body:
+    {
+        "checklist": { ...same as /analyze... },
+        "doctor_summary": "...",
+        "current_medications": [
+            {"name": "lithium-carbonate", "dose": 600, "duration_months": 8},
+            ...
+        ],
+        "treatment_anamnesis": "Paciente estável com litio há 8 meses..."
+    }
+    """
+    body = request.get_json(silent=True)
+    if not body:
+        return jsonify({"error": "Request body must be JSON."}), 400
+
+    checklist           = body.get("checklist")
+    doctor_summary      = body.get("doctor_summary", "")
+    current_medications = body.get("current_medications", [])
+    treatment_anamnesis = body.get("treatment_anamnesis", "")
+
+    if not checklist:
+        return jsonify({"error": "Missing required field: checklist."}), 400
+
+    required_fields = ["weight", "gender", "base_diagnosis"]
+    missing = [f for f in required_fields if f not in checklist]
+    if missing:
+        return jsonify({"error": f"Missing checklist fields: {', '.join(missing)}"}), 400
+
+    if not isinstance(current_medications, list):
+        return jsonify({"error": "current_medications must be a list."}), 400
+
+    checklist.setdefault("patient_id",    "STB-000")
+    checklist.setdefault("comorbidities", [])
+    checklist.setdefault("habits",        [])
+
+    try:
+        ranking = _get_engine().run_treatment_reanalysis(
+            checklist=checklist,
+            doctor_summary=doctor_summary,
+            current_medications=current_medications,
+            treatment_anamnesis=treatment_anamnesis,
+        )
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    def serialize(item: dict) -> dict:
+        risk = item.get("risk_profile", [])
+        return {
+            "name":                  item["name"],
+            "final_score":           round(item["final_score"], 2),
+            "ai_score":              round(item["ai_score"],    2),
+            "bonus":                 round(item["bonus"],       2),
+            "penalty":               round(item["penalty"],     2),
+            "risk_profile":          list(risk) if not isinstance(risk, list) else risk,
+            "drug_class":            item.get("drug_class", "OTHER"),
+            "name_pt":               DRUG_NAME_PT.get(item["name"], None),
+            "reasons":               item.get("reasons", []),
+            "in_use":                item.get("in_use", False),
+            "in_use_duration_months": item.get("in_use_duration_months"),
+        }
+
+    return jsonify([serialize(item) for item in ranking])
+
+
 @analysis.route("/audit", methods=["POST"])
 def audit():
     """

@@ -426,7 +426,80 @@ class StabilisEngine:
             })
 
         final_ranking.sort(key=lambda x: x["final_score"], reverse=True)
-        
+
         self._print_results(final_ranking[:15], profile, checklist["weight"])
         #TODO: HOW TO USE THE LLM TO JUSTIFY THIS CHOICE?
         return final_ranking
+
+    def run_treatment_reanalysis(self, checklist, doctor_summary, current_medications, treatment_anamnesis):
+        """
+        Reanalyse drug ranking in the context of an ongoing treatment.
+
+        current_medications: list of dicts with keys:
+            name            – drug name matching pert_iname (e.g. "lithium-carbonate")
+            dose            – current dose in mg
+            duration_months – how long the patient has been on this drug
+
+        treatment_anamnesis: free-text written by the doctor describing the
+            patient's current clinical state under the existing regimen.
+
+        The method:
+          1. Merges the treatment anamnesis into the doctor summary so the LLM
+             receives the full picture when extracting contraindications / targets.
+          2. Runs the standard symptom inference on the enriched summary.
+          3. Applies an in-use bonus to drugs already in the patient's regimen,
+             scaled by treatment duration — a physician continuity signal.
+          4. Annotates each result with in_use / in_use_duration_months metadata.
+        """
+        # ── 1. Enrich the doctor summary with treatment context ───────────────
+        enriched_summary = doctor_summary
+        if treatment_anamnesis:
+            enriched_summary = (
+                f"{doctor_summary}\n\n"
+                f"[Tratamento atual]\n{treatment_anamnesis}"
+            )
+
+        # ── 2. Base ranking via standard inference ────────────────────────────
+        ranking = self.run_symptom_inference(
+            checklist=checklist,
+            doctor_summary=enriched_summary,
+        )
+
+        # ── 3. Build a lookup of current medications ──────────────────────────
+        in_use_map: dict[str, float] = {}   # drug_name_lower → duration_months
+        for med in current_medications:
+            name = str(med.get("name", "")).strip().lower()
+            duration = float(med.get("duration_months", 0))
+            if name:
+                in_use_map[name] = duration
+
+        # ── 4. Apply in-use bonus and annotate ────────────────────────────────
+        for item in ranking:
+            drug_lower = item["name"].lower()
+            if drug_lower in in_use_map:
+                duration = in_use_map[drug_lower]
+                bonus = self._in_use_bonus(duration)
+                item["final_score"] = min(100.0, item["final_score"] + bonus)
+                item["bonus"] = item["bonus"] + bonus
+                item["in_use"] = True
+                item["in_use_duration_months"] = duration
+                item["reasons"].insert(0, {
+                    "type": "bonus",
+                    "text": (
+                        f"Em uso há {int(duration)} {'mês' if duration < 2 else 'meses'} "
+                        f"({med.get('dose', '?')} mg) — continuidade terapêutica"
+                    ),
+                })
+            else:
+                item["in_use"] = False
+
+        ranking.sort(key=lambda x: x["final_score"], reverse=True)
+        return ranking
+
+    @staticmethod
+    def _in_use_bonus(duration_months: float) -> float:
+        """Continuity-of-care bonus scaled by treatment duration."""
+        if duration_months < 1:  return 5.0
+        if duration_months < 3:  return 10.0
+        if duration_months < 6:  return 15.0
+        return 20.0
