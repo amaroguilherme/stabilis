@@ -3,7 +3,6 @@ Flask==3.1.2
 flask-cors==5.0.1
 huggingface_hub==0.27.1
 jsonschema==4.26.0
-llama_cpp_python==0.3.16
 maturin==1.10.2
 mygene==3.2.2
 numpy==2.3.5

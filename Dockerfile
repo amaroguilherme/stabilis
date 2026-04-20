@@ -21,7 +21,10 @@ RUN git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/".
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir torch==2.9.1 torchvision==0.24.1 torchaudio==2.9.1 --index-url https://download.pytorch.org/whl/cpu
+
+ENV CMAKE_BUILD_PARALLEL_LEVEL=4
+RUN pip install --no-cache-dir llama_cpp_python==0.3.18
 
 RUN --mount=type=secret,id=GITHUB_TOKEN,mode=0444,required=true \
     TOKEN=$(cat /run/secrets/GITHUB_TOKEN | tr -d '\n\r') && \
