@@ -1,9 +1,7 @@
 name: Generate Synthetic Clinical Cases
 
 on:
-  schedule:
-    - cron: "0 * * * *"  # every hour
-  workflow_dispatch:       # allow manual trigger
+  workflow_dispatch:
 
 jobs:
   generate:
