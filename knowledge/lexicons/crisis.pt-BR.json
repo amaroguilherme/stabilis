@@ -1,0 +1,131 @@
+{
+  "id": "crisis.pt-BR",
+  "version": "0.1.0",
+  "language": "pt-BR",
+  "description": "Expressões que indicam risco de suicídio ou autolesão. Detecção determinística, de alta sensibilidade: falso positivo mostra recursos de ajuda; falso negativo é o erro grave. Usado por core/safety/crisis.py e webapp/app/lib/safety/crisis.ts (mesmo algoritmo, mesmos vetores em knowledge/tests/crisis.vectors.json).",
+  "matching": {
+    "segment_split": "[.!?;:\\n]+",
+    "normalization": "NFKD, remove marcas diacríticas, minúsculas, tudo que não é [0-9a-z] vira espaço",
+    "negation_window_tokens": 6,
+    "negation_modes": [
+      "professional"
+    ]
+  },
+  "negation_cues": [
+    "nega",
+    "negou",
+    "negando",
+    "sem",
+    "nunca",
+    "não apresenta",
+    "não apresentou",
+    "não refere",
+    "não relata",
+    "não tem",
+    "não há",
+    "ausência de",
+    "descarta",
+    "descartada",
+    "descartado"
+  ],
+  "scope_terminators": [
+    "porém",
+    "mas",
+    "entretanto",
+    "contudo",
+    "todavia",
+    "embora",
+    "exceto"
+  ],
+  "terms": [
+    {
+      "id": "desejo_de_morrer",
+      "category": "suicidal_ideation",
+      "phrases": [
+        "quero morrer",
+        "queria morrer",
+        "quer morrer",
+        "deseja morrer",
+        "desejo de morte",
+        "vontade de morrer",
+        "desejo de morrer",
+        "pensando em morrer",
+        "penso em morrer",
+        "pensamento de morte",
+        "pensamentos de morte",
+        "não quero mais viver",
+        "não quero viver",
+        "não queria mais viver",
+        "dormir e não acordar",
+        "dormir e nunca mais acordar",
+        "melhor se eu morresse",
+        "melhor estar morto",
+        "melhor estar morta",
+        "sumir para sempre",
+        "sumir pra sempre",
+        "acabar com tudo"
+      ]
+    },
+    {
+      "id": "ideacao_suicida",
+      "category": "suicidal_ideation",
+      "phrases": [
+        "ideação suicida",
+        "pensamento suicida",
+        "pensamentos suicidas",
+        "suicida",
+        "suicidas",
+        "suicídio",
+        "suicidar",
+        "me suicidar",
+        "autoextermínio",
+        "me matar",
+        "me mato",
+        "se matar",
+        "se suicidar",
+        "tirar minha vida",
+        "tirar a minha vida",
+        "tirar a própria vida",
+        "acabar com minha vida",
+        "acabar com a minha vida"
+      ]
+    },
+    {
+      "id": "plano_ou_tentativa",
+      "category": "suicide_plan_or_attempt",
+      "phrases": [
+        "tentativa de suicídio",
+        "tentei me matar",
+        "plano de suicídio",
+        "planejei me matar",
+        "planejando me matar",
+        "carta de despedida",
+        "tomar todos os remédios",
+        "tomar todos os comprimidos",
+        "tomei todos os remédios",
+        "overdose",
+        "me enforcar"
+      ]
+    },
+    {
+      "id": "autolesao",
+      "category": "self_harm",
+      "phrases": [
+        "me cortar",
+        "me corto",
+        "me cortei",
+        "me cortando",
+        "me cortado",
+        "vontade de me machucar",
+        "me machucar de propósito",
+        "machucar a mim mesmo",
+        "machucar a mim mesma",
+        "vontade de me ferir",
+        "me ferir de propósito",
+        "automutilação",
+        "autolesão",
+        "autoagressão"
+      ]
+    }
+  ]
+}

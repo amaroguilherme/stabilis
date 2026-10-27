@@ -1,0 +1,25 @@
+{
+  "description": "Vetores compartilhados: rodam em tests/test_crisis.py (Python) e webapp/app/lib/safety/crisis.test.ts (TypeScript). expect_hit = alguma expressão encontrada (negada ou não); expect_negated_only = todas as encontradas estão negadas (só existe negação no modo profissional).",
+  "cases": [
+    {"text": "não aguento mais, quero morrer", "mode": "patient", "expect_hit": true, "expect_negated_only": false},
+    {"text": "tô morrendo de rir com esse vídeo", "mode": "patient", "expect_hit": false},
+    {"text": "Fui matar a saudade da família no fim de semana", "mode": "patient", "expect_hit": false},
+    {"text": "Estou cansada, dormindo mal e sem apetite há semanas", "mode": "patient", "expect_hit": false},
+    {"text": "tenho medo de me machucar na academia", "mode": "patient", "expect_hit": false},
+    {"text": "às vezes penso em me matar", "mode": "patient", "expect_hit": true, "expect_negated_only": false},
+    {"text": "SUICÍDIO", "mode": "patient", "expect_hit": true, "expect_negated_only": false},
+    {"text": "tenho me cortado nos braços", "mode": "patient", "expect_hit": true, "expect_negated_only": false},
+    {"text": "queria dormir e não acordar mais", "mode": "patient", "expect_hit": true, "expect_negated_only": false},
+    {"text": "nega ideação suicida", "mode": "patient", "expect_hit": true, "expect_negated_only": false},
+    {"text": "Pcte nega ideação suicida", "mode": "professional", "expect_hit": true, "expect_negated_only": true},
+    {"text": "Paciente refere ideação suicida sem plano estruturado.", "mode": "professional", "expect_hit": true, "expect_negated_only": false},
+    {"text": "Nega ideação suicida, porém relata vontade de morrer nas últimas semanas.", "mode": "professional", "expect_hit": true, "expect_negated_only": false},
+    {"text": "Ausência de ideação suicida ou autolesão.", "mode": "professional", "expect_hit": true, "expect_negated_only": true},
+    {"text": "Nega uso de álcool. Relata vontade de morrer.", "mode": "professional", "expect_hit": true, "expect_negated_only": false},
+    {"text": "Paciente nega ter tido pensamentos de morte", "mode": "professional", "expect_hit": true, "expect_negated_only": true},
+    {"text": "Histórico de tentativa de suicídio em 2019 com medicação.", "mode": "professional", "expect_hit": true, "expect_negated_only": false},
+    {"text": "Pcte 34a, HAS, refere tristeza há 2 meses, insônia inicial.", "mode": "professional", "expect_hit": false},
+    {"text": "", "mode": "patient", "expect_hit": false},
+    {"text": "Quero  MORRER!!!", "mode": "professional", "expect_hit": true, "expect_negated_only": false}
+  ]
+}
