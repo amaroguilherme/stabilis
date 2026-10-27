@@ -1,0 +1,206 @@
+"""Free text -> structured suggestions for the intake forms.
+
+The model proposes; deterministic code disposes:
+- every item must quote a span that really is in the text, or it is dropped;
+- negated items, items about other people and hypotheticals never become suggestions;
+- medication names are mapped to the knowledge base (names, ingredients, ANVISA brands);
+- the crisis lexicon always runs on the raw text, and the model can only add risk, never remove it;
+- if the model is unavailable or answers out of schema, the result is degraded but still useful
+  (crisis lexicon and medication names found without the model).
+
+Nothing here is logged except counts and error types: the text is health data.
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+
+from jsonschema import Draft202012Validator
+
+from core.extraction.meds import MedicationIndex
+from core.extraction.prompt import TASKS, build_prompt
+from core.extraction.schema import SCHEMA_VERSION, build_schema
+from core.extraction.text import evidence_supported, normalize, sanitize_user_text
+from core.llm.base import LlmClient, LlmError
+from core.safety.crisis import detect_crisis, summarize
+
+logger = logging.getLogger("stabilis.extraction")
+
+MAX_OUTPUT_TOKENS = 1024
+
+
+class Extractor:
+    def __init__(self, llm: LlmClient | None, kb, *, max_text_chars: int = 4000):
+        self.llm = llm
+        self.max_text_chars = max_text_chars
+        comorbidities = kb.vocab["comorbidities"]
+        self._conditions = {c["id"]: c["label_clinical"] for c in comorbidities["comorbidities"]}
+        self._habits = {h["id"]: h["label_clinical"] for h in comorbidities["habits"]}
+        self.schema = build_schema(list(self._conditions), list(self._habits))
+        self._validator = Draft202012Validator(self.schema)
+        self.meds = MedicationIndex(kb.drugs, kb.brands)
+
+    def extract(self, text: str, task: str) -> dict:
+        if task not in TASKS:
+            raise ValueError(f"unknown task: {task}")
+        clean = sanitize_user_text(text, self.max_text_chars)
+        crisis = summarize(detect_crisis(clean, mode=task))
+        data, degraded = self._ask_model(clean, task)
+        result = _Assembler(clean).run(data, self.meds)
+        llm_risk = result.pop("_llm_risk")
+        result.update(
+            version=SCHEMA_VERSION,
+            task=task,
+            degraded=degraded,
+            crisis={
+                "language": crisis["crisis"] or llm_risk,
+                "negated_only": crisis["negated_only"] and not llm_risk,
+                "llm_risk": llm_risk,
+            },
+        )
+        return result
+
+    def _ask_model(self, text: str, task: str) -> tuple[dict | None, bool]:
+        if self.llm is None or not text:
+            return None, self.llm is None
+        prompt = build_prompt(task, text, self._conditions, self._habits)
+        try:
+            raw = self.llm.complete_json(prompt, self.schema, max_tokens=MAX_OUTPUT_TOKENS)
+        except LlmError as exc:
+            logger.warning("extraction_llm_failed error=%s", exc)
+            return None, True
+        data = _parse(raw)
+        if data is None or not self._validator.is_valid(data):
+            logger.warning("extraction_output_invalid")
+            return None, True
+        return data, False
+
+
+def _parse(raw) -> dict | None:
+    if not isinstance(raw, str):
+        return None
+    start, end = raw.find("{"), raw.rfind("}")
+    if start == -1 or end < start:
+        return None
+    try:
+        data = json.loads(raw[start : end + 1])
+    except json.JSONDecodeError:
+        return None
+    return data if isinstance(data, dict) else None
+
+
+class _Assembler:
+    """Turns validated model output (or nothing) into suggestions, keeping only supported evidence."""
+
+    def __init__(self, text: str):
+        self.text = text
+        self.normalized = normalize(text)
+        self.proposed = 0
+        self.discarded = 0
+        self.excluded: list[dict] = []
+
+    def supported(self, item: dict) -> bool:
+        self.proposed += 1
+        if evidence_supported(item.get("evidence", ""), self.normalized):
+            return True
+        self.discarded += 1
+        return False
+
+    def keep(self, kind: str, item: dict, code_field: str) -> bool:
+        """Applies the negation / experiencer / temporality filters; records why an item was left out."""
+        reason = None
+        if item.get("negated"):
+            reason = "negated"
+        elif item.get("experiencer", "patient") != "patient":
+            reason = "other_person"
+        elif item.get("temporality") == "hypothetical":
+            reason = "hypothetical"
+        if reason:
+            self.excluded.append({"kind": kind, "code": item[code_field], "evidence": item["evidence"], "reason": reason})
+            return False
+        return True
+
+    def run(self, data: dict | None, meds: MedicationIndex) -> dict:
+        data = data or {"symptoms": [], "risk": [], "medications": [], "conditions": [], "substances": [], "pregnancy": {"status": "unknown"}}
+
+        conditions, habits, symptoms = [], [], []
+        for item in data["conditions"]:
+            if self.supported(item) and self.keep("condition", item, "id"):
+                conditions.append({"id": item["id"], "evidence": item["evidence"]})
+        for item in data["substances"]:
+            if self.supported(item) and self.keep("habit", item, "id"):
+                habits.append({"id": item["id"], "evidence": item["evidence"]})
+        for item in data["symptoms"]:
+            if self.supported(item) and self.keep("symptom", item, "domain"):
+                symptoms.append({"domain": item["domain"], "evidence": item["evidence"], "temporality": item["temporality"]})
+
+        # Risk counts when it is about the person and not negated, whatever the tense: a past attempt matters.
+        llm_risk = False
+        for item in data["risk"]:
+            if not self.supported(item):
+                continue
+            if not item["negated"] and item["experiencer"] == "patient":
+                llm_risk = True
+            else:
+                self.keep("risk", item, "kind")
+
+        pregnancy = data["pregnancy"]
+        if pregnancy.get("evidence"):
+            self.proposed += 1
+            if not evidence_supported(pregnancy["evidence"], self.normalized):
+                self.discarded += 1
+                pregnancy = {"status": "unknown"}
+
+        return {
+            "suggestions": {
+                "conditions": _unique(conditions, "id"),
+                "habits": _unique(habits, "id"),
+                "medications": self.medications(data["medications"], meds),
+                "pregnancy": pregnancy if pregnancy["status"] != "unknown" else None,
+                "symptoms": symptoms,
+            },
+            "excluded": self.excluded,
+            "items_proposed": self.proposed,
+            "discarded_unsupported": self.discarded,
+            "_llm_risk": llm_risk,
+        }
+
+    def medications(self, items: list[dict], meds: MedicationIndex) -> list[dict]:
+        out: dict[str, dict] = {}
+        unrecognized: list[dict] = []
+        for item in items:
+            if not self.supported(item):
+                continue
+            match = meds.lookup(item["name"]) or meds.lookup(item["evidence"])
+            entry = {
+                "raw_text": item["name"],
+                "evidence": item["evidence"],
+                "status": item["status"],
+                "mg_per_day": item.get("dose_mg_per_day"),
+                "source": "llm",
+            }
+            if match is None:
+                unrecognized.append({"drug_id": None, "candidates": [], **entry})
+            elif len(match.drug_ids) > 1:
+                unrecognized.append({"drug_id": None, "candidates": list(match.drug_ids), **entry})
+            else:
+                out.setdefault(match.drug_ids[0], {"drug_id": match.drug_ids[0], "candidates": [], **entry})
+        # Names found without the model fill in what it missed (and everything when it is down).
+        for found in meds.scan(self.text):
+            if len(found["drug_ids"]) == 1 and found["drug_ids"][0] not in out:
+                out[found["drug_ids"][0]] = {
+                    "drug_id": found["drug_ids"][0],
+                    "candidates": [],
+                    "raw_text": found["raw_text"],
+                    "evidence": found["evidence"],
+                    "status": "unknown",  # the lexicon sees the name, not whether it is still taken
+                    "mg_per_day": found["mg_per_day"],
+                    "source": "lexicon",
+                }
+        return list(out.values()) + unrecognized
+
+
+def _unique(items: list[dict], key: str) -> list[dict]:
+    seen: set[str] = set()
+    return [i for i in items if not (i[key] in seen or seen.add(i[key]))]
