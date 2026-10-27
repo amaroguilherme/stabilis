@@ -1,8 +1,9 @@
 import ast
 import os
+from dataclasses import dataclass
+
 import torch
 import pandas as pd
-import math
 
 from qyra.interface.models.gnn import GATClassifier
 from qyra.interface.modeling_logic.translators import PharmacologyTranslator
@@ -11,16 +12,15 @@ from core.engines.dna_parser import DNAParser
 from core.engines.pharmacogenomics_analyzer import PharmacogenomicsAnalyzer
 from core.engines.drug_interaction_analyzer import DrugInteractionAnalyzer
 from core.engines.symptom_extractor import SymptomExtractor
-from core.engines.toxicity_predictor import ToxicityPredictor
+from core.scoring import apply_continuity, apply_hard_caps
 
 from data.constants import (
-    TARGETS_MAP, TYPICAL_DOSING, TARGET_CLINICAL_MEANING,
+    TARGETS_MAP, TARGET_CLINICAL_MEANING,
     MOTOR_RISK_SUPPLEMENT, MOTOR_RISK_EXEMPT,
     HEPATIC_RISK_EXEMPT, HEPATIC_RISK_SUPPLEMENT,
     PROLACTIN_RISK_EXEMPT, PROLACTIN_RISK_SUPPLEMENT,
     CARDIAC_RISK_EXEMPT, CARDIAC_RISK_SUPPLEMENT,
     RENAL_RISK_SUPPLEMENT, RENAL_RISK_EXEMPT,
-    HARD_CAP_RULES,
     GAD_FIRST_LINE, GAD_TCA_SECOND_LINE,
     GAD_FIRST_LINE_BONUS, GAD_TCA_PENALTY, GAD_ANTIPSYCHOTIC_PENALTY,
     DRUG_CLASS_RUNTIME,
@@ -44,17 +44,21 @@ _PROLACTIN_KW = {'prolactina', 'galactorreia', 'galactorréia', 'hiperprolactine
                  'adenoma hipofisário', 'microadenoma', 'hipofisário', 'hipofisária',
                  'prolactin-sparing'}
 
+@dataclass
+class InferenceResult:
+    ranking: list[dict]
+    degraded: bool              # True when the LLM profile was unavailable and the fallback was used
+    active_risk_tags: set[str]  # contraindication tags after the keyword fallbacks
+
+
 class StabilisEngine:
-    def __init__(self):
+    def __init__(self, symptom_extractor: SymptomExtractor | None = None):
         self.parser = DNAParser()
         self.pharmacogenomics = PharmacogenomicsAnalyzer()
         self.drug_interaction = DrugInteractionAnalyzer()
-        
-        self.symptom_extractor = SymptomExtractor()
-        
-        self.toxicity_predictor = ToxicityPredictor()
-        self.safety_score = self.toxicity_predictor.safety_score
-        
+
+        self.symptom_extractor = symptom_extractor or SymptomExtractor()
+
         print("Loading Pre-trained Artifacts...")
         
         if not os.path.exists("artifacts/drugs_enriched.pkl"):
@@ -158,29 +162,6 @@ class StabilisEngine:
 
         return mods, contraindication_matches
 
-    def _simulate_safety_score(self, drug_name, weight, profile):
-        """Toxicity Simulator Using a Symptom-Based Virtual Genotype"""
-        d_clean = drug_name.lower()
-        if d_clean not in self.safety_score: return "N/A"
-        
-        t12, threshold, vd_kg, f = self.safety_score[d_clean]
-        met = profile.get("estimated_metabolic_profile", "standard")
-        
-        # Virtual metabolic multiplier
-        mult = 1.0
-        if met == "slow": mult = 1.5
-        if met not in ["slow", "standard"]: mult = 0.6
-        
-        # Steady-State Calculation using per-drug typical dose and dosing interval
-        dosage, interval = TYPICAL_DOSING.get(d_clean, (100.0, 24))
-        real_vd = vd_kg * weight
-        k = math.log(2) / (t12 * mult)
-        ssc = (dosage * f) / (real_vd * k * interval)
-        
-        if ssc > threshold:
-            return f"HIGH RISK ({ssc:.2f} mg/L)"
-        return f"SAFE ({ssc:.2f} mg/L)"
-    
     def _calculate_target_affinity(self, profile):
         target_bonuses = {}
         target_matches = {}  # idx -> set of matched target strings
@@ -204,33 +185,8 @@ class StabilisEngine:
             if matches:
                 target_bonuses[idx] = float(len(matches))
                 target_matches[idx] = matches
-                if len(matches) >= 2:
-                    print(f"EXCELLENT MATCH: {row['pert_iname']} hit {matches}")
 
         return target_bonuses, target_matches
-
-    def _print_results(self, top_15, profile, peso):
-        print(f"\nTOP {len(top_15)} - RANKING BY SYMPTOMS (Without Exome)")
-        print(f"{'DRUG':<22} | {'SCORE':<8} | {'SAFETY (ESTIMATED)':<22} | STATUS")
-        print("-" * 75)
-        
-        for item in top_15:
-            name = item['name']
-            final_s = item['final_score']
-            # We calculate the modifier balance to determine the tag.
-            total_mod = item['bonus'] + item['penalty']
-            
-            status_safety_score = self._simulate_safety_score(name, peso, profile)
-            
-            if total_mod < 0: 
-                tag = "AVOID"
-            elif total_mod > 0: 
-                tag = "RECOMMENDED"
-            else: 
-                tag = "NEUTRAL"
-            
-            print(f"{name:<22} | {final_s:>7.1f} | {status_safety_score:<22} | {tag}")
-        print("="*70 + "\n")
 
     def run_inference(self, dna_file_path):
         user_snps = self.parser.parse_file(dna_file_path)
@@ -264,9 +220,8 @@ class StabilisEngine:
         #TODO: HOW TO JUSTIFY THIS CHOICE BASED ON DATA?
         return final_scores
         
-    def run_symptom_inference(self, checklist, doctor_summary):
-        profile = self.symptom_extractor.get_profile(checklist=checklist, doctor_summary=doctor_summary)
-        print("LLM raw profile:", profile)
+    def run_symptom_inference(self, checklist, doctor_summary) -> InferenceResult:
+        profile, degraded = self.symptom_extractor.get_profile(checklist=checklist, doctor_summary=doctor_summary)
 
         # Normalise LLM output to uppercase strings
         contraindications = {str(r).upper() for r in profile.get('relative_contraindications', [])}
@@ -297,7 +252,6 @@ class StabilisEngine:
             contraindications.discard('METABOLIC')
 
         profile['relative_contraindications'] = list(contraindications)
-        print("Effective contraindications (after fallback):", profile['relative_contraindications'])
 
         # Diagnosis-based target supplement: ensure primary mechanism targets are always
         # present even when the LLM misses them. The LLM is used for nuance; these are
@@ -323,7 +277,6 @@ class StabilisEngine:
                     ai_targets_upper.append(t)
 
         profile['priority_molecular_targets'] = ai_targets_upper
-        print("Effective targets (after diagnosis supplement):", profile['priority_molecular_targets'])
 
         # Modifier Calculations
         target_bonuses, target_matches = self._calculate_target_affinity(profile)
@@ -381,10 +334,7 @@ class StabilisEngine:
 
             # Hard safety caps: drug+contraindication combos that are near-absolute
             # contraindications — no diagnostic bonus can overcome them.
-            for (cap_drug, cap_tag), cap_max in HARD_CAP_RULES.items():
-                if drug_name_lower == cap_drug and cap_tag in active_risk_tags:
-                    final_score = min(final_score, cap_max)
-                    break
+            final_score = apply_hard_caps(drug_name_lower, final_score, active_risk_tags)
 
             # --- Build patient-specific justification reasons ---
             reasons = []
@@ -421,15 +371,13 @@ class StabilisEngine:
                 "bonus": bonus_final,
                 "penalty": penalty_final,
                 "risk_profile": row.get('risk_profile', []),
-                "drug_class": row.get('drug_class', 'OTHER'),
+                "drug_class": drug_class,
                 "reasons": reasons,
             })
 
         final_ranking.sort(key=lambda x: x["final_score"], reverse=True)
 
-        self._print_results(final_ranking[:15], profile, checklist["weight"])
-        #TODO: HOW TO USE THE LLM TO JUSTIFY THIS CHOICE?
-        return final_ranking
+        return InferenceResult(ranking=final_ranking, degraded=degraded, active_risk_tags=active_risk_tags)
 
     def run_treatment_reanalysis(self, checklist, doctor_summary, current_medications, treatment_anamnesis):
         """
@@ -448,10 +396,10 @@ class StabilisEngine:
              receives the full picture when extracting contraindications / targets.
           2. Runs the standard symptom inference on the enriched summary.
           3. Applies an in-use bonus to drugs already in the patient's regimen,
-             scaled by treatment duration — a physician continuity signal.
+             scaled by treatment duration — a physician continuity signal —
+             and then re-applies the hard safety caps.
           4. Annotates each result with in_use / in_use_duration_months metadata.
         """
-        # ── 1. Enrich the doctor summary with treatment context ───────────────
         enriched_summary = doctor_summary
         if treatment_anamnesis:
             enriched_summary = (
@@ -459,47 +407,9 @@ class StabilisEngine:
                 f"[Tratamento atual]\n{treatment_anamnesis}"
             )
 
-        # ── 2. Base ranking via standard inference ────────────────────────────
-        ranking = self.run_symptom_inference(
+        result = self.run_symptom_inference(
             checklist=checklist,
             doctor_summary=enriched_summary,
         )
-
-        # ── 3. Build a lookup of current medications ──────────────────────────
-        in_use_map: dict[str, float] = {}   # drug_name_lower → duration_months
-        for med in current_medications:
-            name = str(med.get("name", "")).strip().lower()
-            duration = float(med.get("duration_months", 0))
-            if name:
-                in_use_map[name] = duration
-
-        # ── 4. Apply in-use bonus and annotate ────────────────────────────────
-        for item in ranking:
-            drug_lower = item["name"].lower()
-            if drug_lower in in_use_map:
-                duration = in_use_map[drug_lower]
-                bonus = self._in_use_bonus(duration)
-                item["final_score"] = min(100.0, item["final_score"] + bonus)
-                item["bonus"] = item["bonus"] + bonus
-                item["in_use"] = True
-                item["in_use_duration_months"] = duration
-                item["reasons"].insert(0, {
-                    "type": "bonus",
-                    "text": (
-                        f"Em uso há {int(duration)} {'mês' if duration < 2 else 'meses'} "
-                        f"({med.get('dose', '?')} mg) — continuidade terapêutica"
-                    ),
-                })
-            else:
-                item["in_use"] = False
-
-        ranking.sort(key=lambda x: x["final_score"], reverse=True)
-        return ranking
-
-    @staticmethod
-    def _in_use_bonus(duration_months: float) -> float:
-        """Continuity-of-care bonus scaled by treatment duration."""
-        if duration_months < 1:  return 5.0
-        if duration_months < 3:  return 10.0
-        if duration_months < 6:  return 15.0
-        return 20.0
+        apply_continuity(result.ranking, current_medications, result.active_risk_tags)
+        return result

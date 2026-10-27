@@ -1,174 +1,111 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, current_app, jsonify, request
 
-from engine import StabilisEngine
-from data.constants import DRUG_NAME_PT
-from core.engines.toxicity_predictor import ToxicityPredictor
+from api.errors import ApiError
+from api.jobs import FINISHED, QueueFull
+from api.validation import validate_job_envelope, validate_job_input
 
-analysis = Blueprint('analysis', __name__)
-
-_engine: StabilisEngine | None = None
-_toxicity: ToxicityPredictor | None = None
-
-def _get_engine() -> StabilisEngine:
-    global _engine
-    if _engine is None:
-        _engine = StabilisEngine()
-    return _engine
-
-def _get_toxicity() -> ToxicityPredictor:
-    global _toxicity
-    if _toxicity is None:
-        _toxicity = ToxicityPredictor()
-    return _toxicity
+analysis = Blueprint("analysis", __name__)
 
 
-@analysis.route("/health")
+def _services():
+    return current_app.extensions["stabilis"]
+
+
+def _json_body() -> dict:
+    body = request.get_json(silent=True)
+    if not isinstance(body, dict):
+        raise ApiError("invalid_input")
+    return body
+
+
+def _submit(kind: str, payload: dict):
+    try:
+        return _services().store.submit(kind, payload)
+    except QueueFull:
+        raise ApiError("busy", 429, {"Retry-After": "30"})
+
+
+@analysis.get("/health")
 def health():
-    return "alive"
+    return "ok"
 
 
-@analysis.route("/analyze", methods=["POST"])
+@analysis.get("/ready")
+def ready():
+    services = _services()
+    engine_status = services.runtime.status
+    llm_status = services.runtime.llm_status
+    is_ready = engine_status == "ready" and llm_status == "ready"
+    body = {"ready": is_ready, "engine": engine_status, "llm": llm_status, "queue": services.store.queued_count()}
+    return jsonify(body), 200 if is_ready else 503
+
+
+@analysis.post("/jobs")
+def submit_job():
+    services = _services()
+    kind, raw_input = validate_job_envelope(_json_body())
+    payload = validate_job_input(kind, raw_input, services.settings.max_text_chars)
+    job = _submit(kind, payload)
+    return jsonify({
+        "job_id": job.id,
+        "status": job.status,
+        "position": services.store.position(job.id),
+        "poll_after_ms": 2000,
+    }), 202
+
+
+@analysis.get("/jobs/<job_id>")
+def get_job(job_id: str):
+    services = _services()
+    job = services.store.get(job_id)
+    if job is None:
+        raise ApiError("not_found", 404)
+    body = {"status": job.status, "backend": services.runtime.status}
+    if job.status == "queued":
+        body["position"] = services.store.position(job_id)
+    elif job.status == "done":
+        body["result"] = job.result
+    elif job.status == "error":
+        body["error"] = job.error
+    return jsonify(body)
+
+
+@analysis.delete("/jobs/<job_id>")
+def delete_job(job_id: str):
+    if not _services().store.delete(job_id):
+        raise ApiError("not_found", 404)
+    return "", 204
+
+
+def _run_sync(kind: str):
+    """Deprecated synchronous path: same queue and worker, but the request waits for the result."""
+    services = _services()
+    payload = validate_job_input(kind, _json_body(), services.settings.max_text_chars)
+    job = _submit(kind, payload)
+    finished = services.store.wait_finished(job.id, services.settings.sync_wait_s)
+    status, result, error = (finished.status, finished.result, finished.error) if finished else (None, None, None)
+    services.store.delete(job.id)
+    if status not in FINISHED:
+        raise ApiError("timeout", 504)
+    if status == "error":
+        raise ApiError(error or "internal", 503 if error == "model_unavailable" else 500)
+    return jsonify(result["results"])
+
+
+# /analyze and /reanalyze are kept only so the previous frontend works during the transition.
+# The current frontend uses /jobs. Remove both in Phase 1.6.
+@analysis.post("/analyze")
 def analyze():
-    body = request.get_json(silent=True)
-    if not body:
-        return jsonify({"error": "Request body must be JSON."}), 400
-
-    checklist      = body.get("checklist")
-    doctor_summary = body.get("doctor_summary", "")
-
-    if not checklist:
-        return jsonify({"error": "Missing required field: checklist."}), 400
-
-    required_fields = ["weight", "gender", "base_diagnosis"]
-    missing = [f for f in required_fields if f not in checklist]
-    if missing:
-        return jsonify({"error": f"Missing checklist fields: {', '.join(missing)}"}), 400
-
-    checklist.setdefault("patient_id",    "STB-000")
-    checklist.setdefault("comorbidities", [])
-    checklist.setdefault("habits",        [])
-
-    try:
-        ranking = _get_engine().run_symptom_inference(
-            checklist=checklist,
-            doctor_summary=doctor_summary,
-        )
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-    def serialize(item: dict) -> dict:
-        risk = item.get("risk_profile", [])
-        return {
-            "name":        item["name"],
-            "final_score": round(item["final_score"], 2),
-            "ai_score":    round(item["ai_score"],    2),
-            "bonus":       round(item["bonus"],        2),
-            "penalty":     round(item["penalty"],      2),
-            "risk_profile": list(risk) if not isinstance(risk, list) else risk,
-            "drug_class": item.get("drug_class", "OTHER"),
-            "name_pt": DRUG_NAME_PT.get(item["name"], None),
-            "reasons": item.get("reasons", []),
-        }
-
-    return jsonify([serialize(item) for item in ranking])
+    return _run_sync("legacy_analyze")
 
 
-@analysis.route("/reanalyze", methods=["POST"])
+@analysis.post("/reanalyze")
 def reanalyze():
-    """
-    Re-scores the drug ranking in the context of an ongoing treatment.
-
-    Body:
-    {
-        "checklist": { ...same as /analyze... },
-        "doctor_summary": "...",
-        "current_medications": [
-            {"name": "lithium-carbonate", "dose": 600, "duration_months": 8},
-            ...
-        ],
-        "treatment_anamnesis": "Paciente estável com litio há 8 meses..."
-    }
-    """
-    body = request.get_json(silent=True)
-    if not body:
-        return jsonify({"error": "Request body must be JSON."}), 400
-
-    checklist           = body.get("checklist")
-    doctor_summary      = body.get("doctor_summary", "")
-    current_medications = body.get("current_medications", [])
-    treatment_anamnesis = body.get("treatment_anamnesis", "")
-
-    if not checklist:
-        return jsonify({"error": "Missing required field: checklist."}), 400
-
-    required_fields = ["weight", "gender", "base_diagnosis"]
-    missing = [f for f in required_fields if f not in checklist]
-    if missing:
-        return jsonify({"error": f"Missing checklist fields: {', '.join(missing)}"}), 400
-
-    if not isinstance(current_medications, list):
-        return jsonify({"error": "current_medications must be a list."}), 400
-
-    checklist.setdefault("patient_id",    "STB-000")
-    checklist.setdefault("comorbidities", [])
-    checklist.setdefault("habits",        [])
-
-    try:
-        ranking = _get_engine().run_treatment_reanalysis(
-            checklist=checklist,
-            doctor_summary=doctor_summary,
-            current_medications=current_medications,
-            treatment_anamnesis=treatment_anamnesis,
-        )
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-    def serialize(item: dict) -> dict:
-        risk = item.get("risk_profile", [])
-        return {
-            "name":                  item["name"],
-            "final_score":           round(item["final_score"], 2),
-            "ai_score":              round(item["ai_score"],    2),
-            "bonus":                 round(item["bonus"],       2),
-            "penalty":               round(item["penalty"],     2),
-            "risk_profile":          list(risk) if not isinstance(risk, list) else risk,
-            "drug_class":            item.get("drug_class", "OTHER"),
-            "name_pt":               DRUG_NAME_PT.get(item["name"], None),
-            "reasons":               item.get("reasons", []),
-            "in_use":                item.get("in_use", False),
-            "in_use_duration_months": item.get("in_use_duration_months"),
-        }
-
-    return jsonify([serialize(item) for item in ranking])
+    return _run_sync("legacy_reanalyze")
 
 
-@analysis.route("/audit", methods=["POST"])
+@analysis.post("/audit")
 def audit():
-    """
-    Body:
-    {
-        "prescription": [{"name": "lithium-carbonate", "dose": 300, "interval": 8}, ...],
-        "patient_profile": {"peso_kg": 70.0, "diagnostico_base": "Transtorno Bipolar"}
-    }
-    """
-    body = request.get_json(silent=True)
-    if not body:
-        return jsonify({"error": "Request body must be JSON."}), 400
-
-    prescription     = body.get("prescription")
-    patient_profile  = body.get("patient_profile")
-
-    if not prescription or not isinstance(prescription, list):
-        return jsonify({"error": "Missing or invalid field: prescription."}), 400
-    if not patient_profile or "peso_kg" not in patient_profile:
-        return jsonify({"error": "Missing or invalid field: patient_profile (requires peso_kg)."}), 400
-
-    try:
-        result = _get_toxicity().audit_and_simulate(
-            prescription=prescription,
-            patient_profile=patient_profile,
-        )
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-    return jsonify(result)
+    # The pharmacokinetic simulation used unsourced parameters and flagged standard doses as toxic.
+    # Disabled until the deterministic prescription review (Phase 1) replaces it.
+    raise ApiError("feature_disabled", 410)

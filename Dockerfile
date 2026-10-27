@@ -49,9 +49,10 @@ COPY --from=builder --chown=user:user /opt/venv /opt/venv
 COPY --chown=user:user . $HOME/app/
 
 EXPOSE 7860
-ENV FLASK_APP=app.py
-ENV PORT=7860
+ENV PORT=7860 \
+    LLM_THREADS=2 \
+    OMP_NUM_THREADS=2
 
 USER user
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "-c", "gunicorn.conf.py", "app:app"]
