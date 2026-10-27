@@ -52,7 +52,7 @@ const TOC = [
   { id: "contraindicacoes",label: "Contraindicações"        },
   { id: "diagnosticos",    label: "Diagnósticos Cobertos"   },
   { id: "tratamento",      label: "Reanálise de Tratamento" },
-  { id: "toxicidade",      label: "Simulador de Toxicidade" },
+  { id: "toxicidade",      label: "Simulador (desativado)"  },
   { id: "resultados",      label: "Como Ler os Resultados"  },
   { id: "limitacoes",      label: "Limitações"              },
 ];
@@ -65,8 +65,16 @@ export default function SobrePage() {
         <h1 className="text-3xl font-bold text-slate-900">Como o Stabilis Funciona</h1>
         <p className="text-slate-500 mt-2 text-sm max-w-2xl">
           Documentação técnica do motor de recomendação psiquiátrica, escrita para
-          quem desejam entender as decisões por trás de cada pontuação.
+          quem deseja entender as decisões por trás de cada pontuação.
         </p>
+        <div role="note" className="mt-5 max-w-3xl rounded-xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-950">
+          <p className="font-semibold">Ferramenta experimental, para profissionais de saúde.</p>
+          <p className="mt-1">
+            As regras de pontuação ainda não passaram por validação clínica, e a base de fármacos usada pela
+            rede neural (Broad Drug Repurposing Hub) é licenciada apenas para pesquisa — a própria licença proíbe
+            o uso em decisões de tratamento. Use a ordenação como material de estudo, não como recomendação.
+          </p>
+        </div>
       </div>
 
       <div className="flex gap-10 items-start">
@@ -352,7 +360,7 @@ export default function SobrePage() {
                 <li>
                   A anamnese do tratamento atual é <em>concatenada</em> ao resumo clínico original
                   antes da extração de perfil pela IA. Isso significa que efeitos colaterais descritos
-                  na anamnese (ex.: "acatisia intensa com risperidona") influenciam diretamente as
+                  na anamnese (ex.: &quot;acatisia intensa com risperidona&quot;) influenciam diretamente as
                   contraindicações detectadas.
                 </li>
                 <li>
@@ -385,11 +393,17 @@ export default function SobrePage() {
           </Section>
 
           {/* ── Toxicidade ──────────────────────────────────────────── */}
-          <Section id="toxicidade" title="Simulador de Toxicidade">
+          <Section id="toxicidade" title="Simulador de Toxicidade (desativado)">
+            <p className="rounded-lg border border-slate-300 bg-slate-100 px-4 py-3 text-slate-800">
+              <strong>Desativado.</strong> Os parâmetros farmacocinéticos não tinham fonte publicada; o simulador
+              mostrava &quot;seguro&quot; para medicamentos sem nenhum dado e marcava doses usuais de lítio e valproato
+              como tóxicas para pacientes de 60 kg. Será substituído por uma revisão de receita determinística (dose
+              comparada à bula, interações com fonte e orientações de monitoramento). A descrição abaixo fica como
+              registro de como ele funcionava.
+            </p>
             <p>
-              Após selecionar medicamentos no ranking, o médico pode avançar para a tela de
-              <strong> Auditoria de Prescrição</strong>, onde define doses e intervalos. O sistema
-              então simula 14 dias de farmacocinética em passos de 1 hora por medicamento.
+              O médico definia doses e intervalos na tela de <strong>Auditoria de Prescrição</strong>, e o
+              sistema simulava 14 dias de farmacocinética em passos de 1 hora por medicamento.
             </p>
             <Sub title="Modelo farmacocinético">
               <p>
@@ -434,7 +448,7 @@ export default function SobrePage() {
             <Sub title="Badges">
               <div className="space-y-2">
                 <div className="flex items-start gap-3">
-                  <Tag color="bg-emerald-100 text-emerald-800 border-emerald-200">RECOMENDADO</Tag>
+                  <Tag color="bg-emerald-100 text-emerald-800 border-emerald-200">FAVORECIDO</Tag>
                   <span>Bônus &gt; penalidades — o perfil do medicamento favorece o paciente.</span>
                 </div>
                 <div className="flex items-start gap-3">
@@ -468,9 +482,14 @@ export default function SobrePage() {
             </p>
             <ul className="list-disc list-inside pl-1 space-y-2">
               <li>
-                <strong>Cobertura diagnóstica limitada</strong>: o sistema foi validado para Transtorno
-                Bipolar I, Bipolar II e TAG. Outros diagnósticos (esquizofrenia, TDAH, TOC, etc.)
-                estão fora do escopo atual e podem gerar rankings inadequados.
+                <strong>Sem validação clínica</strong>: as regras foram escritas para Transtorno Bipolar I,
+                Bipolar II e TAG, mas não passaram por validação clínica e não há métricas de acurácia.
+                Outros diagnósticos (esquizofrenia, TDAH, TOC, etc.) estão fora do escopo.
+              </li>
+              <li>
+                <strong>Licença dos dados</strong>: a base de fármacos da rede neural (Broad Drug Repurposing
+                Hub) é de uso exclusivo em pesquisa, sem fins comerciais, e sua licença proíbe o uso em decisões
+                de tratamento clínico. Os rótulos de treino da rede não representam indicação clínica.
               </li>
               <li>
                 <strong>Sem dados individuais de farmacocinética</strong>: o perfil metabólico é uma
