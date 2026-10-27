@@ -1,0 +1,75 @@
+name: CI
+
+# Python (knowledge base + language service) and web (engine, lint, build). No model stack:
+# tests that need llama.cpp or torch skip themselves. Quote verification needs the downloaded
+# sources (.sources-cache), so it runs locally: python -I scripts/verify_quotes.py
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "api/**"
+      - "core/**"
+      - "knowledge/**"
+      - "scripts/**"
+      - "tests/**"
+      - "webapp/**"
+      - "app.py"
+      - "pytest.ini"
+      - "requirements*.txt"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    paths:
+      - "api/**"
+      - "core/**"
+      - "knowledge/**"
+      - "scripts/**"
+      - "tests/**"
+      - "webapp/**"
+      - "app.py"
+      - "pytest.ini"
+      - "requirements*.txt"
+      - ".github/workflows/ci.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - run: pip install -r requirements-ci.txt
+      - name: Knowledge base is valid and the web bundles are up to date
+        run: python scripts/build_kb.py --check
+      - run: python -m pytest
+
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: webapp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: webapp/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: No Hugging Face token in the client bundle
+        run: "! grep -rqE 'hf_[A-Za-z0-9]{20,}' .next/static"

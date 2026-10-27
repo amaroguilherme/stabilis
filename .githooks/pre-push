@@ -1,0 +1,10 @@
+#!/bin/sh
+# Runs the test suites before pushing. Enable with: git config core.hooksPath .githooks
+set -e
+PYTHON="${PYTHON:-./venv/bin/python}"
+[ -x "$PYTHON" ] || PYTHON=python3
+"$PYTHON" -m pytest -q
+if [ -d .sources-cache ]; then
+  "$PYTHON" -I scripts/verify_quotes.py
+fi
+(cd webapp && npm test --silent)

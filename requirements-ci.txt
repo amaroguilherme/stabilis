@@ -1,0 +1,4 @@
+# Dependencies for CI and local tests: no model stack (llama.cpp). The model is replaced by FakeLlm.
+Flask==3.1.2
+jsonschema==4.26.0
+pytest==9.0.2
