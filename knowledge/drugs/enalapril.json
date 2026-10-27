@@ -1,0 +1,22 @@
+{
+  "id": "enalapril",
+  "names": {
+    "dcb": "maleato de enalapril",
+    "display_pt": "Enalapril",
+    "inn_en": "enalapril",
+    "aliases": ["enalapril", "maleato de enalapril"],
+    "anvisa_principles": ["maleato de enalapril"]
+  },
+  "class": "non_psychiatric",
+  "subclass": "ace_inhibitor",
+  "label_source": "label-enalapril",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"maleato de enalapril\"", "accessed": "2026-10-27"}
+  },
+  "facts": [
+    {"tag": "lithium_level_raiser", "severity": "warning", "cite": {"source": "label-enalapril", "locator": "seção PRECAUTIONS: Drug Interactions (Lithium)", "quote": "A few cases of lithium toxicity have been reported in patients receiving concomitant VASOTEC and lithium and were reversible upon discontinuation of both drugs. It is recommended that serum lithium levels be monitored frequently if enalapril is administered concomitantly with lithium.", "accessed": "2026-10-27", "note": "Mesma seção: \"Lithium toxicity has been reported in patients receiving lithium concomitantly with drugs which cause elimination of sodium, including ACE inhibitors.\""}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "lithium_level_raiser é uma inferência: a bula do VASOTEC relata casos de toxicidade por lítio e manda dosar o lítio sérico com frequência, mas não afirma literalmente que o enalapril aumenta os níveis de lítio. Conferir antes de verificar."}
+}

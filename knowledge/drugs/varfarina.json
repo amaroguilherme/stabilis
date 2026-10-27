@@ -1,0 +1,22 @@
+{
+  "id": "varfarina",
+  "names": {
+    "dcb": "varfarina sódica",
+    "display_pt": "Varfarina",
+    "inn_en": "warfarin",
+    "aliases": ["varfarina", "warfarina", "warfarin", "varfarina sódica"],
+    "anvisa_principles": ["varfarina sódica"]
+  },
+  "class": "non_psychiatric",
+  "subclass": "anticoagulant",
+  "label_source": "label-varfarina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"varfarina sódica\"", "accessed": "2026-10-27"}
+  },
+  "facts": [
+    {"tag": "bleeding_risk", "severity": "major", "cite": {"source": "label-varfarina", "locator": "Boxed warning: Bleeding Risk", "quote": "Warfarin sodium can cause major or fatal bleeding", "accessed": "2026-10-27", "note": "Seção 7.3 Drugs that Increase Bleeding Risk: \"Because bleeding risk is increased when these drugs are used concomitantly with warfarin, closely monitor patients receiving any such drug with warfarin.\" A Tabela 3 inclui a classe \"Serotonin Reuptake Inhibitors\"."}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+}

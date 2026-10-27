@@ -1,0 +1,23 @@
+{
+  "id": "ibuprofeno",
+  "names": {
+    "dcb": "ibuprofeno",
+    "display_pt": "Ibuprofeno",
+    "inn_en": "ibuprofen",
+    "aliases": ["ibuprofeno", "ibuprofen"],
+    "anvisa_principles": ["ibuprofeno", "ibuprofeno arginina"]
+  },
+  "class": "non_psychiatric",
+  "subclass": "nsaid",
+  "label_source": "label-ibuprofeno",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"ibuprofeno\"", "accessed": "2026-10-27"}
+  },
+  "facts": [
+    {"tag": "bleeding_risk", "severity": "major", "cite": {"source": "label-ibuprofeno", "locator": "Boxed warning: Gastrointestinal Risk", "quote": "NSAIDS cause an increased risk of serious gastrointestinal adverse events including bleeding, ulceration, and perforation of the stomach or intestines, which can be fatal.", "accessed": "2026-10-27"}},
+    {"tag": "lithium_level_raiser", "severity": "warning", "cite": {"source": "label-ibuprofeno", "locator": "seção PRECAUTIONS: Drug Interactions (Lithium)", "quote": "Ibuprofen produced an elevation of plasma lithium levels and a reduction in renal lithium clearance in a study of eleven normal volunteers.", "accessed": "2026-10-27", "note": "Mesma seção: \"Thus, when ibuprofen and lithium are administered concurrently, subjects should be observed carefully for signs of lithium toxicity.\""}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+}

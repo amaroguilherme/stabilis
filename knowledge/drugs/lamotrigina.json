@@ -1,0 +1,163 @@
+{
+  "id": "lamotrigina",
+  "names": {
+    "dcb": "lamotrigina",
+    "display_pt": "Lamotrigina",
+    "inn_en": "lamotrigine",
+    "aliases": [
+      "lamotrigina",
+      "lamotrigine"
+    ],
+    "anvisa_principles": [
+      "lamotrigina"
+    ]
+  },
+  "class": "mood_stabilizer",
+  "subclass": "anticonvulsant",
+  "label_source": "label-lamotrigina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"lamotrigina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "especializado",
+    "note": "Na tabela: 25, 50 e 100 mg comprimido, grupo 2, PCDT Epilepsia e PCDT Transtorno Afetivo Bipolar do tipo I (o texto extraído do PDF sai fora de ordem).",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 200 (Anexo III – Componente Especializado)",
+      "quote": "lamotrigina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 25,
+    "usual_min": 100,
+    "usual_max": 200,
+    "max": 400,
+    "indication": "Transtorno bipolar tipo I, manutenção (adultos)",
+    "note": "Alvo 200 mg/dia; 100 com valproato; 400 com carbamazepina, fenitoína, fenobarbital ou primidona (sem valproato). Sem indutores, mais de 200 não é recomendado: a revisão mostra acima de 200 como \"acima da faixa usual\". Titulação na Tabela 5. Não indicada para episódio agudo.",
+    "cite": {
+      "source": "label-lamotrigina",
+      "locator": "seção 2.4 Bipolar Disorder",
+      "quote": "The target dose of LAMICTAL is 200 mg/day (100 mg/day in patients taking valproate, which decreases the apparent clearance of lamotrigine, and 400 mg/day in patients not taking valproate and taking either carbamazepine, phenytoin, phenobarbital, primidone, or other drugs such as rifampin and the protease inhibitor lopinavir/ritonavir that increase the apparent clearance of lamotrigine).",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"Accordingly, doses above 200 mg/day are not recommended.\" e \"To avoid an increased risk of rash, the recommended initial dose and subsequent dose escalations of LAMICTAL should not be exceeded\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "serious_rash",
+      "severity": "major",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "Boxed warning: Serious skin rashes",
+        "quote": "LAMICTAL can cause serious rashes requiring hospitalization and discontinuation of treatment. The incidence of these rashes, which have included Stevens-Johnson syndrome, is approximately 0.3% to 0.8% in pediatric patients (aged 2 to 17 years) and 0.08% to 0.3% in adults receiving LAMICTAL.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo boxed warning, fatores de risco: \"(1) coadministration of LAMICTAL with valproate (includes valproic acid and divalproex sodium), (2) exceeding the recommended initial dose of LAMICTAL, (3) exceeding the recommended dose escalation for LAMICTAL, or (4) the presence of the HLA-B*1502 allele\""
+      }
+    },
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "seção 5.5 Blood Dyscrasias",
+        "quote": "These have included neutropenia, leukopenia, anemia, thrombocytopenia, pancytopenia, and, rarely, aplastic anemia and pure red cell aplasia.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"There have been reports of blood dyscrasias that may or may not be associated with multiorgan hypersensitivity (also known as DRESS)\""
+      }
+    },
+    {
+      "tag": "hepatotoxicity",
+      "severity": "warning",
+      "note": "Contexto: reações de hipersensibilidade multissistêmica (DRESS) com falência de órgãos; a bula cita também casos isolados de insuficiência hepática.",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "seção 5.3 Multiorgan Hypersensitivity Reactions and Organ Failure",
+        "quote": "Isolated liver failure without rash or involvement of other organs has also been reported with LAMICTAL.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Fatalities associated with acute multiorgan failure and various degrees of hepatic failure have been reported in 2 of 3,796 adult patients and 4 of 2,435 pediatric patients who received LAMICTAL in epilepsy clinical trials.\""
+      }
+    },
+    {
+      "tag": "renal_impairment_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "seção 8.7 Renal Impairment",
+        "quote": "reduced maintenance doses may be effective for patients with significant renal impairment. Few patients with severe renal impairment have been evaluated during chronic treatment with lamotrigine. Because there is inadequate experience in this population, LAMICTAL should be used with caution in these patients",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "warning",
+      "note": "O risco descrito na retirada abrupta são convulsões, inclusive em 2 pacientes com transtorno bipolar. A seção 2.1 diz que nos ensaios controlados de bipolar não houve aumento de eventos adversos após interrupção abrupta, mas recomenda reduzir em pelo menos 2 semanas.",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "seção 5.10 Withdrawal Seizures",
+        "quote": "As with other AEDs, LAMICTAL should not be abruptly discontinued. In patients with epilepsy there is a possibility of increasing seizure frequency. In clinical trials in adults with bipolar disorder, 2 patients experienced seizures shortly after abrupt withdrawal of LAMICTAL.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Unless safety concerns require a more rapid withdrawal, the dose of LAMICTAL should be tapered over a period of at least 2 weeks (approximately 50% reduction per week)\""
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "seção 8.2 Lactation",
+        "quote": "Events including rash, apnea, drowsiness, poor sucking, and poor weight gain (requiring hospitalization in some cases) have been reported in infants who have been human milk-fed by mothers using lamotrigine; whether or not these events were caused by lamotrigine is unknown.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Human milk-fed infants should be closely monitored for adverse events resulting from lamotrigine.\""
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "note": "A bula relata mortes em superdosagens de até 15 g, sem quantificar a toxicidade; descreve convulsões, coma e atraso da condução intraventricular.",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "seção 10.1 Human Overdose Experience",
+        "quote": "Overdoses involving quantities up to 15 g have been reported for LAMICTAL, some of which have been fatal.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "skin_rash",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "Boxed warning: Serious skin rashes",
+        "quote": "Accordingly, LAMICTAL should ordinarily be discontinued at the first sign of rash, unless the rash is clearly not drug related.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo boxed warning: \"Nearly all cases of life-threatening rashes caused by LAMICTAL have occurred within 2 to 8 weeks of treatment initiation.\""
+      }
+    },
+    {
+      "id": "mood_suicidality",
+      "note": "Alerta de classe dos antiepilépticos (não é boxed warning).",
+      "cite": {
+        "source": "label-lamotrigina",
+        "locator": "seção 5.6 Suicidal Behavior and Ideation",
+        "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

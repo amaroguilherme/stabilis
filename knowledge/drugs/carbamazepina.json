@@ -1,0 +1,235 @@
+{
+  "id": "carbamazepina",
+  "names": {
+    "dcb": "carbamazepina",
+    "display_pt": "Carbamazepina",
+    "inn_en": "carbamazepine",
+    "aliases": [
+      "carbamazepina",
+      "carbamazepine"
+    ],
+    "anvisa_principles": [
+      "carbamazepina"
+    ]
+  },
+  "class": "mood_stabilizer",
+  "subclass": "anticonvulsant",
+  "label_source": "label-carbamazepina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"carbamazepina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "basico",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 128 (Anexo I – Componente Básico)",
+      "quote": "carbamazepina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "serious_rash",
+      "severity": "major",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "Boxed warning: Serious dermatologic reactions and HLA-B*1502 allele",
+        "quote": "SERIOUS AND SOMETIMES FATAL DERMATOLOGIC REACTIONS, INCLUDING TOXIC EPIDERMAL NECROLYSIS (TEN) AND STEVENS-JOHNSON SYNDROME (SJS), HAVE BEEN REPORTED DURING TREATMENT WITH TEGRETOL.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo boxed warning: \"PATIENTS WITH ANCESTRY IN GENETICALLY AT-RISK POPULATIONS SHOULD BE SCREENED FOR THE PRESENCE OF HLA-B*1502 PRIOR TO INITIATING TREATMENT WITH TEGRETOL.\""
+      }
+    },
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "major",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "Boxed warning: Aplastic anemia and agranulocytosis",
+        "quote": "APLASTIC ANEMIA AND AGRANULOCYTOSIS HAVE BEEN REPORTED IN ASSOCIATION WITH THE USE OF TEGRETOL.",
+        "accessed": "2026-10-27",
+        "note": "CONTRAINDICATIONS: \"Tegretol should not be used in patients with a history of previous bone marrow depression\""
+      }
+    },
+    {
+      "tag": "hepatotoxicity",
+      "severity": "warning",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, General",
+        "quote": "Hepatic effects, ranging from slight elevations in liver enzymes to rare cases of hepatic failure have been reported",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "hepatic_impairment_avoid",
+      "severity": "warning",
+      "note": "A bula manda suspender na doença hepática ativa (por critério clínico) e, com história de dano hepático, prescrever só após avaliação crítica de risco-benefício (PRECAUTIONS, General). Não está na seção de contraindicações.",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Laboratory Tests",
+        "quote": "Carbamazepine should be discontinued, based on clinical judgment, if indicated by newly occurring or worsening clinical or laboratory evidence of liver dysfunction or hepatic damage, or in the case of active liver disease.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "hyponatremia_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "WARNINGS, General",
+        "quote": "Hyponatremia can occur as a result of treatment with Tegretol. In many cases, the hyponatremia appears to be caused by the syndrome of inappropriate antidiuretic hormone secretion (SIADH).",
+        "accessed": "2026-10-27",
+        "note": "Mesmo trecho: \"Elderly patients and patients treated with diuretics are at greater risk of developing hyponatremia.\""
+      }
+    },
+    {
+      "tag": "cyp3a4_strong_inducer",
+      "severity": "warning",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Drug Interactions: Effect of Tegretol on Plasma Levels of Concomitant Agents",
+        "quote": "Tegretol is a potent inducer of hepatic 3A4 and is also known to be an inducer of CYP1A2, 2B6, 2C8/9/19, and may therefore reduce plasma concentrations of co-medications mainly metabolized by CYP1A2, 2B6, 2C8/9/19, and 3A4, through induction of their metabolism.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "hormonal_contraceptive_reducer",
+      "severity": "warning",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Drug Interactions: Effect of Tegretol on Plasma Levels of Concomitant Agents",
+        "quote": "Concomitant use of Tegretol with hormonal contraceptive products (e.g., oral, and levonorgestrel subdermal implant contraceptives) may render the contraceptives less effective because the plasma concentrations of the hormones may be decreased. Breakthrough bleeding and unintended pregnancies have been reported.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo trecho: \"Alternative or back-up methods of contraception should be considered.\""
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "warning",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Drug Interactions: Agents That May Affect Tegretol Plasma Levels",
+        "quote": "When carbamazepine is given with drugs that can increase or decrease carbamazepine levels, close monitoring of carbamazepine levels is indicated and dosage adjustment may be required. Agents That Increase Carbamazepine Levels CYP3A4 inhibitors inhibit Tegretol metabolism and can thus increase plasma carbamazepine levels.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"CYP3A4 inducers can increase the rate of Tegretol metabolism.\""
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "warning",
+      "note": "A bula fala em associação possível (\"may be an association\") com malformações, inclusive espinha bífida, sem afirmar risco aumentado de malformações graves; por isso não marcamos teratogenic_major. Revisar.",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "WARNINGS, Usage in Pregnancy",
+        "quote": "Carbamazepine can cause fetal harm when administered to a pregnant woman. Epidemiological data suggest that there may be an association between the use of carbamazepine during pregnancy and congenital malformations, including spina bifida.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"A few cases of neonatal vomiting, diarrhea, and/or decreased feeding have also been reported in association with maternal Tegretol use. These symptoms may represent a neonatal withdrawal syndrome.\""
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "warning",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Nursing Mothers",
+        "quote": "Because of the potential for serious adverse reactions in nursing infants from carbamazepine, a decision should be made whether to discontinue nursing or to discontinue the drug, taking into account the importance of the drug to the mother.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "OVERDOSAGE, Acute Toxicity",
+        "quote": "Lowest known lethal dose: adults, 3.2 g (a 24-year-old woman died of a cardiac arrest and a 24-year-old man died of pneumonia and hypoxic encephalopathy)",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Information for Patients",
+        "quote": "Caution should be exercised if alcohol is taken in combination with Tegretol therapy, due to a possible additive sedative effect.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "blood_count",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Laboratory Tests",
+        "quote": "Complete pretreatment blood counts, including platelets and possibly reticulocytes and serum iron, should be obtained as a baseline.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"If a patient in the course of treatment exhibits low or decreased white blood cell or platelet counts, the patient should be monitored closely.\""
+      }
+    },
+    {
+      "id": "liver_function",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Laboratory Tests",
+        "quote": "Baseline and periodic evaluations of liver function, particularly in patients with a history of liver disease, must be performed during treatment with this drug since liver damage may occur",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "carbamazepine_levels",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Drug Interactions: Agents That May Affect Tegretol Plasma Levels",
+        "quote": "When carbamazepine is given with drugs that can increase or decrease carbamazepine levels, close monitoring of carbamazepine levels is indicated and dosage adjustment may be required.",
+        "accessed": "2026-10-27",
+        "note": "CLINICAL PHARMACOLOGY, Pharmacokinetics: \"Usual adult therapeutic levels are between 4 and 12 mcg/mL.\""
+      }
+    },
+    {
+      "id": "renal_function",
+      "note": "A bula cita exame de urina e ureia (BUN), não creatinina.",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "PRECAUTIONS, Laboratory Tests",
+        "quote": "Baseline and periodic complete urinalysis and BUN determinations are recommended for patients treated with this agent because of observed renal dysfunction.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "mood_suicidality",
+      "note": "Alerta de classe dos antiepilépticos (não é boxed warning).",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "WARNINGS, Suicidal Behavior and Ideation",
+        "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "skin_rash",
+      "cite": {
+        "source": "label-carbamazepina",
+        "locator": "WARNINGS, Serious Dermatologic Reactions",
+        "quote": "Tegretol should be discontinued at the first sign of a rash, unless the rash is clearly not drug related.",
+        "accessed": "2026-10-27",
+        "note": "WARNINGS, SJS/TEN and HLA-B*1502 Allele: \"Over 90% of Tegretol treated patients who will experience SJS/TEN have this reaction within the first few months of treatment.\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

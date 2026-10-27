@@ -1,0 +1,172 @@
+{
+  "id": "zolpidem",
+  "names": {
+    "dcb": "hemitartarato de zolpidem",
+    "display_pt": "Zolpidem",
+    "inn_en": "zolpidem",
+    "aliases": [
+      "zolpidem",
+      "hemitartarato de zolpidem"
+    ],
+    "anvisa_principles": [
+      "hemitartarato de zolpidem"
+    ]
+  },
+  "class": "anxiolytic_hypnotic",
+  "subclass": "z_drug",
+  "label_source": "label-zolpidem",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"hemitartarato de zolpidem\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "nao_consta",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "documento inteiro (termo ausente em todas as páginas)",
+      "absent_term": "zolpidem",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 5,
+    "usual_min": 5,
+    "usual_max": 10,
+    "max": 10,
+    "indication": "Insônia com dificuldade para iniciar o sono (tratamento de curto prazo)",
+    "note": "Dose inicial: 5 mg para mulheres e 5 ou 10 mg para homens, porque a depuração é menor em mulheres; uma vez por noite, ao deitar. Idosos ou debilitados e insuficiência hepática leve a moderada: 5 mg.",
+    "cite": {
+      "source": "label-zolpidem",
+      "locator": "seção 2.1 Dosage in Adults",
+      "quote": "The recommended initial dose is 5 mg for women and either 5 or 10 mg for men, taken only once per night immediately before bedtime with at least 7–8 hours remaining before the planned time of awakening.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"The total dose of AMBIEN should not exceed 10 mg once daily immediately before bedtime.\" e \"The recommended initial doses for women and men are different because zolpidem clearance is lower in women.\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "complex_sleep_behaviors",
+      "severity": "major",
+      "note": "Contraindicado em quem já teve comportamento complexo do sono com AMBIEN (seção 4).",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "Boxed warning: Complex sleep behaviors",
+        "quote": "Complex sleep behaviors including sleep-walking, sleep-driving, and engaging in other activities while not fully awake may occur following use of AMBIEN. Some of these events may result in serious injuries, including death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 5.2 CNS-Depressant Effects and Next-Day Impairment",
+        "quote": "Coadministration with other CNS depressants (e.g., benzodiazepines, opioids, tricyclic antidepressants, alcohol) increases the risk of CNS depression",
+        "accessed": "2026-10-27",
+        "note": "Seção 7.1: \"The concomitant use of AMBIEN with opioids may increase the risk of respiratory depression.\""
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 5.2 CNS-Depressant Effects and Next-Day Impairment",
+        "quote": "Vehicle drivers and machine operators should be warned that, as with other hypnotics, there may be a possible risk of adverse reactions including drowsiness, prolonged reaction time, dizziness, sleepiness, blurred/double vision, reduced alertness, and impaired driving the morning after therapy.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Because AMBIEN can cause drowsiness and a decreased level of consciousness, patients, particularly the elderly, are at higher risk of falls.\""
+      }
+    },
+    {
+      "tag": "dependence_withdrawal",
+      "severity": "info",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 9.3 Dependence",
+        "quote": "Use of AMBIEN may lead to the development of physical and/or psychological dependence. The risk of dependence increases with dose and duration of treatment.",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.9: \"Monitor patients for tolerance, abuse, and dependence\""
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "warning",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 5.9 Withdrawal Effects",
+        "quote": "There have been reports of withdrawal signs and symptoms following the rapid dose decrease or abrupt discontinuation of zolpidem.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "note": "A bula relata desfechos fatais em superdosagem de zolpidem isolado ou combinado com depressores do SNC; não quantifica a toxicidade.",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 10.1 Signs and Symptoms",
+        "quote": "In postmarketing experience of overdose with zolpidem tartrate alone, or in combination with CNS-depressant agents, impairment of consciousness ranging from somnolence to coma, cardiovascular and/or respiratory compromise, and fatal outcomes have been reported.",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.6 (pacientes deprimidos): \"Intentional overdosage is more common in this group of patients; therefore, the lowest number of tablets that is feasible should be prescribed for the patient at any one time.\""
+      }
+    },
+    {
+      "tag": "hepatic_impairment_avoid",
+      "severity": "warning",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 5.8 Precipitation of Hepatic Encephalopathy",
+        "quote": "Avoid AMBIEN use in patients with severe hepatic impairment as it may contribute to encephalopathy",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.2: na insuficiência hepática leve a moderada, a dose recomendada é 5 mg."
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 7.2 Drugs that Affect Drug Metabolism via Cytochrome P450",
+        "quote": "Ketoconazole, a potent CYP3A4 inhibitor, increased the exposure to and pharmacodynamic effects of zolpidem. Consideration should be given to using a lower dose of zolpidem when a potent CYP3A4 inhibitor and zolpidem are given together",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Use of Rifampin in combination with zolpidem may decrease the efficacy of zolpidem and is not recommended\""
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Neonates born to mothers using zolpidem late in the third trimester of pregnancy have been reported to experience symptoms of respiratory depression and sedation",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-zolpidem",
+        "locator": "seção 8.2 Lactation",
+        "quote": "There are reports of excess sedation in infants exposed to zolpidem through breastmilk",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Infants exposed to AMBIEN through breastmilk should be monitored for excess sedation, hypotonia, and respiratory depression.\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null,
+    "notes": "Sem opioid_coadministration_warning: o único boxed warning do AMBIEN é o de comportamentos complexos do sono; o risco com opioides (5.7, 7.1) está em cns_depressant. Fora por falta de id: angioedema/anafilaxia (5.4), piora de depressão e ideação suicida em deprimidos (5.6), depressão respiratória em apneia do sono e miastenia (5.7), alterações de comportamento (5.5). Sem fato renal: a seção 12.3 diz que não é preciso ajustar a dose. overdose_toxicity_high é decisão de leitura: conferir."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "description": "Condições de saúde mental cobertas e fases. Opções de tratamento por condição ficam em knowledge/conditions/<id>.json.",
+  "conditions": [
+    {"id": "depression_unipolar", "label_plain": "Depressão", "label_clinical": "Transtorno depressivo maior (unipolar)", "patient_scope": "options", "phases": []},
+    {"id": "gad", "label_plain": "Ansiedade generalizada", "label_clinical": "Transtorno de ansiedade generalizada (TAG)", "patient_scope": "options", "phases": []},
+    {"id": "bipolar_1", "label_plain": "Transtorno bipolar tipo I", "label_clinical": "Transtorno bipolar tipo I", "patient_scope": "referral",
+     "phases": [
+       {"id": "mania", "label_clinical": "Episódio maníaco agudo"},
+       {"id": "depression", "label_clinical": "Episódio depressivo"},
+       {"id": "maintenance", "label_clinical": "Manutenção"}
+     ]},
+    {"id": "bipolar_2", "label_plain": "Transtorno bipolar tipo II", "label_clinical": "Transtorno bipolar tipo II", "patient_scope": "referral",
+     "phases": [
+       {"id": "hypomania", "label_clinical": "Episódio hipomaníaco"},
+       {"id": "depression", "label_clinical": "Episódio depressivo"},
+       {"id": "maintenance", "label_clinical": "Manutenção"}
+     ]}
+  ]
+}

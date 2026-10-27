@@ -1,0 +1,84 @@
+{
+  "id": "bipolar_2",
+  "description": "Transtorno bipolar tipo II. No modo paciente, apenas encaminhamento e informações de segurança; as linhas de tratamento por fase são para o modo profissional.",
+  "population": {"age_min": 18},
+  "options": [
+    {
+      "id": "opt-bp2-referral",
+      "kind": "referral",
+      "tier": "first_line",
+      "modes": ["patient"],
+      "text_key": "opt.bp.referral",
+      "sources": [
+        {"source": "stabilis-escopo", "locator": "seção 5. Condições cobertas", "quote": "Para transtorno bipolar, a ferramenta mostra informações de segurança e recomenda acompanhamento especializado.", "accessed": "2026-10-27"},
+        {"source": "nice-cg185", "locator": "recomendação 1.2.2", "quote": "Refer people urgently for a specialist mental health assessment if mania or severe depression is suspected or they are a danger to themselves or others.", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp2-psychoeducation",
+      "phase": "maintenance",
+      "kind": "psychotherapy",
+      "tier": "first_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp.psychoeducation",
+      "sources": [{"source": "canmat-isbd-2018", "locator": "pdf p. 11 (Table 10)", "quote": "Psychoeducation (PE) First-line (Level 2)", "accessed": "2026-10-27", "note": "Tabela 10, para transtorno bipolar em geral; coluna de manutenção."}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp2-hypomania",
+      "phase": "hypomania",
+      "kind": "medication",
+      "targets": [{"drug": "haloperidol"}, {"drug": "olanzapina"}, {"drug": "quetiapina"}, {"drug": "risperidona"}],
+      "use": "either",
+      "tier": "first_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp2.hypomania",
+      "sources": [{"source": "nice-cg185", "locator": "recomendação 1.5.3", "quote": "If a person develops mania or hypomania and is not taking an antipsychotic or mood stabiliser, offer haloperidol, olanzapine, quetiapine or risperidone", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp2-depression-first-line",
+      "phase": "depression",
+      "kind": "medication",
+      "targets": [{"drug": "quetiapina"}],
+      "use": "monotherapy",
+      "tier": "first_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp2.depression_first",
+      "sources": [{"source": "canmat-isbd-2018", "locator": "pdf p. 33 (6.2.3 Acute management of bipolar II depression)", "quote": "Quetiapine is the only recommended first-­line treatment for BDII", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp2-depression-second-line",
+      "phase": "depression",
+      "kind": "medication",
+      "targets": [{"drug": "litio"}, {"drug": "lamotrigina"}, {"drug": "sertralina"}, {"drug": "venlafaxina"}],
+      "use": "either",
+      "tier": "second_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp2.depression_second",
+      "sources": [
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 33 (6.2.3, Second-line)", "quote": "Second-­line treatments include lithium, ideally at a serum level of", "accessed": "2026-10-27"},
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 33 (6.2.3, Second-line)", "quote": "and venlafaxine (level 2),443,444 mainly for patients", "accessed": "2026-10-27", "note": "Frase completa: os antidepressivos sertralina (nível 2) e venlafaxina (nível 2), principalmente para pacientes com depressão pura (sem sintomas mistos)."},
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 33 (6.2.3, Second-line)", "quote": "is also recommended as a second-­line agent despite", "accessed": "2026-10-27", "note": "Sujeito da frase: lamotrigine (level 2)."}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp2-maintenance-first-line",
+      "phase": "maintenance",
+      "kind": "medication",
+      "targets": [{"drug": "quetiapina"}, {"drug": "litio"}, {"drug": "lamotrigina"}],
+      "use": "monotherapy",
+      "tier": "first_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp2.maintenance_first",
+      "sources": [
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 33 (6.2.4 Maintenance treatment)", "quote": "Monotherapy with quetiapine (level 1),495 lithium (level", "accessed": "2026-10-27"},
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 33 (6.2.4 Maintenance treatment)", "quote": "and lamotrigine (level 2)323 are first-­line options", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    }
+  ]
+}

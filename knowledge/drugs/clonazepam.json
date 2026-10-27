@@ -1,0 +1,51 @@
+{
+  "id": "clonazepam",
+  "names": {
+    "dcb": "clonazepam",
+    "display_pt": "Clonazepam",
+    "inn_en": "clonazepam",
+    "aliases": ["clonazepam"],
+    "anvisa_principles": ["clonazepam"]
+  },
+  "class": "anxiolytic_hypnotic",
+  "subclass": "benzodiazepine",
+  "label_source": "label-clonazepam",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"clonazepam\"", "accessed": "2026-10-27"}
+  },
+  "sus": {
+    "component": "basico",
+    "note": "Na RENAME 2024 consta apenas a apresentação 2,5 mg/mL solução oral.",
+    "cite": {"source": "rename-2024", "locator": "pdf p. 130 (Anexo I – Componente Básico)", "quote": "clonazepam", "accessed": "2026-10-27", "note": "pdf p. 94 (lista por grupo terapêutico): \"clonazepam 2,5 mg/mL solução oral Básico N03AE01\""}
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 0.5,
+    "usual_min": 1,
+    "usual_max": 1,
+    "max": 4,
+    "indication": "Transtorno de pânico, com ou sem agorafobia",
+    "note": "Início: 0,25 mg duas vezes ao dia. Dose-alvo para a maioria: 1 mg/dia (no estudo de dose fixa, 2, 3 e 4 mg/dia foram menos eficazes); alguns pacientes podem se beneficiar de até 4 mg/dia. A bula dos EUA não tem indicação para TAG.",
+    "cite": {"source": "label-clonazepam", "locator": "seção DOSAGE AND ADMINISTRATION: Panic Disorder – Adults", "quote": "The initial dose for adults with panic disorder is 0.25 mg twice daily. An increase to the target dose for most patients of 1 mg/day may be made after 3 days.", "accessed": "2026-10-27", "note": "Mesma seção: \"it is possible that some individual patients may benefit from doses of up to a maximum dose of 4 mg/day\""}
+  },
+  "facts": [
+    {"tag": "opioid_coadministration_warning", "severity": "major", "cite": {"source": "label-clonazepam", "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions", "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death.", "accessed": "2026-10-27"}},
+    {"tag": "dependence_withdrawal", "severity": "major", "cite": {"source": "label-clonazepam", "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions", "quote": "The use of benzodiazepines, including Klonopin, exposes users to risks of abuse, misuse, and addiction, which can lead to overdose or death.", "accessed": "2026-10-27", "note": "Mesmo boxed warning: \"The continued use of benzodiazepines, including Klonopin, may lead to clinically significant physical dependence.\""}},
+    {"tag": "discontinuation_syndrome", "severity": "major", "cite": {"source": "label-clonazepam", "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions", "quote": "Abrupt discontinuation or rapid dosage reduction of Klonopin after continued use may precipitate acute withdrawal reactions, which can be life-threatening.", "accessed": "2026-10-27", "note": "Mesmo boxed warning: \"To reduce the risk of withdrawal reactions, use a gradual taper to discontinue Klonopin or reduce the dosage\""}},
+    {"tag": "cns_depressant", "severity": "warning", "cite": {"source": "label-clonazepam", "locator": "seção PRECAUTIONS: Drug Interactions – Pharmacodynamic Interactions", "quote": "The CNS-depressant action of the benzodiazepine class of drugs may be potentiated by alcohol, narcotics, barbiturates, nonbarbiturate hypnotics, antianxiety agents, the phenothiazines, thioxanthene and butyrophenone classes of antipsychotic agents, monoamine oxidase inhibitors and the tricyclic antidepressants, and by other anticonvulsant drugs.", "accessed": "2026-10-27"}},
+    {"tag": "sedation_significant", "severity": "warning", "cite": {"source": "label-clonazepam", "locator": "seção WARNINGS: Interference with Cognitive and Motor Performance", "quote": "Since Klonopin produces CNS depression, patients receiving this drug should be cautioned against engaging in hazardous occupations requiring mental alertness, such as operating machinery or driving a motor vehicle.", "accessed": "2026-10-27", "note": "ADVERSE REACTIONS, Table 4 (transtorno de pânico, clonazepam vs. placebo): \"Somnolence 37% 10%\""}},
+    {"tag": "hepatic_impairment_avoid", "severity": "contraindicated", "cite": {"source": "label-clonazepam", "locator": "seção CONTRAINDICATIONS", "quote": "Klonopin is contraindicated in patients with the following conditions: History of sensitivity to benzodiazepines Clinical or biochemical evidence of significant liver disease", "accessed": "2026-10-27"}},
+    {"tag": "angle_closure_glaucoma_warning", "severity": "contraindicated", "note": "A bula contraindica no glaucoma agudo de ângulo estreito; não descreve o clonazepam como desencadeador de crise.", "cite": {"source": "label-clonazepam", "locator": "seção CONTRAINDICATIONS", "quote": "Acute narrow angle glaucoma (it may be used in patients with open angle glaucoma who are receiving appropriate therapy)", "accessed": "2026-10-27"}},
+    {"tag": "renal_impairment_caution", "severity": "warning", "note": "A bula pede cautela, sem ajuste de dose específico.", "cite": {"source": "label-clonazepam", "locator": "seção PRECAUTIONS: Caution in Renally Impaired Patients", "quote": "Metabolites of Klonopin are excreted by the kidneys; to avoid their excess accumulation, caution should be exercised in the administration of the drug to patients with impaired renal function.", "accessed": "2026-10-27"}},
+    {"tag": "pregnancy_risk", "severity": "warning", "cite": {"source": "label-clonazepam", "locator": "seção WARNINGS: Neonatal Sedation and Withdrawal Syndrome", "quote": "Use of Klonopin late in pregnancy can result in sedation (respiratory depression, lethargy, hypotonia) and/or withdrawal symptoms (hyperreflexia, irritability, restlessness, tremors, inconsolable crying, and feeding difficulties) in the neonate", "accessed": "2026-10-27"}},
+    {"tag": "lactation_caution", "severity": "warning", "cite": {"source": "label-clonazepam", "locator": "seção PRECAUTIONS: Nursing Mothers – Risk Summary", "quote": "There are reports of sedation, poor feeding and poor weight gain in infants exposed to benzodiazepines through breast milk.", "accessed": "2026-10-27", "note": "Clinical Considerations: \"Infants exposed to Klonopin through breast milk should be monitored for sedation, poor feeding and poor weight gain.\""}}
+  ],
+  "monitoring": [
+    {"id": "mood_suicidality", "note": "Alerta de classe dos antiepilépticos (não é boxed warning).", "cite": {"source": "label-clonazepam", "locator": "seção WARNINGS: Suicidal Behavior and Ideation", "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.", "accessed": "2026-10-27"}},
+    {"id": "blood_count", "note": "Em tratamento prolongado.", "cite": {"source": "label-clonazepam", "locator": "seção PRECAUTIONS: Laboratory Testing During Long-Term Therapy", "quote": "Periodic blood counts and liver function tests are advisable during long-term therapy with Klonopin.", "accessed": "2026-10-27"}},
+    {"id": "liver_function", "note": "Em tratamento prolongado.", "cite": {"source": "label-clonazepam", "locator": "seção PRECAUTIONS: Laboratory Testing During Long-Term Therapy", "quote": "Periodic blood counts and liver function tests are advisable during long-term therapy with Klonopin.", "accessed": "2026-10-27"}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Bula KLONOPIN em formato antigo, sem numeração de seções. Fora por falta de id ou de suporte claro: suicidalidade dos antiepilépticos (não é o boxed de jovens; entra só como monitoramento), cautela na insuficiência respiratória (DPOC, apneia), piora de crises em quem tem vários tipos de convulsão, inibidores da CYP3A (a bula só pede cautela), superdosagem (fatal só em combinação com outros depressores)."}
+}

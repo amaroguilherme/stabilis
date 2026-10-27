@@ -1,0 +1,90 @@
+{
+  "id": "gad",
+  "description": "Transtorno de ansiedade generalizada (TAG) em adultos, conforme o cuidado em etapas da NICE CG113.",
+  "population": {"age_min": 18},
+  "options": [
+    {
+      "id": "opt-gad-education",
+      "kind": "self_care",
+      "tier": "first_line",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.gad.education",
+      "sources": [{"source": "nice-cg113", "locator": "Stepped-care model, step 1", "quote": "STEP 1: All known and suspected presentations of GAD Identification and assessment; education about GAD and treatment options; active monitoring", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-gad-low-intensity",
+      "kind": "psychotherapy",
+      "tier": "first_line",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.gad.low_intensity",
+      "sources": [
+        {"source": "nice-cg113", "locator": "Stepped-care model, step 2", "quote": "Low-intensity psychological interventions: individual non-facilitated self-help, individual guided self-help and psychoeducational groups", "accessed": "2026-10-27"},
+        {"source": "nice-cg113", "locator": "recomendação 1.2.12", "quote": "offer 1 or more of the following as a first-line intervention", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-gad-cbt",
+      "kind": "psychotherapy",
+      "tier": "first_line",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.gad.cbt",
+      "sources": [{"source": "nice-cg113", "locator": "Stepped-care model, step 3", "quote": "Choice of a high-intensity psychological intervention (cognitive behavioural therapy [CBT]/applied relaxation) or a drug treatment", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-gad-ssri",
+      "kind": "medication",
+      "targets": [{"class": "antidepressant", "subclass": "ssri"}],
+      "use": "either",
+      "tier": "first_line",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.gad.ssri",
+      "sources": [{"source": "nice-cg113", "locator": "recomendação 1.2.23", "quote": "If a person with GAD chooses drug treatment, offer a selective serotonin reuptake inhibitor (SSRI). Consider offering sertraline first because it is the most cost-effective drug", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-gad-snri",
+      "kind": "medication",
+      "targets": [{"class": "antidepressant", "subclass": "snri"}],
+      "use": "either",
+      "tier": "second_line",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.gad.snri",
+      "sources": [{"source": "nice-cg113", "locator": "recomendação 1.2.24", "quote": "If sertraline is ineffective, offer an alternative SSRI or a serotonin–noradrenaline reuptake inhibitor (SNRI)", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-gad-pregabalin",
+      "kind": "medication",
+      "targets": [{"drug": "pregabalina"}],
+      "use": "either",
+      "tier": "alternative",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.gad.pregabalin",
+      "sources": [{"source": "nice-cg113", "locator": "recomendação 1.2.25", "quote": "If the person cannot tolerate SSRIs or SNRIs, consider offering pregabalin.", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-gad-benzodiazepine",
+      "kind": "medication",
+      "targets": [{"class": "anxiolytic_hypnotic", "subclass": "benzodiazepine"}],
+      "tier": "not_recommended",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.gad.benzo",
+      "sources": [{"source": "nice-cg113", "locator": "recomendação 1.2.26", "quote": "Do not offer a benzodiazepine for the treatment of GAD in primary or secondary care except as a short-term measure during crises.", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-gad-antipsychotic",
+      "kind": "medication",
+      "targets": [{"class": "antipsychotic"}],
+      "tier": "not_recommended",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.gad.antipsychotic",
+      "sources": [{"source": "nice-cg113", "locator": "recomendação 1.2.27", "quote": "Do not offer an antipsychotic for the treatment of GAD in primary care.", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    }
+  ]
+}

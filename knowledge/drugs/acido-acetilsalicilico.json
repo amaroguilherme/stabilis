@@ -1,0 +1,22 @@
+{
+  "id": "acido-acetilsalicilico",
+  "names": {
+    "dcb": "ácido acetilsalicílico",
+    "display_pt": "Ácido acetilsalicílico (AAS)",
+    "inn_en": "aspirin",
+    "aliases": ["ácido acetilsalicílico", "acido acetilsalicilico", "AAS", "aspirina", "aspirin"],
+    "anvisa_principles": ["ácido acetilsalicílico", "acido acetilsalicilico"]
+  },
+  "class": "non_psychiatric",
+  "subclass": "antiplatelet",
+  "label_source": "label-acido-acetilsalicilico",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"ácido acetilsalicílico\"", "accessed": "2026-10-27"}
+  },
+  "facts": [
+    {"tag": "bleeding_risk", "severity": "warning", "cite": {"source": "label-acido-acetilsalicilico", "locator": "seção 5.1 Coagulation Abnormalities", "quote": "Even low doses of aspirin can inhibit platelet function leading to an increase in bleeding time.", "accessed": "2026-10-27", "note": "Seção 5.2: \"Aspirin is associated with serious gastrointestinal (GI) adverse reactions, including inflammation, bleeding ulceration and perforation of the upper and lower GI tract.\""}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "A bula citada é do YOSPRALA (aspirina + omeprazol); só foram usados trechos que tratam da aspirina."}
+}

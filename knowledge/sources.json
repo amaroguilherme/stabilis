@@ -1,0 +1,877 @@
+{
+  "description": "Fontes citáveis da base de conhecimento. `url` é a referência oficial; `retrieval` diz como scripts/fetch_sources.py baixa o documento para .sources-cache/ (fora do git) e scripts/verify_quotes.py confere as citações. Toda citação em knowledge/ aponta para um `id` desta lista.",
+  "sources": [
+    {
+      "id": "rename-2024",
+      "title": "Relação Nacional de Medicamentos Essenciais: Rename 2024",
+      "publisher": "Ministério da Saúde (Brasil)",
+      "year": 2024,
+      "kind": "essential_medicines_list",
+      "language": "pt-BR",
+      "url": "https://bvsms.saude.gov.br/bvs/publicacoes/relacao_nacional_medicamentos_2024.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.tjam.jus.br/images/Tema_1234/RENAME_2024.pdf",
+        "note": "O portal BVS/MS bloqueia acesso automatizado; a recuperação usa a cópia do PDF oficial publicada pelo TJ-AM."
+      },
+      "license_note": "Publicação oficial do Ministério da Saúde."
+    },
+    {
+      "id": "mhgap-ig-2-pt",
+      "title": "MI-mhGAP Manual de Intervenções para transtornos mentais, neurológicos e por uso de álcool e outras drogas na rede de atenção básica à saúde. Versão 2.0",
+      "publisher": "Organização Pan-Americana da Saúde (OPAS/OMS)",
+      "year": 2018,
+      "kind": "guideline",
+      "language": "pt-BR",
+      "url": "https://iris.paho.org/handle/10665.2/49096",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://iris.paho.org/server/api/core/bitstreams/ed6b8eec-5272-4d26-8748-d323640915f5/content"
+      },
+      "license_note": "CC BY-NC-SA 3.0 IGO: uso não comercial, com atribuição e mesma licença em derivados."
+    },
+    {
+      "id": "pcdt-tab-2016",
+      "title": "Protocolo Clínico e Diretrizes Terapêuticas do Transtorno Afetivo Bipolar do tipo I (Portaria SAS/MS nº 315, de 30 de março de 2016)",
+      "publisher": "Ministério da Saúde (Brasil)",
+      "year": 2016,
+      "kind": "guideline",
+      "language": "pt-BR",
+      "url": "https://www.gov.br/conitec/pt-br/midias/protocolos/pcdt_transtornoafetivobipolar_tipoi.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.gov.br/conitec/pt-br/midias/protocolos/pcdt_transtornoafetivobipolar_tipoi.pdf/@@display-file/file"
+      },
+      "license_note": "Publicação oficial do Ministério da Saúde."
+    },
+    {
+      "id": "nice-ng222",
+      "title": "Depression in adults: treatment and management (NICE guideline NG222)",
+      "publisher": "National Institute for Health and Care Excellence (NICE)",
+      "year": 2022,
+      "kind": "guideline",
+      "language": "en",
+      "url": "https://www.nice.org.uk/guidance/ng222/chapter/Recommendations",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.nice.org.uk/guidance/ng222/chapter/Recommendations"
+      },
+      "license_note": "© NICE. Citações curtas com atribuição; reprodução para fins educacionais e não comerciais."
+    },
+    {
+      "id": "nice-cg113",
+      "title": "Generalised anxiety disorder and panic disorder in adults: management (NICE clinical guideline CG113)",
+      "publisher": "National Institute for Health and Care Excellence (NICE)",
+      "year": 2011,
+      "kind": "guideline",
+      "language": "en",
+      "url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations"
+      },
+      "license_note": "© NICE. Citações curtas com atribuição; reprodução para fins educacionais e não comerciais."
+    },
+    {
+      "id": "nice-cg185",
+      "title": "Bipolar disorder: assessment and management (NICE clinical guideline CG185)",
+      "publisher": "National Institute for Health and Care Excellence (NICE)",
+      "year": 2014,
+      "kind": "guideline",
+      "language": "en",
+      "url": "https://www.nice.org.uk/guidance/cg185/chapter/Recommendations",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.nice.org.uk/guidance/cg185/chapter/Recommendations"
+      },
+      "license_note": "© NICE. Citações curtas com atribuição; reprodução para fins educacionais e não comerciais."
+    },
+    {
+      "id": "canmat-mdd-2023",
+      "title": "Canadian Network for Mood and Anxiety Treatments 2023 Update on Clinical Guidelines for Management of Major Depressive Disorder in Adults",
+      "publisher": "Lam RW et al., The Canadian Journal of Psychiatry",
+      "year": 2024,
+      "kind": "guideline",
+      "language": "en",
+      "url": "https://doi.org/10.1177/07067437241245384",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://europepmc.org/articles/PMC11351064?pdf=render",
+        "note": "PDF do Europe PMC: as tabelas do XML são imagens; no PDF elas são texto."
+      },
+      "license_note": "Acesso aberto, licença CC BY (Europe PMC PMC11351064). Citações com atribuição."
+    },
+    {
+      "id": "canmat-isbd-2018",
+      "title": "Canadian Network for Mood and Anxiety Treatments (CANMAT) and International Society for Bipolar Disorders (ISBD) 2018 guidelines for the management of patients with bipolar disorder",
+      "publisher": "Yatham LN et al., Bipolar Disorders",
+      "year": 2018,
+      "kind": "guideline",
+      "language": "en",
+      "url": "https://doi.org/10.1111/bdi.12609",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://europepmc.org/articles/PMC5947163?pdf=render",
+        "note": "PDF do Europe PMC: as tabelas do XML são imagens; no PDF elas são texto."
+      },
+      "license_note": "Acesso aberto, licença CC BY-NC-ND (Europe PMC PMC5947163). Somente citações curtas com atribuição."
+    },
+    {
+      "id": "label-fluoxetina",
+      "title": "FDA prescribing information: PROZAC (fluoxetine hydrochloride) capsule",
+      "publisher": "Dista Products Company via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c88f33ed-6dfb-4c5e-bc01-d8e36dd97299",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "c88f33ed-6dfb-4c5e-bc01-d8e36dd97299"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-sertralina",
+      "title": "FDA prescribing information: ZOLOFT (sertraline hydrochloride) tablet and oral concentrate",
+      "publisher": "Viatris Specialty LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fda754f6-d0f3-4dce-a17a-927d64f912f7",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "fda754f6-d0f3-4dce-a17a-927d64f912f7"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-escitalopram",
+      "title": "FDA prescribing information: LEXAPRO (escitalopram) tablet and oral solution",
+      "publisher": "Allergan, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=13bb8267-1cab-43e5-acae-55a4d957630a",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "13bb8267-1cab-43e5-acae-55a4d957630a"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-citalopram",
+      "title": "FDA prescribing information: CELEXA (citalopram) tablet",
+      "publisher": "Allergan, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4259d9b1-de34-43a4-85a8-41dd214e9177",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "4259d9b1-de34-43a4-85a8-41dd214e9177"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-paroxetina",
+      "title": "FDA prescribing information: PAXIL (paroxetine hydrochloride) tablet",
+      "publisher": "Apotex Corp. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ef3b5cbe-f9e1-c1ac-79da-cfe14e3a7e7e",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "ef3b5cbe-f9e1-c1ac-79da-cfe14e3a7e7e"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-venlafaxina",
+      "title": "FDA prescribing information: EFFEXOR XR (venlafaxine hydrochloride) extended-release capsule",
+      "publisher": "Viatris Specialty LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c848a5d8-ba94-4c84-80e3-0bf35fb8e32e",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "c848a5d8-ba94-4c84-80e3-0bf35fb8e32e"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-desvenlafaxina",
+      "title": "FDA prescribing information: PRISTIQ (desvenlafaxine succinate) extended-release tablet",
+      "publisher": "Wyeth Pharmaceuticals LLC (Pfizer) via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0f43610c-f290-46ea-d186-4f998ed99fce",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "0f43610c-f290-46ea-d186-4f998ed99fce"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-duloxetina",
+      "title": "FDA prescribing information: Duloxetine hydrochloride delayed-release capsule",
+      "publisher": "Macleods Pharmaceuticals Limited via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=177ce798-3924-416b-ba37-23dfa911a43b",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "177ce798-3924-416b-ba37-23dfa911a43b"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-amitriptilina",
+      "title": "FDA prescribing information: Amitriptyline hydrochloride tablet",
+      "publisher": "Golden State Medical Supply, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=04e1c5f8-de7e-8ce7-e063-6394a90acc57",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "04e1c5f8-de7e-8ce7-e063-6394a90acc57"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-nortriptilina",
+      "title": "FDA prescribing information: PAMELOR (nortriptyline hydrochloride) capsule",
+      "publisher": "SpecGx LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e17dc299-f52d-414d-ab6e-e809bd6f8acb",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "e17dc299-f52d-414d-ab6e-e809bd6f8acb"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-clomipramina",
+      "title": "FDA prescribing information: ANAFRANIL (clomipramine hydrochloride) capsule",
+      "publisher": "SpecGx LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4074b555-7635-41a9-809d-fae3b3610059",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "4074b555-7635-41a9-809d-fae3b3610059"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-imipramina",
+      "title": "FDA prescribing information: Imipramine hydrochloride tablet",
+      "publisher": "RemedyRepack Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=db007ac0-020e-4962-8903-7497ab96a74e",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "db007ac0-020e-4962-8903-7497ab96a74e"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-bupropiona",
+      "title": "FDA prescribing information: WELLBUTRIN XL (bupropion hydrochloride) extended-release tablet",
+      "publisher": "Bausch Health US LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a435da9d-f6e8-4ddc-897d-8cd2bf777b21",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "a435da9d-f6e8-4ddc-897d-8cd2bf777b21"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-mirtazapina",
+      "title": "FDA prescribing information: REMERON (mirtazapine) tablet",
+      "publisher": "Organon LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=98ad1917-a094-44f5-a28f-a64a8cfcd887",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "98ad1917-a094-44f5-a28f-a64a8cfcd887"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-trazodona",
+      "title": "FDA prescribing information: Trazodone hydrochloride tablet",
+      "publisher": "Aphena Pharma Solutions via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5e85d801-af62-b939-e063-6294a90afacb",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "5e85d801-af62-b939-e063-6294a90afacb"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-vortioxetina",
+      "title": "FDA prescribing information: TRINTELLIX (vortioxetine) tablet",
+      "publisher": "Takeda Pharmaceuticals America, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1a5b68e2-14d0-419d-9ec6-1ca97145e838",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "1a5b68e2-14d0-419d-9ec6-1ca97145e838"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-litio",
+      "title": "FDA prescribing information: Lithium carbonate capsule",
+      "publisher": "PD-Rx Pharmaceuticals, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=16ebe1f9-501d-468b-a37d-f6a46f8f32d1",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "16ebe1f9-501d-468b-a37d-f6a46f8f32d1"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-valproato",
+      "title": "FDA prescribing information: DEPAKOTE (divalproex sodium) delayed-release tablet",
+      "publisher": "AbbVie Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=08a65cf4-7749-4ceb-6895-8f4805e2b01f",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "08a65cf4-7749-4ceb-6895-8f4805e2b01f"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-carbamazepina",
+      "title": "FDA prescribing information: TEGRETOL (carbamazepine) tablet and suspension",
+      "publisher": "Novartis Pharmaceuticals Corporation via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8d409411-aa9f-4f3a-a52c-fbcb0c3ec053",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "8d409411-aa9f-4f3a-a52c-fbcb0c3ec053"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-lamotrigina",
+      "title": "FDA prescribing information: LAMICTAL (lamotrigine) tablet",
+      "publisher": "GlaxoSmithKline LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d7e3572d-56fe-4727-2bb4-013ccca22678",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "d7e3572d-56fe-4727-2bb4-013ccca22678"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-quetiapina",
+      "title": "FDA prescribing information: SEROQUEL (quetiapine) tablet",
+      "publisher": "H2-Pharma, LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8ae62aaf-f8c5-417f-baac-0098369ca322",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "8ae62aaf-f8c5-417f-baac-0098369ca322"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-olanzapina",
+      "title": "FDA prescribing information: ZYPREXA (olanzapine) tablet",
+      "publisher": "H2-Pharma LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b418946a-1ab4-4d89-a012-d94fc361a3c4",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "b418946a-1ab4-4d89-a012-d94fc361a3c4"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-risperidona",
+      "title": "FDA prescribing information: RISPERDAL (risperidone) tablet and oral solution",
+      "publisher": "Janssen Pharmaceuticals, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7e117c7e-02fc-4343-92a1-230061dfc5e0",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "7e117c7e-02fc-4343-92a1-230061dfc5e0"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-aripiprazol",
+      "title": "FDA prescribing information: ABILIFY (aripiprazole) tablet",
+      "publisher": "Otsuka America Pharmaceutical, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c040bd1d-45b7-49f2-93ea-aed7220b30ac",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "c040bd1d-45b7-49f2-93ea-aed7220b30ac"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-haloperidol",
+      "title": "FDA prescribing information: Haloperidol tablet",
+      "publisher": "Cardinal Health 107, LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8ca14b79-6671-4e44-aa34-6564a92aa197",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "8ca14b79-6671-4e44-aa34-6564a92aa197"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-clorpromazina",
+      "title": "FDA prescribing information: Chlorpromazine hydrochloride tablet",
+      "publisher": "RemedyRepack Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=41b86f9d-d7e2-4296-8d88-e8257c7cbed2",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "41b86f9d-d7e2-4296-8d88-e8257c7cbed2"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-clozapina",
+      "title": "FDA prescribing information: CLOZARIL (clozapine) tablet",
+      "publisher": "HLS Therapeutics (USA), Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=90876802-0e3a-44c9-9ff7-1754dfbe736a",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "90876802-0e3a-44c9-9ff7-1754dfbe736a"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-ziprasidona",
+      "title": "FDA prescribing information: GEODON (ziprasidone) capsule",
+      "publisher": "Roerig (Pfizer) via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8326928a-2cb6-4f7f-9712-03a425a14c37",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "8326928a-2cb6-4f7f-9712-03a425a14c37"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-lurasidona",
+      "title": "FDA prescribing information: LATUDA (lurasidone hydrochloride) tablet",
+      "publisher": "Sumitomo Pharma America, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=afad3051-9df2-4c54-9684-e8262a133af8",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "afad3051-9df2-4c54-9684-e8262a133af8"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-clonazepam",
+      "title": "FDA prescribing information: KLONOPIN (clonazepam) tablet",
+      "publisher": "H2-Pharma, LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=cfa0d79a-843c-4b88-95a1-e9511d649ca1",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "cfa0d79a-843c-4b88-95a1-e9511d649ca1"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-diazepam",
+      "title": "FDA prescribing information: VALIUM (diazepam) tablet",
+      "publisher": "Waylis Therapeutics LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=260e2041-2bb3-482f-850e-b5d47a7bdbe6",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "260e2041-2bb3-482f-850e-b5d47a7bdbe6"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-alprazolam",
+      "title": "FDA prescribing information: XANAX (alprazolam) tablet",
+      "publisher": "Viatris Specialty LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=bb5cf72e-3a41-41a8-9a38-80f974eca33f",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "bb5cf72e-3a41-41a8-9a38-80f974eca33f"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-lorazepam",
+      "title": "FDA prescribing information: ATIVAN (lorazepam) tablet",
+      "publisher": "Bausch Health US LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89057c93-8155-4040-acec-64e877bd2b4c",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "89057c93-8155-4040-acec-64e877bd2b4c"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-zolpidem",
+      "title": "FDA prescribing information: AMBIEN (zolpidem tartrate) tablet",
+      "publisher": "Sanofi-Aventis U.S. LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c36cadf4-65a4-4466-b409-c82020b42452",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "c36cadf4-65a4-4466-b409-c82020b42452"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-pregabalina",
+      "title": "FDA prescribing information: LYRICA (pregabalin) capsule and oral solution",
+      "publisher": "Parke-Davis (Pfizer) via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=60185c88-ecfd-46f9-adb9-b97c6b00a553",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "60185c88-ecfd-46f9-adb9-b97c6b00a553"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-ibuprofeno",
+      "title": "FDA prescribing information: Ibuprofen tablet",
+      "publisher": "PD-Rx Pharmaceuticals, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0fa4cd66-66ad-4ec9-b38c-6b5840df39df",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "0fa4cd66-66ad-4ec9-b38c-6b5840df39df"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-diclofenaco",
+      "title": "FDA prescribing information: Diclofenac sodium delayed-release tablet",
+      "publisher": "Umedica Laboratories USA Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0e5c6669-390f-4c32-b9b8-13ed3c517462",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "0e5c6669-390f-4c32-b9b8-13ed3c517462"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-naproxeno",
+      "title": "FDA prescribing information: Naproxen delayed-release tablet",
+      "publisher": "PD-Rx Pharmaceuticals, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2d01e583-670a-46f4-b5f2-3fad46d0376f",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "2d01e583-670a-46f4-b5f2-3fad46d0376f"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-acido-acetilsalicilico",
+      "title": "FDA prescribing information: YOSPRALA (aspirin and omeprazole) tablet",
+      "publisher": "Pharmaceutika Ltd via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=bce0eb08-7eac-4437-ba88-fafac350a8f6",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "bce0eb08-7eac-4437-ba88-fafac350a8f6"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-enalapril",
+      "title": "FDA prescribing information: VASOTEC (enalapril maleate) tablet",
+      "publisher": "Bausch Health US LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=39631f1f-5d19-43c1-b504-bf56d991ed97",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "39631f1f-5d19-43c1-b504-bf56d991ed97"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-captopril",
+      "title": "FDA prescribing information: Captopril tablet",
+      "publisher": "Amici Pharma, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1395ba5b-2fc9-41ff-9c43-e0740d781dee",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "1395ba5b-2fc9-41ff-9c43-e0740d781dee"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-losartana",
+      "title": "FDA prescribing information: COZAAR (losartan potassium) tablet",
+      "publisher": "Organon LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9949448f-c3b9-44ee-94ed-c1aca8c90f39",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "9949448f-c3b9-44ee-94ed-c1aca8c90f39"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-hidroclorotiazida",
+      "title": "FDA prescribing information: Hydrochlorothiazide tablet",
+      "publisher": "RemedyRepack Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f20fd735-30c7-4f89-8ceb-b6186646eea6",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "f20fd735-30c7-4f89-8ceb-b6186646eea6"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-varfarina",
+      "title": "FDA prescribing information: Warfarin sodium tablet",
+      "publisher": "Sun Pharmaceutical Industries, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8ad881e0-ca41-42ad-9d7d-eb85b3a30af0",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "8ad881e0-ca41-42ad-9d7d-eb85b3a30af0"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-clopidogrel",
+      "title": "FDA prescribing information: PLAVIX (clopidogrel) tablet",
+      "publisher": "Sanofi-Aventis U.S. LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de8b0b67-eb25-4684-83b5-7ad785314227",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "de8b0b67-eb25-4684-83b5-7ad785314227"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-etinilestradiol",
+      "title": "FDA prescribing information: Levonorgestrel and ethinyl estradiol tablets",
+      "publisher": "Lupin Pharmaceuticals, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=58e85e02-93e7-42ba-b8f5-a36290c68423",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "58e85e02-93e7-42ba-b8f5-a36290c68423"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-ciprofloxacino",
+      "title": "FDA prescribing information: Ciprofloxacin hydrochloride tablet",
+      "publisher": "PD-Rx Pharmaceuticals, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=14c3bc33-201d-492e-9aee-a4d84c813a3d",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "14c3bc33-201d-492e-9aee-a4d84c813a3d"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-tramadol",
+      "title": "FDA prescribing information: Tramadol hydrochloride tablet",
+      "publisher": "Rising Pharma Holdings, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b5852b90-e415-47ef-8f73-87266b58e033",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "b5852b90-e415-47ef-8f73-87266b58e033"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-codeina",
+      "title": "FDA prescribing information: Codeine sulfate tablet",
+      "publisher": "Lannett Company, Inc. via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5819bdf7-300e-45b8-8f3a-447b53656293",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "5819bdf7-300e-45b8-8f3a-447b53656293"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-sumatriptana",
+      "title": "FDA prescribing information: IMITREX (sumatriptan) tablet",
+      "publisher": "GlaxoSmithKline LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=584abe73-8290-4484-ff8e-5890831c095e",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "584abe73-8290-4484-ff8e-5890831c095e"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "label-linezolida",
+      "title": "FDA prescribing information: ZYVOX (linezolid) injection",
+      "publisher": "Pharmacia & Upjohn Company LLC via DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "kind": "drug_label",
+      "language": "en",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3e5e9975-6f36-42e4-ab46-0e75dda83592",
+      "retrieval": {
+        "kind": "dailymed",
+        "setid": "3e5e9975-6f36-42e4-ab46-0e75dda83592"
+      },
+      "license_note": "Bula aprovada pela FDA, domínio público nos EUA."
+    },
+    {
+      "id": "anvisa-medicamentos",
+      "title": "Dados abertos: medicamentos registrados no Brasil (DADOS_ABERTOS_MEDICAMENTOS.csv)",
+      "publisher": "Agência Nacional de Vigilância Sanitária (ANVISA)",
+      "year": 2026,
+      "kind": "dataset",
+      "language": "pt-BR",
+      "url": "https://dados.anvisa.gov.br/dados/DADOS_ABERTOS_MEDICAMENTOS.csv",
+      "retrieval": {
+        "kind": "file",
+        "url": "https://dados.anvisa.gov.br/dados/DADOS_ABERTOS_MEDICAMENTOS.csv",
+        "encoding": "latin-1"
+      },
+      "license_note": "Dados abertos do governo federal."
+    },
+    {
+      "id": "stabilis-escopo",
+      "title": "Política de escopo do Stabilis",
+      "publisher": "Projeto Stabilis",
+      "year": 2026,
+      "kind": "policy",
+      "language": "pt-BR",
+      "url": "knowledge/POLICY.md",
+      "retrieval": {
+        "kind": "local",
+        "path": "knowledge/POLICY.md"
+      },
+      "license_note": "Decisões de produto, não afirmações clínicas."
+    },
+    {
+      "id": "kroenke-2001-phq9",
+      "title": "The PHQ-9: validity of a brief depression severity measure",
+      "publisher": "Kroenke K, Spitzer RL, Williams JBW. Journal of General Internal Medicine 2001;16(9):606-613",
+      "year": 2001,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://doi.org/10.1046/j.1525-1497.2001.016009606.x",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://europepmc.org/articles/PMC1495268?pdf=render"
+      },
+      "license_note": "Texto completo gratuito no PubMed Central (PMC1495268). O PHQ-9 é de uso livre, sem necessidade de permissão."
+    }
+  ]
+}

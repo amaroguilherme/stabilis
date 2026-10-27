@@ -1,0 +1,202 @@
+{
+  "id": "litio",
+  "names": {
+    "dcb": "carbonato de lítio",
+    "display_pt": "Lítio",
+    "inn_en": "lithium",
+    "aliases": [
+      "lítio",
+      "litio",
+      "carbonato de lítio",
+      "carbonato de litio",
+      "lithium",
+      "lithium carbonate"
+    ],
+    "anvisa_principles": [
+      "carbonato de lítio"
+    ]
+  },
+  "class": "mood_stabilizer",
+  "subclass": "lithium",
+  "label_source": "label-litio",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"carbonato de lítio\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "basico",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 128 (Anexo I – Componente Básico)",
+      "quote": "carbonato de lítio 300 mg comprimido",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 900,
+    "usual_min": 600,
+    "usual_max": 1800,
+    "indication": "Transtorno bipolar tipo I: episódios maníacos ou mistos agudos e manutenção",
+    "note": "Tabela 1 (adultos e >30 kg): início 300 mg 3x/dia, +300 mg a cada 3 dias; fase aguda 600 mg 2–3x/dia (1200–1800 mg/dia), litemia 0,8–1,2 mEq/L; manutenção 300–600 mg 2–3x/dia (600–1800 mg/dia), litemia 0,8–1,0 mEq/L. Sem dose máxima em mg: ajustar pela litemia.",
+    "cite": {
+      "source": "label-litio",
+      "locator": "seção 2.2 Recommended Dosage (Tabela 1)",
+      "quote": "Adult and Pediatric Patients over 30 kg Tablets or capsules 300 mg three times daily 300 mg every 3 days 0.8 to 1.2 mEq/L 600 mg two to three times daily 0.8 to 1.0 mEq/L 300 to 600 mg two to three times daily",
+      "accessed": "2026-10-27",
+      "note": "Colunas da Tabela 1: dose inicial; titulação; fase aguda (litemia-alvo, dose usual); manutenção (litemia-alvo, dose usual)."
+    }
+  },
+  "facts": [
+    {
+      "tag": "narrow_therapeutic_index",
+      "severity": "major",
+      "cite": {
+        "source": "label-litio",
+        "locator": "Boxed warning: Lithium toxicity",
+        "quote": "Lithium toxicity is closely related to serum lithium concentrations, and can occur at doses close to therapeutic concentrations. Facilities for prompt and accurate serum lithium determinations should be available before initiating treatment",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.1: \"The toxic concentrations for lithium (≥1.5 mEq/L) are close to the therapeutic range (0.8 to 1.2mEq/L).\""
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 10 Overdosage",
+        "quote": "At lithium concentrations greater than 3 mEq/L, patients may progress to seizures, coma, and irreversible brain damage.",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.1: as manifestações graves da intoxicação incluem \"clonus, confusion, seizure, coma, and death\"."
+      }
+    },
+    {
+      "tag": "renal_effects",
+      "severity": "warning",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 5.4 Lithium-Induced Chronic Kidney Disease",
+        "quote": "The predominant form of chronic renal disease associated with long-term lithium treatment is a chronic tubulointerstitial nephropathy (CTIN).",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.2 Lithium-Induced Polyuria: \"Chronic lithium treatment may be associated with diminution of renal concentrating ability, occasionally presenting as nephrogenic diabetes insipidus, with polyuria and polydipsia.\""
+      }
+    },
+    {
+      "tag": "renal_impairment_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 2.5 Dosage Adjustments for Patients with Renal Impairment",
+        "quote": "Lithium is not recommended for use in patients with severe renal impairment (creatinine clearance less than 30 mL/min evaluated by Cockcroft-Gault)",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Start patients with mild to moderately impaired renal function (creatinine clearance 30 to 89 mL/min evaluated by Cockcroft-Gault) with dosages less than those for patients with normal renal function\""
+      }
+    },
+    {
+      "tag": "thyroid_effects",
+      "severity": "warning",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 5.7 Hypothyroidism or Hyperthyroidism",
+        "quote": "Lithium is concentrated within the thyroid and can inhibit thyroid synthesis and release which can lead to hypothyroidism.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "hyponatremia_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 5.3 Hyponatremia",
+        "quote": "Lithium can cause hyponatremia by decreasing sodium reabsorption by the renal tubules, leading to sodium depletion.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: manter dieta normal com sal e \"an adequate fluid intake (2500 to 3000 mL) at least during the initial stabilization period\"."
+      }
+    },
+    {
+      "tag": "serotonergic",
+      "severity": "warning",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 5.6 Serotonin Syndrome",
+        "quote": "Lithium can precipitate serotonin syndrome, a potentially life-threatening condition.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Lithium may cause harm when administered to a pregnant woman. Early voluntary reports to international birth registries suggested an increase in cardiovascular malformations, especially for Ebstein’s anomaly, with first trimester use of lithium.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Subsequent case-control and cohort studies indicate that the increased risk for cardiac malformations is likely to be small\" e \"Lithium toxicity may occur in neonates who were exposed to lithium in late pregnancy.\" Por isso pregnancy_risk, e não teratogenic_major."
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 8.2 Lactation",
+        "quote": "Breastfeeding is not recommended with maternal lithium use; however, if a woman chooses to breastfeed, the infant should be closely monitored for signs of lithium toxicity.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "lithium_levels",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 2.3 Serum Lithium Monitoring",
+        "quote": "In addition to regular monitoring of serum lithium concentrations for patients on maintenance treatment, serum lithium concentrations should be monitored after any change in dosage, concurrent medication (e.g., diuretics, non-steroidal anti-inflammatory drugs, renin-angiotensin system antagonists, or metronidazole)",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.2: \"Obtain serum lithium concentration assay after 3 days, drawn 12 hours after the last oral dose and regularly until patient is stabilized.\""
+      }
+    },
+    {
+      "id": "renal_function",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 5.4 Lithium-Induced Chronic Kidney Disease",
+        "quote": "Kidney function should be assessed prior to and during lithium treatment.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "thyroid_function",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 5.7 Hypothyroidism or Hyperthyroidism",
+        "quote": "Monitor thyroid function before the initiation of treatment, at three months and every six to twelve months while treatment is ongoing.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "sodium",
+      "note": "A bula fala em eletrólitos séricos (inclui o sódio): antes de iniciar e com mais frequência quando há uso de diurético.",
+      "cite": {
+        "source": "label-litio",
+        "locator": "seção 2.1 Pre-treatment Screening",
+        "quote": "Before initiating treatment with lithium, renal function, vital signs, serum electrolytes, and thyroid function should be evaluated.",
+        "accessed": "2026-10-27",
+        "note": "Seção 7.1, Tabela 4 (diuréticos): \"More frequent monitoring of serum electrolyte and lithium concentrations.\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "id": "pregabalina",
+  "names": {
+    "dcb": "pregabalina",
+    "display_pt": "Pregabalina",
+    "inn_en": "pregabalin",
+    "aliases": [
+      "pregabalina",
+      "pregabalin"
+    ],
+    "anvisa_principles": [
+      "pregabalina"
+    ]
+  },
+  "class": "anxiolytic_hypnotic",
+  "subclass": "gabapentinoid",
+  "label_source": "label-pregabalina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"pregabalina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "nao_consta",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "documento inteiro (termo ausente em todas as páginas)",
+      "absent_term": "pregabalina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "cns_depressant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 5.4 Respiratory Depression",
+        "quote": "There is evidence from case reports, human studies, and animal studies associating LYRICA with serious, life-threatening, or fatal respiratory depression when co-administered with central nervous system (CNS) depressants, including opioids, or in the setting of underlying respiratory impairment.",
+        "accessed": "2026-10-27",
+        "note": "Seção 7: com oxicodona, lorazepam ou etanol, \"additive effects on cognitive and gross motor functioning were seen\". Não há boxed warning sobre opioides para a pregabalina."
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 5.5 Dizziness and Somnolence",
+        "quote": "LYRICA may cause dizziness and somnolence. Inform patients that LYRICA-related dizziness and somnolence may impair their ability to perform tasks such as driving or operating machinery",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção, estudos controlados em adultos: tontura em 30% vs. 8% com placebo; sonolência em 23% vs. 8%."
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "warning",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 5.6 Increased Risk of Adverse Reactions with Abrupt or Rapid Discontinuation",
+        "quote": "Following abrupt or rapid discontinuation of LYRICA, some patients reported symptoms including insomnia, nausea, headache, anxiety, hyperhidrosis, and diarrhea.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"taper the drug gradually over a minimum of 1 week rather than discontinue the drug abruptly\""
+      }
+    },
+    {
+      "tag": "dependence_withdrawal",
+      "severity": "info",
+      "note": "Não é boxed warning. Substância controlada (Schedule V) nos EUA.",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 9.1 Controlled Substance",
+        "quote": "As with any CNS active drug, carefully evaluate patients for history of drug abuse and observe them for signs of LYRICA misuse or abuse (e.g., development of tolerance, dose escalation, drug-seeking behavior).",
+        "accessed": "2026-10-27",
+        "note": "Seção 9.2: em usuários recreativos de sedativos, LYRICA 450 mg teve notas de \"good drug effect\", \"high\" e \"liking\" semelhantes às do diazepam 30 mg. Seção 9.3: sintomas após retirada abrupta \"consistent with physical dependence\"."
+      }
+    },
+    {
+      "tag": "weight_gain_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 5.8 Weight Gain",
+        "quote": "LYRICA treatment may cause weight gain. In LYRICA controlled clinical trials in adult patients of up to 14 weeks, a gain of 7% or more over baseline weight was observed in 9% of LYRICA-treated patients and 2% of placebo-treated patients.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "renal_impairment_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 2.7 Dosing for Adult Patients with Renal Impairment",
+        "quote": "In view of dose-dependent adverse reactions and since LYRICA is eliminated primarily by renal excretion, adjust the dose in adult patients with reduced renal function.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: ajuste pela depuração de creatinina (Table 2), com dose suplementar após cada hemodiálise."
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "note": "A bula relata mortes em superdosagem só de pregabalina e em combinação com depressores do SNC; não quantifica a toxicidade.",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 10 Overdosage (Signs, Symptoms and Laboratory Findings of Acute Overdosage in Humans)",
+        "quote": "Deaths have been reported in the setting of lone LYRICA overdose and in combination with other CNS depressants.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "note": "Risco potencial baseado em estudos em animais (malformações esqueléticas em ratos e coelhos com exposição de 16 vezes ou mais a humana); a bula diz não haver estudos adequados em gestantes.",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 8.1 Pregnancy (Risk Summary)",
+        "quote": "Advise pregnant women of the potential risk to a fetus.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"There are no adequate and well-controlled studies with LYRICA in pregnant women.\""
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 8.2 Lactation",
+        "quote": "Because of the potential risk of tumorigenicity, breastfeeding is not recommended during treatment with LYRICA.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "note": "Alerta de classe dos antiepilépticos (não é boxed warning).",
+      "cite": {
+        "source": "label-pregabalina",
+        "locator": "seção 5.3 Suicidal Behavior and Ideation",
+        "quote": "Monitor patients treated with any AED for any indication for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null,
+    "notes": "Sem dose_adult: a bula LYRICA dos EUA não tem indicação psiquiátrica (só dor neuropática, fibromialgia e crises focais); a dose para TAG exigiria outra fonte. Fora por falta de id: angioedema (5.1), hipersensibilidade (5.2), edema periférico e cautela na insuficiência cardíaca (5.7), prolongamento do PR (5.13, não é QT), queda de plaquetas (5.12, sem aumento de sangramento), CK/rabdomiólise (5.11). overdose_toxicity_high e pregnancy_risk são decisões de leitura: conferir."
+  }
+}

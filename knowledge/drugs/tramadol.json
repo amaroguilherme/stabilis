@@ -1,0 +1,89 @@
+{
+  "id": "tramadol",
+  "names": {
+    "dcb": "cloridrato de tramadol",
+    "display_pt": "Tramadol",
+    "inn_en": "tramadol",
+    "aliases": [
+      "tramadol",
+      "cloridrato de tramadol"
+    ],
+    "anvisa_principles": [
+      "cloridrato de tramadol"
+    ]
+  },
+  "class": "non_psychiatric",
+  "subclass": "opioid",
+  "label_source": "label-tramadol",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"cloridrato de tramadol\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "dependence_withdrawal",
+      "severity": "major",
+      "cite": {
+        "source": "label-tramadol",
+        "locator": "Boxed warning: Addiction, Abuse and Misuse",
+        "quote": "Because the use of tramadol hydrochloride tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.18 Withdrawal: \"Do not rapidly reduce or abruptly discontinue tramadol hydrochloride tablets in a patient physically dependent on opioids.\""
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "major",
+      "cite": {
+        "source": "label-tramadol",
+        "locator": "Boxed warning: Risks from Concomitant Use with Benzodiazepines or Other CNS Depressants",
+        "quote": "Concomitant use of opioids with benzodiazepines or other central nervous system (CNS) depressants, including alcohol, may result in profound sedation, respiratory depression, coma, and death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "serotonergic",
+      "severity": "warning",
+      "cite": {
+        "source": "label-tramadol",
+        "locator": "seção 5.9 Serotonin Syndrome Risk",
+        "quote": "Cases of serotonin syndrome, a potentially life-threatening condition, have been reported with the use of tramadol, particularly during concomitant use with serotonergic drugs.",
+        "accessed": "2026-10-27",
+        "note": "Seção 4: contraindicado em \"Concurrent use of monoamine oxidase inhibitors (MAOIs) or use within the last 14 days\"."
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-tramadol",
+        "locator": "seção 5.10 Increased Risk of Seizure",
+        "quote": "Seizures have been reported in patients receiving tramadol hydrochloride tablets within the recommended dosage range. Spontaneous postmarketing reports indicate that seizure risk is increased with doses of tramadol hydrochloride tablets above the recommended range.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "maoi_contraindicated",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-tramadol",
+        "locator": "seção 4 CONTRAINDICATIONS",
+        "quote": "Concurrent use of monoamine oxidase inhibitors (MAOIs) or use within the last 14 days",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

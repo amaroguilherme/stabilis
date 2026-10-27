@@ -1,0 +1,48 @@
+{
+  "id": "hidroclorotiazida",
+  "names": {
+    "dcb": "hidroclorotiazida",
+    "display_pt": "Hidroclorotiazida",
+    "inn_en": "hydrochlorothiazide",
+    "aliases": [
+      "hidroclorotiazida",
+      "hydrochlorothiazide"
+    ],
+    "anvisa_principles": [
+      "hidroclorotiazida"
+    ]
+  },
+  "class": "non_psychiatric",
+  "subclass": "thiazide_diuretic",
+  "label_source": "label-hidroclorotiazida",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"hidroclorotiazida\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "lithium_level_raiser",
+      "severity": "warning",
+      "cite": {
+        "source": "label-hidroclorotiazida",
+        "locator": "seção PRECAUTIONS: Drug Interactions (Lithium)",
+        "quote": "Generally should not be given with diuretics. Diuretic agents reduce the renal clearance of lithium and add a high risk of lithium toxicity.",
+        "accessed": "2026-10-27",
+        "note": "Seção WARNINGS: \"Lithium generally should not be given with diuretics\"."
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

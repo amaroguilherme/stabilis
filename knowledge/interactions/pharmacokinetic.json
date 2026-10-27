@@ -1,0 +1,85 @@
+{
+  "description": "Interações farmacocinéticas, sempre com direção explícita: o perpetrador altera a exposição à vítima.",
+  "interactions": [
+    {
+      "id": "IX-PK-LAMOTRIGINE-RAISED",
+      "type": "pharmacokinetic",
+      "perpetrator": {"fact": "lamotrigine_level_raiser"},
+      "victim": {"drug": "lamotrigina"},
+      "effect": "increases_victim_exposure",
+      "severity": "major",
+      "message_key": "ix.lamotrigine_raised",
+      "sources": [{"source": "label-lamotrigina", "locator": "seção 2.2 Epilepsy—Adjunctive Therapy (Table 1, nota a)", "quote": "Valproate has been shown to inhibit glucuronidation and decrease the apparent clearance of lamotrigine", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "IX-PK-ESTROGEN-LAMOTRIGINE",
+      "type": "pharmacokinetic",
+      "perpetrator": {"class": "non_psychiatric", "subclass": "hormonal_contraceptive"},
+      "victim": {"drug": "lamotrigina"},
+      "effect": "decreases_victim_exposure",
+      "severity": "major",
+      "message_key": "ix.lamotrigine_estrogen",
+      "sources": [{"source": "label-lamotrigina", "locator": "seção 2.1 General Dosing Considerations", "quote": "estrogen-containing oral contraceptives have been shown to increase the clearance of lamotrigine", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "IX-PK-CONTRACEPTIVE-FAILURE",
+      "type": "pharmacokinetic",
+      "perpetrator": {"fact": "hormonal_contraceptive_reducer"},
+      "victim": {"class": "non_psychiatric", "subclass": "hormonal_contraceptive"},
+      "effect": "contraceptive_failure",
+      "severity": "major",
+      "message_key": "ix.contraceptive_failure",
+      "sources": [{"source": "label-carbamazepina", "locator": "seção Effect of Tegretol on Plasma Levels of Concomitant Agents", "quote": "may render the contraceptives less effective because the plasma concentrations of the hormones may be decreased", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "IX-PK-CYP3A4-INDUCER",
+      "type": "pharmacokinetic",
+      "perpetrator": {"fact": "cyp3a4_strong_inducer"},
+      "victim": {"fact": "cyp3a4_substrate_sensitive"},
+      "effect": "decreases_victim_exposure",
+      "severity": "major",
+      "message_key": "ix.decrease_levels",
+      "sources": [
+        {"source": "label-quetiapina", "locator": "seção 2.6 Dose Modifications when used with CYP3A4 Inducers", "quote": "SEROQUEL dose should be increased up to 5-fold of the original dose when used in combination with a chronic treatment", "accessed": "2026-10-27"},
+        {"source": "label-lurasidona", "locator": "seção 4 Contraindications", "quote": "Strong CYP3A4 inducers (e.g., rifampin, avasimibe, St. John's wort, phenytoin, carbamazepine, etc.)", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "IX-PK-CYP1A2-INHIBITOR",
+      "type": "pharmacokinetic",
+      "perpetrator": {"fact": "cyp1a2_strong_inhibitor"},
+      "victim": {"fact": "cyp1a2_substrate_sensitive"},
+      "effect": "increases_victim_exposure",
+      "severity": "major",
+      "message_key": "ix.increase_levels",
+      "sources": [{"source": "label-clozapina", "locator": "seção 2.7 Dosage Modifications for Drug Interactions (Table 3)", "quote": "Strong CYP1A2 Inhibitors Administer one third of the CLOZARIL dosage.", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "IX-PK-CYP2D6-INHIBITOR",
+      "type": "pharmacokinetic",
+      "perpetrator": {"fact": "cyp2d6_strong_inhibitor"},
+      "victim": {"fact": "cyp2d6_substrate_sensitive"},
+      "effect": "increases_victim_exposure",
+      "severity": "warning",
+      "message_key": "ix.increase_levels",
+      "sources": [{"source": "label-fluoxetina", "locator": "seção 7.7 Potential for PROZAC to affect Other Drugs", "quote": "Coadministration of fluoxetine with other drugs that are metabolized by CYP2D6, including certain antidepressants (e.g., TCAs), antipsychotics", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "IX-PK-LITHIUM-RAISED",
+      "type": "pharmacokinetic",
+      "perpetrator": {"fact": "lithium_level_raiser"},
+      "victim": {"drug": "litio"},
+      "effect": "increases_victim_exposure",
+      "severity": "major",
+      "message_key": "ix.lithium_levels",
+      "sources": [{"source": "label-litio", "locator": "seção 2.3 Serum Lithium Monitoring", "quote": "concurrent medication (e.g., diuretics, non-steroidal anti-inflammatory drugs, renin-angiotensin system antagonists, or metronidazole)", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    }
+  ]
+}

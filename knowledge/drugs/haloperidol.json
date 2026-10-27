@@ -1,0 +1,46 @@
+{
+  "id": "haloperidol",
+  "names": {
+    "dcb": "haloperidol",
+    "display_pt": "Haloperidol",
+    "inn_en": "haloperidol",
+    "aliases": ["haloperidol", "decanoato de haloperidol", "haloperidol decanoate"],
+    "anvisa_principles": ["haloperidol", "decanoato de haloperidol"]
+  },
+  "class": "antipsychotic",
+  "subclass": "typical",
+  "label_source": "label-haloperidol",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"haloperidol\"", "accessed": "2026-10-27", "note": "Também há registros ativos de \"decanoato de haloperidol\"."}
+  },
+  "sus": {
+    "component": "basico",
+    "cite": {"source": "rename-2024", "locator": "pdf p. 138 (Anexo I – Componente Básico)", "quote": "haloperidol", "accessed": "2026-10-27"}
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "usual_min": 1,
+    "usual_max": 15,
+    "max": 100,
+    "indication": "Transtornos psicóticos (comprimidos orais)",
+    "note": "Faixa inicial da bula: sintomas moderados 0,5 a 2 mg, e graves 3 a 5 mg, 2 ou 3 vezes ao dia (1 a 15 mg/dia, calculado). Idosos ou debilitados: 0,5 a 2 mg 2 ou 3 vezes ao dia. A bula não tem indicação para transtorno bipolar.",
+    "cite": {"source": "label-haloperidol", "locator": "seção DOSAGE AND ADMINISTRATION (Oral Administration, Initial Dosage Range, Adults)", "quote": "Moderate Symptomatology - 0.5 mg to 2 mg b.i.d. or t.i.d. Severe Symptomatology - 3 mg to 5 mg b.i.d. or t.i.d.", "accessed": "2026-10-27", "note": "Mesma seção: \"Daily dosages up to 100 mg may be necessary in some cases to achieve an optimal response.\""}
+  },
+  "facts": [
+    {"tag": "dementia_mortality_warning", "severity": "major", "cite": {"source": "label-haloperidol", "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis", "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.", "accessed": "2026-10-27"}},
+    {"tag": "qt_prolongation", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção WARNINGS: Cardiovascular Effects", "quote": "Cases of sudden death, QT-prolongation, and Torsades de pointes have been reported in patients receiving haloperidol.", "accessed": "2026-10-27", "note": "Mesma seção: doses acima das recomendadas parecem associadas a maior risco; cautela especial com outros fatores que prolongam o QT, incluindo medicamentos que prolongam o QT."}},
+    {"tag": "eps_tardive_dyskinesia", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção WARNINGS: Tardive Dyskinesia", "quote": "A syndrome consisting of potentially irreversible, involuntary, dyskinetic movements may develop in patients treated with antipsychotic drugs.", "accessed": "2026-10-27", "note": "Seção ADVERSE REACTIONS: \"EPS during the administration of haloperidol have been reported frequently, often during the first few days of treatment.\""}},
+    {"tag": "orthostatic_hypotension", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção WARNINGS: Falls", "quote": "Haloperidol tablets may cause somnolence, postural hypotension, motor and sensory instability, which may lead to falls and, consequently, fractures or other injuries.", "accessed": "2026-10-27"}},
+    {"tag": "pregnancy_risk", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção WARNINGS: Usage in Pregnancy (Nonteratogenic Effects)", "quote": "Neonates exposed to antipsychotic drugs, during the third trimester of pregnancy are at risk for extrapyramidal and/or withdrawal symptoms following delivery.", "accessed": "2026-10-27", "note": "Mesma seção: relatos de malformações de membros com uso materno de haloperidol junto a outros fármacos no 1º trimestre, sem relação causal estabelecida."}},
+    {"tag": "lactation_caution", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção WARNINGS: Usage in Pregnancy (Nonteratogenic Effects)", "quote": "Infants should not be nursed during drug treatment.", "accessed": "2026-10-27"}},
+    {"tag": "cns_depressant", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção PRECAUTIONS", "quote": "As with other antipsychotic agents, it should be noted that haloperidol may be capable of potentiating CNS depressants such as anesthetics, opiates, and alcohol.", "accessed": "2026-10-27", "note": "Seção WARNINGS (General): \"The use of alcohol with this drug should be avoided due to possible additive effects and hypotension.\""}},
+    {"tag": "neutropenia_agranulocytosis", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção PRECAUTIONS: Leukopenia, Neutropenia and Agranulocytosis", "quote": "In clinical trial and post-marketing experience, events of leukopenia/neutropenia have been reported temporally related to antipsychotic agents, including haloperidol. Agranulocytosis (including fatal cases) has also been reported.", "accessed": "2026-10-27"}},
+    {"tag": "seizure_threshold_lowering", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção PRECAUTIONS", "quote": "receiving anticonvulsant medications, with a history of seizures, or with EEG abnormalities, because haloperidol may lower the convulsive threshold", "accessed": "2026-10-27"}},
+    {"tag": "prolactin_elevation", "severity": "warning", "cite": {"source": "label-haloperidol", "locator": "seção PRECAUTIONS", "quote": "Antipsychotic drugs elevate prolactin levels; the elevation persists during chronic administration.", "accessed": "2026-10-27", "note": "Mesma seção: galactorreia, amenorreia, ginecomastia e impotência foram relatadas, mas a relevância clínica da prolactina elevada é desconhecida para a maioria dos pacientes."}},
+    {"tag": "discontinuation_syndrome", "severity": "info", "cite": {"source": "label-haloperidol", "locator": "seção ADVERSE REACTIONS: Withdrawal Emergent Neurological Signs", "quote": "However, some patients on maintenance treatment experience transient dyskinetic signs after abrupt withdrawal.", "accessed": "2026-10-27", "note": "Mesma seção: \"it seems reasonable to gradually withdraw use of haloperidol.\" Em tratamentos curtos, a bula diz que a retirada abrupta em geral não causa problemas."}}
+  ],
+  "monitoring": [],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+}

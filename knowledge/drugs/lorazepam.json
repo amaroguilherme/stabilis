@@ -1,0 +1,47 @@
+{
+  "id": "lorazepam",
+  "names": {
+    "dcb": "lorazepam",
+    "display_pt": "Lorazepam",
+    "inn_en": "lorazepam",
+    "aliases": ["lorazepam"],
+    "anvisa_principles": ["lorazepam"]
+  },
+  "class": "anxiolytic_hypnotic",
+  "subclass": "benzodiazepine",
+  "label_source": "label-lorazepam",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"lorazepam\"", "accessed": "2026-10-27"}
+  },
+  "sus": {
+    "component": "nao_consta",
+    "cite": {"source": "rename-2024", "locator": "documento inteiro (termo ausente em todas as páginas)", "absent_term": "lorazepam", "accessed": "2026-10-27"}
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 2,
+    "usual_min": 2,
+    "usual_max": 6,
+    "max": 10,
+    "indication": "Transtornos de ansiedade",
+    "note": "Para ansiedade, a maioria começa com 2 a 3 mg/dia em duas ou três tomadas; faixa usual de 2 a 6 mg/dia; a dose diária pode variar de 1 a 10 mg/dia. Idosos ou debilitados: início de 1 a 2 mg/dia.",
+    "cite": {"source": "label-lorazepam", "locator": "seção DOSAGE AND ADMINISTRATION", "quote": "The usual range is 2 to 6 mg/day given in divided doses, the largest dose being taken before bedtime, but the daily dosage may vary from 1 to 10 mg/day.", "accessed": "2026-10-27", "note": "Mesma seção: \"For anxiety, most patients require an initial dose of 2 to 3 mg/day given two times a day or three times a day.\""}
+  },
+  "facts": [
+    {"tag": "opioid_coadministration_warning", "severity": "major", "cite": {"source": "label-lorazepam", "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions", "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death.", "accessed": "2026-10-27"}},
+    {"tag": "dependence_withdrawal", "severity": "major", "cite": {"source": "label-lorazepam", "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions", "quote": "The use of benzodiazepines, including Ativan, exposes users to risks of abuse, misuse, and addiction, which can lead to overdose or death.", "accessed": "2026-10-27", "note": "Mesmo boxed warning: \"The continued use of benzodiazepines, including Ativan, may lead to clinically significant physical dependence.\""}},
+    {"tag": "discontinuation_syndrome", "severity": "major", "cite": {"source": "label-lorazepam", "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions", "quote": "Abrupt discontinuation or rapid dosage reduction of Ativan after continued use may precipitate acute withdrawal reactions, which can be life-threatening.", "accessed": "2026-10-27", "note": "Mesmo boxed warning: \"To reduce the risk of withdrawal reactions, use a gradual taper to discontinue ATIVAN or reduce the dosage\""}},
+    {"tag": "cns_depressant", "severity": "warning", "cite": {"source": "label-lorazepam", "locator": "seção WARNINGS (texto após Dependence and Withdrawal Reactions)", "quote": "Use of benzodiazepines, including lorazepam, both used alone and in combination with other CNS depressants, may lead to potentially fatal respiratory depression", "accessed": "2026-10-27", "note": "PRECAUTIONS: Drug Interactions: \"The benzodiazepines, including Ativan (lorazepam), produce increased CNS-depressant effects when administered with other CNS depressants\"; a mesma seção descreve sedação acentuada e parada respiratória com clozapina."}},
+    {"tag": "sedation_significant", "severity": "warning", "cite": {"source": "label-lorazepam", "locator": "seção WARNINGS (texto após Dependence and Withdrawal Reactions)", "quote": "As with all patients on CNS-depressant drugs, patients receiving lorazepam should be warned not to operate dangerous machinery or motor vehicles", "accessed": "2026-10-27", "note": "ADVERSE REACTIONS: \"the most frequent adverse reaction to Ativan (lorazepam) was sedation (15.9%)\". PRECAUTIONS: idosos ou debilitados podem ser mais suscetíveis aos efeitos sedativos."}},
+    {"tag": "angle_closure_glaucoma_warning", "severity": "contraindicated", "note": "A bula contraindica no glaucoma agudo de ângulo estreito; não descreve o lorazepam como desencadeador de crise.", "cite": {"source": "label-lorazepam", "locator": "seção CONTRAINDICATIONS", "quote": "Ativan (lorazepam) is contraindicated in patients with: • hypersensitivity to benzodiazepines or to any components of the formulation • acute narrow-angle glaucoma.", "accessed": "2026-10-27"}},
+    {"tag": "pregnancy_risk", "severity": "warning", "cite": {"source": "label-lorazepam", "locator": "seção WARNINGS: Neonatal Sedation and Withdrawal Syndrome", "quote": "Use of Ativan late in pregnancy can result in sedation (respiratory depression, lethargy, hypotonia) and/or withdrawal symptoms (hyperreflexia, irritability, restlessness, tremors, inconsolable crying, and feeding difficulties) in the neonate", "accessed": "2026-10-27"}},
+    {"tag": "lactation_caution", "severity": "warning", "cite": {"source": "label-lorazepam", "locator": "seção PRECAUTIONS: Nursing Mothers", "quote": "There are reports of sedation, poor feeding and poor weight gain in infants exposed to benzodiazepines through breast milk.", "accessed": "2026-10-27", "note": "Mesma seção: \"Infants exposed to Ativan through breast milk should be monitored for sedation, poor feeding and poor weight gain.\""}}
+  ],
+  "monitoring": [
+    {"id": "blood_count", "note": "Em tratamento prolongado.", "cite": {"source": "label-lorazepam", "locator": "seção PRECAUTIONS: Essential Laboratory Tests", "quote": "As with other benzodiazepines, periodic blood counts and liver function tests are recommended for patients on long-term therapy.", "accessed": "2026-10-27"}},
+    {"id": "liver_function", "note": "Em tratamento prolongado.", "cite": {"source": "label-lorazepam", "locator": "seção PRECAUTIONS: Essential Laboratory Tests", "quote": "As with other benzodiazepines, periodic blood counts and liver function tests are recommended for patients on long-term therapy.", "accessed": "2026-10-27"}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Bula ATIVAN em formato antigo, sem numeração de seções. Fora por falta de id ou de suporte claro: não recomendado em transtorno depressivo primário ou psicose e possibilidade de suicídio em deprimidos (sem id; a bula não manda monitorar), cautela/ajuste na insuficiência hepática grave e encefalopatia (não é 'evitar'), precauções renais genéricas, redução de 50% da dose com valproato ou probenecida (glicuronidação, sem id), DPOC/apneia, superdosagem (fatal só em combinação)."}
+}

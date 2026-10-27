@@ -1,0 +1,168 @@
+{
+  "id": "alprazolam",
+  "names": {
+    "dcb": "alprazolam",
+    "display_pt": "Alprazolam",
+    "inn_en": "alprazolam",
+    "aliases": [
+      "alprazolam"
+    ],
+    "anvisa_principles": [
+      "alprazolam"
+    ]
+  },
+  "class": "anxiolytic_hypnotic",
+  "subclass": "benzodiazepine",
+  "label_source": "label-alprazolam",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"alprazolam\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "nao_consta",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "documento inteiro (termo ausente em todas as páginas)",
+      "absent_term": "alprazolam",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 0.75,
+    "max": 4,
+    "indication": "Transtorno de ansiedade generalizada (tratamento agudo)",
+    "note": "Início: 0,25 a 0,5 mg três vezes ao dia (0,75 a 1,5 mg/dia), com ajustes a cada 3 a 4 dias; máximo de 4 mg/dia em doses divididas. Idosos e insuficiência hepática: início de 0,25 mg duas ou três vezes ao dia.",
+    "cite": {
+      "source": "label-alprazolam",
+      "locator": "seção 2.1 Dosage in Generalized Anxiety Disorder",
+      "quote": "The recommended starting oral dosage of XANAX for the acute treatment of patients with GAD is 0.25 mg to 0.5 mg administered three times daily.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"The maximum recommended dosage is 4 mg daily (in divided doses).\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "opioid_coadministration_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+        "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "dependence_withdrawal",
+      "severity": "major",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+        "quote": "The use of benzodiazepines, including XANAX, exposes users to risks of abuse, misuse, and addiction, which can lead to overdose or death.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo boxed warning: \"The continued use of benzodiazepines, including XANAX, may lead to clinically significant physical dependence.\""
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "major",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+        "quote": "Abrupt discontinuation or rapid dosage reduction of XANAX after continued use may precipitate acute withdrawal reactions",
+        "accessed": "2026-10-27",
+        "note": "O boxed warning continua dizendo que essas reações podem ser fatais; a seção 5.3 cita convulsões como exemplo."
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "info",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "seção 7.1 Drugs Having Clinically Important Interactions with XANAX (Table 4)",
+        "quote": "The benzodiazepines, including alprazolam, produce additive CNS depressant effects when coadministered with other CNS depressants.",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.4: \"patients should be cautioned about the concomitant use of alcohol and other CNS depressant drugs during treatment with XANAX\""
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "seção 5.4 Effects on Driving and Operating Machinery",
+        "quote": "Because of its CNS depressant effects, patients receiving XANAX should be cautioned against engaging in hazardous occupations or activities requiring complete mental alertness such as operating machinery or driving a motor vehicle.",
+        "accessed": "2026-10-27",
+        "note": "Seção 6.1, Table 1 (TAG): sonolência (drowsiness) em 41% com XANAX vs. 22% com placebo."
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "seção 5.5 Interaction with Drugs that Inhibit Metabolism via Cytochrome P450 3A",
+        "quote": "XANAX is contraindicated in patients receiving strong inhibitors of CYP3A (such as azole antifungal agents), except ritonavir",
+        "accessed": "2026-10-27",
+        "note": "Seção 4 Contraindications: \"taking strong cytochrome P450 3A (CYP3A) inhibitors (e.g., ketoconazole, itraconazole), except ritonavir\". Com inibidores moderados ou fracos da CYP3A, a seção 7.1 manda evitar e considerar redução de dose."
+      }
+    },
+    {
+      "tag": "antidepressant_mania_switch",
+      "severity": "warning",
+      "note": "Aviso próprio do alprazolam (seção 5.7), não de antidepressivo.",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "seção 5.7 Mania",
+        "quote": "Episodes of hypomania and mania have been reported in association with the use of XANAX in patients with depression",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "seção 5.8 Neonatal Sedation and Withdrawal Syndrome",
+        "quote": "Use of XANAX late in pregnancy can result in sedation (respiratory depression, lethargy, hypotonia) and/or withdrawal symptoms (hyperreflexia, irritability, restlessness, tremors, inconsolable crying, and feeding difficulties) in the neonate",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "seção 8.2 Lactation",
+        "quote": "Because of the potential for serious adverse reactions, including sedation and withdrawal symptoms in breastfed infants, advise patients that breastfeeding is not recommended during treatment with XANAX.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "note": "Em pacientes com depressão; a bula recomenda considerar monitoramento mais próximo de ideação suicida.",
+      "cite": {
+        "source": "label-alprazolam",
+        "locator": "seção 5.6 Patients with Depression",
+        "quote": "appropriate precautions (e.g., limiting the total prescription size and increased monitoring for suicidal ideation) should be considered in patients with depression",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null,
+    "notes": "Dose inicial 0,75 mg/dia = 0,25 mg três vezes ao dia (a bula dá 0,25–0,5 mg três vezes ao dia). Fora por falta de id ou de suporte claro: redução de dose na insuficiência hepática (hepatic_impairment_avoid exige evitar/contraindicar), risco na insuficiência respiratória grave (5.9), monitorar digoxina sérica (7.1), angioedema e Stevens-Johnson só na lista pós-comercialização, superdosagem (fatal só em combinação)."
+  }
+}

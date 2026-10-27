@@ -1,0 +1,208 @@
+{
+  "id": "aripiprazol",
+  "names": {
+    "dcb": "aripiprazol",
+    "display_pt": "Aripiprazol",
+    "inn_en": "aripiprazole",
+    "aliases": [
+      "aripiprazol",
+      "aripiprazole"
+    ],
+    "anvisa_principles": [
+      "aripiprazol"
+    ]
+  },
+  "class": "antipsychotic",
+  "subclass": "atypical",
+  "label_source": "label-aripiprazol",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"aripiprazol\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "nao_consta",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "documento inteiro (Anexos I a III)",
+      "absent_term": "aripiprazol",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 15,
+    "usual_min": 15,
+    "usual_max": 30,
+    "max": 30,
+    "indication": "Transtorno bipolar I, episódios maníacos ou mistos agudos (monoterapia)",
+    "note": "Como adjuvante de lítio ou valproato, início de 10 a 15 mg/dia. Adjuvante no transtorno depressivo maior (seção 2.3): início de 2 a 5 mg/dia, faixa de 2 a 15 mg/dia. Ajustes por CYP2D6/CYP3A4 na seção 2.6.",
+    "cite": {
+      "source": "label-aripiprazol",
+      "locator": "seção 2.2 Bipolar I Disorder",
+      "quote": "The recommended starting dose in adults is 15 mg given once daily as monotherapy and 10 mg to 15 mg given once daily as adjunctive therapy with lithium or valproate.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"The recommended target dose of ABILIFY is 15 mg/day, as monotherapy or as adjunctive therapy with lithium or valproate. The dose may be increased to 30 mg/day based on clinical response. The safety of doses above 30 mg/day has not been evaluated in clinical trials.\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "dementia_mortality_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "suicidality_warning_young",
+      "severity": "major",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors with antidepressant drugs",
+        "quote": "Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term studies.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "eps_tardive_dyskinesia",
+      "severity": "warning",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 5.5 Tardive Dyskinesia",
+        "quote": "If signs and symptoms of tardive dyskinesia appear in a patient on ABILIFY, drug discontinuation should be considered.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "metabolic_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 5.6 Metabolic Changes",
+        "quote": "Atypical antipsychotic drugs have been associated with metabolic changes that include hyperglycemia/diabetes mellitus, dyslipidemia, and body weight gain. While all drugs in the class have been shown to produce some metabolic changes, each drug has its own specific risk profile.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"There have been reports of hyperglycemia in patients treated with ABILIFY\". Nos ensaios em adultos, glicemia e lipídios não diferiram significativamente do placebo."
+      }
+    },
+    {
+      "tag": "orthostatic_hypotension",
+      "severity": "warning",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 5.8 Orthostatic Hypotension",
+        "quote": "ABILIFY may cause orthostatic hypotension, perhaps due to its alpha 1 -adrenergic receptor antagonism.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "warning",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 5.10 Leukopenia, Neutropenia, and Agranulocytosis",
+        "quote": "In clinical trials and/or postmarketing experience, events of leukopenia and neutropenia have been reported temporally related to antipsychotic agents, including ABILIFY. Agranulocytosis has also been reported.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 5.11 Seizures/Convulsions",
+        "quote": "As with other antipsychotic drugs, ABILIFY should be used cautiously in patients with a history of seizures or with conditions that lower the seizure threshold.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "info",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 7.1 Drugs Having Clinically Important Interactions with ABILIFY",
+        "quote": "The intensity of sedation was greater with the combination of oral aripiprazole and lorazepam as compared to that observed with aripiprazole alone.",
+        "accessed": "2026-10-27",
+        "note": "Mesma tabela: \"Monitor sedation and blood pressure. Adjust dose accordingly.\""
+      }
+    },
+    {
+      "tag": "cyp2d6_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 7.1 Drugs Having Clinically Important Interactions with ABILIFY",
+        "quote": "Reduce the ABILIFY dosage when administered concomitantly with a strong CYP3A4 inhibitor or a strong CYP2D6 inhibitor",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.6 (Tabela 1): metade da dose usual com inibidor potente de CYP2D6 (ex.: fluoxetina, paroxetina) e também em metabolizadores lentos de CYP2D6. No uso adjuvante no transtorno depressivo maior, a bula manda não ajustar."
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 2.6 Dosage Adjustments for Cytochrome P450 Considerations",
+        "quote": "Dosage adjustments are recommended in patients who are known CYP2D6 poor metabolizers and in patients taking concomitant CYP3A4 inhibitors or CYP2D6 inhibitors or strong CYP3A4 inducers",
+        "accessed": "2026-10-27",
+        "note": "Tabela 1: metade da dose com inibidor potente de CYP3A4 (ex.: itraconazol, claritromicina); dobrar a dose em 1 a 2 semanas com indutor potente (ex.: carbamazepina, rifampicina). No uso adjuvante no transtorno depressivo maior, a bula manda não ajustar."
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Neonates exposed to antipsychotic drugs, including ABILIFY, during the third trimester of pregnancy are at risk for extrapyramidal and/or withdrawal symptoms following delivery",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 8.2 Lactation",
+        "quote": "aripiprazole exposure during pregnancy and/or the postpartum period may lead to clinically relevant decreases in milk supply which may be reversible with discontinuation of the drug",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Monitor the breastfed infant for dehydration and lack of appropriate weight gain.\""
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors with antidepressant drugs",
+        "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening, and for emergence of suicidal thoughts and behaviors.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "metabolic_profile",
+      "cite": {
+        "source": "label-aripiprazol",
+        "locator": "seção 5.6 Metabolic Changes",
+        "quote": "Weight gain has been observed with atypical antipsychotic use. Clinical monitoring of weight is recommended.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: glicemia de jejum no início e periodicamente para quem tem fatores de risco para diabetes, e acompanhamento do controle glicêmico em quem já tem diabetes."
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

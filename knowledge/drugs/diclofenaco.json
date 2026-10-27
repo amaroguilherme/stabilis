@@ -1,0 +1,23 @@
+{
+  "id": "diclofenaco",
+  "names": {
+    "dcb": "diclofenaco sódico",
+    "display_pt": "Diclofenaco",
+    "inn_en": "diclofenac",
+    "aliases": ["diclofenaco", "diclofenac", "diclofenaco sódico", "diclofenaco potássico"],
+    "anvisa_principles": ["diclofenaco sódico", "diclofenaco potássico", "diclofenaco dietilamônio", "diclofenaco de sódio", "diclofenaco de potássio", "diclofenaco resinato", "diclofenaco colestiramina", "diclofenaco"]
+  },
+  "class": "non_psychiatric",
+  "subclass": "nsaid",
+  "label_source": "label-diclofenaco",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"diclofenaco sódico\"", "accessed": "2026-10-27"}
+  },
+  "facts": [
+    {"tag": "bleeding_risk", "severity": "major", "cite": {"source": "label-diclofenaco", "locator": "Boxed warning: Risk of Serious Cardiovascular and Gastrointestinal Events", "quote": "NSAIDs cause an increased risk of serious gastrointestinal (GI) adverse events, including bleeding, ulceration, and perforation of the stomach or intestines, which can be fatal.", "accessed": "2026-10-27"}},
+    {"tag": "lithium_level_raiser", "severity": "warning", "cite": {"source": "label-diclofenaco", "locator": "seção PRECAUTIONS: Drug Interactions (Table 2, Lithium)", "quote": "NSAIDs have produced elevations in plasma lithium levels and reductions in renal lithium clearance.", "accessed": "2026-10-27", "note": "Mesma tabela: \"During concomitant use of diclofenac sodium delayed-release tablets and lithium, monitor patients for signs of lithium toxicity.\""}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "A bula citada é do comprimido oral de diclofenaco sódico de liberação retardada. anvisa_principles inclui outros sais e formas do mesmo fármaco, inclusive tópicas (diclofenaco dietilamônio), das quais esta bula não trata."}
+}

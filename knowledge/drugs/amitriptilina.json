@@ -1,0 +1,242 @@
+{
+  "id": "amitriptilina",
+  "names": {
+    "dcb": "cloridrato de amitriptilina",
+    "display_pt": "Amitriptilina",
+    "inn_en": "amitriptyline",
+    "aliases": [
+      "amitriptilina",
+      "amitriptyline"
+    ],
+    "anvisa_principles": [
+      "cloridrato de amitriptilina"
+    ]
+  },
+  "class": "antidepressant",
+  "subclass": "tca",
+  "label_source": "label-amitriptilina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"cloridrato de amitriptilina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "basico",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 130 (Anexo I – Componente Básico)",
+      "quote": "cloridrato de amitriptilina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 75,
+    "usual_min": 50,
+    "usual_max": 150,
+    "max": 300,
+    "indication": "Depressão (adultos)",
+    "note": "Ambulatorial: 75 mg/dia em doses divididas (ou 50–100 mg ao deitar), até 150 mg/dia. Internados: 100 mg/dia no início, até 200 mg/dia; poucos precisam de até 300 mg/dia. Manutenção usual: 50–100 mg/dia (40 mg/dia basta para alguns).",
+    "cite": {
+      "source": "label-amitriptilina",
+      "locator": "seção DOSAGE AND ADMINISTRATION: Initial Dosage for Adults",
+      "quote": "For outpatients 75 mg of amitriptyline HCl a day in divided doses is usually satisfactory. If necessary, this may be increased to a total of 150 mg per day.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"A small number of hospitalized patients may need as much as 300 mg a day.\" Seção Maintenance: \"The usual maintenance dosage of amitriptyline HCl is 50 to 100 mg per day.\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "suicidality_warning_young",
+      "severity": "major",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "Boxed warning: Suicidality and Antidepressant Drugs",
+        "quote": "Antidepressants increased the risk compared to placebo of suicidal thinking and behavior (suicidality) in children, adolescents, and young adults in short-term studies of major depressive disorder (MDD) and other psychiatric disorders.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "serotonergic",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS: Serotonin Syndrome",
+        "quote": "The development of a potentially life-threatening serotonin syndrome has been reported with tricyclic antidepressants, including amitriptyline hydrochloride, alone but particularly with concomitant use of other serotonergic drugs",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"The concomitant use of amitriptyline hydrochloride with MAOIs intended to treat psychiatric disorders is contraindicated.\""
+      }
+    },
+    {
+      "tag": "antidepressant_mania_switch",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS: Screening Patients for Bipolar Disorder",
+        "quote": "treating such an episode with an antidepressant alone may increase the likelihood of precipitation of a mixed/manic episode in patients at risk for bipolar disorder",
+        "accessed": "2026-10-27",
+        "note": "Seção PRECAUTIONS: \"Depressed patients, particularly those with known manic-depressive illness, may experience a shift to mania or hypomania.\""
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS",
+        "quote": "It should be used with caution in patients with a history of seizures",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "anticholinergic_burden",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS",
+        "quote": "It should be used with caution in patients with a history of seizures and, because of its atropine-like action, in patients with a history of urinary retention, angle-closure glaucoma or increased intraocular pressure.",
+        "accessed": "2026-10-27",
+        "note": "Seção PRECAUTIONS: Geriatric Use: \"Geriatric patients are particularly sensitive to the anticholinergic side effects of tricyclic antidepressants including amitriptyline hydrochloride.\""
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS",
+        "quote": "Amitriptyline hydrochloride may enhance the response to alcohol and the effects of barbiturates and other CNS depressants.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "qt_prolongation",
+      "severity": "warning",
+      "note": "A bula cita o QT na contraindicação com cisaprida; em WARNINGS, cita arritmias e prolongamento do tempo de condução com tricíclicos.",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção CONTRAINDICATIONS",
+        "quote": "Amitriptyline hydrochloride should not be given with cisapride due to the potential for increased QT interval and increased risk for arrhythmia.",
+        "accessed": "2026-10-27",
+        "note": "Seção WARNINGS: \"Tricyclic antidepressant drugs, including amitriptyline hydrochloride, particularly when given in high doses, have been reported to produce arrhythmias, sinus tachycardia, and prolongation of the conduction time.\""
+      }
+    },
+    {
+      "tag": "hyponatremia_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS: Hyponatremia",
+        "quote": "Hyponatremia has occurred as a result of treatment with amitriptyline hydrochloride tablets. In many cases, hyponatremia appears to be the result of the syndrome of inappropriate antidiuretic hormone secretion (SIADH).",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "angle_closure_glaucoma_warning",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS: Angle-Closure Glaucoma",
+        "quote": "The pupillary dilation that occurs following use of many antidepressant drugs including amitriptyline hydrochloride may trigger an angle-closure attack in a patient with anatomically narrow angles who does not have a patent iridectomy.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção OVERDOSAGE",
+        "quote": "Deaths may occur from overdosage with this class of drugs.",
+        "accessed": "2026-10-27",
+        "note": "Seção WARNINGS: \"Prescriptions for amitriptyline hydrochloride tablets should be written for the smallest quantity of tablets consistent with good patient management, in order to reduce the risk of overdose.\""
+      }
+    },
+    {
+      "tag": "cyp2d6_substrate_sensitive",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção PRECAUTIONS: Drug Interactions (Drugs Metabolized by P450 2D6)",
+        "quote": "Concomitant use of tricyclic antidepressants with drugs that can inhibit cytochrome P450 2D6 may require lower doses than usually prescribed for either the tricyclic antidepressant or the other drug.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"An individual who is stable on a given dose of TCA may become abruptly toxic when given one of these inhibiting drugs as concomitant therapy.\""
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "info",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção CLINICAL PHARMACOLOGY",
+        "quote": "Amitriptyline HCl is an antidepressant with sedative effects.",
+        "accessed": "2026-10-27",
+        "note": "Seção DOSAGE AND ADMINISTRATION: \"A sedative effect may be apparent before the antidepressant effect is noted\""
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "info",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção ADVERSE REACTIONS: Withdrawal Symptoms",
+        "quote": "After prolonged administration, abrupt cessation of treatment may produce nausea, headache, and malaise.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "warning",
+      "note": "A bula diz que a relação causal não foi estabelecida; houve teratogenicidade em camundongos e hamsters em doses altas.",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS: Usage in Pregnancy (Teratogenic Effects)",
+        "quote": "Although a causal relationship has not been established, there have been a few reports of adverse events, including CNS effects, limb deformities, or developmental delay, in infants whose mothers had taken amitriptyline during pregnancy.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "warning",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "seção WARNINGS: Nursing Mothers",
+        "quote": "Because of the potential for serious adverse reactions in nursing infants from amitriptyline, a decision should be made whether to discontinue nursing or to discontinue the drug, taking into account the importance of the drug to the mother.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "maoi_contraindicated",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "Contraindications",
+        "quote": "It should not be given concomitantly with monoamine oxidase inhibitors.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "cite": {
+        "source": "label-amitriptilina",
+        "locator": "Boxed warning: Suicidality and Antidepressant Drugs",
+        "quote": "Patients of all ages who are started on antidepressant therapy should be monitored appropriately and observed closely for clinical worsening, suicidality, or unusual changes in behavior.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

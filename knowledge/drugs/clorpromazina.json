@@ -1,0 +1,45 @@
+{
+  "id": "clorpromazina",
+  "names": {
+    "dcb": "cloridrato de clorpromazina",
+    "display_pt": "Clorpromazina",
+    "inn_en": "chlorpromazine",
+    "aliases": ["clorpromazina", "chlorpromazine", "cloridrato de clorpromazina"],
+    "anvisa_principles": ["cloridrato de clorpromazina"]
+  },
+  "class": "antipsychotic",
+  "subclass": "typical",
+  "label_source": "label-clorpromazina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"cloridrato de clorpromazina\"", "accessed": "2026-10-27"}
+  },
+  "sus": {
+    "component": "basico",
+    "cite": {"source": "rename-2024", "locator": "pdf p. 131 (Anexo I – Componente Básico)", "quote": "cloridrato de clorpromazina", "accessed": "2026-10-27"}
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "usual_max": 500,
+    "indication": "Estados maníacos ou esquizofrênicos agudos (internação; via oral após controle inicial com injeção)",
+    "note": "A bula diz que 500 mg/dia em geral bastam; aumentos graduais até 2.000 mg/dia ou mais podem ser necessários, com pouco ganho acima de 1.000 mg/dia por longos períodos. Doses menores em idosos e debilitados. Não há dose máxima fixa.",
+    "cite": {"source": "label-clorpromazina", "locator": "seção DOSAGE AND ADMINISTRATION – ADULTS: Acute Schizophrenic or Manic States", "quote": "500 mg a day is generally sufficient. While gradual increases to 2,000 mg a day or more may be necessary, there is usually little therapeutic gain to be achieved by exceeding 1,000 mg a day for extended periods.", "accessed": "2026-10-27"}
+  },
+  "facts": [
+    {"tag": "dementia_mortality_warning", "severity": "major", "cite": {"source": "label-clorpromazina", "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis", "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.", "accessed": "2026-10-27"}},
+    {"tag": "eps_tardive_dyskinesia", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção WARNINGS: Tardive Dyskinesia", "quote": "Tardive dyskinesia, a syndrome consisting of potentially irreversible, involuntary, dyskinetic movements, may develop in patients treated with antipsychotic drugs.", "accessed": "2026-10-27", "note": "Seção ADVERSE REACTIONS: \"Neuromuscular reactions include dystonias, motor restlessness, pseudo-parkinsonism and tardive dyskinesia, and appear to be dose-related.\""}},
+    {"tag": "hepatotoxicity", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção WARNINGS", "quote": "The use of chlorpromazine and other potential hepatotoxins should be avoided in children and adolescents whose signs and symptoms suggest Reye's syndrome.", "accessed": "2026-10-27", "note": "Seção ADVERSE REACTIONS (Jaundice): icterícia de padrão obstrutivo, em geral reversível com a retirada, mas há relatos de icterícia crônica; se houver febre com sintomas gripais, fazer provas hepáticas e suspender se alteradas."}},
+    {"tag": "cns_depressant", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção PRECAUTIONS: General", "quote": "Chlorpromazine prolongs and intensifies the action of CNS depressants such as anesthetics, barbiturates and narcotics. When chlorpromazine is administered concomitantly, about ¼ to ½ the usual dosage of such agents is required.", "accessed": "2026-10-27", "note": "CONTRAINDICATIONS: não usar em coma nem na presença de grandes quantidades de depressores do SNC (álcool, barbitúricos, narcóticos). WARNINGS: evitar álcool por efeitos aditivos e hipotensão."}},
+    {"tag": "orthostatic_hypotension", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção WARNINGS: Falls", "quote": "Chlorpromazine may cause somnolence, postural hypotension, motor and sensory instability, which may lead to falls and, consequently, fractures or other injuries.", "accessed": "2026-10-27", "note": "Seção PRECAUTIONS: \"Thiazide diuretics may accentuate the orthostatic hypotension that may occur with phenothiazines.\""}},
+    {"tag": "pregnancy_risk", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção WARNINGS: Non-teratogenic Effects", "quote": "Neonates exposed to antipsychotic drugs, during the third trimester of pregnancy are at risk for extrapyramidal and/or withdrawal symptoms following delivery.", "accessed": "2026-10-27", "note": "Seção WARNINGS (Usage in Pregnancy): \"There are reported instances of prolonged jaundice, extrapyramidal signs, hyperreflexia or hyporeflexia in newborn infants whose mothers received phenothiazines.\""}},
+    {"tag": "lactation_caution", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção WARNINGS: Nursing Mothers", "quote": "Because of the potential for serious adverse reactions in nursing infants from chlorpromazine, a decision should be made whether to discontinue nursing or to discontinue the drug, taking into account the importance of the drug to the mother.", "accessed": "2026-10-27"}},
+    {"tag": "neutropenia_agranulocytosis", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção PRECAUTIONS: Leukopenia, Neutropenia and Agranulocytosis", "quote": "In clinical trial and postmarketing experience, events of leukopenia/neutropenia and agranulocytosis have been reported temporally related to antipsychotic agents.", "accessed": "2026-10-27", "note": "Seção ADVERSE REACTIONS (Agranulocytosis): \"Most cases have occurred between the fourth and tenth weeks of therapy; patients should be watched closely during that period.\""}},
+    {"tag": "seizure_threshold_lowering", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção PRECAUTIONS: General", "quote": "Chlorpromazine may lower the convulsive threshold; dosage adjustments of anticonvulsants may be necessary.", "accessed": "2026-10-27"}},
+    {"tag": "anticholinergic_burden", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção PRECAUTIONS: General", "quote": "As with all drugs which exert an anticholinergic effect, and/or cause mydriasis, chlorpromazine should be used with caution in patients with glaucoma.", "accessed": "2026-10-27", "note": "Seção ADVERSE REACTIONS (Autonomic Reactions) inclui retenção urinária e íleo adinâmico."}},
+    {"tag": "prolactin_elevation", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção PRECAUTIONS: General", "quote": "Antipsychotic drugs elevate prolactin levels; the elevation persists during chronic administration.", "accessed": "2026-10-27", "note": "Mesma seção: a relevância clínica da prolactina elevada é desconhecida para a maioria dos pacientes."}},
+    {"tag": "discontinuation_syndrome", "severity": "warning", "cite": {"source": "label-clorpromazina", "locator": "seção PRECAUTIONS: Abrupt Withdrawal", "quote": "There may be, however, following abrupt withdrawal of high-dose therapy, some symptoms resembling those of physical dependence such as gastritis, nausea and vomiting, dizziness and tremulousness.", "accessed": "2026-10-27", "note": "Mesma seção: os sintomas podem ser evitados ou reduzidos com redução gradual da dose."}}
+  ],
+  "monitoring": [],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+}

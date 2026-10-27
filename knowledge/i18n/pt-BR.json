@@ -1,0 +1,360 @@
+{
+  "language": "pt-BR",
+  "description": "Textos exibidos pelo motor. plain: linguagem simples, para pacientes; clinical: profissionais. Marcadores: {drug} (medicamento), {a} e {b} (dois medicamentos de uma interação), {perpetrator} e {victim} (quem altera e quem é alterado).",
+  "messages": {
+    "alert.alcohol_cns": {
+      "plain": "Misturar {drug} com bebida alcoólica pode causar sonolência perigosa e dificuldade para respirar.",
+      "clinical": "{drug}: depressão do sistema nervoso central somada ao álcool."
+    },
+    "alert.bipolar_antidepressant": {
+      "plain": "No transtorno bipolar tipo I, {drug} sem um estabilizador de humor não é recomendado, porque pode provocar uma virada para mania. Converse com o médico antes de mudar qualquer coisa: não pare o remédio por conta própria.",
+      "clinical": "{drug}: antidepressivo sem estabilizador de humor ou antipsicótico no transtorno bipolar tipo I, não recomendado (risco de virada maníaca)."
+    },
+    "alert.bipolar_screen": {
+      "plain": "Antes de começar qualquer antidepressivo, é preciso verificar se não há transtorno bipolar, porque nesse caso o antidepressivo sozinho pode piorar o quadro. Por isso, não mostramos antidepressivos até essa verificação.",
+      "clinical": "Rastreio de bipolaridade ausente ou não negativo: antidepressivos ocultos no modo paciente."
+    },
+    "alert.bleeding_disorder": {
+      "plain": "{drug} aumenta o risco de sangramento. Com problema de coagulação, converse com o médico.",
+      "clinical": "{drug}: aumenta o risco de sangramento; cautela em distúrbios hemorrágicos."
+    },
+    "alert.crisis_patient": {
+      "plain": "Você contou que está tendo pensamentos de morte ou de se machucar. Isso é sério e tem ajuda agora: ligue 188 (CVV, 24 horas, gratuito) ou 192 (SAMU), ou vá a uma UPA ou pronto-socorro. Por segurança, não mostramos informações sobre remédios neste momento.",
+      "clinical": "O relato menciona risco de suicídio ou autolesão. Conteúdo sobre medicamentos oculto no modo paciente; orientar ajuda imediata (CVV 188, SAMU 192, UPA)."
+    },
+    "alert.crisis_professional": {
+      "clinical": "A anamnese menciona risco de suicídio ou autolesão. Avalie o risco antes de qualquer decisão terapêutica; em risco imediato, SAMU 192. Considere a toxicidade em superdosagem ao escolher o medicamento."
+    },
+    "alert.dementia_antipsychotic": {
+      "plain": "Em idosos com demência, antipsicóticos como {drug} aumentam o risco de morte.",
+      "clinical": "{drug}: aumento de mortalidade em idosos com psicose relacionada à demência."
+    },
+    "alert.dose_above_max": {
+      "plain": "A dose informada de {drug} ({dose} mg por dia) está acima da dose máxima da bula. Confirme a dose com o médico ou farmacêutico.",
+      "clinical": "{drug} {dose} mg/dia: acima da dose máxima da bula para a indicação de referência."
+    },
+    "alert.dose_above_usual": {
+      "plain": "A dose informada de {drug} ({dose} mg por dia) está acima da faixa usual da bula, mas não passa da máxima. Vale confirmar com o médico.",
+      "clinical": "{drug} {dose} mg/dia: acima da faixa usual da bula, sem ultrapassar a máxima."
+    },
+    "alert.dose_below_usual": {
+      "plain": "A dose informada de {drug} ({dose} mg por dia) está abaixo da faixa usual da bula. Isso pode ser intencional (começo do tratamento, idade, outros remédios); vale conversar com o médico.",
+      "clinical": "{drug} {dose} mg/dia: abaixo da faixa usual da bula; considerar titulação, população especial ou interações."
+    },
+    "alert.eating_disorder": {
+      "plain": "{drug} não deve ser usado por quem tem ou já teve bulimia ou anorexia.",
+      "clinical": "{drug}: contraindicado em bulimia ou anorexia nervosa, atual ou prévia."
+    },
+    "alert.elderly_amitriptyline": {
+      "plain": "Para pessoas com 65 anos ou mais, a amitriptilina deve ser evitada, se possível.",
+      "clinical": "Idoso: evitar amitriptilina, se possível."
+    },
+    "alert.eps_history": {
+      "plain": "{drug} pode causar tremores, rigidez ou inquietação, como os que você já teve com outro remédio.",
+      "clinical": "{drug}: risco de sintomas extrapiramidais e discinesia tardia em paciente com histórico."
+    },
+    "alert.fail_closed": {
+      "plain": "Não conseguimos verificar a segurança deste resultado. Por precaução, escondemos as informações sobre remédios. Procure um profissional de saúde.",
+      "clinical": "Falha na verificação de segurança do motor: conteúdo sobre medicamentos oculto. Por favor, reporte o caso."
+    },
+    "alert.glaucoma": {
+      "plain": "A bula de {drug} traz alerta ou contraindicação para quem tem glaucoma de ângulo fechado. Avise o médico se você tem esse tipo de glaucoma.",
+      "clinical": "{drug}: alerta ou contraindicação em glaucoma de ângulo fechado (ver bula)."
+    },
+    "alert.hepatic_avoid": {
+      "plain": "{drug} deve ser evitado por quem tem problema no fígado.",
+      "clinical": "{drug}: contraindicado ou a evitar em doença hepática."
+    },
+    "alert.hepatotoxicity": {
+      "plain": "{drug} pode afetar o fígado. Quem tem problema no fígado precisa de cuidado redobrado e exames.",
+      "clinical": "{drug}: hepatotoxicidade descrita; cautela e monitoramento em hepatopatia."
+    },
+    "alert.hypertension": {
+      "plain": "{drug} pode aumentar a pressão. Quem tem pressão alta precisa medi-la com regularidade.",
+      "clinical": "{drug}: pode elevar a pressão arterial; controlar a hipertensão e monitorar."
+    },
+    "alert.lactation": {
+      "plain": "{drug} exige cuidado durante a amamentação. Converse com o médico.",
+      "clinical": "{drug}: cautela na lactação segundo a bula."
+    },
+    "alert.metabolic": {
+      "plain": "{drug} pode aumentar o peso, a glicose ou o colesterol.",
+      "clinical": "{drug}: risco metabólico; monitorar peso, glicemia e lipídios."
+    },
+    "alert.minor_referral": {
+      "plain": "Para menores de 18 anos, não mostramos opções de remédios. Procure avaliação no CAPSi ou na UBS, junto com um adulto responsável.",
+      "clinical": "Menor de 18 anos: conteúdo sobre medicamentos oculto no modo paciente; orientar avaliação no CAPSi ou na UBS."
+    },
+    "alert.missing_profile": {
+      "plain": "Para mostrar opções de remédios com segurança, precisamos saber a sua idade e o sexo atribuído ao nascer.",
+      "clinical": "Idade e sexo ao nascer são obrigatórios para as regras de segurança: conteúdo sobre medicamentos oculto até o preenchimento."
+    },
+    "alert.monitoring": {
+      "plain": "{drug} exige acompanhamento com exames.",
+      "clinical": "{drug}: monitoramento exigido pela bula."
+    },
+    "alert.phase_missing": {
+      "plain": "Informe a fase atual do quadro para ver as opções.",
+      "clinical": "Informe a fase atual (por exemplo mania, depressão ou manutenção) para ver as opções de tratamento por fase."
+    },
+    "alert.population_age": {
+      "clinical": "As opções desta condição vêm de diretrizes para adultos (a partir de {age} anos) e não se aplicam diretamente a esta idade. Consulte diretrizes específicas para crianças e adolescentes."
+    },
+    "alert.pregnancy_mood_stabilizer": {
+      "plain": "Na gravidez, se você planeja engravidar ou se está amamentando, {drug} em geral deve ser evitado, pelo risco de malformações no bebê. Não pare o remédio por conta própria: converse com o médico.",
+      "clinical": "{drug}: evitar na gravidez, no planejamento de gravidez e na amamentação (risco de anomalias congênitas)."
+    },
+    "alert.pregnancy_risk": {
+      "plain": "{drug} tem riscos descritos na gravidez. Se você está grávida, pode estar ou planeja engravidar, converse com o médico antes de usar.",
+      "clinical": "{drug}: risco fetal ou neonatal descrito em bula; discutir em caso de gestação ou planejamento de gravidez."
+    },
+    "alert.qt_cardiac": {
+      "plain": "{drug} pode alterar o ritmo do coração. Para quem tem arritmia ou outra doença do coração, em geral é melhor evitar.",
+      "clinical": "{drug}: pode prolongar o QT; evitar em cardiopatia ou QT longo, ou monitorar com eletrocardiograma."
+    },
+    "alert.renal": {
+      "plain": "{drug} precisa de ajuste de dose ou de cuidado quando os rins não funcionam bem.",
+      "clinical": "{drug}: ajuste de dose ou cautela em insuficiência renal."
+    },
+    "alert.seizure_caution": {
+      "plain": "{drug} pode facilitar convulsões. Quem tem epilepsia precisa de cuidado.",
+      "clinical": "{drug}: reduz o limiar convulsivo; cautela em epilepsia."
+    },
+    "alert.seizure_contraindicated": {
+      "plain": "{drug} não deve ser usado por quem tem epilepsia ou convulsões.",
+      "clinical": "{drug}: contraindicado em transtorno convulsivo."
+    },
+    "alert.severity_missing": {
+      "plain": "Para mostrar as opções de remédio, precisamos saber a intensidade dos sintomas. Responda o questionário PHQ-9.",
+      "clinical": "Gravidade não informada (PHQ-9 ou avaliação clínica): opções que dependem da gravidade (NICE NG222) não foram exibidas."
+    },
+    "alert.smoking_cyp1a2": {
+      "plain": "Fumar ou parar de fumar muda a quantidade de {drug} no sangue. Avise o médico se mudar esse hábito.",
+      "clinical": "{drug}: o tabagismo induz a CYP1A2; reavaliar a dose ao iniciar ou interromper o fumo."
+    },
+    "alert.suicide_risk_overdose": {
+      "plain": "{drug} pode ser perigoso se tomado em excesso. Com pensamentos de morte, o médico pode preferir outra opção ou entregar quantidades menores de cada vez.",
+      "clinical": "{drug}: toxicidade relevante em superdosagem; considerar na escolha e dispensar quantidade limitada quando há risco de suicídio."
+    },
+    "alert.suicide_risk_tca": {
+      "plain": "Com pensamentos de morte, {drug} (um antidepressivo tricíclico) deve ser evitado, porque tomar remédio em excesso pode ameaçar a vida.",
+      "clinical": "{drug}: tricíclico, maior toxicidade em superdosagem; evitar iniciar quando há risco de suicídio."
+    },
+    "alert.teratogenic": {
+      "plain": "{drug} pode causar malformações no bebê. Se existe qualquer chance de gravidez, em geral deve ser evitado. Converse com o médico sobre alternativas e sobre um método anticoncepcional seguro.",
+      "clinical": "{drug}: risco elevado de malformações congênitas. Evitar em pessoa com potencial de gravidez, salvo ausência de alternativa e contracepção eficaz."
+    },
+    "alert.unrecognized_med": {
+      "plain": "Não reconhecemos \"{text}\". Mostre esse remédio ao médico ou farmacêutico: não conseguimos verificar interações nem cuidados com ele.",
+      "clinical": "\"{text}\" não reconhecido na base: interações e alertas desse item não foram verificados."
+    },
+    "alert.young_suicidality": {
+      "plain": "Em pessoas com menos de 25 anos, antidepressivos como {drug} podem aumentar pensamentos suicidas no início do tratamento. É preciso acompanhamento próximo nas primeiras semanas.",
+      "clinical": "{drug}: alerta de pensamentos e comportamentos suicidas em menores de 25 anos; monitorar de perto no início."
+    },
+    "ix.bleeding_additive": {
+      "plain": "{a} junto com {b} aumenta o risco de sangramento.",
+      "clinical": "{a} + {b}: risco de sangramento aumentado."
+    },
+    "ix.cns_additive": {
+      "plain": "{a} junto com {b} pode somar sonolência e lentidão. Cuidado ao dirigir e com álcool.",
+      "clinical": "{a} + {b}: depressão do SNC aditiva (sedação, prejuízo psicomotor)."
+    },
+    "ix.cns_opioid": {
+      "plain": "{a} junto com {b} pode causar sonolência muito forte e dificuldade para respirar, com risco de vida. Converse com o médico antes de usar juntos.",
+      "clinical": "{a} + {b}: opioide com depressor do SNC; risco de sedação profunda, depressão respiratória, coma e morte (alerta em destaque na bula)."
+    },
+    "ix.contraceptive_failure": {
+      "plain": "{perpetrator} pode fazer o anticoncepcional falhar. Use um método adicional e converse com o médico.",
+      "clinical": "{perpetrator} reduz a eficácia de anticoncepcionais hormonais; considerar método alternativo ou adicional."
+    },
+    "ix.decrease_levels": {
+      "plain": "{perpetrator} diminui a quantidade de {victim} no sangue, o que pode reduzir o efeito.",
+      "clinical": "{perpetrator} reduz a exposição a {victim}; considerar ajuste de dose."
+    },
+    "ix.increase_levels": {
+      "plain": "{perpetrator} aumenta a quantidade de {victim} no sangue. Pode ser preciso ajustar a dose.",
+      "clinical": "{perpetrator} aumenta a exposição a {victim}; considerar ajuste de dose."
+    },
+    "ix.lamotrigine_estrogen": {
+      "plain": "Anticoncepcional com estrogênio diminui a lamotrigina no sangue; a dose pode precisar de ajuste.",
+      "clinical": "Contraceptivos com estrogênio aumentam a depuração da lamotrigina; ajustar a dose."
+    },
+    "ix.lamotrigine_raised": {
+      "plain": "{perpetrator} aumenta muito a lamotrigina no sangue; a dose de lamotrigina precisa ser diferente.",
+      "clinical": "{perpetrator} inibe a glucuronidação e aumenta a lamotrigina; usar o esquema de titulação específico."
+    },
+    "ix.lithium_levels": {
+      "plain": "{perpetrator} pode aumentar o lítio no sangue até níveis tóxicos. É preciso dosar o lítio e avisar o médico.",
+      "clinical": "{perpetrator} pode elevar a litemia; monitorar níveis séricos de lítio."
+    },
+    "ix.maoi_contraindicated": {
+      "plain": "{a} junto com {b} é uma combinação contraindicada na bula: pode causar reações graves, como síndrome serotoninérgica ou crise hipertensiva. Avise o médico e o farmacêutico.",
+      "clinical": "{a} + {b}: contraindicado (IMAO); risco de síndrome serotoninérgica ou crise hipertensiva/hiperpirética. Respeitar o intervalo de eliminação da bula."
+    },
+    "ix.qt_additive": {
+      "plain": "{a} e {b} podem alterar o ritmo do coração, e juntos esse risco aumenta.",
+      "clinical": "{a} + {b}: prolongamento do QT aditivo; evitar a associação ou monitorar."
+    },
+    "ix.serotonin_syndrome": {
+      "plain": "{a} junto com {b} aumenta o risco de síndrome serotoninérgica (agitação, febre, tremores). Converse com o médico.",
+      "clinical": "{a} + {b}: risco aumentado de síndrome serotoninérgica."
+    },
+    "opt.bp.antidepressant_not_recommended": {
+      "plain": "No transtorno bipolar, antidepressivo sozinho não é recomendado, porque pode provocar uma virada para mania.",
+      "clinical": "Antidepressivo em monoterapia não recomendado no transtorno bipolar tipo I (risco de virada maníaca)."
+    },
+    "opt.bp.psychoeducation": {
+      "plain": "Psicoeducação: aprender sobre o transtorno e os sinais de alerta ajuda a prevenir novas crises.",
+      "clinical": "Psicoeducação: primeira linha na manutenção (CANMAT/ISBD 2018)."
+    },
+    "opt.bp.referral": {
+      "plain": "Transtorno bipolar precisa de acompanhamento especializado. Procure o CAPS ou um psiquiatra pela UBS. Não comece nem pare remédios por conta própria.",
+      "clinical": "Transtorno bipolar: acompanhamento especializado."
+    },
+    "opt.bp1.depression_first": {
+      "plain": "Depressão no transtorno bipolar: medicamentos específicos indicados pelas diretrizes.",
+      "clinical": "Depressão bipolar I, primeira linha (CANMAT/ISBD 2018; PCDT/MS): quetiapina, lurasidona, lítio, lamotrigina."
+    },
+    "opt.bp1.depression_second": {
+      "plain": "Depressão no transtorno bipolar: outra opção quando as primeiras não servem.",
+      "clinical": "Depressão bipolar I, segunda linha (CANMAT/ISBD 2018): divalproato em monoterapia."
+    },
+    "opt.bp1.maintenance_first": {
+      "plain": "Manutenção: medicamentos para prevenir novas crises.",
+      "clinical": "Manutenção do tipo I, primeira linha (CANMAT/ISBD 2018): lítio, quetiapina, divalproato, lamotrigina, aripiprazol. NICE CG185 e PCDT/MS: lítio como primeira escolha."
+    },
+    "opt.bp1.maintenance_second": {
+      "plain": "Manutenção: outra opção quando as primeiras não servem.",
+      "clinical": "Manutenção do tipo I, segunda linha (CANMAT/ISBD 2018): olanzapina."
+    },
+    "opt.bp1.mania_first": {
+      "plain": "Mania: estabilizadores de humor ou antipsicóticos indicados pelas diretrizes.",
+      "clinical": "Mania aguda, primeira linha (CANMAT/ISBD 2018): lítio, quetiapina, divalproato, aripiprazol, risperidona. PCDT/MS: lítio e risperidona como primeiras escolhas."
+    },
+    "opt.bp1.mania_second": {
+      "plain": "Mania: outras opções quando as primeiras não servem.",
+      "clinical": "Mania aguda, segunda linha (CANMAT/ISBD 2018): olanzapina, carbamazepina, ziprasidona, haloperidol — eficazes, mas rebaixados por segurança e tolerabilidade. A NICE CG185 inclui haloperidol e olanzapina entre as primeiras ofertas."
+    },
+    "opt.bp2.depression_first": {
+      "plain": "Depressão no transtorno bipolar tipo II: medicamento indicado pelas diretrizes.",
+      "clinical": "Depressão bipolar II, primeira linha (CANMAT/ISBD 2018): quetiapina."
+    },
+    "opt.bp2.depression_second": {
+      "plain": "Depressão no transtorno bipolar tipo II: outras opções.",
+      "clinical": "Depressão bipolar II, segunda linha (CANMAT/ISBD 2018): lítio, lamotrigina; sertralina ou venlafaxina na depressão pura, sem sintomas mistos."
+    },
+    "opt.bp2.hypomania": {
+      "plain": "Hipomania: antipsicóticos indicados pelas diretrizes.",
+      "clinical": "Mania ou hipomania sem tratamento em curso (NICE CG185 1.5.3): haloperidol, olanzapina, quetiapina ou risperidona."
+    },
+    "opt.bp2.maintenance_first": {
+      "plain": "Manutenção: medicamentos para prevenir novas crises.",
+      "clinical": "Manutenção do tipo II, primeira linha (CANMAT/ISBD 2018): quetiapina, lítio, lamotrigina."
+    },
+    "opt.dep.exercise": {
+      "plain": "Atividade física supervisionada (30 a 40 minutos, 3 a 4 vezes por semana, por pelo menos 9 semanas) pode ser uma primeira opção em quadros mais leves.",
+      "clinical": "Exercício supervisionado: primeira linha em monoterapia para depressão leve."
+    },
+    "opt.dep.other_first_line": {
+      "plain": "Outros antidepressivos de primeira linha, como venlafaxina, duloxetina, desvenlafaxina, bupropiona, mirtazapina ou vortioxetina.",
+      "clinical": "Outros antidepressivos de primeira linha (CANMAT 2023): IRSN, bupropiona, mirtazapina, vortioxetina."
+    },
+    "opt.dep.psychotherapy": {
+      "plain": "Psicoterapia (terapia cognitivo-comportamental, ativação comportamental ou terapia interpessoal), individual ou em grupo. Pelo SUS, peça à UBS; clínicas-escola de psicologia também atendem de graça ou a baixo custo.",
+      "clinical": "Psicoterapia estruturada (TCC, ativação comportamental, terapia interpessoal), individual ou em grupo."
+    },
+    "opt.dep.second_line_other": {
+      "plain": "Trazodona ou quetiapina são segunda opção.",
+      "clinical": "Trazodona e quetiapina: segunda linha (CANMAT 2023)."
+    },
+    "opt.dep.severe_referral": {
+      "plain": "Os sintomas parecem graves. Procure avaliação médica logo; quadros graves costumam precisar de remédio e psicoterapia juntos.",
+      "clinical": "Depressão grave com risco: combinação de antidepressivo e psicoterapia; avaliação especializada."
+    },
+    "opt.dep.ssri": {
+      "plain": "Antidepressivo da classe dos ISRS (por exemplo fluoxetina, sertralina ou escitalopram). Costuma ser a primeira escolha de remédio, muitas vezes junto com psicoterapia. O efeito começa em algumas semanas.",
+      "clinical": "ISRS: primeira escolha para a maioria (NICE NG222); primeira linha na CANMAT 2023."
+    },
+    "opt.dep.ssri_less_severe": {
+      "plain": "Em quadros mais leves, remédio não é a primeira escolha de rotina. Pode ser usado se essa for a sua preferência, depois de conversar com o médico.",
+      "clinical": "Depressão menos grave: antidepressivo não é primeira linha de rotina; apenas por preferência informada (NICE 1.5.3)."
+    },
+    "opt.dep.tca": {
+      "plain": "Antidepressivos tricíclicos (como amitriptilina e nortriptilina) são segunda opção: têm mais efeitos colaterais e são perigosos se tomados em excesso.",
+      "clinical": "Tricíclicos: segunda linha (CANMAT 2023); perigosos em superdosagem (NICE NG222)."
+    },
+    "opt.gad.antipsychotic": {
+      "plain": "Antipsicóticos não são indicados para ansiedade generalizada no atendimento de rotina.",
+      "clinical": "Antipsicóticos: não oferecer para TAG na atenção primária (NICE CG113 1.2.27)."
+    },
+    "opt.gad.benzo": {
+      "plain": "Calmantes benzodiazepínicos (como clonazepam e diazepam) não são tratamento para ansiedade generalizada. Só por pouco tempo, em uma crise.",
+      "clinical": "Benzodiazepínicos: não oferecer para TAG, exceto por curto prazo em crises (NICE CG113 1.2.26)."
+    },
+    "opt.gad.cbt": {
+      "plain": "Terapia cognitivo-comportamental ou relaxamento aplicado, com um profissional.",
+      "clinical": "Etapa 3: intervenção psicológica de alta intensidade (TCC ou relaxamento aplicado)."
+    },
+    "opt.gad.education": {
+      "plain": "Informação sobre a ansiedade e acompanhamento dos sintomas são o primeiro passo.",
+      "clinical": "Etapa 1: educação sobre o TAG e as opções de tratamento; monitoramento ativo."
+    },
+    "opt.gad.low_intensity": {
+      "plain": "Autoajuda guiada (com materiais e apoio de um profissional) ou grupos psicoeducativos.",
+      "clinical": "Etapa 2: intervenções psicológicas de baixa intensidade (autoajuda guiada ou não, grupos psicoeducativos)."
+    },
+    "opt.gad.pregabalin": {
+      "plain": "Pregabalina, se os antidepressivos ISRS e IRSN não forem tolerados.",
+      "clinical": "Intolerância a ISRS e IRSN: considerar pregabalina (NICE CG113 1.2.25)."
+    },
+    "opt.gad.snri": {
+      "plain": "Se o primeiro remédio não funcionar, outro ISRS ou um IRSN (como venlafaxina ou duloxetina).",
+      "clinical": "Falha da sertralina: outro ISRS ou um IRSN (NICE CG113 1.2.24)."
+    },
+    "opt.gad.ssri": {
+      "plain": "Antidepressivo da classe dos ISRS; a sertralina costuma ser a primeira opção. É uma alternativa à psicoterapia quando as etapas anteriores não bastaram.",
+      "clinical": "ISRS, com sertralina como primeira opção (NICE CG113 1.2.23)."
+    },
+    "q.bipolar_screen": {
+      "plain": "Preciso ser avaliado para transtorno bipolar antes de começar um antidepressivo?",
+      "clinical": "Avaliar risco de transtorno bipolar antes de iniciar antidepressivo."
+    },
+    "q.contraception": {
+      "plain": "Qual método anticoncepcional é seguro e eficaz para mim, considerando esse remédio?",
+      "clinical": "Discutir método contraceptivo eficaz."
+    },
+    "q.limited_supply": {
+      "plain": "Posso receber o remédio em quantidades menores, com retornos mais frequentes?",
+      "clinical": "Considerar dispensação fracionada e reavaliação precoce (risco de suicídio)."
+    },
+    "q.monitoring": {
+      "plain": "Quais exames preciso fazer antes e durante o tratamento?",
+      "clinical": "Definir exames de base e de seguimento."
+    },
+    "q.pregnancy_plan": {
+      "plain": "Se eu engravidar ou quiser engravidar, o que muda no meu tratamento?",
+      "clinical": "Discutir plano para gestação."
+    },
+    "q.therapy_access": {
+      "plain": "Como consigo psicoterapia pelo SUS ou em uma clínica-escola de psicologia?",
+      "clinical": "Encaminhar para psicoterapia."
+    },
+    "ref.bipolar_specialist": {
+      "plain": "Transtorno bipolar precisa de acompanhamento especializado. Procure o CAPS ou um psiquiatra pela UBS.",
+      "clinical": "Transtorno bipolar: acompanhamento especializado."
+    },
+    "ref.capsi": {
+      "plain": "Procure o CAPSi (Centro de Atenção Psicossocial Infantojuvenil) ou a UBS, com um adulto responsável.",
+      "clinical": "Encaminhar ao CAPSi ou à UBS."
+    },
+    "ref.crisis": {
+      "plain": "Procure ajuda agora: CVV 188 (24 horas, gratuito), SAMU 192, UPA ou pronto-socorro.",
+      "clinical": "Risco: avaliação imediata; recursos de crise (CVV 188, SAMU 192, UPA)."
+    },
+    "ref.severe_depression": {
+      "plain": "Os sintomas parecem graves. Procure avaliação médica logo, de preferência no CAPS ou com psiquiatra.",
+      "clinical": "Depressão grave: avaliação especializada prioritária."
+    }
+  }
+}

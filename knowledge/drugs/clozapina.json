@@ -1,0 +1,293 @@
+{
+  "id": "clozapina",
+  "names": {
+    "dcb": "clozapina",
+    "display_pt": "Clozapina",
+    "inn_en": "clozapine",
+    "aliases": [
+      "clozapina",
+      "clozapine"
+    ],
+    "anvisa_principles": [
+      "clozapina"
+    ]
+  },
+  "class": "antipsychotic",
+  "subclass": "atypical",
+  "label_source": "label-clozapina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"clozapina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "especializado",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 184 (Anexo III – Componente Especializado)",
+      "quote": "clozapina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 12.5,
+    "usual_min": 300,
+    "usual_max": 450,
+    "max": 900,
+    "indication": "Esquizofrenia resistente ao tratamento",
+    "note": "Início com 12,5 mg uma ou duas vezes ao dia; alvo de 150 a 225 mg duas vezes ao dia ao fim de 2 semanas (300 a 450 mg/dia); máximo de 450 mg duas vezes ao dia. Reiniciar com dose menor após interrupção (seção 2.6).",
+    "cite": {
+      "source": "label-clozapina",
+      "locator": "seção 2.2 Recommended Dosage and Administration",
+      "quote": "The recommended starting oral dosage of CLOZARIL is 12.5 mg once or twice daily. If well-tolerated, increase the total daily dose in increments of 25 mg to 50 mg per day to achieve a target dosage of 150 mg to 225 mg twice per day by the end of two weeks.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"The maximum recommended CLOZARIL oral dosage is 450 mg twice daily.\" A seção 5.2 dá os mesmos valores em mg/dia: alvo de 300 a 450 mg/dia e máximo de 900 mg/dia."
+    }
+  },
+  "facts": [
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "major",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "Boxed warning: Severe neutropenia",
+        "quote": "CLOZARIL has caused severe neutropenia which is associated with an increased risk of serious and potentially fatal infections.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "orthostatic_hypotension",
+      "severity": "major",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "Boxed warning: Orthostatic hypotension, bradycardia, syncope",
+        "quote": "Orthostatic hypotension, bradycardia, syncope, and cardiac arrest have occurred with CLOZARIL treatment.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "major",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "Boxed warning: Seizures",
+        "quote": "Seizures have occurred with CLOZARIL treatment. The risk is dose-related.",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.4: incidência cumulativa de convulsão de cerca de 5% em um ano; cautela com histórico de convulsões ou medicamentos que reduzem o limiar convulsivo."
+      }
+    },
+    {
+      "tag": "myocarditis_cardiomyopathy",
+      "severity": "major",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "Boxed warning: Myocarditis, pericarditis, cardiomyopathy and mitral valve incompetence",
+        "quote": "Fatal myocarditis and cardiomyopathy have occurred with CLOZARIL treatment.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "dementia_mortality_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "qt_prolongation",
+      "severity": "warning",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.9 QT Interval Prolongation",
+        "quote": "QT prolongation, Torsade de Pointes and other life-threatening ventricular arrhythmias, cardiac arrest, and sudden death have occurred with CLOZARIL treatment.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: suspender se o QTc passar de 500 ms; cautela com outros medicamentos que prolongam o QT ou inibem o metabolismo da clozapina."
+      }
+    },
+    {
+      "tag": "metabolic_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.10 Metabolic Changes",
+        "quote": "Atypical antipsychotic drugs, including CLOZARIL have been associated with metabolic changes that can increase cardiovascular and cerebrovascular risk. These metabolic changes include hyperglycemia, dyslipidemia, and body weight gain.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "weight_gain_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.10 Metabolic Changes",
+        "quote": "Weight gain has occurred with the use of antipsychotics, including CLOZARIL. Monitor weight during treatment with CLOZARIL.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção (Tabela 8): 35% dos pacientes com clozapina ganharam 7% ou mais do peso inicial (exposição mediana de 609 dias)."
+      }
+    },
+    {
+      "tag": "hepatotoxicity",
+      "severity": "warning",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.12 Hepatotoxicity",
+        "quote": "Severe, life threatening, and in some cases fatal hepatotoxicity including hepatic failure, hepatic necrosis, and hepatitis have been reported in post marketing studies in patients treated with clozapine",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "anticholinergic_burden",
+      "severity": "warning",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.15 Anticholinergic Toxicity",
+        "quote": "CLOZARIL has potent anticholinergic effects. Treatment with CLOZARIL can result in CNS and peripheral anticholinergic toxicity, especially at higher dosages, or in overdose situations",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.7: hipomotilidade gastrointestinal grave (íleo paralítico, obstrução, necrose), com hospitalizações, cirurgias e mortes; evitar outros anticolinérgicos quando possível."
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.16 Interference with Cognitive and Motor Performance",
+        "quote": "CLOZARIL can cause sedation and impairment of cognitive and motor performance.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "eps_tardive_dyskinesia",
+      "severity": "warning",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.17 Tardive Dyskinesia",
+        "quote": "Tardive dyskinesia (TD) has occurred in patients treated with antipsychotic drugs, including CLOZARIL.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "warning",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.19 Recurrence of Psychosis and Cholinergic Rebound after Abrupt Discontinuation of CLOZARIL",
+        "quote": "If abrupt discontinuation of CLOZARIL is necessary (because of severe neutropenia or another medical condition, for example) [see Dosage and Administration ( 2.5 ), Warnings and Precautions ( 5.1 )] , monitor carefully for the recurrence of psychotic symptoms and adverse reactions related to cholinergic rebound, such as profuse sweating, headache, nausea, vomiting and diarrhea.",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.5: sem neutropenia moderada ou grave, reduzir a dose gradualmente em 1 a 2 semanas."
+      }
+    },
+    {
+      "tag": "cyp1a2_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Reduce the CLOZARIL dose to one-third of the original dose when CLOZARIL is coadministered with strong CYP1A2 inhibitors (e.g., fluvoxamine, ciprofloxacin, or enoxacin).",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Tobacco smoke is a moderate inducer of CYP1A2.\" Com indutores pode ser preciso aumentar a dose; ao suspender o indutor, considerar reduzir a dose."
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "Strong CYP3A4 inducers include carbamazepine, phenytoin, St. John's wort, and rifampin. It may be necessary to increase the CLOZARIL dose if used concomitantly with inducers of these enzymes. However, concomitant use of CLOZARIL and strong CYP3A4 inducers is not recommended",
+        "accessed": "2026-10-27",
+        "note": "Com inibidores de CYP3A4, a mesma seção manda ter cautela, monitorar e considerar reduzir a dose."
+      }
+    },
+    {
+      "tag": "cyp2d6_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 7.1 Potential for Other Drugs to Affect CLOZARIL",
+        "quote": "CLOZARIL and CYP2D6 or CYP3A4 inhibitors (e.g., cimetidine, escitalopram, erythromycin, paroxetine, bupropion, fluoxetine, quinidine, duloxetine, terbinafine, or sertraline) can increase clozapine levels and lead to adverse reactions [see Clinical Pharmacology ( 12.3 )] . Use caution and monitor patients closely when using such inhibitors. Consider reducing the CLOZARIL dose",
+        "accessed": "2026-10-27",
+        "note": "A bula diz \"considerar\" reduzir a dose (não é ajuste obrigatório). Seção 8.7: redução de dose pode ser necessária em metabolizadores lentos de CYP2D6."
+      }
+    },
+    {
+      "tag": "renal_impairment_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 2.8 Dosage Recommendations in Patients with Renal or Hepatic Impairment, or CYP2D6 Poor Metabolizers",
+        "quote": "It may be necessary to reduce the CLOZARIL dosage in patients with significant renal impairment or hepatic impairment, or in CYP2D6 poor metabolizers",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Neonates exposed to antipsychotic drugs, including CLOZARIL, during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms following delivery",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 8.2 Lactation",
+        "quote": "There is one case report of sedation and a report of agranulocytosis in an infant exposed to clozapine through human milk",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Infants exposed to CLOZARIL should be monitored for excess sedation and neutropenia.\""
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 10.1 Overdosage Experience",
+        "quote": "Fatal overdoses have been reported with clozapine, generally at doses above 2500 mg.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "neutrophil_count",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.1 Severe Neutropenia",
+        "quote": "Prior to initiating CLOZARIL treatment, obtain a baseline ANC. CLOZARIL initiation is not recommended in patients with a baseline ANC less than 1500/μL. Throughout CLOZARIL treatment, regularly monitor ANC.",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.3 (Tabela 1), com contagem normal: semanal do 1º ao 6º mês, a cada 2 semanas do 7º ao 12º mês e mensal depois."
+      }
+    },
+    {
+      "id": "metabolic_profile",
+      "cite": {
+        "source": "label-clozapina",
+        "locator": "seção 5.10 Metabolic Changes",
+        "quote": "Clinical monitoring, including baseline and periodic follow-up lipid evaluations in patients using CLOZARIL, is recommended.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Monitor weight during treatment with CLOZARIL.\" Glicemia de jejum no início e periodicamente para quem tem fatores de risco para diabetes."
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "description": "Fatos derivados do perfil, avaliados em ordem (um fato só pode usar fatos definidos antes dele).",
+  "derived": [
+    {
+      "id": "minor",
+      "label_pt": "Menor de 18 anos",
+      "when": {
+        "profile": "age",
+        "op": "lt",
+        "value": 18
+      },
+      "sources": [
+        {
+          "source": "stabilis-escopo",
+          "locator": "seção 2. Menores de idade",
+          "quote": "No modo paciente, conteúdo sobre medicamentos só é mostrado para pessoas com 18 anos ou mais.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "young_adult_lt25",
+      "label_pt": "Menos de 25 anos",
+      "when": {
+        "profile": "age",
+        "op": "lt",
+        "value": 25
+      },
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "Boxed warning: Suicidal thoughts and behaviors",
+          "quote": "These studies did not show an increase in the risk of suicidal thoughts and behavior with antidepressant use in patients over age 24",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "elderly",
+      "label_pt": "65 anos ou mais",
+      "when": {
+        "profile": "age",
+        "op": "gte",
+        "value": 65
+      },
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "Boxed warning: Suicidal thoughts and behaviors",
+          "quote": "there was a reduction in risk with antidepressant use in patients aged 65 and older",
+          "accessed": "2026-10-27",
+          "note": "Usado apenas como referência do limiar de 65 anos adotado nas bulas para pessoas idosas."
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "may_become_pregnant_demographic",
+      "label_pt": "Sexo ao nascer e idade compatíveis com gravidez (ou não informados)",
+      "when": {
+        "all": [
+          {
+            "not": {
+              "profile": "sex_at_birth",
+              "op": "eq",
+              "value": "male"
+            }
+          },
+          {
+            "not": {
+              "profile": "age",
+              "op": "lt",
+              "value": 12
+            }
+          },
+          {
+            "not": {
+              "profile": "age",
+              "op": "gt",
+              "value": 55
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "source": "nice-cg185",
+          "locator": "Box 1 MHRA safety measures and precautionary advice for valproate",
+          "quote": "MHRA safety measures for under 55s",
+          "accessed": "2026-10-27",
+          "note": "Faixa etária superior (55 anos) adotada de forma conservadora a partir das medidas da MHRA para valproato."
+        },
+        {
+          "source": "stabilis-escopo",
+          "locator": "seção 8. Dados obrigatórios e dados ausentes",
+          "quote": "Dado ausente nunca é tratado como ausência de risco.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "pregnant_or_planning",
+      "label_pt": "Gravidez confirmada, possível ou planejada",
+      "when": {
+        "any": [
+          {
+            "profile": "reproductive.pregnant",
+            "op": "in",
+            "value": [
+              "yes",
+              "unsure"
+            ]
+          },
+          {
+            "profile": "reproductive.planning",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "all": [
+              {
+                "derived": "may_become_pregnant_demographic"
+              },
+              {
+                "not": {
+                  "profile": "reproductive.pregnant",
+                  "op": "exists"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "source": "label-valproato",
+          "locator": "Boxed warning: Life threatening adverse reactions",
+          "quote": "Valproate should not be used to treat women with epilepsy or bipolar disorder who are pregnant or who plan to become pregnant unless other medications have failed to",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "stabilis-escopo",
+          "locator": "seção 8. Dados obrigatórios e dados ausentes",
+          "quote": "Quando a situação de gravidez não é informada para alguém que pode engravidar, ela é tratada como \"não sei\".",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "childbearing_potential",
+      "label_pt": "Pessoa com possibilidade de engravidar",
+      "when": {
+        "any": [
+          {
+            "derived": "pregnant_or_planning"
+          },
+          {
+            "derived": "may_become_pregnant_demographic"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "source": "label-valproato",
+          "locator": "Boxed warning: Life threatening adverse reactions",
+          "quote": "Valproate is therefore contraindicated for prophylaxis of migraine headaches in pregnant women and in women of childbearing potential who are not using effective contraception",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "Box 1 MHRA safety measures and precautionary advice for valproate",
+          "quote": "MHRA safety measures for under 55s",
+          "accessed": "2026-10-27",
+          "note": "Faixa etária superior (55 anos) adotada de forma conservadora a partir das medidas da MHRA para valproato."
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "breastfeeding",
+      "label_pt": "Amamentando",
+      "when": {
+        "profile": "reproductive.breastfeeding",
+        "op": "eq",
+        "value": true
+      },
+      "sources": [
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 35 (Depressão: antidepressivos em populações especiais)",
+          "quote": "Se a mulher estiver amamentando, evite medicamentos antidepressivos de ação prolongada como a fluoxetina.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "depression_more_severe",
+      "label_pt": "Depressão mais grave (moderada ou grave)",
+      "when": {
+        "any": [
+          {
+            "profile": "severity",
+            "op": "eq",
+            "value": "more_severe"
+          },
+          {
+            "instrument": "phq9",
+            "flag": "nice_more_severe"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "source": "nice-ng222",
+          "locator": "Context (definição de gravidade)",
+          "quote": "with scores less than 16 defined as less severe depression, and scores of 16 or more defined as more severe depression",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "depression_less_severe",
+      "label_pt": "Depressão menos grave (sublimiar ou leve)",
+      "when": {
+        "any": [
+          {
+            "profile": "severity",
+            "op": "eq",
+            "value": "less_severe"
+          },
+          {
+            "all": [
+              {
+                "instrument": "phq9",
+                "answered": true
+              },
+              {
+                "not": {
+                  "instrument": "phq9",
+                  "flag": "nice_more_severe"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "source": "nice-ng222",
+          "locator": "Context (definição de gravidade)",
+          "quote": "with scores less than 16 defined as less severe depression, and scores of 16 or more defined as more severe depression",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "suicide_risk",
+      "label_pt": "Sinal de risco de suicídio (PHQ-9 item 9, relato ou avaliação profissional)",
+      "when": {
+        "any": [
+          {
+            "instrument": "phq9",
+            "flag": "item9_positive"
+          },
+          {
+            "signal": "crisis_language"
+          },
+          {
+            "profile": "suicide_risk_assessed",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "sources": [
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.23",
+          "quote": "Take into account toxicity in overdose when prescribing an antidepressant medication for people at significant risk of suicide.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    }
+  ]
+}

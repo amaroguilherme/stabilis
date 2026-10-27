@@ -1,0 +1,59 @@
+{
+  "id": "sumatriptana",
+  "names": {
+    "dcb": "succinato de sumatriptana",
+    "display_pt": "Sumatriptana",
+    "inn_en": "sumatriptan",
+    "aliases": [
+      "sumatriptana",
+      "sumatriptano",
+      "sumatriptan"
+    ],
+    "anvisa_principles": [
+      "succinato de sumatriptana"
+    ]
+  },
+  "class": "non_psychiatric",
+  "subclass": "triptan",
+  "label_source": "label-sumatriptana",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"succinato de sumatriptana\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "serotonergic",
+      "severity": "warning",
+      "cite": {
+        "source": "label-sumatriptana",
+        "locator": "seção 5.7 Serotonin Syndrome",
+        "quote": "Serotonin syndrome may occur with IMITREX tablets, particularly during coadministration with selective serotonin reuptake inhibitors (SSRIs), serotonin norepinephrine reuptake inhibitors (SNRIs), tricyclic antidepressants (TCAs), and MAO inhibitors",
+        "accessed": "2026-10-27",
+        "note": "Seção 4: contraindicado com uso concomitante de inibidor da MAO-A ou nas 2 semanas seguintes ao seu uso. Seção 7.4: \"Cases of serotonin syndrome have been reported during coadministration of triptans and SSRIs, SNRIs, TCAs, and MAO inhibitors\"."
+      }
+    },
+    {
+      "tag": "maoi_contraindicated",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-sumatriptana",
+        "locator": "seção 4 CONTRAINDICATIONS",
+        "quote": "Concurrent administration of a monoamine oxidase (MAO)-A inhibitor or recent (within 2 weeks) use of an MAO-A inhibitor",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

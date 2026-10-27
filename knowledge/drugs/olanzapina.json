@@ -1,0 +1,229 @@
+{
+  "id": "olanzapina",
+  "names": {
+    "dcb": "olanzapina",
+    "display_pt": "Olanzapina",
+    "inn_en": "olanzapine",
+    "aliases": [
+      "olanzapina",
+      "olanzapine"
+    ],
+    "anvisa_principles": [
+      "olanzapina"
+    ]
+  },
+  "class": "antipsychotic",
+  "subclass": "atypical",
+  "label_source": "label-olanzapina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"olanzapina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "especializado",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 207 (Anexo III – Componente Especializado)",
+      "quote": "olanzapina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 10,
+    "usual_min": 5,
+    "usual_max": 20,
+    "max": 20,
+    "indication": "Transtorno bipolar I, episódios maníacos ou mistos (monoterapia)",
+    "note": "A bula indica início com 10 ou 15 mg uma vez ao dia, ajustes de 5 mg em intervalos de pelo menos 24 horas; doses acima de 20 mg/dia não foram avaliadas.",
+    "cite": {
+      "source": "label-olanzapina",
+      "locator": "seção 2.2 Bipolar I Disorder (Manic or Mixed Episodes)",
+      "quote": "Oral olanzapine should be administered on a once-a-day schedule without regard to meals, generally beginning with 10 mg or 15 mg.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"Short-term (3-4 weeks) antimanic efficacy was demonstrated in a dose range of 5 mg/day to 20 mg/day in clinical trials. The safety of doses above 20 mg/day has not been evaluated in clinical trials\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "dementia_mortality_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "metabolic_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.5 Metabolic Changes",
+        "quote": "Hyperglycemia, in some cases extreme and associated with ketoacidosis or hyperosmolar coma or death, has been reported in patients treated with atypical antipsychotics including olanzapine.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Undesirable alterations in lipids have been observed with olanzapine use.\""
+      }
+    },
+    {
+      "tag": "weight_gain_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.5 Metabolic Changes",
+        "quote": "In an analysis of 13 placebo-controlled olanzapine monotherapy studies, olanzapine-treated patients gained an average of 2.6 kg (5.7 lb) compared to an average 0.3 kg (0.6 lb) weight loss in placebo-treated patients with a median exposure of 6 weeks; 22.2% of olanzapine-treated patients gained at least 7% of their baseline weight, compared to 3% of placebo-treated patients",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"In long-term studies (at least 48 weeks), the mean weight gain was 5.6 kg (12.3 lb)\""
+      }
+    },
+    {
+      "tag": "eps_tardive_dyskinesia",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.6 Tardive Dyskinesia",
+        "quote": "If signs and symptoms of tardive dyskinesia appear in a patient on olanzapine, drug discontinuation should be considered.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "orthostatic_hypotension",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.7 Orthostatic Hypotension",
+        "quote": "Olanzapine may induce orthostatic hypotension associated with dizziness, tachycardia, bradycardia and, in some patients, syncope, especially during the initial dose-titration period",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.7 Orthostatic Hypotension",
+        "quote": "Caution is necessary in patients who receive treatment with other drugs having effects that can induce hypotension, bradycardia, respiratory or central nervous system depression",
+        "accessed": "2026-10-27",
+        "note": "Seção 7.2: \"Given the primary CNS effects of olanzapine, caution should be used when olanzapine is taken in combination with other centrally acting drugs and alcohol.\""
+      }
+    },
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.9 Leukopenia, Neutropenia, and Agranulocytosis",
+        "quote": "In clinical trial and/or postmarketing experience, events of leukopenia/neutropenia have been reported temporally related to antipsychotic agents, including ZYPREXA. Agranulocytosis has also been reported.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.11 Seizures",
+        "quote": "Olanzapine should be used cautiously in patients with a history of seizures or with conditions that potentially lower the seizure threshold, e.g., Alzheimer's dementia.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.12 Potential for Cognitive and Motor Impairment",
+        "quote": "Somnolence was a commonly reported adverse reaction associated with olanzapine treatment, occurring at an incidence of 26% in olanzapine patients compared to 15% in placebo patients.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "anticholinergic_burden",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.14 Anticholinergic (antimuscarinic) Effects",
+        "quote": "Zyprexa should be used with caution in patients with a current diagnosis or prior history of urinary retention, clinically significant prostatic hypertrophy, constipation, or a history of paralytic ileus or related conditions.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "prolactin_elevation",
+      "severity": "warning",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.15 Hyperprolactinemia",
+        "quote": "As with other drugs that antagonize dopamine D 2 receptors, olanzapine elevates prolactin levels, and the elevation persists during chronic administration.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cyp1a2_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 7.1 Potential for Other Drugs to Affect Olanzapine",
+        "quote": "Fluvoxamine, a CYP1A2 inhibitor, decreases the clearance of olanzapine. This results in a mean increase in olanzapine Cmax following fluvoxamine of 54% in female nonsmokers and 77% in male smokers. The mean increase in olanzapine AUC is 52% and 108%, respectively. Lower doses of olanzapine should be considered in patients receiving concomitant treatment with fluvoxamine.",
+        "accessed": "2026-10-27",
+        "note": "A bula também diz que a carbamazepina (indutor de CYP1A2) aumenta a depuração em ~50% e que fumantes têm depuração ~40% maior, mas não recomenda ajuste rotineiro de dose pelo tabagismo (seção 12.3)."
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Neonates exposed to antipsychotic drugs, including ZYPREXA, during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms following delivery",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 8.2 Lactation",
+        "quote": "There are reports of excess sedation, irritability, poor feeding and extrapyramidal symptoms (tremors and abnormal muscle movements) in infants exposed to olanzapine through breast milk",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 10.1 Human Experience",
+        "quote": "Eli Lilly and Company has received reports of fatality in association with overdose of olanzapine alone.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: um óbito com ingestão possivelmente tão baixa quanto 450 mg; outro paciente sobreviveu a cerca de 2 g. A seção 5.2 manda prescrever a menor quantidade de comprimidos para reduzir o risco de superdosagem."
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "metabolic_profile",
+      "cite": {
+        "source": "label-olanzapina",
+        "locator": "seção 5.17 Laboratory Tests",
+        "quote": "Fasting blood glucose testing and lipid profile at the beginning of, and periodically during, treatment is recommended",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.5: \"Patients receiving olanzapine should receive regular monitoring of weight\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "linezolida",
+  "names": {
+    "dcb": "linezolida",
+    "display_pt": "Linezolida",
+    "inn_en": "linezolid",
+    "aliases": [
+      "linezolida",
+      "linezolid"
+    ],
+    "anvisa_principles": [
+      "linezolida"
+    ]
+  },
+  "class": "non_psychiatric",
+  "subclass": "oxazolidinone",
+  "label_source": "label-linezolida",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"linezolida\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "serotonergic",
+      "severity": "warning",
+      "cite": {
+        "source": "label-linezolida",
+        "locator": "seção 5.3 Serotonin Syndrome",
+        "quote": "Spontaneous reports of serotonin syndrome including fatal cases associated with the concomitant use ‎of ZYVOX and serotonergic agents have been reported.",
+        "accessed": "2026-10-27",
+        "note": "O trecho contém um caractere invisível U+200E (marca de direção) presente na própria fonte. Seção 6.2: \"Serotonin syndrome has been reported in patients receiving concomitant serotonergic agents, including antidepressants such as selective serotonin reuptake inhibitors (SSRIs) and opioids, and ZYVOX\"."
+      }
+    },
+    {
+      "tag": "maoi",
+      "severity": "info",
+      "cite": {
+        "source": "label-linezolida",
+        "locator": "seção 7.1 Monoamine Oxidase Inhibitors",
+        "quote": "Linezolid is a reversible, nonselective inhibitor of monoamine oxidase",
+        "accessed": "2026-10-27",
+        "note": "Seção 4.2: \"Linezolid should not be used in patients taking any medicinal product which inhibits monoamine oxidases A or B (e.g., phenelzine, isocarboxazid) or within two weeks of taking any such medicinal product.\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null,
+    "notes": "A bula citada é da apresentação injetável (ZYVOX)."
+  }
+}

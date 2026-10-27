@@ -210,3 +210,6 @@ __marimo__/
 .DS_Store
 models/
 *.gguf
+
+# Downloaded source documents (scripts/fetch_sources.py)
+.sources-cache/

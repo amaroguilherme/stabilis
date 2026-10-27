@@ -1,0 +1,1629 @@
+{
+  "description": "Regras de segurança aplicadas pelo motor de decisão. applies_to=global: portões e alertas do caso; applies_to=drug: avaliadas para cada medicamento candidato ou em uso. Precedência das ações sobre um medicamento: exclude > avoid_for_profile > alerta.",
+  "rules": [
+    {
+      "id": "SR-GATE-MISSING-PROFILE",
+      "title": "Sem idade ou sexo ao nascer, sem conteúdo sobre medicamentos",
+      "applies_to": "global",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "any": [
+          {
+            "not": {
+              "profile": "age",
+              "op": "exists"
+            }
+          },
+          {
+            "not": {
+              "profile": "sex_at_birth",
+              "op": "exists"
+            }
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "exclude_medications",
+          "scope": "all"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.missing_profile"
+        }
+      ],
+      "sources": [
+        {
+          "source": "stabilis-escopo",
+          "locator": "seção 8. Dados obrigatórios e dados ausentes",
+          "quote": "Sem idade e sexo atribuído ao nascer, a ferramenta não mostra conteúdo sobre medicamentos, porque as regras de segurança dependem desses dados.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-GATE-CRISIS",
+      "title": "Linguagem de crise no relato do paciente: ocultar medicamentos e orientar ajuda imediata",
+      "applies_to": "global",
+      "modes": [
+        "patient"
+      ],
+      "when": {
+        "signal": "crisis_language"
+      },
+      "then": [
+        {
+          "action": "exclude_medications",
+          "scope": "all"
+        },
+        {
+          "action": "alert",
+          "level": "critical",
+          "message_key": "alert.crisis_patient"
+        },
+        {
+          "action": "referral",
+          "urgent": true,
+          "message_key": "ref.crisis"
+        }
+      ],
+      "sources": [
+        {
+          "source": "stabilis-escopo",
+          "locator": "seção 3. Risco de suicídio",
+          "quote": "Quando a triagem indica risco de suicídio, ou o texto da pessoa menciona pensamentos de morte ou de se machucar, o modo paciente oculta todo conteúdo sobre medicamentos e mostra recursos de ajuda imediata (CVV 188, SAMU 192, UPA ou pronto-socorro).",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-CRISIS-PROFESSIONAL",
+      "title": "Linguagem de crise na anamnese: alertar o profissional",
+      "applies_to": "global",
+      "modes": [
+        "professional"
+      ],
+      "when": {
+        "signal": "crisis_language"
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "critical",
+          "message_key": "alert.crisis_professional"
+        }
+      ],
+      "sources": [
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.23",
+          "quote": "Take into account toxicity in overdose when prescribing an antidepressant medication for people at significant risk of suicide.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-GATE-MINOR",
+      "title": "Menor de 18 anos no modo paciente: apenas encaminhamento",
+      "applies_to": "global",
+      "modes": [
+        "patient"
+      ],
+      "when": {
+        "derived": "minor"
+      },
+      "then": [
+        {
+          "action": "exclude_medications",
+          "scope": "all"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.minor_referral"
+        },
+        {
+          "action": "referral",
+          "urgent": false,
+          "message_key": "ref.capsi"
+        }
+      ],
+      "sources": [
+        {
+          "source": "stabilis-escopo",
+          "locator": "seção 2. Menores de idade",
+          "quote": "Para menores de 18 anos, a ferramenta orienta a buscar avaliação no CAPSi ou na UBS, com um adulto responsável.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-GATE-BIPOLAR-SCREEN",
+      "title": "Sem triagem de bipolaridade negativa, o modo paciente não mostra antidepressivos",
+      "applies_to": "global",
+      "modes": [
+        "patient"
+      ],
+      "when": {
+        "not": {
+          "signal": "bipolar_screen_negative"
+        }
+      },
+      "then": [
+        {
+          "action": "exclude_medications",
+          "scope": {
+            "class": "antidepressant"
+          }
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.bipolar_screen"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.bipolar_screen"
+        }
+      ],
+      "sources": [
+        {
+          "source": "stabilis-escopo",
+          "locator": "seção 4. Triagem de bipolaridade",
+          "quote": "No modo paciente, conteúdo sobre antidepressivos só aparece depois que o questionário de triagem de bipolaridade foi respondido e deu negativo.",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.4 Screening Patients for Bipolar Disorder and Monitoring for Mania/Hypomania",
+          "quote": "prior to initiating treatment with an antidepressant, patients with depressive symptoms should be adequately screened to determine if they are at risk for Bipolar Disorder",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null,
+        "notes": "A NICE CG185 (1.2.3) desaconselha questionários para identificar transtorno bipolar na atenção primária; aqui a triagem é usada só como barreira de segurança, não como diagnóstico. Rever na Fase 2."
+      }
+    },
+    {
+      "id": "SR-DEPRESSION-SEVERITY-MISSING",
+      "title": "Depressão sem gravidade informada",
+      "applies_to": "global",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "condition": "depression_unipolar"
+          },
+          {
+            "not": {
+              "derived": "depression_more_severe"
+            }
+          },
+          {
+            "not": {
+              "derived": "depression_less_severe"
+            }
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.severity_missing"
+        }
+      ],
+      "sources": [
+        {
+          "source": "nice-ng222",
+          "locator": "Context (definição de gravidade)",
+          "quote": "with scores less than 16 defined as less severe depression, and scores of 16 or more defined as more severe depression",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-BIPOLAR1-ANTIDEPRESSANT",
+      "title": "Bipolar tipo I: antidepressivo sem estabilizador de humor ou antipsicótico",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "condition": "bipolar_1"
+          },
+          {
+            "drug_class": "antidepressant"
+          },
+          {
+            "not": {
+              "current_med_class": "mood_stabilizer"
+            }
+          },
+          {
+            "not": {
+              "current_med_class": "antipsychotic"
+            }
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.bipolar_antidepressant"
+        }
+      ],
+      "sources": [
+        {
+          "source": "canmat-isbd-2018",
+          "locator": "pdf p. 47 (nota b da tabela)",
+          "quote": "Antidepressant monotherapy is not recommended in bipolar I disorder",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 33 (Depressão: transtorno bipolar)",
+          "quote": "NUNCA prescreva apenas antidepressivos, sem um estabilizador do humor como lítio,",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-PREG-TERATOGEN",
+      "title": "Possibilidade de gravidez e risco elevado de malformação: evitar neste perfil",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "derived": "childbearing_potential"
+          },
+          {
+            "drug_fact": "teratogenic_major"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "critical",
+          "message_key": "alert.teratogenic"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.contraception"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-valproato",
+          "locator": "Boxed warning: Life threatening adverse reactions",
+          "quote": "Valproate should not be used to treat women with epilepsy or bipolar disorder who are pregnant or who plan to become pregnant unless other medications have failed to",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "Box 1 MHRA safety measures and precautionary advice for valproate",
+          "quote": "MHRA safety measures for under 55s",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-PREG-RISK",
+      "title": "Gravidez confirmada, possível ou planejada e risco descrito em bula: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "derived": "pregnant_or_planning"
+          },
+          {
+            "drug_fact": "pregnancy_risk"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.pregnancy_risk"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.pregnancy_plan"
+        }
+      ],
+      "sources": [
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 35 (Depressão: mulheres grávidas ou lactantes)",
+          "quote": "Considere o uso de antidepressivos na dose efetiva mínima se não houver resposta às intervenções psicossociais.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-PREG-LACT-MOOD-STABILIZER",
+      "title": "Gravidez, planejamento de gravidez ou amamentação: evitar lítio, valproato e carbamazepina",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "any": [
+              {
+                "derived": "pregnant_or_planning"
+              },
+              {
+                "derived": "breastfeeding"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "drug": "litio"
+              },
+              {
+                "drug": "valproato"
+              },
+              {
+                "drug": "carbamazepina"
+              }
+            ]
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.pregnancy_mood_stabilizer"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.pregnancy_plan"
+        }
+      ],
+      "sources": [
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 46 (Transtorno bipolar: mulheres grávidas ou lactantes)",
+          "quote": "EVITE O USO DE VALPROATO, LÍTIO e CARBAMAZEPINA durante a gravidez e a amamentação em razão do risco de anomalias congênitas.",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 48 (Psicoses: atenção)",
+          "quote": "No caso de mulheres grávidas ou lactantes, evite a prescrição de valproato, lítio e carbamazepina.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-LACTATION",
+      "title": "Amamentação e cautela descrita em bula: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "derived": "breastfeeding"
+          },
+          {
+            "drug_fact": "lactation_caution"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.lactation"
+        }
+      ],
+      "sources": [
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 35 (Depressão: mulheres grávidas ou lactantes)",
+          "quote": "Se a mulher estiver amamentando, evite medicamentos antidepressivos de ação prolongada como a fluoxetina.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-YOUNG-SUICIDALITY",
+      "title": "Menos de 25 anos e alerta de suicidalidade: acompanhamento próximo",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "derived": "young_adult_lt25"
+          },
+          {
+            "drug_fact": "suicidality_warning_young"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.young_suicidality"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "Boxed warning: Suicidal thoughts and behaviors",
+          "quote": "Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term studies.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-ELDERLY-AMITRIPTYLINE",
+      "title": "Idoso: evitar amitriptilina",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "derived": "elderly"
+          },
+          {
+            "drug": "amitriptilina"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.elderly_amitriptyline"
+        }
+      ],
+      "sources": [
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 35 (Depressão: idosos)",
+          "quote": "Evite a amitriptilina, se possível.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-CARDIAC-AMITRIPTYLINE",
+      "title": "Doença cardiovascular: não prescrever amitriptilina",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "cardiac_qt"
+          },
+          {
+            "drug": "amitriptilina"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.qt_cardiac"
+        }
+      ],
+      "sources": [
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 35 (Depressão: pessoas com doença cardiovascular)",
+          "quote": "NÃO prescreva amitriptilina.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-DEMENTIA-ANTIPSYCHOTIC",
+      "title": "Demência e alerta de mortalidade com antipsicóticos: evitar neste perfil",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "dementia"
+          },
+          {
+            "drug_fact": "dementia_mortality_warning"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "critical",
+          "message_key": "alert.dementia_antipsychotic"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-quetiapina",
+          "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis",
+          "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-HEPATIC-AVOID",
+      "title": "Doença hepática e medicamento a evitar no fígado: evitar neste perfil",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "hepatic_disease"
+          },
+          {
+            "drug_fact": "hepatic_impairment_avoid"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.hepatic_avoid"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-valproato",
+          "locator": "seção 4 Contraindications",
+          "quote": "with hepatic disease or significant hepatic dysfunction",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 2.7 Dosage in Patients with Hepatic Impairment or Severe Renal Impairment",
+          "quote": "Avoid use in patients with chronic liver disease or cirrhosis",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-HEPATOTOXICITY",
+      "title": "Doença hepática e risco de lesão hepática: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "hepatic_disease"
+          },
+          {
+            "drug_fact": "hepatotoxicity"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.hepatotoxicity"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.monitoring"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-valproato",
+          "locator": "Boxed warning: Life threatening adverse reactions (Hepatotoxicity)",
+          "quote": "Hepatic failure resulting in fatalities has occurred in patients receiving valproate",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-RENAL",
+      "title": "Doença renal e medicamento que exige ajuste: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "renal_disease"
+          },
+          {
+            "drug_fact": "renal_impairment_caution"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.renal"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.monitoring"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-litio",
+          "locator": "seção 2.5 Dosage Adjustments for Patients with Renal Impairment",
+          "quote": "Start patients with mild to moderately impaired renal function",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-QT-CARDIAC",
+      "title": "Arritmia, QT longo ou cardiopatia e medicamento que prolonga o QT: evitar neste perfil",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "cardiac_qt"
+          },
+          {
+            "drug_fact": "qt_prolongation"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.qt_cardiac"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-ziprasidona",
+          "locator": "seção 4.1 QT Prolongation",
+          "quote": "in patients with a known history of QT prolongation (including congenital long QT syndrome)",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.11 QT Prolongation",
+          "quote": "PROZAC should be used with caution in patients with congenital long QT syndrome",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-SEIZURE-CONTRA",
+      "title": "Epilepsia e medicamento contraindicado em convulsões: evitar neste perfil",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "epilepsy"
+          },
+          {
+            "drug_fact": "seizure_disorder_contraindication"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.seizure_contraindicated"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 4 Contraindications",
+          "quote": "Wellbutrin XL is contraindicated in patients with seizure disorder.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-SEIZURE-CAUTION",
+      "title": "Epilepsia e medicamento que reduz o limiar convulsivo: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "epilepsy"
+          },
+          {
+            "drug_fact": "seizure_threshold_lowering"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.seizure_caution"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.5 Seizures",
+          "quote": "PROZAC should be introduced with care in patients with a history of seizures.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-EATING-DISORDER",
+      "title": "Bulimia ou anorexia e medicamento contraindicado: evitar neste perfil",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "eating_disorder"
+          },
+          {
+            "drug_fact": "eating_disorder_contraindication"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.eating_disorder"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 4 Contraindications",
+          "quote": "Wellbutrin XL is contraindicated in patients with a current or prior diagnosis of bulimia or anorexia nervosa",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-GLAUCOMA",
+      "title": "Glaucoma de ângulo fechado: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "angle_closure_glaucoma"
+          },
+          {
+            "drug_fact": "angle_closure_glaucoma_warning"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.glaucoma"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.8 Angle-Closure Glaucoma",
+          "quote": "may trigger an angle closure attack in a patient with anatomically narrow angles who does not have a patent iridectomy",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-BLEEDING-DISORDER",
+      "title": "Distúrbio de coagulação e medicamento que aumenta sangramento: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "bleeding_disorder"
+          },
+          {
+            "drug_fact": "bleeding_risk"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.bleeding_disorder"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.7 Increased Risk of Bleeding",
+          "quote": "SNRIs and SSRIs, including fluoxetine, may increase the risk of bleeding reactions.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-METABOLIC",
+      "title": "Diabetes, obesidade ou colesterol alto e risco metabólico: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "metabolic"
+          },
+          {
+            "any": [
+              {
+                "drug_fact": "metabolic_risk"
+              },
+              {
+                "drug_fact": "weight_gain_significant"
+              }
+            ]
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.metabolic"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-olanzapina",
+          "locator": "seção 5.5 Metabolic Changes",
+          "quote": "Atypical antipsychotic drugs have been associated with metabolic changes including hyperglycemia, dyslipidemia, and weight gain.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-EPS-HISTORY",
+      "title": "Histórico de sintomas extrapiramidais: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "eps_history"
+          },
+          {
+            "drug_fact": "eps_tardive_dyskinesia"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.eps_history"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-haloperidol",
+          "locator": "seção Tardive Dyskinesia",
+          "quote": "Tardive dyskinesia, a syndrome consisting of potentially irreversible, involuntary, dyskinetic movements, may appear in some",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-HYPERTENSION",
+      "title": "Hipertensão e medicamento que eleva a pressão: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "conditions",
+            "op": "contains",
+            "value": "hypertension"
+          },
+          {
+            "drug_fact": "blood_pressure_increase"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.hypertension"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-venlafaxina",
+          "locator": "seção 5.3 Elevated Blood Pressure",
+          "quote": "In controlled trials, there were dose-related increases in systolic and diastolic blood pressure, as well as cases of sustained hypertension",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-SUICIDE-TCA",
+      "title": "Risco de suicídio: evitar iniciar tricíclico",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "derived": "suicide_risk"
+          },
+          {
+            "drug_class": "antidepressant",
+            "subclass": "tca"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "set_tier",
+          "tier": "avoid_for_profile"
+        },
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.suicide_risk_tca"
+        }
+      ],
+      "sources": [
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.23",
+          "quote": "Do not routinely start treatment with TCAs, except lofepramine, as they are associated with the greatest risk in overdose.",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 35 (Depressão: adultos com pensamentos ou planos de suicídio)",
+          "quote": "A overdose de um ATC como a amitriptilina pode ameaçar a vida e, portanto, deve ser evitada nesse grupo.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-SUICIDE-OVERDOSE",
+      "title": "Risco de suicídio e toxicidade relevante em superdosagem: considerar na escolha e limitar a quantidade",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "derived": "suicide_risk"
+          },
+          {
+            "drug_fact": "overdose_toxicity_high"
+          },
+          {
+            "not": {
+              "drug_class": "antidepressant",
+              "subclass": "tca"
+            }
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.suicide_risk_overdose"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.limited_supply"
+        }
+      ],
+      "sources": [
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.23",
+          "quote": "Take into account toxicity in overdose when prescribing an antidepressant medication for people at significant risk of suicide.",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 35 (Depressão: adultos com pensamentos ou planos de suicídio)",
+          "quote": "entregue um suprimento limitado de antidepressivos (p. ex., a quantidade suficiente para uma semana de cada vez).",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-ALCOHOL-CNS",
+      "title": "Uso de álcool e depressor do sistema nervoso central: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "habits",
+            "op": "contains",
+            "value": "alcohol"
+          },
+          {
+            "drug_fact": "cns_depressant"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.alcohol_cns"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-clonazepam",
+          "locator": "Boxed warning: Abuse, misuse, and addiction",
+          "quote": "Abuse and misuse of benzodiazepines commonly involve concomitant use of other medications, alcohol, and/or illicit substances, which is associated with an increased frequency of serious adverse outcomes.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-SMOKING-CYP1A2",
+      "title": "Tabagismo e substrato sensível da CYP1A2: alertar",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "all": [
+          {
+            "profile": "habits",
+            "op": "contains",
+            "value": "smoking"
+          },
+          {
+            "drug_fact": "cyp1a2_substrate_sensitive"
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.smoking_cyp1a2"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-clozapina",
+          "locator": "seção 7.1 Potential for Other Drugs to Affect CLOZARIL",
+          "quote": "Tobacco smoke is a moderate inducer of CYP1A2.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-MONITORING-LITHIUM",
+      "title": "Lítio: litemia antes e durante o uso",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "drug": "litio"
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "info",
+          "message_key": "alert.monitoring"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.monitoring"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-litio",
+          "locator": "Boxed warning: Lithium toxicity",
+          "quote": "Facilities for prompt and accurate serum lithium determinations should be available before initiating treatment",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-MONITORING-VALPROATE",
+      "title": "Valproato: provas hepáticas antes e durante o uso",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "drug": "valproato"
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "info",
+          "message_key": "alert.monitoring"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.monitoring"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-valproato",
+          "locator": "Boxed warning: Hepatotoxicity",
+          "quote": "Serum liver tests should be performed prior to therapy and at frequent intervals thereafter, especially during the first six months",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-MONITORING-CLOZAPINE",
+      "title": "Clozapina: contagem de neutrófilos antes e durante o uso",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "drug": "clozapina"
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "info",
+          "message_key": "alert.monitoring"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.monitoring"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-clozapina",
+          "locator": "Boxed warning: Severe neutropenia",
+          "quote": "Prior to initiating CLOZARIL treatment, obtain baseline ANC(s).",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-MONITORING-CARBAMAZEPINE",
+      "title": "Carbamazepina: hemograma antes do uso",
+      "applies_to": "drug",
+      "modes": [
+        "patient",
+        "professional"
+      ],
+      "when": {
+        "drug": "carbamazepina"
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "info",
+          "message_key": "alert.monitoring"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.monitoring"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-carbamazepina",
+          "locator": "WARNINGS (aplastic anemia and agranulocytosis)",
+          "quote": "COMPLETE PRETREATMENT HEMATOLOGICAL TESTING SHOULD BE OBTAINED AS A BASELINE.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    }
+  ]
+}

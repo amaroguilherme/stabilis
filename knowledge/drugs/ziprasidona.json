@@ -1,0 +1,220 @@
+{
+  "id": "ziprasidona",
+  "names": {
+    "dcb": "cloridrato de ziprasidona monoidratado",
+    "display_pt": "Ziprasidona",
+    "inn_en": "ziprasidone",
+    "aliases": [
+      "ziprasidona",
+      "ziprasidone",
+      "cloridrato de ziprasidona"
+    ],
+    "anvisa_principles": [
+      "cloridrato de ziprasidona monoidratado"
+    ]
+  },
+  "class": "antipsychotic",
+  "subclass": "atypical",
+  "label_source": "label-ziprasidona",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"cloridrato de ziprasidona monoidratado\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "especializado",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 184 (Anexo III – Componente Especializado)",
+      "quote": "cloridrato de ziprasidona",
+      "accessed": "2026-10-27",
+      "note": "Na RENAME a DCB aparece como \"cloridrato de ziprasidona\", sem \"monoidratado\"."
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 80,
+    "usual_min": 80,
+    "usual_max": 160,
+    "max": 160,
+    "indication": "Transtorno bipolar I, episódios maníacos ou mistos agudos (monoterapia)",
+    "note": "Início de 40 mg duas vezes ao dia com alimento; no 2º dia pode subir para 60 ou 80 mg duas vezes ao dia; faixa de 40 a 80 mg duas vezes ao dia (80 a 160 mg/dia). Mesma faixa na manutenção como adjuvante de lítio ou valproato.",
+    "cite": {
+      "source": "label-ziprasidona",
+      "locator": "seção 2.3 Bipolar I Disorder: Acute Treatment of Manic or Mixed Episodes",
+      "quote": "In adults oral ziprasidone should be administered at an initial daily dose of 40 mg twice daily with food. The dose may then be increased to 60 mg or 80 mg twice daily on the second day of treatment and subsequently adjusted on the basis of tolerance and efficacy within the range 40 mg-80 mg twice daily.",
+      "accessed": "2026-10-27",
+      "note": "Seção 5.3: \"at the highest recommended daily dose of 160 mg\"."
+    }
+  },
+  "facts": [
+    {
+      "tag": "dementia_mortality_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "qt_prolongation",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 4.1 QT Prolongation",
+        "quote": "Because of ziprasidone's dose-related prolongation of the QT interval and the known association of fatal arrhythmias with QT prolongation by some other drugs, ziprasidone is contraindicated",
+        "accessed": "2026-10-27",
+        "note": "Contraindicada com histórico de QT longo (inclusive congênito), infarto agudo recente ou insuficiência cardíaca descompensada, e junto de outros medicamentos que prolongam o QT (lista na mesma seção). Seção 5.3: suspender se QTc persistentemente > 500 ms."
+      }
+    },
+    {
+      "tag": "serotonergic",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.4 Serotonin Syndrome",
+        "quote": "Ziprasidone can precipitate serotonin syndrome, a potentially life-threatening condition.",
+        "accessed": "2026-10-27",
+        "note": "Seção 4.3: contraindicada com IMAO (inclusive linezolida e azul de metileno intravenoso) ou até 14 dias após suspendê-los, pelo risco de síndrome serotoninérgica."
+      }
+    },
+    {
+      "tag": "serious_rash",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.6 Severe Cutaneous Adverse Reactions",
+        "quote": "Other severe cutaneous adverse reactions, such as Stevens-Johnson syndrome, have been reported with ziprasidone exposure. Severe cutaneous adverse reactions are sometimes fatal.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção também alerta para DRESS. Seção 5.9: suspender se surgir erupção cutânea sem outra causa identificada."
+      }
+    },
+    {
+      "tag": "eps_tardive_dyskinesia",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.7 Tardive Dyskinesia",
+        "quote": "If signs and symptoms of tardive dyskinesia appear in a patient on ziprasidone, drug discontinuation should be considered.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "metabolic_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.8 Metabolic Changes",
+        "quote": "Atypical antipsychotic drugs have been associated with metabolic changes that may increase cardiovascular/cerebrovascular risk. These metabolic changes include hyperglycemia, dyslipidemia, and body weight gain.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"There have been few reports of hyperglycemia or diabetes in patients treated with GEODON.\" Ganho de peso médio pequeno nos ensaios."
+      }
+    },
+    {
+      "tag": "orthostatic_hypotension",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.10 Orthostatic Hypotension",
+        "quote": "Ziprasidone may induce orthostatic hypotension associated with dizziness, tachycardia, and, in some patients, syncope, especially during the initial dose-titration period",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.12 Leukopenia, Neutropenia, and Agranulocytosis",
+        "quote": "In clinical trial and postmarketing experience, events of leukopenia/neutropenia have been reported temporally related to antipsychotic agents. Agranulocytosis (including fatal cases) has also been reported.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.13 Seizures",
+        "quote": "As with other antipsychotic drugs, ziprasidone should be used cautiously in patients with a history of seizures or with conditions that potentially lower the seizure threshold",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "prolactin_elevation",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.15 Hyperprolactinemia",
+        "quote": "As with other drugs that antagonize dopamine D 2 receptors, ziprasidone elevates prolactin levels in humans.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.16 Potential for Cognitive and Motor Impairment",
+        "quote": "Somnolence was a commonly reported adverse reaction in patients treated with ziprasidone. In the 4- and 6-week placebo-controlled trials in adults, somnolence was reported in 14% of patients on ziprasidone compared to 7% of placebo patients.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "info",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 7.3 Pharmacodynamic Interactions",
+        "quote": "Given the primary CNS effects of ziprasidone, caution should be used when it is taken in combination with other centrally acting drugs.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Neonates exposed to antipsychotic drugs, including GEODON, during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms following delivery",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "maoi_contraindicated",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 4.3 Monoamine Oxidase Inhibitors (MAOIs)",
+        "quote": "Ziprasidone is contraindicated in patients taking, or within 14 days of stopping, MAOIs (including the MAOIs linezolid and intravenous methylene blue) because of an increased risk of serotonin syndrome",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "metabolic_profile",
+      "cite": {
+        "source": "label-ziprasidona",
+        "locator": "seção 5.8 Metabolic Changes",
+        "quote": "Weight gain has been observed with atypical antipsychotic use. Monitoring of weight is recommended.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: glicemia de jejum no início e periodicamente para quem tem fatores de risco para diabetes, e acompanhamento do controle glicêmico em quem já tem diabetes."
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

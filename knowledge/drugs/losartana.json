@@ -1,0 +1,49 @@
+{
+  "id": "losartana",
+  "names": {
+    "dcb": "losartana potássica",
+    "display_pt": "Losartana",
+    "inn_en": "losartan",
+    "aliases": [
+      "losartana",
+      "losartan",
+      "losartana potássica"
+    ],
+    "anvisa_principles": [
+      "losartana potássica"
+    ]
+  },
+  "class": "non_psychiatric",
+  "subclass": "arb",
+  "label_source": "label-losartana",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"losartana potássica\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "lithium_level_raiser",
+      "severity": "info",
+      "cite": {
+        "source": "label-losartana",
+        "locator": "seção 7.2 Lithium",
+        "quote": "Increases in serum lithium concentrations and lithium toxicity have been reported during concomitant administration of lithium with angiotensin II receptor antagonists.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Monitor serum lithium levels during concomitant use.\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

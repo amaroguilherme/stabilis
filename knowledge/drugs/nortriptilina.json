@@ -1,0 +1,196 @@
+{
+  "id": "nortriptilina",
+  "names": {
+    "dcb": "cloridrato de nortriptilina",
+    "display_pt": "Nortriptilina",
+    "inn_en": "nortriptyline",
+    "aliases": [
+      "nortriptilina",
+      "nortriptyline"
+    ],
+    "anvisa_principles": [
+      "cloridrato de nortriptilina"
+    ]
+  },
+  "class": "antidepressant",
+  "subclass": "tca",
+  "label_source": "label-nortriptilina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"cloridrato de nortriptilina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "basico",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 132 (Anexo I – Componente Básico)",
+      "quote": "cloridrato de nortriptilina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "usual_min": 75,
+    "usual_max": 100,
+    "max": 150,
+    "indication": "Depressão (adultos)",
+    "note": "Dose usual: 25 mg 3 a 4 vezes ao dia (ou a dose total 1 vez ao dia), começando baixo. Acima de 100 mg/dia, dosar o nível plasmático (faixa ótima 50–150 ng/mL). Não se recomendam doses acima de 150 mg/dia. A bula indica doses menores para ambulatoriais que para internados.",
+    "cite": {
+      "source": "label-nortriptilina",
+      "locator": "seção DOSAGE AND ADMINISTRATION: Usual Adult Dose",
+      "quote": "25 mg three or four times daily; dosage should begin at a low level and be increased as required. As an alternate regimen, the total daily dosage may be given once a day. When doses above 100 mg daily are administered, plasma levels of nortriptyline should be monitored and maintained in the optimum range of 50 to 150 ng/mL. Doses above 150 mg/day are not recommended.",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "suicidality_warning_young",
+      "severity": "major",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "Boxed warning: Suicidality and Antidepressant Drugs",
+        "quote": "Antidepressants increased the risk compared to placebo of suicidal thinking and behavior (suicidality) in children, adolescents, and young adults in short-term studies of major depressive disorder (MDD) and other psychiatric disorders.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "serotonergic",
+      "severity": "warning",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção WARNINGS: Serotonin Syndrome",
+        "quote": "The development of a potentially life-threatening serotonin syndrome has been reported with SNRIs and SSRIs, including Pamelor, alone but particularly with concomitant use of other serotonergic drugs",
+        "accessed": "2026-10-27",
+        "note": "Seção CONTRAINDICATIONS: \"The use of MAOIs intended to treat psychiatric disorders with Pamelor or within 14 days of stopping treatment with Pamelor is contraindicated because of an increased risk of serotonin syndrome.\""
+      }
+    },
+    {
+      "tag": "antidepressant_mania_switch",
+      "severity": "warning",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção WARNINGS: Screening Patients for Bipolar Disorder",
+        "quote": "treating such an episode with an antidepressant alone may increase the likelihood of precipitation of a mixed/manic episode in patients at risk for bipolar disorder",
+        "accessed": "2026-10-27",
+        "note": "Seção PRECAUTIONS: \"In manic-depressive patients, Pamelor may cause symptoms of the manic phase to emerge.\""
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção WARNINGS",
+        "quote": "Patients with a history of seizures should be followed closely when Pamelor is administered, inasmuch as this drug is known to lower the convulsive threshold.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "anticholinergic_burden",
+      "severity": "warning",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção WARNINGS",
+        "quote": "Because of its anticholinergic activity, Pamelor should be used with great caution in patients who have a history of urinary retention.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "angle_closure_glaucoma_warning",
+      "severity": "warning",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção WARNINGS: Angle-Closure Glaucoma",
+        "quote": "The pupillary dilation that occurs following use of many antidepressant drugs including Pamelor may trigger an angle-closure attack in a patient with anatomically narrow angles who does not have a patent iridectomy.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "hepatotoxicity",
+      "severity": "warning",
+      "note": "A bula descreve eventos hepáticos muito raros em idosos, com mortes isoladas por lesão hepática colestática.",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção PRECAUTIONS: Geriatric Use",
+        "quote": "hepatic adverse events (characterized mainly by jaundice and elevated liver enzymes) are observed very rarely in geriatric patients and deaths associated with cholestatic liver damage have been reported in isolated instances.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção OVERDOSAGE",
+        "quote": "Deaths may occur from overdosage with this class of drugs.",
+        "accessed": "2026-10-27",
+        "note": "Seção WARNINGS: \"Prescriptions for nortriptyline hydrochloride should be written for the smallest quantity of capsules consistent with good patient management, in order to reduce the risk of overdose.\""
+      }
+    },
+    {
+      "tag": "cyp2d6_substrate_sensitive",
+      "severity": "warning",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção PRECAUTIONS: Drug Interactions (Drugs Metabolized by P450 2D6)",
+        "quote": "Concomitant use of tricyclic antidepressants with drugs that can inhibit cytochrome P450 2D6 may require lower doses than usually prescribed for either the tricyclic antidepressant or the other drug.",
+        "accessed": "2026-10-27",
+        "note": "Seção WARNINGS: \"The concomitant administration of quinidine and nortriptyline may result in a significantly longer plasma half-life, higher AUC, and lower clearance of nortriptyline.\""
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "info",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção ADVERSE REACTIONS: Withdrawal Symptoms",
+        "quote": "Though these are not indicative of addiction, abrupt cessation of treatment after prolonged therapy may produce nausea, headache, and malaise.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "maoi_contraindicated",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "Contraindications",
+        "quote": "The use of MAOIs intended to treat psychiatric disorders with Pamelor or within 14 days of stopping treatment with Pamelor is contraindicated because of an increased risk of serotonin syndrome.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "Boxed warning: Suicidality and Antidepressant Drugs",
+        "quote": "Patients of all ages who are started on antidepressant therapy should be monitored appropriately and observed closely for clinical worsening, suicidality, or unusual changes in behavior.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "blood_pressure",
+      "note": "Recomendação da seção de uso em idosos.",
+      "cite": {
+        "source": "label-nortriptilina",
+        "locator": "seção PRECAUTIONS: Geriatric Use",
+        "quote": "Cardiovascular function, particularly arrhythmias and fluctuations in blood pressure, should be monitored.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

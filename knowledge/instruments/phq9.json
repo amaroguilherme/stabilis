@@ -1,0 +1,41 @@
+{
+  "id": "phq9",
+  "name": "PHQ-9 (Questionário sobre a Saúde do Paciente – 9)",
+  "license_note": "Uso livre, sem necessidade de permissão.",
+  "options": [
+    {"value": 0, "label": "Nenhuma vez"},
+    {"value": 1, "label": "Vários dias"},
+    {"value": 2, "label": "Mais da metade dos dias"},
+    {"value": 3, "label": "Quase todos os dias"}
+  ],
+  "items": [
+    {"id": "phq9_1", "text": null, "text_status": "pending"},
+    {"id": "phq9_2", "text": null, "text_status": "pending"},
+    {"id": "phq9_3", "text": null, "text_status": "pending"},
+    {"id": "phq9_4", "text": null, "text_status": "pending"},
+    {"id": "phq9_5", "text": null, "text_status": "pending"},
+    {"id": "phq9_6", "text": null, "text_status": "pending"},
+    {"id": "phq9_7", "text": null, "text_status": "pending"},
+    {"id": "phq9_8", "text": null, "text_status": "pending"},
+    {"id": "phq9_9", "text": null, "text_status": "pending"}
+  ],
+  "scoring": {
+    "type": "sum",
+    "bands": [
+      {"id": "minimal", "min": 0, "max": 4},
+      {"id": "mild", "min": 5, "max": 9},
+      {"id": "moderate", "min": 10, "max": 14},
+      {"id": "moderately_severe", "min": 15, "max": 19},
+      {"id": "severe", "min": 20, "max": 27}
+    ],
+    "flags": [
+      {"id": "item9_positive", "item": "phq9_9", "op": "gt", "value": 0},
+      {"id": "nice_more_severe", "item": "total", "op": "gte", "value": 16}
+    ]
+  },
+  "sources": [
+    {"source": "kroenke-2001-phq9", "locator": "pdf p. 1 (resumo)", "quote": "PHQ-9 scores of 5, 10, 15, and 20 represented mild, moderate, moderately severe, and severe depression, respectively.", "accessed": "2026-10-27"},
+    {"source": "nice-ng222", "locator": "Context (definição de gravidade)", "quote": "with scores less than 16 defined as less severe depression, and scores of 16 or more defined as more severe depression", "accessed": "2026-10-27"}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Textos dos itens e das opções a conferir com a versão oficial em português (Fase 2). O item 9 trata de pensamentos de morte ou de se ferir."}
+}

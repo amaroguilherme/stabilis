@@ -1,0 +1,212 @@
+{
+  "id": "fluoxetina",
+  "names": {
+    "dcb": "cloridrato de fluoxetina",
+    "display_pt": "Fluoxetina",
+    "inn_en": "fluoxetine",
+    "aliases": [
+      "fluoxetina",
+      "fluoxetine"
+    ],
+    "anvisa_principles": [
+      "cloridrato de fluoxetina"
+    ]
+  },
+  "class": "antidepressant",
+  "subclass": "ssri",
+  "label_source": "label-fluoxetina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"cloridrato de fluoxetina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "basico",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 131 (Anexo I – Componente Básico)",
+      "quote": "cloridrato de fluoxetina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 20,
+    "usual_min": 20,
+    "usual_max": 80,
+    "max": 80,
+    "indication": "Transtorno depressivo maior",
+    "cite": {
+      "source": "label-fluoxetina",
+      "locator": "seção 2.1 Major Depressive Disorder",
+      "quote": "Initiate PROZAC 20 mg/day orally in the morning.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"The maximum fluoxetine dose should not exceed 80 mg/day.\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "suicidality_warning_young",
+      "severity": "major",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors",
+        "quote": "Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term studies.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "serotonergic",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.2 Serotonin Syndrome",
+        "quote": "Selective serotonin reuptake inhibitors (SSRIs), including PROZAC, can precipitate serotonin syndrome, a potentially life-threatening condition.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "antidepressant_mania_switch",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.4 Screening Patients for Bipolar Disorder and Monitoring for Mania/Hypomania",
+        "quote": "treating such an episode with an antidepressant alone may increase the likelihood of precipitation of a mixed/manic episode in patients at risk for Bipolar Disorder",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.5 Seizures",
+        "quote": "PROZAC should be introduced with care in patients with a history of seizures.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "bleeding_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.7 Increased Risk of Bleeding",
+        "quote": "SNRIs and SSRIs, including fluoxetine, may increase the risk of bleeding reactions.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "angle_closure_glaucoma_warning",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.8 Angle-Closure Glaucoma",
+        "quote": "may trigger an angle closure attack in a patient with anatomically narrow angles who does not have a patent iridectomy",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "hyponatremia_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.9 Hyponatremia",
+        "quote": "Elderly patients may be at greater risk of developing hyponatremia with SNRIs and SSRIs.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "qt_prolongation",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.11 QT Prolongation",
+        "quote": "PROZAC should be used with caution in patients with congenital long QT syndrome",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.15 Discontinuation Adverse Reactions",
+        "quote": "A gradual reduction in the dose rather than abrupt cessation is recommended whenever possible.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "sexual_dysfunction",
+      "severity": "warning",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 5.17 Sexual Dysfunction",
+        "quote": "Use of SSRIs, including PROZAC, may cause symptoms of sexual dysfunction",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cyp2d6_strong_inhibitor",
+      "severity": "info",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 7.7 Potential for PROZAC to affect Other Drugs",
+        "quote": "Fluoxetine inhibits the activity of CYP2D6, and may make individuals with normal CYP2D6 metabolic activity resemble a poor metabolizer.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Neonates exposed to PROZAC and other SSRI or SNRIs late in the third trimester have developed complications requiring prolonged hospitalization, respiratory support, and tube feeding.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 8.2 Lactation",
+        "quote": "There are reports of agitation, irritability, poor feeding, and poor weight gain in infants exposed to fluoxetine through breast milk",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "maoi_contraindicated",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "seção 4.1 Monoamine Oxidase Inhibitors (MAOIs)",
+        "quote": "The use of MAOIs intended to treat psychiatric disorders with PROZAC or within 5 weeks of stopping treatment with PROZAC is contraindicated because of an increased risk of serotonin syndrome.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "cite": {
+        "source": "label-fluoxetina",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors",
+        "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening and for emergence of suicidal thoughts and behaviors.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

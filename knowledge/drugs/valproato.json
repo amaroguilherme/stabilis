@@ -1,0 +1,229 @@
+{
+  "id": "valproato",
+  "names": {
+    "dcb": "divalproato de sódio",
+    "display_pt": "Valproato (ácido valproico / divalproato)",
+    "inn_en": "valproate",
+    "aliases": [
+      "valproato",
+      "ácido valproico",
+      "acido valproico",
+      "ácido valpróico",
+      "divalproato",
+      "divalproato de sódio",
+      "divalproato de sodio",
+      "valproato de sódio",
+      "valproato de sodio",
+      "valproate",
+      "valproic acid",
+      "divalproex",
+      "divalproex sodium"
+    ],
+    "anvisa_principles": [
+      "divalproato de sódio",
+      "valproato de sódio",
+      "ácido valpróico"
+    ]
+  },
+  "class": "mood_stabilizer",
+  "subclass": "anticonvulsant",
+  "label_source": "label-valproato",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"divalproato de sódio\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "basico",
+    "note": "Na RENAME o item aparece como \"ácido valproico\"; os termos \"divalproato\" e \"valproato\" não aparecem no documento.",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 125 (Anexo I – Componente Básico)",
+      "quote": "ácido valproico",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 750,
+    "indication": "Episódios maníacos do transtorno bipolar (Depakote, comprimidos de liberação retardada)",
+    "note": "Dose máxima recomendada: 60 mg/kg/dia (por peso; não convertida para mg/dia). Aumentar o mais rápido possível até a menor dose eficaz; nos ensaios de mania aguda, o nível de vale ficou entre 50 e 125 mcg/mL.",
+    "cite": {
+      "source": "label-valproato",
+      "locator": "seção 2.1 Mania",
+      "quote": "The recommended initial dose is 750 mg daily in divided doses.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"The maximum recommended dosage is 60 mg/kg/day.\" e \"patients were dosed to a clinical response with a trough plasma concentration between 50 and 125 mcg/mL\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "hepatotoxicity",
+      "severity": "major",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "Boxed warning: Hepatotoxicity",
+        "quote": "Hepatic failure resulting in fatalities has occurred in patients receiving valproate and its derivatives. These incidents usually have occurred during the first six months of treatment.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "hepatic_impairment_avoid",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 4 Contraindications",
+        "quote": "Depakote is contraindicated in patients: • with hepatic disease or significant hepatic dysfunction",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "teratogenic_major",
+      "severity": "major",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "Boxed warning: Fetal Risk",
+        "quote": "Valproate can cause major congenital malformations, particularly neural tube defects (e.g., spina bifida). In addition, valproate can cause decreased IQ scores and neurodevelopmental disorders following in utero exposure.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo boxed warning: \"Valproate should not be administered to a woman of childbearing potential unless other medications have failed to provide adequate symptom control or are otherwise unacceptable.\""
+      }
+    },
+    {
+      "tag": "pancreatitis",
+      "severity": "major",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "Boxed warning: Pancreatitis",
+        "quote": "Cases of life-threatening pancreatitis have been reported in both children and adults receiving valproate.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "serious_rash",
+      "severity": "warning",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 5.13 Serious Dermatologic Reactions",
+        "quote": "Serious and sometimes fatal dermatologic reactions, including toxic epidermal necrolysis (TEN), Stevens Johnson syndrome (SJS), acute generalized exanthematous pustulosis (AGEP), and erythema multiforme (EM) have been reported with valproate treatment.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "bleeding_risk",
+      "severity": "warning",
+      "note": "O risco vem da plaquetopenia dose-dependente, da inibição da agregação plaquetária e de alterações da coagulação descritas na mesma seção.",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 5.8 Bleeding and Other Hematopoietic Disorders",
+        "quote": "Evidence of hemorrhage, bruising, or a disorder of hemostasis/coagulation is an indication for reduction of the dosage or withdrawal of therapy.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Valproate is associated with dose-related thrombocytopenia.\" e relatos de \"inhibition of the secondary phase of platelet aggregation, and abnormal coagulation parameters\"."
+      }
+    },
+    {
+      "tag": "lamotrigine_level_raiser",
+      "severity": "info",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 7.2 Effects of Valproate on Other Drugs (Lamotrigine)",
+        "quote": "In a steady-state study involving 10 healthy volunteers, the elimination half-life of lamotrigine increased from 26 to 70 hours with valproate co-administration (a 165% increase). The dose of lamotrigine should be reduced when co-administered with valproate.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo trecho: \"Serious skin reactions (such as Stevens-Johnson syndrome and toxic epidermal necrolysis) have been reported with concomitant lamotrigine and valproate administration.\""
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "note": "Alerta específico para idosos (ensaio em idosos com demência).",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 5.16 Somnolence in the Elderly",
+        "quote": "A significantly higher proportion of valproate patients had somnolence compared to placebo",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"In elderly patients, dosage should be increased more slowly and with regular monitoring for fluid and nutritional intake, dehydration, somnolence, and other adverse reactions.\""
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "info",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 17 Patient Counseling Information (CNS Depression)",
+        "quote": "Since valproate products may produce CNS depression, especially when combined with another CNS depressant (e.g., alcohol), advise patients not to engage in hazardous activities",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "note": "A bula relata mortes, mas também recuperação com níveis muito altos; não quantifica a toxicidade.",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 10 Overdosage",
+        "quote": "Overdosage with valproate may result in somnolence, heart block, deep coma, and hypernatremia. Fatalities have been reported; however patients have recovered from valproate levels as high as 2,120 mcg/mL.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "liver_function",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "Boxed warning: Hepatotoxicity",
+        "quote": "Serum liver tests should be performed prior to therapy and at frequent intervals thereafter, especially during the first six months",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "blood_count",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 5.8 Bleeding and Other Hematopoietic Disorders",
+        "quote": "measurements of complete blood counts and coagulation tests are recommended before initiating therapy and at periodic intervals",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "valproate_levels",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 5.17 Monitoring: Drug Plasma Concentration",
+        "quote": "Since valproate may interact with concurrently administered drugs which are capable of enzyme induction, periodic plasma concentration determinations of valproate and concomitant drugs are recommended during the early course of therapy",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "mood_suicidality",
+      "note": "Alerta de classe dos antiepilépticos (não é boxed warning).",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 5.7 Suicidal Behavior and Ideation",
+        "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "skin_rash",
+      "cite": {
+        "source": "label-valproato",
+        "locator": "seção 5.13 Serious Dermatologic Reactions",
+        "quote": "Valproate should be discontinued at the first sign of a rash, unless the rash is clearly not drug related.",
+        "accessed": "2026-10-27",
+        "note": "Seção 17: \"Advise patients of the early signs and symptoms of severe cutaneous adverse reactions and to report any occurrence immediately to a healthcare provider\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

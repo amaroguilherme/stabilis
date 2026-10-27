@@ -1,0 +1,131 @@
+{
+  "id": "bipolar_1",
+  "description": "Transtorno bipolar tipo I. No modo paciente, apenas encaminhamento e informações de segurança; as linhas de tratamento por fase são para o modo profissional.",
+  "population": {"age_min": 18},
+  "options": [
+    {
+      "id": "opt-bp1-referral",
+      "kind": "referral",
+      "tier": "first_line",
+      "modes": ["patient"],
+      "text_key": "opt.bp.referral",
+      "sources": [
+        {"source": "stabilis-escopo", "locator": "seção 5. Condições cobertas", "quote": "Para transtorno bipolar, a ferramenta mostra informações de segurança e recomenda acompanhamento especializado.", "accessed": "2026-10-27"},
+        {"source": "nice-cg185", "locator": "recomendação 1.2.2", "quote": "Refer people urgently for a specialist mental health assessment if mania or severe depression is suspected or they are a danger to themselves or others.", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp1-psychoeducation",
+      "phase": "maintenance",
+      "kind": "psychotherapy",
+      "tier": "first_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp.psychoeducation",
+      "sources": [{"source": "canmat-isbd-2018", "locator": "pdf p. 11 (Table 10)", "quote": "Psychoeducation (PE) First-line (Level 2)", "accessed": "2026-10-27", "note": "Coluna de manutenção da Tabela 10."}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp1-antidepressant-monotherapy",
+      "kind": "medication",
+      "targets": [{"class": "antidepressant"}],
+      "use": "monotherapy",
+      "tier": "not_recommended",
+      "modes": ["professional"],
+      "text_key": "opt.bp.antidepressant_not_recommended",
+      "sources": [
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 47 (nota b da tabela)", "quote": "Antidepressant monotherapy is not recommended in bipolar I disorder", "accessed": "2026-10-27"},
+        {"source": "mhgap-ig-2-pt", "locator": "pdf p. 33 (Depressão: transtorno bipolar)", "quote": "NUNCA prescreva apenas antidepressivos, sem um estabilizador do humor como lítio,", "accessed": "2026-10-27"},
+        {"source": "mhgap-ig-2-pt", "locator": "pdf p. 45 (Transtorno bipolar: episódio maníaco)", "quote": "INTERROMPA o medicamento para evitar um maior risco de mania.", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp1-mania-first-line",
+      "phase": "mania",
+      "kind": "medication",
+      "targets": [{"drug": "litio"}, {"drug": "quetiapina"}, {"drug": "valproato"}, {"drug": "aripiprazol"}, {"drug": "risperidona"}],
+      "use": "either",
+      "tier": "first_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp1.mania_first",
+      "sources": [
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 2 (resumo)", "quote": "Lithium, quetiapine, divalproex, asenapine, aripiprazole, paliperidone, risperidone, and cariprazine alone or in combination are recommended as first-line treatments for acute mania.", "accessed": "2026-10-27"},
+        {"source": "pcdt-tab-2016", "locator": "pdf p. 14 (Tratamento do episódio maníaco)", "quote": "seu uso é recomendado como primeira escolha entre as opções de estabilizadores de humor", "accessed": "2026-10-27", "note": "Refere-se ao carbonato de lítio."},
+        {"source": "pcdt-tab-2016", "locator": "pdf p. 14 (Tratamento do episódio maníaco)", "quote": "a risperidona é recomendada como primeira escolha entre as opções de antipsicóticos", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp1-mania-second-line",
+      "phase": "mania",
+      "kind": "medication",
+      "targets": [{"drug": "olanzapina"}, {"drug": "carbamazepina"}, {"drug": "ziprasidona"}, {"drug": "haloperidol"}],
+      "use": "either",
+      "tier": "second_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp1.mania_second",
+      "sources": [
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 16 (3.3.3 Step 3)", "quote": "level 1 evidence for efficacy but they are downgraded to second-­line options due to safety/tolerability risks with these agents", "accessed": "2026-10-27", "note": "Sujeito da frase: carbamazepine, olanzapine, ziprasidone and haloperidol."},
+        {"source": "nice-cg185", "locator": "recomendação 1.5.3", "quote": "offer haloperidol, olanzapine, quetiapine or risperidone", "accessed": "2026-10-27", "note": "A NICE inclui haloperidol e olanzapina entre as primeiras ofertas para mania."}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp1-depression-first-line",
+      "phase": "depression",
+      "kind": "medication",
+      "targets": [{"drug": "quetiapina"}, {"drug": "lurasidona"}, {"drug": "litio"}, {"drug": "lamotrigina"}],
+      "use": "either",
+      "tier": "first_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp1.depression_first",
+      "sources": [
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 2 (resumo)", "quote": "First-­line options for bipolar I depression include quetiapine, lurasidone plus lithium or divalproex, lithium, lamotrigine, lurasidone, or adjunctive lamotrigine.", "accessed": "2026-10-27"},
+        {"source": "pcdt-tab-2016", "locator": "pdf p. 16 (Tratamento da depressão bipolar)", "quote": "Apenas o carbonato de lítio, a lamotrigina e a quetiapina são considerados monoterapias de primeira linha", "accessed": "2026-10-27"},
+        {"source": "nice-cg185", "locator": "recomendação 1.6.3", "quote": "offer fluoxetine combined with olanzapine, or quetiapine on its own", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp1-depression-second-line",
+      "phase": "depression",
+      "kind": "medication",
+      "targets": [{"drug": "valproato"}],
+      "use": "monotherapy",
+      "tier": "second_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp1.depression_second",
+      "sources": [{"source": "canmat-isbd-2018", "locator": "pdf p. 22 (4.4 Pharmacological treatment for acute bipolar depression)", "quote": "therapy with divalproex (level 2)242,258 is included as a second-­line option", "accessed": "2026-10-27", "note": "Frase completa: monoterapia com divalproato (nível 2) é incluída como opção de segunda linha."}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp1-maintenance-first-line",
+      "phase": "maintenance",
+      "kind": "medication",
+      "targets": [{"drug": "litio"}, {"drug": "quetiapina"}, {"drug": "valproato"}, {"drug": "lamotrigina"}, {"drug": "aripiprazol"}],
+      "use": "either",
+      "tier": "first_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp1.maintenance_first",
+      "sources": [
+        {"source": "canmat-isbd-2018", "locator": "pdf p. 2 (resumo)", "quote": "lithium, quetiapine, divalproex, lamotrigine, asenapine, and aripiprazole monotherapy or combination treatments should be considered first-line for those initiating or switching treatment during the maintenance phase", "accessed": "2026-10-27"},
+        {"source": "nice-cg185", "locator": "recomendação 1.7.7", "quote": "Offer lithium as a first‑line, long‑term pharmacological treatment for bipolar disorder.", "accessed": "2026-10-27"},
+        {"source": "pcdt-tab-2016", "locator": "pdf p. 18 (Tratamento de manutenção)", "quote": "ainda é o estabilizador de humor recomendado como primeira escolha no tratamento de manutenção desse transtorno", "accessed": "2026-10-27", "note": "Refere-se ao carbonato de lítio."}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-bp1-maintenance-second-line",
+      "phase": "maintenance",
+      "kind": "medication",
+      "targets": [{"drug": "olanzapina"}],
+      "use": "either",
+      "tier": "second_line",
+      "modes": ["professional"],
+      "text_key": "opt.bp1.maintenance_second",
+      "sources": [{"source": "canmat-isbd-2018", "locator": "pdf p. 28 (5.5.4 Step 4)", "quote": "Step 4: add on or switch therapy (second-­line agents) Second-line Although olanzapine (level 1)381,382 is effective in preventing any", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    }
+  ]
+}

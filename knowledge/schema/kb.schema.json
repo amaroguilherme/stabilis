@@ -1,0 +1,1844 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stabilis/knowledge/kb.schema.json",
+  "title": "Base de conhecimento do Stabilis",
+  "description": "Um $def por tipo de documento. scripts/build_kb.py valida cada arquivo de knowledge/ contra o $def correspondente e depois confere integridade referencial e proveniência.",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[-_.][a-z0-9]+)*$",
+      "maxLength": 80
+    },
+    "rule_id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}-[A-Z0-9-]+$",
+      "maxLength": 60
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "message_key": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+      "maxLength": 80
+    },
+    "severity": {
+      "enum": [
+        "info",
+        "warning",
+        "major",
+        "contraindicated"
+      ]
+    },
+    "alert_level": {
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ]
+    },
+    "tier": {
+      "enum": [
+        "first_line",
+        "second_line",
+        "alternative",
+        "not_recommended",
+        "avoid_for_profile"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "patient",
+        "professional"
+      ]
+    },
+    "cite": {
+      "description": "Trecho literal (`quote`) ou afirmação de ausência (`absent_term`), sempre com localizador verificável.",
+      "type": "object",
+      "required": [
+        "source",
+        "locator",
+        "accessed"
+      ],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/id"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 400
+        },
+        "absent_term": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 80
+        },
+        "accessed": {
+          "$ref": "#/$defs/date"
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 400
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "quote"
+          ]
+        },
+        {
+          "required": [
+            "absent_term"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "cites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/cite"
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "status",
+        "extracted_by",
+        "extracted_on"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "draft",
+            "verified"
+          ]
+        },
+        "extracted_by": {
+          "enum": [
+            "ai",
+            "owner"
+          ]
+        },
+        "extracted_on": {
+          "$ref": "#/$defs/date"
+        },
+        "verified_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verified_on": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 600
+        }
+      },
+      "additionalProperties": false
+    },
+    "class_ref": {
+      "type": "object",
+      "required": [
+        "class"
+      ],
+      "properties": {
+        "class": {
+          "$ref": "#/$defs/id"
+        },
+        "subclass": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "additionalProperties": false
+    },
+    "selector": {
+      "description": "Seleciona medicamentos por id, classe/subclasse ou fato.",
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "drug"
+          ],
+          "properties": {
+            "drug": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "class"
+          ],
+          "properties": {
+            "class": {
+              "$ref": "#/$defs/id"
+            },
+            "subclass": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "fact"
+          ],
+          "properties": {
+            "fact": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "predicate": {
+      "description": "Linguagem de condições: all/any/not e 12 tipos de folha.",
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "all"
+          ],
+          "properties": {
+            "all": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/predicate"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "any"
+          ],
+          "properties": {
+            "any": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/predicate"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "not"
+          ],
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/predicate"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "profile",
+            "op"
+          ],
+          "properties": {
+            "profile": {
+              "enum": [
+                "age",
+                "sex_at_birth",
+                "reproductive.pregnant",
+                "reproductive.breastfeeding",
+                "reproductive.planning",
+                "conditions",
+                "habits",
+                "severity",
+                "suicide_risk_assessed"
+              ]
+            },
+            "op": {
+              "enum": [
+                "eq",
+                "ne",
+                "in",
+                "lt",
+                "lte",
+                "gt",
+                "gte",
+                "between",
+                "exists",
+                "contains"
+              ]
+            },
+            "value": {}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "derived"
+          ],
+          "properties": {
+            "derived": {
+              "$ref": "#/$defs/id"
+            },
+            "value": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "instrument"
+          ],
+          "properties": {
+            "instrument": {
+              "$ref": "#/$defs/id"
+            },
+            "band_in": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/id"
+              }
+            },
+            "flag": {
+              "$ref": "#/$defs/id"
+            },
+            "answered": {
+              "type": "boolean"
+            }
+          },
+          "minProperties": 2,
+          "maxProperties": 2,
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "drug_fact"
+          ],
+          "properties": {
+            "drug_fact": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "drug_class"
+          ],
+          "properties": {
+            "drug_class": {
+              "$ref": "#/$defs/id"
+            },
+            "subclass": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "drug"
+          ],
+          "properties": {
+            "drug": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "current_med_fact"
+          ],
+          "properties": {
+            "current_med_fact": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "current_med_class"
+          ],
+          "properties": {
+            "current_med_class": {
+              "$ref": "#/$defs/id"
+            },
+            "subclass": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "current_med"
+          ],
+          "properties": {
+            "current_med": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "mode"
+          ],
+          "properties": {
+            "mode": {
+              "$ref": "#/$defs/mode"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "condition"
+          ],
+          "properties": {
+            "condition": {
+              "$ref": "#/$defs/id"
+            },
+            "phase": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "signal"
+          ],
+          "description": "Sinais calculados pelo motor: linguagem de crise no texto livre e resultado da triagem de bipolaridade.",
+          "properties": {
+            "signal": {
+              "enum": [
+                "crisis_language",
+                "crisis_language_negated_only",
+                "bipolar_screen_negative"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "action": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "action",
+            "tier"
+          ],
+          "properties": {
+            "action": {
+              "const": "set_tier"
+            },
+            "tier": {
+              "enum": [
+                "avoid_for_profile",
+                "not_recommended"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "action"
+          ],
+          "properties": {
+            "action": {
+              "const": "exclude"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "action",
+            "scope"
+          ],
+          "properties": {
+            "action": {
+              "const": "exclude_medications"
+            },
+            "scope": {
+              "oneOf": [
+                {
+                  "const": "all"
+                },
+                {
+                  "$ref": "#/$defs/class_ref"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "action",
+            "level",
+            "message_key"
+          ],
+          "properties": {
+            "action": {
+              "const": "alert"
+            },
+            "level": {
+              "$ref": "#/$defs/alert_level"
+            },
+            "message_key": {
+              "$ref": "#/$defs/message_key"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "action",
+            "message_key"
+          ],
+          "properties": {
+            "action": {
+              "const": "add_question"
+            },
+            "message_key": {
+              "$ref": "#/$defs/message_key"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "action",
+            "message_key"
+          ],
+          "properties": {
+            "action": {
+              "const": "referral"
+            },
+            "urgent": {
+              "type": "boolean"
+            },
+            "message_key": {
+              "$ref": "#/$defs/message_key"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "drug": {
+      "type": "object",
+      "required": [
+        "id",
+        "names",
+        "class",
+        "subclass",
+        "scope",
+        "facts",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "names": {
+          "type": "object",
+          "required": [
+            "dcb",
+            "display_pt",
+            "inn_en",
+            "anvisa_principles"
+          ],
+          "properties": {
+            "dcb": {
+              "type": "string",
+              "minLength": 3
+            },
+            "display_pt": {
+              "type": "string",
+              "minLength": 3
+            },
+            "inn_en": {
+              "type": "string",
+              "minLength": 3
+            },
+            "aliases": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 2
+              }
+            },
+            "anvisa_principles": {
+              "description": "Valores exatos de PRINCIPIO_ATIVO (dados abertos da ANVISA) que correspondem a este medicamento.",
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "class": {
+          "$ref": "#/$defs/id"
+        },
+        "subclass": {
+          "$ref": "#/$defs/id"
+        },
+        "scope": {
+          "type": "object",
+          "required": [
+            "anvisa_registered",
+            "interaction_only"
+          ],
+          "properties": {
+            "anvisa_registered": {
+              "type": "boolean"
+            },
+            "interaction_only": {
+              "type": "boolean"
+            },
+            "cite": {
+              "$ref": "#/$defs/cite"
+            }
+          },
+          "additionalProperties": false
+        },
+        "label_source": {
+          "$ref": "#/$defs/id"
+        },
+        "sus": {
+          "type": "object",
+          "required": [
+            "component",
+            "cite"
+          ],
+          "properties": {
+            "component": {
+              "enum": [
+                "basico",
+                "estrategico",
+                "especializado",
+                "nao_consta"
+              ]
+            },
+            "note": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "cite": {
+              "$ref": "#/$defs/cite"
+            }
+          },
+          "additionalProperties": false
+        },
+        "dose_adult": {
+          "type": "object",
+          "required": [
+            "unit",
+            "cite"
+          ],
+          "properties": {
+            "unit": {
+              "const": "mg/dia"
+            },
+            "start": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "usual_min": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "usual_max": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "max": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "indication": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "note": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "cite": {
+              "$ref": "#/$defs/cite"
+            }
+          },
+          "additionalProperties": false
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "tag",
+              "cite"
+            ],
+            "properties": {
+              "tag": {
+                "$ref": "#/$defs/id"
+              },
+              "severity": {
+                "$ref": "#/$defs/severity"
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "cite": {
+                "$ref": "#/$defs/cite"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "monitoring": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "cite"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "cite": {
+                "$ref": "#/$defs/cite"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "additionalProperties": false
+    },
+    "interaction": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "effect",
+        "severity",
+        "message_key",
+        "sources",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/rule_id"
+        },
+        "type": {
+          "enum": [
+            "pharmacokinetic",
+            "pharmacodynamic"
+          ]
+        },
+        "perpetrator": {
+          "$ref": "#/$defs/selector"
+        },
+        "victim": {
+          "$ref": "#/$defs/selector"
+        },
+        "participants": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/selector"
+          }
+        },
+        "effect": {
+          "enum": [
+            "increases_victim_exposure",
+            "decreases_victim_exposure",
+            "contraceptive_failure",
+            "serotonin_syndrome",
+            "qt_additive",
+            "cns_depression_additive",
+            "bleeding_additive",
+            "maoi_reaction"
+          ]
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "message_key": {
+          "$ref": "#/$defs/message_key"
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        },
+        "supersedes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/rule_id"
+          },
+          "description": "Interações mais gerais que esta substitui quando as duas valem para o mesmo par (ex.: a regra do IMAO substitui a regra serotoninérgica geral)."
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "perpetrator",
+            "victim"
+          ],
+          "properties": {
+            "type": {
+              "const": "pharmacokinetic"
+            }
+          },
+          "not": {
+            "required": [
+              "participants"
+            ]
+          }
+        },
+        {
+          "required": [
+            "participants"
+          ],
+          "properties": {
+            "type": {
+              "const": "pharmacodynamic"
+            }
+          },
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "perpetrator"
+                ]
+              },
+              {
+                "required": [
+                  "victim"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "safety_rule": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "applies_to",
+        "modes",
+        "when",
+        "then",
+        "sources",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/rule_id"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 160
+        },
+        "applies_to": {
+          "enum": [
+            "drug",
+            "global"
+          ]
+        },
+        "modes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/mode"
+          }
+        },
+        "when": {
+          "$ref": "#/$defs/predicate"
+        },
+        "then": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/action"
+          }
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "additionalProperties": false
+    },
+    "derived_fact": {
+      "type": "object",
+      "required": [
+        "id",
+        "label_pt",
+        "when",
+        "sources",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label_pt": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 160
+        },
+        "when": {
+          "$ref": "#/$defs/predicate"
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "additionalProperties": false
+    },
+    "option": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "tier",
+        "modes",
+        "text_key",
+        "sources",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "phase": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "psychotherapy",
+            "medication",
+            "referral",
+            "self_care"
+          ]
+        },
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/selector"
+          }
+        },
+        "use": {
+          "enum": [
+            "monotherapy",
+            "adjunctive",
+            "either"
+          ]
+        },
+        "tier": {
+          "enum": [
+            "first_line",
+            "second_line",
+            "alternative",
+            "not_recommended"
+          ]
+        },
+        "applies_when": {
+          "$ref": "#/$defs/predicate"
+        },
+        "modes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/mode"
+          }
+        },
+        "text_key": {
+          "$ref": "#/$defs/message_key"
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "medication"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "targets"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "condition_doc": {
+      "type": "object",
+      "required": [
+        "id",
+        "options"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "population": {
+          "type": "object",
+          "properties": {
+            "age_min": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/option"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "instrument": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "options",
+        "items",
+        "scoring",
+        "sources",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "stem": {
+          "type": "string"
+        },
+        "license_note": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "value",
+              "label"
+            ],
+            "properties": {
+              "value": {
+                "type": "integer"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "text_status"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "text": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "text_status": {
+                "enum": [
+                  "verified",
+                  "pending"
+                ]
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "label"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "integer"
+                    },
+                    "label": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "scoring": {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "sum",
+                "mdq",
+                "cssrs_screener"
+              ]
+            },
+            "bands": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "min",
+                  "max"
+                ],
+                "properties": {
+                  "id": {
+                    "$ref": "#/$defs/id"
+                  },
+                  "min": {
+                    "type": "integer"
+                  },
+                  "max": {
+                    "type": "integer"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "bands_by_sex": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "min",
+                    "max"
+                  ],
+                  "properties": {
+                    "id": {
+                      "$ref": "#/$defs/id"
+                    },
+                    "min": {
+                      "type": "integer"
+                    },
+                    "max": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "flags": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "item",
+                  "op",
+                  "value"
+                ],
+                "properties": {
+                  "id": {
+                    "$ref": "#/$defs/id"
+                  },
+                  "item": {
+                    "description": "id do item, ou \"total\" para o escore total",
+                    "$ref": "#/$defs/id"
+                  },
+                  "op": {
+                    "enum": [
+                      "gt",
+                      "gte",
+                      "eq"
+                    ]
+                  },
+                  "value": {
+                    "type": "integer"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "mdq": {
+              "type": "object",
+              "required": [
+                "symptom_items",
+                "min_yes",
+                "same_period_item",
+                "problem_item",
+                "problem_min_value"
+              ],
+              "properties": {
+                "symptom_items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/id"
+                  }
+                },
+                "min_yes": {
+                  "type": "integer"
+                },
+                "same_period_item": {
+                  "$ref": "#/$defs/id"
+                },
+                "problem_item": {
+                  "$ref": "#/$defs/id"
+                },
+                "problem_min_value": {
+                  "type": "integer"
+                }
+              },
+              "additionalProperties": false
+            },
+            "cssrs": {
+              "type": "object",
+              "required": [
+                "low_items",
+                "high_items"
+              ],
+              "properties": {
+                "low_items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/id"
+                  }
+                },
+                "high_items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/id"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages": {
+      "type": "object",
+      "required": [
+        "language",
+        "messages"
+      ],
+      "properties": {
+        "language": {
+          "const": "pt-BR"
+        },
+        "description": {
+          "type": "string"
+        },
+        "messages": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/message_key"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "clinical"
+            ],
+            "properties": {
+              "plain": {
+                "type": "string",
+                "minLength": 3
+              },
+              "clinical": {
+                "type": "string",
+                "minLength": 3
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "manifest": {
+      "type": "object",
+      "required": [
+        "kb_version",
+        "schema_version",
+        "language"
+      ],
+      "properties": {
+        "kb_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "schema_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "language": {
+          "const": "pt-BR"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sources_file": {
+      "type": "object",
+      "required": [
+        "sources"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title",
+              "publisher",
+              "year",
+              "kind",
+              "language",
+              "url",
+              "license_note"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "title": {
+                "type": "string"
+              },
+              "publisher": {
+                "type": "string"
+              },
+              "year": {
+                "type": "integer",
+                "minimum": 1950,
+                "maximum": 2100
+              },
+              "kind": {
+                "enum": [
+                  "essential_medicines_list",
+                  "guideline",
+                  "drug_label",
+                  "dataset",
+                  "instrument",
+                  "review",
+                  "policy"
+                ]
+              },
+              "language": {
+                "enum": [
+                  "pt-BR",
+                  "en"
+                ]
+              },
+              "url": {
+                "type": "string",
+                "pattern": "^(https://|knowledge/)"
+              },
+              "retrieval": {
+                "type": "object",
+                "required": [
+                  "kind"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "pdf",
+                      "html",
+                      "europepmc",
+                      "dailymed",
+                      "file",
+                      "local"
+                    ]
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "doi": {
+                    "type": "string"
+                  },
+                  "setid": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "encoding": {
+                    "type": "string"
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "license_note": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "vocab_facts": {
+      "type": "object",
+      "required": [
+        "facts"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "category",
+              "label_pt"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "category": {
+                "enum": [
+                  "pharmacodynamic",
+                  "safety_warning",
+                  "tolerability",
+                  "contraindication",
+                  "reproductive",
+                  "interaction_role"
+                ]
+              },
+              "label_pt": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "vocab_classes": {
+      "type": "object",
+      "required": [
+        "classes"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label_pt",
+              "subclasses"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "label_pt": {
+                "type": "string"
+              },
+              "subclasses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "label_pt"
+                  ],
+                  "properties": {
+                    "id": {
+                      "$ref": "#/$defs/id"
+                    },
+                    "label_pt": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "vocab_comorbidities": {
+      "type": "object",
+      "required": [
+        "comorbidities",
+        "habits"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "comorbidities": {
+          "$ref": "#/$defs/concept_list"
+        },
+        "habits": {
+          "$ref": "#/$defs/concept_list"
+        }
+      },
+      "additionalProperties": false
+    },
+    "concept_list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label_plain",
+          "label_clinical",
+          "legacy_labels"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "label_plain": {
+            "type": "string"
+          },
+          "label_clinical": {
+            "type": "string"
+          },
+          "legacy_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "vocab_monitoring": {
+      "type": "object",
+      "required": [
+        "monitoring"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "monitoring": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label_pt"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "label_pt": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "vocab_conditions": {
+      "type": "object",
+      "required": [
+        "conditions"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label_plain",
+              "label_clinical",
+              "patient_scope",
+              "phases"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "label_plain": {
+                "type": "string"
+              },
+              "label_clinical": {
+                "type": "string"
+              },
+              "patient_scope": {
+                "enum": [
+                  "options",
+                  "referral"
+                ]
+              },
+              "phases": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "label_clinical"
+                  ],
+                  "properties": {
+                    "id": {
+                      "$ref": "#/$defs/id"
+                    },
+                    "label_clinical": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "rules_file": {
+      "type": "object",
+      "required": [
+        "rules"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/safety_rule"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "derived_file": {
+      "type": "object",
+      "required": [
+        "derived"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "derived": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/derived_fact"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "interactions_file": {
+      "type": "object",
+      "required": [
+        "interactions"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "interactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/interaction"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "brands_lexicon": {
+      "type": "object",
+      "required": [
+        "source",
+        "generated_by",
+        "brands"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/id"
+        },
+        "generated_by": {
+          "type": "string"
+        },
+        "retrieved_at": {
+          "type": "string"
+        },
+        "brands": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

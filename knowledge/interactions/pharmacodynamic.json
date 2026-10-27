@@ -1,0 +1,218 @@
+{
+  "description": "Interações farmacodinâmicas (efeitos que se somam), por fato ou classe. Simétricas: valem para qualquer par de medicamentos que tenha um participante de cada lado.",
+  "interactions": [
+    {
+      "id": "IX-PD-MAOI-CONTRAINDICATED",
+      "type": "pharmacodynamic",
+      "participants": [
+        {
+          "fact": "maoi"
+        },
+        {
+          "fact": "maoi_contraindicated"
+        }
+      ],
+      "effect": "maoi_reaction",
+      "severity": "contraindicated",
+      "message_key": "ix.maoi_contraindicated",
+      "supersedes": [
+        "IX-PD-SEROTONERGIC"
+      ],
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 4.1 Monoamine Oxidase Inhibitors (MAOIs)",
+          "quote": "Starting PROZAC in a patient who is being treated with MAOIs such as linezolid or intravenous methylene blue is also contraindicated because of an increased risk of serotonin syndrome",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "label-imipramina",
+          "locator": "Contraindications",
+          "quote": "The concomitant use of monoamine oxidase inhibiting compounds is contraindicated.",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 4 CONTRAINDICATIONS",
+          "quote": "The use of MAOIs (intended to treat psychiatric disorders) concomitantly with Wellbutrin XL or within 14 days of discontinuing treatment with Wellbutrin XL is contraindicated.",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "label-linezolida",
+          "locator": "seção 7.1 Monoamine Oxidase Inhibitors",
+          "quote": "Linezolid is a reversible, nonselective inhibitor of monoamine oxidase",
+          "accessed": "2026-10-27",
+          "note": "Seção 4.2: \"Linezolid should not be used in patients taking any medicinal product which inhibits monoamine oxidases A or B (e.g., phenelzine, isocarboxazid) or within two weeks of taking any such medicinal product.\""
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "IX-PD-SEROTONERGIC",
+      "type": "pharmacodynamic",
+      "participants": [
+        {
+          "fact": "serotonergic"
+        },
+        {
+          "fact": "serotonergic"
+        }
+      ],
+      "effect": "serotonin_syndrome",
+      "severity": "major",
+      "message_key": "ix.serotonin_syndrome",
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.2 Serotonin Syndrome",
+          "quote": "The risk is increased with concomitant use of other serotonergic drugs (including triptans, tricyclic antidepressants, fentanyl, lithium, tramadol, tryptophan, meperidine, methadone, buspirone, amphetamines, and St. John's Wort)",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "IX-PD-QT",
+      "type": "pharmacodynamic",
+      "participants": [
+        {
+          "fact": "qt_prolongation"
+        },
+        {
+          "fact": "qt_prolongation"
+        }
+      ],
+      "effect": "qt_additive",
+      "severity": "major",
+      "message_key": "ix.qt_additive",
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.11 QT Prolongation",
+          "quote": "Avoid the concomitant use of drugs known to prolong the QT interval.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "IX-PD-CNS-OPIOID",
+      "type": "pharmacodynamic",
+      "participants": [
+        {
+          "class": "non_psychiatric",
+          "subclass": "opioid"
+        },
+        {
+          "fact": "cns_depressant"
+        }
+      ],
+      "effect": "cns_depression_additive",
+      "severity": "major",
+      "message_key": "ix.cns_opioid",
+      "supersedes": [
+        "IX-PD-CNS"
+      ],
+      "sources": [
+        {
+          "source": "label-clonazepam",
+          "locator": "Boxed warning: Risks from concomitant use with opioids",
+          "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death.",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "label-tramadol",
+          "locator": "seção 7 Drug Interactions (Benzodiazepines and Other CNS Depressants)",
+          "quote": "Due to additive pharmacologic effect, the concomitant use of benzodiazepines or other CNS depressants, including alcohol, increases the risk of respiratory depression, profound sedation, coma, and death.",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "IX-PD-CNS",
+      "type": "pharmacodynamic",
+      "participants": [
+        {
+          "fact": "cns_depressant"
+        },
+        {
+          "fact": "cns_depressant"
+        }
+      ],
+      "effect": "cns_depression_additive",
+      "severity": "info",
+      "message_key": "ix.cns_additive",
+      "sources": [
+        {
+          "source": "label-zolpidem",
+          "locator": "seção 5.2 CNS-Depressant Effects and Next-Day Impairment",
+          "quote": "Coadministration with other CNS depressants (e.g., benzodiazepines, opioids, tricyclic antidepressants, alcohol) increases the risk of CNS depression",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "IX-PD-BLEEDING",
+      "type": "pharmacodynamic",
+      "participants": [
+        {
+          "fact": "bleeding_risk"
+        },
+        {
+          "fact": "bleeding_risk"
+        }
+      ],
+      "effect": "bleeding_additive",
+      "severity": "warning",
+      "message_key": "ix.bleeding_additive",
+      "sources": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.7 Increased Risk of Bleeding",
+          "quote": "warfarin, and other anti-coagulants may add to this risk",
+          "accessed": "2026-10-27",
+          "note": "Frase completa: o uso com aspirina, anti-inflamatórios não esteroides, varfarina e outros anticoagulantes pode somar ao risco."
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    }
+  ]
+}

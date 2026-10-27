@@ -1,0 +1,23 @@
+{
+  "description": "Condições clínicas e hábitos que mudam a segurança dos medicamentos (perfil → conditions/habits). label_plain é o texto para leigos; label_clinical para profissionais; legacy_labels mapeia os rótulos do formulário antigo.",
+  "comorbidities": [
+    {"id": "hepatic_disease", "label_plain": "Problema no fígado (hepatite, cirrose, gordura no fígado, exames do fígado alterados)", "label_clinical": "Doença hepática ou alteração de enzimas hepáticas", "legacy_labels": ["Hepatite C"]},
+    {"id": "renal_disease", "label_plain": "Problema nos rins", "label_clinical": "Doença renal ou redução da função renal", "legacy_labels": ["Insuficiência Renal Crônica"]},
+    {"id": "cardiac_qt", "label_plain": "Arritmia, QT longo ou outra doença do coração", "label_clinical": "Arritmia, QT longo, cardiopatia ou insuficiência cardíaca", "legacy_labels": []},
+    {"id": "hypertension", "label_plain": "Pressão alta", "label_clinical": "Hipertensão arterial", "legacy_labels": ["Hipertensão"]},
+    {"id": "metabolic", "label_plain": "Diabetes, obesidade ou colesterol alto", "label_clinical": "Diabetes, obesidade ou dislipidemia", "legacy_labels": ["Diabetes Tipo 2", "Obesidade"]},
+    {"id": "thyroid_disease", "label_plain": "Problema de tireoide", "label_clinical": "Doença tireoidiana", "legacy_labels": ["Hipotireoidismo"]},
+    {"id": "epilepsy", "label_plain": "Epilepsia ou convulsões", "label_clinical": "Epilepsia ou história de convulsões", "legacy_labels": []},
+    {"id": "angle_closure_glaucoma", "label_plain": "Glaucoma de ângulo fechado (ou ângulo estreito)", "label_clinical": "Glaucoma de ângulo fechado ou ângulo estreito não tratado", "legacy_labels": []},
+    {"id": "bleeding_disorder", "label_plain": "Problema de sangramento ou de coagulação", "label_clinical": "Distúrbio hemorrágico ou de coagulação", "legacy_labels": []},
+    {"id": "eating_disorder", "label_plain": "Bulimia ou anorexia (atual ou passada)", "label_clinical": "Bulimia ou anorexia nervosa, atual ou prévia", "legacy_labels": []},
+    {"id": "dementia", "label_plain": "Demência", "label_clinical": "Demência", "legacy_labels": []},
+    {"id": "eps_history", "label_plain": "Já teve tremor, rigidez, espasmos ou inquietação forte por causa de remédio", "label_clinical": "História de sintomas extrapiramidais, distonia, acatisia ou discinesia tardia", "legacy_labels": []},
+    {"id": "respiratory_disease", "label_plain": "Doença grave do pulmão ou apneia do sono", "label_clinical": "Doença pulmonar grave ou apneia obstrutiva do sono", "legacy_labels": []}
+  ],
+  "habits": [
+    {"id": "smoking", "label_plain": "Fuma", "label_clinical": "Tabagismo", "legacy_labels": ["Tabagismo"]},
+    {"id": "alcohol", "label_plain": "Bebe álcool com frequência", "label_clinical": "Uso de álcool", "legacy_labels": ["Consumo de Álcool"]},
+    {"id": "cannabis", "label_plain": "Usa maconha", "label_clinical": "Uso de cannabis", "legacy_labels": ["Uso de Cannabis"]}
+  ]
+}

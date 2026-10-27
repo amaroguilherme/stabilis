@@ -1,0 +1,228 @@
+{
+  "id": "risperidona",
+  "names": {
+    "dcb": "risperidona",
+    "display_pt": "Risperidona",
+    "inn_en": "risperidone",
+    "aliases": [
+      "risperidona",
+      "risperidone"
+    ],
+    "anvisa_principles": [
+      "risperidona"
+    ]
+  },
+  "class": "antipsychotic",
+  "subclass": "atypical",
+  "label_source": "label-risperidona",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"risperidona\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "especializado",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 210 (Anexo III – Componente Especializado)",
+      "quote": "risperidona",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 2,
+    "usual_min": 1,
+    "usual_max": 6,
+    "max": 6,
+    "indication": "Transtorno bipolar I, episódios maníacos ou mistos agudos",
+    "note": "A bula indica início de 2 a 3 mg/dia, com ajustes de 1 mg/dia a cada 24 horas ou mais; doses acima de 6 mg/dia não foram estudadas. Insuficiência renal grave ou hepática: iniciar com 0,5 mg duas vezes ao dia (seção 2.4).",
+    "cite": {
+      "source": "label-risperidona",
+      "locator": "seção 2.2 Bipolar Mania",
+      "quote": "The initial dose range is 2 mg to 3 mg per day. The dose may be adjusted at intervals of 24 hours or greater, in increments of 1 mg per day. The effective dose range is 1 mg to 6 mg per day, as studied in the short-term, placebo-controlled trials.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"RISPERDAL doses higher than 6 mg per day were not studied.\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "dementia_mortality_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "eps_tardive_dyskinesia",
+      "severity": "warning",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.4 Tardive Dyskinesia",
+        "quote": "If signs and symptoms of tardive dyskinesia appear in a patient on RISPERDAL, drug discontinuation should be considered.",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.1: doses acima de 6 mg/dia (em duas tomadas) \"were associated with more extrapyramidal symptoms and other adverse effects\"."
+      }
+    },
+    {
+      "tag": "metabolic_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.5 Metabolic Changes",
+        "quote": "Hyperglycemia and diabetes mellitus, in some cases extreme and associated with ketoacidosis or hyperosmolar coma or death, have been reported in patients treated with atypical antipsychotics including RISPERDAL.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "weight_gain_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.5 Metabolic Changes",
+        "quote": "In longer-term, controlled and uncontrolled studies, RISPERDAL was associated with a mean change in weight of +4.3 kg at Week 24 (n=395) and +5.3 kg at Week 48 (n=203).",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "prolactin_elevation",
+      "severity": "warning",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.6 Hyperprolactinemia",
+        "quote": "RISPERDAL is associated with higher levels of prolactin elevation than other antipsychotic agents.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "orthostatic_hypotension",
+      "severity": "warning",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.7 Orthostatic Hypotension",
+        "quote": "RISPERDAL may induce orthostatic hypotension associated with dizziness, tachycardia, and in some patients, syncope, especially during the initial dose-titration period, probably reflecting its alpha-adrenergic antagonistic properties.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "warning",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.9 Leukopenia, Neutropenia, and Agranulocytosis",
+        "quote": "In clinical trial and/or postmarketing experience, events of leukopenia/neutropenia have been reported temporally related to antipsychotic agents, including RISPERDAL. Agranulocytosis has also been reported.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.10 Potential for Cognitive and Motor Impairment",
+        "quote": "Somnolence was a commonly reported adverse reaction associated with RISPERDAL treatment, especially when ascertained by direct questioning of patients. This adverse reaction is dose-related",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.11 Seizures",
+        "quote": "RISPERDAL should be used cautiously in patients with a history of seizures.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "info",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 7.2 Pharmacodynamic-related Interactions",
+        "quote": "Given the primary CNS effects of risperidone, caution should be used when RISPERDAL is taken in combination with other centrally acting drugs and alcohol.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cyp2d6_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 7.1 Pharmacokinetic-related Interactions",
+        "quote": "The dose of RISPERDAL should be adjusted when used in combination with CYP2D6 enzyme inhibitors (e.g., fluoxetine, and paroxetine) and enzyme inducers (e.g., carbamazepine)",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.5: com fluoxetina ou paroxetina a dose deve ser reduzida e não deve passar de 8 mg/dia em adultos."
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 7.1 Pharmacokinetic-related Interactions (Table 18)",
+        "quote": "Enzyme (CYP3A/PgP inducers) Inducers Carbamazepine 573 ± 168 mg/day 3 mg twice daily 0.51 0.55 Titrate dose upwards. Do not exceed twice the patient's usual dose",
+        "accessed": "2026-10-27",
+        "note": "Ajuste só com indutores: a seção 2.5 manda aumentar até o dobro da dose com carbamazepina (e prevê efeito semelhante com fenitoína, rifampicina e fenobarbital). Na mesma tabela, inibidores de CYP3A (eritromicina) não exigem ajuste."
+      }
+    },
+    {
+      "tag": "renal_impairment_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 8.6 Renal Impairment",
+        "quote": "In patients with moderate to severe (Clcr 59 to 15 mL/min) renal disease, clearance of the sum of risperidone and its active metabolite decreased by 60%, compared to young healthy subjects. RISPERDAL doses should be reduced in patients with renal disease",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.4: com ClCr < 30 mL/min, iniciar com 0,5 mg duas vezes ao dia."
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Extrapyramidal and/or withdrawal symptoms, including agitation, hypertonia, hypotonia, tremor, somnolence, respiratory distress, and feeding disorder have been reported in neonates who were exposed to antipsychotic drugs, including RISPERDAL, during the third trimester of pregnancy.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 8.2 Lactation",
+        "quote": "There are reports of sedation, failure to thrive, jitteriness, and extrapyramidal symptoms (tremors and abnormal muscle movements) in breastfed infants exposed to risperidone",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "metabolic_profile",
+      "cite": {
+        "source": "label-risperidona",
+        "locator": "seção 5.5 Metabolic Changes",
+        "quote": "Weight gain has been observed with atypical antipsychotic use. Clinical monitoring of weight is recommended.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: glicemia de jejum no início e periodicamente para quem tem fatores de risco para diabetes, e acompanhamento do controle glicêmico em quem já tem diabetes."
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

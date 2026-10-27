@@ -1,0 +1,180 @@
+{
+  "id": "diazepam",
+  "names": {
+    "dcb": "diazepam",
+    "display_pt": "Diazepam",
+    "inn_en": "diazepam",
+    "aliases": [
+      "diazepam"
+    ],
+    "anvisa_principles": [
+      "diazepam"
+    ]
+  },
+  "class": "anxiolytic_hypnotic",
+  "subclass": "benzodiazepine",
+  "label_source": "label-diazepam",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"diazepam\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "basico",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 133 (Anexo I – Componente Básico)",
+      "quote": "diazepam",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "usual_min": 4,
+    "usual_max": 40,
+    "indication": "Tratamento de curto prazo de sintomas de ansiedade",
+    "note": "A bula indica 2 a 10 mg, duas a quatro vezes ao dia (4 a 40 mg/dia), para adultos com menos de 65 anos, sem dose inicial ou máxima própria. Idosos ou debilitados: início de 2 a 2,5 mg uma ou duas vezes ao dia. Insuficiência hepática leve ou moderada: metade da dose.",
+    "cite": {
+      "source": "label-diazepam",
+      "locator": "seção 2.1 Recommended Dosage in Adults Less Than 65 Years of Age (Table 1)",
+      "quote": "Short-term treatment of anxiety symptoms 2 mg to 10 mg, two to four times daily",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "opioid_coadministration_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+        "quote": "Concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma, and death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "dependence_withdrawal",
+      "severity": "major",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+        "quote": "The use of benzodiazepines, including VALIUM, exposes users to risks of abuse, misuse, and addiction, which can lead to overdose or death.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo boxed warning: \"The continued use of benzodiazepines, including VALIUM, may lead to clinically significant physical dependence.\""
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "major",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+        "quote": "Abrupt discontinuation or rapid dosage reduction of VALIUM after continued use may precipitate acute withdrawal reactions, which can be life-threatening.",
+        "accessed": "2026-10-27",
+        "note": "Mesmo boxed warning: \"To reduce the risk of withdrawal reactions, use a gradual taper to discontinue VALIUM or reduce the dosage\""
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "info",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "seção 7.2 CNS Depressants and Alcohol",
+        "quote": "VALIUM produces additive CNS depressant effects, which can include potentially fatal respiratory depression, when used concomitantly with other medications that produce CNS depression, or with consumption of alcohol",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.8: \"Use of benzodiazepines, including VALIUM, either alone or in combination with other CNS depressants, may lead to potentially fatal respiratory depression\""
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "seção 5.4 Central Nervous System Depression",
+        "quote": "Benzodiazepines, including VALIUM, may produce central nervous system (CNS) depression. Caution patients receiving VALIUM against engaging in hazardous occupations or activities requiring complete mental alertness (e.g., operating machinery or driving a motor vehicle).",
+        "accessed": "2026-10-27",
+        "note": "Seção 6: \"Adverse reactions most commonly reported were drowsiness, fatigue, muscle weakness, and ataxia.\""
+      }
+    },
+    {
+      "tag": "angle_closure_glaucoma_warning",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "seção 5.9 Glaucoma",
+        "quote": "VALIUM is contraindicated in patients with acute narrow-angle glaucoma.",
+        "accessed": "2026-10-27",
+        "note": "Também listado na seção 4 Contraindications. Mesma seção 5.9: \"Benzodiazepines, including VALIUM, can increase intraocular pressure in patients with glaucoma.\""
+      }
+    },
+    {
+      "tag": "hepatic_impairment_avoid",
+      "severity": "info",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "seção 2.2 Recommended Dosage in Specific Populations",
+        "quote": "VALIUM is not recommended in patients with severe hepatic impairment",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"In patients with mild or moderate hepatic impairment, reduce the recommended dosage by half compared to those with normal hepatic function\""
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "seção 7.3 Effects of Other Drugs on VALIUM (Table 3)",
+        "quote": "Based on tolerability, consider reducing the dosage of VALIUM during concomitant use with CYP3A4 or CYP2C19 inhibitors.",
+        "accessed": "2026-10-27",
+        "note": "Mesma tabela: \"Based on clinical response, consider increasing the dosage of VALIUM during concomitant use with CYP3A4 or CYP2C19 inducers.\""
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "seção 5.10 Neonatal Sedation and Withdrawal Syndrome",
+        "quote": "Maternal use of VALIUM late in pregnancy can result in sedation (respiratory depression, lethargy, hypotonia) and/or withdrawal symptoms (hyperreflexia, irritability, restlessness, tremors, inconsolable crying, and feeding difficulties) in the neonate.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "seção 8.2 Lactation",
+        "quote": "There are reports of sedation, poor feeding and poor weight gain in infants exposed to benzodiazepines through breast milk",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Infants exposed to VALIUM through breastmilk should be monitored for sedation, poor feeding, and poor weight gain.\""
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "note": "Alerta de classe dos antiepilépticos (não é boxed warning).",
+      "cite": {
+        "source": "label-diazepam",
+        "locator": "seção 5.5 Suicidal Behavior and Ideation",
+        "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.6: \"Monitor patients for worsening of preexisting depression.\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null,
+    "notes": "Doses de 2.1 convertidas para mg/dia (2–10 mg, 2 a 4 vezes ao dia). Fora por falta de id ou de suporte claro: inibidores/indutores da CYP2C19 (sem id próprio), piora de depressão preexistente, cautela na insuficiência respiratória, suicidalidade dos antiepilépticos (entra só como monitoramento), superdosagem (fatal só em combinação). Sem fato renal: a seção 12.3 diz que a depuração do diazepam livre na insuficiência renal crônica é semelhante à de voluntários saudáveis."
+  }
+}

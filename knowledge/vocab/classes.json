@@ -1,0 +1,40 @@
+{
+  "description": "Classes e subclasses de medicamentos (knowledge/drugs/*.json → class/subclass). Medicamentos não psiquiátricos entram apenas para checar interações.",
+  "classes": [
+    {"id": "antidepressant", "label_pt": "Antidepressivo", "subclasses": [
+      {"id": "ssri", "label_pt": "Inibidor seletivo da recaptação de serotonina (ISRS)"},
+      {"id": "snri", "label_pt": "Inibidor da recaptação de serotonina e noradrenalina (IRSN)"},
+      {"id": "tca", "label_pt": "Antidepressivo tricíclico"},
+      {"id": "ndri", "label_pt": "Inibidor da recaptação de noradrenalina e dopamina"},
+      {"id": "nassa", "label_pt": "Antidepressivo noradrenérgico e serotoninérgico específico"},
+      {"id": "sari", "label_pt": "Antagonista e inibidor da recaptação de serotonina"},
+      {"id": "multimodal", "label_pt": "Antidepressivo multimodal"}
+    ]},
+    {"id": "mood_stabilizer", "label_pt": "Estabilizador de humor", "subclasses": [
+      {"id": "lithium", "label_pt": "Lítio"},
+      {"id": "anticonvulsant", "label_pt": "Anticonvulsivante estabilizador de humor"}
+    ]},
+    {"id": "antipsychotic", "label_pt": "Antipsicótico", "subclasses": [
+      {"id": "atypical", "label_pt": "Antipsicótico de segunda geração (atípico)"},
+      {"id": "typical", "label_pt": "Antipsicótico de primeira geração (típico)"}
+    ]},
+    {"id": "anxiolytic_hypnotic", "label_pt": "Ansiolítico ou hipnótico", "subclasses": [
+      {"id": "benzodiazepine", "label_pt": "Benzodiazepínico"},
+      {"id": "z_drug", "label_pt": "Hipnótico não benzodiazepínico (droga Z)"},
+      {"id": "gabapentinoid", "label_pt": "Gabapentinoide"}
+    ]},
+    {"id": "non_psychiatric", "label_pt": "Medicamento não psiquiátrico (só para interações)", "subclasses": [
+      {"id": "nsaid", "label_pt": "Anti-inflamatório não esteroide (AINE)"},
+      {"id": "antiplatelet", "label_pt": "Antiagregante plaquetário"},
+      {"id": "anticoagulant", "label_pt": "Anticoagulante"},
+      {"id": "ace_inhibitor", "label_pt": "Inibidor da ECA"},
+      {"id": "arb", "label_pt": "Bloqueador do receptor de angiotensina (BRA)"},
+      {"id": "thiazide_diuretic", "label_pt": "Diurético tiazídico"},
+      {"id": "hormonal_contraceptive", "label_pt": "Anticoncepcional hormonal"},
+      {"id": "fluoroquinolone", "label_pt": "Antibiótico fluoroquinolona"},
+      {"id": "opioid", "label_pt": "Opioide"},
+      {"id": "triptan", "label_pt": "Triptano (antienxaqueca)"},
+      {"id": "oxazolidinone", "label_pt": "Antibiótico oxazolidinona (com ação IMAO)"}
+    ]}
+  ]
+}

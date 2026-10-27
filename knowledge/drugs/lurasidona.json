@@ -1,0 +1,221 @@
+{
+  "id": "lurasidona",
+  "names": {
+    "dcb": "cloridrato de lurasidona",
+    "display_pt": "Lurasidona",
+    "inn_en": "lurasidone",
+    "aliases": [
+      "lurasidona",
+      "lurasidone",
+      "cloridrato de lurasidona"
+    ],
+    "anvisa_principles": [
+      "cloridrato de lurasidona"
+    ]
+  },
+  "class": "antipsychotic",
+  "subclass": "atypical",
+  "label_source": "label-lurasidona",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"cloridrato de lurasidona\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "nao_consta",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "documento inteiro (Anexos I a III)",
+      "absent_term": "lurasidona",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 20,
+    "usual_min": 20,
+    "usual_max": 120,
+    "max": 120,
+    "indication": "Episódio depressivo do transtorno bipolar I (monoterapia ou adjuvante de lítio ou valproato)",
+    "note": "Tomar com alimento (pelo menos 350 calorias). Na monoterapia, 80 a 120 mg/dia não trouxe eficácia adicional média sobre 20 a 60 mg/dia. Insuficiência renal ou hepática moderada/grave e inibidor moderado de CYP3A4 reduzem a dose máxima (seções 2.4 a 2.6).",
+    "cite": {
+      "source": "label-lurasidona",
+      "locator": "seção 2.2 Depressive Episodes Associated with Bipolar I Disorder",
+      "quote": "The recommended starting dose of LATUDA is 20 mg given once daily as monotherapy or as adjunctive therapy with lithium or valproate. Initial dose titration is not required. LATUDA has been shown to be effective in a dose range of 20 mg per day to 120 mg per day as monotherapy or as adjunctive therapy with lithium or valproate",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"The maximum recommended dose, as monotherapy or as adjunctive therapy with lithium or valproate, is 120 mg per day.\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "dementia_mortality_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "suicidality_warning_young",
+      "severity": "major",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors",
+        "quote": "Antidepressants increased the risk of suicidal thoughts and behavior in pediatric and young adults in short-term studies.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 4 Contraindications",
+        "quote": "Strong CYP3A4 inhibitors (e.g., ketoconazole, clarithromycin, ritonavir, voriconazole, mibefradil, etc.) [see Drug Interactions ( 7.1 )]. Strong CYP3A4 inducers (e.g., rifampin, avasimibe, St. John's wort, phenytoin, carbamazepine, etc.)",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.6: com inibidor moderado de CYP3A4, reduzir a dose à metade (início de 20 mg e máximo de 80 mg/dia); evitar toranja (grapefruit); com indutor moderado pode ser preciso aumentar a dose."
+      }
+    },
+    {
+      "tag": "eps_tardive_dyskinesia",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.5 Tardive Dyskinesia",
+        "quote": "If signs and symptoms of tardive dyskinesia appear in a patient on LATUDA, drug discontinuation should be considered.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "metabolic_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.6 Metabolic Changes",
+        "quote": "Atypical antipsychotic drugs have been associated with metabolic changes that may increase cardiovascular/cerebrovascular risk. These metabolic changes include hyperglycemia, dyslipidemia, and body weight gain.",
+        "accessed": "2026-10-27",
+        "note": "Nos ensaios de curto prazo da própria bula, o ganho de peso médio com lurasidona foi pequeno (+0,29 kg na depressão bipolar em monoterapia)."
+      }
+    },
+    {
+      "tag": "prolactin_elevation",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.7 Hyperprolactinemia",
+        "quote": "As with other drugs that antagonize dopamine D 2 receptors, LATUDA elevates prolactin levels.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.8 Leukopenia, Neutropenia and Agranulocytosis",
+        "quote": "Leukopenia/neutropenia has been reported during treatment with antipsychotic agents. Agranulocytosis (including fatal cases) has been reported with other agents in the class.",
+        "accessed": "2026-10-27",
+        "note": "A agranulocitose é citada para outros antipsicóticos da classe, não especificamente para a lurasidona."
+      }
+    },
+    {
+      "tag": "orthostatic_hypotension",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.9 Orthostatic Hypotension and Syncope",
+        "quote": "LATUDA may cause orthostatic hypotension and syncope, perhaps due to its α1-adrenergic receptor antagonism.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.11 Seizures",
+        "quote": "As with other antipsychotic drugs, LATUDA should be used cautiously in patients with a history of seizures or with conditions that lower the seizure threshold",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.12 Potential for Cognitive and Motor Impairment",
+        "quote": "In short-term, placebo-controlled schizophrenia studies, somnolence was reported by 17.0% (256/1508) of patients treated with LATUDA",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: 7,1% com placebo. Na depressão bipolar: 7,3% (20 a 60 mg) e 13,8% (80 a 120 mg) em monoterapia contra 6,5% com placebo; 11,4% como adjuvante contra 5,1%."
+      }
+    },
+    {
+      "tag": "antidepressant_mania_switch",
+      "severity": "warning",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.14 Activation of Mania/Hypomania",
+        "quote": "Antidepressant treatment can increase the risk of developing a manic or hypomanic episode, particularly in patients with bipolar disorder. Monitor patients for the emergence of such episodes.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: nos estudos de depressão bipolar em adultos, menos de 1% dos pacientes com lurasidona e com placebo tiveram episódio maníaco ou hipomaníaco."
+      }
+    },
+    {
+      "tag": "renal_impairment_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 2.4 Dose Modifications for Renal Impairment",
+        "quote": "Dose adjustment is recommended in moderate (creatinine clearance: 30 to <50 mL/min) and severe renal impairment (creatinine clearance <30 mL/min) patients.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: início de 20 mg/dia e máximo de 80 mg/dia."
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Neonates exposed to antipsychotic drugs during the third trimester of pregnancy are at risk for extrapyramidal and/or withdrawal symptoms following delivery",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: não há estudos de lurasidona em gestantes."
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors",
+        "quote": "Closely monitor all antidepressant-treated patients for clinical worsening, and for emergence of suicidal thoughts and behaviors",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "metabolic_profile",
+      "cite": {
+        "source": "label-lurasidona",
+        "locator": "seção 5.6 Metabolic Changes",
+        "quote": "Weight gain has been observed with atypical antipsychotic use. Clinical monitoring of weight is recommended.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: glicemia de jejum no início e periodicamente para quem tem fatores de risco para diabetes, e acompanhamento do controle glicêmico em quem já tem diabetes."
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "naproxeno",
+  "names": {
+    "dcb": "naproxeno",
+    "display_pt": "Naproxeno",
+    "inn_en": "naproxen",
+    "aliases": [
+      "naproxeno",
+      "naproxen",
+      "naproxeno sódico"
+    ],
+    "anvisa_principles": [
+      "naproxeno",
+      "naproxeno sódico"
+    ]
+  },
+  "class": "non_psychiatric",
+  "subclass": "nsaid",
+  "label_source": "label-naproxeno",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"naproxeno\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "bleeding_risk",
+      "severity": "major",
+      "cite": {
+        "source": "label-naproxeno",
+        "locator": "Boxed warning: Risk of Serious Cardiovascular and Gastrointestinal Events",
+        "quote": "NSAIDs cause an increased risk of serious gastrointestinal (GI) adverse events including bleeding, ulceration, and perforation of the stomach or intestines, which can be fatal.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "lithium_level_raiser",
+      "severity": "info",
+      "cite": {
+        "source": "label-naproxeno",
+        "locator": "seção 7 Drug Interactions (Table 1, Lithium)",
+        "quote": "NSAIDs have produced elevations in plasma lithium levels and reductions in renal lithium clearance.",
+        "accessed": "2026-10-27",
+        "note": "Mesma tabela: \"During concomitant use of naproxen delayed-release tablets and lithium, monitor patients for signs of lithium toxicity.\""
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

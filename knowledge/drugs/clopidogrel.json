@@ -1,0 +1,22 @@
+{
+  "id": "clopidogrel",
+  "names": {
+    "dcb": "bissulfato de clopidogrel",
+    "display_pt": "Clopidogrel",
+    "inn_en": "clopidogrel",
+    "aliases": ["clopidogrel", "bissulfato de clopidogrel"],
+    "anvisa_principles": ["bissulfato de clopidogrel"]
+  },
+  "class": "non_psychiatric",
+  "subclass": "antiplatelet",
+  "label_source": "label-clopidogrel",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"bissulfato de clopidogrel\"", "accessed": "2026-10-27"}
+  },
+  "facts": [
+    {"tag": "bleeding_risk", "severity": "warning", "cite": {"source": "label-clopidogrel", "locator": "seção 5.2 General Risk of Bleeding", "quote": "P2Y12 inhibitors (thienopyridines), including Plavix, increase the risk of bleeding.", "accessed": "2026-10-27", "note": "Seção 4.1: \"Plavix is contraindicated in patients with active pathological bleeding such as peptic ulcer or intracranial hemorrhage.\""}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+}

@@ -1,0 +1,22 @@
+{
+  "id": "captopril",
+  "names": {
+    "dcb": "captopril",
+    "display_pt": "Captopril",
+    "inn_en": "captopril",
+    "aliases": ["captopril"],
+    "anvisa_principles": ["captopril"]
+  },
+  "class": "non_psychiatric",
+  "subclass": "ace_inhibitor",
+  "label_source": "label-captopril",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {"source": "anvisa-medicamentos", "locator": "registros com SITUACAO_REGISTRO = Ativo", "quote": "\"Ativo\";\"captopril\"", "accessed": "2026-10-27"}
+  },
+  "facts": [
+    {"tag": "lithium_level_raiser", "severity": "warning", "cite": {"source": "label-captopril", "locator": "seção PRECAUTIONS: Drug Interactions (Lithium)", "quote": "Increased serum lithium levels and symptoms of lithium toxicity have been reported in patients receiving concomitant lithium and ACE inhibitor therapy.", "accessed": "2026-10-27", "note": "Mesma seção: \"These drugs should be coadministered with caution and frequent monitoring of serum lithium levels is recommended. If a diuretic is also used, it may increase the risk of lithium toxicity.\""}}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+}

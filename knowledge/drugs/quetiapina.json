@@ -1,0 +1,289 @@
+{
+  "id": "quetiapina",
+  "names": {
+    "dcb": "hemifumarato de quetiapina",
+    "display_pt": "Quetiapina",
+    "inn_en": "quetiapine",
+    "aliases": [
+      "quetiapina",
+      "hemifumarato de quetiapina",
+      "fumarato de quetiapina",
+      "quetiapine",
+      "quetiapine fumarate"
+    ],
+    "anvisa_principles": [
+      "hemifumarato de quetiapina"
+    ]
+  },
+  "class": "antipsychotic",
+  "subclass": "atypical",
+  "label_source": "label-quetiapina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"hemifumarato de quetiapina\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "especializado",
+    "note": "Na tabela: grupo 1A, PCDT Esquizofrenia, PCDT Transtorno Afetivo Bipolar do tipo I e PCDT Transtorno Esquizoafetivo (o texto extraído do PDF sai fora de ordem).",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 194 (Anexo III – Componente Especializado)",
+      "quote": "hemifumarato de quetiapina",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 50,
+    "usual_min": 300,
+    "usual_max": 800,
+    "max": 800,
+    "indication": "Transtorno bipolar (depressão: 300 mg/dia; mania: 400 a 800 mg/dia)",
+    "note": "Faixa das duas indicações bipolares, para não acusar dose acima da máxima em quem trata mania. Depressão bipolar: 50, 100, 200 e 300 mg nos dias 1–4; recomendada e máxima 300 mg/dia. Mania: 100 mg no dia 1 até 400 no dia 4; 400–800 mg/dia; máximo 800. Idosos: iniciar com 50 mg/dia; hepatopatas, 25.",
+    "cite": {
+      "source": "label-quetiapina",
+      "locator": "seção 2.2 Recommended Dosing (Tabela 1)",
+      "quote": "Further dosage adjustments up to 800 mg/day by Day 6 should be in increments of no greater than 200 mg/day. 400-800 mg/day 800 mg/day",
+      "accessed": "2026-10-27",
+      "note": "Colunas da Tabela 1: titulação; dose recomendada; dose máxima. Linha da mania (adultos). Linha da depressão bipolar, mesma tabela: \"Bipolar Depression - Adults Administer once daily at bedtime. Day 1: 50 mg Day 2: 100 mg Day 3: 200 mg Day 4: 300 mg 300 mg/day 300 mg/day\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "dementia_mortality_warning",
+      "severity": "major",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "Boxed warning: Increased mortality in elderly patients with dementia-related psychosis",
+        "quote": "Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "suicidality_warning_young",
+      "severity": "major",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors",
+        "quote": "Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term studies.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "metabolic_risk",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.5 Metabolic Changes",
+        "quote": "Atypical antipsychotic drugs have been associated with metabolic changes that include hyperglycemia/diabetes mellitus, dyslipidemia, and body weight gain. While all of the drugs in the class have been shown to produce some metabolic changes, each drug has its own specific risk profile.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Hyperglycemia, in some cases extreme and associated with ketoacidosis or hyperosmolar coma or death, has been reported in patients treated with atypical antipsychotics, including quetiapine.\""
+      }
+    },
+    {
+      "tag": "weight_gain_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.5 Metabolic Changes (Weight Gain)",
+        "quote": "Increases in weight have been observed in clinical trials. Patients receiving quetiapine should receive regular monitoring of weight.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção, Tabela 6 (adultos): ganho de 7% ou mais do peso em 21% (mania, monoterapia) e 8% (depressão bipolar) com SEROQUEL, contra 7% e 2% com placebo."
+      }
+    },
+    {
+      "tag": "eps_tardive_dyskinesia",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.6 Tardive Dyskinesia",
+        "quote": "A syndrome of potentially irreversible, involuntary, dyskinetic movements may develop in patients treated with antipsychotic drugs, including quetiapine.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "orthostatic_hypotension",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.7 Hypotension",
+        "quote": "Quetiapine may induce orthostatic hypotension associated with dizziness, tachycardia and, in some patients, syncope, especially during the initial dose-titration period",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "neutropenia_agranulocytosis",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.10 Leukopenia, Neutropenia, and Agranulocytosis",
+        "quote": "Agranulocytosis (defined as absolute neutrophil count <500/mm3) has been reported with quetiapine, including fatal cases and cases in patients without pre-existing risk factors.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "qt_prolongation",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.12 QT Prolongation",
+        "quote": "The use of quetiapine should be avoided in combination with other drugs that are known to prolong QTc",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"In clinical trials, quetiapine was not associated with a persistent increase in QT intervals.\" e \"In post marketing experience, there were cases reported of QT prolongation in patients who overdosed on quetiapine\""
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.13 Seizures",
+        "quote": "As with other antipsychotics, SEROQUEL should be used cautiously in patients with a history of seizures or with conditions that potentially lower the seizure threshold",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "thyroid_effects",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.14 Hypothyroidism",
+        "quote": "Clinical trials with quetiapine demonstrated dose-related decreases in thyroid hormone levels.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Some patients with TSH increases needed replacement thyroid treatment.\""
+      }
+    },
+    {
+      "tag": "prolactin_elevation",
+      "severity": "warning",
+      "note": "Em adultos, a diferença para o placebo foi pequena (3,6% contra 2,6%).",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.15 Hyperprolactinemia",
+        "quote": "SEROQUEL elevates prolactin levels in some patients and the elevation may persist during chronic administration.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção (adultos): \"the incidence of shifts in prolactin levels to a clinically significant value occurred in 3.6% (158/4416) of patients treated with quetiapine compared to 2.6% (51/1968) on placebo\""
+      }
+    },
+    {
+      "tag": "sedation_significant",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.16 Potential for Cognitive and Motor Impairment",
+        "quote": "In bipolar depression trials, somnolence was reported in 57% (398/698) of patients on SEROQUEL compared to 15% (51/347) of placebo patients.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Somnolence was a commonly reported adverse event reported in patients treated with SEROQUEL especially during the 3-5 day period of initial dose-titration.\""
+      }
+    },
+    {
+      "tag": "discontinuation_syndrome",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.19 Discontinuation Syndrome",
+        "quote": "Acute withdrawal symptoms, such as insomnia, nausea, and vomiting have been described after abrupt cessation of atypical antipsychotic drugs, including SEROQUEL.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Gradual withdrawal is advised\""
+      }
+    },
+    {
+      "tag": "anticholinergic_burden",
+      "severity": "warning",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.20 Anticholinergic (antimuscarinic) Effects",
+        "quote": "Norquetiapine, an active metabolite of quetiapine, has moderate to strong affinity for several muscarinic receptor subtypes. This contributes to anticholinergic adverse reactions when SEROQUEL is used at therapeutic doses, taken concomitantly with other anticholinergic medications, or taken in overdose.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"SEROQUEL should be used with caution in patients with a current diagnosis or prior history of urinary retention, clinically significant prostatic hypertrophy, or constipation.\""
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "info",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 7.1 Effect of Other Drugs on Quetiapine",
+        "quote": "Given the primary CNS effects of SEROQUEL, caution should be used when it is taken in combination with other centrally acting drugs. SEROQUEL potentiated the cognitive and motor effects of alcohol in a clinical trial in subjects with selected psychotic disorders, and alcoholic beverages should be limited while taking quetiapine.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cyp3a4_substrate_sensitive",
+      "severity": "info",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 2.5 Dose Modifications when used with CYP3A4 Inhibitors",
+        "quote": "SEROQUEL dose should be reduced to one sixth of original dose when co-medicated with a potent CYP3A4 inhibitor (e.g., ketoconazole, itraconazole, indinavir, ritonavir, nefazodone, etc.).",
+        "accessed": "2026-10-27",
+        "note": "Seção 2.6, com indutor potente da CYP3A4 em uso crônico: \"SEROQUEL dose should be increased up to 5-fold of the original dose\""
+      }
+    },
+    {
+      "tag": "pregnancy_risk",
+      "severity": "info",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 8.1 Pregnancy",
+        "quote": "Neonates exposed to antipsychotic drugs (including SEROQUEL) during the third trimester are at risk for extrapyramidal and/or withdrawal symptoms following delivery",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: os dados disponíveis \"have not established a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes\"."
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "note": "A bula relata uma morte (13,6 g), mas diz que a maioria se recuperou e houve sobrevida após até 30 g.",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 10.1 Human Experience",
+        "quote": "In clinical trials, survival has been reported in acute overdoses of up to 30 grams of quetiapine. Most patients who overdosed experienced no adverse reactions or recovered fully from the reported reactions. Death has been reported in a clinical trial following an overdose of 13.6 grams of quetiapine alone.",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.2: \"Prescriptions for SEROQUEL should be written for the smallest quantity of tablets consistent with good patient management, in order to reduce the risk of overdose.\""
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors",
+        "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening, and for emergence of suicidal thoughts and behaviors.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "metabolic_profile",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.5 Metabolic Changes (Weight Gain)",
+        "quote": "Patients receiving quetiapine should receive regular monitoring of weight.",
+        "accessed": "2026-10-27",
+        "note": "Seção 17: \"Patients should have their lipid profile monitored at the beginning of and periodically during treatment\". Seção 5.5: glicemia de jejum no início e periodicamente em quem tem fatores de risco para diabetes."
+      }
+    },
+    {
+      "id": "thyroid_function",
+      "cite": {
+        "source": "label-quetiapina",
+        "locator": "seção 5.14 Hypothyroidism",
+        "quote": "both TSH and free T 4 , in addition to clinical assessment, should be measured at baseline and at follow-up",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

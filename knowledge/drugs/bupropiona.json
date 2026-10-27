@@ -1,0 +1,219 @@
+{
+  "id": "bupropiona",
+  "names": {
+    "dcb": "cloridrato de bupropiona",
+    "display_pt": "Bupropiona",
+    "inn_en": "bupropion",
+    "aliases": [
+      "bupropiona",
+      "bupropion"
+    ],
+    "anvisa_principles": [
+      "cloridrato de bupropiona"
+    ]
+  },
+  "class": "antidepressant",
+  "subclass": "ndri",
+  "label_source": "label-bupropiona",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": false,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"cloridrato de bupropiona\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "sus": {
+    "component": "estrategico",
+    "note": "Anexo II (Componente Estratégico), só 150 mg de liberação prolongada. A página não indica o programa; a introdução da RENAME (pdf p. 15) cita \"controle do tabagismo\" entre as condições do componente, sem nomear a bupropiona.",
+    "cite": {
+      "source": "rename-2024",
+      "locator": "pdf p. 147 (Anexo II – Componente Estratégico)",
+      "quote": "cloridrato de bupropiona 150 mg comprimido de liberação prolongada",
+      "accessed": "2026-10-27"
+    }
+  },
+  "dose_adult": {
+    "unit": "mg/dia",
+    "start": 150,
+    "usual_max": 300,
+    "max": 300,
+    "indication": "Transtorno depressivo maior (adultos), comprimido de liberação prolongada (XL)",
+    "note": "Dose-alvo de 300 mg/dia após 4 dias. A bula é inconsistente: a seção 5.3 diz que a dose não deve passar de 300 mg/dia, mas também que o risco de convulsão diminui se não passar de 450 mg/dia; a seção 8.1 cita dose máxima recomendada de 450 mg/dia.",
+    "cite": {
+      "source": "label-bupropiona",
+      "locator": "seção 2.2 Dosage for Major Depressive Disorder (MDD)",
+      "quote": "The recommended starting dose for MDD is 150 mg once daily in the morning. After 4 days of dosing, the dose may be increased to the target dose of 300 mg once daily in the morning.",
+      "accessed": "2026-10-27",
+      "note": "Seção 5.3 Seizure: \"The dose should not exceed 300 mg once daily.\""
+    }
+  },
+  "facts": [
+    {
+      "tag": "suicidality_warning_young",
+      "severity": "major",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors",
+        "quote": "Antidepressants increased the risk of suicidal thoughts and behavior in children, adolescents, and young adults in short-term trials.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_disorder_contraindication",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 4 Contraindications",
+        "quote": "Wellbutrin XL is contraindicated in patients with seizure disorder.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "eating_disorder_contraindication",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 4 Contraindications",
+        "quote": "Wellbutrin XL is contraindicated in patients with a current or prior diagnosis of bulimia or anorexia nervosa as a higher incidence of seizures was observed in such patients treated with Wellbutrin XL",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "seizure_threshold_lowering",
+      "severity": "warning",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 5.3 Seizure",
+        "quote": "Wellbutrin XL can cause seizure. The risk of seizure is dose-related.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"The dose should not exceed 300 mg once daily.\""
+      }
+    },
+    {
+      "tag": "blood_pressure_increase",
+      "severity": "warning",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 5.4 Hypertension",
+        "quote": "Treatment with Wellbutrin XL can result in elevated blood pressure and hypertension.",
+        "accessed": "2026-10-27",
+        "note": "Seção 4 Contraindications: \"There is an increased risk of hypertensive reactions when Wellbutrin XL is used concomitantly with MAOIs.\""
+      }
+    },
+    {
+      "tag": "antidepressant_mania_switch",
+      "severity": "warning",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 5.5 Activation of Mania/Hypomania",
+        "quote": "Antidepressant treatment can precipitate a manic, mixed, or hypomanic manic episode.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Prior to initiating Wellbutrin XL, screen patients for a history of bipolar disorder and the presence of risk factors for bipolar disorder\""
+      }
+    },
+    {
+      "tag": "angle_closure_glaucoma_warning",
+      "severity": "warning",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 5.7 Angle-Closure Glaucoma",
+        "quote": "The pupillary dilation that occurs following use of many antidepressant drugs including Wellbutrin XL may trigger an angle-closure attack in a patient with anatomically narrow angles who does not have a patent iridectomy.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "serious_rash",
+      "severity": "warning",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 5.8 Hypersensitivity Reactions",
+        "quote": "In addition, there have been rare, spontaneous postmarketing reports of erythema multiforme, Stevens-Johnson syndrome, and anaphylactic shock associated with bupropion.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "cyp2d6_strong_inhibitor",
+      "severity": "info",
+      "note": "A bula não usa a palavra \"potente\"; o aumento de cerca de 5 vezes na AUC da desipramina é o dado que sustenta o fato.",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 12.3 Pharmacokinetics (Drug Interactions: Drugs Metabolized by CYP2D6)",
+        "quote": "bupropion given as 150 mg twice daily followed by a single dose of 50 mg desipramine increased the C max , AUC, and T ½ of desipramine by an average of approximately 2-, 5-, and 2-fold, respectively.",
+        "accessed": "2026-10-27",
+        "note": "Seção 7.2: \"When used concomitantly with Wellbutrin XL, it may be necessary to decrease the dose of these CYP2D6 substrates, particularly for drugs with a narrow therapeutic index.\""
+      }
+    },
+    {
+      "tag": "renal_impairment_caution",
+      "severity": "info",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 8.6 Renal Impairment",
+        "quote": "Consider a reduced dose and/or dosing frequency of Wellbutrin XL in patients with renal impairment (glomerular filtration rate: <90 mL/min).",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "overdose_toxicity_high",
+      "severity": "info",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 10.1 Human Overdose Experience",
+        "quote": "Although most patients recovered without sequelae, deaths associated with overdoses of bupropion alone have been reported in patients ingesting large doses of the drug.",
+        "accessed": "2026-10-27",
+        "note": "Mesma seção: \"Seizure was reported in approximately one third of all cases.\""
+      }
+    },
+    {
+      "tag": "lactation_caution",
+      "severity": "info",
+      "note": "A bula diz que a relação com a bupropiona é incerta.",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 8.2 Lactation",
+        "quote": "Postmarketing reports have described seizures in breastfed infants. The relationship of bupropion exposure and these seizures is unclear.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "maoi_contraindicated",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 4 CONTRAINDICATIONS",
+        "quote": "The use of MAOIs (intended to treat psychiatric disorders) concomitantly with Wellbutrin XL or within 14 days of discontinuing treatment with Wellbutrin XL is contraindicated.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "mood_suicidality",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "Boxed warning: Suicidal thoughts and behaviors",
+        "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening, and for emergence of suicidal thoughts and behaviors.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "id": "blood_pressure",
+      "cite": {
+        "source": "label-bupropiona",
+        "locator": "seção 5.4 Hypertension",
+        "quote": "Assess blood pressure before initiating treatment with Wellbutrin XL, and monitor periodically during treatment.",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

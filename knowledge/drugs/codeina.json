@@ -1,0 +1,73 @@
+{
+  "id": "codeina",
+  "names": {
+    "dcb": "fosfato de codeína",
+    "display_pt": "Codeína",
+    "inn_en": "codeine",
+    "aliases": [
+      "codeína",
+      "codeina",
+      "codeine",
+      "fosfato de codeína",
+      "paracetamol com codeína"
+    ],
+    "anvisa_principles": [
+      "fosfato de codeína",
+      "fosfato de codeína hemi-hidratado"
+    ]
+  },
+  "class": "non_psychiatric",
+  "subclass": "opioid",
+  "label_source": "label-codeina",
+  "scope": {
+    "anvisa_registered": true,
+    "interaction_only": true,
+    "cite": {
+      "source": "anvisa-medicamentos",
+      "locator": "registros com SITUACAO_REGISTRO = Ativo",
+      "quote": "\"Ativo\";\"paracetamol, fosfato de codeína\"",
+      "accessed": "2026-10-27"
+    }
+  },
+  "facts": [
+    {
+      "tag": "dependence_withdrawal",
+      "severity": "major",
+      "cite": {
+        "source": "label-codeina",
+        "locator": "Boxed warning: Addiction, Abuse, and Misuse",
+        "quote": "Because the use of codeine sulfate tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death",
+        "accessed": "2026-10-27",
+        "note": "Seção 5.16 Withdrawal: \"Do not rapidly reduce or abruptly discontinue codeine sulfate tablets in a patient physically dependent on opioids.\""
+      }
+    },
+    {
+      "tag": "cns_depressant",
+      "severity": "major",
+      "cite": {
+        "source": "label-codeina",
+        "locator": "Boxed warning: Risks From Concomitant Use With Benzodiazepines Or Other CNS Depressants",
+        "quote": "Concomitant use of opioids with benzodiazepines or other central nervous system (CNS) depressants, including alcohol, may result in profound sedation, respiratory depression, coma, and death.",
+        "accessed": "2026-10-27"
+      }
+    },
+    {
+      "tag": "maoi_contraindicated",
+      "severity": "contraindicated",
+      "cite": {
+        "source": "label-codeina",
+        "locator": "seção 4 CONTRAINDICATIONS",
+        "quote": "Concurrent use of monoamine oxidase inhibitors (MAOIs) or use of MAOIs within the last 14 days",
+        "accessed": "2026-10-27"
+      }
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-27",
+    "verified_by": null,
+    "verified_on": null,
+    "notes": "A bula citada é do sulfato de codeína (EUA); no Brasil a codeína é registrada como fosfato, em geral associada ao paracetamol. O boxed warning e a seção 5.6 tratam de metabolizadores ultrarrápidos da CYP2D6 (não há id no vocabulário para isso)."
+  }
+}

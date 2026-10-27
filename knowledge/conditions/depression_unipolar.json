@@ -1,0 +1,111 @@
+{
+  "id": "depression_unipolar",
+  "description": "Depressão unipolar em adultos. Gravidade: no modo paciente, pelo PHQ-9 (menos grave < 16, mais grave ≥ 16, como na NICE NG222); no modo profissional, informada pelo profissional.",
+  "population": {"age_min": 18},
+  "options": [
+    {
+      "id": "opt-dep-psychotherapy",
+      "kind": "psychotherapy",
+      "tier": "first_line",
+      "modes": ["patient", "professional"],
+      "text_key": "opt.dep.psychotherapy",
+      "sources": [
+        {"source": "nice-ng222", "locator": "recomendação 1.5.2", "quote": "take into account that all treatments in table 1 can be used as first-line treatments", "accessed": "2026-10-27"},
+        {"source": "canmat-mdd-2023", "locator": "pdf p. 15 (Q.3.e Psychological treatments)", "quote": "recent evidence continues to support CBT, interpersonal therapy (IPT), and BA as first-line recommended psychological treatments", "accessed": "2026-10-27"},
+        {"source": "mhgap-ig-2-pt", "locator": "pdf p. 19 (Intervenções psicológicas)", "quote": "Ativação comportamental DEP Treinamento do relaxamento DEP Tratamento para a solução de problemas DEP", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-dep-exercise",
+      "kind": "self_care",
+      "tier": "first_line",
+      "applies_when": {"derived": "depression_less_severe"},
+      "modes": ["patient", "professional"],
+      "text_key": "opt.dep.exercise",
+      "sources": [{"source": "canmat-mdd-2023", "locator": "pdf p. 12 (Q.2 Lifestyle interventions)", "quote": "as a first-line monotherapy for mild depression", "accessed": "2026-10-27", "note": "Sujeito da frase: exercício supervisionado de intensidade baixa a moderada, 30 a 40 min, 3 a 4 vezes por semana, por pelo menos 9 semanas."}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-dep-ssri",
+      "kind": "medication",
+      "targets": [{"class": "antidepressant", "subclass": "ssri"}],
+      "use": "either",
+      "tier": "first_line",
+      "applies_when": {"derived": "depression_more_severe"},
+      "modes": ["patient", "professional"],
+      "text_key": "opt.dep.ssri",
+      "sources": [
+        {"source": "nice-ng222", "locator": "Table 2 (Treatment options for more severe depression)", "quote": "SSRIs are generally well tolerated, have a good safety profile and should be considered as the first choice for most people.", "accessed": "2026-10-27"},
+        {"source": "canmat-mdd-2023", "locator": "pdf p. 16 (Table 3.3, First line)", "quote": "Citalopram Escitalopram Fluoxetine Fluvoxamine Paroxetine Sertraline", "accessed": "2026-10-27", "note": "Na Tabela 3.3 estes ISRS estão na coluna de primeira linha."}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-dep-ssri-less-severe",
+      "kind": "medication",
+      "targets": [{"class": "antidepressant", "subclass": "ssri"}],
+      "use": "either",
+      "tier": "alternative",
+      "applies_when": {"derived": "depression_less_severe"},
+      "modes": ["patient", "professional"],
+      "text_key": "opt.dep.ssri_less_severe",
+      "sources": [{"source": "nice-ng222", "locator": "recomendação 1.5.3", "quote": "Do not routinely offer antidepressant medication as first-line treatment for less severe depression. Only offer it if that is the person's informed preference.", "accessed": "2026-10-27"}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-dep-other-first-line",
+      "kind": "medication",
+      "targets": [
+        {"class": "antidepressant", "subclass": "snri"},
+        {"drug": "bupropiona"},
+        {"drug": "mirtazapina"},
+        {"drug": "vortioxetina"}
+      ],
+      "use": "either",
+      "tier": "first_line",
+      "applies_when": {"derived": "depression_more_severe"},
+      "modes": ["patient", "professional"],
+      "text_key": "opt.dep.other_first_line",
+      "sources": [{"source": "canmat-mdd-2023", "locator": "pdf p. 16 (Table 3.3, First line)", "quote": "Desvenlafaxine Duloxetine Levomilnacipran* Venlafaxine-XR Bupropion Mirtazapine Vilazodone* Vortioxetine", "accessed": "2026-10-27", "note": "Na Tabela 3.3 estes antidepressivos estão na coluna de primeira linha."}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-dep-tca",
+      "kind": "medication",
+      "targets": [{"class": "antidepressant", "subclass": "tca"}],
+      "use": "either",
+      "tier": "second_line",
+      "applies_when": {"derived": "depression_more_severe"},
+      "modes": ["patient", "professional"],
+      "text_key": "opt.dep.tca",
+      "sources": [
+        {"source": "canmat-mdd-2023", "locator": "pdf p. 16 (Table 3.3, Second line)", "quote": "Amitriptyline Clomipramine Desipramine Doxepin Imipramine Nortriptyline Protriptyline Trimipramine", "accessed": "2026-10-27", "note": "Na Tabela 3.3 os tricíclicos estão na coluna de segunda linha."},
+        {"source": "nice-ng222", "locator": "Table 2 (Antidepressant medication)", "quote": "Tricyclic antidepressant (TCAs) are dangerous in overdose, although lofepramine has the best safety profile.", "accessed": "2026-10-27"}
+      ],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-dep-second-line-other",
+      "kind": "medication",
+      "targets": [{"drug": "trazodona"}, {"drug": "quetiapina"}],
+      "use": "either",
+      "tier": "second_line",
+      "applies_when": {"derived": "depression_more_severe"},
+      "modes": ["professional"],
+      "text_key": "opt.dep.second_line_other",
+      "sources": [{"source": "canmat-mdd-2023", "locator": "pdf p. 16 (Table 3.3, Second line)", "quote": "Moclobemide Trazodone Quetiapine", "accessed": "2026-10-27", "note": "Na Tabela 3.3 trazodona e quetiapina (de liberação prolongada) estão na coluna de segunda linha."}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    },
+    {
+      "id": "opt-dep-severe-referral",
+      "kind": "referral",
+      "tier": "first_line",
+      "applies_when": {"instrument": "phq9", "band_in": ["severe"]},
+      "modes": ["patient"],
+      "text_key": "opt.dep.severe_referral",
+      "sources": [{"source": "canmat-mdd-2023", "locator": "pdf p. 14 (Table 3.1)", "quote": "In severe cases of MDE with high safety risk and without psychotic features", "accessed": "2026-10-27", "note": "A frase continua: a CANMAT recomenda a combinação de antidepressivo e psicoterapia."}],
+      "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
+    }
+  ]
+}
