@@ -8,14 +8,15 @@
 export type CrisisMode = "patient" | "professional";
 
 export interface CrisisLexiconSource {
-  terms: { id: string; category: string; phrases: string[] }[];
+  terms: { id: string; category: string; phrases: string[]; modes?: CrisisMode[] }[];
   negation_cues: string[];
   scope_terminators: string[];
   matching: { negation_window_tokens: number };
 }
 
 export interface CompiledLexicon {
-  terms: { id: string; category: string; phrases: string[][] }[];
+  // `modes`: where the term applies (abbreviations like "IS" only in professional text).
+  terms: { id: string; category: string; phrases: string[][]; modes: CrisisMode[] }[];
   negationCues: string[][];
   terminators: Set<string>;
   window: number;
@@ -54,6 +55,7 @@ export function compileLexicon(raw: CrisisLexiconSource): CompiledLexicon {
       id: term.id,
       category: term.category,
       phrases: term.phrases.map(tokenize).filter((p) => p.length > 0),
+      modes: term.modes ?? ["patient", "professional"],
     })),
     negationCues: raw.negation_cues.map(tokenize).filter((c) => c.length > 0),
     terminators: new Set(raw.scope_terminators.flatMap(tokenize)),
@@ -87,6 +89,7 @@ export function detectCrisis(text: string, lexicon: CompiledLexicon, mode: Crisi
     // [start, end, termIndex, phraseIndex]; overlapping matches keep the longest phrase.
     const matches: [number, number, number, number][] = [];
     lexicon.terms.forEach((term, termIndex) => {
+      if (!term.modes.includes(mode)) return;
       term.phrases.forEach((phrase, phraseIndex) => {
         for (let start = 0; start + phrase.length <= tokens.length; start++) {
           if (matchesAt(tokens, start, phrase)) matches.push([start, start + phrase.length, termIndex, phraseIndex]);

@@ -1,7 +1,7 @@
 {
   "_generated_by": "scripts/build_kb.py — não edite este arquivo; edite knowledge/ e rode o script",
   "_source": "knowledge/lexicons/crisis.pt-BR.json",
-  "content_hash": "sha256:10b3bdceabc38b778b8307fd3d01083f58aa43235d4e00782388fc1aa31badb6",
+  "content_hash": "sha256:aeb4853a69473cebedcd51aafef4006943de5d690aea369ded4f69c57c334288",
   "data": {
     "description": "Expressões que indicam risco de suicídio ou autolesão. Detecção determinística, de alta sensibilidade: falso positivo mostra recursos de ajuda; falso negativo é o erro grave. Usado por core/safety/crisis.py e webapp/app/lib/safety/crisis.ts (mesmo algoritmo, mesmos vetores em knowledge/tests/crisis.vectors.json).",
     "id": "crisis.pt-BR",
@@ -66,7 +66,15 @@
           "melhor estar morta",
           "sumir para sempre",
           "sumir pra sempre",
-          "acabar com tudo"
+          "acabar com tudo",
+          "ideação de morte",
+          "ideação passiva de morte",
+          "ideia de morte",
+          "ideias de morte",
+          "queria estar morto",
+          "queria estar morta",
+          "quero estar morto",
+          "quero estar morta"
         ]
       },
       {
@@ -107,7 +115,19 @@
           "tomar todos os comprimidos",
           "tomei todos os remédios",
           "overdose",
-          "me enforcar"
+          "me enforcar",
+          "tomar tudo de uma vez",
+          "tomar todos de uma vez",
+          "comprimidos todos pra tomar",
+          "remédios todos pra tomar",
+          "juntei os comprimidos",
+          "juntei os remédios",
+          "separei os comprimidos",
+          "separei os remédios",
+          "juntando remédios para",
+          "juntando comprimidos para",
+          "juntando remédios pra",
+          "juntando comprimidos pra"
         ]
       },
       {
@@ -128,6 +148,16 @@
           "automutilação",
           "autolesão",
           "autoagressão"
+        ]
+      },
+      {
+        "category": "suicidal_ideation",
+        "id": "ideacao_suicida_sigla",
+        "modes": [
+          "professional"
+        ],
+        "phrases": [
+          "IS"
         ]
       }
     ],

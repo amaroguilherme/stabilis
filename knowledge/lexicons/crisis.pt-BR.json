@@ -63,7 +63,15 @@
         "melhor estar morta",
         "sumir para sempre",
         "sumir pra sempre",
-        "acabar com tudo"
+        "acabar com tudo",
+        "ideação de morte",
+        "ideação passiva de morte",
+        "ideia de morte",
+        "ideias de morte",
+        "queria estar morto",
+        "queria estar morta",
+        "quero estar morto",
+        "quero estar morta"
       ]
     },
     {
@@ -104,7 +112,19 @@
         "tomar todos os comprimidos",
         "tomei todos os remédios",
         "overdose",
-        "me enforcar"
+        "me enforcar",
+        "tomar tudo de uma vez",
+        "tomar todos de uma vez",
+        "comprimidos todos pra tomar",
+        "remédios todos pra tomar",
+        "juntei os comprimidos",
+        "juntei os remédios",
+        "separei os comprimidos",
+        "separei os remédios",
+        "juntando remédios para",
+        "juntando comprimidos para",
+        "juntando remédios pra",
+        "juntando comprimidos pra"
       ]
     },
     {
@@ -125,6 +145,16 @@
         "automutilação",
         "autolesão",
         "autoagressão"
+      ]
+    },
+    {
+      "id": "ideacao_suicida_sigla",
+      "category": "suicidal_ideation",
+      "phrases": [
+        "IS"
+      ],
+      "modes": [
+        "professional"
       ]
     }
   ]

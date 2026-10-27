@@ -38,6 +38,7 @@ class _Term:
     id: str
     category: str
     phrases: tuple[tuple[str, ...], ...]
+    modes: frozenset[str]  # modes where the term applies (abbreviations like "IS" only in professional text)
 
 
 @dataclass(frozen=True)
@@ -66,6 +67,7 @@ def compile_lexicon(raw: dict) -> CompiledLexicon:
             id=term["id"],
             category=term["category"],
             phrases=tuple(p for p in (_tokens(phrase) for phrase in term["phrases"]) if p),
+            modes=frozenset(term.get("modes", ("patient", "professional"))),
         )
         for term in raw["terms"]
     )
@@ -102,6 +104,8 @@ def detect_crisis(text: str, mode: Mode = "patient", lexicon: CompiledLexicon | 
         # (start, end, term_index, phrase_index); overlapping matches keep the longest phrase.
         matches = []
         for t_idx, term in enumerate(lexicon.terms):
+            if mode not in term.modes:
+                continue
             for p_idx, phrase in enumerate(term.phrases):
                 size = len(phrase)
                 for start in range(len(tokens) - size + 1):
