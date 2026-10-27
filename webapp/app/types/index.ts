@@ -26,24 +26,34 @@ export interface AnalyzeRequest {
   doctor_summary: string;
 }
 
-export interface PrescriptionDrug {
-  name: string;
-  name_pt: string | null;
-  dose: number;
-  interval: number;
-}
-
 export interface CurrentMedication {
   name: string;
   dose: number;
   duration_months: number;
 }
 
+export interface ReanalyzeRequest extends AnalyzeRequest {
+  current_medications: CurrentMedication[];
+  treatment_anamnesis: string;
+}
+
+export interface SafetySummary {
+  crisis: boolean;
+  negated_only: boolean;
+}
+
+export interface AnalysisResult {
+  results: DrugResult[];
+  degraded: boolean;
+  safety: SafetySummary;
+}
+
 export interface SessionData {
   results: DrugResult[];
   checklist: PatientChecklist;
   doctor_summary: string;
-  prescription?: PrescriptionDrug[];
+  degraded?: boolean;
+  safety?: SafetySummary;
   current_medications?: CurrentMedication[];
   treatment_anamnesis?: string;
 }

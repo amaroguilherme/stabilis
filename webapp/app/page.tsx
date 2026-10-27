@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { AnalyzeRequest, SessionData, CurrentMedication } from "@/app/types";
+import type { AnalysisResult, AnalyzeRequest, CurrentMedication, ReanalyzeRequest } from "@/app/types";
 import { CURATED_DRUGS, DRUG_NAME_PT, formatDrugLabel } from "@/app/lib/drugs";
+import { describeBackendError, runJob, type JobProgress } from "@/app/lib/api/client";
+import { saveSession } from "@/app/lib/session";
+import { detectCrisis, summarizeCrisis } from "@/app/lib/safety/crisis";
+import { crisisLexicon } from "@/app/lib/safety/lexicon";
 
 const BASE_DIAGNOSES = [
   "Transtorno Bipolar I",
@@ -22,9 +26,36 @@ const COMORBIDITIES = [
 
 const HABITS = ["Tabagismo", "Consumo de Álcool", "Uso de Cannabis"];
 
+// The two free-text fields share the backend's 4,000-character budget (it must fit the LLM context).
+const MAX_SUMMARY_CHARS = 3000;
+const MAX_ANAMNESIS_CHARS = 1000;
+const MIN_WEIGHT_KG = 20;
+const MAX_WEIGHT_KG = 300;
+
 function generatePatientId(): string {
   const digits = Math.floor(1000 + Math.random() * 9000);
   return `STB-${digits}`;
+}
+
+function drugLabel(drug: string): string {
+  return DRUG_NAME_PT[drug] ?? formatDrugLabel(drug);
+}
+
+function progressMessage(progress: JobProgress | null): string {
+  if (!progress) return "Enviando para análise...";
+  if (progress.phase === "starting") {
+    return "Acordando o servidor de análise. Na primeira vez do dia isso pode levar alguns minutos...";
+  }
+  if (progress.phase === "running") return "Analisando o texto clínico. Isso pode levar até 1 ou 2 minutos...";
+  return progress.position ? `Na fila de análise (posição ${progress.position})...` : "Aguardando vaga no servidor...";
+}
+
+function CharCounter({ value, max, id }: { value: string; max: number; id: string }) {
+  return (
+    <p id={id} className="mt-1 text-xs text-slate-600 text-right tabular-nums">
+      {value.length.toLocaleString("pt-BR")} / {max.toLocaleString("pt-BR")} caracteres
+    </p>
+  );
 }
 
 export default function IntakePage() {
@@ -44,28 +75,59 @@ export default function IntakePage() {
   const [medSearch, setMedSearch] = useState<string>("");
   const [medDose, setMedDose] = useState<string>("");
   const [medDuration, setMedDuration] = useState<string>("");
+  const [medError, setMedError] = useState<string | null>(null);
   const [treatmentAnamnesis, setTreatmentAnamnesis] = useState<string>("");
 
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState<JobProgress | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  // Abandon the polling (and free the server slot) if the user leaves the page mid-analysis.
+  useEffect(() => () => abortRef.current?.abort(), []);
+
+  const crisis = useMemo(
+    () => summarizeCrisis(detectCrisis(`${doctorSummary}\n${treatmentAnamnesis}`, crisisLexicon, "professional")),
+    [doctorSummary, treatmentAnamnesis],
+  );
 
   const medSearchLower = medSearch.trim().toLowerCase();
   const drugSuggestions = medSearchLower.length >= 2
     ? CURATED_DRUGS.filter(
         (d) =>
-          (d.includes(medSearchLower) || formatDrugLabel(d).toLowerCase().includes(medSearchLower)) &&
-          !currentMeds.some((m) => m.name === d)
+          (d.includes(medSearchLower) ||
+            formatDrugLabel(d).toLowerCase().includes(medSearchLower) ||
+            (DRUG_NAME_PT[d] ?? "").toLowerCase().includes(medSearchLower)) &&
+          !currentMeds.some((m) => m.name === d) &&
+          d !== medSearchLower
       ).slice(0, 6)
     : [];
 
-  function addMed(name: string) {
+  function addMed() {
+    const name = medSearch.trim().toLowerCase();
     const dose = parseFloat(medDose);
     const duration = parseFloat(medDuration);
-    if (!name || isNaN(dose) || dose <= 0 || isNaN(duration) || duration < 0) return;
+    if (!CURATED_DRUGS.includes(name)) {
+      setMedError("Escolha um medicamento da lista de sugestões.");
+      return;
+    }
+    if (currentMeds.some((m) => m.name === name)) {
+      setMedError("Este medicamento já foi adicionado.");
+      return;
+    }
+    if (isNaN(dose) || dose <= 0) {
+      setMedError("Informe a dose em mg (maior que zero).");
+      return;
+    }
+    if (isNaN(duration) || duration < 0) {
+      setMedError("Informe há quantos meses o medicamento é usado (0 ou mais).");
+      return;
+    }
     setCurrentMeds((prev) => [...prev, { name, dose, duration_months: duration }]);
     setMedSearch("");
     setMedDose("");
     setMedDuration("");
+    setMedError(null);
   }
 
   function removeMed(name: string) {
@@ -86,87 +148,82 @@ export default function IntakePage() {
     e.preventDefault();
     setError(null);
 
+    const weightKg = parseFloat(weight);
     if (!weight || !gender || !baseDiagnosis) {
       setError("Preencha peso, gênero e diagnóstico principal.");
+      return;
+    }
+    if (isNaN(weightKg) || weightKg < MIN_WEIGHT_KG || weightKg > MAX_WEIGHT_KG) {
+      setError(`Informe um peso entre ${MIN_WEIGHT_KG} e ${MAX_WEIGHT_KG} kg.`);
       return;
     }
 
     const checklist = {
       patient_id: generatePatientId(),
-      weight: parseFloat(weight),
+      weight: weightKg,
       gender,
       base_diagnosis: baseDiagnosis,
       comorbidities,
       habits,
     };
 
-    const hasCurrentTreatment = currentMeds.length > 0;
+    // The treatment anamnesis is only used by the reanalysis, so send it there even without medications.
+    const hasTreatmentContext = currentMeds.length > 0 || treatmentAnamnesis.trim().length > 0;
 
+    const controller = new AbortController();
+    abortRef.current = controller;
     setLoading(true);
+    setProgress(null);
     try {
-      let results;
-      if (hasCurrentTreatment) {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reanalyze`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}` },
-          body: JSON.stringify({
+      const options = { signal: controller.signal, onProgress: setProgress };
+      const result = hasTreatmentContext
+        ? await runJob<AnalysisResult>("legacy_reanalyze", {
             checklist,
             doctor_summary: doctorSummary,
             current_medications: currentMeds,
             treatment_anamnesis: treatmentAnamnesis,
-          }),
-        });
-        if (!res.ok) throw new Error(`Servidor retornou erro ${res.status}: ${res.statusText}`);
-        results = await res.json();
-      } else {
-        const payload: AnalyzeRequest = { checklist, doctor_summary: doctorSummary };
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/analyze`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}` },
-          body: JSON.stringify(payload),
-        });
-        if (!res.ok) throw new Error(`Servidor retornou erro ${res.status}: ${res.statusText}`);
-        results = await res.json();
-      }
+          } satisfies ReanalyzeRequest, options)
+        : await runJob<AnalysisResult>("legacy_analyze", {
+            checklist,
+            doctor_summary: doctorSummary,
+          } satisfies AnalyzeRequest, options);
 
-      const session: SessionData = {
-        results,
+      saveSession({
+        results: result.results,
         checklist,
         doctor_summary: doctorSummary,
-        ...(hasCurrentTreatment && {
+        degraded: result.degraded,
+        safety: result.safety,
+        ...(hasTreatmentContext && {
           current_medications: currentMeds,
           treatment_anamnesis: treatmentAnamnesis,
         }),
-      };
-
-      sessionStorage.setItem("stabilis_session", JSON.stringify(session));
+      });
       router.push("/results");
     } catch (err: unknown) {
-      const message =
-        err instanceof Error
-          ? err.message
-          : "Erro desconhecido ao conectar ao servidor.";
-      setError(
-        `Não foi possível conectar ao servidor de análise. Verifique se o backend está rodando em ${process.env.NEXT_PUBLIC_API_URL}.\n\nDetalhe: ${message}`
-      );
+      const message = describeBackendError(err);
+      if (message) setError(message);
     } finally {
       setLoading(false);
+      setProgress(null);
+      abortRef.current = null;
     }
   }
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-900">
+        <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">Modo profissional · experimental</p>
+        <h1 className="text-2xl font-bold text-slate-900 mt-1">
           Nova Avaliação de Paciente
         </h1>
-        <p className="text-slate-500 mt-1 text-sm">
-          Preencha os dados do paciente e o resumo clínico para receber a
-          recomendação de medicamentos.
+        <p className="text-slate-600 mt-1 text-sm">
+          Para profissionais de saúde. Preencha os dados do paciente e a anamnese para ver uma ordenação
+          experimental de medicamentos baseada em regras. Não é prescrição.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} noValidate className={`space-y-8 ${loading ? "pointer-events-none opacity-60 select-none" : ""}`}>
+      <form onSubmit={handleSubmit} noValidate aria-busy={loading} className={`space-y-8 ${loading ? "pointer-events-none opacity-60 select-none" : ""}`}>
         {/* Section 1 */}
         <section className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-slate-100 bg-slate-50">
@@ -187,13 +244,13 @@ export default function IntakePage() {
                 <input
                   id="weight"
                   type="number"
-                  min="1"
-                  max="500"
+                  min={MIN_WEIGHT_KG}
+                  max={MAX_WEIGHT_KG}
                   step="0.1"
                   placeholder="ex: 72.5"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                 />
               </div>
               <div>
@@ -240,10 +297,10 @@ export default function IntakePage() {
             </div>
 
             {/* Comorbidities */}
-            <div>
-              <p className="block text-sm font-medium text-slate-700 mb-2">
+            <fieldset>
+              <legend className="block text-sm font-medium text-slate-700 mb-2">
                 Comorbidades
-              </p>
+              </legend>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                 {COMORBIDITIES.map((c) => (
                   <label
@@ -274,8 +331,8 @@ export default function IntakePage() {
                     <button
                       type="button"
                       onClick={() => setComorbidities(comorbidities.filter((x) => x !== c))}
-                      className="text-indigo-400 hover:text-indigo-700 leading-none shrink-0"
-                      title="Remover"
+                      className="text-indigo-500 hover:text-indigo-800 leading-none shrink-0"
+                      aria-label={`Remover ${c}`}
                     >
                       ×
                     </button>
@@ -283,9 +340,12 @@ export default function IntakePage() {
                 ))}
               </div>
               <div className="flex gap-2 mt-2.5">
+                <label htmlFor="otherComorbidity" className="sr-only">Outra comorbidade</label>
                 <input
+                  id="otherComorbidity"
                   type="text"
                   placeholder="Outros..."
+                  maxLength={80}
                   value={otherComorbidity}
                   onChange={(e) => setOtherComorbidity(e.target.value)}
                   onKeyDown={(e) => {
@@ -296,7 +356,7 @@ export default function IntakePage() {
                       setOtherComorbidity("");
                     }
                   }}
-                  className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                  className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                 />
                 <button
                   type="button"
@@ -310,13 +370,13 @@ export default function IntakePage() {
                   Adicionar
                 </button>
               </div>
-            </div>
+            </fieldset>
 
             {/* Habits */}
-            <div>
-              <p className="block text-sm font-medium text-slate-700 mb-2">
+            <fieldset>
+              <legend className="block text-sm font-medium text-slate-700 mb-2">
                 Hábitos
-              </p>
+              </legend>
               <div className="flex flex-wrap gap-2.5">
                 {HABITS.map((h) => (
                   <label
@@ -345,8 +405,8 @@ export default function IntakePage() {
                     <button
                       type="button"
                       onClick={() => setHabits(habits.filter((x) => x !== h))}
-                      className="text-amber-400 hover:text-amber-700 leading-none"
-                      title="Remover"
+                      className="text-amber-600 hover:text-amber-800 leading-none"
+                      aria-label={`Remover ${h}`}
                     >
                       ×
                     </button>
@@ -354,9 +414,12 @@ export default function IntakePage() {
                 ))}
               </div>
               <div className="flex gap-2 mt-2.5">
+                <label htmlFor="otherHabit" className="sr-only">Outro hábito</label>
                 <input
+                  id="otherHabit"
                   type="text"
                   placeholder="Outros..."
+                  maxLength={80}
                   value={otherHabit}
                   onChange={(e) => setOtherHabit(e.target.value)}
                   onKeyDown={(e) => {
@@ -367,7 +430,7 @@ export default function IntakePage() {
                       setOtherHabit("");
                     }
                   }}
-                  className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                  className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                 />
                 <button
                   type="button"
@@ -381,7 +444,7 @@ export default function IntakePage() {
                   Adicionar
                 </button>
               </div>
-            </div>
+            </fieldset>
           </div>
         </section>
 
@@ -397,16 +460,19 @@ export default function IntakePage() {
               htmlFor="doctorSummary"
               className="block text-sm font-medium text-slate-700 mb-1.5"
             >
-              Anotação do Médico
+              Anamnese
             </label>
             <textarea
               id="doctorSummary"
               rows={7}
-              placeholder="Descreva o histórico clínico relevante, sintomas atuais, tratamentos anteriores e qualquer informação adicional pertinente..."
+              maxLength={MAX_SUMMARY_CHARS}
+              aria-describedby="doctorSummaryCount"
+              placeholder="Descreva o histórico clínico relevante, sintomas atuais, tratamentos anteriores e qualquer informação adicional pertinente. Não inclua nome, CPF ou outros dados que identifiquem o paciente."
               value={doctorSummary}
               onChange={(e) => setDoctorSummary(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-y"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-y"
             />
+            <CharCounter id="doctorSummaryCount" value={doctorSummary} max={MAX_SUMMARY_CHARS} />
           </div>
         </section>
 
@@ -415,9 +481,9 @@ export default function IntakePage() {
           <div className="px-6 py-4 border-b border-slate-100 bg-slate-50">
             <h2 className="font-semibold text-slate-800 text-base">
               Seção 3 — Tratamento em Curso{" "}
-              <span className="text-slate-400 font-normal text-sm">(opcional)</span>
+              <span className="text-slate-500 font-normal text-sm">(opcional)</span>
             </h2>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-xs text-slate-600 mt-0.5">
               Preencha se o paciente já estiver em tratamento. O sistema reajustará os
               escores considerando os medicamentos em uso e a evolução clínica.
             </p>
@@ -425,65 +491,76 @@ export default function IntakePage() {
           <div className="px-6 py-6 space-y-6">
 
             {/* Drug search + inputs */}
-            <div>
-              <p className="block text-sm font-medium text-slate-700 mb-2">
+            <fieldset>
+              <legend className="block text-sm font-medium text-slate-700 mb-2">
                 Medicamentos em uso
-              </p>
+              </legend>
               <div className="grid grid-cols-1 sm:grid-cols-[1fr_100px_110px_auto] gap-2 items-end">
                 <div className="relative">
+                  <label htmlFor="medSearch" className="block text-xs text-slate-600 mb-1">Medicamento</label>
                   <input
+                    id="medSearch"
                     type="text"
                     placeholder="Buscar medicamento..."
+                    autoComplete="off"
                     value={medSearch}
-                    onChange={(e) => setMedSearch(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                    onChange={(e) => { setMedSearch(e.target.value); setMedError(null); }}
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                   />
                   {drugSuggestions.length > 0 && (
                     <ul className="absolute z-10 mt-1 w-full bg-white border border-slate-200 rounded-lg shadow-lg max-h-52 overflow-y-auto">
                       {drugSuggestions.map((d) => (
-                        <li
-                          key={d}
-                          onMouseDown={() => setMedSearch(d)}
-                          className="px-3 py-2 text-sm text-slate-800 hover:bg-indigo-50 cursor-pointer"
-                        >
-                          {DRUG_NAME_PT[d] ?? formatDrugLabel(d)}
-                          <span className="ml-1.5 text-xs text-slate-400">{d}</span>
+                        <li key={d}>
+                          <button
+                            type="button"
+                            onMouseDown={(e) => { e.preventDefault(); setMedSearch(d); }}
+                            onClick={() => setMedSearch(d)}
+                            className="w-full text-left px-3 py-2 text-sm text-slate-800 hover:bg-indigo-50 focus:bg-indigo-50 focus:outline-none"
+                          >
+                            {drugLabel(d)}
+                            <span className="ml-1.5 text-xs text-slate-500">{d}</span>
+                          </button>
                         </li>
                       ))}
                     </ul>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Dose (mg)</label>
+                  <label htmlFor="medDose" className="block text-xs text-slate-600 mb-1">Dose (mg)</label>
                   <input
+                    id="medDose"
                     type="number"
                     min={1}
                     placeholder="ex: 300"
                     value={medDose}
-                    onChange={(e) => setMedDose(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                    onChange={(e) => { setMedDose(e.target.value); setMedError(null); }}
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Duração (meses)</label>
+                  <label htmlFor="medDuration" className="block text-xs text-slate-600 mb-1">Duração (meses)</label>
                   <input
+                    id="medDuration"
                     type="number"
                     min={0}
                     step={1}
                     placeholder="ex: 6"
                     value={medDuration}
-                    onChange={(e) => setMedDuration(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                    onChange={(e) => { setMedDuration(e.target.value); setMedError(null); }}
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                   />
                 </div>
                 <button
                   type="button"
-                  onClick={() => addMed(medSearch.trim().toLowerCase())}
+                  onClick={addMed}
                   className="px-4 py-2.5 rounded-lg border border-slate-300 bg-white text-sm text-slate-600 hover:bg-slate-50 hover:border-indigo-400 transition self-end"
                 >
                   Adicionar
                 </button>
               </div>
+              {medError && (
+                <p role="alert" className="mt-2 text-sm text-red-700">{medError}</p>
+              )}
 
               {/* Added meds list */}
               {currentMeds.length > 0 && (
@@ -494,8 +571,8 @@ export default function IntakePage() {
                       className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg border border-indigo-200 bg-indigo-50 text-sm"
                     >
                       <div className="min-w-0">
-                        <span className="font-medium text-indigo-800">{DRUG_NAME_PT[m.name] ?? formatDrugLabel(m.name)}</span>
-                        <span className="ml-2 text-indigo-500 text-xs">{m.name}</span>
+                        <span className="font-medium text-indigo-800">{drugLabel(m.name)}</span>
+                        <span className="ml-2 text-indigo-600 text-xs">{m.name}</span>
                       </div>
                       <div className="flex items-center gap-3 shrink-0 text-indigo-700 text-xs">
                         <span>{m.dose} mg</span>
@@ -503,8 +580,8 @@ export default function IntakePage() {
                         <button
                           type="button"
                           onClick={() => removeMed(m.name)}
-                          className="text-indigo-400 hover:text-indigo-700 leading-none text-base"
-                          title="Remover"
+                          className="text-indigo-500 hover:text-indigo-800 leading-none text-base"
+                          aria-label={`Remover ${drugLabel(m.name)}`}
                         >
                           ×
                         </button>
@@ -513,7 +590,7 @@ export default function IntakePage() {
                   ))}
                 </ul>
               )}
-            </div>
+            </fieldset>
 
             {/* Treatment anamnesis */}
             <div>
@@ -526,24 +603,41 @@ export default function IntakePage() {
               <textarea
                 id="treatmentAnamnesis"
                 rows={5}
+                maxLength={MAX_ANAMNESIS_CHARS}
+                aria-describedby="treatmentAnamnesisCount"
                 placeholder="Descreva a evolução clínica sob o tratamento atual: resposta aos medicamentos, efeitos colaterais, adesão, mudanças de dose, intercorrências..."
                 value={treatmentAnamnesis}
                 onChange={(e) => setTreatmentAnamnesis(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-y"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-y"
               />
+              <CharCounter id="treatmentAnamnesisCount" value={treatmentAnamnesis} max={MAX_ANAMNESIS_CHARS} />
             </div>
           </div>
         </section>
 
+        {/* Crisis language in the free text */}
+        {crisis.crisis && (
+          <div role="alert" className="rounded-xl border border-rose-300 bg-rose-50 px-5 py-4 text-sm text-rose-950">
+            <p className="font-semibold">O texto menciona risco de suicídio ou autolesão.</p>
+            <p className="mt-1">
+              Avalie o risco antes de seguir. Em risco imediato: SAMU <a href="tel:192" className="font-semibold underline">192</a>.
+              Apoio emocional 24h: CVV <a href="tel:188" className="font-semibold underline">188</a>.
+            </p>
+          </div>
+        )}
+
         {/* Error */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-            <p className="text-sm text-red-700 whitespace-pre-wrap">{error}</p>
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-xl p-4">
+            <p className="text-sm text-red-800 whitespace-pre-wrap">{error}</p>
           </div>
         )}
 
         {/* Submit */}
-        <div className="flex justify-end">
+        <div className="flex flex-col items-end gap-3">
+          <p aria-live="polite" className="text-sm text-slate-700 text-right min-h-5">
+            {loading ? progressMessage(progress) : ""}
+          </p>
           <button
             type="submit"
             disabled={loading}
@@ -551,7 +645,7 @@ export default function IntakePage() {
           >
             {loading ? (
               <>
-                <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" aria-hidden="true" />
                 Analisando...
               </>
             ) : (

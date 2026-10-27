@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { DrugResult, SessionData, PatientChecklist } from "@/app/types";
-import { getDefaultDosing } from "@/app/lib/dosing";
+import type { DrugResult, PatientChecklist, SafetySummary } from "@/app/types";
+import { useStoredSession } from "@/app/lib/session";
 
 const PAGE_SIZE = 10;
 
@@ -28,7 +29,7 @@ const STATUS_STYLES: Record<string, string> = {
 };
 
 const STATUS_LABELS: Record<string, string> = {
-  RECOMMENDED: "RECOMENDADO",
+  RECOMMENDED: "FAVORECIDO",
   AVOID: "EVITAR",
   NEUTRAL: "NEUTRO",
 };
@@ -55,30 +56,94 @@ function scoreBarColor(score: number): string {
   return "bg-red-500";
 }
 
+// ─── Notices ─────────────────────────────────────────────────────────────────
+
+function SafetyNotice({ safety }: { safety?: SafetySummary }) {
+  if (safety?.crisis) {
+    return (
+      <div role="alert" className="rounded-xl border border-rose-300 bg-rose-50 px-5 py-4 text-sm text-rose-950">
+        <p className="font-semibold">A anamnese menciona risco de suicídio ou autolesão.</p>
+        <p className="mt-1">
+          Avalie o risco antes de qualquer decisão terapêutica. Em risco imediato: SAMU{" "}
+          <a href="tel:192" className="font-semibold underline">192</a>. Apoio emocional 24h: CVV{" "}
+          <a href="tel:188" className="font-semibold underline">188</a>.{" "}
+          <Link href="/ajuda-agora" className="underline">Mais recursos</Link>
+        </p>
+      </div>
+    );
+  }
+  if (safety?.negated_only) {
+    return (
+      <p className="rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm text-slate-700">
+        A anamnese registra a ausência de ideação suicida (por exemplo, &quot;nega ideação suicida&quot;).
+      </p>
+    );
+  }
+  return null;
+}
+
+function DegradedNotice() {
+  return (
+    <div role="status" className="rounded-xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-950">
+      <p className="font-semibold">A leitura automática do texto clínico não estava disponível.</p>
+      <p className="mt-1">
+        Esta ordenação usou apenas os campos estruturados e as palavras-chave do texto. Sintomas e contraindicações
+        descritos só em texto livre podem não ter sido considerados.
+      </p>
+    </div>
+  );
+}
+
+function Legend() {
+  return (
+    <details className="bg-white rounded-xl border border-slate-200 shadow-sm px-5 py-3 text-sm text-slate-700">
+      <summary className="cursor-pointer font-semibold text-slate-800">Como ler esta tela</summary>
+      <ul className="mt-3 space-y-2 list-disc pl-5">
+        <li>
+          A nota de 0 a 100 é um <strong>índice relativo de adequação às regras do sistema</strong>. Não é
+          probabilidade de resposta ao medicamento e não é recomendação de tratamento.
+        </li>
+        <li>
+          Cores da barra: verde a partir de 70, amarelo de 40 a 69, vermelho abaixo de 40. As regras ainda não
+          passaram por validação clínica.
+        </li>
+        <li>
+          <strong>EVITAR</strong>: as penalidades de segurança (contraindicações) superam os bônus.{" "}
+          <strong>FAVORECIDO</strong>: os bônus superam as penalidades.
+        </li>
+        <li>
+          Medicamentos com contraindicação grave ativa têm a nota limitada por um teto de segurança, mesmo quando
+          já estão em uso.
+        </li>
+      </ul>
+    </details>
+  );
+}
+
 // ─── Patient Summary Card ────────────────────────────────────────────────────
 
 function PatientSummaryCard({ checklist }: { checklist: PatientChecklist }) {
   return (
     <div className="bg-white rounded-xl border border-slate-200 shadow-sm px-5 py-4 flex flex-wrap gap-4 items-start">
       <div>
-        <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">Paciente</p>
+        <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">Paciente</p>
         <p className="text-sm font-semibold text-slate-800 mt-0.5">{checklist.patient_id}</p>
       </div>
       <div>
-        <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">Diagnóstico</p>
+        <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">Diagnóstico</p>
         <p className="text-sm font-semibold text-slate-800 mt-0.5">{checklist.base_diagnosis}</p>
       </div>
       <div>
-        <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">Peso</p>
+        <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">Peso</p>
         <p className="text-sm font-semibold text-slate-800 mt-0.5">{checklist.weight} kg</p>
       </div>
       <div>
-        <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">Gênero</p>
+        <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">Gênero</p>
         <p className="text-sm font-semibold text-slate-800 mt-0.5">{checklist.gender}</p>
       </div>
       {checklist.comorbidities.length > 0 && (
         <div>
-          <p className="text-xs font-medium text-slate-400 uppercase tracking-wide mb-1">Comorbidades</p>
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wide mb-1">Comorbidades</p>
           <div className="flex flex-wrap gap-1">
             {checklist.comorbidities.map((c) => (
               <span key={c} className="text-xs px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">{c}</span>
@@ -88,7 +153,7 @@ function PatientSummaryCard({ checklist }: { checklist: PatientChecklist }) {
       )}
       {checklist.habits.length > 0 && (
         <div>
-          <p className="text-xs font-medium text-slate-400 uppercase tracking-wide mb-1">Hábitos</p>
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wide mb-1">Hábitos</p>
           <div className="flex flex-wrap gap-1">
             {checklist.habits.map((h) => (
               <span key={h} className="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">{h}</span>
@@ -102,28 +167,16 @@ function PatientSummaryCard({ checklist }: { checklist: PatientChecklist }) {
 
 // ─── Drug Row ────────────────────────────────────────────────────────────────
 
-function DrugRow({
-  drug,
-  rank,
-  selected,
-  onToggle,
-}: {
-  drug: DrugResult;
-  rank: number;
-  selected: boolean;
-  onToggle: () => void;
-}) {
+function DrugRow({ drug, rank }: { drug: DrugResult; rank: number }) {
   const [expanded, setExpanded] = useState(false);
   const status = getStatus(drug);
   const barColor = scoreBarColor(drug.final_score);
   const hasReasons = drug.reasons && drug.reasons.length > 0;
+  const displayName = drug.name_pt ?? formatDrugName(drug.name);
+  const reasonsId = `reasons-${drug.name}`;
 
   return (
-    <div
-      className={`bg-white rounded-xl border shadow-sm transition-all ${
-        selected ? "border-indigo-400 ring-1 ring-indigo-300" : "border-slate-200"
-      }`}
-    >
+    <div className="bg-white rounded-xl border border-slate-200 shadow-sm">
       <div className="flex items-center gap-3 px-4 py-4">
         {/* Rank */}
         <div className="flex-shrink-0 w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-xs font-bold">
@@ -134,11 +187,9 @@ function DrugRow({
         <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-2 mb-2">
             <div>
-              <h3 className="font-semibold text-slate-900 text-base leading-tight">
-                {drug.name_pt ?? formatDrugName(drug.name)}
-              </h3>
+              <h3 className="font-semibold text-slate-900 text-base leading-tight">{displayName}</h3>
               {drug.name_pt && (
-                <p className="text-xs text-slate-400 leading-tight">{formatDrugName(drug.name)}</p>
+                <p className="text-xs text-slate-500 leading-tight">{formatDrugName(drug.name)}</p>
               )}
             </div>
             {drug.in_use && (
@@ -154,55 +205,50 @@ function DrugRow({
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex-1 h-2.5 bg-slate-100 rounded-full overflow-hidden">
+            <div className="flex-1 h-2.5 bg-slate-100 rounded-full overflow-hidden" aria-hidden="true">
               <div
                 className={`h-full rounded-full transition-all ${barColor}`}
                 style={{ width: `${Math.min(100, Math.max(0, drug.final_score))}%` }}
               />
             </div>
-            <span className="text-sm font-bold text-slate-700 w-12 text-right tabular-nums">
+            <span className="text-sm font-bold text-slate-700 w-16 text-right tabular-nums">
               {drug.final_score.toFixed(1)}
+              <span className="sr-only"> de 100</span>
             </span>
           </div>
         </div>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-3 flex-shrink-0">
-          {hasReasons && (
-            <button
-              type="button"
-              onClick={() => setExpanded((v) => !v)}
-              className="text-xs text-indigo-500 hover:text-indigo-700 font-medium"
-              title="Ver justificativa"
-            >
-              {expanded ? "▲" : "▼"}
-            </button>
-          )}
-          <input
-            type="checkbox"
-            className="w-4 h-4 accent-indigo-600 cursor-pointer"
-            checked={selected}
-            onChange={onToggle}
-            title="Selecionar para prescrição"
-          />
-        </div>
+        {/* Reasons toggle */}
+        {hasReasons && (
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            aria-expanded={expanded}
+            aria-controls={reasonsId}
+            aria-label={`${expanded ? "Ocultar" : "Ver"} justificativa de ${displayName}`}
+            className="flex-shrink-0 min-w-11 min-h-11 rounded-lg text-sm text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 font-medium"
+          >
+            {expanded ? "▲" : "▼"}
+          </button>
+        )}
       </div>
 
       {/* Reasons panel */}
       {expanded && hasReasons && (
-        <div className="px-4 pb-4 pt-0 border-t border-slate-100">
-          <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide mb-2 mt-3">
+        <div id={reasonsId} className="px-4 pb-4 pt-0 border-t border-slate-100">
+          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 mt-3">
             Por que esta pontuação?
           </p>
           <ul className="space-y-1.5">
             {drug.reasons.map((r, i) => (
               <li key={i} className="flex items-start gap-2 text-sm">
-                <span className={`mt-0.5 shrink-0 text-base leading-none ${r.type === "bonus" ? "text-emerald-500" : "text-red-400"}`}>
+                <span
+                  aria-label={r.type === "bonus" ? "bônus" : "penalidade"}
+                  className={`mt-0.5 shrink-0 text-base leading-none ${r.type === "bonus" ? "text-emerald-600" : "text-red-500"}`}
+                >
                   {r.type === "bonus" ? "✓" : "✕"}
                 </span>
-                <span className={r.type === "bonus" ? "text-slate-700" : "text-slate-500"}>
-                  {r.text}
-                </span>
+                <span className="text-slate-700">{r.text}</span>
               </li>
             ))}
           </ul>
@@ -216,44 +262,27 @@ function DrugRow({
 
 export default function ResultsPage() {
   const router = useRouter();
-  const [session, setSession] = useState<SessionData | null>(null);
-  const [notFound, setNotFound] = useState(false);
-  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const stored = useStoredSession();
   const [search, setSearch] = useState("");
   const [classFilter, setClassFilter] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  useEffect(() => {
-    const raw = sessionStorage.getItem("stabilis_session");
-    if (!raw) { setNotFound(true); return; }
-    try {
-      setSession(JSON.parse(raw) as SessionData);
-    } catch {
-      setNotFound(true);
-    }
-  }, []);
-
-  // Reset pagination when search or filter changes
-  useEffect(() => {
+  function updateSearch(value: string) {
+    setSearch(value);
     setVisibleCount(PAGE_SIZE);
-  }, [search, classFilter]);
-
-  function toggleSelect(name: string) {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(name)) next.delete(name);
-      else next.add(name);
-      return next;
-    });
   }
 
-  if (notFound) {
+  function updateClassFilter(value: string | null) {
+    setClassFilter(value);
+    setVisibleCount(PAGE_SIZE);
+  }
+
+  if (stored.status === "missing") {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center">
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm px-8 py-12">
-          <p className="text-4xl mb-4">⚠️</p>
           <h2 className="text-xl font-bold text-slate-800 mb-2">Nenhum resultado encontrado</h2>
-          <p className="text-slate-500 text-sm mb-6">Os dados da sessão não foram encontrados. Por favor, preencha o formulário novamente.</p>
+          <p className="text-slate-600 text-sm mb-6">Os dados da sessão não foram encontrados. Por favor, preencha o formulário novamente.</p>
           <button type="button" onClick={() => router.push("/")} className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold transition-colors">
             Voltar ao Formulário
           </button>
@@ -262,18 +291,18 @@ export default function ResultsPage() {
     );
   }
 
-  if (!session) {
+  if (stored.status === "loading") {
     return (
       <div className="flex items-center justify-center py-32">
-        <div className="flex items-center gap-3 text-slate-500">
-          <span className="inline-block w-5 h-5 border-2 border-slate-400 border-t-transparent rounded-full animate-spin" />
+        <div className="flex items-center gap-3 text-slate-600" role="status">
+          <span className="inline-block w-5 h-5 border-2 border-slate-400 border-t-transparent rounded-full animate-spin" aria-hidden="true" />
           <span className="text-sm">Carregando resultados...</span>
         </div>
       </div>
     );
   }
 
-  const { results, checklist } = session;
+  const { results, checklist, degraded, safety } = stored.session;
 
   const availableClasses = Array.from(new Set(results.map((d) => d.drug_class))).sort();
 
@@ -288,144 +317,112 @@ export default function ResultsPage() {
 
   const visible = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
-  const selectedDrugs = results.filter((d) => selected.has(d.name));
 
   return (
-    <>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        {/* Header */}
-        <div className="mb-6">
-          <button type="button" onClick={() => router.push("/")} className="text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-2 flex items-center gap-1">
-            ← Voltar ao Formulário
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+      {/* Header */}
+      <div className="mb-6">
+        <button type="button" onClick={() => router.push("/")} className="text-sm text-indigo-700 hover:text-indigo-900 font-medium mb-2 flex items-center gap-1">
+          ← Voltar ao Formulário
+        </button>
+        <h1 className="text-2xl font-bold text-slate-900">Ordenação experimental de medicamentos</h1>
+        <p className="text-slate-600 text-sm mt-1">
+          {results.length} medicamento{results.length !== 1 ? "s" : ""} analisado{results.length !== 1 ? "s" : ""} · não é prescrição
+        </p>
+      </div>
+
+      <div className="space-y-4 mb-5">
+        <SafetyNotice safety={safety} />
+        {degraded && <DegradedNotice />}
+        <PatientSummaryCard checklist={checklist} />
+        <Legend />
+      </div>
+
+      {/* Search bar */}
+      <div className="mb-4 relative">
+        <label htmlFor="drug-search" className="sr-only">Buscar medicamento</label>
+        <span className="absolute inset-y-0 left-3 flex items-center text-slate-400 pointer-events-none" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+          </svg>
+        </span>
+        <input
+          id="drug-search"
+          type="text"
+          placeholder="Buscar medicamento..."
+          value={search}
+          onChange={(e) => updateSearch(e.target.value)}
+          className="w-full pl-9 pr-10 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-sm"
+        />
+        {search && (
+          <button
+            type="button"
+            onClick={() => updateSearch("")}
+            aria-label="Limpar busca"
+            className="absolute inset-y-0 right-3 flex items-center text-slate-500 hover:text-slate-700"
+          >
+            ×
           </button>
-          <h1 className="text-2xl font-bold text-slate-900">Ranking de Medicamentos</h1>
-          <p className="text-slate-500 text-sm mt-1">
-            {results.length} medicamento{results.length !== 1 ? "s" : ""} analisado{results.length !== 1 ? "s" : ""} · Selecione para prescrever
+        )}
+      </div>
+
+      {/* Class filter pills */}
+      {availableClasses.length > 1 && (
+        <div className="flex flex-wrap gap-2 mb-4" role="group" aria-label="Filtrar por classe">
+          <button
+            type="button"
+            onClick={() => updateClassFilter(null)}
+            aria-pressed={classFilter === null}
+            className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
+              classFilter === null
+                ? "bg-indigo-600 text-white border-indigo-600"
+                : "bg-white text-slate-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-700"
+            }`}
+          >
+            Todos
+          </button>
+          {availableClasses.map((cls) => (
+            <button
+              key={cls}
+              type="button"
+              onClick={() => updateClassFilter(classFilter === cls ? null : cls)}
+              aria-pressed={classFilter === cls}
+              className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
+                classFilter === cls
+                  ? "bg-indigo-600 text-white border-indigo-600"
+                  : `${CLASS_STYLES[cls] ?? CLASS_STYLES.OTHER} hover:border-indigo-300`
+              }`}
+            >
+              {CLASS_LABELS[cls] ?? cls}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Drug list */}
+      {filtered.length === 0 ? (
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm px-8 py-12 text-center">
+          <p className="text-slate-600 text-sm">
+            {search ? `Nenhum medicamento encontrado para "${search}".` : "O servidor não retornou nenhum medicamento para esta análise."}
           </p>
         </div>
+      ) : (
+        <div className="space-y-3">
+          {visible.map((drug, idx) => (
+            <DrugRow key={drug.name} drug={drug} rank={idx + 1} />
+          ))}
 
-        {/* Patient summary */}
-        <div className="mb-5">
-          <PatientSummaryCard checklist={checklist} />
-        </div>
-
-        {/* Search bar */}
-        <div className="mb-4 relative">
-          <span className="absolute inset-y-0 left-3 flex items-center text-slate-400 pointer-events-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-            </svg>
-          </span>
-          <input
-            type="text"
-            placeholder="Buscar medicamento..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-sm"
-          />
-          {search && (
+          {hasMore && (
             <button
               type="button"
-              onClick={() => setSearch("")}
-              className="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-slate-600"
+              onClick={() => setVisibleCount((v) => v + PAGE_SIZE)}
+              className="w-full py-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors shadow-sm"
             >
-              ×
+              Ver mais {Math.min(PAGE_SIZE, filtered.length - visibleCount)} medicamentos
             </button>
           )}
         </div>
-
-        {/* Class filter pills */}
-        {availableClasses.length > 1 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            <button
-              type="button"
-              onClick={() => setClassFilter(null)}
-              className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
-                classFilter === null
-                  ? "bg-indigo-600 text-white border-indigo-600"
-                  : "bg-white text-slate-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
-              }`}
-            >
-              Todos
-            </button>
-            {availableClasses.map((cls) => (
-              <button
-                key={cls}
-                type="button"
-                onClick={() => setClassFilter(classFilter === cls ? null : cls)}
-                className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
-                  classFilter === cls
-                    ? "bg-indigo-600 text-white border-indigo-600"
-                    : `${CLASS_STYLES[cls] ?? CLASS_STYLES.OTHER} hover:border-indigo-300`
-                }`}
-              >
-                {CLASS_LABELS[cls] ?? cls}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Drug list */}
-        {filtered.length === 0 ? (
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm px-8 py-12 text-center">
-            <p className="text-slate-500 text-sm">
-              {search ? `Nenhum medicamento encontrado para "${search}".` : "O backend não retornou nenhum medicamento para esta análise."}
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {visible.map((drug, idx) => (
-              <DrugRow
-                key={drug.name}
-                drug={drug}
-                rank={idx + 1}
-                selected={selected.has(drug.name)}
-                onToggle={() => toggleSelect(drug.name)}
-              />
-            ))}
-
-            {hasMore && (
-              <button
-                type="button"
-                onClick={() => setVisibleCount((v) => v + PAGE_SIZE)}
-                className="w-full py-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors shadow-sm"
-              >
-                Ver mais {Math.min(PAGE_SIZE, filtered.length - visibleCount)} medicamentos
-              </button>
-            )}
-          </div>
-        )}
-
-        {/* Finalize prescription bar */}
-        {results.length > 0 && (
-          <div className="mt-8 flex items-center justify-between bg-white rounded-xl border border-slate-200 shadow-sm px-5 py-4 sticky bottom-4">
-            <p className="text-sm text-slate-600">
-              {selected.size === 0 ? (
-                "Nenhum medicamento selecionado"
-              ) : (
-                <><span className="font-semibold text-indigo-700">{selected.size}</span> medicamento{selected.size !== 1 ? "s" : ""} selecionado{selected.size !== 1 ? "s" : ""}</>
-              )}
-            </p>
-            <button
-              type="button"
-              disabled={selected.size === 0}
-              onClick={() => {
-                const session = JSON.parse(sessionStorage.getItem("stabilis_session") ?? "{}") as SessionData;
-                session.prescription = selectedDrugs.map((d) => ({
-                  name: d.name,
-                  name_pt: d.name_pt,
-                  ...getDefaultDosing(d.name),
-                }));
-                sessionStorage.setItem("stabilis_session", JSON.stringify(session));
-                router.push("/audit");
-              }}
-              className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white text-sm font-semibold transition-colors"
-            >
-              Definir Dosagem →
-            </button>
-          </div>
-        )}
-      </div>
-    </>
+      )}
+    </div>
   );
 }

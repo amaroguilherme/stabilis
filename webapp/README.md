@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stabilis — webapp
 
-## Getting Started
+Interface Next.js do Stabilis (hospedada na Vercel). Ferramenta experimental e educacional: não substitui avaliação profissional e não é prescrição.
 
-First, run the development server:
+## Variáveis de ambiente
+
+Copie `.env.example` para `.env.local` e preencha. As duas variáveis são **só de servidor** — o navegador nunca as recebe:
+
+| Variável | Para quê |
+|---|---|
+| `STABILIS_API_URL` | URL do Space da API (ex.: `https://amaroguilherme-stabilis-api.hf.space`) |
+| `HF_SPACE_TOKEN` | Token *fine-grained* do Hugging Face com leitura apenas do Space privado |
+
+Nunca use o prefixo `NEXT_PUBLIC_` para segredos: o Next.js copia essas variáveis para o JavaScript enviado ao navegador.
+
+Na Vercel, configure as mesmas variáveis em *Settings → Environment Variables*.
+
+## Como o navegador fala com a API
+
+O navegador chama apenas `/api/backend/*` (mesma origem). A rota `app/api/backend/[...path]/route.ts` repassa ao Space, com o token, somente:
+
+- `POST /jobs` — envia uma análise
+- `GET /jobs/<id>` e `DELETE /jobs/<id>` — acompanha ou cancela
+- `GET /ready` — estado do servidor
+
+As análises rodam como *jobs* (envia → consulta até terminar), o que sobrevive ao cold start do Space e ao limite de duração das funções da Vercel. O cliente fica em `app/lib/api/client.ts`.
+
+## Detecção de crise
+
+`app/lib/safety/crisis.ts` detecta, sem IA, menções a suicídio e autolesão. O léxico canônico fica em `knowledge/lexicons/crisis.pt-BR.json` (raiz do repositório) e é copiado para `app/lib/kb/crisis.generated.json` por:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+python scripts/build_kb.py          # depois de editar knowledge/
+python scripts/build_kb.py --check  # confere se a cópia está atualizada
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Os mesmos vetores de teste (`knowledge/tests/crisis.vectors.json`) rodam no Python e aqui.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Comandos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev     # http://localhost:3000
+npm run lint
+npm test        # testes com o test runner do Node (Node 22.18+ ou 23.6+)
+npm run build
+```
