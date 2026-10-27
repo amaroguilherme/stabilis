@@ -1,0 +1,226 @@
+{
+  "description": "Cenários T1–T11 do antigo run_mvp_tests.py, reescritos como expectativas de linha de tratamento. O teste antigo comparava notas 0–100 e aprovava fármacos ausentes; aqui cada expectativa vem de uma opção de diretriz ou de uma regra com fonte. Divergências em relação ao teste antigo estão em 'note'.",
+  "profile_defaults": {
+    "age": 35,
+    "sex_at_birth": "male",
+    "reproductive": { "pregnant": null, "breastfeeding": null, "planning": null },
+    "conditions": [],
+    "habits": [],
+    "current_meds": []
+  },
+  "cases": [
+    {
+      "id": "T1",
+      "title": "Bipolar I, episódio maníaco, sem comorbidades",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_1", "phase": "mania" },
+        "profile": { "age": 35, "sex_at_birth": "male" },
+        "free_text": "Paciente de 35 anos em episodio de mania franca: euforia, grandiosidade, reducao acentuada do sono, fala acelerada e comportamento impulsivo. Sem comorbidades relevantes."
+      },
+      "expect": {
+        "crisis": { "language": false, "negated_only": false },
+        "tiers": {
+          "litio": "first_line",
+          "quetiapina": "first_line",
+          "valproato": "first_line",
+          "aripiprazol": "first_line",
+          "risperidona": "first_line",
+          "olanzapina": "second_line",
+          "carbamazepina": "second_line",
+          "ziprasidona": "second_line",
+          "haloperidol": "second_line",
+          "fluoxetina": "not_recommended",
+          "sertralina": "not_recommended"
+        },
+        "order": [["litio", "aripiprazol"]],
+        "drug_alerts": { "litio": ["alert.monitoring"], "valproato": ["alert.monitoring"] }
+      }
+    },
+    {
+      "id": "T2",
+      "title": "Bipolar I, episódio depressivo, com ideação passiva de morte",
+      "note": "O texto menciona ideação passiva de morte: alerta crítico no modo profissional, alerta de toxicidade em superdosagem para lítio, quetiapina e lamotrigina, sem tirá-los da 1ª linha (NICE NG222 1.4.23 pede para considerar, não para excluir).",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_1", "phase": "depression" },
+        "profile": { "age": 29, "sex_at_birth": "female", "reproductive": { "pregnant": "no", "breastfeeding": false, "planning": false } },
+        "free_text": "Paciente de 29 anos em episodio depressivo bipolar: anedonia, hipersonia, lentificacao psicomotora, ideacao passiva de morte. Sem historico de psicose ou mania recente."
+      },
+      "expect": {
+        "crisis": { "language": true, "negated_only": false },
+        "derived": { "suicide_risk": true, "childbearing_potential": true },
+        "alerts": ["alert.crisis_professional"],
+        "tiers": {
+          "quetiapina": "first_line",
+          "lurasidona": "first_line",
+          "litio": "first_line",
+          "lamotrigina": "first_line",
+          "valproato": "avoid_for_profile",
+          "fluoxetina": "not_recommended"
+        },
+        "drug_alerts": {
+          "litio": ["alert.suicide_risk_overdose"],
+          "quetiapina": ["alert.suicide_risk_overdose"],
+          "valproato": ["alert.teratogenic"]
+        },
+        "questions": ["q.limited_supply", "q.contraception"]
+      }
+    },
+    {
+      "id": "T3",
+      "title": "Bipolar II, manutenção, sem comorbidades",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_2", "phase": "maintenance" },
+        "profile": { "age": 34, "sex_at_birth": "female", "reproductive": { "pregnant": "no", "breastfeeding": false, "planning": false } }
+      },
+      "expect": {
+        "tiers": { "quetiapina": "first_line", "litio": "first_line", "lamotrigina": "first_line" },
+        "absent": ["escitalopram", "valproato"],
+        "options": ["opt-bp2-psychoeducation"]
+      }
+    },
+    {
+      "id": "T4",
+      "title": "TAG sem comorbidades",
+      "note": "Buspirona não está na base (não consta das diretrizes usadas).",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "gad" },
+        "profile": { "age": 31, "sex_at_birth": "female", "reproductive": { "pregnant": "no", "breastfeeding": false, "planning": false } }
+      },
+      "expect": {
+        "tiers": {
+          "escitalopram": "first_line",
+          "sertralina": "first_line",
+          "venlafaxina": "second_line",
+          "duloxetina": "second_line",
+          "pregabalina": "alternative",
+          "clonazepam": "not_recommended",
+          "olanzapina": "not_recommended"
+        },
+        "options": ["opt-gad-cbt", "opt-gad-education"]
+      }
+    },
+    {
+      "id": "T5",
+      "title": "Bipolar I, manutenção, insuficiência renal crônica",
+      "note": "O teste antigo zerava o lítio. A bula do lítio só desaconselha com ClCr < 30; a doença renal sem gravidade gera alerta e pergunta sobre exames, sem mudar a linha.",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_1", "phase": "maintenance" },
+        "profile": { "age": 58, "sex_at_birth": "male", "conditions": ["renal_disease"] }
+      },
+      "expect": {
+        "tiers": { "litio": "first_line", "lamotrigina": "first_line", "valproato": "first_line" },
+        "drug_alerts": { "litio": ["alert.renal"] },
+        "questions": ["q.monitoring"]
+      }
+    },
+    {
+      "id": "T6",
+      "title": "Bipolar I, mania, hepatopatia e álcool",
+      "note": "Lamotrigina não é opção para mania aguda (CANMAT/ISBD 2018), por isso não aparece.",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_1", "phase": "mania" },
+        "profile": { "age": 44, "sex_at_birth": "male", "conditions": ["hepatic_disease"], "habits": ["alcohol"] }
+      },
+      "expect": {
+        "tiers": {
+          "valproato": "avoid_for_profile",
+          "carbamazepina": "avoid_for_profile",
+          "litio": "first_line",
+          "quetiapina": "first_line"
+        },
+        "absent": ["lamotrigina"],
+        "drug_alerts": {
+          "valproato": ["alert.hepatic_avoid"],
+          "carbamazepina": ["alert.hepatic_avoid"],
+          "quetiapina": ["alert.alcohol_cns"]
+        }
+      }
+    },
+    {
+      "id": "T7",
+      "title": "Bipolar I, manutenção, obesidade e pré-diabetes, recusa ganho de peso",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_1", "phase": "maintenance" },
+        "profile": { "age": 40, "sex_at_birth": "female", "reproductive": { "pregnant": "no", "breastfeeding": false, "planning": false }, "conditions": ["metabolic"] },
+        "concerns": ["weight_gain_significant"]
+      },
+      "expect": {
+        "tiers": { "olanzapina": "second_line", "valproato": "avoid_for_profile", "lamotrigina": "first_line", "quetiapina": "first_line" },
+        "order": [["lamotrigina", "quetiapina"], ["aripiprazol", "quetiapina"], ["litio", "quetiapina"]],
+        "drug_alerts": { "olanzapina": ["alert.metabolic"], "quetiapina": ["alert.metabolic"], "valproato": ["alert.teratogenic"] }
+      }
+    },
+    {
+      "id": "T8",
+      "title": "Bipolar I, mania, história de sintomas extrapiramidais",
+      "note": "O teste antigo zerava os típicos. As bulas pedem cautela, não proíbem: alerta em todo antipsicótico com risco de EPS, sem mudar a linha.",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_1", "phase": "mania" },
+        "profile": { "age": 38, "sex_at_birth": "male", "conditions": ["eps_history"] }
+      },
+      "expect": {
+        "tiers": { "litio": "first_line", "haloperidol": "second_line" },
+        "drug_alerts": { "haloperidol": ["alert.eps_history"], "quetiapina": ["alert.eps_history"] }
+      }
+    },
+    {
+      "id": "T9",
+      "title": "Bipolar I, mania, QT longo e microadenoma com galactorreia",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_1", "phase": "mania" },
+        "profile": { "age": 52, "sex_at_birth": "female", "reproductive": { "pregnant": "no", "breastfeeding": false, "planning": false }, "conditions": ["cardiac_qt"] },
+        "concerns": ["prolactin_elevation"]
+      },
+      "expect": {
+        "tiers": {
+          "aripiprazol": "first_line",
+          "litio": "first_line",
+          "risperidona": "first_line",
+          "quetiapina": "avoid_for_profile",
+          "ziprasidona": "avoid_for_profile",
+          "haloperidol": "avoid_for_profile",
+          "valproato": "avoid_for_profile"
+        },
+        "order": [["aripiprazol", "risperidona"]],
+        "drug_alerts": { "quetiapina": ["alert.qt_cardiac"], "ziprasidona": ["alert.qt_cardiac"] }
+      }
+    },
+    {
+      "id": "T10",
+      "title": "TAG, preocupação com sedação",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "gad" },
+        "profile": { "age": 27, "sex_at_birth": "female", "reproductive": { "pregnant": "no", "breastfeeding": false, "planning": false } },
+        "concerns": ["sedation_significant"]
+      },
+      "expect": {
+        "tiers": { "clonazepam": "not_recommended", "diazepam": "not_recommended", "escitalopram": "first_line", "sertralina": "first_line" }
+      }
+    },
+    {
+      "id": "T11",
+      "title": "Bipolar I, manutenção, insuficiência renal moderada e história de EPS",
+      "note": "Haloperidol não é opção de manutenção, por isso não aparece.",
+      "input": {
+        "mode": "professional",
+        "condition": { "id": "bipolar_1", "phase": "maintenance" },
+        "profile": { "age": 62, "sex_at_birth": "male", "conditions": ["renal_disease", "eps_history"] }
+      },
+      "expect": {
+        "tiers": { "lamotrigina": "first_line", "litio": "first_line" },
+        "absent": ["haloperidol"],
+        "drug_alerts": { "litio": ["alert.renal"], "aripiprazol": ["alert.eps_history"] }
+      }
+    }
+  ]
+}

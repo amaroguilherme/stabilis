@@ -1,0 +1,773 @@
+{
+  "description": "Checagens de segurança do plano (seção Verificação) e casos de borda das regras. Cada caso descreve o comportamento esperado do motor para uma entrada; as invariantes (INV-01 a INV-12) também são conferidas em todos os casos.",
+  "profile_defaults": {
+    "age": 35,
+    "sex_at_birth": "male",
+    "reproductive": {
+      "pregnant": null,
+      "breastfeeding": null,
+      "planning": null
+    },
+    "conditions": [],
+    "habits": [],
+    "current_meds": []
+  },
+  "cases": [
+    {
+      "id": "S01",
+      "title": "Crise no relato do paciente oculta todo medicamento",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 30,
+          "sex_at_birth": "female",
+          "reproductive": {
+            "pregnant": "no",
+            "breastfeeding": false,
+            "planning": false
+          }
+        },
+        "free_text": "às vezes penso que queria morrer"
+      },
+      "expect": {
+        "crisis": {
+          "language": true,
+          "negated_only": false
+        },
+        "no_drugs": true,
+        "medications_excluded": "all",
+        "alerts": [
+          "alert.crisis_patient"
+        ],
+        "referrals": [
+          "ref.crisis"
+        ],
+        "options": [
+          "opt-dep-psychotherapy"
+        ]
+      }
+    },
+    {
+      "id": "S02",
+      "title": "Negação na anamnese: só informativo, sem alerta de crise",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 40,
+          "severity": "more_severe"
+        },
+        "free_text": "Pcte 40a, refere tristeza há 2 meses, nega ideação suicida."
+      },
+      "expect": {
+        "crisis": {
+          "language": false,
+          "negated_only": true
+        },
+        "no_alerts": [
+          "alert.crisis_professional"
+        ],
+        "derived": {
+          "suicide_risk": false
+        },
+        "tiers": {
+          "sertralina": "first_line",
+          "amitriptilina": "second_line"
+        }
+      }
+    },
+    {
+      "id": "S03",
+      "title": "Depressão bipolar com sertralina em uso",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "bipolar_1",
+          "phase": "depression"
+        },
+        "profile": {
+          "age": 30,
+          "sex_at_birth": "female",
+          "reproductive": {
+            "pregnant": "no",
+            "breastfeeding": false,
+            "planning": false
+          },
+          "current_meds": [
+            {
+              "drug_id": "sertralina",
+              "raw_text": "sertralina 100 mg",
+              "mg_per_day": 100
+            }
+          ]
+        }
+      },
+      "expect": {
+        "tiers": {
+          "sertralina": "not_recommended"
+        },
+        "not_in_positive": [
+          "sertralina",
+          "fluoxetina",
+          "escitalopram"
+        ],
+        "in_use": [
+          "sertralina"
+        ],
+        "drug_alerts": {
+          "sertralina": [
+            "alert.bipolar_antidepressant"
+          ]
+        },
+        "review": [
+          {
+            "raw_text": "sertralina 100 mg",
+            "status": "recognized",
+            "dose_check": "within_usual",
+            "alerts": [
+              "alert.bipolar_antidepressant"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "S04",
+      "title": "Mulher de 30 anos, gravidez 'não sei', em uso de valproato",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "bipolar_1",
+          "phase": "mania"
+        },
+        "profile": {
+          "age": 30,
+          "sex_at_birth": "female",
+          "reproductive": {
+            "pregnant": "unsure",
+            "breastfeeding": false,
+            "planning": false
+          },
+          "current_meds": [
+            {
+              "drug_id": "valproato",
+              "raw_text": "Depakote 1000 mg",
+              "mg_per_day": 1000
+            }
+          ]
+        }
+      },
+      "expect": {
+        "derived": {
+          "pregnant_or_planning": true,
+          "childbearing_potential": true
+        },
+        "tiers": {
+          "valproato": "avoid_for_profile",
+          "litio": "avoid_for_profile",
+          "carbamazepina": "avoid_for_profile",
+          "quetiapina": "first_line"
+        },
+        "drug_alerts": {
+          "valproato": [
+            "alert.teratogenic",
+            "alert.pregnancy_mood_stabilizer"
+          ],
+          "litio": [
+            "alert.pregnancy_mood_stabilizer"
+          ]
+        },
+        "review": [
+          {
+            "raw_text": "Depakote 1000 mg",
+            "status": "recognized",
+            "alerts": [
+              "alert.teratogenic",
+              "alert.monitoring"
+            ]
+          }
+        ],
+        "questions": [
+          "q.contraception",
+          "q.pregnancy_plan"
+        ]
+      }
+    },
+    {
+      "id": "S05",
+      "title": "Lítio com ibuprofeno: interação com fonte",
+      "input": {
+        "mode": "professional",
+        "condition": null,
+        "profile": {
+          "age": 50,
+          "current_meds": [
+            {
+              "drug_id": "litio",
+              "raw_text": "carbonato de lítio 900 mg",
+              "mg_per_day": 900
+            },
+            {
+              "drug_id": "ibuprofeno",
+              "raw_text": "ibuprofeno 600 mg 2x",
+              "mg_per_day": 1200
+            }
+          ]
+        }
+      },
+      "expect": {
+        "no_drugs": true,
+        "interactions": [
+          "IX-PK-LITHIUM-RAISED"
+        ],
+        "review": [
+          {
+            "raw_text": "carbonato de lítio 900 mg",
+            "status": "recognized",
+            "dose_check": "within_usual",
+            "alerts": [
+              "alert.monitoring"
+            ]
+          },
+          {
+            "raw_text": "ibuprofeno 600 mg 2x",
+            "status": "recognized",
+            "dose_check": "no_label_data"
+          }
+        ]
+      }
+    },
+    {
+      "id": "S06",
+      "title": "Remédio não reconhecido continua visível",
+      "input": {
+        "mode": "patient",
+        "condition": null,
+        "profile": {
+          "current_meds": [
+            {
+              "drug_id": null,
+              "raw_text": "remédio azul"
+            }
+          ]
+        }
+      },
+      "expect": {
+        "review": [
+          {
+            "raw_text": "remédio azul",
+            "status": "unrecognized",
+            "alerts": [
+              "alert.unrecognized_med"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "S07",
+      "title": "Paciente sem triagem de bipolaridade não vê antidepressivo",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 35
+        },
+        "instruments": {
+          "phq9": {
+            "phq9_1": 2,
+            "phq9_2": 2,
+            "phq9_3": 2,
+            "phq9_4": 2,
+            "phq9_5": 2,
+            "phq9_6": 2,
+            "phq9_7": 2,
+            "phq9_8": 2,
+            "phq9_9": 0
+          }
+        }
+      },
+      "expect": {
+        "derived": {
+          "depression_more_severe": true,
+          "suicide_risk": false
+        },
+        "medications_excluded": [
+          {
+            "class": "antidepressant"
+          }
+        ],
+        "absent": [
+          "sertralina",
+          "fluoxetina",
+          "mirtazapina",
+          "amitriptilina"
+        ],
+        "alerts": [
+          "alert.bipolar_screen"
+        ],
+        "questions": [
+          "q.bipolar_screen"
+        ],
+        "options": [
+          "opt-dep-psychotherapy"
+        ]
+      }
+    },
+    {
+      "id": "S08",
+      "title": "Menor de 18 anos no modo paciente: só encaminhamento",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 16
+        }
+      },
+      "expect": {
+        "no_drugs": true,
+        "medications_excluded": "all",
+        "alerts": [
+          "alert.minor_referral"
+        ],
+        "referrals": [
+          "ref.capsi"
+        ]
+      }
+    },
+    {
+      "id": "S09",
+      "title": "Linezolida em uso: antidepressivos contraindicados vão para 'evitar'",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 40,
+          "severity": "more_severe",
+          "current_meds": [
+            {
+              "drug_id": "linezolida",
+              "raw_text": "linezolida 600 mg 12/12h",
+              "mg_per_day": 1200
+            }
+          ]
+        }
+      },
+      "expect": {
+        "tiers": {
+          "sertralina": "avoid_for_profile",
+          "fluoxetina": "avoid_for_profile",
+          "bupropiona": "avoid_for_profile",
+          "imipramina": "avoid_for_profile"
+        },
+        "drug_interactions": {
+          "sertralina": [
+            "IX-PD-MAOI-CONTRAINDICATED"
+          ],
+          "bupropiona": [
+            "IX-PD-MAOI-CONTRAINDICATED"
+          ]
+        },
+        "no_drug_interactions": {
+          "sertralina": [
+            "IX-PD-SEROTONERGIC"
+          ]
+        },
+        "drug_alerts": {
+          "sertralina": [
+            "ix.maoi_contraindicated"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S10",
+      "title": "Sem idade: nenhum conteúdo sobre medicamentos",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "gad"
+        },
+        "profile": {
+          "age": null
+        }
+      },
+      "expect": {
+        "no_drugs": true,
+        "medications_excluded": "all",
+        "alerts": [
+          "alert.missing_profile"
+        ],
+        "options": [
+          "opt-gad-cbt"
+        ]
+      }
+    },
+    {
+      "id": "S11",
+      "title": "Situação de gravidez não informada é tratada como 'não sei'",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 30,
+          "sex_at_birth": "female",
+          "severity": "more_severe"
+        }
+      },
+      "expect": {
+        "derived": {
+          "pregnant_or_planning": true,
+          "childbearing_potential": true,
+          "may_become_pregnant_demographic": true
+        },
+        "drug_alerts": {
+          "paroxetina": [
+            "alert.pregnancy_risk"
+          ]
+        },
+        "questions": [
+          "q.pregnancy_plan"
+        ]
+      }
+    },
+    {
+      "id": "S12",
+      "title": "PHQ-9 item 9 positivo: tricíclicos em 'evitar'",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 40
+        },
+        "instruments": {
+          "phq9": {
+            "phq9_1": 3,
+            "phq9_2": 3,
+            "phq9_3": 2,
+            "phq9_4": 2,
+            "phq9_5": 2,
+            "phq9_6": 2,
+            "phq9_7": 2,
+            "phq9_8": 1,
+            "phq9_9": 1
+          }
+        }
+      },
+      "expect": {
+        "derived": {
+          "suicide_risk": true,
+          "depression_more_severe": true
+        },
+        "tiers": {
+          "amitriptilina": "avoid_for_profile",
+          "nortriptilina": "avoid_for_profile",
+          "sertralina": "first_line"
+        },
+        "drug_alerts": {
+          "amitriptilina": [
+            "alert.suicide_risk_tca"
+          ],
+          "mirtazapina": [
+            "alert.suicide_risk_overdose"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S13",
+      "title": "Modo profissional com 16 anos: opções de adulto com aviso",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 16,
+          "severity": "more_severe"
+        }
+      },
+      "expect": {
+        "alerts": [
+          "alert.population_age"
+        ],
+        "tiers": {
+          "sertralina": "first_line"
+        },
+        "drug_alerts": {
+          "sertralina": [
+            "alert.young_suicidality"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S14",
+      "title": "Idoso: amitriptilina em 'evitar'",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 70,
+          "severity": "more_severe"
+        }
+      },
+      "expect": {
+        "tiers": {
+          "amitriptilina": "avoid_for_profile",
+          "nortriptilina": "second_line"
+        },
+        "drug_alerts": {
+          "amitriptilina": [
+            "alert.elderly_amitriptyline"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S15",
+      "title": "Revisão de receita: dose acima da máxima e abaixo da usual",
+      "input": {
+        "mode": "professional",
+        "condition": null,
+        "profile": {
+          "age": 45,
+          "current_meds": [
+            {
+              "drug_id": "fluoxetina",
+              "raw_text": "Prozac 100 mg",
+              "mg_per_day": 100
+            },
+            {
+              "drug_id": "sertralina",
+              "raw_text": "sertralina 25 mg",
+              "mg_per_day": 25
+            },
+            {
+              "drug_id": "quetiapina",
+              "raw_text": "quetiapina 600 mg",
+              "mg_per_day": 600
+            },
+            {
+              "drug_id": "escitalopram",
+              "raw_text": "escitalopram"
+            }
+          ]
+        }
+      },
+      "expect": {
+        "review": [
+          {
+            "raw_text": "Prozac 100 mg",
+            "dose_check": "above_max",
+            "alerts": [
+              "alert.dose_above_max"
+            ]
+          },
+          {
+            "raw_text": "sertralina 25 mg",
+            "dose_check": "below_usual",
+            "alerts": [
+              "alert.dose_below_usual"
+            ]
+          },
+          {
+            "raw_text": "quetiapina 600 mg",
+            "dose_check": "within_usual"
+          },
+          {
+            "raw_text": "escitalopram",
+            "dose_check": "no_dose_informed"
+          }
+        ],
+        "interactions": [
+          "IX-PD-SEROTONERGIC",
+          "IX-PD-QT"
+        ]
+      }
+    },
+    {
+      "id": "S16",
+      "title": "TAG no modo paciente sem triagem: pregabalina como alternativa, benzodiazepínicos não recomendados",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "gad"
+        },
+        "profile": {
+          "age": 35
+        }
+      },
+      "expect": {
+        "tiers": {
+          "pregabalina": "alternative",
+          "clonazepam": "not_recommended"
+        },
+        "absent": [
+          "sertralina",
+          "venlafaxina"
+        ]
+      }
+    },
+    {
+      "id": "S17",
+      "title": "Bipolar no modo paciente: encaminhamento, sem medicamentos",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "bipolar_1"
+        },
+        "profile": {
+          "age": 35
+        }
+      },
+      "expect": {
+        "no_drugs": true,
+        "options": [
+          "opt-bp1-referral"
+        ]
+      }
+    },
+    {
+      "id": "S18",
+      "title": "Depressão sem gravidade: só opções que não dependem dela, com aviso",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 35
+        }
+      },
+      "expect": {
+        "alerts": [
+          "alert.severity_missing"
+        ],
+        "no_drugs": true,
+        "options": [
+          "opt-dep-psychotherapy"
+        ]
+      }
+    },
+    {
+      "id": "S19",
+      "title": "Bipolar no modo profissional sem fase: aviso e nenhuma opção por fase",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "bipolar_1",
+          "phase": null
+        },
+        "profile": {
+          "age": 35
+        }
+      },
+      "expect": {
+        "alerts": [
+          "alert.phase_missing"
+        ],
+        "no_options": [
+          "opt-bp1-mania-first-line",
+          "opt-bp1-maintenance-first-line"
+        ]
+      }
+    },
+    {
+      "id": "S20",
+      "title": "Lamotrigina com anticoncepcional e com valproato em uso",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "bipolar_1",
+          "phase": "maintenance"
+        },
+        "profile": {
+          "age": 28,
+          "sex_at_birth": "female",
+          "reproductive": {
+            "pregnant": "no",
+            "breastfeeding": false,
+            "planning": false
+          },
+          "current_meds": [
+            {
+              "drug_id": "etinilestradiol",
+              "raw_text": "anticoncepcional"
+            }
+          ]
+        }
+      },
+      "expect": {
+        "drug_interactions": {
+          "lamotrigina": [
+            "IX-PK-ESTROGEN-LAMOTRIGINE"
+          ]
+        },
+        "tiers": {
+          "valproato": "avoid_for_profile"
+        }
+      }
+    },
+    {
+      "id": "S21",
+      "title": "Tramadol em uso: opioide com depressor do SNC é grave; serotoninérgicos com alerta",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "gad"
+        },
+        "profile": {
+          "age": 45,
+          "current_meds": [
+            {
+              "drug_id": "tramadol",
+              "raw_text": "tramadol 50 mg 3x",
+              "mg_per_day": 150
+            }
+          ]
+        }
+      },
+      "expect": {
+        "drug_interactions": {
+          "pregabalina": [
+            "IX-PD-CNS-OPIOID"
+          ],
+          "clonazepam": [
+            "IX-PD-CNS-OPIOID"
+          ],
+          "sertralina": [
+            "IX-PD-SEROTONERGIC"
+          ]
+        },
+        "no_drug_interactions": {
+          "pregabalina": [
+            "IX-PD-CNS"
+          ]
+        },
+        "drug_alerts": {
+          "pregabalina": [
+            "ix.cns_opioid"
+          ]
+        }
+      }
+    }
+  ]
+}
