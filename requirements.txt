@@ -1,15 +1,6 @@
-git+https://github.com/amaroguilherme/qyra.git@v0.2.0
+# API image (Hugging Face Space): language service only. Tests use requirements-ci.txt.
 Flask==3.1.2
-flask-cors==5.0.1
 gunicorn==26.2.0
 huggingface_hub==0.27.1
 jsonschema==4.26.0
-maturin==1.10.2
-mygene==3.2.2
-numpy==2.3.5
-pandas==2.3.3
-pytest==9.0.2
-python-dotenv==1.2.1
-rdkit==2025.9.4
-torch==2.9.1
-torch-geometric==2.7.0
+llama_cpp_python==0.3.18

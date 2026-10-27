@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, jsonify, request
 
 from api.errors import ApiError
-from api.jobs import FINISHED, QueueFull
+from api.jobs import QueueFull
 from api.validation import validate_job_envelope, validate_job_input
 
 analysis = Blueprint("analysis", __name__)
@@ -77,35 +77,10 @@ def delete_job(job_id: str):
     return "", 204
 
 
-def _run_sync(kind: str):
-    """Deprecated synchronous path: same queue and worker, but the request waits for the result."""
-    services = _services()
-    payload = validate_job_input(kind, _json_body(), services.settings.max_text_chars)
-    job = _submit(kind, payload)
-    finished = services.store.wait_finished(job.id, services.settings.sync_wait_s)
-    status, result, error = (finished.status, finished.result, finished.error) if finished else (None, None, None)
-    services.store.delete(job.id)
-    if status not in FINISHED:
-        raise ApiError("timeout", 504)
-    if status == "error":
-        raise ApiError(error or "internal", 503 if error == "model_unavailable" else 500)
-    return jsonify(result["results"])
-
-
-# /analyze and /reanalyze are kept only so the previous frontend works during the transition.
-# The current frontend uses /jobs. Remove both in Phase 1.6.
+# Removed in Phase 1.6 with the legacy ranking engine. They answer 410 for one version so an old
+# client fails clearly, then they go away.
 @analysis.post("/analyze")
-def analyze():
-    return _run_sync("legacy_analyze")
-
-
 @analysis.post("/reanalyze")
-def reanalyze():
-    return _run_sync("legacy_reanalyze")
-
-
 @analysis.post("/audit")
-def audit():
-    # The pharmacokinetic simulation used unsourced parameters and flagged standard doses as toxic.
-    # Disabled until the deterministic prescription review (Phase 1) replaces it.
-    raise ApiError("feature_disabled", 410)
+def removed():
+    raise ApiError("feature_removed", 410)

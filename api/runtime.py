@@ -47,5 +47,5 @@ class EngineRuntime:
 
     @property
     def llm_status(self) -> str:
-        extractor = getattr(self.engine, "symptom_extractor", None)
-        return getattr(extractor, "status", "unknown")
+        status = getattr(self.engine, "llm_status", None)
+        return status if isinstance(status, str) else "unknown"

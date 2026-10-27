@@ -18,11 +18,12 @@ from typing import Any
 
 logger = logging.getLogger("stabilis.jobs")
 
-FINISHED = ("done", "error")
-
-
 class QueueFull(Exception):
     pass
+
+
+class ServiceUnavailable(Exception):
+    """A handler's dependency (model, legacy engine) is not available: reported as model_unavailable."""
 
 
 @dataclass
@@ -108,18 +109,6 @@ class JobStore:
                 job.result = None
             self._cond.notify_all()
 
-    def wait_finished(self, job_id: str, timeout: float) -> Job | None:
-        deadline = time.monotonic() + timeout
-        with self._cond:
-            while True:
-                job = self._jobs.get(job_id)
-                if job is None or job.status in FINISHED:
-                    return job
-                remaining = deadline - time.monotonic()
-                if remaining <= 0:
-                    return job
-                self._cond.wait(remaining)
-
     def _purge_expired(self) -> None:
         now = self._clock()
         expired = [
@@ -158,6 +147,9 @@ class JobWorker(threading.Thread):
                 self._store.finish(job, error="model_unavailable")
                 return
             result = self._handlers[job.kind](self._runtime.engine, job.payload)
+        except ServiceUnavailable:
+            self._store.finish(job, error="model_unavailable")
+            return
         except Exception as exc:
             logger.error("job_failed kind=%s error=%s", job.kind, type(exc).__name__)
             self._store.finish(job, error="internal")

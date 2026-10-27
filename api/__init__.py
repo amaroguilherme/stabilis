@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from typing import Any
 
 from flask import Flask
-from flask_cors import CORS
 
 from api.errors import register_error_handlers
 from api.handlers import HANDLERS
@@ -24,11 +23,10 @@ class Services:
 
 
 def _default_engine_factory():
-    # Heavy imports (torch, qyra, llama.cpp) happen only here, so the app and its tests
-    # can be imported without the model stack.
-    from engine import StabilisEngine
+    # llama.cpp is imported only here, so the app and its tests can be imported without the model stack.
+    from core.service import build_default_service
 
-    return StabilisEngine()
+    return build_default_service()
 
 
 def _configure_logging() -> None:
@@ -47,7 +45,6 @@ def create_app(
 
     app = Flask(__name__)
     app.config["MAX_CONTENT_LENGTH"] = settings.max_content_length
-    CORS(app, origins=list(settings.cors_origins))
     register_error_handlers(app)
     app.register_blueprint(analysis)
 
