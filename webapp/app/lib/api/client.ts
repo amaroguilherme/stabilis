@@ -4,7 +4,7 @@
 // Analyses run as jobs: submit, then poll until done. This survives the Space's cold start
 // (several minutes on CPU) and the 300 s limit of Vercel functions.
 
-export type JobKind = "legacy_analyze" | "legacy_reanalyze";
+export type JobKind = "extract";
 
 export type BackendErrorCode =
   | "aborted"
@@ -152,12 +152,19 @@ const MESSAGES: Record<BackendErrorCode, string> = {
   internal: "Ocorreu um erro inesperado no servidor de análise. Tente novamente.",
   invalid_input: "Alguns dados do formulário são inválidos. Revise os campos e tente novamente.",
   job_lost: "A análise foi interrompida porque o servidor reiniciou. Envie novamente.",
-  model_unavailable: "O motor de análise não conseguiu carregar no servidor. Tente novamente mais tarde.",
+  model_unavailable: "O modelo de linguagem não conseguiu carregar no servidor. Tente novamente mais tarde.",
   network: "Não foi possível falar com o servidor de análise. Verifique sua conexão e tente novamente.",
-  text_too_long: "Os textos livres passaram do limite de 4.000 caracteres somados. Resuma e tente novamente.",
+  text_too_long: "O texto passou do limite de 4.000 caracteres. Resuma e tente novamente.",
   timeout: "O servidor demorou demais para responder (ele pode estar acordando). Tente novamente em alguns minutos.",
 };
 
 export function describeBackendError(err: unknown): string {
   return err instanceof BackendError ? MESSAGES[err.code] : MESSAGES.internal;
+}
+
+export function describeProgress(progress: JobProgress | null, running = "Analisando o texto. Isso pode levar até 1 ou 2 minutos..."): string {
+  if (!progress) return "Enviando...";
+  if (progress.phase === "starting") return "Acordando o servidor de análise. Na primeira vez do dia isso pode levar alguns minutos...";
+  if (progress.phase === "running") return running;
+  return progress.position ? `Na fila (posição ${progress.position})...` : "Aguardando vaga no servidor...";
 }

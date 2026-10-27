@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="pt-BR" className="h-full">
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 antialiased">
         <CrisisBar />
-        <nav className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
+        <nav className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50 print:hidden">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center gap-3">
             <Link href="/" className="text-xl font-bold tracking-tight text-indigo-700 hover:text-indigo-800 transition-colors">
               Stabilis
