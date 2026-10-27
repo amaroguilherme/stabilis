@@ -1,13 +1,40 @@
 name: Keep Alive
 
+# The free Space sleeps after 48 h without traffic, so once a day is enough. The Space is
+# private: the request must carry a read token (repository secret HF_SPACE_TOKEN).
+# /ready answers 200 only when the engine and the LLM are loaded, so this job also alerts
+# (GitHub e-mails on failure) when the model stops loading.
+
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "17 11 * * *"
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
-      - name: Ping health endpoint
-        run: curl -s --max-time 30 --retry 3 --retry-delay 10 --retry-all-errors https://amaroguilherme-stabilis-api.hf.space/health || true
+      - name: Wait until the API is ready
+        env:
+          HF_SPACE_TOKEN: ${{ secrets.HF_SPACE_TOKEN }}
+        run: |
+          if [ -z "$HF_SPACE_TOKEN" ]; then
+            echo "::error::Secret HF_SPACE_TOKEN não configurado."
+            exit 1
+          fi
+          url="https://amaroguilherme-stabilis-api.hf.space/ready"
+          code="000"
+          for attempt in $(seq 1 20); do
+            code=$(curl -s -o ready.json -w "%{http_code}" --max-time 30 \
+              -H "Authorization: Bearer ${HF_SPACE_TOKEN}" "$url" || echo "000")
+            echo "tentativa ${attempt}: HTTP ${code}"
+            if [ "$code" = "200" ]; then
+              cat ready.json
+              exit 0
+            fi
+            sleep 30
+          done
+          echo "::error::A API não ficou pronta em 10 minutos (último HTTP ${code})."
+          cat ready.json 2>/dev/null || true
+          exit 1
