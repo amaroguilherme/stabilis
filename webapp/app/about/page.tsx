@@ -22,6 +22,9 @@ const KIND_LABELS: Record<string, string> = {
   drug_label: "Bulas",
   dataset: "Dados abertos",
   instrument: "Instrumentos",
+  review: "Artigos de revisão",
+  service_info: "Serviços de saúde e de apoio",
+  terms_of_use: "Termos de uso de terceiros",
   policy: "Política do projeto",
 };
 

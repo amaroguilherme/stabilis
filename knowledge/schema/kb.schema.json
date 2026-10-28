@@ -1543,7 +1543,9 @@
                   "dataset",
                   "instrument",
                   "review",
-                  "policy"
+                  "policy",
+                  "service_info",
+                  "terms_of_use"
                 ]
               },
               "language": {
@@ -1960,6 +1962,269 @@
             },
             "additionalProperties": false
           }
+        }
+      },
+      "additionalProperties": false
+    },
+    "trial": {
+      "type": "object",
+      "required": [
+        "id",
+        "selector",
+        "sources",
+        "review"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "min_weeks"
+          ]
+        },
+        {
+          "required": [
+            "max_weeks"
+          ]
+        }
+      ],
+      "description": "Com min_weeks, tentativa adequada: dose mínima eficaz (a da regra ou, se ausente, dose_adult.usual_min do medicamento) mantida por pelo menos min_weeks. Só com max_weeks, limite de uso (ex.: benzodiazepínicos): avalia apenas se o uso passou do tempo recomendado, sem julgar a dose.",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/rule_id"
+        },
+        "selector": {
+          "$ref": "#/$defs/selector"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "min_weeks": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 52
+        },
+        "max_weeks": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 520,
+          "description": "Uso além disso não é recomendado (ex.: benzodiazepínicos na ansiedade)."
+        },
+        "min_mg_per_day": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 400
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "additionalProperties": false
+    },
+    "next_step": {
+      "type": "object",
+      "required": [
+        "id",
+        "status",
+        "modes",
+        "message_key",
+        "sources",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/rule_id"
+        },
+        "status": {
+          "enum": [
+            "no_response_adequate",
+            "partial_response_adequate",
+            "low_dose",
+            "short_duration",
+            "beyond_recommended",
+            "unknown"
+          ]
+        },
+        "selector": {
+          "$ref": "#/$defs/selector"
+        },
+        "condition": {
+          "$ref": "#/$defs/id"
+        },
+        "modes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/mode"
+          }
+        },
+        "message_key": {
+          "$ref": "#/$defs/message_key"
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "additionalProperties": false
+    },
+    "treatment_review_file": {
+      "type": "object",
+      "required": [
+        "trials",
+        "next_steps"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "trials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/trial"
+          }
+        },
+        "next_steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/next_step"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "safety_plan": {
+      "type": "object",
+      "required": [
+        "title",
+        "intro",
+        "steps",
+        "contacts",
+        "sources",
+        "review"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "intro": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title",
+              "prompt",
+              "sources"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "title": {
+                "type": "string"
+              },
+              "prompt": {
+                "type": "string"
+              },
+              "examples": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sources": {
+                "$ref": "#/$defs/cites"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "phone",
+              "description",
+              "sources"
+            ],
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "string",
+                "pattern": "^[0-9]{3,4}$"
+              },
+              "description": {
+                "type": "string"
+              },
+              "sources": {
+                "$ref": "#/$defs/cites"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "license_note": {
+          "type": "string"
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "additionalProperties": false
+    },
+    "tracking": {
+      "type": "object",
+      "required": [
+        "reassess_days",
+        "instruments",
+        "sources",
+        "review"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "reassess_days": {
+          "type": "integer",
+          "minimum": 7,
+          "maximum": 90
+        },
+        "instruments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "sources": {
+          "$ref": "#/$defs/cites"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
         }
       },
       "additionalProperties": false

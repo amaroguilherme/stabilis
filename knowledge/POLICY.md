@@ -18,7 +18,7 @@ No modo paciente, conteúdo sobre antidepressivos só aparece depois que a pesso
 O modo paciente mostra opções de tratamento apenas para depressão e ansiedade generalizada. Para transtorno bipolar, a ferramenta mostra informações de segurança e recomenda acompanhamento especializado. Psicose, mania aguda, transtornos alimentares, TDAH e dependência química recebem apenas orientação de encaminhamento.
 
 ## 6. Números exibidos
-O modo paciente não mostra notas ou pontuações próprias para medicamentos. Os únicos números exibidos são os totais de questionários validados.
+O modo paciente não mostra notas ou pontuações próprias para medicamentos. Os únicos números exibidos são os totais de questionários validados e, na revisão de tratamentos, a dose e o tempo informados pela pessoa ao lado das doses e dos tempos de referência citados.
 
 ## 7. Proveniência
 Todo conteúdo clínico cita uma fonte pública com localizador e trecho literal. Itens marcados como rascunho ainda não passaram pela segunda conferência humana.
@@ -33,4 +33,13 @@ Os questionários medem sintomas e servem de triagem; não fazem diagnóstico. A
 Opções para depressão aparecem quando o PHQ-9 soma 5 pontos ou mais, ou quando a pessoa informa que já recebeu esse diagnóstico. Opções para ansiedade generalizada aparecem quando o GAD-7 soma 5 pontos ou mais, ou com diagnóstico informado. Triagem de bipolaridade positiva ou diagnóstico informado de transtorno bipolar levam a orientações de segurança e de encaminhamento.
 
 ## 11. Dados no modo paciente
-As respostas ficam no aparelho da pessoa, só na aba aberta por padrão ou guardadas no aparelho por escolha dela, e podem ser apagadas a qualquer momento. Nada é enviado a servidores. Imprimir, baixar ou compartilhar o relatório só acontece por ação da pessoa, com aviso de que os dados saem do aparelho.
+As respostas ficam no aparelho da pessoa, só na aba aberta por padrão ou guardadas no aparelho por escolha dela, e podem ser apagadas a qualquer momento. Nada é enviado a servidores. Imprimir, baixar ou compartilhar o relatório só acontece por ação da pessoa, com aviso de que os dados saem do aparelho. O diário do acompanhamento só existe quando a pessoa escolhe guardar as respostas no aparelho. O plano de segurança é guardado à parte, também só na aba por padrão, e "Apagar meus dados" apaga tudo, inclusive ele. O arquivo exportado para o profissional leva só as respostas do guia, sem o diário e sem o plano de segurança.
+
+## 12. Acompanhamento
+A ferramenta sugere refazer o PHQ-9 e o GAD-7 a cada 14 dias e registra humor, sono, efeitos colaterais e uso dos remédios em escalas simples. Ela não interpreta a evolução: mostra os totais e as faixas dos questionários e recomenda levar o relatório à consulta. Repetir o PHQ-9 com o item 9 acima de zero, ou escrever no diário palavras ligadas a risco, faz as perguntas de segurança de novo, a cada vez. O relatório de evolução destaca esses sinais sem mostrar o texto das anotações, que só entram nele se a pessoa escolher.
+
+## 13. Revisão de tratamentos
+A revisão diz se a dose e o tempo de um remédio já usado bastam para avaliar o efeito, segundo critérios citados de diretrizes e bulas; ela não diz se o remédio funciona. Critérios ligados a uma condição só valem quando ela é avaliada: no modo paciente, apenas para as condições mostradas à pessoa. Para remédios de uso curto, como os benzodiazepínicos, a revisão avalia só se o uso passou do tempo recomendado, sem julgar a dose. Com sinais de risco, os próximos passos não aparecem no modo paciente.
+
+## 14. Plano de segurança
+O plano de segurança segue as etapas gerais do planejamento de segurança descritas em fontes abertas, com perguntas e exemplos escritos pelo projeto. Não reproduz o formulário Stanley-Brown, cujos autores exigem permissão por escrito para uso em sites e aplicativos. O plano pode ser feito sem responder ao guia, e o que a pessoa escreve nele não passa pelo detector de palavras de crise, porque falar dos sinais de alerta é o objetivo do plano.

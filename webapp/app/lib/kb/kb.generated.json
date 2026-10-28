@@ -1,7 +1,7 @@
 {
   "_generated_by": "scripts/build_kb.py — não edite este arquivo; edite knowledge/ e rode o script",
   "_source": "knowledge/",
-  "content_hash": "sha256:97e528dd9b42c7991e829201687e67ce4ec7bc9420f28ac108c93e485378e2cf",
+  "content_hash": "sha256:03105e28b83da0ba6bbf89c4498e0ac7bf6a322f9e5de6bb5afeda2c37a8d36e",
   "data": {
     "brands": {
       "aas": [
@@ -17530,8 +17530,1781 @@
       "ref.severe_depression": {
         "clinical": "Depressão grave: avaliação especializada prioritária.",
         "plain": "Os sintomas parecem graves. Procure avaliação médica logo, de preferência no CAPS ou com psiquiatra."
+      },
+      "ts.ad.low_dose.patient": {
+        "clinical": "{drug}: dose abaixo da mínima eficaz para depressão; tentativa não conclusiva.",
+        "plain": "Para depressão, a dose de {drug} que você informou fica abaixo da dose mínima indicada. Se você usou para depressão e não melhorou, pode ser que a dose não tenha sido suficiente para o remédio funcionar. Não mude a dose por conta própria: converse com o médico."
+      },
+      "ts.ad.low_dose.professional": {
+        "clinical": "Dose abaixo da mínima eficaz: tentativa não conclusiva, porque dose inadequada é uma das causas de má resposta (CANMAT 2023). Otimizar a dose é um primeiro passo importante; se o antidepressivo foi bem tolerado, uma opção é chegar à dose terapêutica dentro da faixa licenciada (NICE NG222 1.9.5)."
+      },
+      "ts.ad.no_response.patient": {
+        "clinical": "{drug}: tentativa adequada sem resposta; discutir aumento de dose, troca de antidepressivo, psicoterapia ou combinação.",
+        "plain": "Se você usou {drug} na dose e pelo tempo indicados e não melhorou, isso não quer dizer que nenhum tratamento vai funcionar: existem outras opções, como mudar a dose, trocar de remédio ou incluir psicoterapia. Converse com o médico antes de mudar qualquer coisa e não pare o remédio por conta própria."
+      },
+      "ts.ad.no_response.professional": {
+        "clinical": "Sem resposta após 4 semanas ou mais em dose terapêutica: rever adesão, fatores psicossociais, comorbidades e o diagnóstico, incluindo bipolaridade (NICE NG222 1.9.1–1.9.2; CANMAT 2023). Opções (NICE NG222 1.9.5): aumentar a dose dentro da faixa licenciada, se bem tolerado; trocar por outro antidepressivo, da mesma classe ou de outra; psicoterapia, isolada ou combinada com medicamento. Sem nenhuma resposta, a CANMAT 2023 prioriza a troca."
+      },
+      "ts.ad.partial.patient": {
+        "clinical": "{drug}: resposta parcial após tentativa adequada; discutir otimização da dose ou estratégia adjuvante, incluindo psicoterapia.",
+        "plain": "Se {drug} ajudou só um pouco, mesmo na dose e pelo tempo indicados, dá para buscar um resultado melhor: o médico pode ajustar a dose ou somar outro tratamento, como a psicoterapia. Converse com o médico e não mude a dose nem pare o remédio por conta própria."
+      },
+      "ts.ad.partial.professional": {
+        "clinical": "Resposta parcial após 4 semanas ou mais em dose terapêutica: confirmar adesão e otimizar a dose. Com boa tolerabilidade, a CANMAT 2023 prioriza a estratégia adjuvante, que preserva o ganho parcial. NICE NG222 1.9.5–1.9.9: associar psicoterapia ou, com apoio de especialista, associar antidepressivo de outra classe, antipsicótico de segunda geração ou lítio."
+      },
+      "ts.ad.short.patient": {
+        "clinical": "{drug}: tempo de uso insuficiente para avaliar a resposta.",
+        "plain": "Você usou {drug} por pouco tempo para saber se funciona: em geral, leva algumas semanas para notar melhora. Se você parou por causa de efeitos colaterais ou por outro motivo, converse com o médico sobre isso."
+      },
+      "ts.ad.short.professional": {
+        "clinical": "Menos de 4 semanas de uso: tentativa não conclusiva (NICE NG222 1.9.1); duração inadequada é uma das causas de má resposta (CANMAT 2023). Verificar o motivo da interrupção, como efeitos adversos ou dificuldade de adesão."
+      },
+      "ts.ap_bipolar.patient": {
+        "clinical": "{drug} sem resposta suficiente no transtorno bipolar: reavaliar dose, adesão, troca ou associação.",
+        "plain": "Se {drug} não ajudou o suficiente, mesmo na dose e pelo tempo indicados, o médico pode ajustar a dose, trocar por outro remédio ou associar mais um. Converse com o médico e não pare por conta própria: quando é preciso parar, a redução deve ser gradual."
+      },
+      "ts.ap_bipolar.professional": {
+        "clinical": "Antes de concluir falha, otimizar a dose e confirmar adesão. NICE CG185 1.5.4: trocar de antipsicótico se ineficaz na dose máxima licenciada ou mal tolerado; 1.5.5: se o segundo antipsicótico não bastar na dose máxima licenciada, associar lítio. Sem resposta em 2 semanas com dose adequada, PCDT 2016 e CANMAT/ISBD 2018 indicam troca ou associação na mania; na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas."
+      },
+      "ts.bzd.beyond.patient": {
+        "clinical": "{drug}: uso além de 4 semanas; risco de dependência e de abstinência; não suspender abruptamente; discutir redução gradual.",
+        "plain": "Você usou {drug} por mais tempo do que o recomendado: esse tipo de calmante é indicado só por pouco tempo, e o risco de dependência aumenta com o tempo de uso. Não pare de repente, porque parar de uma vez pode causar abstinência, às vezes grave. Converse com o médico sobre continuar ou diminuir a dose aos poucos, com acompanhamento."
+      },
+      "ts.bzd.beyond.professional": {
+        "clinical": "Uso além de 4 semanas, acima do recomendado para benzodiazepínico (MI-mhGAP: 2 a 4 semanas no máximo; NICE CG113 1.2.26: na TAG, só como medida de curto prazo em crises). O risco de dependência e de abstinência cresce com a duração e a dose; não suspender abruptamente, pois a abstinência pode ser grave, com convulsões e delirium. Se a retirada for indicada, reduzir gradualmente (MI-mhGAP: benzodiazepínico de ação prolongada, redução ao longo de 8 a 12 semanas, com apoio psicossocial)."
+      },
+      "ts.lithium.levels.patient": {
+        "clinical": "Lítio: a adequação depende da litemia, que a ferramenta não avalia; confirmar nível sérico e adesão.",
+        "plain": "O efeito do lítio depende da quantidade dele no sangue, medida por um exame chamado litemia. Pergunte ao médico se esse exame foi feito e se o resultado estava na faixa indicada, e conte se você deixou de tomar algumas doses. Não pare nem mude a dose por conta própria."
+      },
+      "ts.lithium.levels.professional": {
+        "clinical": "A ferramenta não avalia a litemia. Antes de concluir falha, confirmar adesão e nível sérico (PCDT 2016: 0,6–1,2 mEq/L, dosado após 5–7 dias de dose estável e 12 h após a última dose). Nível baixo: aumentar a dose (NICE CG185 1.6.4). Nível adequado sem resposta na mania: associar antipsicótico (NICE CG185 1.5.8) ou trocar (PCDT 2016). Na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas; na manutenção, a efetividade total exige 6 meses de uso (MI-mhGAP)."
+      },
+      "ts.ms_anticonvulsant.levels.patient": {
+        "clinical": "{drug}: a adequação depende do nível sérico, que a ferramenta não avalia; confirmar nível e adesão.",
+        "plain": "O efeito de {drug} depende de a dose ser suficiente. Converse com o médico: ele pode pedir um exame de sangue para ver se a quantidade do remédio estava na faixa indicada. Conte também se você deixou de tomar algumas doses e não pare nem mude a dose por conta própria."
+      },
+      "ts.ms_anticonvulsant.levels.professional": {
+        "clinical": "A ferramenta não avalia o nível sérico. Antes de concluir falha de {drug}, otimizar a dose e confirmar adesão e nível (PCDT 2016: ácido valproico 50–125 mcg/mL; carbamazepina 8–12 mcg/mL; dosar após 5–7 dias de dose estável e 12 h após a última dose). NICE CG185 1.10.32: dosar o valproato quando houver ineficácia, má adesão ou toxicidade. Nível adequado sem resposta: na mania, troca ou associação (PCDT 2016); na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas."
+      },
+      "ts.unknown.patient": {
+        "clinical": "{drug}: dose diária ou duração não informadas; não é possível avaliar a tentativa.",
+        "plain": "Faltou informar a dose por dia ou por quanto tempo você usou {drug}. Sem isso, não dá para saber se a dose e o tempo de uso foram os indicados. Se puder, confira na receita ou na caixa do remédio e leve essa informação ao médico."
+      },
+      "ts.unknown.professional": {
+        "clinical": "Dose diária ou duração não informadas: não é possível avaliar a tentativa. Registrar dose, duração, adesão e resposta; a revisão das tentativas anteriores, incluindo efeitos adversos e resposta parcial, orienta a próxima escolha (CANMAT 2023; NICE CG113 1.2.38; NICE CG185 1.3.2)."
+      },
+      "ts.zolpidem.beyond.patient": {
+        "clinical": "{drug}: uso além do período estudado e recomendado na bula; risco de dependência; evitar suspensão abrupta; reavaliar a insônia.",
+        "plain": "Você usou {drug} por mais tempo do que a bula recomenda: ele é indicado para uso curto, e o risco de dependência aumenta com o tempo de uso. Não pare de repente. Converse com o médico sobre como reduzir com segurança e sobre a causa da insônia."
+      },
+      "ts.zolpidem.beyond.professional": {
+        "clinical": "Uso além de 5 semanas: a bula indica tratamento de curto prazo (eficácia demonstrada por até 35 dias), não recomenda uso prolongado e pede reavaliação antes de estender, porque o risco de abuso e dependência aumenta com a duração. Evitar suspensão abrupta (há relatos de abstinência). Insônia que persiste após 7 a 10 dias pode indicar doença psiquiátrica ou clínica primária."
+      },
+      "ts.zolpidem.no_response.patient": {
+        "clinical": "{drug}: insônia sem remissão; avaliar causa psiquiátrica ou clínica primária.",
+        "plain": "Se a insônia não melhorou o suficiente com {drug}, pode haver outra causa por trás, como um problema de saúde física ou mental que precisa ser avaliado. Converse com o médico e não aumente a dose por conta própria."
+      },
+      "ts.zolpidem.no_response.professional": {
+        "clinical": "Insônia que não remite após 7 a 10 dias de tratamento pode indicar doença psiquiátrica e/ou clínica primária, que deve ser avaliada (bula do zolpidem, seção 5.3)."
       }
     },
+    "next_steps": [
+      {
+        "id": "NS-AD-NO-RESPONSE-PT",
+        "message_key": "ts.ad.no_response.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Sem condição: no modo paciente a revisão roda sem condição. Texto genérico para depressão ou ansiedade (NICE NG222 e CG113).",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.3",
+            "quote": "Reassure the person that although treatment has not worked, other treatments can be tried, and may be effective.",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.5",
+            "quote": "Options include: adding a group exercise intervention switching to a psychological therapy (see the section on suggested treatment options for more severe depression ) continuing antidepressant therapy by either increasing the dose or changing the drug.",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.35",
+            "quote": "If a person's GAD has not responded to drug treatment, offer either a high-intensity psychological intervention (see recommendations 1.2.18 to 1.2.22) or an alternative drug treatment (see recommendations 1.2.24 to 1.2.25).",
+            "source": "nice-cg113"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.4.12",
+            "quote": "Advise people taking antidepressant medication to talk with the person who prescribed their medication (for example, their primary healthcare or mental health professional) if they want to stop taking it. Explain that it is usually necessary to reduce the dose in stages over time (called 'tapering') but that most people stop antidepressants successfully.",
+            "source": "nice-ng222"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "condition": "depression_unipolar",
+        "id": "NS-AD-NO-RESPONSE-PRO",
+        "message_key": "ts.ad.no_response.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "NICE NG222 1.9 e CANMAT 2023 Q.7.c.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.1",
+            "quote": "whether there are any personal, social or environmental factors or physical or other mental health conditions that might explain why the treatment is not working",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.1",
+            "quote": "whether they have had problems adhering to the treatment plan (for example, stopping or reducing medication because of side effects, or missing sessions with their therapist)",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.2",
+            "quote": "review the diagnosis and consider the possibility of alternative or comorbid conditions that may limit response to depression treatments",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 34 (Q.7.c)",
+            "quote": "The first steps in the assessment of poor response involve re-evaluating the diagnosis (e.g., a missed diagnosis of bipolar disorder), comorbidities, and adherence to treatment.",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.5",
+            "quote": "increasing the dose of the current medication (within the licensed dose range) if the medication is well tolerated; be aware that higher doses of antidepressants may not be more effective and can increase the frequency and severity of side effects",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.5",
+            "quote": "switching to another medication in the same class (for example, another SSRI) switching to a medication of a different class (for example, an SSRI, SNRI, or in secondary care a TCA or MAOI)",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.5",
+            "quote": "changing to a combination of psychological therapy (for example, CBT, interpersonal psychotherapy [IPT] or STPP) and medication.",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Q.7.c)",
+            "quote": "Switching should be considered first when there is no response to the initial antidepressant or when the first medication has troublesome side effects. Adjunctive strategies should be considered first when there is a partial response to the initial antidepressant and there are minimal or no tolerability issues with the first medication.",
+            "source": "canmat-mdd-2023"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-AD-PARTIAL-PT",
+        "message_key": "ts.ad.partial.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Q.7.c)",
+            "quote": "Switching should be considered first when there is no response to the initial antidepressant or when the first medication has troublesome side effects. Adjunctive strategies should be considered first when there is a partial response to the initial antidepressant and there are minimal or no tolerability issues with the first medication.",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.5",
+            "quote": "If a person's depression has had no or a limited response to treatment with antidepressant medication alone, and no obvious cause can be found and resolved, discuss further treatment options with the person",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.36",
+            "quote": "If a person's GAD has partially responded to drug treatment, consider offering a high-intensity psychological intervention in addition to drug treatment.",
+            "source": "nice-cg113"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "condition": "depression_unipolar",
+        "id": "NS-AD-PARTIAL-PRO",
+        "message_key": "ts.ad.partial.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "CANMAT 2023 Q.7.c e Q.7.e; NICE NG222 1.9.5 e 1.9.9.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Q.7.c)",
+            "quote": "Switching should be considered first when there is no response to the initial antidepressant or when the first medication has troublesome side effects. Adjunctive strategies should be considered first when there is a partial response to the initial antidepressant and there are minimal or no tolerability issues with the first medication.",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 36 (Q.7.e)",
+            "quote": "Adding an adjunctive agent retains partial treatment gains from the initial antidepressant, avoids discontinuation symptoms from stopping the first medication, and potentially adds complementary mechanisms of action that have a faster onset of response. These benefits are especially helpful when there has been a partial response to the first antidepressant, and it is well tolerated.",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.5",
+            "quote": "changing to a combination of psychological therapy (for example, CBT, interpersonal psychotherapy [IPT] or STPP) and medication.",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.9",
+            "quote": "consider referral to a specialist mental health setting or consulting a specialist. Treatment options include: adding an additional antidepressant medication from a different class (for example, adding mirtazapine or trazodone to an SSRI) combining an antidepressant medication with a second-generation antipsychotic (for example, aripiprazole, olanzapine, quetiapine or risperidone) or lithium",
+            "source": "nice-ng222"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-AD-LOW-DOSE-PT",
+        "message_key": "ts.ad.low_dose.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Sem condição: no modo paciente a revisão roda sem condição. O texto avisa que a dose mínima é a da depressão.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.1",
+            "quote": "If a person's depression has not responded at all after 4 weeks of antidepressant medication at a recognised therapeutic dose",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 33 (Q.7.a, fatores de má resposta)",
+            "quote": "Inadequate dose of treatment • Inadequate duration of treatment • Side effects masking as symptoms • Poor adherence to treatment",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Q.7.c)",
+            "quote": "Optimizing the antidepressant dose is an important first step.",
+            "source": "canmat-mdd-2023"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "condition": "depression_unipolar",
+        "id": "NS-AD-LOW-DOSE-PRO",
+        "message_key": "ts.ad.low_dose.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "CANMAT 2023 Q.7.a e Q.7.c; NICE NG222 1.9.5.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 33 (Q.7.a, fatores de má resposta)",
+            "quote": "Inadequate dose of treatment • Inadequate duration of treatment • Side effects masking as symptoms • Poor adherence to treatment",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Q.7.c)",
+            "quote": "Optimizing the antidepressant dose is an important first step.",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.5",
+            "quote": "increasing the dose of the current medication (within the licensed dose range) if the medication is well tolerated; be aware that higher doses of antidepressants may not be more effective and can increase the frequency and severity of side effects",
+            "source": "nice-ng222"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-AD-SHORT-PT",
+        "message_key": "ts.ad.short.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Depressão: intervenções farmacológicas)",
+            "quote": "Em geral, são necessárias várias semanas até que se note a melhora do humor, do interesse ou da energia.",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.4.11",
+            "quote": "how long it takes to see an effect (usually, if the antidepressant medication is going to work, within 4 weeks)",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.28",
+            "quote": "the gradual development, over 1 week or more, of the full anxiolytic effect",
+            "source": "nice-cg113"
+          }
+        ],
+        "status": "short_duration"
+      },
+      {
+        "condition": "depression_unipolar",
+        "id": "NS-AD-SHORT-PRO",
+        "message_key": "ts.ad.short.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "NICE NG222 1.9.1; CANMAT 2023 Q.7.a.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.1",
+            "quote": "If a person's depression has not responded at all after 4 weeks of antidepressant medication at a recognised therapeutic dose",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 33 (Q.7.a, fatores de má resposta)",
+            "quote": "Inadequate dose of treatment • Inadequate duration of treatment • Side effects masking as symptoms • Poor adherence to treatment",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.1",
+            "quote": "whether they have had problems adhering to the treatment plan (for example, stopping or reducing medication because of side effects, or missing sessions with their therapist)",
+            "source": "nice-ng222"
+          }
+        ],
+        "status": "short_duration"
+      },
+      {
+        "id": "NS-LITHIUM-NO-RESPONSE-PT",
+        "message_key": "ts.lithium.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta, resposta parcial e dose baixa: a ferramenta não avalia a litemia. Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "Highlights: 2 DOSAGE AND ADMINISTRATION",
+            "note": "Mesma seção: manutenção com litemia de 0,8 a 1 mEq/L.",
+            "quote": "Acute Manic or Mixed Episodes (patients 7 years and older): Titrate to serum lithium concentrations 0.8 to 1.2 mEq/L",
+            "source": "label-litio"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "quote": "Inicie com 300 mg/dia. Aumente gradualmente a cada 7 dias até alcançar o nível sanguíneo desejado",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.6.4",
+            "quote": "If a person develops moderate or severe bipolar depression and is already taking lithium, check their plasma lithium level. If it is inadequate, increase the dose of lithium",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.14",
+            "note": "Orientação para quem começa o lítio.",
+            "quote": "advise the person that poor adherence or rapid discontinuation may increase the risk of relapse",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-LITHIUM-NO-RESPONSE-PRO",
+        "message_key": "ts.lithium.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta, resposta parcial e dose baixa. Sem condição porque a regra do lítio só vale no TAB tipo I.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+            "quote": "Dose máxima: 1.800 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 0,6-1,2 mEq/L).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "note": "A mesma nota se repete para lítio, ácido valproico e carbamazepina.",
+            "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.6.4",
+            "quote": "If a person develops moderate or severe bipolar depression and is already taking lithium, check their plasma lithium level. If it is inadequate, increase the dose of lithium",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.8",
+            "quote": "If the person is already taking lithium, check plasma lithium levels to optimise treatment (see the section on how to use medication ). Consider adding haloperidol, olanzapine, quetiapine or risperidone, depending on the person's preference and previous response to treatment.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "quote": "A avaliação da resposta clínica, feita pela monitorização da melhora dos sintomas depressivos, deve ser feita em até 4 a 6 semanas, antes da troca por outro fármaco.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "quote": "São necessários 6 meses de uso do medicamento para verificar a efetividade total do tratamento de manutenção.",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-LITHIUM-PARTIAL-PT",
+        "message_key": "ts.lithium.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta, resposta parcial e dose baixa: a ferramenta não avalia a litemia. Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "Highlights: 2 DOSAGE AND ADMINISTRATION",
+            "note": "Mesma seção: manutenção com litemia de 0,8 a 1 mEq/L.",
+            "quote": "Acute Manic or Mixed Episodes (patients 7 years and older): Titrate to serum lithium concentrations 0.8 to 1.2 mEq/L",
+            "source": "label-litio"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "quote": "Inicie com 300 mg/dia. Aumente gradualmente a cada 7 dias até alcançar o nível sanguíneo desejado",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.6.4",
+            "quote": "If a person develops moderate or severe bipolar depression and is already taking lithium, check their plasma lithium level. If it is inadequate, increase the dose of lithium",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.14",
+            "note": "Orientação para quem começa o lítio.",
+            "quote": "advise the person that poor adherence or rapid discontinuation may increase the risk of relapse",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-LITHIUM-PARTIAL-PRO",
+        "message_key": "ts.lithium.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta, resposta parcial e dose baixa. Sem condição porque a regra do lítio só vale no TAB tipo I.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+            "quote": "Dose máxima: 1.800 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 0,6-1,2 mEq/L).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "note": "A mesma nota se repete para lítio, ácido valproico e carbamazepina.",
+            "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.6.4",
+            "quote": "If a person develops moderate or severe bipolar depression and is already taking lithium, check their plasma lithium level. If it is inadequate, increase the dose of lithium",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.8",
+            "quote": "If the person is already taking lithium, check plasma lithium levels to optimise treatment (see the section on how to use medication ). Consider adding haloperidol, olanzapine, quetiapine or risperidone, depending on the person's preference and previous response to treatment.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "quote": "A avaliação da resposta clínica, feita pela monitorização da melhora dos sintomas depressivos, deve ser feita em até 4 a 6 semanas, antes da troca por outro fármaco.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "quote": "São necessários 6 meses de uso do medicamento para verificar a efetividade total do tratamento de manutenção.",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-LITHIUM-LOW-DOSE-PT",
+        "message_key": "ts.lithium.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta, resposta parcial e dose baixa: a ferramenta não avalia a litemia. Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "Highlights: 2 DOSAGE AND ADMINISTRATION",
+            "note": "Mesma seção: manutenção com litemia de 0,8 a 1 mEq/L.",
+            "quote": "Acute Manic or Mixed Episodes (patients 7 years and older): Titrate to serum lithium concentrations 0.8 to 1.2 mEq/L",
+            "source": "label-litio"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "quote": "Inicie com 300 mg/dia. Aumente gradualmente a cada 7 dias até alcançar o nível sanguíneo desejado",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.6.4",
+            "quote": "If a person develops moderate or severe bipolar depression and is already taking lithium, check their plasma lithium level. If it is inadequate, increase the dose of lithium",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.14",
+            "note": "Orientação para quem começa o lítio.",
+            "quote": "advise the person that poor adherence or rapid discontinuation may increase the risk of relapse",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-LITHIUM-LOW-DOSE-PRO",
+        "message_key": "ts.lithium.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta, resposta parcial e dose baixa. Sem condição porque a regra do lítio só vale no TAB tipo I.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+            "quote": "Dose máxima: 1.800 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 0,6-1,2 mEq/L).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "note": "A mesma nota se repete para lítio, ácido valproico e carbamazepina.",
+            "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.6.4",
+            "quote": "If a person develops moderate or severe bipolar depression and is already taking lithium, check their plasma lithium level. If it is inadequate, increase the dose of lithium",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.8",
+            "quote": "If the person is already taking lithium, check plasma lithium levels to optimise treatment (see the section on how to use medication ). Consider adding haloperidol, olanzapine, quetiapine or risperidone, depending on the person's preference and previous response to treatment.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "quote": "A avaliação da resposta clínica, feita pela monitorização da melhora dos sintomas depressivos, deve ser feita em até 4 a 6 semanas, antes da troca por outro fármaco.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "quote": "São necessários 6 meses de uso do medicamento para verificar a efetividade total do tratamento de manutenção.",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-NO-RESPONSE-PT",
+        "message_key": "ts.ms_anticonvulsant.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Vale para valproato e carbamazepina (a lamotrigina não tem regra de tentativa, então não chega aqui). Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "note": "Mesmo item: \"Faixa de dose: 250-2.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 250 mg a cada 2 dias até chegar a 750 mg. Dosar nível sérico. - Dose máxima: 2.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 50-125 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "note": "Mesmo item: \"Faixa de dose: 200-1.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 200 mg a cada 2 dias até chegar a 600 mg. Dosar nível sérico. - Dose máxima: 1.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 8-12 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.32",
+            "quote": "Do not routinely measure plasma valproate levels unless there is evidence of ineffectiveness, poor adherence or toxicity.",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-NO-RESPONSE-PRO",
+        "message_key": "ts.ms_anticonvulsant.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Vale para valproato e carbamazepina; se a lamotrigina ganhar regra de tentativa, restringir o seletor (NICE CG185 1.10.38: não dosar lamotrigina de rotina). As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "note": "Mesmo item: \"Faixa de dose: 250-2.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 250 mg a cada 2 dias até chegar a 750 mg. Dosar nível sérico. - Dose máxima: 2.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 50-125 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "note": "Mesmo item: \"Faixa de dose: 200-1.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 200 mg a cada 2 dias até chegar a 600 mg. Dosar nível sérico. - Dose máxima: 1.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 8-12 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "note": "A mesma nota se repete para lítio, ácido valproico e carbamazepina.",
+            "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.32",
+            "quote": "Do not routinely measure plasma valproate levels unless there is evidence of ineffectiveness, poor adherence or toxicity.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"If symptoms are not controlled using monotherapy or combination therapy with first-line agents, dosing should be optimized, issues of non-adherence identified and addressed, and consideration given to possible substance use (Section 4) prior to adding or switching therapies (Step 3).\"",
+            "quote": "therapy with first-line agents, dosing should be optimized, issues of",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "quote": "O tratamento do episódio maníaco deve ser feito preferencialmente com a combinação de um estabilizador de humor com um antipsicótico.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "quote": "A avaliação da resposta clínica, feita pela monitorização da melhora dos sintomas depressivos, deve ser feita em até 4 a 6 semanas, antes da troca por outro fármaco.",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-PARTIAL-PT",
+        "message_key": "ts.ms_anticonvulsant.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Vale para valproato e carbamazepina (a lamotrigina não tem regra de tentativa, então não chega aqui). Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "note": "Mesmo item: \"Faixa de dose: 250-2.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 250 mg a cada 2 dias até chegar a 750 mg. Dosar nível sérico. - Dose máxima: 2.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 50-125 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "note": "Mesmo item: \"Faixa de dose: 200-1.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 200 mg a cada 2 dias até chegar a 600 mg. Dosar nível sérico. - Dose máxima: 1.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 8-12 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.32",
+            "quote": "Do not routinely measure plasma valproate levels unless there is evidence of ineffectiveness, poor adherence or toxicity.",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-PARTIAL-PRO",
+        "message_key": "ts.ms_anticonvulsant.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Vale para valproato e carbamazepina; se a lamotrigina ganhar regra de tentativa, restringir o seletor (NICE CG185 1.10.38: não dosar lamotrigina de rotina). As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "note": "Mesmo item: \"Faixa de dose: 250-2.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 250 mg a cada 2 dias até chegar a 750 mg. Dosar nível sérico. - Dose máxima: 2.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 50-125 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "note": "Mesmo item: \"Faixa de dose: 200-1.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 200 mg a cada 2 dias até chegar a 600 mg. Dosar nível sérico. - Dose máxima: 1.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 8-12 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "note": "A mesma nota se repete para lítio, ácido valproico e carbamazepina.",
+            "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.32",
+            "quote": "Do not routinely measure plasma valproate levels unless there is evidence of ineffectiveness, poor adherence or toxicity.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"If symptoms are not controlled using monotherapy or combination therapy with first-line agents, dosing should be optimized, issues of non-adherence identified and addressed, and consideration given to possible substance use (Section 4) prior to adding or switching therapies (Step 3).\"",
+            "quote": "therapy with first-line agents, dosing should be optimized, issues of",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "quote": "O tratamento do episódio maníaco deve ser feito preferencialmente com a combinação de um estabilizador de humor com um antipsicótico.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "quote": "A avaliação da resposta clínica, feita pela monitorização da melhora dos sintomas depressivos, deve ser feita em até 4 a 6 semanas, antes da troca por outro fármaco.",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-LOW-DOSE-PT",
+        "message_key": "ts.ms_anticonvulsant.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Vale para valproato e carbamazepina (a lamotrigina não tem regra de tentativa, então não chega aqui). Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "note": "Mesmo item: \"Faixa de dose: 250-2.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 250 mg a cada 2 dias até chegar a 750 mg. Dosar nível sérico. - Dose máxima: 2.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 50-125 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "note": "Mesmo item: \"Faixa de dose: 200-1.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 200 mg a cada 2 dias até chegar a 600 mg. Dosar nível sérico. - Dose máxima: 1.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 8-12 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.32",
+            "quote": "Do not routinely measure plasma valproate levels unless there is evidence of ineffectiveness, poor adherence or toxicity.",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-LOW-DOSE-PRO",
+        "message_key": "ts.ms_anticonvulsant.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Vale para valproato e carbamazepina; se a lamotrigina ganhar regra de tentativa, restringir o seletor (NICE CG185 1.10.38: não dosar lamotrigina de rotina). As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "note": "Mesmo item: \"Faixa de dose: 250-2.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 250 mg a cada 2 dias até chegar a 750 mg. Dosar nível sérico. - Dose máxima: 2.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 50-125 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "note": "Mesmo item: \"Faixa de dose: 200-1.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 200 mg a cada 2 dias até chegar a 600 mg. Dosar nível sérico. - Dose máxima: 1.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 8-12 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "note": "A mesma nota se repete para lítio, ácido valproico e carbamazepina.",
+            "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.32",
+            "quote": "Do not routinely measure plasma valproate levels unless there is evidence of ineffectiveness, poor adherence or toxicity.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"If symptoms are not controlled using monotherapy or combination therapy with first-line agents, dosing should be optimized, issues of non-adherence identified and addressed, and consideration given to possible substance use (Section 4) prior to adding or switching therapies (Step 3).\"",
+            "quote": "therapy with first-line agents, dosing should be optimized, issues of",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "quote": "O tratamento do episódio maníaco deve ser feito preferencialmente com a combinação de um estabilizador de humor com um antipsicótico.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "quote": "A avaliação da resposta clínica, feita pela monitorização da melhora dos sintomas depressivos, deve ser feita em até 4 a 6 semanas, antes da troca por outro fármaco.",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-AP-BIPOLAR-NO-RESPONSE-PT",
+        "message_key": "ts.ap_bipolar.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta e resposta parcial. Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.4",
+            "quote": "If the first antipsychotic is poorly tolerated at any dose (including rapid weight gain) or ineffective at the maximum licensed dose, offer an alternative antipsychotic from the drugs listed in recommendation 1.5.3",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.5",
+            "quote": "If an alternative antipsychotic is not sufficiently effective at the maximum licensed dose, consider adding lithium.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.13",
+            "quote": "If stopping an antipsychotic drug, reduce the dose gradually over at least 4 weeks to minimise the risk of relapse.",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-AP-BIPOLAR-NO-RESPONSE-PRO",
+        "message_key": "ts.ap_bipolar.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta e resposta parcial; a regra só vale no TAB tipo I. As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.4",
+            "quote": "If the first antipsychotic is poorly tolerated at any dose (including rapid weight gain) or ineffective at the maximum licensed dose, offer an alternative antipsychotic from the drugs listed in recommendation 1.5.3",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.5",
+            "quote": "If an alternative antipsychotic is not sufficiently effective at the maximum licensed dose, consider adding lithium.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"If symptoms are not controlled using monotherapy or combination therapy with first-line agents, dosing should be optimized, issues of non-adherence identified and addressed, and consideration given to possible substance use (Section 4) prior to adding or switching therapies (Step 3).\"",
+            "quote": "therapy with first-line agents, dosing should be optimized, issues of",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Deve-se avaliar a resposta ao tratamento em até 2 semanas, com o tratamento combinado (estabilizador mais antipsicótico) em dose adequada, antes de troca de medicamento.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "quote": "O tratamento do episódio maníaco deve ser feito preferencialmente com a combinação de um estabilizador de humor com um antipsicótico.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"some therapeutic response is expected with antimanic agents within 1-2 weeks. If no response is observed within 2 weeks with therapeutic doses of antimanic agents, and other contributing factors for non-response are excluded, then switch or add-on strategies should be considered.\"",
+            "quote": "antimanic agents within 1-2 weeks. If no response is observed within",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Continuação da frase da citação anterior (colunas intercaladas na extração).",
+            "quote": "2 weeks with therapeutic doses of antimanic agents, and other",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "quote": "A avaliação da resposta clínica, feita pela monitorização da melhora dos sintomas depressivos, deve ser feita em até 4 a 6 semanas, antes da troca por outro fármaco.",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-AP-BIPOLAR-PARTIAL-PT",
+        "message_key": "ts.ap_bipolar.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta e resposta parcial. Sem condição: no modo paciente a revisão roda sem condição.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.4",
+            "quote": "If the first antipsychotic is poorly tolerated at any dose (including rapid weight gain) or ineffective at the maximum licensed dose, offer an alternative antipsychotic from the drugs listed in recommendation 1.5.3",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.5",
+            "quote": "If an alternative antipsychotic is not sufficiently effective at the maximum licensed dose, consider adding lithium.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.10.13",
+            "quote": "If stopping an antipsychotic drug, reduce the dose gradually over at least 4 weeks to minimise the risk of relapse.",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-AP-BIPOLAR-PARTIAL-PRO",
+        "message_key": "ts.ap_bipolar.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta e resposta parcial; a regra só vale no TAB tipo I. As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.4",
+            "quote": "If the first antipsychotic is poorly tolerated at any dose (including rapid weight gain) or ineffective at the maximum licensed dose, offer an alternative antipsychotic from the drugs listed in recommendation 1.5.3",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.5.5",
+            "quote": "If an alternative antipsychotic is not sufficiently effective at the maximum licensed dose, consider adding lithium.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"If symptoms are not controlled using monotherapy or combination therapy with first-line agents, dosing should be optimized, issues of non-adherence identified and addressed, and consideration given to possible substance use (Section 4) prior to adding or switching therapies (Step 3).\"",
+            "quote": "therapy with first-line agents, dosing should be optimized, issues of",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Deve-se avaliar a resposta ao tratamento em até 2 semanas, com o tratamento combinado (estabilizador mais antipsicótico) em dose adequada, antes de troca de medicamento.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Em caso de ausência de resposta ou intolerância terapêutica, deve ser avaliado qual fármaco que pode ser trocado, sem que necessariamente tenham de ser trocados ambos os fármacos da combinação",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "quote": "O tratamento do episódio maníaco deve ser feito preferencialmente com a combinação de um estabilizador de humor com um antipsicótico.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"some therapeutic response is expected with antimanic agents within 1-2 weeks. If no response is observed within 2 weeks with therapeutic doses of antimanic agents, and other contributing factors for non-response are excluded, then switch or add-on strategies should be considered.\"",
+            "quote": "antimanic agents within 1-2 weeks. If no response is observed within",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Continuação da frase da citação anterior (colunas intercaladas na extração).",
+            "quote": "2 weeks with therapeutic doses of antimanic agents, and other",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "quote": "A avaliação da resposta clínica, feita pela monitorização da melhora dos sintomas depressivos, deve ser feita em até 4 a 6 semanas, antes da troca por outro fármaco.",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-BZD-BEYOND-PT",
+        "message_key": "ts.bzd.beyond.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Advertência em destaque das bulas (dependência e abstinência) e MI-mhGAP.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "anxiolytic_hypnotic",
+          "subclass": "benzodiazepine"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.26",
+            "quote": "Do not offer a benzodiazepine for the treatment of GAD in primary or secondary care except as a short-term measure during crises.",
+            "source": "nice-cg113"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 48 (Psicoses 2.6: episódio maníaco em transtorno bipolar)",
+            "quote": "As pessoas com mania que apresentam agitação podem ser beneficiadas pelo uso em curto prazo (2 a 4 semanas no máximo) de um benzodiazepínico como o diazepam.",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "note": "Continua: \"which can be life-threatening. To reduce the risk of withdrawal reactions, use a gradual taper to discontinue XANAX or reduce the dosage\".",
+            "quote": "The continued use of benzodiazepines, including XANAX, may lead to clinically significant physical dependence. The risks of dependence and withdrawal increase with longer treatment duration and higher daily dose. Abrupt discontinuation or rapid dosage reduction of XANAX after continued use may precipitate acute withdrawal reactions",
+            "source": "label-alprazolam"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "quote": "The continued use of benzodiazepines, including Klonopin, may lead to clinically significant physical dependence. The risks of dependence and withdrawal increase with longer treatment duration and higher daily dose. Abrupt discontinuation or rapid dosage reduction of Klonopin after continued use may precipitate acute withdrawal reactions, which can be life-threatening.",
+            "source": "label-clonazepam"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "quote": "The continued use of benzodiazepines, including VALIUM, may lead to clinically significant physical dependence. The risks of dependence and withdrawal increase with longer treatment duration and higher daily dose. Abrupt discontinuation or rapid dosage reduction of VALIUM after continued use may precipitate acute withdrawal reactions, which can be life-threatening.",
+            "source": "label-diazepam"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "quote": "The continued use of benzodiazepines, including Ativan, may lead to clinically significant physical dependence. The risks of dependence and withdrawal increase with longer treatment duration and higher daily dose. Abrupt discontinuation or rapid dosage reduction of Ativan after continued use may precipitate acute withdrawal reactions, which can be life-threatening.",
+            "source": "label-lorazepam"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 126 (Transtornos por uso de substâncias: pessoa dependente de benzodiazepínicos)",
+            "quote": "A interrupção súbita do uso pode provocar crises convulsivas e delirium. Considere a redução gradual da dose do benzodiazepínico com dispensação supervisionada ou uma redução mais rápida em regime de internação.",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "beyond_recommended"
+      },
+      {
+        "id": "NS-BZD-BEYOND-PRO",
+        "message_key": "ts.bzd.beyond.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "O protocolo de 8 a 12 semanas do MI-mhGAP é o da abstinência de benzodiazepínicos (módulo de uso de substâncias).",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "anxiolytic_hypnotic",
+          "subclass": "benzodiazepine"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 48 (Psicoses 2.6: episódio maníaco em transtorno bipolar)",
+            "quote": "As pessoas com mania que apresentam agitação podem ser beneficiadas pelo uso em curto prazo (2 a 4 semanas no máximo) de um benzodiazepínico como o diazepam.",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.26",
+            "quote": "Do not offer a benzodiazepine for the treatment of GAD in primary or secondary care except as a short-term measure during crises.",
+            "source": "nice-cg113"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "note": "Continua: \"which can be life-threatening. To reduce the risk of withdrawal reactions, use a gradual taper to discontinue XANAX or reduce the dosage\".",
+            "quote": "The continued use of benzodiazepines, including XANAX, may lead to clinically significant physical dependence. The risks of dependence and withdrawal increase with longer treatment duration and higher daily dose. Abrupt discontinuation or rapid dosage reduction of XANAX after continued use may precipitate acute withdrawal reactions",
+            "source": "label-alprazolam"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "quote": "The continued use of benzodiazepines, including Klonopin, may lead to clinically significant physical dependence. The risks of dependence and withdrawal increase with longer treatment duration and higher daily dose. Abrupt discontinuation or rapid dosage reduction of Klonopin after continued use may precipitate acute withdrawal reactions, which can be life-threatening.",
+            "source": "label-clonazepam"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "quote": "The continued use of benzodiazepines, including VALIUM, may lead to clinically significant physical dependence. The risks of dependence and withdrawal increase with longer treatment duration and higher daily dose. Abrupt discontinuation or rapid dosage reduction of VALIUM after continued use may precipitate acute withdrawal reactions, which can be life-threatening.",
+            "source": "label-diazepam"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "quote": "The continued use of benzodiazepines, including Ativan, may lead to clinically significant physical dependence. The risks of dependence and withdrawal increase with longer treatment duration and higher daily dose. Abrupt discontinuation or rapid dosage reduction of Ativan after continued use may precipitate acute withdrawal reactions, which can be life-threatening.",
+            "source": "label-lorazepam"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 126 (Transtornos por uso de substâncias: pessoa dependente de benzodiazepínicos)",
+            "quote": "A interrupção súbita do uso pode provocar crises convulsivas e delirium. Considere a redução gradual da dose do benzodiazepínico com dispensação supervisionada ou uma redução mais rápida em regime de internação.",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 129 (Protocolo 6: abstinência de benzodiazepínicos)",
+            "note": "Início da frase, na coluna ao lado (texto intercalado na extração): \"O manejo da abstinência de benzodiazepínicos pode ser feito com\".",
+            "quote": "substituição por um benzodiazepínico de ação prolongada e redução gradual da dose ao longo de 8 a 12 semanas, em conjunto com apoio psicossocial.",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "beyond_recommended"
+      },
+      {
+        "id": "NS-ZOLPIDEM-BEYOND-PT",
+        "message_key": "ts.zolpidem.beyond.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Bula do zolpidem, seções 1, 2.1, 5.3 e 5.9.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 1 INDICATIONS AND USAGE",
+            "note": "Mesma seção: os estudos de eficácia duraram de 4 a 5 semanas.",
+            "quote": "AMBIEN (zolpidem tartrate) is indicated for the short-term treatment of insomnia characterized by difficulties with sleep initiation. AMBIEN has been shown to decrease sleep latency for up to 35 days in controlled clinical studies",
+            "source": "label-zolpidem"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 2.1 Dosage in Adults",
+            "quote": "Long-term use of AMBIEN is not recommended. Treatment should be as short as possible. Extended treatment should not take place without re-evaluation of the patient's status because the risk of abuse and dependence increases with the duration of treatment",
+            "source": "label-zolpidem"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.9 Withdrawal Effects",
+            "quote": "There have been reports of withdrawal signs and symptoms following the rapid dose decrease or abrupt discontinuation of zolpidem.",
+            "source": "label-zolpidem"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "quote": "The failure of insomnia to remit after 7 to 10 days of treatment may indicate the presence of a primary psychiatric and/or medical illness that should be evaluated.",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "beyond_recommended"
+      },
+      {
+        "id": "NS-ZOLPIDEM-BEYOND-PRO",
+        "message_key": "ts.zolpidem.beyond.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Bula do zolpidem, seções 1, 2.1, 5.3 e 5.9.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 1 INDICATIONS AND USAGE",
+            "note": "Mesma seção: os estudos de eficácia duraram de 4 a 5 semanas.",
+            "quote": "AMBIEN (zolpidem tartrate) is indicated for the short-term treatment of insomnia characterized by difficulties with sleep initiation. AMBIEN has been shown to decrease sleep latency for up to 35 days in controlled clinical studies",
+            "source": "label-zolpidem"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 2.1 Dosage in Adults",
+            "quote": "Long-term use of AMBIEN is not recommended. Treatment should be as short as possible. Extended treatment should not take place without re-evaluation of the patient's status because the risk of abuse and dependence increases with the duration of treatment",
+            "source": "label-zolpidem"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.9 Withdrawal Effects",
+            "quote": "There have been reports of withdrawal signs and symptoms following the rapid dose decrease or abrupt discontinuation of zolpidem.",
+            "source": "label-zolpidem"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "quote": "The failure of insomnia to remit after 7 to 10 days of treatment may indicate the presence of a primary psychiatric and/or medical illness that should be evaluated.",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "beyond_recommended"
+      },
+      {
+        "id": "NS-ZOLPIDEM-NO-RESPONSE-PT",
+        "message_key": "ts.zolpidem.no_response.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta e resposta parcial.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "quote": "The failure of insomnia to remit after 7 to 10 days of treatment may indicate the presence of a primary psychiatric and/or medical illness that should be evaluated.",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-ZOLPIDEM-NO-RESPONSE-PRO",
+        "message_key": "ts.zolpidem.no_response.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta e resposta parcial.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "quote": "The failure of insomnia to remit after 7 to 10 days of treatment may indicate the presence of a primary psychiatric and/or medical illness that should be evaluated.",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-ZOLPIDEM-PARTIAL-PT",
+        "message_key": "ts.zolpidem.no_response.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta e resposta parcial.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "quote": "The failure of insomnia to remit after 7 to 10 days of treatment may indicate the presence of a primary psychiatric and/or medical illness that should be evaluated.",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-ZOLPIDEM-PARTIAL-PRO",
+        "message_key": "ts.zolpidem.no_response.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Mesma mensagem para sem resposta e resposta parcial.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "quote": "The failure of insomnia to remit after 7 to 10 days of treatment may indicate the presence of a primary psychiatric and/or medical illness that should be evaluated.",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-UNKNOWN-PT",
+        "message_key": "ts.unknown.patient",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Genérico: vale para qualquer medicamento com regra de tentativa.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Q.7.c)",
+            "quote": "For these medication strategies, a comprehensive review of previous medication trials, major side effects experienced, and whether there is a partial response, can inform the decision.",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.3.2",
+            "quote": "discuss treatment history and identify interventions that have been effective or ineffective in the past",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "unknown"
+      },
+      {
+        "id": "NS-UNKNOWN-PRO",
+        "message_key": "ts.unknown.professional",
+        "modes": [
+          "professional"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Genérico: vale para qualquer medicamento com regra de tentativa.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Q.7.c)",
+            "quote": "For these medication strategies, a comprehensive review of previous medication trials, major side effects experienced, and whether there is a partial response, can inform the decision.",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.38",
+            "quote": "a formal review of current and past treatments, including adherence to previously prescribed drug treatments and the fidelity of prior psychological interventions, and their impact on symptoms and functional impairment",
+            "source": "nice-cg113"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.3.2",
+            "quote": "discuss treatment history and identify interventions that have been effective or ineffective in the past",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "unknown"
+      }
+    ],
     "rules": [
       {
         "applies_to": "global",
@@ -19282,6 +21055,434 @@
         }
       }
     ],
+    "safety_plan": {
+      "contacts": [
+        {
+          "description": "Centro de Valorização da Vida: apoio emocional e prevenção do suicídio, oferecidos por voluntários, com sigilo. Ligação gratuita, 24 horas por dia; também atende por chat e e-mail no site cvv.org.br.",
+          "label": "CVV",
+          "phone": "188",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "Quem somos",
+              "quote": "Fundado em São Paulo em 1962, o CVV – Centro de Valorização da Vida é um serviço voluntário gratuito de apoio emocional e prevenção do suicídio para todas as pessoas que querem e precisam conversar, sob total sigilo e anonimato.",
+              "source": "cvv-quem-somos"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "Quem somos",
+              "quote": "Oferece atendimento pelo telefone 188 (24 horas e sem custo de ligação), por chat, e-mail e pessoalmente.",
+              "source": "cvv-quem-somos"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Pedindo ajuda: Onde buscar ajuda",
+              "quote": "Centro de Valorização da Vida – 188 (ligação gratuita).",
+              "source": "ms-suicidio-prevencao"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Centro de Valorização da Vida – CVV",
+              "quote": "O CVV – Centro de Valorização da Vida realiza apoio emocional e prevenção do suicídio, atendendo voluntária e gratuitamente todas as pessoas que querem e precisam conversar, sob total sigilo, por telefone, e-mail, chat e voip 24 horas todos os dias.",
+              "source": "ms-suicidio-prevencao"
+            }
+          ]
+        },
+        {
+          "description": "Serviço de Atendimento Móvel de Urgência: ligue numa emergência, inclusive em tentativa de suicídio. Ligação gratuita de telefone fixo ou celular, 24 horas por dia, todos os dias.",
+          "label": "SAMU",
+          "phone": "192",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "SAMU 192: introdução",
+              "quote": "acessado pelo número 192, funciona 24 horas por dia e 07 dias por semana",
+              "source": "ms-samu-192"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Quando chamar o SAMU 192?",
+              "quote": "O atendimento do SAMU 192 começa a partir do chamado telefônico, quando são prestadas orientações sobre as primeiras ações. A ligação é gratuita, para telefones fixo e móvel.",
+              "source": "ms-samu-192"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção QUANDO CHAMAR",
+              "note": "Item da lista de situações em que se deve chamar o SAMU 192.",
+              "quote": "Em tentativas de suicídio",
+              "source": "ms-samu-192"
+            }
+          ]
+        }
+      ],
+      "description": "Plano de segurança pessoal para crises suicidas, preenchido pela pessoa no próprio aparelho e imprimível. Segue as etapas gerais do planejamento de segurança (sinais de alerta, o que fazer sozinho, distração, pessoas, serviços, ambiente seguro, motivos para viver) com perguntas e exemplos escritos pelo Stabilis; cada etapa cita fontes abertas que sustentam o seu conteúdo. Não reproduz o formulário Stanley-Brown (ver license_note).",
+      "intro": "Este é um roteiro curto, escrito por você, para os momentos de crise: os sinais de que você está ficando mal e o que fazer, passo a passo, até se sentir em segurança. O que você escrever fica só neste aparelho e não é enviado a ninguém; imprimir ou mostrar o plano a alguém é escolha sua. Preencha num momento mais calmo, se puder com alguém de confiança ou com quem cuida da sua saúde, e use o plano assim que notar os primeiros sinais; se estiver em perigo agora, ligue 188 (CVV) ou 192 (SAMU), ou vá a uma UPA ou pronto-socorro.",
+      "license_note": "Plano escrito pelo Stabilis, com perguntas e exemplos próprios, seguindo as etapas gerais do planejamento de segurança descritas em fontes abertas: diretriz CANMAT 2023 (CC BY), fluxo do NIMH (domínio público), MI-mhGAP 2.0 e Viver a Vida (OPAS, CC BY-NC-SA 3.0 IGO) e páginas do Ministério da Saúde (CC BY-ND 3.0). Não é o formulário Stanley-Brown Safety Plan: ele é protegido por direitos autorais, e os autores exigem permissão por escrito para traduzi-lo, adaptá-lo ou programá-lo em sites e aplicativos. Não substitui o cuidado de um profissional de saúde.",
+      "review": {
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-28",
+        "notes": "Perguntas e exemplos escritos pelo projeto, sem copiar nem traduzir o formulário Stanley-Brown (os autores exigem permissão por escrito para uso em sites e apps). Conferir: (1) se cada exemplo está apoiado nos trechos citados da etapa; (2) telefones 188 e 192 e a descrição dos serviços; (3) linguagem e ordem das etapas para quem está em crise; (4) as páginas de serviço (SAMU, CAPS, CVV) usam kind 'policy' porque o esquema não tem um tipo para informação de serviço.",
+        "status": "draft",
+        "verified_by": null,
+        "verified_on": null
+      },
+      "sources": [
+        {
+          "accessed": "2026-10-28",
+          "locator": "Forms: texto de abertura",
+          "note": "Motivo de o Stabilis não reproduzir nem traduzir o formulário: as perguntas deste plano foram escritas pelo projeto.",
+          "quote": "Written permission is required to translate, make other wording changes or adaptations to the Stanley-Brown Safety Plan Form or to reproduce or program the form for non-profit use in the electronic medical record (EMR) or other digital application or website.",
+          "source": "stanley-brown-forms"
+        },
+        {
+          "accessed": "2026-10-28",
+          "locator": "pdf p. 11 (Q.2.c Suicide risk; Table 2.3)",
+          "quote": "assessing suicide risk and developing and implementing a tailored safety plan are priorities for risk management in MDD.",
+          "source": "canmat-mdd-2023"
+        },
+        {
+          "accessed": "2026-10-28",
+          "locator": "pdf p. 11 (Table 2.3)",
+          "note": "Tabela de acesso aberto com as seis etapas usadas como estrutura deste plano; a sétima etapa (motivos para viver) vem do MI-mhGAP.",
+          "quote": "Table 2.3. Suicide Safety Plan (Adapted from Hawton et al., 2022).",
+          "source": "canmat-mdd-2023"
+        },
+        {
+          "accessed": "2026-10-28",
+          "locator": "pdf p. 15 (Recommendations: safety plan before discharge)",
+          "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança.",
+          "quote": "a safety plan should be completed with the patient and their family. The safety plan typically includes restriction of means such as removing firearms from home and securing all medicines in home including over-the-counter medicines. The safety plan can also include coping strategies, provide crisis resources, and an outline of a follow-up plan for mental health care.",
+          "source": "nimh-asq-ed-pathway"
+        },
+        {
+          "accessed": "2026-10-28",
+          "locator": "§11 Dados no modo paciente",
+          "quote": "Nada é enviado a servidores.",
+          "source": "stabilis-escopo"
+        }
+      ],
+      "steps": [
+        {
+          "examples": [
+            "Ficar isolado/a, sem atender o telefone nem sair do quarto",
+            "Sentir que nada vai melhorar",
+            "Ficar mais irritado/a, triste ou sozinho/a",
+            "Uma briga em casa, uma perda ou um problema no trabalho",
+            "Pensar em morte mais do que o normal"
+          ],
+          "id": "warning_signs",
+          "prompt": "Que pensamentos, sentimentos, situações ou atitudes costumam aparecer quando você começa a ficar mal? Quando notar esses sinais, é hora de usar este plano.",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "Suicídio (Prevenção): introdução",
+              "quote": "Saber reconhecer os sinais de alerta em si mesmo ou em alguém próximo a você pode ser o primeiro e mais importante passo.",
+              "source": "ms-suicidio-prevencao"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 1)",
+              "quote": "Step 1. Identify warning signs – e.g., thoughts, feelings, and circumstances.",
+              "source": "canmat-mdd-2023"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 15 (Creating a safety plan if patient will be discharged)",
+              "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança.",
+              "quote": "Warning signs of a crisis that may be developing: e.g., increasing isolation, increasing irritability, suspicious behavior, increased feelings of loneliness or sadness, etc.",
+              "source": "nimh-asq-ed-pathway"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Sinais de alerta: Isolamento",
+              "quote": "As pessoas com pensamentos suicidas podem se isolar, não atendendo a telefonemas, interagindo menos nas redes sociais, ficando em casa ou fechadas em seus quartos, reduzindo ou cancelando todas as atividades sociais, principalmente aquelas que costumavam e gostavam de fazer.",
+              "source": "ms-suicidio-prevencao"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Sinais de alerta: Preocupação com sua própria morte ou falta de esperança",
+              "quote": "As pessoas sob risco de suicídio costumam falar sobre morte e suicídio mais do que o comum, confessam se sentir sem esperanças, culpadas, com falta de autoestima e têm visão negativa de sua vida e futuro.",
+              "source": "ms-suicidio-prevencao"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Sinais de alerta: Outros fatores",
+              "note": "A página trata esses fatores como situações que tornam a pessoa mais vulnerável, a considerar junto com os outros sinais de alerta.",
+              "quote": "perda de emprego, crises políticas e econômicas, discriminação por orientação sexual e identidade de gênero, agressões psicológicas e/ou físicas, sofrimento no trabalho, diminuição ou ausência de autocuidado, conflitos familiares, perda de um ente querido",
+              "source": "ms-suicidio-prevencao"
+            }
+          ],
+          "title": "Como percebo que estou ficando mal"
+        },
+        {
+          "examples": [
+            "Ouvir música",
+            "Caminhar ou fazer outro exercício",
+            "Respirar devagar ou fazer um relaxamento",
+            "Voltar a algo de que você gostava, como cozinhar ou desenhar",
+            "Lembrar como você passou por outros momentos difíceis"
+          ],
+          "id": "coping",
+          "prompt": "O que ajuda você a se acalmar ou a se distrair quando está sozinho/a? Pense em coisas simples, que dá para fazer na hora, e no que já funcionou em outros momentos difíceis.",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 16 (Creating a safety plan if patient will be discharged)",
+              "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança.",
+              "quote": "Identify internal coping strategies and distractions such as listening to music, physical activity, relaxation techniques or distress tolerance skills, calling a friend",
+              "source": "nimh-asq-ed-pathway"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 2)",
+              "quote": "Step 2. Enlist personalized coping strategies – e.g., self-management.",
+              "source": "canmat-mdd-2023"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 145 (SUI 2.3 Ofereça e ative o apoio psicossocial: ofereça apoio à pessoa)",
+              "quote": "Concentre-se nos pontos fortes da pessoa, incentivando-a a falar sobre como foram resolvidos problemas anteriores.",
+              "source": "mhgap-ig-2-pt"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 34 (DEP 2.3 Promoção do funcionamento em atividades diárias)",
+              "quote": "Procurar retomar (ou continuar) atividades que antes eram prazerosas.",
+              "source": "mhgap-ig-2-pt"
+            }
+          ],
+          "title": "O que posso fazer sozinho/a para me acalmar"
+        },
+        {
+          "examples": [
+            "Caminhar com um amigo ou uma amiga",
+            "Ir a uma praça, a um café ou ao cinema",
+            "Visitar um parente ou um vizinho",
+            "Participar de um grupo de apoio, da sua comunidade religiosa ou de atividades no bairro"
+          ],
+          "id": "distraction",
+          "prompt": "Com quem você pode conversar ou passar um tempo, e aonde pode ir, para mudar o foco e não ficar sozinho/a com os pensamentos? Anote nomes, telefones e lugares.",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 3)",
+              "quote": "Step 3. Enable distraction and connect with people – e.g., go for a walk with a friend, go to a cafe or movie, use support groups or online forums.",
+              "source": "canmat-mdd-2023"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 34 (DEP 2.2 Redução do estresse e fortalecimento do apoio social)",
+              "quote": "Reative a rede de relações sociais prévias da pessoa. Identifique atividades sociais anteriores que, se retomadas, podem oferecer apoio psicossocial direto ou indireto, como reuniões de família, visitas a vizinhos e atividades comunitárias.",
+              "source": "mhgap-ig-2-pt"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 145 (SUI 2.3 Ofereça e ative o apoio psicossocial: ative o apoio psicossocial)",
+              "quote": "Otimize o apoio social de recursos disponíveis na comunidade. Estes incluem recursos informais, como parentes, amigos, conhecidos, colegas e líderes religiosos ou recursos formais da comunidade, se disponíveis, como centros de crise, além de centros locais de saúde mental.",
+              "source": "mhgap-ig-2-pt"
+            }
+          ],
+          "title": "Com quem estar e aonde ir para mudar o foco"
+        },
+        {
+          "examples": [
+            "Alguém da família",
+            "Um amigo ou uma amiga próxima",
+            "Um vizinho ou colega de confiança",
+            "Um líder religioso ou da comunidade"
+          ],
+          "id": "ask_for_help",
+          "prompt": "Quem são as pessoas de confiança com quem você pode falar quando não estiver bem? Anote o nome e o telefone de cada uma. Se puder, combine antes com elas que você pode procurá-las nessas horas.",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Pedindo ajuda",
+              "quote": "É muito importante conversar com alguém que você confie. Não hesite em pedir ajuda, você pode precisar de alguém que te acompanhe e te auxilie a entrar em contato com os serviços de suporte.",
+              "source": "ms-suicidio-prevencao"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 145 (SUI 2.5 Psicoeducação: mensagens-chave para a pessoa e os cuidadores)",
+              "quote": "Se uma pessoa tiver pensamentos de autoagressão ou suicídio, busque imediatamente a ajuda de um parente, amigo ou profissional de saúde de confiança.",
+              "source": "mhgap-ig-2-pt"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 34 (DEP 2.1 Psicoeducação)",
+              "quote": "Os pensamentos de autoagressão ou suicídio são comuns. Se notarem esses pensamentos, não devem tomar nenhuma medida, mas contar a uma pessoa de confiança e voltar imediatamente para obter ajuda.",
+              "source": "mhgap-ig-2-pt"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 4)",
+              "quote": "Step 4. Engage with social and community supports – e.g., involve personal contacts in contingency plans.",
+              "source": "canmat-mdd-2023"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 16 (Creating a safety plan if patient will be discharged)",
+              "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança.",
+              "quote": "Identify who to contact if a crisis arises: parent, friend, clinician, urgent care/ED",
+              "source": "nimh-asq-ed-pathway"
+            }
+          ],
+          "title": "Pessoas de confiança que posso chamar"
+        },
+        {
+          "examples": [
+            "CAPS da sua região: dá para ir sem marcar consulta",
+            "UBS (posto de saúde): também informa onde fica o CAPS",
+            "Profissional que acompanha você: nome e telefone",
+            "UPA 24h ou pronto-socorro mais perto: endereço",
+            "CVV: ligue 188, a qualquer hora, de graça",
+            "SAMU: ligue 192 numa emergência"
+          ],
+          "id": "professionals",
+          "prompt": "Anote o telefone e o endereço dos serviços que você pode procurar: o CAPS ou a UBS (posto de saúde) da sua região, o profissional que acompanha você, se tiver, e a UPA ou o pronto-socorro mais perto. Para conversar com alguém agora, ligue para o CVV no 188 (24 horas, ligação gratuita); numa emergência, ligue para o SAMU no 192.",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Pedindo ajuda: Onde buscar ajuda",
+              "quote": "Onde buscar ajuda: CAPS e Unidades Básicas de Saúde (Saúde da família, Postos e Centros de Saúde); UPA 24H, SAMU 192, Pronto Socorro; Hospitais; Centro de Valorização da Vida – 188 (ligação gratuita).",
+              "source": "ms-suicidio-prevencao"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Para chegar a um CAPS: Procura direta",
+              "quote": "Você pode ir até o CAPS da sua região e solicitar atendimento. Os CAPS funcionam em regime de porta aberta, ou seja, não é preciso marcar consulta para o primeiro acolhimento.",
+              "source": "ms-caps"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Para chegar a um CAPS: localizar o CAPS mais próximo",
+              "quote": "Para localizar o CAPS mais próximo, a orientação é procurar a Secretaria de Saúde do seu município ou se informar na Unidade Básica de Saúde (UBS) da sua região",
+              "source": "ms-caps"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Atenção Básica",
+              "quote": "Esses serviços garantem o primeiro cuidado em saúde, incluindo a saúde mental. Eles ficam próximos de onde as pessoas moram e têm o papel de acolher quem está em sofrimento e prevenir problemas de saúde.",
+              "source": "ms-caps"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Urgência e Emergência",
+              "note": "A mesma seção lista esses serviços: SAMU 192, UPA 24h e pronto-socorro.",
+              "quote": "Os serviços de Urgência e Emergência são responsáveis por acolher e cuidar das pessoas em situações que precisam de atendimento imediato, inclusive quando há questões relacionadas à saúde mental ou ao uso de álcool e outras drogas.",
+              "source": "ms-caps"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "Quem somos",
+              "quote": "Oferece atendimento pelo telefone 188 (24 horas e sem custo de ligação), por chat, e-mail e pessoalmente.",
+              "source": "cvv-quem-somos"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "SAMU 192: introdução",
+              "quote": "acessado pelo número 192, funciona 24 horas por dia e 07 dias por semana",
+              "source": "ms-samu-192"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 5)",
+              "quote": "Step 5. Identify professional contacts – e.g., crisis lines (9-8-8 in Canada and USA), mental health providers, urgent care clinics, and hospital emergency rooms.",
+              "source": "canmat-mdd-2023"
+            }
+          ],
+          "title": "Serviços de saúde e telefones de ajuda"
+        },
+        {
+          "examples": [
+            "Pedir a alguém de confiança que guarde os remédios trancados, inclusive os comprados sem receita",
+            "Tirar de casa armas de fogo, venenos e agrotóxicos",
+            "Pedir a alguém que guarde facas e outros objetos perigosos",
+            "Ficar longe de lugares perigosos enquanto estiver mal"
+          ],
+          "id": "safe_environment",
+          "prompt": "O que você pode fazer para ficar longe, nas horas difíceis, de coisas que poderia usar para se machucar? Quem pode ajudar a guardar ou tirar essas coisas de casa? Dificultar o acesso dá tempo para a crise passar.",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 13 (Resumo executivo: restringir o acesso aos meios de suicídio)",
+              "quote": "Restringir o acesso aos meios de suicídio é uma intervenção universal baseada em evidências para a prevenção do suicídio.",
+              "source": "opas-viver-a-vida-2024"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 13 (Resumo executivo: restringir o acesso aos meios de suicídio)",
+              "quote": "A maioria das pessoas que apresenta comportamento suicida sofre com uma ambivalência sobre viver ou morrer, e muitos suicídios são uma resposta a fatores de estresse agudos. Dificultar o acesso aos meios letais de suicídio dá às pessoas em perigo tempo de superar a crise aguda antes de terem atitudes que podem ser fatais.",
+              "source": "opas-viver-a-vida-2024"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 13 (Resumo executivo: restringir o acesso aos meios de suicídio)",
+              "quote": "Em nível pessoal, pode-se solicitar que os membros da família retirem os meios de suicídio (por exemplo, pesticidas, armas de fogo, facas, medicamentos) do alcance de uma pessoa que esteja em risco de suicídio.",
+              "source": "opas-viver-a-vida-2024"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 145 (SUI 2.3 Ofereça e ative o apoio psicossocial: ative o apoio psicossocial)",
+              "quote": "Recomende que a pessoa e os cuidadores restrinjam o acesso a meios de autoagressão ou suicídio (por exemplo, pesticidas, substâncias tóxicas, medicamentos vendidos sob prescrição médica, armas de fogo, etc.) quando a pessoa tiver pensamentos ou planos de autoagressão ou suicídio.",
+              "source": "mhgap-ig-2-pt"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 145 (SUI 2.5 Psicoeducação: mensagens-chave para a pessoa e os cuidadores)",
+              "quote": "Meios de autoagressão (por exemplo, pesticidas, armas de fogo, medicamentos) devem ser retirados de casa.",
+              "source": "mhgap-ig-2-pt"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "seção Diante de uma pessoa sob risco de suicídio",
+              "quote": "Se a pessoa com quem você está preocupado(a) vive com você, assegure-se de que ele(a) não tenha acesso a meios para provocar a própria morte (por exemplo, pesticidas, armas de fogo ou medicamentos) em casa",
+              "source": "ms-suicidio-prevencao"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 16 (Creating a safety plan if patient will be discharged)",
+              "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança.",
+              "quote": "Restriction of Means: e.g., locking up medications including over the counter medications",
+              "source": "nimh-asq-ed-pathway"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 6)",
+              "quote": "Step 6. Make the environment safe – e.g., remove excess medications, firearms, sharp objects, or ropes; avoid busy streets and heights.",
+              "source": "canmat-mdd-2023"
+            }
+          ],
+          "title": "Manter longe o que pode me machucar"
+        },
+        {
+          "examples": [
+            "Meus filhos, minha família ou meus amigos",
+            "Meu animal de estimação",
+            "Um sonho ou plano para o futuro",
+            "Minha fé ou meus valores"
+          ],
+          "id": "reasons_for_living",
+          "prompt": "Quais são os seus motivos para continuar vivendo? Pense em pessoas, sonhos, compromissos, crenças ou coisas de que você gosta. Releia esta lista quando ficar difícil lembrar deles.",
+          "sources": [
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 145 (SUI 2.3 Ofereça e ative o apoio psicossocial: ofereça apoio à pessoa)",
+              "quote": "Explore razões e maneiras para permanecer vivo.",
+              "source": "mhgap-ig-2-pt"
+            },
+            {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 9 (Brief suicide safety assessment)",
+              "note": "Fluxo pediátrico de pronto-socorro; usado só por incluir os motivos para viver na avaliação de segurança.",
+              "quote": "Ask about support network, reasons for living, and if patient believes they need help to keep themselves safe.",
+              "source": "nimh-asq-ed-pathway"
+            }
+          ],
+          "title": "Meus motivos para viver"
+        }
+      ],
+      "title": "Meu plano de segurança"
+    },
     "sources": [
       {
         "id": "rename-2024",
@@ -20005,7 +22206,7 @@
       },
       {
         "id": "nimh-copyright-policy",
-        "kind": "policy",
+        "kind": "terms_of_use",
         "language": "en",
         "license_note": "Política de reutilização dos materiais do NIMH (domínio público).",
         "publisher": "National Institute of Mental Health (NIMH), EUA",
@@ -20112,6 +22313,481 @@
         "title": "Is the full version of the AUDIT really necessary? Study of the validity and internal construct of its abbreviated versions",
         "url": "https://doi.org/10.1111/j.1530-0277.2010.01225.x",
         "year": 2010
+      },
+      {
+        "id": "stanley-brown-forms",
+        "kind": "terms_of_use",
+        "language": "en",
+        "license_note": "© dos autores. Citada só para registrar as condições de uso do formulário Stanley-Brown, que o Stabilis não reproduz: traduzir, adaptar ou programar o formulário em prontuário eletrônico, aplicativo ou site exige permissão por escrito.",
+        "publisher": "Barbara Stanley e Gregory K. Brown (suicidesafetyplan.com)",
+        "title": "Forms – Stanley-Brown Safety Planning Intervention (condições de uso do formulário)",
+        "url": "https://suicidesafetyplan.com/forms/",
+        "year": 2026
+      },
+      {
+        "id": "ms-suicidio-prevencao",
+        "kind": "guideline",
+        "language": "pt-BR",
+        "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição.",
+        "publisher": "Ministério da Saúde (gov.br)",
+        "title": "Suicídio (Prevenção)",
+        "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/suicidio-prevencao",
+        "year": 2026
+      },
+      {
+        "id": "ms-caps",
+        "kind": "service_info",
+        "language": "pt-BR",
+        "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição.",
+        "publisher": "Ministério da Saúde (gov.br), Rede de Atenção Psicossocial",
+        "title": "Centros de Atenção Psicossocial",
+        "url": "https://www.gov.br/saude/pt-br/composicao/saes/desmad/raps/caps",
+        "year": 2026
+      },
+      {
+        "id": "ms-samu-192",
+        "kind": "service_info",
+        "language": "pt-BR",
+        "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição.",
+        "publisher": "Ministério da Saúde (gov.br)",
+        "title": "Serviço de Atendimento Móvel de Urgência – SAMU 192",
+        "url": "https://www.gov.br/saude/pt-br/composicao/saes/samu-192",
+        "year": 2026
+      },
+      {
+        "id": "cvv-quem-somos",
+        "kind": "service_info",
+        "language": "pt-BR",
+        "license_note": "© CVV, todos os direitos reservados. Citação curta e literal com atribuição, só como informação sobre o serviço (Lei 9.610/1998, art. 46, III).",
+        "publisher": "CVV – Centro de Valorização da Vida",
+        "title": "O CVV – Quem somos",
+        "url": "https://cvv.org.br/o-cvv/",
+        "year": 2026
+      },
+      {
+        "id": "opas-viver-a-vida-2024",
+        "kind": "guideline",
+        "language": "pt-BR",
+        "license_note": "CC BY-NC-SA 3.0 IGO: uso não comercial, com atribuição e mesma licença em derivados.",
+        "publisher": "Organização Pan-Americana da Saúde (OPAS/OMS); versão oficial em português de LIVE LIFE (OMS, 2021)",
+        "title": "Viver a vida: guia de implementação para a prevenção do suicídio nos países",
+        "url": "https://doi.org/10.37774/9789275724248",
+        "year": 2024
+      }
+    ],
+    "tracking": {
+      "description": "Acompanhamento no modo paciente: de quanto em quanto tempo sugerir refazer os questionários de sintomas.",
+      "instruments": [
+        "phq9",
+        "gad7"
+      ],
+      "reassess_days": 14,
+      "review": {
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-28",
+        "status": "draft",
+        "verified_by": null,
+        "verified_on": null
+      },
+      "sources": [
+        {
+          "accessed": "2026-10-28",
+          "locator": "recomendação 1.4.3",
+          "note": "O Stabilis sugere refazer a cada 2 semanas, no início do intervalo de 2 a 4 semanas.",
+          "quote": "review how well the treatment is working with the person between 2 and 4 weeks after starting treatment",
+          "source": "nice-ng222"
+        }
+      ]
+    },
+    "trials": [
+      {
+        "conditions": [
+          "depression_unipolar"
+        ],
+        "id": "TR-ANTIDEP-DEPRESSION",
+        "min_weeks": 4,
+        "note": "Dose mínima: usual_min da bula de cada antidepressivo, como aproximação da \"recognised therapeutic dose\" da NICE, que não lista doses. Sem condição informada (modo paciente), a regra vale também para antidepressivo usado na ansiedade, embora a NICE CG113 não defina tempo mínimo para a TAG.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "4 semanas: NICE NG222 1.9.1 e 1.4.11 e CANMAT 2023 Q.7.d. Mais conservador, o MI-mhGAP (pdf p. 36) espera 6 semanas sem resposta antes de subir a fluoxetina de 20 para 40 mg. Clomipramina e bupropiona não têm usual_min na bula registrada: só o tempo é avaliado para elas.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.1",
+            "quote": "If a person's depression has not responded at all after 4 weeks of antidepressant medication at a recognised therapeutic dose",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.4.11",
+            "quote": "how long it takes to see an effect (usually, if the antidepressant medication is going to work, within 4 weeks)",
+            "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 35 (Q.7.d When and how should antidepressants be switched?)",
+            "quote": "Notably, if early improvement is not seen by 4 weeks, there is only a low likelihood of response or remission at 8 to 12 weeks. At that point, the decision should be to either increase the dose or to switch the antidepressant if there are tolerability concerns.",
+            "source": "canmat-mdd-2023"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "depression_unipolar"
+        ],
+        "id": "TR-AMITRIPTYLINE-DEPRESSION",
+        "min_mg_per_day": 75,
+        "min_weeks": 4,
+        "note": "O MI-mhGAP fixa a dose efetiva mínima da amitriptilina em adultos em 75 mg; o usual_min do arquivo do medicamento (50 mg/dia) seria mais baixo. Doses menores não contam como tentativa antidepressiva adequada. Tempo mínimo igual ao da regra geral dos antidepressivos.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Dose mínima de diretriz (MI-mhGAP, Tabela 1) no lugar da bula, como prevê min_mg_per_day.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "amitriptilina"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 36 (Tabela 1: Antidepressivos, amitriptilina)",
+            "quote": "Nota: a dose efetiva mínima em adultos é de 75 mg.",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.1",
+            "quote": "If a person's depression has not responded at all after 4 weeks of antidepressant medication at a recognised therapeutic dose",
+            "source": "nice-ng222"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "depression_unipolar"
+        ],
+        "id": "TR-TRAZODONE-DEPRESSION",
+        "min_mg_per_day": 150,
+        "min_weeks": 4,
+        "note": "A bula não traz dose mínima eficaz (usual_min ausente): o piso é a dose inicial sugerida para depressão maior, 150 mg/dia em doses divididas, a partir da qual a dose é aumentada. Doses menores não contam como tentativa antidepressiva adequada.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Piso derivado da dose inicial da bula, não de uma dose mínima eficaz declarada. Conferir se é aceitável.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "trazodona"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 2.1 Dose Selection",
+            "note": "Mesma seção: aumentos de 50 mg/dia a cada 3 a 4 dias, até 400 mg/dia em ambulatório.",
+            "quote": "An initial dose of 150 mg/day in divided doses is suggested.",
+            "source": "label-trazodona"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.9.1",
+            "quote": "If a person's depression has not responded at all after 4 weeks of antidepressant medication at a recognised therapeutic dose",
+            "source": "nice-ng222"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "bipolar_1"
+        ],
+        "id": "TR-LITHIUM-BIPOLAR",
+        "min_weeks": 2,
+        "note": "A adequação do lítio depende da litemia, que a ferramenta não avalia: a dose mínima (usual_min da bula, 600 mg/dia) é só um piso. 2 semanas valem para a mania; na depressão bipolar o PCDT avalia em até 4 a 6 semanas e, na manutenção, o MI-mhGAP pede 6 meses para ver a efetividade total.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "O PCDT fala do tratamento combinado (estabilizador mais antipsicótico); a CANMAT/ISBD, de agentes antimaníacos em geral. Só TAB tipo I: as fontes não trazem janela própria para o tipo II. As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Deve-se avaliar a resposta ao tratamento em até 2 semanas, com o tratamento combinado (estabilizador mais antipsicótico) em dose adequada, antes de troca de medicamento.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"some therapeutic response is expected with antimanic agents within 1-2 weeks. If no response is observed within 2 weeks with therapeutic doses of antimanic agents, and other contributing factors for non-response are excluded, then switch or add-on strategies should be considered.\"",
+            "quote": "antimanic agents within 1-2 weeks. If no response is observed within",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Continuação da frase da citação anterior (colunas intercaladas na extração).",
+            "quote": "2 weeks with therapeutic doses of antimanic agents, and other",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "Highlights: 2 DOSAGE AND ADMINISTRATION",
+            "note": "Mesma seção: manutenção com litemia de 0,8 a 1 mEq/L.",
+            "quote": "Acute Manic or Mixed Episodes (patients 7 years and older): Titrate to serum lithium concentrations 0.8 to 1.2 mEq/L",
+            "source": "label-litio"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+            "quote": "Dose máxima: 1.800 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 0,6-1,2 mEq/L).",
+            "source": "pcdt-tab-2016"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "bipolar_1"
+        ],
+        "id": "TR-VALPROATE-BIPOLAR",
+        "min_mg_per_day": 750,
+        "min_weeks": 2,
+        "note": "A bula não tem usual_min: o piso de 750 mg/dia é a dose inicial da bula na mania e a dose a atingir antes de dosar o nível no PCDT. A dose eficaz depende do peso e do nível sérico (50 a 125 mcg/mL), que a ferramenta não avalia. Na depressão bipolar o PCDT avalia em até 4 a 6 semanas.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Piso derivado de dose inicial (bula) e de titulação (PCDT), não de uma dose mínima eficaz declarada. As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "valproato"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 2.1 Mania",
+            "quote": "The recommended initial dose is 750 mg daily in divided doses. The dose should be increased as rapidly as possible to achieve the lowest therapeutic dose which produces the desired clinical effect or the desired range of plasma concentrations.",
+            "source": "label-valproato"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 2.1 Mania",
+            "quote": "In placebo-controlled clinical trials of acute mania, patients were dosed to a clinical response with a trough plasma concentration between 50 and 125 mcg/mL. Maximum concentrations were generally achieved within 14 days.",
+            "source": "label-valproato"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "note": "Mesmo item: \"Faixa de dose: 250-2.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 250 mg a cada 2 dias até chegar a 750 mg. Dosar nível sérico. - Dose máxima: 2.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 50-125 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Deve-se avaliar a resposta ao tratamento em até 2 semanas, com o tratamento combinado (estabilizador mais antipsicótico) em dose adequada, antes de troca de medicamento.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"some therapeutic response is expected with antimanic agents within 1-2 weeks. If no response is observed within 2 weeks with therapeutic doses of antimanic agents, and other contributing factors for non-response are excluded, then switch or add-on strategies should be considered.\"",
+            "quote": "antimanic agents within 1-2 weeks. If no response is observed within",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Continuação da frase da citação anterior (colunas intercaladas na extração).",
+            "quote": "2 weeks with therapeutic doses of antimanic agents, and other",
+            "source": "canmat-isbd-2018"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "bipolar_1"
+        ],
+        "id": "TR-CARBAMAZEPINE-BIPOLAR",
+        "min_mg_per_day": 600,
+        "min_weeks": 2,
+        "note": "A bula registrada (Tegretol) não tem indicação nem dose para transtorno bipolar: o piso de 600 mg/dia é a dose a atingir antes de dosar o nível no PCDT, cuja faixa é de 200 a 1.000 mg/dia conforme o nível sérico (8 a 12 mcg/mL), que a ferramenta não avalia.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Piso derivado da titulação do PCDT. As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "carbamazepina"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "note": "Mesmo item: \"Faixa de dose: 200-1.000 mg/dia (de acordo com o nível sérico)\".",
+            "quote": "Incremento de 200 mg a cada 2 dias até chegar a 600 mg. Dosar nível sérico. - Dose máxima: 1.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 8-12 mcg/mL).",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Deve-se avaliar a resposta ao tratamento em até 2 semanas, com o tratamento combinado (estabilizador mais antipsicótico) em dose adequada, antes de troca de medicamento.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"some therapeutic response is expected with antimanic agents within 1-2 weeks. If no response is observed within 2 weeks with therapeutic doses of antimanic agents, and other contributing factors for non-response are excluded, then switch or add-on strategies should be considered.\"",
+            "quote": "antimanic agents within 1-2 weeks. If no response is observed within",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Continuação da frase da citação anterior (colunas intercaladas na extração).",
+            "quote": "2 weeks with therapeutic doses of antimanic agents, and other",
+            "source": "canmat-isbd-2018"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "bipolar_1"
+        ],
+        "id": "TR-ANTIPSYCHOTIC-BIPOLAR",
+        "min_weeks": 2,
+        "note": "Dose mínima: usual_min da bula de cada antipsicótico (quetiapina: 300 mg/dia, dose da depressão bipolar; na mania a bula vai de 400 a 800). A NICE CG185 1.5.4 só considera o antipsicótico ineficaz na dose máxima licenciada. Clorpromazina não tem usual_min: só o tempo é avaliado. Na depressão bipolar o PCDT avalia em até 4 a 6 semanas.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Sem condição informada (modo paciente), a regra vale para qualquer uso de antipsicótico, inclusive fora do transtorno bipolar. As citações da CANMAT/ISBD 2018 são trechos de uma linha porque o texto extraído intercala as duas colunas do PDF; a frase completa está no note da citação. Conferir no PDF.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "quote": "Deve-se avaliar a resposta ao tratamento em até 2 semanas, com o tratamento combinado (estabilizador mais antipsicótico) em dose adequada, antes de troca de medicamento.",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Texto extraído com as duas colunas intercaladas; a frase completa da coluna esquerda é: \"some therapeutic response is expected with antimanic agents within 1-2 weeks. If no response is observed within 2 weeks with therapeutic doses of antimanic agents, and other contributing factors for non-response are excluded, then switch or add-on strategies should be considered.\"",
+            "quote": "antimanic agents within 1-2 weeks. If no response is observed within",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "note": "Continuação da frase da citação anterior (colunas intercaladas na extração).",
+            "quote": "2 weeks with therapeutic doses of antimanic agents, and other",
+            "source": "canmat-isbd-2018"
+          }
+        ]
+      },
+      {
+        "id": "TR-BENZODIAZEPINE-SHORT-TERM",
+        "max_weeks": 4,
+        "note": "O limite de 4 semanas é o do MI-mhGAP (2 a 4 semanas no máximo, na agitação da mania). A NICE CG113 1.2.26 só admite benzodiazepínico na TAG como medida de curto prazo em crises, sem número de semanas. Só limite de uso (sem min_weeks): as fontes não definem dose nem tempo mínimo para avaliar benzodiazepínico.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "O número de semanas vem de outro contexto (agitação na mania) e é aplicado a qualquer condição, porque o uso de curto prazo é uma restrição do medicamento (bulas: risco de dependência cresce com a duração; eficácia além de 4 meses não avaliada em diazepam e lorazepam). Conferir se é aceitável.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "class": "anxiolytic_hypnotic",
+          "subclass": "benzodiazepine"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 48 (Psicoses 2.6: episódio maníaco em transtorno bipolar)",
+            "quote": "As pessoas com mania que apresentam agitação podem ser beneficiadas pelo uso em curto prazo (2 a 4 semanas no máximo) de um benzodiazepínico como o diazepam.",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 48 (Psicoses 2.6: episódio maníaco em transtorno bipolar)",
+            "quote": "Os benzodiazepínicos devem ser retirados gradualmente assim que houver melhora dos sintomas, pois a pessoa pode desenvolver tolerância.",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.26",
+            "quote": "Do not offer a benzodiazepine for the treatment of GAD in primary or secondary care except as a short-term measure during crises.",
+            "source": "nice-cg113"
+          }
+        ]
+      },
+      {
+        "id": "TR-ZOLPIDEM-SHORT-TERM",
+        "max_weeks": 5,
+        "min_weeks": 1,
+        "note": "Bula: indicado para tratamento de curto prazo da insônia, com eficácia demonstrada por até 35 dias (5 semanas); uso prolongado não recomendado. O mínimo de 1 semana segue a bula, que manda investigar outra causa quando a insônia não melhora após 7 a 10 dias.",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Limite tirado da duração dos estudos (35 dias) somada à frase da bula que não recomenda uso prolongado.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 1 INDICATIONS AND USAGE",
+            "note": "Mesma seção: os estudos de eficácia duraram de 4 a 5 semanas.",
+            "quote": "AMBIEN (zolpidem tartrate) is indicated for the short-term treatment of insomnia characterized by difficulties with sleep initiation. AMBIEN has been shown to decrease sleep latency for up to 35 days in controlled clinical studies",
+            "source": "label-zolpidem"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 2.1 Dosage in Adults",
+            "quote": "Long-term use of AMBIEN is not recommended. Treatment should be as short as possible. Extended treatment should not take place without re-evaluation of the patient's status because the risk of abuse and dependence increases with the duration of treatment",
+            "source": "label-zolpidem"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "quote": "The failure of insomnia to remit after 7 to 10 days of treatment may indicate the presence of a primary psychiatric and/or medical illness that should be evaluated.",
+            "source": "label-zolpidem"
+          }
+        ]
       }
     ],
     "vocab": {

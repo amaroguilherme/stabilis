@@ -1,0 +1,24 @@
+{
+  "description": "Acompanhamento no modo paciente: de quanto em quanto tempo sugerir refazer os questionários de sintomas.",
+  "reassess_days": 14,
+  "instruments": [
+    "phq9",
+    "gad7"
+  ],
+  "sources": [
+    {
+      "source": "nice-ng222",
+      "locator": "recomendação 1.4.3",
+      "quote": "review how well the treatment is working with the person between 2 and 4 weeks after starting treatment",
+      "accessed": "2026-10-28",
+      "note": "O Stabilis sugere refazer a cada 2 semanas, no início do intervalo de 2 a 4 semanas."
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-28",
+    "verified_by": null,
+    "verified_on": null
+  }
+}

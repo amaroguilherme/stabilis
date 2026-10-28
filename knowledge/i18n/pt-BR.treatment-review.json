@@ -1,0 +1,83 @@
+{
+  "language": "pt-BR",
+  "description": "Mensagens da revisão de tratamentos já feitos (knowledge/rules/treatment_review.json): próximos passos por situação da tentativa. Chaves *.patient têm texto simples (plain) para o modo paciente; *.professional, só o texto clínico.",
+  "messages": {
+    "ts.ad.no_response.patient": {
+      "plain": "Se você usou {drug} na dose e pelo tempo indicados e não melhorou, isso não quer dizer que nenhum tratamento vai funcionar: existem outras opções, como mudar a dose, trocar de remédio ou incluir psicoterapia. Converse com o médico antes de mudar qualquer coisa e não pare o remédio por conta própria.",
+      "clinical": "{drug}: tentativa adequada sem resposta; discutir aumento de dose, troca de antidepressivo, psicoterapia ou combinação."
+    },
+    "ts.ad.no_response.professional": {
+      "clinical": "Sem resposta após 4 semanas ou mais em dose terapêutica: rever adesão, fatores psicossociais, comorbidades e o diagnóstico, incluindo bipolaridade (NICE NG222 1.9.1–1.9.2; CANMAT 2023). Opções (NICE NG222 1.9.5): aumentar a dose dentro da faixa licenciada, se bem tolerado; trocar por outro antidepressivo, da mesma classe ou de outra; psicoterapia, isolada ou combinada com medicamento. Sem nenhuma resposta, a CANMAT 2023 prioriza a troca."
+    },
+    "ts.ad.partial.patient": {
+      "plain": "Se {drug} ajudou só um pouco, mesmo na dose e pelo tempo indicados, dá para buscar um resultado melhor: o médico pode ajustar a dose ou somar outro tratamento, como a psicoterapia. Converse com o médico e não mude a dose nem pare o remédio por conta própria.",
+      "clinical": "{drug}: resposta parcial após tentativa adequada; discutir otimização da dose ou estratégia adjuvante, incluindo psicoterapia."
+    },
+    "ts.ad.partial.professional": {
+      "clinical": "Resposta parcial após 4 semanas ou mais em dose terapêutica: confirmar adesão e otimizar a dose. Com boa tolerabilidade, a CANMAT 2023 prioriza a estratégia adjuvante, que preserva o ganho parcial. NICE NG222 1.9.5–1.9.9: associar psicoterapia ou, com apoio de especialista, associar antidepressivo de outra classe, antipsicótico de segunda geração ou lítio."
+    },
+    "ts.ad.low_dose.patient": {
+      "plain": "Para depressão, a dose de {drug} que você informou fica abaixo da dose mínima indicada. Se você usou para depressão e não melhorou, pode ser que a dose não tenha sido suficiente para o remédio funcionar. Não mude a dose por conta própria: converse com o médico.",
+      "clinical": "{drug}: dose abaixo da mínima eficaz para depressão; tentativa não conclusiva."
+    },
+    "ts.ad.low_dose.professional": {
+      "clinical": "Dose abaixo da mínima eficaz: tentativa não conclusiva, porque dose inadequada é uma das causas de má resposta (CANMAT 2023). Otimizar a dose é um primeiro passo importante; se o antidepressivo foi bem tolerado, uma opção é chegar à dose terapêutica dentro da faixa licenciada (NICE NG222 1.9.5)."
+    },
+    "ts.ad.short.patient": {
+      "plain": "Você usou {drug} por pouco tempo para saber se funciona: em geral, leva algumas semanas para notar melhora. Se você parou por causa de efeitos colaterais ou por outro motivo, converse com o médico sobre isso.",
+      "clinical": "{drug}: tempo de uso insuficiente para avaliar a resposta."
+    },
+    "ts.ad.short.professional": {
+      "clinical": "Menos de 4 semanas de uso: tentativa não conclusiva (NICE NG222 1.9.1); duração inadequada é uma das causas de má resposta (CANMAT 2023). Verificar o motivo da interrupção, como efeitos adversos ou dificuldade de adesão."
+    },
+    "ts.lithium.levels.patient": {
+      "plain": "O efeito do lítio depende da quantidade dele no sangue, medida por um exame chamado litemia. Pergunte ao médico se esse exame foi feito e se o resultado estava na faixa indicada, e conte se você deixou de tomar algumas doses. Não pare nem mude a dose por conta própria.",
+      "clinical": "Lítio: a adequação depende da litemia, que a ferramenta não avalia; confirmar nível sérico e adesão."
+    },
+    "ts.lithium.levels.professional": {
+      "clinical": "A ferramenta não avalia a litemia. Antes de concluir falha, confirmar adesão e nível sérico (PCDT 2016: 0,6–1,2 mEq/L, dosado após 5–7 dias de dose estável e 12 h após a última dose). Nível baixo: aumentar a dose (NICE CG185 1.6.4). Nível adequado sem resposta na mania: associar antipsicótico (NICE CG185 1.5.8) ou trocar (PCDT 2016). Na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas; na manutenção, a efetividade total exige 6 meses de uso (MI-mhGAP)."
+    },
+    "ts.ms_anticonvulsant.levels.patient": {
+      "plain": "O efeito de {drug} depende de a dose ser suficiente. Converse com o médico: ele pode pedir um exame de sangue para ver se a quantidade do remédio estava na faixa indicada. Conte também se você deixou de tomar algumas doses e não pare nem mude a dose por conta própria.",
+      "clinical": "{drug}: a adequação depende do nível sérico, que a ferramenta não avalia; confirmar nível e adesão."
+    },
+    "ts.ms_anticonvulsant.levels.professional": {
+      "clinical": "A ferramenta não avalia o nível sérico. Antes de concluir falha de {drug}, otimizar a dose e confirmar adesão e nível (PCDT 2016: ácido valproico 50–125 mcg/mL; carbamazepina 8–12 mcg/mL; dosar após 5–7 dias de dose estável e 12 h após a última dose). NICE CG185 1.10.32: dosar o valproato quando houver ineficácia, má adesão ou toxicidade. Nível adequado sem resposta: na mania, troca ou associação (PCDT 2016); na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas."
+    },
+    "ts.ap_bipolar.patient": {
+      "plain": "Se {drug} não ajudou o suficiente, mesmo na dose e pelo tempo indicados, o médico pode ajustar a dose, trocar por outro remédio ou associar mais um. Converse com o médico e não pare por conta própria: quando é preciso parar, a redução deve ser gradual.",
+      "clinical": "{drug} sem resposta suficiente no transtorno bipolar: reavaliar dose, adesão, troca ou associação."
+    },
+    "ts.ap_bipolar.professional": {
+      "clinical": "Antes de concluir falha, otimizar a dose e confirmar adesão. NICE CG185 1.5.4: trocar de antipsicótico se ineficaz na dose máxima licenciada ou mal tolerado; 1.5.5: se o segundo antipsicótico não bastar na dose máxima licenciada, associar lítio. Sem resposta em 2 semanas com dose adequada, PCDT 2016 e CANMAT/ISBD 2018 indicam troca ou associação na mania; na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas."
+    },
+    "ts.bzd.beyond.patient": {
+      "plain": "Você usou {drug} por mais tempo do que o recomendado: esse tipo de calmante é indicado só por pouco tempo, e o risco de dependência aumenta com o tempo de uso. Não pare de repente, porque parar de uma vez pode causar abstinência, às vezes grave. Converse com o médico sobre continuar ou diminuir a dose aos poucos, com acompanhamento.",
+      "clinical": "{drug}: uso além de 4 semanas; risco de dependência e de abstinência; não suspender abruptamente; discutir redução gradual."
+    },
+    "ts.bzd.beyond.professional": {
+      "clinical": "Uso além de 4 semanas, acima do recomendado para benzodiazepínico (MI-mhGAP: 2 a 4 semanas no máximo; NICE CG113 1.2.26: na TAG, só como medida de curto prazo em crises). O risco de dependência e de abstinência cresce com a duração e a dose; não suspender abruptamente, pois a abstinência pode ser grave, com convulsões e delirium. Se a retirada for indicada, reduzir gradualmente (MI-mhGAP: benzodiazepínico de ação prolongada, redução ao longo de 8 a 12 semanas, com apoio psicossocial)."
+    },
+    "ts.zolpidem.beyond.patient": {
+      "plain": "Você usou {drug} por mais tempo do que a bula recomenda: ele é indicado para uso curto, e o risco de dependência aumenta com o tempo de uso. Não pare de repente. Converse com o médico sobre como reduzir com segurança e sobre a causa da insônia.",
+      "clinical": "{drug}: uso além do período estudado e recomendado na bula; risco de dependência; evitar suspensão abrupta; reavaliar a insônia."
+    },
+    "ts.zolpidem.beyond.professional": {
+      "clinical": "Uso além de 5 semanas: a bula indica tratamento de curto prazo (eficácia demonstrada por até 35 dias), não recomenda uso prolongado e pede reavaliação antes de estender, porque o risco de abuso e dependência aumenta com a duração. Evitar suspensão abrupta (há relatos de abstinência). Insônia que persiste após 7 a 10 dias pode indicar doença psiquiátrica ou clínica primária."
+    },
+    "ts.zolpidem.no_response.patient": {
+      "plain": "Se a insônia não melhorou o suficiente com {drug}, pode haver outra causa por trás, como um problema de saúde física ou mental que precisa ser avaliado. Converse com o médico e não aumente a dose por conta própria.",
+      "clinical": "{drug}: insônia sem remissão; avaliar causa psiquiátrica ou clínica primária."
+    },
+    "ts.zolpidem.no_response.professional": {
+      "clinical": "Insônia que não remite após 7 a 10 dias de tratamento pode indicar doença psiquiátrica e/ou clínica primária, que deve ser avaliada (bula do zolpidem, seção 5.3)."
+    },
+    "ts.unknown.patient": {
+      "plain": "Faltou informar a dose por dia ou por quanto tempo você usou {drug}. Sem isso, não dá para saber se a dose e o tempo de uso foram os indicados. Se puder, confira na receita ou na caixa do remédio e leve essa informação ao médico.",
+      "clinical": "{drug}: dose diária ou duração não informadas; não é possível avaliar a tentativa."
+    },
+    "ts.unknown.professional": {
+      "clinical": "Dose diária ou duração não informadas: não é possível avaliar a tentativa. Registrar dose, duração, adesão e resposta; a revisão das tentativas anteriores, incluindo efeitos adversos e resposta parcial, orienta a próxima escolha (CANMAT 2023; NICE CG113 1.2.38; NICE CG185 1.3.2)."
+    }
+  }
+}

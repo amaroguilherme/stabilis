@@ -12,6 +12,9 @@ const KIND_LABELS: Record<string, string> = {
   instrument: "Questionários e estudos de validação",
   drug_label: "Bulas (FDA, via DailyMed)",
   dataset: "Dados abertos",
+  review: "Artigos de revisão",
+  service_info: "Serviços de saúde e de apoio",
+  terms_of_use: "Termos de uso e licenças de terceiros",
   policy: "Política do projeto",
 };
 

@@ -7,6 +7,7 @@ webapp/app/lib/kb/ — and committed — with a content hash:
     kb.generated.json         the whole knowledge base (validated by core/kb.py); used by tests
     kb.client.generated.json  the same without citation quotes, review metadata or brand names
     brands.client.generated.json  brand names, loaded only by the medication search
+    safety_plan.client.generated.json  the safety plan, loaded only by its page
     crisis.generated.json     the crisis lexicon
 
 and webapp/public/kb-quotes.json, the quotes themselves, fetched only when someone opens a citation.
@@ -38,6 +39,7 @@ CRISIS_TARGET = Path("webapp/app/lib/kb/crisis.generated.json")
 KB_TARGET = Path("webapp/app/lib/kb/kb.generated.json")
 KB_CLIENT_TARGET = Path("webapp/app/lib/kb/kb.client.generated.json")
 BRANDS_CLIENT_TARGET = Path("webapp/app/lib/kb/brands.client.generated.json")
+SAFETY_PLAN_CLIENT_TARGET = Path("webapp/app/lib/kb/safety_plan.client.generated.json")
 QUOTES_TARGET = Path("webapp/public/kb-quotes.json")
 QUOTE_FIELDS = ("quote", "absent_term", "note", "accessed")
 
@@ -140,8 +142,12 @@ def build() -> tuple[dict[Path, str], list[str]]:
         full_hash = kb_module.content_hash(data)
         outputs[KB_TARGET] = render("knowledge/", data, version)
         quotes: dict = {}
-        outputs[KB_CLIENT_TARGET] = render("knowledge/", slim_for_client(data, quotes), version, content_hash=full_hash)
+        client = slim_for_client(data, quotes)
+        # The safety plan is shown on one page only, which loads it separately.
+        safety_plan, client["safety_plan"] = client["safety_plan"], None
+        outputs[KB_CLIENT_TARGET] = render("knowledge/", client, version, content_hash=full_hash)
         outputs[BRANDS_CLIENT_TARGET] = json.dumps({"content_hash": full_hash, "brands": data["brands"]}, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n"
+        outputs[SAFETY_PLAN_CLIENT_TARGET] = json.dumps({"content_hash": full_hash, "safety_plan": safety_plan}, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n"
         outputs[QUOTES_TARGET] = json.dumps({"content_hash": full_hash, "quotes": dict(sorted(quotes.items()))}, ensure_ascii=False, separators=(",", ":")) + "\n"
     return outputs, errors
 

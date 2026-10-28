@@ -1,0 +1,428 @@
+{
+  "description": "Plano de segurança pessoal para crises suicidas, preenchido pela pessoa no próprio aparelho e imprimível. Segue as etapas gerais do planejamento de segurança (sinais de alerta, o que fazer sozinho, distração, pessoas, serviços, ambiente seguro, motivos para viver) com perguntas e exemplos escritos pelo Stabilis; cada etapa cita fontes abertas que sustentam o seu conteúdo. Não reproduz o formulário Stanley-Brown (ver license_note).",
+  "title": "Meu plano de segurança",
+  "intro": "Este é um roteiro curto, escrito por você, para os momentos de crise: os sinais de que você está ficando mal e o que fazer, passo a passo, até se sentir em segurança. O que você escrever fica só neste aparelho e não é enviado a ninguém; imprimir ou mostrar o plano a alguém é escolha sua. Preencha num momento mais calmo, se puder com alguém de confiança ou com quem cuida da sua saúde, e use o plano assim que notar os primeiros sinais; se estiver em perigo agora, ligue 188 (CVV) ou 192 (SAMU), ou vá a uma UPA ou pronto-socorro.",
+  "steps": [
+    {
+      "id": "warning_signs",
+      "title": "Como percebo que estou ficando mal",
+      "prompt": "Que pensamentos, sentimentos, situações ou atitudes costumam aparecer quando você começa a ficar mal? Quando notar esses sinais, é hora de usar este plano.",
+      "examples": [
+        "Ficar isolado/a, sem atender o telefone nem sair do quarto",
+        "Sentir que nada vai melhorar",
+        "Ficar mais irritado/a, triste ou sozinho/a",
+        "Uma briga em casa, uma perda ou um problema no trabalho",
+        "Pensar em morte mais do que o normal"
+      ],
+      "sources": [
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "Suicídio (Prevenção): introdução",
+          "quote": "Saber reconhecer os sinais de alerta em si mesmo ou em alguém próximo a você pode ser o primeiro e mais importante passo.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "canmat-mdd-2023",
+          "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 1)",
+          "quote": "Step 1. Identify warning signs – e.g., thoughts, feelings, and circumstances.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nimh-asq-ed-pathway",
+          "locator": "pdf p. 15 (Creating a safety plan if patient will be discharged)",
+          "quote": "Warning signs of a crisis that may be developing: e.g., increasing isolation, increasing irritability, suspicious behavior, increased feelings of loneliness or sadness, etc.",
+          "accessed": "2026-10-28",
+          "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança."
+        },
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "seção Sinais de alerta: Isolamento",
+          "quote": "As pessoas com pensamentos suicidas podem se isolar, não atendendo a telefonemas, interagindo menos nas redes sociais, ficando em casa ou fechadas em seus quartos, reduzindo ou cancelando todas as atividades sociais, principalmente aquelas que costumavam e gostavam de fazer.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "seção Sinais de alerta: Preocupação com sua própria morte ou falta de esperança",
+          "quote": "As pessoas sob risco de suicídio costumam falar sobre morte e suicídio mais do que o comum, confessam se sentir sem esperanças, culpadas, com falta de autoestima e têm visão negativa de sua vida e futuro.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "seção Sinais de alerta: Outros fatores",
+          "quote": "perda de emprego, crises políticas e econômicas, discriminação por orientação sexual e identidade de gênero, agressões psicológicas e/ou físicas, sofrimento no trabalho, diminuição ou ausência de autocuidado, conflitos familiares, perda de um ente querido",
+          "accessed": "2026-10-28",
+          "note": "A página trata esses fatores como situações que tornam a pessoa mais vulnerável, a considerar junto com os outros sinais de alerta."
+        }
+      ]
+    },
+    {
+      "id": "coping",
+      "title": "O que posso fazer sozinho/a para me acalmar",
+      "prompt": "O que ajuda você a se acalmar ou a se distrair quando está sozinho/a? Pense em coisas simples, que dá para fazer na hora, e no que já funcionou em outros momentos difíceis.",
+      "examples": [
+        "Ouvir música",
+        "Caminhar ou fazer outro exercício",
+        "Respirar devagar ou fazer um relaxamento",
+        "Voltar a algo de que você gostava, como cozinhar ou desenhar",
+        "Lembrar como você passou por outros momentos difíceis"
+      ],
+      "sources": [
+        {
+          "source": "nimh-asq-ed-pathway",
+          "locator": "pdf p. 16 (Creating a safety plan if patient will be discharged)",
+          "quote": "Identify internal coping strategies and distractions such as listening to music, physical activity, relaxation techniques or distress tolerance skills, calling a friend",
+          "accessed": "2026-10-28",
+          "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança."
+        },
+        {
+          "source": "canmat-mdd-2023",
+          "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 2)",
+          "quote": "Step 2. Enlist personalized coping strategies – e.g., self-management.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 145 (SUI 2.3 Ofereça e ative o apoio psicossocial: ofereça apoio à pessoa)",
+          "quote": "Concentre-se nos pontos fortes da pessoa, incentivando-a a falar sobre como foram resolvidos problemas anteriores.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 34 (DEP 2.3 Promoção do funcionamento em atividades diárias)",
+          "quote": "Procurar retomar (ou continuar) atividades que antes eram prazerosas.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "distraction",
+      "title": "Com quem estar e aonde ir para mudar o foco",
+      "prompt": "Com quem você pode conversar ou passar um tempo, e aonde pode ir, para mudar o foco e não ficar sozinho/a com os pensamentos? Anote nomes, telefones e lugares.",
+      "examples": [
+        "Caminhar com um amigo ou uma amiga",
+        "Ir a uma praça, a um café ou ao cinema",
+        "Visitar um parente ou um vizinho",
+        "Participar de um grupo de apoio, da sua comunidade religiosa ou de atividades no bairro"
+      ],
+      "sources": [
+        {
+          "source": "canmat-mdd-2023",
+          "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 3)",
+          "quote": "Step 3. Enable distraction and connect with people – e.g., go for a walk with a friend, go to a cafe or movie, use support groups or online forums.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 34 (DEP 2.2 Redução do estresse e fortalecimento do apoio social)",
+          "quote": "Reative a rede de relações sociais prévias da pessoa. Identifique atividades sociais anteriores que, se retomadas, podem oferecer apoio psicossocial direto ou indireto, como reuniões de família, visitas a vizinhos e atividades comunitárias.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 145 (SUI 2.3 Ofereça e ative o apoio psicossocial: ative o apoio psicossocial)",
+          "quote": "Otimize o apoio social de recursos disponíveis na comunidade. Estes incluem recursos informais, como parentes, amigos, conhecidos, colegas e líderes religiosos ou recursos formais da comunidade, se disponíveis, como centros de crise, além de centros locais de saúde mental.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "ask_for_help",
+      "title": "Pessoas de confiança que posso chamar",
+      "prompt": "Quem são as pessoas de confiança com quem você pode falar quando não estiver bem? Anote o nome e o telefone de cada uma. Se puder, combine antes com elas que você pode procurá-las nessas horas.",
+      "examples": [
+        "Alguém da família",
+        "Um amigo ou uma amiga próxima",
+        "Um vizinho ou colega de confiança",
+        "Um líder religioso ou da comunidade"
+      ],
+      "sources": [
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "seção Pedindo ajuda",
+          "quote": "É muito importante conversar com alguém que você confie. Não hesite em pedir ajuda, você pode precisar de alguém que te acompanhe e te auxilie a entrar em contato com os serviços de suporte.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 145 (SUI 2.5 Psicoeducação: mensagens-chave para a pessoa e os cuidadores)",
+          "quote": "Se uma pessoa tiver pensamentos de autoagressão ou suicídio, busque imediatamente a ajuda de um parente, amigo ou profissional de saúde de confiança.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 34 (DEP 2.1 Psicoeducação)",
+          "quote": "Os pensamentos de autoagressão ou suicídio são comuns. Se notarem esses pensamentos, não devem tomar nenhuma medida, mas contar a uma pessoa de confiança e voltar imediatamente para obter ajuda.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "canmat-mdd-2023",
+          "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 4)",
+          "quote": "Step 4. Engage with social and community supports – e.g., involve personal contacts in contingency plans.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nimh-asq-ed-pathway",
+          "locator": "pdf p. 16 (Creating a safety plan if patient will be discharged)",
+          "quote": "Identify who to contact if a crisis arises: parent, friend, clinician, urgent care/ED",
+          "accessed": "2026-10-28",
+          "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança."
+        }
+      ]
+    },
+    {
+      "id": "professionals",
+      "title": "Serviços de saúde e telefones de ajuda",
+      "prompt": "Anote o telefone e o endereço dos serviços que você pode procurar: o CAPS ou a UBS (posto de saúde) da sua região, o profissional que acompanha você, se tiver, e a UPA ou o pronto-socorro mais perto. Para conversar com alguém agora, ligue para o CVV no 188 (24 horas, ligação gratuita); numa emergência, ligue para o SAMU no 192.",
+      "examples": [
+        "CAPS da sua região: dá para ir sem marcar consulta",
+        "UBS (posto de saúde): também informa onde fica o CAPS",
+        "Profissional que acompanha você: nome e telefone",
+        "UPA 24h ou pronto-socorro mais perto: endereço",
+        "CVV: ligue 188, a qualquer hora, de graça",
+        "SAMU: ligue 192 numa emergência"
+      ],
+      "sources": [
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "seção Pedindo ajuda: Onde buscar ajuda",
+          "quote": "Onde buscar ajuda: CAPS e Unidades Básicas de Saúde (Saúde da família, Postos e Centros de Saúde); UPA 24H, SAMU 192, Pronto Socorro; Hospitais; Centro de Valorização da Vida – 188 (ligação gratuita).",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-caps",
+          "locator": "seção Para chegar a um CAPS: Procura direta",
+          "quote": "Você pode ir até o CAPS da sua região e solicitar atendimento. Os CAPS funcionam em regime de porta aberta, ou seja, não é preciso marcar consulta para o primeiro acolhimento.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-caps",
+          "locator": "seção Para chegar a um CAPS: localizar o CAPS mais próximo",
+          "quote": "Para localizar o CAPS mais próximo, a orientação é procurar a Secretaria de Saúde do seu município ou se informar na Unidade Básica de Saúde (UBS) da sua região",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-caps",
+          "locator": "seção Atenção Básica",
+          "quote": "Esses serviços garantem o primeiro cuidado em saúde, incluindo a saúde mental. Eles ficam próximos de onde as pessoas moram e têm o papel de acolher quem está em sofrimento e prevenir problemas de saúde.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-caps",
+          "locator": "seção Urgência e Emergência",
+          "quote": "Os serviços de Urgência e Emergência são responsáveis por acolher e cuidar das pessoas em situações que precisam de atendimento imediato, inclusive quando há questões relacionadas à saúde mental ou ao uso de álcool e outras drogas.",
+          "accessed": "2026-10-28",
+          "note": "A mesma seção lista esses serviços: SAMU 192, UPA 24h e pronto-socorro."
+        },
+        {
+          "source": "cvv-quem-somos",
+          "locator": "Quem somos",
+          "quote": "Oferece atendimento pelo telefone 188 (24 horas e sem custo de ligação), por chat, e-mail e pessoalmente.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-samu-192",
+          "locator": "SAMU 192: introdução",
+          "quote": "acessado pelo número 192, funciona 24 horas por dia e 07 dias por semana",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "canmat-mdd-2023",
+          "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 5)",
+          "quote": "Step 5. Identify professional contacts – e.g., crisis lines (9-8-8 in Canada and USA), mental health providers, urgent care clinics, and hospital emergency rooms.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "safe_environment",
+      "title": "Manter longe o que pode me machucar",
+      "prompt": "O que você pode fazer para ficar longe, nas horas difíceis, de coisas que poderia usar para se machucar? Quem pode ajudar a guardar ou tirar essas coisas de casa? Dificultar o acesso dá tempo para a crise passar.",
+      "examples": [
+        "Pedir a alguém de confiança que guarde os remédios trancados, inclusive os comprados sem receita",
+        "Tirar de casa armas de fogo, venenos e agrotóxicos",
+        "Pedir a alguém que guarde facas e outros objetos perigosos",
+        "Ficar longe de lugares perigosos enquanto estiver mal"
+      ],
+      "sources": [
+        {
+          "source": "opas-viver-a-vida-2024",
+          "locator": "pdf p. 13 (Resumo executivo: restringir o acesso aos meios de suicídio)",
+          "quote": "Restringir o acesso aos meios de suicídio é uma intervenção universal baseada em evidências para a prevenção do suicídio.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "opas-viver-a-vida-2024",
+          "locator": "pdf p. 13 (Resumo executivo: restringir o acesso aos meios de suicídio)",
+          "quote": "A maioria das pessoas que apresenta comportamento suicida sofre com uma ambivalência sobre viver ou morrer, e muitos suicídios são uma resposta a fatores de estresse agudos. Dificultar o acesso aos meios letais de suicídio dá às pessoas em perigo tempo de superar a crise aguda antes de terem atitudes que podem ser fatais.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "opas-viver-a-vida-2024",
+          "locator": "pdf p. 13 (Resumo executivo: restringir o acesso aos meios de suicídio)",
+          "quote": "Em nível pessoal, pode-se solicitar que os membros da família retirem os meios de suicídio (por exemplo, pesticidas, armas de fogo, facas, medicamentos) do alcance de uma pessoa que esteja em risco de suicídio.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 145 (SUI 2.3 Ofereça e ative o apoio psicossocial: ative o apoio psicossocial)",
+          "quote": "Recomende que a pessoa e os cuidadores restrinjam o acesso a meios de autoagressão ou suicídio (por exemplo, pesticidas, substâncias tóxicas, medicamentos vendidos sob prescrição médica, armas de fogo, etc.) quando a pessoa tiver pensamentos ou planos de autoagressão ou suicídio.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 145 (SUI 2.5 Psicoeducação: mensagens-chave para a pessoa e os cuidadores)",
+          "quote": "Meios de autoagressão (por exemplo, pesticidas, armas de fogo, medicamentos) devem ser retirados de casa.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "seção Diante de uma pessoa sob risco de suicídio",
+          "quote": "Se a pessoa com quem você está preocupado(a) vive com você, assegure-se de que ele(a) não tenha acesso a meios para provocar a própria morte (por exemplo, pesticidas, armas de fogo ou medicamentos) em casa",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nimh-asq-ed-pathway",
+          "locator": "pdf p. 16 (Creating a safety plan if patient will be discharged)",
+          "quote": "Restriction of Means: e.g., locking up medications including over the counter medications",
+          "accessed": "2026-10-28",
+          "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança."
+        },
+        {
+          "source": "canmat-mdd-2023",
+          "locator": "pdf p. 11 (Table 2.3 Suicide Safety Plan, Step 6)",
+          "quote": "Step 6. Make the environment safe – e.g., remove excess medications, firearms, sharp objects, or ropes; avoid busy streets and heights.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "reasons_for_living",
+      "title": "Meus motivos para viver",
+      "prompt": "Quais são os seus motivos para continuar vivendo? Pense em pessoas, sonhos, compromissos, crenças ou coisas de que você gosta. Releia esta lista quando ficar difícil lembrar deles.",
+      "examples": [
+        "Meus filhos, minha família ou meus amigos",
+        "Meu animal de estimação",
+        "Um sonho ou plano para o futuro",
+        "Minha fé ou meus valores"
+      ],
+      "sources": [
+        {
+          "source": "mhgap-ig-2-pt",
+          "locator": "pdf p. 145 (SUI 2.3 Ofereça e ative o apoio psicossocial: ofereça apoio à pessoa)",
+          "quote": "Explore razões e maneiras para permanecer vivo.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nimh-asq-ed-pathway",
+          "locator": "pdf p. 9 (Brief suicide safety assessment)",
+          "quote": "Ask about support network, reasons for living, and if patient believes they need help to keep themselves safe.",
+          "accessed": "2026-10-28",
+          "note": "Fluxo pediátrico de pronto-socorro; usado só por incluir os motivos para viver na avaliação de segurança."
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "label": "CVV",
+      "phone": "188",
+      "description": "Centro de Valorização da Vida: apoio emocional e prevenção do suicídio, oferecidos por voluntários, com sigilo. Ligação gratuita, 24 horas por dia; também atende por chat e e-mail no site cvv.org.br.",
+      "sources": [
+        {
+          "source": "cvv-quem-somos",
+          "locator": "Quem somos",
+          "quote": "Fundado em São Paulo em 1962, o CVV – Centro de Valorização da Vida é um serviço voluntário gratuito de apoio emocional e prevenção do suicídio para todas as pessoas que querem e precisam conversar, sob total sigilo e anonimato.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "cvv-quem-somos",
+          "locator": "Quem somos",
+          "quote": "Oferece atendimento pelo telefone 188 (24 horas e sem custo de ligação), por chat, e-mail e pessoalmente.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "seção Pedindo ajuda: Onde buscar ajuda",
+          "quote": "Centro de Valorização da Vida – 188 (ligação gratuita).",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-suicidio-prevencao",
+          "locator": "seção Centro de Valorização da Vida – CVV",
+          "quote": "O CVV – Centro de Valorização da Vida realiza apoio emocional e prevenção do suicídio, atendendo voluntária e gratuitamente todas as pessoas que querem e precisam conversar, sob total sigilo, por telefone, e-mail, chat e voip 24 horas todos os dias.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "label": "SAMU",
+      "phone": "192",
+      "description": "Serviço de Atendimento Móvel de Urgência: ligue numa emergência, inclusive em tentativa de suicídio. Ligação gratuita de telefone fixo ou celular, 24 horas por dia, todos os dias.",
+      "sources": [
+        {
+          "source": "ms-samu-192",
+          "locator": "SAMU 192: introdução",
+          "quote": "acessado pelo número 192, funciona 24 horas por dia e 07 dias por semana",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-samu-192",
+          "locator": "seção Quando chamar o SAMU 192?",
+          "quote": "O atendimento do SAMU 192 começa a partir do chamado telefônico, quando são prestadas orientações sobre as primeiras ações. A ligação é gratuita, para telefones fixo e móvel.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "ms-samu-192",
+          "locator": "seção QUANDO CHAMAR",
+          "quote": "Em tentativas de suicídio",
+          "accessed": "2026-10-28",
+          "note": "Item da lista de situações em que se deve chamar o SAMU 192."
+        }
+      ]
+    }
+  ],
+  "license_note": "Plano escrito pelo Stabilis, com perguntas e exemplos próprios, seguindo as etapas gerais do planejamento de segurança descritas em fontes abertas: diretriz CANMAT 2023 (CC BY), fluxo do NIMH (domínio público), MI-mhGAP 2.0 e Viver a Vida (OPAS, CC BY-NC-SA 3.0 IGO) e páginas do Ministério da Saúde (CC BY-ND 3.0). Não é o formulário Stanley-Brown Safety Plan: ele é protegido por direitos autorais, e os autores exigem permissão por escrito para traduzi-lo, adaptá-lo ou programá-lo em sites e aplicativos. Não substitui o cuidado de um profissional de saúde.",
+  "sources": [
+    {
+      "source": "stanley-brown-forms",
+      "locator": "Forms: texto de abertura",
+      "quote": "Written permission is required to translate, make other wording changes or adaptations to the Stanley-Brown Safety Plan Form or to reproduce or program the form for non-profit use in the electronic medical record (EMR) or other digital application or website.",
+      "accessed": "2026-10-28",
+      "note": "Motivo de o Stabilis não reproduzir nem traduzir o formulário: as perguntas deste plano foram escritas pelo projeto."
+    },
+    {
+      "source": "canmat-mdd-2023",
+      "locator": "pdf p. 11 (Q.2.c Suicide risk; Table 2.3)",
+      "quote": "assessing suicide risk and developing and implementing a tailored safety plan are priorities for risk management in MDD.",
+      "accessed": "2026-10-28"
+    },
+    {
+      "source": "canmat-mdd-2023",
+      "locator": "pdf p. 11 (Table 2.3)",
+      "quote": "Table 2.3. Suicide Safety Plan (Adapted from Hawton et al., 2022).",
+      "accessed": "2026-10-28",
+      "note": "Tabela de acesso aberto com as seis etapas usadas como estrutura deste plano; a sétima etapa (motivos para viver) vem do MI-mhGAP."
+    },
+    {
+      "source": "nimh-asq-ed-pathway",
+      "locator": "pdf p. 15 (Recommendations: safety plan before discharge)",
+      "quote": "a safety plan should be completed with the patient and their family. The safety plan typically includes restriction of means such as removing firearms from home and securing all medicines in home including over-the-counter medicines. The safety plan can also include coping strategies, provide crisis resources, and an outline of a follow-up plan for mental health care.",
+      "accessed": "2026-10-28",
+      "note": "Fluxo pediátrico de pronto-socorro; usado só pela descrição dos componentes do plano de segurança."
+    },
+    {
+      "source": "stabilis-escopo",
+      "locator": "§11 Dados no modo paciente",
+      "quote": "Nada é enviado a servidores.",
+      "accessed": "2026-10-28"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "extracted_by": "ai",
+    "extracted_on": "2026-10-28",
+    "verified_by": null,
+    "verified_on": null,
+    "notes": "Perguntas e exemplos escritos pelo projeto, sem copiar nem traduzir o formulário Stanley-Brown (os autores exigem permissão por escrito para uso em sites e apps). Conferir: (1) se cada exemplo está apoiado nos trechos citados da etapa; (2) telefones 188 e 192 e a descrição dos serviços; (3) linguagem e ordem das etapas para quem está em crise; (4) as páginas de serviço (SAMU, CAPS, CVV) usam kind 'policy' porque o esquema não tem um tipo para informação de serviço."
+  }
+}

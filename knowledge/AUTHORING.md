@@ -125,3 +125,26 @@ Lista, em linguagem leiga, os efeitos adversos que a bula aponta como **mais com
 - **Perguntas baseadas em diretriz** (`"origin": "guideline_based"`) são a exceção: escritas pelo projeto em linguagem simples, cada item cita o trecho da diretriz que sustenta o seu conteúdo, e o `license_note` avisa que não é questionário validado. Use só quando não houver instrumento validado com licença compatível.
 - `purpose` diz o papel no fluxo (`symptoms`, `suicide_screen`, `bipolar_screen`, `alcohol`); o motor acha as triagens por ele.
 - Situação atual: PHQ-9, GAD-7, ASQ e AUDIT-C verificados; a triagem de bipolaridade usa `bipolar_hx`, perguntas baseadas na NICE CG185 1.2.1 e no MI-mhGAP. O MDQ segue pendente (exige permissão do autor e o texto brasileiro só existe como imagem).
+
+## Tipos de fonte (`kind` em `sources.json`)
+
+`guideline` (diretrizes), `drug_label` (bulas), `essential_medicines_list` (RENAME), `instrument` (questionários e estudos de validação), `review` (artigos de revisão), `dataset` (dados abertos), `service_info` (páginas de serviços de saúde e de apoio, como CAPS, SAMU e CVV), `terms_of_use` (termos de uso e licenças de terceiros, citados só para justificar o que o projeto não reproduz) e `policy` (decisões do próprio projeto, em `knowledge/POLICY.md`).
+
+## Revisão de tratamento (`knowledge/rules/treatment_review.json`)
+
+- **Critério de tentativa** (`trials`): `selector` (fármaco, classe ou subclasse; vale o mais específico), `conditions` (sem o campo, vale para qualquer condição), `min_weeks` e, se a fonte der, `min_mg_per_day`. Sem `min_mg_per_day`, o motor usa o `usual_min` da bula do medicamento e cita o `dose_adult.cite`. Cada número precisa estar num trecho citado; explique aproximações no `note`.
+- Um critério **só com `max_weeks`** é limite de uso (benzodiazepínicos): avalia apenas se o uso passou do tempo recomendado, sem julgar dose.
+- **Próximos passos** (`next_steps`): `status` (`no_response_adequate`, `partial_response_adequate`, `low_dose`, `short_duration`, `beyond_recommended`, `unknown`), `modes`, `selector` e `condition` opcionais e `message_key` com o texto em `knowledge/i18n/pt-BR.treatment-review.json` (`plain` para o paciente, `clinical` para o profissional). No modo paciente cada seção de condição é avaliada separadamente; passos do paciente costumam ficar sem `condition`.
+- Escreva para o paciente como perguntas e conversas com o médico ("converse com o médico antes de mudar"), nunca como instrução de trocar ou parar remédio.
+- Vetores em `knowledge/tests/engine/treatment_review.json` (expectativa `treatment`).
+
+## Acompanhamento (`knowledge/tracking.json`)
+
+`reassess_days` (de quanto em quanto tempo sugerir refazer os questionários) e `instruments` (só questionários com textos verificados aparecem), com a fonte do intervalo.
+
+## Plano de segurança (`knowledge/safety_plan.json`)
+
+- Etapas (`steps`) com título, pergunta (`prompt`), exemplos opcionais e fontes; contatos (`contacts`) com telefone de 3 ou 4 dígitos que precisa aparecer no trecho citado.
+- Perguntas e exemplos são escritos pelo projeto. Não copie nem traduza o formulário Stanley-Brown (exige permissão dos autores) nem outros modelos protegidos; cite fontes abertas que sustentem o conteúdo de cada etapa. Exemplos que são só ilustração (sem trecho que os sustente) ficam registrados no `review.notes`.
+- Os textos de mensagens podem ficar em vários arquivos `knowledge/i18n/pt-BR.*.json`; chaves repetidas entre arquivos são erro.
+

@@ -1024,7 +1024,7 @@
       "title": "Website Policies – Copyright Policy",
       "publisher": "National Institute of Mental Health (NIMH), EUA",
       "year": 2026,
-      "kind": "policy",
+      "kind": "terms_of_use",
       "language": "en",
       "url": "https://www.nimh.nih.gov/site-info/policies",
       "retrieval": {
@@ -1180,6 +1180,96 @@
         "note": "Só o resumo (MEDLINE), pela API do Europe PMC: o texto completo não é de acesso aberto e o PubMed exige CAPTCHA."
       },
       "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto."
+    },
+    {
+      "id": "stanley-brown-forms",
+      "title": "Forms – Stanley-Brown Safety Planning Intervention (condições de uso do formulário)",
+      "publisher": "Barbara Stanley e Gregory K. Brown (suicidesafetyplan.com)",
+      "year": 2026,
+      "kind": "terms_of_use",
+      "language": "en",
+      "url": "https://suicidesafetyplan.com/forms/",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://suicidesafetyplan.com/forms/",
+        "note": "Página sem data; ano de acesso. O rodapé do formulário oficial em PDF (versão de 05/02/2024) diz que o uso individual é permitido e que mudanças ou o uso em prontuário eletrônico exigem permissão por escrito dos autores."
+      },
+      "license_note": "© dos autores. Citada só para registrar as condições de uso do formulário Stanley-Brown, que o Stabilis não reproduz: traduzir, adaptar ou programar o formulário em prontuário eletrônico, aplicativo ou site exige permissão por escrito."
+    },
+    {
+      "id": "ms-suicidio-prevencao",
+      "title": "Suicídio (Prevenção)",
+      "publisher": "Ministério da Saúde (gov.br)",
+      "year": 2026,
+      "kind": "guideline",
+      "language": "pt-BR",
+      "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/suicidio-prevencao",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/suicidio-prevencao",
+        "note": "Página sem data de publicação; ano de acesso."
+      },
+      "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição."
+    },
+    {
+      "id": "ms-caps",
+      "title": "Centros de Atenção Psicossocial",
+      "publisher": "Ministério da Saúde (gov.br), Rede de Atenção Psicossocial",
+      "year": 2026,
+      "kind": "service_info",
+      "language": "pt-BR",
+      "url": "https://www.gov.br/saude/pt-br/composicao/saes/desmad/raps/caps",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.gov.br/saude/pt-br/composicao/saes/desmad/raps/caps",
+        "note": "Página de serviço sem data de publicação; ano de acesso. Também descreve a Atenção Básica (UBS) e os serviços de urgência (SAMU 192, UPA 24h, pronto-socorro)."
+      },
+      "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição."
+    },
+    {
+      "id": "ms-samu-192",
+      "title": "Serviço de Atendimento Móvel de Urgência – SAMU 192",
+      "publisher": "Ministério da Saúde (gov.br)",
+      "year": 2026,
+      "kind": "service_info",
+      "language": "pt-BR",
+      "url": "https://www.gov.br/saude/pt-br/composicao/saes/samu-192",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.gov.br/saude/pt-br/composicao/saes/samu-192",
+        "note": "Página de serviço sem data de publicação; ano de acesso."
+      },
+      "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição."
+    },
+    {
+      "id": "cvv-quem-somos",
+      "title": "O CVV – Quem somos",
+      "publisher": "CVV – Centro de Valorização da Vida",
+      "year": 2026,
+      "kind": "service_info",
+      "language": "pt-BR",
+      "url": "https://cvv.org.br/o-cvv/",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://cvv.org.br/o-cvv/",
+        "note": "Página institucional sem data; ano de acesso. O CVV mantém, desde 2015, acordo de cooperação com o Ministério da Saúde para a linha 188."
+      },
+      "license_note": "© CVV, todos os direitos reservados. Citação curta e literal com atribuição, só como informação sobre o serviço (Lei 9.610/1998, art. 46, III)."
+    },
+    {
+      "id": "opas-viver-a-vida-2024",
+      "title": "Viver a vida: guia de implementação para a prevenção do suicídio nos países",
+      "publisher": "Organização Pan-Americana da Saúde (OPAS/OMS); versão oficial em português de LIVE LIFE (OMS, 2021)",
+      "year": 2024,
+      "kind": "guideline",
+      "language": "pt-BR",
+      "url": "https://doi.org/10.37774/9789275724248",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://iris.paho.org/server/api/core/bitstreams/af5ca348-9154-4581-aeb2-10dcf003329e/content",
+        "note": "PDF do repositório IRIS da OPAS (https://iris.paho.org/handle/10665.2/61445)."
+      },
+      "license_note": "CC BY-NC-SA 3.0 IGO: uso não comercial, com atribuição e mesma licença em derivados."
     }
   ]
 }

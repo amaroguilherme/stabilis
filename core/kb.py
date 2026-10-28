@@ -35,12 +35,18 @@ SINGLE_FILES = {
     "i18n/pt-BR.json": "messages",
 }
 GLOBS = {
+    "i18n/pt-BR.*.json": "messages",  # extra message files (e.g. per feature), merged into the main one
     "drugs/*.json": "drug",
     "interactions/*.json": "interactions_file",
     "conditions/*.json": "condition_doc",
     "instruments/*.json": "instrument",
 }
-OPTIONAL_FILES = {"lexicons/brands.pt-BR.json": "brands_lexicon"}
+OPTIONAL_FILES = {
+    "lexicons/brands.pt-BR.json": "brands_lexicon",
+    "rules/treatment_review.json": "treatment_review_file",
+    "safety_plan.json": "safety_plan",
+    "tracking.json": "tracking",
+}
 
 TIER_ORDER = ["first_line", "second_line", "alternative", "not_recommended", "avoid_for_profile"]
 
@@ -59,6 +65,10 @@ class KnowledgeBase:
     instruments: list[dict] = field(default_factory=list)
     messages: dict[str, dict] = field(default_factory=dict)
     brands: dict[str, list[str]] = field(default_factory=dict)
+    trials: list[dict] = field(default_factory=list)
+    next_steps: list[dict] = field(default_factory=list)
+    safety_plan: dict = field(default_factory=dict)
+    tracking: dict = field(default_factory=dict)
     # where each document came from, for error messages
     origin: dict[int, str] = field(default_factory=dict)
 
@@ -149,12 +159,29 @@ def load(root: Path = KNOWLEDGE_DIR) -> tuple[KnowledgeBase, list[str]]:
             elif definition == "instrument":
                 kb.instruments.append(data)
                 kb.origin[id(data)] = rel
+            elif definition == "messages":
+                for key, value in data["messages"].items():
+                    if key in kb.messages:
+                        errors.append(f"{rel}: mensagem '{key}' repetida em outro arquivo de i18n")
+                    kb.messages[key] = value
 
     for rel, definition in OPTIONAL_FILES.items():
         if (root / rel).exists():
             data = read_valid(rel, definition)
-            if data is not None:
+            if data is None:
+                continue
+            if definition == "brands_lexicon":
                 kb.brands = data["brands"]
+            elif definition == "treatment_review_file":
+                kb.trials, kb.next_steps = data["trials"], data["next_steps"]
+                for item in kb.trials + kb.next_steps:
+                    kb.origin[id(item)] = f"{rel}#{item['id']}"
+            elif definition == "safety_plan":
+                kb.safety_plan = data
+                kb.origin[id(data)] = rel
+            elif definition == "tracking":
+                kb.tracking = data
+                kb.origin[id(data)] = rel
     return kb, errors
 
 
@@ -285,13 +312,24 @@ def integrity_errors(kb: KnowledgeBase) -> list[str]:
         "conditions": [c["id"] for c in kb.conditions],
         "options": [o["id"] for c in kb.conditions for o in c["options"]],
         "instruments": [i["id"] for i in kb.instruments],
+        "treatment_review": [x["id"] for x in kb.trials + kb.next_steps],
     }
     for name, ids in collections.items():
         for dupe in sorted(_duplicates(ids)):
             errors.append(f"{name}: id repetido '{dupe}'")
 
     documents: list[tuple[str, object]] = [("sources.json", {"sources": kb.sources})]
-    documents += [(kb.where(d), d) for d in kb.drugs + kb.interactions + kb.rules + kb.derived + kb.conditions + kb.instruments]
+    documents += [(kb.where(d), d) for d in kb.drugs + kb.interactions + kb.rules + kb.derived + kb.conditions + kb.instruments + kb.trials + kb.next_steps]
+    for extra in (kb.safety_plan, kb.tracking):
+        if extra:
+            documents.append((kb.where(extra), extra))
+    for instrument_id in kb.tracking.get("instruments", []):
+        if instrument_id not in {i["id"] for i in kb.instruments}:
+            errors.append(f"tracking.json: instrumento desconhecido '{instrument_id}'")
+    # A phone number shown to someone in crisis must be in a cited quote, not only in our own text.
+    for contact in kb.safety_plan.get("contacts", []):
+        if not any(contact["phone"] in cite.get("quote", "") for cite in contact["sources"]):
+            errors.append(f"safety_plan.json: telefone {contact['phone']} ({contact['label']}) não aparece em nenhum trecho citado")
     for label, document in documents:
         for path, cite in _walk_cites(document):
             if cite["source"] not in refs.sources:
@@ -389,6 +427,20 @@ def integrity_errors(kb: KnowledgeBase) -> list[str]:
         if scoring["type"] == "risk_screener" and "risk" not in scoring:
             errors.append(f"{where}: pontuação risk_screener sem regra 'risk'")
 
+    for trial in kb.trials:
+        where = kb.where(trial)
+        _check_selector(refs, trial["selector"], where, errors)
+        for condition in trial.get("conditions", []):
+            if condition not in refs.conditions:
+                errors.append(f"{where}: condição desconhecida '{condition}'")
+    for step in kb.next_steps:
+        where = kb.where(step)
+        if "selector" in step:
+            _check_selector(refs, step["selector"], where, errors)
+        if "condition" in step and step["condition"] not in refs.conditions:
+            errors.append(f"{where}: condição desconhecida '{step['condition']}'")
+        _check_message(refs, step["message_key"], where, errors)
+
     for brand, drugs in kb.brands.items():
         for drug in drugs:
             if drug not in refs.drugs:
@@ -421,6 +473,10 @@ def bundle_data(kb: KnowledgeBase) -> dict:
         "instruments": sorted(kb.instruments, key=lambda i: i["id"]),
         "messages": kb.messages,
         "brands": dict(sorted(kb.brands.items())),
+        "trials": kb.trials,
+        "next_steps": kb.next_steps,
+        "safety_plan": kb.safety_plan or None,
+        "tracking": kb.tracking or None,
     }
 
 

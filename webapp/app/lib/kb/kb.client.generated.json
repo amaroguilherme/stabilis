@@ -1,7 +1,7 @@
 {
   "_generated_by": "scripts/build_kb.py — não edite este arquivo; edite knowledge/ e rode o script",
   "_source": "knowledge/",
-  "content_hash": "sha256:97e528dd9b42c7991e829201687e67ce4ec7bc9420f28ac108c93e485378e2cf",
+  "content_hash": "sha256:03105e28b83da0ba6bbf89c4498e0ac7bf6a322f9e5de6bb5afeda2c37a8d36e",
   "data": {
     "brands": {},
     "conditions": [
@@ -8217,8 +8217,1316 @@
       "ref.severe_depression": {
         "clinical": "Depressão grave: avaliação especializada prioritária.",
         "plain": "Os sintomas parecem graves. Procure avaliação médica logo, de preferência no CAPS ou com psiquiatra."
+      },
+      "ts.ad.low_dose.patient": {
+        "clinical": "{drug}: dose abaixo da mínima eficaz para depressão; tentativa não conclusiva.",
+        "plain": "Para depressão, a dose de {drug} que você informou fica abaixo da dose mínima indicada. Se você usou para depressão e não melhorou, pode ser que a dose não tenha sido suficiente para o remédio funcionar. Não mude a dose por conta própria: converse com o médico."
+      },
+      "ts.ad.low_dose.professional": {
+        "clinical": "Dose abaixo da mínima eficaz: tentativa não conclusiva, porque dose inadequada é uma das causas de má resposta (CANMAT 2023). Otimizar a dose é um primeiro passo importante; se o antidepressivo foi bem tolerado, uma opção é chegar à dose terapêutica dentro da faixa licenciada (NICE NG222 1.9.5)."
+      },
+      "ts.ad.no_response.patient": {
+        "clinical": "{drug}: tentativa adequada sem resposta; discutir aumento de dose, troca de antidepressivo, psicoterapia ou combinação.",
+        "plain": "Se você usou {drug} na dose e pelo tempo indicados e não melhorou, isso não quer dizer que nenhum tratamento vai funcionar: existem outras opções, como mudar a dose, trocar de remédio ou incluir psicoterapia. Converse com o médico antes de mudar qualquer coisa e não pare o remédio por conta própria."
+      },
+      "ts.ad.no_response.professional": {
+        "clinical": "Sem resposta após 4 semanas ou mais em dose terapêutica: rever adesão, fatores psicossociais, comorbidades e o diagnóstico, incluindo bipolaridade (NICE NG222 1.9.1–1.9.2; CANMAT 2023). Opções (NICE NG222 1.9.5): aumentar a dose dentro da faixa licenciada, se bem tolerado; trocar por outro antidepressivo, da mesma classe ou de outra; psicoterapia, isolada ou combinada com medicamento. Sem nenhuma resposta, a CANMAT 2023 prioriza a troca."
+      },
+      "ts.ad.partial.patient": {
+        "clinical": "{drug}: resposta parcial após tentativa adequada; discutir otimização da dose ou estratégia adjuvante, incluindo psicoterapia.",
+        "plain": "Se {drug} ajudou só um pouco, mesmo na dose e pelo tempo indicados, dá para buscar um resultado melhor: o médico pode ajustar a dose ou somar outro tratamento, como a psicoterapia. Converse com o médico e não mude a dose nem pare o remédio por conta própria."
+      },
+      "ts.ad.partial.professional": {
+        "clinical": "Resposta parcial após 4 semanas ou mais em dose terapêutica: confirmar adesão e otimizar a dose. Com boa tolerabilidade, a CANMAT 2023 prioriza a estratégia adjuvante, que preserva o ganho parcial. NICE NG222 1.9.5–1.9.9: associar psicoterapia ou, com apoio de especialista, associar antidepressivo de outra classe, antipsicótico de segunda geração ou lítio."
+      },
+      "ts.ad.short.patient": {
+        "clinical": "{drug}: tempo de uso insuficiente para avaliar a resposta.",
+        "plain": "Você usou {drug} por pouco tempo para saber se funciona: em geral, leva algumas semanas para notar melhora. Se você parou por causa de efeitos colaterais ou por outro motivo, converse com o médico sobre isso."
+      },
+      "ts.ad.short.professional": {
+        "clinical": "Menos de 4 semanas de uso: tentativa não conclusiva (NICE NG222 1.9.1); duração inadequada é uma das causas de má resposta (CANMAT 2023). Verificar o motivo da interrupção, como efeitos adversos ou dificuldade de adesão."
+      },
+      "ts.ap_bipolar.patient": {
+        "clinical": "{drug} sem resposta suficiente no transtorno bipolar: reavaliar dose, adesão, troca ou associação.",
+        "plain": "Se {drug} não ajudou o suficiente, mesmo na dose e pelo tempo indicados, o médico pode ajustar a dose, trocar por outro remédio ou associar mais um. Converse com o médico e não pare por conta própria: quando é preciso parar, a redução deve ser gradual."
+      },
+      "ts.ap_bipolar.professional": {
+        "clinical": "Antes de concluir falha, otimizar a dose e confirmar adesão. NICE CG185 1.5.4: trocar de antipsicótico se ineficaz na dose máxima licenciada ou mal tolerado; 1.5.5: se o segundo antipsicótico não bastar na dose máxima licenciada, associar lítio. Sem resposta em 2 semanas com dose adequada, PCDT 2016 e CANMAT/ISBD 2018 indicam troca ou associação na mania; na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas."
+      },
+      "ts.bzd.beyond.patient": {
+        "clinical": "{drug}: uso além de 4 semanas; risco de dependência e de abstinência; não suspender abruptamente; discutir redução gradual.",
+        "plain": "Você usou {drug} por mais tempo do que o recomendado: esse tipo de calmante é indicado só por pouco tempo, e o risco de dependência aumenta com o tempo de uso. Não pare de repente, porque parar de uma vez pode causar abstinência, às vezes grave. Converse com o médico sobre continuar ou diminuir a dose aos poucos, com acompanhamento."
+      },
+      "ts.bzd.beyond.professional": {
+        "clinical": "Uso além de 4 semanas, acima do recomendado para benzodiazepínico (MI-mhGAP: 2 a 4 semanas no máximo; NICE CG113 1.2.26: na TAG, só como medida de curto prazo em crises). O risco de dependência e de abstinência cresce com a duração e a dose; não suspender abruptamente, pois a abstinência pode ser grave, com convulsões e delirium. Se a retirada for indicada, reduzir gradualmente (MI-mhGAP: benzodiazepínico de ação prolongada, redução ao longo de 8 a 12 semanas, com apoio psicossocial)."
+      },
+      "ts.lithium.levels.patient": {
+        "clinical": "Lítio: a adequação depende da litemia, que a ferramenta não avalia; confirmar nível sérico e adesão.",
+        "plain": "O efeito do lítio depende da quantidade dele no sangue, medida por um exame chamado litemia. Pergunte ao médico se esse exame foi feito e se o resultado estava na faixa indicada, e conte se você deixou de tomar algumas doses. Não pare nem mude a dose por conta própria."
+      },
+      "ts.lithium.levels.professional": {
+        "clinical": "A ferramenta não avalia a litemia. Antes de concluir falha, confirmar adesão e nível sérico (PCDT 2016: 0,6–1,2 mEq/L, dosado após 5–7 dias de dose estável e 12 h após a última dose). Nível baixo: aumentar a dose (NICE CG185 1.6.4). Nível adequado sem resposta na mania: associar antipsicótico (NICE CG185 1.5.8) ou trocar (PCDT 2016). Na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas; na manutenção, a efetividade total exige 6 meses de uso (MI-mhGAP)."
+      },
+      "ts.ms_anticonvulsant.levels.patient": {
+        "clinical": "{drug}: a adequação depende do nível sérico, que a ferramenta não avalia; confirmar nível e adesão.",
+        "plain": "O efeito de {drug} depende de a dose ser suficiente. Converse com o médico: ele pode pedir um exame de sangue para ver se a quantidade do remédio estava na faixa indicada. Conte também se você deixou de tomar algumas doses e não pare nem mude a dose por conta própria."
+      },
+      "ts.ms_anticonvulsant.levels.professional": {
+        "clinical": "A ferramenta não avalia o nível sérico. Antes de concluir falha de {drug}, otimizar a dose e confirmar adesão e nível (PCDT 2016: ácido valproico 50–125 mcg/mL; carbamazepina 8–12 mcg/mL; dosar após 5–7 dias de dose estável e 12 h após a última dose). NICE CG185 1.10.32: dosar o valproato quando houver ineficácia, má adesão ou toxicidade. Nível adequado sem resposta: na mania, troca ou associação (PCDT 2016); na depressão bipolar, o PCDT avalia a resposta em até 4–6 semanas."
+      },
+      "ts.unknown.patient": {
+        "clinical": "{drug}: dose diária ou duração não informadas; não é possível avaliar a tentativa.",
+        "plain": "Faltou informar a dose por dia ou por quanto tempo você usou {drug}. Sem isso, não dá para saber se a dose e o tempo de uso foram os indicados. Se puder, confira na receita ou na caixa do remédio e leve essa informação ao médico."
+      },
+      "ts.unknown.professional": {
+        "clinical": "Dose diária ou duração não informadas: não é possível avaliar a tentativa. Registrar dose, duração, adesão e resposta; a revisão das tentativas anteriores, incluindo efeitos adversos e resposta parcial, orienta a próxima escolha (CANMAT 2023; NICE CG113 1.2.38; NICE CG185 1.3.2)."
+      },
+      "ts.zolpidem.beyond.patient": {
+        "clinical": "{drug}: uso além do período estudado e recomendado na bula; risco de dependência; evitar suspensão abrupta; reavaliar a insônia.",
+        "plain": "Você usou {drug} por mais tempo do que a bula recomenda: ele é indicado para uso curto, e o risco de dependência aumenta com o tempo de uso. Não pare de repente. Converse com o médico sobre como reduzir com segurança e sobre a causa da insônia."
+      },
+      "ts.zolpidem.beyond.professional": {
+        "clinical": "Uso além de 5 semanas: a bula indica tratamento de curto prazo (eficácia demonstrada por até 35 dias), não recomenda uso prolongado e pede reavaliação antes de estender, porque o risco de abuso e dependência aumenta com a duração. Evitar suspensão abrupta (há relatos de abstinência). Insônia que persiste após 7 a 10 dias pode indicar doença psiquiátrica ou clínica primária."
+      },
+      "ts.zolpidem.no_response.patient": {
+        "clinical": "{drug}: insônia sem remissão; avaliar causa psiquiátrica ou clínica primária.",
+        "plain": "Se a insônia não melhorou o suficiente com {drug}, pode haver outra causa por trás, como um problema de saúde física ou mental que precisa ser avaliado. Converse com o médico e não aumente a dose por conta própria."
+      },
+      "ts.zolpidem.no_response.professional": {
+        "clinical": "Insônia que não remite após 7 a 10 dias de tratamento pode indicar doença psiquiátrica e/ou clínica primária, que deve ser avaliada (bula do zolpidem, seção 5.3)."
       }
     },
+    "next_steps": [
+      {
+        "id": "NS-AD-NO-RESPONSE-PT",
+        "message_key": "ts.ad.no_response.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.9.3",
+            "qid": "99cb21fdf0a7",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.9.5",
+            "qid": "c22ac29764d9",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.2.35",
+            "qid": "3b31769552f3",
+            "source": "nice-cg113"
+          },
+          {
+            "locator": "recomendação 1.4.12",
+            "qid": "566d86cd0399",
+            "source": "nice-ng222"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "condition": "depression_unipolar",
+        "id": "NS-AD-NO-RESPONSE-PRO",
+        "message_key": "ts.ad.no_response.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.9.1",
+            "qid": "5e4f70599f92",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.9.1",
+            "qid": "7449f7f287b8",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.9.2",
+            "qid": "d439a3e8c349",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "pdf p. 34 (Q.7.c)",
+            "qid": "2d5910e0092b",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "recomendação 1.9.5",
+            "qid": "eb96898e9f34",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.9.5",
+            "qid": "65bcdae93773",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.9.5",
+            "qid": "de7a82a9ca68",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "pdf p. 35 (Q.7.c)",
+            "qid": "8a7e9226ef7b",
+            "source": "canmat-mdd-2023"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-AD-PARTIAL-PT",
+        "message_key": "ts.ad.partial.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 35 (Q.7.c)",
+            "qid": "8a7e9226ef7b",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "recomendação 1.9.5",
+            "qid": "47b48d554961",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.2.36",
+            "qid": "7c8eea50374b",
+            "source": "nice-cg113"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "condition": "depression_unipolar",
+        "id": "NS-AD-PARTIAL-PRO",
+        "message_key": "ts.ad.partial.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 35 (Q.7.c)",
+            "qid": "8a7e9226ef7b",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "pdf p. 36 (Q.7.e)",
+            "qid": "214a751abe38",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "recomendação 1.9.5",
+            "qid": "de7a82a9ca68",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.9.9",
+            "qid": "ab34a5186217",
+            "source": "nice-ng222"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-AD-LOW-DOSE-PT",
+        "message_key": "ts.ad.low_dose.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.9.1",
+            "qid": "8cd0009e4470",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "pdf p. 33 (Q.7.a, fatores de má resposta)",
+            "qid": "c04c85411b36",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "pdf p. 35 (Q.7.c)",
+            "qid": "0671a84f799a",
+            "source": "canmat-mdd-2023"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "condition": "depression_unipolar",
+        "id": "NS-AD-LOW-DOSE-PRO",
+        "message_key": "ts.ad.low_dose.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 33 (Q.7.a, fatores de má resposta)",
+            "qid": "c04c85411b36",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "pdf p. 35 (Q.7.c)",
+            "qid": "0671a84f799a",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "recomendação 1.9.5",
+            "qid": "eb96898e9f34",
+            "source": "nice-ng222"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-AD-SHORT-PT",
+        "message_key": "ts.ad.short.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 35 (Depressão: intervenções farmacológicas)",
+            "qid": "73a4982bfd39",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "recomendação 1.4.11",
+            "qid": "146e06482e23",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.2.28",
+            "qid": "e21df4275f01",
+            "source": "nice-cg113"
+          }
+        ],
+        "status": "short_duration"
+      },
+      {
+        "condition": "depression_unipolar",
+        "id": "NS-AD-SHORT-PRO",
+        "message_key": "ts.ad.short.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.9.1",
+            "qid": "8cd0009e4470",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "pdf p. 33 (Q.7.a, fatores de má resposta)",
+            "qid": "c04c85411b36",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "recomendação 1.9.1",
+            "qid": "7449f7f287b8",
+            "source": "nice-ng222"
+          }
+        ],
+        "status": "short_duration"
+      },
+      {
+        "id": "NS-LITHIUM-NO-RESPONSE-PT",
+        "message_key": "ts.lithium.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "locator": "Highlights: 2 DOSAGE AND ADMINISTRATION",
+            "qid": "14062ce16fc1",
+            "source": "label-litio"
+          },
+          {
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "qid": "72ce0fdea8dc",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "recomendação 1.6.4",
+            "qid": "d5ac15ee227b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.10.14",
+            "qid": "ced2ccb97643",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-LITHIUM-NO-RESPONSE-PRO",
+        "message_key": "ts.lithium.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+            "qid": "aeccaff825c6",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "qid": "0d2570b65182",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.6.4",
+            "qid": "d5ac15ee227b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.5.8",
+            "qid": "e5de3cbc540c",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "qid": "f3ecada0a3eb",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "qid": "e0d1fb38b885",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-LITHIUM-PARTIAL-PT",
+        "message_key": "ts.lithium.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "locator": "Highlights: 2 DOSAGE AND ADMINISTRATION",
+            "qid": "14062ce16fc1",
+            "source": "label-litio"
+          },
+          {
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "qid": "72ce0fdea8dc",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "recomendação 1.6.4",
+            "qid": "d5ac15ee227b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.10.14",
+            "qid": "ced2ccb97643",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-LITHIUM-PARTIAL-PRO",
+        "message_key": "ts.lithium.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+            "qid": "aeccaff825c6",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "qid": "0d2570b65182",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.6.4",
+            "qid": "d5ac15ee227b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.5.8",
+            "qid": "e5de3cbc540c",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "qid": "f3ecada0a3eb",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "qid": "e0d1fb38b885",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-LITHIUM-LOW-DOSE-PT",
+        "message_key": "ts.lithium.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "locator": "Highlights: 2 DOSAGE AND ADMINISTRATION",
+            "qid": "14062ce16fc1",
+            "source": "label-litio"
+          },
+          {
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "qid": "72ce0fdea8dc",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "recomendação 1.6.4",
+            "qid": "d5ac15ee227b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.10.14",
+            "qid": "ced2ccb97643",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-LITHIUM-LOW-DOSE-PRO",
+        "message_key": "ts.lithium.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+            "qid": "aeccaff825c6",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "qid": "0d2570b65182",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.6.4",
+            "qid": "d5ac15ee227b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.5.8",
+            "qid": "e5de3cbc540c",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "qid": "f3ecada0a3eb",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 50 (Tabela 3: Estabilizadores emocionais, lítio)",
+            "qid": "e0d1fb38b885",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-NO-RESPONSE-PT",
+        "message_key": "ts.ms_anticonvulsant.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "qid": "27e89ba5769a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "qid": "107df2fc8a4a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.10.32",
+            "qid": "f18e1cf32f47",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-NO-RESPONSE-PRO",
+        "message_key": "ts.ms_anticonvulsant.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "qid": "27e89ba5769a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "qid": "107df2fc8a4a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "qid": "0d2570b65182",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.10.32",
+            "qid": "f18e1cf32f47",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "afe40cbe45d8",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "qid": "edcd6b2eac0f",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "qid": "f3ecada0a3eb",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-PARTIAL-PT",
+        "message_key": "ts.ms_anticonvulsant.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "qid": "27e89ba5769a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "qid": "107df2fc8a4a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.10.32",
+            "qid": "f18e1cf32f47",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-PARTIAL-PRO",
+        "message_key": "ts.ms_anticonvulsant.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "qid": "27e89ba5769a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "qid": "107df2fc8a4a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "qid": "0d2570b65182",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.10.32",
+            "qid": "f18e1cf32f47",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "afe40cbe45d8",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "qid": "edcd6b2eac0f",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "qid": "f3ecada0a3eb",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-LOW-DOSE-PT",
+        "message_key": "ts.ms_anticonvulsant.levels.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "qid": "27e89ba5769a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "qid": "107df2fc8a4a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.10.32",
+            "qid": "f18e1cf32f47",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-MOODSTAB-AC-LOW-DOSE-PRO",
+        "message_key": "ts.ms_anticonvulsant.levels.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "anticonvulsant"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "qid": "27e89ba5769a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "qid": "107df2fc8a4a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+            "qid": "0d2570b65182",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.10.32",
+            "qid": "f18e1cf32f47",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "afe40cbe45d8",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "qid": "edcd6b2eac0f",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "qid": "f3ecada0a3eb",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "low_dose"
+      },
+      {
+        "id": "NS-AP-BIPOLAR-NO-RESPONSE-PT",
+        "message_key": "ts.ap_bipolar.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.5.4",
+            "qid": "6f0bb6cbc3d6",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.5.5",
+            "qid": "9ef89ffbb43b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.10.13",
+            "qid": "0fbaeda335f2",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-AP-BIPOLAR-NO-RESPONSE-PRO",
+        "message_key": "ts.ap_bipolar.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.5.4",
+            "qid": "6f0bb6cbc3d6",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.5.5",
+            "qid": "9ef89ffbb43b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "afe40cbe45d8",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "2d9248623944",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "qid": "edcd6b2eac0f",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "531f5a7a4a04",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "90bd7b145f2d",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "qid": "f3ecada0a3eb",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-AP-BIPOLAR-PARTIAL-PT",
+        "message_key": "ts.ap_bipolar.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.5.4",
+            "qid": "6f0bb6cbc3d6",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.5.5",
+            "qid": "9ef89ffbb43b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "recomendação 1.10.13",
+            "qid": "0fbaeda335f2",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-AP-BIPOLAR-PARTIAL-PRO",
+        "message_key": "ts.ap_bipolar.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.5.4",
+            "qid": "6f0bb6cbc3d6",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "recomendação 1.5.5",
+            "qid": "9ef89ffbb43b",
+            "source": "nice-cg185"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "afe40cbe45d8",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "2d9248623944",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "20a766404d61",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item a)",
+            "qid": "edcd6b2eac0f",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "531f5a7a4a04",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "90bd7b145f2d",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 17 (7.2.1 Diretrizes para o tratamento da depressão bipolar, item c)",
+            "qid": "f3ecada0a3eb",
+            "source": "pcdt-tab-2016"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-BZD-BEYOND-PT",
+        "message_key": "ts.bzd.beyond.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "class": "anxiolytic_hypnotic",
+          "subclass": "benzodiazepine"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.2.26",
+            "qid": "c4cd361e7575",
+            "source": "nice-cg113"
+          },
+          {
+            "locator": "pdf p. 48 (Psicoses 2.6: episódio maníaco em transtorno bipolar)",
+            "qid": "270728edc548",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "qid": "abed614337f3",
+            "source": "label-alprazolam"
+          },
+          {
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "qid": "37c8166954b2",
+            "source": "label-clonazepam"
+          },
+          {
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "qid": "ce0bfa289d8d",
+            "source": "label-diazepam"
+          },
+          {
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "qid": "36cc08d5cdf2",
+            "source": "label-lorazepam"
+          },
+          {
+            "locator": "pdf p. 126 (Transtornos por uso de substâncias: pessoa dependente de benzodiazepínicos)",
+            "qid": "e19d5b7f5c21",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "beyond_recommended"
+      },
+      {
+        "id": "NS-BZD-BEYOND-PRO",
+        "message_key": "ts.bzd.beyond.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "class": "anxiolytic_hypnotic",
+          "subclass": "benzodiazepine"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 48 (Psicoses 2.6: episódio maníaco em transtorno bipolar)",
+            "qid": "270728edc548",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "recomendação 1.2.26",
+            "qid": "c4cd361e7575",
+            "source": "nice-cg113"
+          },
+          {
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "qid": "abed614337f3",
+            "source": "label-alprazolam"
+          },
+          {
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "qid": "37c8166954b2",
+            "source": "label-clonazepam"
+          },
+          {
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "qid": "ce0bfa289d8d",
+            "source": "label-diazepam"
+          },
+          {
+            "locator": "Boxed warning: Risks from concomitant use with opioids; abuse, misuse, and addiction; and dependence and withdrawal reactions",
+            "qid": "36cc08d5cdf2",
+            "source": "label-lorazepam"
+          },
+          {
+            "locator": "pdf p. 126 (Transtornos por uso de substâncias: pessoa dependente de benzodiazepínicos)",
+            "qid": "e19d5b7f5c21",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "pdf p. 129 (Protocolo 6: abstinência de benzodiazepínicos)",
+            "qid": "c28ffec511cc",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "status": "beyond_recommended"
+      },
+      {
+        "id": "NS-ZOLPIDEM-BEYOND-PT",
+        "message_key": "ts.zolpidem.beyond.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "locator": "seção 1 INDICATIONS AND USAGE",
+            "qid": "4ea873189ef9",
+            "source": "label-zolpidem"
+          },
+          {
+            "locator": "seção 2.1 Dosage in Adults",
+            "qid": "f5c7ca252442",
+            "source": "label-zolpidem"
+          },
+          {
+            "locator": "seção 5.9 Withdrawal Effects",
+            "qid": "ebbf06889422",
+            "source": "label-zolpidem"
+          },
+          {
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "qid": "949f1fb3aa59",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "beyond_recommended"
+      },
+      {
+        "id": "NS-ZOLPIDEM-BEYOND-PRO",
+        "message_key": "ts.zolpidem.beyond.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "locator": "seção 1 INDICATIONS AND USAGE",
+            "qid": "4ea873189ef9",
+            "source": "label-zolpidem"
+          },
+          {
+            "locator": "seção 2.1 Dosage in Adults",
+            "qid": "f5c7ca252442",
+            "source": "label-zolpidem"
+          },
+          {
+            "locator": "seção 5.9 Withdrawal Effects",
+            "qid": "ebbf06889422",
+            "source": "label-zolpidem"
+          },
+          {
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "qid": "949f1fb3aa59",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "beyond_recommended"
+      },
+      {
+        "id": "NS-ZOLPIDEM-NO-RESPONSE-PT",
+        "message_key": "ts.zolpidem.no_response.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "qid": "949f1fb3aa59",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-ZOLPIDEM-NO-RESPONSE-PRO",
+        "message_key": "ts.zolpidem.no_response.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "qid": "949f1fb3aa59",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "no_response_adequate"
+      },
+      {
+        "id": "NS-ZOLPIDEM-PARTIAL-PT",
+        "message_key": "ts.zolpidem.no_response.patient",
+        "modes": [
+          "patient"
+        ],
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "qid": "949f1fb3aa59",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-ZOLPIDEM-PARTIAL-PRO",
+        "message_key": "ts.zolpidem.no_response.professional",
+        "modes": [
+          "professional"
+        ],
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "qid": "949f1fb3aa59",
+            "source": "label-zolpidem"
+          }
+        ],
+        "status": "partial_response_adequate"
+      },
+      {
+        "id": "NS-UNKNOWN-PT",
+        "message_key": "ts.unknown.patient",
+        "modes": [
+          "patient"
+        ],
+        "sources": [
+          {
+            "locator": "pdf p. 35 (Q.7.c)",
+            "qid": "11d74bd6d76c",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "recomendação 1.3.2",
+            "qid": "94a373de674d",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "unknown"
+      },
+      {
+        "id": "NS-UNKNOWN-PRO",
+        "message_key": "ts.unknown.professional",
+        "modes": [
+          "professional"
+        ],
+        "sources": [
+          {
+            "locator": "pdf p. 35 (Q.7.c)",
+            "qid": "11d74bd6d76c",
+            "source": "canmat-mdd-2023"
+          },
+          {
+            "locator": "recomendação 1.2.38",
+            "qid": "5dcf0fd20387",
+            "source": "nice-cg113"
+          },
+          {
+            "locator": "recomendação 1.3.2",
+            "qid": "94a373de674d",
+            "source": "nice-cg185"
+          }
+        ],
+        "status": "unknown"
+      }
+    ],
     "rules": [
       {
         "applies_to": "global",
@@ -9661,6 +10969,7 @@
         }
       }
     ],
+    "safety_plan": null,
     "sources": [
       {
         "id": "rename-2024",
@@ -10384,7 +11693,7 @@
       },
       {
         "id": "nimh-copyright-policy",
-        "kind": "policy",
+        "kind": "terms_of_use",
         "language": "en",
         "license_note": "Política de reutilização dos materiais do NIMH (domínio público).",
         "publisher": "National Institute of Mental Health (NIMH), EUA",
@@ -10491,6 +11800,356 @@
         "title": "Is the full version of the AUDIT really necessary? Study of the validity and internal construct of its abbreviated versions",
         "url": "https://doi.org/10.1111/j.1530-0277.2010.01225.x",
         "year": 2010
+      },
+      {
+        "id": "stanley-brown-forms",
+        "kind": "terms_of_use",
+        "language": "en",
+        "license_note": "© dos autores. Citada só para registrar as condições de uso do formulário Stanley-Brown, que o Stabilis não reproduz: traduzir, adaptar ou programar o formulário em prontuário eletrônico, aplicativo ou site exige permissão por escrito.",
+        "publisher": "Barbara Stanley e Gregory K. Brown (suicidesafetyplan.com)",
+        "title": "Forms – Stanley-Brown Safety Planning Intervention (condições de uso do formulário)",
+        "url": "https://suicidesafetyplan.com/forms/",
+        "year": 2026
+      },
+      {
+        "id": "ms-suicidio-prevencao",
+        "kind": "guideline",
+        "language": "pt-BR",
+        "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição.",
+        "publisher": "Ministério da Saúde (gov.br)",
+        "title": "Suicídio (Prevenção)",
+        "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/suicidio-prevencao",
+        "year": 2026
+      },
+      {
+        "id": "ms-caps",
+        "kind": "service_info",
+        "language": "pt-BR",
+        "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição.",
+        "publisher": "Ministério da Saúde (gov.br), Rede de Atenção Psicossocial",
+        "title": "Centros de Atenção Psicossocial",
+        "url": "https://www.gov.br/saude/pt-br/composicao/saes/desmad/raps/caps",
+        "year": 2026
+      },
+      {
+        "id": "ms-samu-192",
+        "kind": "service_info",
+        "language": "pt-BR",
+        "license_note": "Conteúdo do portal gov.br sob licença Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada (CC BY-ND 3.0): reprodução literal com atribuição.",
+        "publisher": "Ministério da Saúde (gov.br)",
+        "title": "Serviço de Atendimento Móvel de Urgência – SAMU 192",
+        "url": "https://www.gov.br/saude/pt-br/composicao/saes/samu-192",
+        "year": 2026
+      },
+      {
+        "id": "cvv-quem-somos",
+        "kind": "service_info",
+        "language": "pt-BR",
+        "license_note": "© CVV, todos os direitos reservados. Citação curta e literal com atribuição, só como informação sobre o serviço (Lei 9.610/1998, art. 46, III).",
+        "publisher": "CVV – Centro de Valorização da Vida",
+        "title": "O CVV – Quem somos",
+        "url": "https://cvv.org.br/o-cvv/",
+        "year": 2026
+      },
+      {
+        "id": "opas-viver-a-vida-2024",
+        "kind": "guideline",
+        "language": "pt-BR",
+        "license_note": "CC BY-NC-SA 3.0 IGO: uso não comercial, com atribuição e mesma licença em derivados.",
+        "publisher": "Organização Pan-Americana da Saúde (OPAS/OMS); versão oficial em português de LIVE LIFE (OMS, 2021)",
+        "title": "Viver a vida: guia de implementação para a prevenção do suicídio nos países",
+        "url": "https://doi.org/10.37774/9789275724248",
+        "year": 2024
+      }
+    ],
+    "tracking": {
+      "description": "Acompanhamento no modo paciente: de quanto em quanto tempo sugerir refazer os questionários de sintomas.",
+      "instruments": [
+        "phq9",
+        "gad7"
+      ],
+      "reassess_days": 14,
+      "sources": [
+        {
+          "locator": "recomendação 1.4.3",
+          "qid": "85630ab66aac",
+          "source": "nice-ng222"
+        }
+      ]
+    },
+    "trials": [
+      {
+        "conditions": [
+          "depression_unipolar"
+        ],
+        "id": "TR-ANTIDEP-DEPRESSION",
+        "min_weeks": 4,
+        "note": "Dose mínima: usual_min da bula de cada antidepressivo, como aproximação da \"recognised therapeutic dose\" da NICE, que não lista doses. Sem condição informada (modo paciente), a regra vale também para antidepressivo usado na ansiedade, embora a NICE CG113 não defina tempo mínimo para a TAG.",
+        "selector": {
+          "class": "antidepressant"
+        },
+        "sources": [
+          {
+            "locator": "recomendação 1.9.1",
+            "qid": "8cd0009e4470",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "recomendação 1.4.11",
+            "qid": "146e06482e23",
+            "source": "nice-ng222"
+          },
+          {
+            "locator": "pdf p. 35 (Q.7.d When and how should antidepressants be switched?)",
+            "qid": "ec6a70354022",
+            "source": "canmat-mdd-2023"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "depression_unipolar"
+        ],
+        "id": "TR-AMITRIPTYLINE-DEPRESSION",
+        "min_mg_per_day": 75,
+        "min_weeks": 4,
+        "note": "O MI-mhGAP fixa a dose efetiva mínima da amitriptilina em adultos em 75 mg; o usual_min do arquivo do medicamento (50 mg/dia) seria mais baixo. Doses menores não contam como tentativa antidepressiva adequada. Tempo mínimo igual ao da regra geral dos antidepressivos.",
+        "selector": {
+          "drug": "amitriptilina"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 36 (Tabela 1: Antidepressivos, amitriptilina)",
+            "qid": "3062000d7653",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "recomendação 1.9.1",
+            "qid": "8cd0009e4470",
+            "source": "nice-ng222"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "depression_unipolar"
+        ],
+        "id": "TR-TRAZODONE-DEPRESSION",
+        "min_mg_per_day": 150,
+        "min_weeks": 4,
+        "note": "A bula não traz dose mínima eficaz (usual_min ausente): o piso é a dose inicial sugerida para depressão maior, 150 mg/dia em doses divididas, a partir da qual a dose é aumentada. Doses menores não contam como tentativa antidepressiva adequada.",
+        "selector": {
+          "drug": "trazodona"
+        },
+        "sources": [
+          {
+            "locator": "seção 2.1 Dose Selection",
+            "qid": "d17acccf8970",
+            "source": "label-trazodona"
+          },
+          {
+            "locator": "recomendação 1.9.1",
+            "qid": "8cd0009e4470",
+            "source": "nice-ng222"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "bipolar_1"
+        ],
+        "id": "TR-LITHIUM-BIPOLAR",
+        "min_weeks": 2,
+        "note": "A adequação do lítio depende da litemia, que a ferramenta não avalia: a dose mínima (usual_min da bula, 600 mg/dia) é só um piso. 2 semanas valem para a mania; na depressão bipolar o PCDT avalia em até 4 a 6 semanas e, na manutenção, o MI-mhGAP pede 6 meses para ver a efetividade total.",
+        "selector": {
+          "class": "mood_stabilizer",
+          "subclass": "lithium"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "2d9248623944",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "531f5a7a4a04",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "90bd7b145f2d",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "Highlights: 2 DOSAGE AND ADMINISTRATION",
+            "qid": "14062ce16fc1",
+            "source": "label-litio"
+          },
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+            "qid": "aeccaff825c6",
+            "source": "pcdt-tab-2016"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "bipolar_1"
+        ],
+        "id": "TR-VALPROATE-BIPOLAR",
+        "min_mg_per_day": 750,
+        "min_weeks": 2,
+        "note": "A bula não tem usual_min: o piso de 750 mg/dia é a dose inicial da bula na mania e a dose a atingir antes de dosar o nível no PCDT. A dose eficaz depende do peso e do nível sérico (50 a 125 mcg/mL), que a ferramenta não avalia. Na depressão bipolar o PCDT avalia em até 4 a 6 semanas.",
+        "selector": {
+          "drug": "valproato"
+        },
+        "sources": [
+          {
+            "locator": "seção 2.1 Mania",
+            "qid": "e3af9e8118ab",
+            "source": "label-valproato"
+          },
+          {
+            "locator": "seção 2.1 Mania",
+            "qid": "96d88f1139f1",
+            "source": "label-valproato"
+          },
+          {
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+            "qid": "27e89ba5769a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "2d9248623944",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "531f5a7a4a04",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "90bd7b145f2d",
+            "source": "canmat-isbd-2018"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "bipolar_1"
+        ],
+        "id": "TR-CARBAMAZEPINE-BIPOLAR",
+        "min_mg_per_day": 600,
+        "min_weeks": 2,
+        "note": "A bula registrada (Tegretol) não tem indicação nem dose para transtorno bipolar: o piso de 600 mg/dia é a dose a atingir antes de dosar o nível no PCDT, cuja faixa é de 200 a 1.000 mg/dia conforme o nível sérico (8 a 12 mcg/mL), que a ferramenta não avalia.",
+        "selector": {
+          "drug": "carbamazepina"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+            "qid": "107df2fc8a4a",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "2d9248623944",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "531f5a7a4a04",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "90bd7b145f2d",
+            "source": "canmat-isbd-2018"
+          }
+        ]
+      },
+      {
+        "conditions": [
+          "bipolar_1"
+        ],
+        "id": "TR-ANTIPSYCHOTIC-BIPOLAR",
+        "min_weeks": 2,
+        "note": "Dose mínima: usual_min da bula de cada antipsicótico (quetiapina: 300 mg/dia, dose da depressão bipolar; na mania a bula vai de 400 a 800). A NICE CG185 1.5.4 só considera o antipsicótico ineficaz na dose máxima licenciada. Clorpromazina não tem usual_min: só o tempo é avaliado. Na depressão bipolar o PCDT avalia em até 4 a 6 semanas.",
+        "selector": {
+          "class": "antipsychotic"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 15 (7.1.1 Diretrizes para o tratamento do episódio maníaco, item c)",
+            "qid": "2d9248623944",
+            "source": "pcdt-tab-2016"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "531f5a7a4a04",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "locator": "pdf p. 16 (3.3.2 Step 2: initiate or optimize therapy and check adherence)",
+            "qid": "90bd7b145f2d",
+            "source": "canmat-isbd-2018"
+          }
+        ]
+      },
+      {
+        "id": "TR-BENZODIAZEPINE-SHORT-TERM",
+        "max_weeks": 4,
+        "note": "O limite de 4 semanas é o do MI-mhGAP (2 a 4 semanas no máximo, na agitação da mania). A NICE CG113 1.2.26 só admite benzodiazepínico na TAG como medida de curto prazo em crises, sem número de semanas. Só limite de uso (sem min_weeks): as fontes não definem dose nem tempo mínimo para avaliar benzodiazepínico.",
+        "selector": {
+          "class": "anxiolytic_hypnotic",
+          "subclass": "benzodiazepine"
+        },
+        "sources": [
+          {
+            "locator": "pdf p. 48 (Psicoses 2.6: episódio maníaco em transtorno bipolar)",
+            "qid": "270728edc548",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "pdf p. 48 (Psicoses 2.6: episódio maníaco em transtorno bipolar)",
+            "qid": "6c9fd034e579",
+            "source": "mhgap-ig-2-pt"
+          },
+          {
+            "locator": "recomendação 1.2.26",
+            "qid": "c4cd361e7575",
+            "source": "nice-cg113"
+          }
+        ]
+      },
+      {
+        "id": "TR-ZOLPIDEM-SHORT-TERM",
+        "max_weeks": 5,
+        "min_weeks": 1,
+        "note": "Bula: indicado para tratamento de curto prazo da insônia, com eficácia demonstrada por até 35 dias (5 semanas); uso prolongado não recomendado. O mínimo de 1 semana segue a bula, que manda investigar outra causa quando a insônia não melhora após 7 a 10 dias.",
+        "selector": {
+          "drug": "zolpidem"
+        },
+        "sources": [
+          {
+            "locator": "seção 1 INDICATIONS AND USAGE",
+            "qid": "4ea873189ef9",
+            "source": "label-zolpidem"
+          },
+          {
+            "locator": "seção 2.1 Dosage in Adults",
+            "qid": "f5c7ca252442",
+            "source": "label-zolpidem"
+          },
+          {
+            "locator": "seção 5.3 Need to Evaluate for Comorbid Diagnoses",
+            "qid": "949f1fb3aa59",
+            "source": "label-zolpidem"
+          }
+        ]
       }
     ],
     "vocab": {
