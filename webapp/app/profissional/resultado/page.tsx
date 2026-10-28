@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import EngineResult from "@/app/components/engine/EngineResult";
+import TreatmentReview from "@/app/components/engine/TreatmentReview";
 import { evaluate } from "@/app/lib/engine/evaluate";
 import { knowledgeBase } from "@/app/lib/kb";
 import { createLabels } from "@/app/lib/kb/labels";
+import { BAND_LABELS } from "@/app/lib/patient/report";
 import { professionalCase, type ProfessionalCase } from "@/app/lib/professional/store";
 import { crisisLexicon } from "@/app/lib/safety/lexicon";
 
@@ -48,10 +50,34 @@ function Summary({ saved }: { saved: ProfessionalCase }) {
 
 function Result({ saved }: { saved: ProfessionalCase }) {
   const output = useMemo(() => evaluate(knowledgeBase, saved.input, { crisisLexicon }), [saved]);
+  const answered = kb.instruments.filter((i) => output.scores[i.id]?.answered);
   return (
     <div className="space-y-6">
       <Summary saved={saved} />
+      {answered.length > 0 && (
+        <section aria-labelledby="questionarios" className="rounded-2xl border border-slate-200 bg-white p-5 text-sm shadow-sm">
+          <h2 id="questionarios" className="font-semibold text-slate-900">Questionários respondidos pela pessoa</h2>
+          <ul className="mt-2 space-y-1 text-slate-800">
+            {answered.map((i) => {
+              const r = output.scores[i.id];
+              return (
+                <li key={i.id}>
+                  {i.name}: {r.total !== null && i.scoring.type === "sum" ? `${r.total} pontos, ` : ""}
+                  {r.band ? (BAND_LABELS[r.band] ?? r.band) : ""}
+                  {r.flags.length > 0 ? ` (${r.flags.join(", ")})` : ""}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
       <EngineResult output={output} kb={kb} labels={labels} variant="clinical" />
+      {output.treatment_review.length > 0 && (
+        <section aria-labelledby="revisao" className="space-y-3">
+          <h2 id="revisao" className="text-lg font-semibold text-slate-900">Revisão dos tratamentos anteriores</h2>
+          <TreatmentReview items={output.treatment_review} kb={kb} labels={labels} variant="clinical" />
+        </section>
+      )}
     </div>
   );
 }

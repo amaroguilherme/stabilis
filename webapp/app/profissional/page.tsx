@@ -4,10 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useId, useMemo, useState } from "react";
 import ExtractionPanel, { type ExtractionChoice } from "@/app/components/professional/ExtractionPanel";
+import ImportPatient from "@/app/components/professional/ImportPatient";
 import MedicationPicker from "@/app/components/professional/MedicationPicker";
 import ProfileFields, { EMPTY_PROFILE, fromProfile, parseAge, toProfile, type ProfileDraft } from "@/app/components/professional/ProfileFields";
-import type { EngineInput, MedEntry } from "@/app/lib/engine/types";
+import HistoryEditor from "@/app/components/shared/HistoryEditor";
+import type { EngineInput, HistoryEntry, MedEntry } from "@/app/lib/engine/types";
 import { knowledgeBase } from "@/app/lib/kb";
+import type { ImportedCase } from "@/app/lib/patient/import";
 import { professionalCase, type ProfessionalCase } from "@/app/lib/professional/store";
 import { detectCrisis, summarizeCrisis } from "@/app/lib/safety/crisis";
 import { crisisLexicon } from "@/app/lib/safety/lexicon";
@@ -31,12 +34,14 @@ interface FormState {
   severity: "" | "less_severe" | "more_severe";
   suicideRisk: "" | "yes" | "no";
   meds: MedEntry[];
+  history: HistoryEntry[];
+  instruments: EngineInput["instruments"];
   concerns: string[];
   text: string;
 }
 
 function initialState(saved?: ProfessionalCase): FormState {
-  if (!saved) return { profile: EMPTY_PROFILE, condition: "", phase: "", severity: "", suicideRisk: "", meds: [], concerns: [], text: "" };
+  if (!saved) return { profile: EMPTY_PROFILE, condition: "", phase: "", severity: "", suicideRisk: "", meds: [], history: [], instruments: undefined, concerns: [], text: "" };
   const { input } = saved;
   return {
     profile: fromProfile(input.profile, saved.gender_identity),
@@ -45,6 +50,8 @@ function initialState(saved?: ProfessionalCase): FormState {
     severity: input.profile.severity ?? "",
     suicideRisk: input.profile.suicide_risk_assessed === undefined || input.profile.suicide_risk_assessed === null ? "" : input.profile.suicide_risk_assessed ? "yes" : "no",
     meds: input.profile.current_meds,
+    history: input.history ?? [],
+    instruments: input.instruments,
     concerns: input.concerns ?? [],
     text: input.free_text ?? "",
   };
@@ -58,6 +65,22 @@ function ProfessionalForm({ saved }: { saved?: ProfessionalCase }) {
   const set = (patch: Partial<FormState>) => setState((s) => ({ ...s, ...patch }));
 
   const condition = CONDITIONS.find((c) => c.id === state.condition);
+
+  function applyImport(imported: ImportedCase) {
+    setState((s) => ({
+      ...s,
+      profile: fromProfile({ ...imported.profile, current_meds: imported.meds }, imported.gender_identity),
+      meds: imported.meds,
+      history: imported.history,
+      instruments: imported.instruments,
+      condition: imported.condition,
+      phase: "",
+      severity: imported.severity,
+      suicideRisk: imported.suicideRisk || s.suicideRisk,
+      concerns: imported.concerns,
+      text: imported.text || s.text,
+    }));
+  }
   const crisis = useMemo(() => summarizeCrisis(detectCrisis(state.text, crisisLexicon, "professional")), [state.text]);
 
   function applyExtraction(choice: ExtractionChoice) {
@@ -97,6 +120,8 @@ function ProfessionalForm({ saved }: { saved?: ProfessionalCase }) {
         suicide_risk_assessed: state.suicideRisk === "" ? null : state.suicideRisk === "yes",
       }),
       free_text: state.text,
+      history: state.history,
+      instruments: state.instruments,
       concerns: state.concerns,
     };
     professionalCase.save({ input, gender_identity: state.profile.genderIdentity.trim() || undefined, saved_at: new Date().toISOString() });
@@ -105,6 +130,14 @@ function ProfessionalForm({ saved }: { saved?: ProfessionalCase }) {
 
   return (
     <form onSubmit={submit} noValidate className="space-y-6">
+      <section className={sectionClass} aria-labelledby={`${id}-i`}>
+        <h2 id={`${id}-i`} className="text-lg font-semibold text-slate-900">Respostas da pessoa (opcional)</h2>
+        <p className="mt-1 text-sm text-slate-600">Se a pessoa preencheu o modo paciente e trouxe o arquivo de respostas, importe-o para pré-preencher o formulário.</p>
+        <div className="mt-4">
+          <ImportPatient onImport={applyImport} />
+        </div>
+      </section>
+
       <section className={sectionClass} aria-labelledby={`${id}-p`}>
         <h2 id={`${id}-p`} className="text-lg font-semibold text-slate-900">1. Pessoa</h2>
         <div className="mt-4">
@@ -180,6 +213,14 @@ function ProfessionalForm({ saved }: { saved?: ProfessionalCase }) {
         <p className="mt-1 text-sm text-slate-600">Inclua todos, também os não psiquiátricos (anticoncepcional, anti-inflamatório, anti-hipertensivo…).</p>
         <div className="mt-4">
           <MedicationPicker value={state.meds} onChange={(meds) => set({ meds })} />
+        </div>
+      </section>
+
+      <section className={sectionClass} aria-labelledby={`${id}-h`}>
+        <h2 id={`${id}-h`} className="text-lg font-semibold text-slate-900">Tratamentos anteriores (opcional)</h2>
+        <p className="mt-1 text-sm text-slate-600">Dose, tempo e resposta de cada tentativa: o resultado indica se a tentativa foi adequada segundo as diretrizes.</p>
+        <div className="mt-4">
+          <HistoryEditor value={state.history} onChange={(history) => set({ history })} variant="clinical" />
         </div>
       </section>
 
