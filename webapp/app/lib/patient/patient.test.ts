@@ -50,6 +50,8 @@ test("seções: diagnóstico informado ou escores acima do limiar", () => {
   assert.deepEqual(sections(kb.data, session({ known_diagnoses: ["depression"] })).map((s) => [s.condition, s.reason]), [["depression_unipolar", "known"]]);
   assert.deepEqual(sections(kb.data, session({ instruments: { phq9: PHQ9_MODERATE } })).map((s) => [s.condition, s.reason]), [["depression_unipolar", "scores"]]);
   assert.deepEqual(sections(kb.data, session({ known_diagnoses: ["bipolar_2"] })).map((s) => s.condition), ["bipolar_2"]);
+  const maniaYes = { bipolar_hx: { bipolar_hx_1: 1, bipolar_hx_2: 0, bipolar_hx_3: 0, bipolar_hx_4: 0, bipolar_hx_5: 0 } };
+  assert.deepEqual(sections(kb.data, session({ instruments: maniaYes })).map((s) => [s.condition, s.reason]), [["bipolar_1", "scores"]]);
 });
 
 test("entrada do motor: modo paciente, relato como texto livre e prioridades como preferências", () => {

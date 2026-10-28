@@ -11,8 +11,12 @@
       "clinical": "{drug}: antidepressivo sem estabilizador de humor ou antipsicótico no transtorno bipolar tipo I, não recomendado (risco de virada maníaca)."
     },
     "alert.bipolar_screen": {
-      "plain": "Antes de começar qualquer antidepressivo, é preciso verificar se não há transtorno bipolar, porque nesse caso o antidepressivo sozinho pode piorar o quadro. Por isso, não mostramos antidepressivos até essa verificação.",
+      "plain": "Antes de qualquer antidepressivo, é preciso verificar se não há transtorno bipolar, porque nesse caso o antidepressivo sozinho pode piorar o quadro. Por isso, só mostramos antidepressivos depois das perguntas sobre períodos de muita energia ou euforia.",
       "clinical": "Rastreio de bipolaridade ausente ou não negativo: antidepressivos ocultos no modo paciente."
+    },
+    "alert.bipolar_screen_positive": {
+      "plain": "Você contou que já teve um período com sinais que podem ser de mania ou hipomania. Antes de qualquer antidepressivo, o ideal é uma avaliação com especialista em saúde mental; por isso não mostramos antidepressivos.",
+      "clinical": "Relato de período de 4 dias ou mais com sintomas maniformes (hiperatividade, desinibição, menor necessidade de sono): considerar avaliação especializada antes de antidepressivo (NICE CG185 1.2.1)."
     },
     "alert.bleeding_disorder": {
       "plain": "{drug} aumenta o risco de sangramento. Com problema de coagulação, converse com o médico.",
@@ -76,6 +80,10 @@
     "alert.lactation": {
       "plain": "{drug} exige cuidado durante a amamentação. Converse com o médico.",
       "clinical": "{drug}: cautela na lactação segundo a bula."
+    },
+    "alert.mania_switch_patient": {
+      "plain": "Suas respostas não mostraram sinais de mania, mas estas perguntas não substituem a avaliação. Antes de começar um antidepressivo, o médico precisa confirmar que você nunca teve episódios de mania ou hipomania. Conte também se alguém da sua família tem transtorno bipolar.",
+      "clinical": "Rastreio de bipolaridade negativo por autorrelato (perguntas não validadas): confirmar história pessoal e familiar de mania ou hipomania antes de iniciar antidepressivo."
     },
     "alert.metabolic": {
       "plain": "{drug} pode aumentar o peso, a glicose ou o colesterol.",
@@ -339,6 +347,10 @@
     "q.therapy_access": {
       "plain": "Como consigo psicoterapia pelo SUS ou em uma clínica-escola de psicologia?",
       "clinical": "Encaminhar para psicoterapia."
+    },
+    "ref.bipolar_screen_positive": {
+      "plain": "Peça na UBS uma avaliação com psiquiatra, ou procure o CAPS, para investigar transtorno bipolar antes de começar um antidepressivo.",
+      "clinical": "Avaliação especializada para investigar transtorno bipolar (NICE CG185 1.2.1)."
     },
     "ref.bipolar_specialist": {
       "plain": "Transtorno bipolar precisa de acompanhamento especializado. Procure o CAPS ou um psiquiatra pela UBS.",

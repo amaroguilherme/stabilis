@@ -12,7 +12,7 @@ No modo paciente, conteúdo sobre medicamentos só é mostrado para pessoas com 
 Quando a triagem indica risco de suicídio, ou o texto da pessoa menciona pensamentos de morte ou de se machucar, o modo paciente oculta todo conteúdo sobre medicamentos e mostra recursos de ajuda imediata (CVV 188, SAMU 192, UPA ou pronto-socorro).
 
 ## 4. Triagem de bipolaridade
-No modo paciente, conteúdo sobre antidepressivos só aparece depois que o questionário de triagem de bipolaridade foi respondido e deu negativo. Com triagem positiva ou não respondida, a ferramenta recomenda avaliação especializada antes de qualquer antidepressivo.
+No modo paciente, conteúdo sobre antidepressivos só aparece depois que a pessoa responde às perguntas sobre períodos de muita energia ou euforia e todas as respostas são "não". Essas perguntas seguem a orientação de perguntar sobre períodos anteriores de hiperatividade ou comportamento desinibido, em vez de usar um questionário; não são um questionário validado nem fazem diagnóstico. Com qualquer resposta "sim", ou sem respostas, a ferramenta recomenda avaliação especializada antes de qualquer antidepressivo. Mesmo com todas as respostas "não", ela lembra que o médico precisa confirmar a história de mania antes de começar o antidepressivo.
 
 ## 5. Condições cobertas
 O modo paciente mostra opções de tratamento apenas para depressão e ansiedade generalizada. Para transtorno bipolar, a ferramenta mostra informações de segurança e recomenda acompanhamento especializado. Psicose, mania aguda, transtornos alimentares, TDAH e dependência química recebem apenas orientação de encaminhamento.
@@ -27,7 +27,7 @@ Todo conteúdo clínico cita uma fonte pública com localizador e trecho literal
 Sem idade e sexo atribuído ao nascer, a ferramenta não mostra conteúdo sobre medicamentos, porque as regras de segurança dependem desses dados. Quando a situação de gravidez não é informada para alguém que pode engravidar, ela é tratada como "não sei". Dado ausente nunca é tratado como ausência de risco.
 
 ## 9. Questionários no modo paciente
-Os questionários medem sintomas e servem de triagem; não fazem diagnóstico. A triagem de bipolaridade é usada apenas para decidir se informações sobre antidepressivos podem ser mostradas, e um resultado positivo leva à recomendação de avaliação especializada. Quando o item 9 do PHQ-9 ou o texto da pessoa indicam pensamentos de morte ou de se machucar, as perguntas de segurança são feitas de novo.
+Os questionários medem sintomas e servem de triagem; não fazem diagnóstico. As perguntas sobre bipolaridade são usadas apenas para decidir se informações sobre antidepressivos podem ser mostradas, e qualquer resposta positiva leva à recomendação de avaliação especializada. Quando o item 9 do PHQ-9 ou o texto da pessoa indicam pensamentos de morte ou de se machucar, as perguntas de segurança são feitas de novo.
 
 ## 10. Condições mostradas ao paciente
 Opções para depressão aparecem quando o PHQ-9 soma 5 pontos ou mais, ou quando a pessoa informa que já recebeu esse diagnóstico. Opções para ansiedade generalizada aparecem quando o GAD-7 soma 5 pontos ou mais, ou com diagnóstico informado. Triagem de bipolaridade positiva ou diagnóstico informado de transtorno bipolar levam a orientações de segurança e de encaminhamento.

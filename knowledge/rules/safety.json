@@ -220,8 +220,8 @@
         {
           "source": "stabilis-escopo",
           "locator": "seção 4. Triagem de bipolaridade",
-          "quote": "No modo paciente, conteúdo sobre antidepressivos só aparece depois que o questionário de triagem de bipolaridade foi respondido e deu negativo.",
-          "accessed": "2026-10-27"
+          "quote": "No modo paciente, conteúdo sobre antidepressivos só aparece depois que a pessoa responde às perguntas sobre períodos de muita energia ou euforia e todas as respostas são \"não\".",
+          "accessed": "2026-10-28"
         },
         {
           "source": "label-fluoxetina",
@@ -237,6 +237,114 @@
         "verified_by": null,
         "verified_on": null,
         "notes": "A NICE CG185 (1.2.3) desaconselha questionários para identificar transtorno bipolar na atenção primária; aqui a triagem é usada só como barreira de segurança, não como diagnóstico. Rever na Fase 2."
+      }
+    },
+    {
+      "id": "SR-BIPOLAR-SCREEN-POSITIVE",
+      "title": "Relato de período de mania ou hipomania: avaliação especializada antes de antidepressivo",
+      "applies_to": "global",
+      "modes": [
+        "patient"
+      ],
+      "when": {
+        "any": [
+          {
+            "instrument": "bipolar_hx",
+            "band_in": [
+              "positive"
+            ]
+          },
+          {
+            "instrument": "mdq",
+            "band_in": [
+              "positive"
+            ]
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.bipolar_screen_positive"
+        },
+        {
+          "action": "referral",
+          "urgent": false,
+          "message_key": "ref.bipolar_screen_positive"
+        }
+      ],
+      "sources": [
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.2.1",
+          "quote": "When adults present in primary care with depression , ask about previous periods of overactivity or disinhibited behaviour. If the overactivity or disinhibited behaviour lasted for 4 days or more, consider referral for a specialist mental health assessment.",
+          "accessed": "2026-10-28"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-28",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "SR-BIPOLAR-SCREEN-NEGATIVE-CAUTION",
+      "title": "Triagem de bipolaridade negativa por autorrelato: o médico ainda precisa confirmar",
+      "applies_to": "global",
+      "modes": [
+        "patient"
+      ],
+      "when": {
+        "all": [
+          {
+            "signal": "bipolar_screen_negative"
+          },
+          {
+            "any": [
+              {
+                "condition": "depression_unipolar"
+              },
+              {
+                "condition": "gad"
+              }
+            ]
+          }
+        ]
+      },
+      "then": [
+        {
+          "action": "alert",
+          "level": "warning",
+          "message_key": "alert.mania_switch_patient"
+        },
+        {
+          "action": "add_question",
+          "message_key": "q.bipolar_screen"
+        }
+      ],
+      "sources": [
+        {
+          "source": "label-sertralina",
+          "locator": "seção 2.3 Screen for Bipolar Disorder Prior to Starting ZOLOFT",
+          "quote": "Prior to initiating treatment with ZOLOFT or another antidepressant, screen patients for a personal or family history of bipolar disorder, mania, or hypomania",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.2.1",
+          "quote": "When adults present in primary care with depression , ask about previous periods of overactivity or disinhibited behaviour. If the overactivity or disinhibited behaviour lasted for 4 days or more, consider referral for a specialist mental health assessment.",
+          "accessed": "2026-10-28"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-28",
+        "verified_by": null,
+        "verified_on": null
       }
     },
     {

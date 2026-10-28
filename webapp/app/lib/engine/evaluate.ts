@@ -197,6 +197,12 @@ const DOSE_ALERTS: Partial<Record<DoseCheck, { level: AlertLevel; key: string }>
   below_usual: { level: "info", key: "alert.dose_below_usual" },
 };
 
+/** At least one bipolar screen answered, and every answered one negative. */
+export function bipolarScreenNegative(instruments: KnowledgeBase["data"]["instruments"], scores: EngineOutput["scores"]): boolean {
+  const answered = instruments.filter((i) => i.purpose === "bipolar_screen" && scores[i.id]?.answered);
+  return answered.length > 0 && answered.every((i) => scores[i.id].band === "negative");
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 export function evaluate(kb: KnowledgeBase, input: EngineInput, options: EngineOptions): EngineOutput {
@@ -218,7 +224,7 @@ export function evaluate(kb: KnowledgeBase, input: EngineInput, options: EngineO
   const signals: Record<Signal, boolean> = {
     crisis_language: crisis.crisis,
     crisis_language_negated_only: crisis.negated_only,
-    bipolar_screen_negative: scores.mdq?.answered === true && scores.mdq.band === "negative",
+    bipolar_screen_negative: bipolarScreenNegative(data.instruments, scores),
   };
 
   // 3. Derived facts, in order

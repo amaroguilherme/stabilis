@@ -138,9 +138,9 @@ export function buildDoctorReport(
       const band = r.band ? BAND_LABELS[r.band] ?? r.band : "";
       const extra = i.id === "phq9" ? ` · item 9 (pensamentos de morte ou de se ferir): ${session.instruments.phq9?.phq9_9 ?? "-"}` : "";
       const total = r.total !== null && i.scoring.type === "sum" ? `${r.total} pontos, ` : "";
-      return { name: i.name, text: `${total}${i.scoring.type === "mdq" ? "triagem " : ""}${band}${extra}` };
+      return { name: i.name, text: `${total}${i.scoring.type === "mdq" || i.scoring.type === "any_positive" ? "triagem " : ""}${band}${extra}` };
     });
-  const FALLBACK_NAMES: Record<string, string> = { phq9: "PHQ-9", gad7: "GAD-7", mdq: "Triagem de bipolaridade (MDQ)", auditc: "AUDIT-C" };
+  const FALLBACK_NAMES: Record<string, string> = { phq9: "PHQ-9", gad7: "GAD-7", mdq: "Triagem de bipolaridade (MDQ)", bipolar_hx: "Perguntas sobre períodos de muita energia ou euforia", auditc: "AUDIT-C" };
   const skipped = session.skipped.map((id) => data.instruments.find((i) => i.id === id)?.name ?? FALLBACK_NAMES[id] ?? id).map((name) => ({ name, text: "não respondido" }));
 
   const crisis = outputs.some((o) => o.output.crisis.language) || review.crisis.language || (screen?.answered === true && screen.band !== "none");

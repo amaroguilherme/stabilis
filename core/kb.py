@@ -198,7 +198,8 @@ class _Refs:
                 "bands": {b["id"] for b in i["scoring"].get("bands", [])}
                 | {b["id"] for bands in i["scoring"].get("bands_by_sex", {}).values() for b in bands}
                 | ({"positive", "negative"} if i["scoring"]["type"] == "mdq" else set())
-                | ({"none", "low", "high"} if i["scoring"]["type"] == "risk_screener" else set()),
+                | ({"none", "low", "high"} if i["scoring"]["type"] == "risk_screener" else set())
+                | ({"positive", "negative"} if i["scoring"]["type"] == "any_positive" else set()),
                 "flags": {f["id"] for f in i["scoring"].get("flags", [])},
             }
             for i in kb.instruments

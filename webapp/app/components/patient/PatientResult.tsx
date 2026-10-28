@@ -18,6 +18,10 @@ const SCORE_TEXT: Record<string, (r: InstrumentResult) => string> = {
   phq9: (r) => `Sintomas de depressão ${({ minimal: "mínimos", mild: "leves", moderate: "moderados", moderately_severe: "moderadamente graves", severe: "graves" } as Record<string, string>)[r.band ?? ""] ?? ""} (${r.total} de 27 pontos).`,
   gad7: (r) => `Sintomas de ansiedade ${({ minimal: "mínimos", mild: "leves", moderate: "moderados", severe: "graves" } as Record<string, string>)[r.band ?? ""] ?? ""} (${r.total} de 21 pontos).`,
   mdq: (r) => (r.band === "positive" ? "A triagem encontrou sinais que podem indicar transtorno bipolar. Isso precisa ser avaliado por um profissional." : "A triagem não encontrou sinais de transtorno bipolar."),
+  bipolar_hx: (r) =>
+    r.band === "positive"
+      ? "Você contou que já teve um período com sinais que podem ser de mania ou hipomania. Isso precisa ser avaliado por um profissional antes de qualquer antidepressivo."
+      : "Você não relatou períodos de muita energia ou euforia. Mesmo assim, só um profissional pode descartar transtorno bipolar.",
   auditc: (r) => (r.band === "positive" ? "O seu consumo de álcool merece atenção e vale conversar sobre ele na consulta." : "O questionário não indicou consumo de risco de álcool."),
 };
 

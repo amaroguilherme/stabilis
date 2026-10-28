@@ -1,6 +1,8 @@
 {
   "id": "asq",
   "name": "ASQ – Perguntas para triagem de suicídio (NIMH)",
+  "origin": "validated",
+  "purpose": "suicide_screen",
   "license_note": "Domínio público (NIMH, governo dos EUA): pode ser reproduzido sem permissão, citando o NIMH como fonte, sem mudar o sentido e sem usar as imagens.",
   "validation_note": "Não foi encontrado estudo de validação da versão em português. Validado em inglês por Horowitz LM et al.: Arch Pediatr Adolesc Med 2012;166(12):1170-6 (10 a 21 anos, pronto-socorro pediátrico) e Psychosomatics 2020;61(6):713-22 (727 adultos internados; sensibilidade 100%, especificidade 89%).",
   "options": [

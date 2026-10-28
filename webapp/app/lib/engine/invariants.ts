@@ -34,7 +34,8 @@ export function checkInvariants(kb: KnowledgeBase, input: EngineInput, output: E
   // INV-02: in patient mode, antidepressants only after a negative bipolar screen, never for bipolar disorder.
   if (input.mode === "patient") {
     const bipolar = input.condition?.id === "bipolar_1" || input.condition?.id === "bipolar_2";
-    const screenNegative = output.scores.mdq?.answered === true && output.scores.mdq.band === "negative";
+    const bipolarScreens = kb.data.instruments.filter((i) => i.purpose === "bipolar_screen" && output.scores[i.id]?.answered);
+    const screenNegative = bipolarScreens.length > 0 && bipolarScreens.every((i) => output.scores[i.id].band === "negative");
     if ((bipolar || !screenNegative) && placed.some((p) => p.drug && matchesClass(p.drug, "antidepressant"))) {
       fail("INV-02", "antidepressivo no modo paciente sem triagem de bipolaridade negativa");
     }

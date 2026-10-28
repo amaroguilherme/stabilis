@@ -1,7 +1,7 @@
 {
   "_generated_by": "scripts/build_kb.py — não edite este arquivo; edite knowledge/ e rode o script",
   "_source": "knowledge/",
-  "content_hash": "sha256:f3a81526d24a312bfab4cd1b21661f5541636928421d695da3c633d795c53f06",
+  "content_hash": "sha256:97e528dd9b42c7991e829201687e67ce4ec7bc9420f28ac108c93e485378e2cf",
   "data": {
     "brands": {
       "aas": [
@@ -15651,6 +15651,8 @@
           "quote": "1. Nas últimas semanas, você desejou que estivesse morto? mSim m Não",
           "source": "nimh-asq-pt"
         },
+        "origin": "validated",
+        "purpose": "suicide_screen",
         "review": {
           "extracted_by": "ai",
           "extracted_on": "2026-10-27",
@@ -15870,6 +15872,8 @@
           "quote": "1.Com que frequência você consome bebidas alcoólicas? (0) Nunca (1) Uma vez por mês ou menos (2) Duas a quatro vezes por mês (3) Duas a três vezes por semana (4) Quatro ou mais vezes por semana",
           "source": "subpav-audit-ptbr"
         },
+        "origin": "validated",
+        "purpose": "alcohol",
         "review": {
           "extracted_by": "ai",
           "extracted_on": "2026-10-27",
@@ -15966,6 +15970,119 @@
           }
         ],
         "validation_note": "Versão brasileira do AUDIT: Méndez EB, dissertação de mestrado, UFPel, 1999 (não localizada online). As versões abreviadas, incluindo o AUDIT-C, foram validadas em duas amostras brasileiras (pronto-socorro e CAPS-AD) por Meneses-Gaya C et al., Alcohol Clin Exp Res 2010;34(8):1417-24; os pontos de corte desse estudo não foram conferidos porque o texto completo é fechado."
+      },
+      {
+        "id": "bipolar_hx",
+        "items": [
+          {
+            "cite": {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 31 (Depressão: há história de mania?)",
+              "quote": "Elevação do humor ou irritabilidade.",
+              "source": "mhgap-ig-2-pt"
+            },
+            "id": "bipolar_hx_1",
+            "text": "…ficou com o humor lá em cima (eufórico/a) ou muito irritado/a, a ponto de outras pessoas notarem?",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 31 (Depressão: há história de mania?)",
+              "quote": "Diminuição da necessidade de sono.",
+              "source": "mhgap-ig-2-pt"
+            },
+            "id": "bipolar_hx_2",
+            "text": "…precisou dormir bem menos do que o normal e, mesmo assim, não sentia cansaço?",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 31 (Depressão: há história de mania?)",
+              "quote": "Aumento da atividade, sensação de aumento da energia, aumento da loquacidade ou fala rápida.",
+              "source": "mhgap-ig-2-pt"
+            },
+            "id": "bipolar_hx_3",
+            "text": "…ficou com muito mais energia, fazendo muito mais coisas e falando muito mais ou mais rápido?",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 31 (Depressão: há história de mania?)",
+              "quote": "Comportamentos impulsivos ou imprudentes, como gastos excessivos, tomada de decisões importantes sem planejamento e indiscrições sexuais.",
+              "source": "mhgap-ig-2-pt"
+            },
+            "id": "bipolar_hx_4",
+            "text": "…fez coisas impulsivas ou arriscadas, como gastar muito dinheiro, tomar decisões importantes sem pensar ou ter comportamentos sexuais fora do seu normal?",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-28",
+              "locator": "pdf p. 31 (Depressão: há história de mania?)",
+              "quote": "Perda de inibições sociais normais, com comportamentos impróprios.",
+              "source": "mhgap-ig-2-pt"
+            },
+            "id": "bipolar_hx_5",
+            "text": "…perdeu a vergonha ou a noção do que é adequado, fazendo coisas que normalmente não faria?",
+            "text_status": "verified"
+          }
+        ],
+        "license_note": "Perguntas escritas pelo Stabilis a partir da recomendação 1.2.1 da NICE CG185 e dos sintomas de mania descritos no MI-mhGAP 2.0 (OPAS, CC BY-NC-SA 3.0 IGO). Não é um questionário validado.",
+        "name": "Perguntas sobre períodos de muita energia ou euforia (baseadas na NICE CG185 e no MI-mhGAP)",
+        "options": [
+          {
+            "label": "Sim",
+            "value": 1
+          },
+          {
+            "label": "Não",
+            "value": 0
+          }
+        ],
+        "origin": "guideline_based",
+        "purpose": "bipolar_screen",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "notes": "Itens redigidos pelo projeto em linguagem simples (origin guideline_based), um por sintoma do MI-mhGAP, com o período mínimo de 4 dias da NICE CG185 1.2.1 (o MI-mhGAP usa 1 semana; 4 dias é mais sensível). Qualquer 'sim' torna a triagem positiva. Conferir a compreensão nas sessões de usabilidade.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "scoring": {
+          "type": "any_positive"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.1",
+            "quote": "When adults present in primary care with depression , ask about previous periods of overactivity or disinhibited behaviour. If the overactivity or disinhibited behaviour lasted for 4 days or more, consider referral for a specialist mental health assessment.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.3",
+            "quote": "Do not use questionnaires in primary care to identify bipolar disorder in adults.",
+            "source": "nice-cg185"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "pdf p. 31 (Depressão: há história de mania?)",
+            "quote": "HÁ HISTÓRIA DE MANIA? Houve ocorrência simultânea de vários destes sintomas, com duração mínima de 1 semana",
+            "source": "mhgap-ig-2-pt"
+          }
+        ],
+        "stem": "Pensando em toda a sua vida: você já passou por um período de pelo menos 4 dias seguidos, bem diferente do seu normal, em que…",
+        "stem_cite": {
+          "accessed": "2026-10-28",
+          "locator": "recomendação 1.2.1",
+          "quote": "When adults present in primary care with depression , ask about previous periods of overactivity or disinhibited behaviour. If the overactivity or disinhibited behaviour lasted for 4 days or more, consider referral for a specialist mental health assessment.",
+          "source": "nice-cg185"
+        },
+        "validation_note": "Não validado. A NICE CG185 recomenda perguntar sobre períodos anteriores de hiperatividade ou comportamento desinibido (1.2.1) e desaconselha questionários para identificar transtorno bipolar na atenção primária (1.2.3)."
       },
       {
         "id": "gad7",
@@ -16074,6 +16191,8 @@
           "quote": "Nenhuma vez Vários dias Mais da metade dos dias Quase todos os dias 1. Sentir-se nervoso/a, ansioso/a ou muito tenso/a 0 1 2 3",
           "source": "gad7-ptbr-pfizer"
         },
+        "origin": "validated",
+        "purpose": "symptoms",
         "review": {
           "extracted_by": "ai",
           "extracted_on": "2026-10-27",
@@ -16296,6 +16415,8 @@
             "value": 0
           }
         ],
+        "origin": "validated",
+        "purpose": "bipolar_screen",
         "review": {
           "extracted_by": "ai",
           "extracted_on": "2026-10-27",
@@ -16507,6 +16628,8 @@
           "quote": "Nenhuma vez Vários dias Mais da metade dos dias Quase todos os dias 1. Pouco interesse ou pouco prazer em fazer as coisas 0 1 2 3",
           "source": "phq9-ptbr-pfizer"
         },
+        "origin": "validated",
+        "purpose": "symptoms",
         "review": {
           "extracted_by": "ai",
           "extracted_on": "2026-10-27",
@@ -17052,7 +17175,11 @@
       },
       "alert.bipolar_screen": {
         "clinical": "Rastreio de bipolaridade ausente ou não negativo: antidepressivos ocultos no modo paciente.",
-        "plain": "Antes de começar qualquer antidepressivo, é preciso verificar se não há transtorno bipolar, porque nesse caso o antidepressivo sozinho pode piorar o quadro. Por isso, não mostramos antidepressivos até essa verificação."
+        "plain": "Antes de qualquer antidepressivo, é preciso verificar se não há transtorno bipolar, porque nesse caso o antidepressivo sozinho pode piorar o quadro. Por isso, só mostramos antidepressivos depois das perguntas sobre períodos de muita energia ou euforia."
+      },
+      "alert.bipolar_screen_positive": {
+        "clinical": "Relato de período de 4 dias ou mais com sintomas maniformes (hiperatividade, desinibição, menor necessidade de sono): considerar avaliação especializada antes de antidepressivo (NICE CG185 1.2.1).",
+        "plain": "Você contou que já teve um período com sinais que podem ser de mania ou hipomania. Antes de qualquer antidepressivo, o ideal é uma avaliação com especialista em saúde mental; por isso não mostramos antidepressivos."
       },
       "alert.bleeding_disorder": {
         "clinical": "{drug}: aumenta o risco de sangramento; cautela em distúrbios hemorrágicos.",
@@ -17116,6 +17243,10 @@
       "alert.lactation": {
         "clinical": "{drug}: cautela na lactação segundo a bula.",
         "plain": "{drug} exige cuidado durante a amamentação. Converse com o médico."
+      },
+      "alert.mania_switch_patient": {
+        "clinical": "Rastreio de bipolaridade negativo por autorrelato (perguntas não validadas): confirmar história pessoal e familiar de mania ou hipomania antes de iniciar antidepressivo.",
+        "plain": "Suas respostas não mostraram sinais de mania, mas estas perguntas não substituem a avaliação. Antes de começar um antidepressivo, o médico precisa confirmar que você nunca teve episódios de mania ou hipomania. Conte também se alguém da sua família tem transtorno bipolar."
       },
       "alert.metabolic": {
         "clinical": "{drug}: risco metabólico; monitorar peso, glicemia e lipídios.",
@@ -17380,6 +17511,10 @@
         "clinical": "Encaminhar para psicoterapia.",
         "plain": "Como consigo psicoterapia pelo SUS ou em uma clínica-escola de psicologia?"
       },
+      "ref.bipolar_screen_positive": {
+        "clinical": "Avaliação especializada para investigar transtorno bipolar (NICE CG185 1.2.1).",
+        "plain": "Peça na UBS uma avaliação com psiquiatra, ou procure o CAPS, para investigar transtorno bipolar antes de começar um antidepressivo."
+      },
       "ref.bipolar_specialist": {
         "clinical": "Transtorno bipolar: acompanhamento especializado.",
         "plain": "Transtorno bipolar precisa de acompanhamento especializado. Procure o CAPS ou um psiquiatra pela UBS."
@@ -17600,9 +17735,9 @@
         },
         "sources": [
           {
-            "accessed": "2026-10-27",
+            "accessed": "2026-10-28",
             "locator": "seção 4. Triagem de bipolaridade",
-            "quote": "No modo paciente, conteúdo sobre antidepressivos só aparece depois que o questionário de triagem de bipolaridade foi respondido e deu negativo.",
+            "quote": "No modo paciente, conteúdo sobre antidepressivos só aparece depois que a pessoa responde às perguntas sobre períodos de muita energia ou euforia e todas as respostas são \"não\".",
             "source": "stabilis-escopo"
           },
           {
@@ -17634,6 +17769,114 @@
           "not": {
             "signal": "bipolar_screen_negative"
           }
+        }
+      },
+      {
+        "applies_to": "global",
+        "id": "SR-BIPOLAR-SCREEN-POSITIVE",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.1",
+            "quote": "When adults present in primary care with depression , ask about previous periods of overactivity or disinhibited behaviour. If the overactivity or disinhibited behaviour lasted for 4 days or more, consider referral for a specialist mental health assessment.",
+            "source": "nice-cg185"
+          }
+        ],
+        "then": [
+          {
+            "action": "alert",
+            "level": "warning",
+            "message_key": "alert.bipolar_screen_positive"
+          },
+          {
+            "action": "referral",
+            "message_key": "ref.bipolar_screen_positive",
+            "urgent": false
+          }
+        ],
+        "title": "Relato de período de mania ou hipomania: avaliação especializada antes de antidepressivo",
+        "when": {
+          "any": [
+            {
+              "band_in": [
+                "positive"
+              ],
+              "instrument": "bipolar_hx"
+            },
+            {
+              "band_in": [
+                "positive"
+              ],
+              "instrument": "mdq"
+            }
+          ]
+        }
+      },
+      {
+        "applies_to": "global",
+        "id": "SR-BIPOLAR-SCREEN-NEGATIVE-CAUTION",
+        "modes": [
+          "patient"
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-28",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-28",
+            "locator": "seção 2.3 Screen for Bipolar Disorder Prior to Starting ZOLOFT",
+            "quote": "Prior to initiating treatment with ZOLOFT or another antidepressant, screen patients for a personal or family history of bipolar disorder, mania, or hypomania",
+            "source": "label-sertralina"
+          },
+          {
+            "accessed": "2026-10-28",
+            "locator": "recomendação 1.2.1",
+            "quote": "When adults present in primary care with depression , ask about previous periods of overactivity or disinhibited behaviour. If the overactivity or disinhibited behaviour lasted for 4 days or more, consider referral for a specialist mental health assessment.",
+            "source": "nice-cg185"
+          }
+        ],
+        "then": [
+          {
+            "action": "alert",
+            "level": "warning",
+            "message_key": "alert.mania_switch_patient"
+          },
+          {
+            "action": "add_question",
+            "message_key": "q.bipolar_screen"
+          }
+        ],
+        "title": "Triagem de bipolaridade negativa por autorrelato: o médico ainda precisa confirmar",
+        "when": {
+          "all": [
+            {
+              "signal": "bipolar_screen_negative"
+            },
+            {
+              "any": [
+                {
+                  "condition": "depression_unipolar"
+                },
+                {
+                  "condition": "gad"
+                }
+              ]
+            }
+          ]
         }
       },
       {

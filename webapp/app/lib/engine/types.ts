@@ -178,6 +178,8 @@ export interface InstrumentItem {
 export interface Instrument {
   id: string;
   name: string;
+  origin?: "validated" | "guideline_based"; // guideline_based: written by the project from a guideline, not validated
+  purpose?: "symptoms" | "suicide_screen" | "bipolar_screen" | "alcohol";
   stem?: string;
   stem_cite?: Cite;
   instructions?: string;
@@ -188,7 +190,7 @@ export interface Instrument {
   options_cite?: Cite;
   items: InstrumentItem[];
   scoring: {
-    type: "sum" | "mdq" | "risk_screener";
+    type: "sum" | "mdq" | "risk_screener" | "any_positive";
     bands?: Band[];
     bands_by_sex?: Record<string, Band[]>;
     flags?: { id: string; item: string; op: "gt" | "gte" | "eq"; value: number }[];

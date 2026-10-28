@@ -75,7 +75,7 @@ while (path.startsWith("/paciente/questionarios/")) {
   answered.push(id);
   if (answered.length === 1) await scan(`questionário ${id}`);
   // PHQ-9 and GAD-7: "Mais da metade dos dias" (moderate); MDQ and AUDIT-C: "Não"/first option.
-  path = await answerAll(id === "phq9" || id === "gad7" ? "Mais da metade dos dias" : id === "mdq" ? "Não" : "Nunca");
+  path = await answerAll(id === "phq9" || id === "gad7" ? "Mais da metade dos dias" : id === "mdq" || id === "bipolar_hx" ? "Não" : "Nunca");
   if (path.includes("seguranca")) path = await answerAll("Não");
   await page.sleep(400);
   path = await page.js("location.pathname");
@@ -105,7 +105,10 @@ check("resultado mostra o que os escores sugerem", text.includes("O que suas res
 check("revisão inclui o clonazepam em uso", text.includes("Clonazepam") || text.includes("Rivotril"));
 check("tem perguntas para o médico ou orientação de onde buscar", text.includes("Onde buscar atendimento"));
 if (answered.includes("phq9")) check("seção de depressão a partir do PHQ-9", text.includes("Porque seus questionários indicaram"));
-if (answered.includes("mdq")) check("com triagem negativa, antidepressivos podem aparecer", /Sertralina|Fluoxetina|Escitalopram/.test(text));
+if (answered.some((id) => id === "mdq" || id === "bipolar_hx")) {
+  check("com triagem negativa, antidepressivos podem aparecer", /Sertralina|Fluoxetina|Escitalopram/.test(text));
+  check("e o lembrete de confirmar a história de mania", text.includes("estas perguntas não substituem a avaliação"));
+}
 else check("sem triagem de bipolaridade, nenhum antidepressivo", !/Sertralina|Escitalopram/.test(text));
 
 await page.click("Ver relatório para o médico");

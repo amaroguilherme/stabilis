@@ -62,6 +62,11 @@ export function scoreInstrument(def: Instrument, raw: InstrumentAnswers | undefi
     return { instrument_id: def.id, answered: true, total: yes, band: positive ? "positive" : "negative", flags: [] };
   }
 
+  if (scoring.type === "any_positive") {
+    const positive = def.items.some((item) => answers[item.id] > 0);
+    return { instrument_id: def.id, answered: true, total: null, band: positive ? "positive" : "negative", flags: [] };
+  }
+
   if (scoring.type === "risk_screener" && scoring.risk) {
     const high = scoring.risk.high_items.some((id) => answers[id] > 0);
     const low = scoring.risk.low_items.some((id) => answers[id] > 0);

@@ -975,6 +975,115 @@
           "alcohol_risk": false
         }
       }
+    },
+    {
+      "id": "S28",
+      "title": "Paciente com todas as respostas 'não' sobre mania: antidepressivos aparecem, com o lembrete de confirmação",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 35
+        },
+        "instruments": {
+          "asq": {
+            "asq_1": 0,
+            "asq_2": 0,
+            "asq_3": 0,
+            "asq_4": 0
+          },
+          "phq9": {
+            "phq9_1": 2,
+            "phq9_2": 2,
+            "phq9_3": 2,
+            "phq9_4": 2,
+            "phq9_5": 2,
+            "phq9_6": 2,
+            "phq9_7": 2,
+            "phq9_8": 2,
+            "phq9_9": 0
+          },
+          "bipolar_hx": {
+            "bipolar_hx_1": 0,
+            "bipolar_hx_2": 0,
+            "bipolar_hx_3": 0,
+            "bipolar_hx_4": 0,
+            "bipolar_hx_5": 0
+          }
+        }
+      },
+      "expect": {
+        "derived": {
+          "depression_more_severe": true
+        },
+        "tiers": {
+          "sertralina": "first_line"
+        },
+        "alerts": [
+          "alert.mania_switch_patient"
+        ],
+        "no_alerts": [
+          "alert.bipolar_screen"
+        ],
+        "questions": [
+          "q.bipolar_screen"
+        ],
+        "medications_excluded": null
+      }
+    },
+    {
+      "id": "S29",
+      "title": "Paciente com um 'sim' sobre mania: sem antidepressivos e com encaminhamento",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 35
+        },
+        "instruments": {
+          "asq": {
+            "asq_1": 0,
+            "asq_2": 0,
+            "asq_3": 0,
+            "asq_4": 0
+          },
+          "phq9": {
+            "phq9_1": 2,
+            "phq9_2": 2,
+            "phq9_3": 2,
+            "phq9_4": 2,
+            "phq9_5": 2,
+            "phq9_6": 2,
+            "phq9_7": 2,
+            "phq9_8": 2,
+            "phq9_9": 0
+          },
+          "bipolar_hx": {
+            "bipolar_hx_1": 0,
+            "bipolar_hx_2": 1,
+            "bipolar_hx_3": 0,
+            "bipolar_hx_4": 0,
+            "bipolar_hx_5": 0
+          }
+        }
+      },
+      "expect": {
+        "absent": [
+          "sertralina",
+          "fluoxetina"
+        ],
+        "alerts": [
+          "alert.bipolar_screen",
+          "alert.bipolar_screen_positive"
+        ],
+        "referrals": [
+          "ref.bipolar_screen_positive"
+        ]
+      }
     }
   ]
 }

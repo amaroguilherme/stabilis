@@ -6,7 +6,7 @@ import type { EngineInput, Instrument, InstrumentResult, KnowledgeBaseData } fro
 import type { PatientSessionV1 } from "./store.ts";
 
 /** Questionnaires of the patient flow, in order. Only those with all item texts verified are shown. */
-const QUESTIONNAIRE_ORDER = ["phq9", "gad7", "mdq", "auditc"];
+const QUESTIONNAIRE_ORDER = ["phq9", "gad7", "bipolar_hx", "mdq", "auditc"];
 
 export const KNOWN_DIAGNOSES = [
   { id: "depression", label: "Depressão" },
@@ -28,6 +28,7 @@ export const PATIENT_TITLES: Record<string, string> = {
   phq9: "Como você tem se sentido (PHQ-9)",
   gad7: "Ansiedade (GAD-7)",
   mdq: "Variações de humor (MDQ)",
+  bipolar_hx: "Períodos de muita energia ou euforia",
   auditc: "Bebidas alcoólicas (AUDIT-C)",
 };
 
@@ -98,7 +99,8 @@ export function sections(kb: KnowledgeBaseData, session: PatientSessionV1): Pati
   const s = scores(kb, session);
   const out: PatientSection[] = [];
   const bipolarKnown = known.has("bipolar_1") || known.has("bipolar_2") || known.has("bipolar_unknown");
-  if (bipolarKnown || (s.mdq?.answered && s.mdq.band === "positive")) {
+  const screenPositive = kb.instruments.some((i) => i.purpose === "bipolar_screen" && s[i.id]?.answered && s[i.id].band === "positive");
+  if (bipolarKnown || screenPositive) {
     out.push({ condition: known.has("bipolar_2") ? "bipolar_2" : "bipolar_1", reason: bipolarKnown ? "known" : "scores" });
   }
   if (known.has("depression") || (s.phq9?.answered && (s.phq9.total ?? 0) >= 5)) {

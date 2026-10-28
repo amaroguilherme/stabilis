@@ -1248,7 +1248,8 @@
               "enum": [
                 "sum",
                 "mdq",
-                "risk_screener"
+                "risk_screener",
+                "any_positive"
               ]
             },
             "bands": {
@@ -1411,6 +1412,22 @@
         "validation_note": {
           "type": "string",
           "description": "Estudo de validação da versão brasileira usada."
+        },
+        "origin": {
+          "enum": [
+            "validated",
+            "guideline_based"
+          ],
+          "description": "validated: instrumento validado, texto oficial literal. guideline_based: perguntas escritas pelo projeto a partir de uma diretriz, cada item citando o trecho que o sustenta; não é questionário validado."
+        },
+        "purpose": {
+          "enum": [
+            "symptoms",
+            "suicide_screen",
+            "bipolar_screen",
+            "alcohol"
+          ],
+          "description": "Papel no fluxo: o motor acha a triagem de bipolaridade e a de risco por aqui."
         }
       },
       "additionalProperties": false

@@ -14,6 +14,8 @@ const WHY: Record<string, string> = {
   gad7: "Este questionário mede sintomas de ansiedade nas últimas duas semanas.",
   mdq: "Estas perguntas procuram sinais de transtorno bipolar. Elas importam porque, nesse caso, antidepressivo sozinho pode piorar o quadro. Sem elas, não mostramos antidepressivos.",
   auditc: "Estas perguntas são sobre bebida alcoólica, que interfere no humor, no sono e em vários remédios.",
+  bipolar_hx:
+    "Estas perguntas procuram sinais de transtorno bipolar. Elas importam porque, nesse caso, antidepressivo sozinho pode piorar o quadro. Não são um diagnóstico: seguem a orientação de perguntar sobre períodos de muita energia ou euforia.",
 };
 
 export default function Questionnaire({ id }: { id: string }) {

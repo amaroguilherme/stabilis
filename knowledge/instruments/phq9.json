@@ -1,6 +1,8 @@
 {
   "id": "phq9",
   "name": "PHQ-9 (Questionário sobre a Saúde do Paciente – 9)",
+  "origin": "validated",
+  "purpose": "symptoms",
   "stem": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a por qualquer um dos problemas abaixo?",
   "stem_cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (enunciado)", "quote": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a por qualquer um dos problemas abaixo?", "accessed": "2026-10-27"},
   "license_note": "Uso livre: não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",

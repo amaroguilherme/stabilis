@@ -122,4 +122,6 @@ Lista, em linguagem leiga, os efeitos adversos que a bula aponta como **mais com
 - `license_note` resume a licença e aparece embaixo das perguntas; o AUDIT exige informar que é instrumento aprovado pela OMS, e o ASQ exige citar o NIMH.
 - Perguntas condicionais usam `ask_if` (ex.: a pergunta 5 do ASQ só depois de um "sim" nas perguntas 1 a 4). Item não perguntado conta como 0.
 - Pontos de corte citam o estudo original ou o manual oficial; estudos brasileiros de validação entram em `validation_note`.
-- Situação atual: PHQ-9, GAD-7, ASQ e AUDIT-C verificados; MDQ pendente (o uso exige permissão do autor e o texto brasileiro só existe como imagem).
+- **Perguntas baseadas em diretriz** (`"origin": "guideline_based"`) são a exceção: escritas pelo projeto em linguagem simples, cada item cita o trecho da diretriz que sustenta o seu conteúdo, e o `license_note` avisa que não é questionário validado. Use só quando não houver instrumento validado com licença compatível.
+- `purpose` diz o papel no fluxo (`symptoms`, `suicide_screen`, `bipolar_screen`, `alcohol`); o motor acha as triagens por ele.
+- Situação atual: PHQ-9, GAD-7, ASQ e AUDIT-C verificados; a triagem de bipolaridade usa `bipolar_hx`, perguntas baseadas na NICE CG185 1.2.1 e no MI-mhGAP. O MDQ segue pendente (exige permissão do autor e o texto brasileiro só existe como imagem).

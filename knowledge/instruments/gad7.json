@@ -1,6 +1,8 @@
 {
   "id": "gad7",
   "name": "GAD-7 (Escala de Transtorno de Ansiedade Generalizada – 7)",
+  "origin": "validated",
+  "purpose": "symptoms",
   "stem": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a pelos problemas abaixo?",
   "stem_cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (enunciado)", "quote": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a pelos problemas abaixo?", "accessed": "2026-10-27"},
   "license_note": "Uso livre: não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",

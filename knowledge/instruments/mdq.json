@@ -1,6 +1,8 @@
 {
   "id": "mdq",
   "name": "MDQ (Questionário de Transtornos do Humor)",
+  "origin": "validated",
+  "purpose": "bipolar_screen",
   "license_note": "O uso requer permissão do autor, segundo a Mental Health America. Textos não reproduzidos até haver permissão.",
   "validation_note": "Castelo MS et al., Rev Bras Psiquiatr 2010;32(4):424-8: 114 pacientes de ambulatório psiquiátrico; melhor ponto de corte de 8 ou mais itens (sensibilidade 0,91, especificidade 0,70). de Sousa Gurgel W et al., Compr Psychiatry 2012;53(3):308-12: 153 pessoas de ambulatórios e controles; sensibilidade 0,72, especificidade 0,95.",
   "options": [
