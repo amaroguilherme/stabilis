@@ -15,18 +15,20 @@ export default function PatientShell({
   path,
   title,
   children,
+  missing,
 }: {
   path: string;
   title: string;
   children: (session: PatientSessionV1) => React.ReactNode;
+  missing?: React.ReactNode; // shown instead of sending the person back to the start
 }) {
   const router = useRouter();
   const stored = usePatient();
   const index = allSteps.findIndex((s) => s.path === path);
 
   useEffect(() => {
-    if (stored.status === "missing") router.replace("/paciente");
-  }, [stored.status, router]);
+    if (stored.status === "missing" && !missing) router.replace("/paciente");
+  }, [stored.status, router, missing]);
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-6 text-base sm:px-6 sm:py-10">
@@ -45,9 +47,9 @@ export default function PatientShell({
         {stored.status === "ready" ? (
           children(stored.value)
         ) : stored.status === "missing" ? (
-          <p className="text-slate-700">
+          (missing ?? <p className="text-slate-700">
             Voltando para o início… <Link href="/paciente" className="text-indigo-700 underline">ir agora</Link>
-          </p>
+          </p>)
         ) : (
           <p aria-live="polite" className="text-slate-700">Carregando…</p>
         )}

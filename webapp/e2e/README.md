@@ -9,6 +9,7 @@ npm run build && npx next start -p 3100 &
   --user-data-dir=/tmp/chrome-e2e about:blank &      # no Linux: google-chrome --headless=new ...
 node e2e/patient.mjs
 node e2e/professional.mjs
+node e2e/tools.mjs     # receita, acompanhamento, plano de segurança e a ponte paciente → profissional
 ```
 
 Saem com código 1 se alguma checagem falhar, se o axe apontar violação ou se houver erro no console.

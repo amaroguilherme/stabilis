@@ -145,7 +145,10 @@ function Report({ session }: { session: PatientSessionV1 }) {
               Baixar arquivo para o profissional
             </button>
           </div>
-          <p className="text-sm">O arquivo leva só as suas respostas. Guarde-o: numa próxima versão, o profissional poderá abri-lo no Stabilis.</p>
+          <p className="text-sm">
+            O arquivo leva só as respostas do guia (não leva o diário do acompanhamento nem o plano de segurança). O profissional pode
+            abri-lo no Stabilis, na área do profissional, em “Respostas da pessoa”.
+          </p>
         </section>
       )}
 

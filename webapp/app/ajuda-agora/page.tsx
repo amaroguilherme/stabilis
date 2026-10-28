@@ -70,6 +70,16 @@ export default function AjudaAgoraPage() {
         </ul>
       </Card>
 
+      <Card title="Plano de segurança">
+        <p>
+          Um roteiro curto, escrito por você num momento mais calmo, com os sinais de que está ficando mal e o que fazer, passo a
+          passo, até se sentir em segurança. Fica só neste aparelho e pode ser impresso.
+        </p>
+        <a href="/paciente/plano-de-seguranca" className="font-semibold text-indigo-700 underline underline-offset-2">
+          Fazer meu plano de segurança
+        </a>
+      </Card>
+
       <Card title="Se outra pessoa está em risco">
         <ul className="list-disc pl-5 space-y-2">
           <li>Fique com a pessoa e não a deixe sozinha.</li>

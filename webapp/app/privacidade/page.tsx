@@ -18,6 +18,10 @@ export default function PrivacyPage() {
         <h2 className="text-lg font-semibold text-slate-900">O que fica onde</h2>
         <ul className="list-disc space-y-2 pl-5">
           <li>As respostas ficam guardadas no navegador: só enquanto a aba estiver aberta, ou neste aparelho, se você escolher.</li>
+          <li>
+            O diário do acompanhamento (humor, sono, efeitos e anotações) só é guardado se você escolher guardar no aparelho. O plano
+            de segurança fica à parte, também só na aba, a não ser que você escolha guardá-lo.
+          </li>
           <li>Os resultados são calculados no seu navegador. Nenhum servidor recebe suas respostas.</li>
           <li>
             Exceção, só no modo profissional: o botão “Extrair do texto” envia a anamnese ao servidor do Stabilis para ser lida por um
@@ -30,14 +34,17 @@ export default function PrivacyPage() {
         <h2 className="text-lg font-semibold text-slate-900">Quando os dados saem do aparelho</h2>
         <p>
           Só quando você decide: ao imprimir, salvar em PDF, baixar o arquivo de respostas ou compartilhar o resumo (por WhatsApp,
-          por exemplo). A partir daí, valem as regras do aplicativo ou da pessoa que recebe.
+          por exemplo). A partir daí, valem as regras do aplicativo ou da pessoa que recebe. O arquivo de respostas leva só as
+          respostas do guia, sem o diário e sem o plano de segurança; as anotações do diário só entram no relatório de evolução se
+          você marcar essa opção.
         </p>
       </section>
       <section className="space-y-2">
         <h2 className="text-lg font-semibold text-slate-900">Como apagar</h2>
         <p>
           Use “Apagar meus dados” no resultado ou na página inicial do paciente. Isso remove tudo o que o Stabilis guardou neste
-          navegador. Fechar a aba também apaga, se você escolheu não guardar no aparelho.
+          navegador, inclusive o diário e o plano de segurança. Também dá para apagar só o diário (no acompanhamento) ou só o plano
+          (na página do plano). Fechar a aba também apaga, se você escolheu não guardar no aparelho.
         </p>
       </section>
       <p className="text-sm text-slate-600">

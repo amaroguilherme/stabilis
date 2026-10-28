@@ -22,6 +22,15 @@ export default function Home() {
             <Link href="/paciente" className="min-h-11 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
               Começar
             </Link>
+            <Link href="/paciente/receita" className="min-h-11 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 hover:bg-slate-50">
+              Entender minha receita
+            </Link>
+            <Link href="/paciente/acompanhamento" className="min-h-11 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 hover:bg-slate-50">
+              Acompanhamento
+            </Link>
+            <Link href="/paciente/plano-de-seguranca" className="min-h-11 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 hover:bg-slate-50">
+              Plano de segurança
+            </Link>
             <Link href="/ajuda-agora" className="text-sm font-medium text-rose-700 underline underline-offset-2">Preciso de ajuda agora</Link>
           </div>
         </section>

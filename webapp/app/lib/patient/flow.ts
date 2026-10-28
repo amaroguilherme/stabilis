@@ -2,7 +2,7 @@
 // engine inputs. Pure functions over the knowledge base and the stored session.
 
 import { scoreInstrument } from "../engine/instruments.ts";
-import type { EngineInput, Instrument, InstrumentResult, KnowledgeBaseData } from "../engine/types.ts";
+import type { EngineInput, EngineOutput, Instrument, InstrumentResult, KnowledgeBaseData, TreatmentReviewItem } from "../engine/types.ts";
 import type { PatientSessionV1 } from "./store.ts";
 
 /** Questionnaires of the patient flow, in order. Only those with all item texts verified are shown. */
@@ -120,6 +120,7 @@ export function engineInput(kb: KnowledgeBaseData, session: PatientSessionV1, co
     profile: profileOf(session),
     instruments: { ...session.instruments, ...(screener && session.screening.completed_at ? { [screener.id]: session.screening.answers } : {}) },
     free_text: session.relato,
+    history: session.history,
     concerns: session.priorities,
   };
 }
@@ -127,4 +128,14 @@ export function engineInput(kb: KnowledgeBaseData, session: PatientSessionV1, co
 /** PHQ-9 item 9 above zero after a negative screening asks for the screening again. */
 export function phq9AsksRescreen(session: PatientSessionV1): boolean {
   return (session.instruments.phq9?.phq9_9 ?? 0) > 0 && session.screening.repeat_reason !== "phq9_item9";
+}
+
+/**
+ * Treatment review for the patient: rules tied to a condition (antidepressants in depression, lithium
+ * in bipolar disorder) only apply in that condition's section, so each tried medicine takes the
+ * first section that has a rule for it, and otherwise the general review (rules for any condition,
+ * such as the benzodiazepine time limit).
+ */
+export function patientTreatmentReview(parts: { output: EngineOutput }[], review: EngineOutput): TreatmentReviewItem[] {
+  return review.treatment_review.map((general, i) => parts.map((p) => p.output.treatment_review[i]).find((item) => item && item.status !== "no_criteria") ?? general);
 }

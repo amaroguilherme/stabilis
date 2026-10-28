@@ -3,8 +3,8 @@
 // alerts and up to eight questions. Pure: same session and knowledge base, same report.
 
 import { renderMessage } from "../engine/messages.ts";
-import type { Cite, EngineOutput, KnowledgeBase, Tier } from "../engine/types.ts";
-import { KNOWN_DIAGNOSES, riskScreener, scores, screeningResult } from "./flow.ts";
+import type { Cite, EngineOutput, KnowledgeBase, KnowledgeBaseData, MedEntry, Tier } from "../engine/types.ts";
+import { KNOWN_DIAGNOSES, patientTreatmentReview, riskScreener, scores, screeningResult } from "./flow.ts";
 import type { PatientSessionV1, TreatmentHistoryEntry } from "./store.ts";
 
 export const MAX_QUESTIONS = 8;
@@ -32,6 +32,15 @@ export const BAND_LABELS: Record<string, string> = {
 };
 
 const SEX = { female: "feminino", male: "masculino", intersex: "intersexo" } as const;
+const TRIAL_STATUS = {
+  adequate: "tentativa adequada",
+  low_dose: "dose abaixo da mínima eficaz",
+  short_duration: "tempo curto para avaliar",
+  beyond_recommended: "uso além do tempo recomendado",
+  within_recommended: "dentro do tempo recomendado",
+  unknown: "dose ou tempo não informados",
+  no_criteria: null,
+} as const;
 const RESPONSE = { good: "ajudou", partial: "ajudou um pouco", none: "não ajudou", unknown: "não sabe" } as const;
 const STOP = {
   side_effects: "efeitos colaterais",
@@ -145,12 +154,7 @@ export function buildDoctorReport(
 
   const crisis = outputs.some((o) => o.output.crisis.language) || review.crisis.language || (screen?.answered === true && screen.band !== "none");
   const reviewNames = new Map(data.drugs.map((d) => [d.id, d]));
-  const currentMeds = review.medication_review.map((item) => {
-    const drug = item.drug_id ? reviewNames.get(item.drug_id) : undefined;
-    const med = session.current_meds.find((m) => m.raw_text === item.raw_text);
-    const dose = med?.mg_per_day ? ` ${med.mg_per_day.toLocaleString("pt-BR")} mg/dia` : "";
-    return drug ? `${drug.names.dcb} (informado: “${item.raw_text}”)${dose}` : `“${item.raw_text}” (não reconhecido)${dose}`;
-  });
+  const currentMeds = session.current_meds.map((m) => medLine(data, m));
 
   const reportSections = outputs.map(({ condition, reason, output }) => ({
     title: conditionLabel(condition),
@@ -170,6 +174,8 @@ export function buildDoctorReport(
       ],
     })),
   }));
+
+  const treatmentReview = patientTreatmentReview(outputs, review);
 
   const seenAlerts = new Set<string>();
   const alerts = [...outputs.flatMap((o) => o.output.alerts), ...review.alerts, ...review.medication_review.flatMap((m) => m.alerts)]
@@ -196,7 +202,11 @@ export function buildDoctorReport(
     crisis,
     scores: [...scoreLines, ...skipped],
     current_meds: currentMeds,
-    history: session.history.filter((h) => h.still_using !== true || !session.current_meds.some((m) => m.drug_id && m.drug_id === h.drug_id)).map((h) => historyLine(kb, h)),
+    history: session.history.map((h, i) => {
+      const status = treatmentReview[i]?.status;
+      const label = status ? TRIAL_STATUS[status] : null;
+      return `${historyLine(kb, h)}${label ? ` · revisão: ${label}` : ""}`;
+    }),
     priorities: session.priorities.map((id) => PRIORITY_LABELS[id] ?? id),
     sections: reportSections,
     alerts,
@@ -230,6 +240,13 @@ export function reportText(report: DoctorReport): string {
 }
 
 /** JSON for the patient → professional bridge: inputs only, with a SHA-256 checksum. */
+/** A medicine in use as the reports show it: generic name (DCB), what the person typed, the daily dose. */
+export function medLine(data: KnowledgeBaseData, med: MedEntry): string {
+  const drug = med.drug_id ? data.drugs.find((d) => d.id === med.drug_id) : undefined;
+  const dose = med.mg_per_day ? ` ${med.mg_per_day.toLocaleString("pt-BR")} mg/dia` : "";
+  return drug ? `${drug.names.dcb} (informado: “${med.raw_text}”)${dose}` : `“${med.raw_text}” (não reconhecido)${dose}`;
+}
+
 export async function exportSession(session: PatientSessionV1, kb: KnowledgeBase, now: Date): Promise<string> {
   const data = {
     profile: session.profile,

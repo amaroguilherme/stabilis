@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import PatientShell from "@/app/components/patient/PatientShell";
 
 // Shown when the safety questions or the person's words point to risk. Medication information
 // stays hidden for the rest of the session (the engine gate), but the report can still be built.
-export default function CrisisPage() {
+function Crisis() {
+  const fromTracking = useSearchParams().get("de") === "acompanhamento";
   return (
     <PatientShell path="/paciente/crise" title="Você não precisa passar por isso sozinho(a)">
       {() => (
@@ -34,12 +37,19 @@ export default function CrisisPage() {
 
           <section className="space-y-3 text-slate-800">
             <p>
-              Por segurança, não vamos mostrar informações sobre remédios agora. Você pode continuar respondendo para montar um
-              relatório e levá-lo ao atendimento; ele vai indicar que há sinais de risco.
+              {fromTracking
+                ? "Por segurança, não vamos mostrar informações sobre remédios agora. Seus registros continuam guardados, e o relatório de evolução vai indicar que há sinais de risco."
+                : "Por segurança, não vamos mostrar informações sobre remédios agora. Você pode continuar respondendo para montar um relatório e levá-lo ao atendimento; ele vai indicar que há sinais de risco."}
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/paciente/perfil" className="min-h-12 rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700">
-                Continuar o relatório
+              <Link
+                href={fromTracking ? "/paciente/acompanhamento" : "/paciente/perfil"}
+                className="min-h-12 rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700"
+              >
+                {fromTracking ? "Voltar ao acompanhamento" : "Continuar o relatório"}
+              </Link>
+              <Link href="/paciente/plano-de-seguranca" className="min-h-12 rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800">
+                Fazer meu plano de segurança
               </Link>
               <Link href="/ajuda-agora" className="min-h-12 rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800">
                 Mais formas de ajuda
@@ -49,5 +59,13 @@ export default function CrisisPage() {
         </div>
       )}
     </PatientShell>
+  );
+}
+
+export default function CrisisPage() {
+  return (
+    <Suspense fallback={null}>
+      <Crisis />
+    </Suspense>
   );
 }

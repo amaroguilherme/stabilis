@@ -4,11 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AlertList from "@/app/components/engine/AlertList";
 import MedicationReview from "@/app/components/engine/MedicationReview";
+import TreatmentReview from "@/app/components/engine/TreatmentReview";
 import PatientShell from "@/app/components/patient/PatientShell";
 import { Questions, ScoreSummary, SectionResult, WhereToGo } from "@/app/components/patient/PatientResult";
 import { knowledgeBase } from "@/app/lib/kb";
 import { createLabels } from "@/app/lib/kb/labels";
-import { REFERRAL_ONLY, scores, screeningPositive } from "@/app/lib/patient/flow";
+import { patientTreatmentReview, REFERRAL_ONLY, scores, screeningPositive } from "@/app/lib/patient/flow";
 import { usePatientOutputs } from "@/app/lib/patient/outputs";
 import { clearAllData, type PatientSessionV1 } from "@/app/lib/patient/store";
 
@@ -21,6 +22,7 @@ function Result({ session }: { session: PatientSessionV1 }) {
   const crisis = review.crisis.language || screeningPositive(kb, session) || parts.some((p) => p.output.crisis.language);
   const referralOnly = session.known_diagnoses.filter((d) => REFERRAL_ONLY.has(d));
   const caseAlerts = review.alerts;
+  const treatmentReview = patientTreatmentReview(parts, review);
 
   return (
     <div className="space-y-10">
@@ -30,6 +32,9 @@ function Result({ session }: { session: PatientSessionV1 }) {
           <p className="mt-2">
             Procure ajuda agora: CVV <a href="tel:188" className="font-semibold underline">188</a> (24 horas), SAMU{" "}
             <a href="tel:192" className="font-semibold underline">192</a> ou uma UPA. Por segurança, não mostramos informações sobre remédios.
+          </p>
+          <p className="mt-2">
+            <Link href="/paciente/plano-de-seguranca" className="font-semibold underline">Fazer meu plano de segurança</Link>
           </p>
         </section>
       )}
@@ -83,6 +88,14 @@ function Result({ session }: { session: PatientSessionV1 }) {
         </section>
       )}
 
+      {treatmentReview.length > 0 && (
+        <section aria-labelledby="tratamentos" className="space-y-3">
+          <h2 id="tratamentos" className="text-xl font-semibold text-slate-900">Os tratamentos que você já fez</h2>
+          <p className="text-slate-600">Se a dose e o tempo foram suficientes para saber se o remédio funciona, segundo as diretrizes.</p>
+          <TreatmentReview items={treatmentReview} kb={kb} labels={labels} variant="plain" />
+        </section>
+      )}
+
       <section aria-labelledby="perguntas">
         <h2 id="perguntas" className="text-xl font-semibold text-slate-900">Perguntas para levar ao médico</h2>
         <div className="mt-3">
@@ -101,6 +114,15 @@ function Result({ session }: { session: PatientSessionV1 }) {
         </Link>
         <Link href="/paciente/perfil" className="min-h-12 rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800">
           Revisar respostas
+        </Link>
+        <Link href="/paciente/receita" className="min-h-12 rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800">
+          Entender minha receita
+        </Link>
+        <Link href="/paciente/acompanhamento" className="min-h-12 rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800">
+          Acompanhar entre as consultas
+        </Link>
+        <Link href="/paciente/plano-de-seguranca" className="min-h-12 rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800">
+          Plano de segurança
         </Link>
         <button
           type="button"

@@ -14,20 +14,32 @@ const screener = riskScreener(kb);
 const REASONS = {
   phq9: "Uma das suas respostas no questionário falou de pensamentos de morte ou de se machucar. Vamos repetir as perguntas de segurança.",
   relato: "Você escreveu algo que nos preocupa. Vamos repetir as perguntas de segurança.",
+  acompanhamento_phq9: "Uma das suas respostas no questionário falou de pensamentos de morte ou de se machucar. Vamos repetir as perguntas de segurança.",
+  acompanhamento_nota: "Você escreveu no diário algo que nos preocupa. Vamos repetir as perguntas de segurança.",
 } as const;
+type Reason = keyof typeof REASONS;
+
+const AFTER: Record<Reason, string> = {
+  phq9: nextStep(kb, "/paciente/questionarios/phq9"),
+  relato: nextStep(kb, "/paciente/relato"),
+  acompanhamento_phq9: "/paciente/acompanhamento",
+  acompanhamento_nota: "/paciente/acompanhamento",
+};
 
 function Safety() {
   const router = useRouter();
   const params = useSearchParams();
-  const repeat = params.get("repetir") as keyof typeof REASONS | null;
-  const after = repeat === "phq9" ? nextStep(kb, "/paciente/questionarios/phq9") : repeat === "relato" ? nextStep(kb, "/paciente/relato") : "/paciente/perfil";
+  const asked = params.get("repetir");
+  const repeat = asked && asked in REASONS ? (asked as Reason) : null;
+  const after = repeat ? AFTER[repeat] : "/paciente/perfil";
+  const tracking = repeat === "acompanhamento_phq9" || repeat === "acompanhamento_nota";
 
   return (
-    <PatientShell path="/paciente/seguranca" title="Antes de tudo, sua segurança">
+    <PatientShell path={tracking ? "/paciente/acompanhamento/seguranca" : "/paciente/seguranca"} title="Antes de tudo, sua segurança">
       {(session) => (
         <>
           <p className="text-slate-700">
-            {repeat && REASONS[repeat]
+            {repeat
               ? REASONS[repeat]
               : "Algumas perguntas rápidas sobre pensamentos de morte. Responda com sinceridade: elas servem para mostrar ajuda imediata, se for preciso."}
           </p>
@@ -43,10 +55,15 @@ function Safety() {
                     screening: {
                       answers,
                       completed_at: new Date().toISOString(),
-                      repeat_reason: repeat === "phq9" ? "phq9_item9" : repeat === "relato" ? "crisis_language" : s.screening.repeat_reason,
+                      repeat_reason:
+                        repeat === "phq9" || repeat === "acompanhamento_phq9"
+                          ? "phq9_item9"
+                          : repeat === "relato" || repeat === "acompanhamento_nota"
+                            ? "crisis_language"
+                            : s.screening.repeat_reason,
                     },
                   }));
-                  router.push(result.band && result.band !== "none" ? "/paciente/crise" : after);
+                  router.push(result.band && result.band !== "none" ? (tracking ? "/paciente/crise?de=acompanhamento" : "/paciente/crise") : after);
                 }}
               />
             ) : (
