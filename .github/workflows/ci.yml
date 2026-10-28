@@ -73,3 +73,28 @@ jobs:
       - run: npm run build
       - name: No Hugging Face token in the client bundle
         run: "! grep -rqE 'hf_[A-Za-z0-9]{20,}' .next/static"
+
+  e2e:
+    # Patient and professional journeys in headless Chrome against the production build, with axe-core.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: web
+    defaults:
+      run:
+        working-directory: webapp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: webapp/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Start the app and Chrome
+        run: |
+          npx next start -p 3100 > /tmp/next.log 2>&1 &
+          google-chrome --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9223 --user-data-dir=/tmp/chrome about:blank > /tmp/chrome.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://localhost:3100/ > /dev/null && curl -sf http://127.0.0.1:9223/json/version > /dev/null && break; sleep 1; done
+      - run: node e2e/patient.mjs
+      - run: node e2e/professional.mjs
