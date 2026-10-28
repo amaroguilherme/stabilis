@@ -71,7 +71,9 @@
         "queria estar morto",
         "queria estar morta",
         "quero estar morto",
-        "quero estar morta"
+        "quero estar morta",
+        "para morrer",
+        "pra morrer"
       ]
     },
     {
@@ -104,6 +106,8 @@
       "phrases": [
         "tentativa de suicídio",
         "tentei me matar",
+        "dose letal",
+        "dose fatal",
         "plano de suicídio",
         "planejei me matar",
         "planejando me matar",

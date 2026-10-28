@@ -1,7 +1,7 @@
 {
   "_generated_by": "scripts/build_kb.py — não edite este arquivo; edite knowledge/ e rode o script",
   "_source": "knowledge/lexicons/crisis.pt-BR.json",
-  "content_hash": "sha256:aeb4853a69473cebedcd51aafef4006943de5d690aea369ded4f69c57c334288",
+  "content_hash": "sha256:f43ba4e229b7f5bd0ff41f2c12470feff0907ec5c7e1cc74d362b091f68ece60",
   "data": {
     "description": "Expressões que indicam risco de suicídio ou autolesão. Detecção determinística, de alta sensibilidade: falso positivo mostra recursos de ajuda; falso negativo é o erro grave. Usado por core/safety/crisis.py e webapp/app/lib/safety/crisis.ts (mesmo algoritmo, mesmos vetores em knowledge/tests/crisis.vectors.json).",
     "id": "crisis.pt-BR",
@@ -74,7 +74,9 @@
           "queria estar morto",
           "queria estar morta",
           "quero estar morto",
-          "quero estar morta"
+          "quero estar morta",
+          "para morrer",
+          "pra morrer"
         ]
       },
       {
@@ -107,6 +109,8 @@
         "phrases": [
           "tentativa de suicídio",
           "tentei me matar",
+          "dose letal",
+          "dose fatal",
           "plano de suicídio",
           "planejei me matar",
           "planejando me matar",
