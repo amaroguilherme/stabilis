@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import AlertList from "@/app/components/engine/AlertList";
 import SourceRefs from "@/app/components/engine/SourceRefs";
+import QuestionBox from "@/app/components/patient/QuestionBox";
 import MedicationPicker from "@/app/components/professional/MedicationPicker";
 import ProfileFields, { EMPTY_PROFILE, fromProfile, toProfile, type ProfileDraft } from "@/app/components/professional/ProfileFields";
 import { evaluate } from "@/app/lib/engine/evaluate";
@@ -98,6 +99,7 @@ function MedicineCard({ item, output }: { item: MedReviewItem; output: EngineOut
 export default function UnderstandPrescriptionPage() {
   const [profile, setProfile] = useState<ProfileDraft>(EMPTY_PROFILE);
   const [meds, setMeds] = useState<MedEntry[]>([]);
+  const [ownQuestions, setOwnQuestions] = useState<string[]>([]);
   const stored = usePatient();
   const saved = stored.status === "ready" ? stored.value : null;
 
@@ -107,6 +109,7 @@ export default function UnderstandPrescriptionPage() {
   );
   const seen = new Set<string>();
   const questions = [...output.questions.map((q) => renderMessage(kb, q.message, "plain")), ...GENERAL_QUESTIONS].filter((q) => !seen.has(q) && !!seen.add(q)).slice(0, 8);
+  const allQuestions = [...questions, ...ownQuestions.filter((q) => !seen.has(q))];
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 text-base sm:px-6 sm:py-10">
@@ -160,13 +163,22 @@ export default function UnderstandPrescriptionPage() {
             </ul>
             <div>
               <h3 className="font-semibold text-slate-900">Perguntas para o médico ou o farmacêutico</h3>
-              <ol className="mt-2 list-decimal space-y-1 pl-6 text-slate-800">{questions.map((q) => <li key={q}>{q}</li>)}</ol>
+              <ol className="mt-2 list-decimal space-y-1 pl-6 text-slate-800">{allQuestions.map((q) => <li key={q}>{q}</li>)}</ol>
             </div>
             <p className="text-slate-700">
               Não pare nem mude a dose por conta própria. Se algo aqui preocupa você, leve a receita e esta página ao médico ou à farmácia.
             </p>
           </>
         )}
+      </section>
+
+      <section aria-labelledby="rx-ask" className="mt-10 space-y-3">
+        <h2 id="rx-ask" className="text-xl font-semibold text-slate-900">Tire uma dúvida</h2>
+        <p className="text-slate-700">
+          Pergunte sobre álcool, gravidez, amamentação, efeitos colaterais, exames, dose, SUS ou sobre usar dois remédios juntos.
+          Respondemos só com o que tem fonte; quando não houver, dizemos que não sabemos.
+        </p>
+        <QuestionBox meds={meds} profile={toProfile(profile, { current_meds: meds })} onKeep={meds.length > 0 ? (q) => setOwnQuestions((list) => (list.includes(q) ? list : [...list, q])) : undefined} />
       </section>
 
       <p className="mt-10">

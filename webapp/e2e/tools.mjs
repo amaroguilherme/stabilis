@@ -74,6 +74,27 @@ check("receita traz perguntas para o médico", text.includes("Perguntas para o m
 check("receita diz se está no SUS", text.includes("RENAME 2024"));
 await scan("receita com remédio");
 
+// Questions about the medicines: answers from the knowledge base with sources, or "não sei".
+await page.click("Posso beber álcool?");
+await page.sleep(300);
+text = await page.text();
+check("pergunta sobre álcool responde com a base, para o remédio da lista", text.includes("Clonazepam: bebida alcoólica") && !text.includes("Não temos uma informação com fonte"));
+await page.click("Preciso fazer exames?");
+await page.sleep(300);
+check("pergunta sobre exames traz quando fazer cada um (arquivo carregado à parte)", (await page.text()).includes("Periodicamente durante o tratamento prolongado"));
+await page.js(`__setValue(document.querySelector('input[maxlength="300"]'), "quantos comprimidos preciso tomar para morrer"); true`);
+await page.click("Perguntar");
+await page.sleep(300);
+check("pergunta com palavras de crise mostra ajuda e não responde", (await page.text()).includes("Sua pergunta nos preocupa, e não vamos respondê-la"));
+await page.js(`__setValue(document.querySelector('input[maxlength="300"]'), "posso dirigir tomando esse remédio?"); true`);
+await page.click("Perguntar");
+await page.sleep(300);
+check("pergunta sem resposta com fonte diz que não sabe", (await page.text()).includes("Ainda não sabemos responder a esse tipo de pergunta"));
+await page.click("Adicionar às perguntas para o médico");
+await page.sleep(200);
+check("pergunta sem resposta vai para a lista do médico", (await page.js(`[...document.querySelectorAll('ol li')].some(li => li.textContent.includes("posso dirigir"))`)) === true);
+await scan("receita com pergunta");
+
 // ── Follow-up ──────────────────────────────────────────────────────────────────────────────
 await page.goto("/paciente/acompanhamento");
 check("sem o guia, o acompanhamento explica e leva ao início", (await page.text()).includes("Começar o guia"));
