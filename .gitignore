@@ -213,3 +213,10 @@ models/
 
 # Downloaded source documents (scripts/fetch_sources.py)
 .sources-cache/
+
+# Synthetic datasets (datagen/run.py), published to the private HF dataset instead
+datagen/out/
+
+# Fine-tuning data and runs (finetune/)
+finetune/data/
+runs/

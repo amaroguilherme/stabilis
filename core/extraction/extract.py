@@ -19,7 +19,7 @@ import logging
 from jsonschema import Draft202012Validator
 
 from core.extraction.meds import MedicationIndex
-from core.extraction.prompt import TASKS, build_prompt
+from core.extraction.prompt import TASKS, build_prompt, build_short_prompt
 from core.extraction.schema import SCHEMA_VERSION, build_schema
 from core.extraction.text import evidence_supported, normalize, sanitize_user_text
 from core.llm.base import LlmClient, LlmError
@@ -31,9 +31,10 @@ MAX_OUTPUT_TOKENS = 1024
 
 
 class Extractor:
-    def __init__(self, llm: LlmClient | None, kb, *, max_text_chars: int = 4000):
+    def __init__(self, llm: LlmClient | None, kb, *, max_text_chars: int = 4000, prompt_style: str = "full"):
         self.llm = llm
         self.max_text_chars = max_text_chars
+        self.prompt_style = prompt_style  # "short" only for a model fine-tuned with build_short_prompt
         comorbidities = kb.vocab["comorbidities"]
         self._conditions = {c["id"]: c["label_clinical"] for c in comorbidities["comorbidities"]}
         self._habits = {h["id"]: h["label_clinical"] for h in comorbidities["habits"]}
@@ -64,7 +65,7 @@ class Extractor:
     def _ask_model(self, text: str, task: str) -> tuple[dict | None, bool]:
         if self.llm is None or not text:
             return None, self.llm is None
-        prompt = build_prompt(task, text, self._conditions, self._habits)
+        prompt = build_short_prompt(task, text) if self.prompt_style == "short" else build_prompt(task, text, self._conditions, self._habits)
         try:
             raw = self.llm.complete_json(prompt, self.schema, max_tokens=MAX_OUTPUT_TOKENS)
         except LlmError as exc:

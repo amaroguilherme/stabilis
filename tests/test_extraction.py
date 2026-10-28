@@ -186,3 +186,9 @@ def test_ready_reflects_the_language_model(kb):
     client, services = _client(LanguageService(kb, FakeLlm(model_output())))
     services.runtime.warm()
     assert client.get("/ready").status_code == 200
+
+
+def test_short_prompt_for_fine_tuned_models(kb):
+    llm = FakeLlm(model_output())
+    Extractor(llm, kb, prompt_style="short").extract("durmo mal", "patient")
+    assert llm.prompts[0] == "<tarefa:paciente>\n<<<TEXTO\ndurmo mal\nTEXTO>>>"
