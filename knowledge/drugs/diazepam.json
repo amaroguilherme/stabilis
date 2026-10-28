@@ -169,6 +169,20 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "sleepiness",
+      "fatigue",
+      "coordination"
+    ],
+    "cite": {
+      "source": "label-diazepam",
+      "locator": "seção 6 ADVERSE REACTIONS",
+      "quote": "Adverse reactions most commonly reported were drowsiness, fatigue, muscle weakness, and ataxia.",
+      "accessed": "2026-10-27"
+    },
+    "note": "A frase não separa por indicação (ansiedade, abstinência alcoólica, espasmo muscular, convulsões). Fraqueza muscular entra em cansaço ou fraqueza."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

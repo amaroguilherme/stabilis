@@ -872,6 +872,314 @@
         "url": "https://europepmc.org/articles/PMC1495268?pdf=render"
       },
       "license_note": "Texto completo gratuito no PubMed Central (PMC1495268). O PHQ-9 é de uso livre, sem necessidade de permissão."
+    },
+    {
+      "id": "phq9-ptbr-pfizer",
+      "title": "Questionário sobre a Saúde do/a Paciente (PHQ-9) – versão oficial em português do Brasil",
+      "publisher": "Pfizer Inc. (site oficial phqscreeners.com); desenvolvido por Spitzer RL, Williams JBW, Kroenke K e colegas",
+      "year": 2010,
+      "kind": "instrument",
+      "language": "pt-BR",
+      "url": "https://www.phqscreeners.com/images/sites/g/files/g10060481/f/201412/PHQ9_Portuguese%20for%20Brazil.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.phqscreeners.com/images/sites/g/files/g10060481/f/201412/PHQ9_Portuguese%20for%20Brazil.pdf",
+        "note": "PDF 'Portugese for Brazil' listado na página Select Screener de phqscreeners.com (o site mostra antes uma página de termos de uso da Pfizer). Ano pelos metadados do PDF."
+      },
+      "license_note": "Uso livre: o próprio formulário diz que não é necessária permissão para reproduzir, traduzir, exibir ou distribuir."
+    },
+    {
+      "id": "gad7-ptbr-pfizer",
+      "title": "GAD-7 – versão oficial em português do Brasil",
+      "publisher": "Pfizer Inc. (site oficial phqscreeners.com); desenvolvido por Spitzer RL, Williams JBW, Kroenke K e colegas",
+      "year": 2010,
+      "kind": "instrument",
+      "language": "pt-BR",
+      "url": "https://www.phqscreeners.com/images/sites/g/files/g10060481/f/201412/GAD7_Portuguese%20for%20Brazil.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.phqscreeners.com/images/sites/g/files/g10060481/f/201412/GAD7_Portuguese%20for%20Brazil.pdf",
+        "note": "PDF 'Portugese for Brazil' listado na página Select Screener de phqscreeners.com (o site mostra antes uma página de termos de uso da Pfizer). Ano pelos metadados do PDF."
+      },
+      "license_note": "Uso livre: o próprio formulário diz que não é necessária permissão para reproduzir, traduzir, exibir ou distribuir."
+    },
+    {
+      "id": "phq-gad7-manual",
+      "title": "Instruction Manual: Instructions for Patient Health Questionnaire (PHQ) and GAD-7 Measures",
+      "publisher": "Pfizer Inc. (site oficial phqscreeners.com); manual dos autores do PHQ (Spitzer RL, Williams JBW, Kroenke K)",
+      "year": 2010,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://www.phqscreeners.com/images/sites/g/files/g10016261/f/201412/instructions.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.phqscreeners.com/images/sites/g/files/g10016261/f/201412/instructions.pdf"
+      },
+      "license_note": "Manual oficial; declara o PHQ e o GAD-7 de domínio público, sem necessidade de permissão."
+    },
+    {
+      "id": "moreno-2016-gad7",
+      "title": "Factor Structure, Reliability, and Item Parameters of the Brazilian-Portuguese Version of the GAD-7 Questionnaire",
+      "publisher": "Moreno AL, DeSousa DA, Souza AMFLP, Manfro GG, Salum GA, Koller SH, Osório FL, Crippa JAS. Temas em Psicologia 2016;24(1):367-376",
+      "year": 2016,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://doi.org/10.9788/TP2016.1-25",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.redalyc.org/pdf/5137/513754276019.pdf",
+        "note": "Cópia do Redalyc (repositório de acesso aberto); o PePSIC bloqueia acesso automatizado."
+      },
+      "license_note": "Acesso aberto (Redalyc). Citações curtas com atribuição."
+    },
+    {
+      "id": "santos-2013-phq9",
+      "title": "Sensibilidade e especificidade do Patient Health Questionnaire-9 (PHQ-9) entre adultos da população geral",
+      "publisher": "Santos IS, Tavares BF, Munhoz TN, et al. Cadernos de Saúde Pública 2013;29(8):1533-1543",
+      "year": 2013,
+      "kind": "instrument",
+      "language": "pt-BR",
+      "url": "https://doi.org/10.1590/0102-311X00144612",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.scielo.br/j/csp/a/w8cGvWXdk4xzLzPTwYVt3Pr/?lang=pt"
+      },
+      "license_note": "CC BY-NC 4.0 (SciELO): uso não comercial, com atribuição."
+    },
+    {
+      "id": "piccolo-2026-phq9",
+      "title": "Ensuring clinical validity: the case for reconsidering \"several days\" in the PHQ-9 Brazilian version",
+      "publisher": "Piccolo M. Brazilian Journal of Psychiatry 2026;48:e20254635 (carta aos editores)",
+      "year": 2026,
+      "kind": "review",
+      "language": "en",
+      "url": "https://doi.org/10.47626/1516-4446-2025-4635",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.bjp.org.br/details/3674/en-US/ensuring-clinical-validity--the-case-for-reconsidering--several-days--in-the-phq-9-brazilian-version"
+      },
+      "license_note": "Acesso aberto (Braz J Psychiatry). Citações curtas com atribuição."
+    },
+    {
+      "id": "nimh-asq-pt",
+      "title": "Perguntas para triagem de suicídio (ASQ) – Kit de ferramentas NIMH: Portuguese",
+      "publisher": "National Institute of Mental Health (NIMH), EUA",
+      "year": 2017,
+      "kind": "instrument",
+      "language": "pt-BR",
+      "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asqtranslations/asq-portuguese.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asqtranslations/asq-portuguese.pdf",
+        "note": "O NIMH rotula esta versão como 'Portuguese' e publica outra como 'European Portuguese'; a redação desta segue o português do Brasil. Bilíngue (português e inglês), datada de 4/15/2017."
+      },
+      "license_note": "Domínio público (NIMH, governo dos EUA): reprodução sem permissão, citando o NIMH e sem reutilizar imagens."
+    },
+    {
+      "id": "nimh-asq-tool-en",
+      "title": "Suicide Risk Screening Tool (ASQ) – NIMH Toolkit: Screening Tool for Youth and Adults",
+      "publisher": "National Institute of Mental Health (NIMH), EUA",
+      "year": 2025,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/screening-tool-asq-nimh-toolkit.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/screening-tool-asq-nimh-toolkit.pdf",
+        "note": "Versão em inglês vigente (9/29/25), mais nova que a tradução em português de 2017."
+      },
+      "license_note": "Domínio público (NIMH, governo dos EUA)."
+    },
+    {
+      "id": "nimh-asq-info-sheet",
+      "title": "Ask Suicide-Screening Questions (ASQ) – NIMH Toolkit Information Sheet",
+      "publisher": "National Institute of Mental Health (NIMH), EUA",
+      "year": 2020,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/information_sheet_asq_nimh_toolkit.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/information_sheet_asq_nimh_toolkit.pdf"
+      },
+      "license_note": "Domínio público (NIMH, governo dos EUA)."
+    },
+    {
+      "id": "nimh-asq-ed-pathway",
+      "title": "Suicide Risk Screening Pathway – Emergency Department (ASQ Toolkit, com texto complementar)",
+      "publisher": "National Institute of Mental Health (NIMH), EUA; PaCC/AACAP",
+      "year": 2019,
+      "kind": "guideline",
+      "language": "en",
+      "url": "https://www.nimh.nih.gov/sites/default/files/documents/suicide_risk_screening_clinical_pathway_ed_final_with_supplement.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.nimh.nih.gov/sites/default/files/documents/suicide_risk_screening_clinical_pathway_ed_final_with_supplement.pdf",
+        "note": "Fluxo pediátrico de pronto-socorro; usado aqui só pelo trecho sobre a forma de aplicação validada do ASQ."
+      },
+      "license_note": "Domínio público (NIMH, governo dos EUA)."
+    },
+    {
+      "id": "nimh-copyright-policy",
+      "title": "Website Policies – Copyright Policy",
+      "publisher": "National Institute of Mental Health (NIMH), EUA",
+      "year": 2026,
+      "kind": "policy",
+      "language": "en",
+      "url": "https://www.nimh.nih.gov/site-info/policies",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.nimh.nih.gov/site-info/policies"
+      },
+      "license_note": "Política de reutilização dos materiais do NIMH (domínio público)."
+    },
+    {
+      "id": "castelo-2010-mdq",
+      "title": "Validity of the Mood Disorder Questionnaire in a Brazilian psychiatric population",
+      "publisher": "Castelo MS, Carvalho ER, Gerhard ES, Costa CMC, Ferreira ED, Carvalho AF. Revista Brasileira de Psiquiatria 2010;32(4):424-428",
+      "year": 2010,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://doi.org/10.1590/S1516-44462010005000024",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://www.scielo.br/j/rbp/a/JBbkjB85qbQ9HpwwwT7kfYz/?lang=en",
+        "note": "O apêndice com a versão brasileira do MDQ está só como imagem (JPG) na página; não há PDF do artigo no SciELO."
+      },
+      "license_note": "CC BY-NC 4.0 (SciELO): uso não comercial, com atribuição."
+    },
+    {
+      "id": "mha-screening-tests",
+      "title": "About our mental health tests",
+      "publisher": "Mental Health America (MHA)",
+      "year": 2024,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://screening.mhanational.org/about-our-mental-health-tests/",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://screening.mhanational.org/about-our-mental-health-tests/"
+      },
+      "license_note": "Página informativa da MHA sobre a origem e as condições de uso dos questionários que ela oferece."
+    },
+    {
+      "id": "subpav-audit-ptbr",
+      "title": "AUDIT – Teste para Identificação de Problemas Relacionados ao uso de Álcool (versão autoaplicável)",
+      "publisher": "Secretaria Municipal de Saúde do Rio de Janeiro (SUBPAV); formulário de E. F. Furtado baseado na versão brasileira de Méndez (1999)",
+      "year": 2016,
+      "kind": "instrument",
+      "language": "pt-BR",
+      "url": "https://subpav.org/download/prot/Question%C3%A1rio%20AUDIT",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://subpav.org/download/prot/Question%C3%A1rio%20AUDIT",
+        "note": "Ano pelos metadados do PDF. Cita Méndez EB, Uma versão brasileira do AUDIT, dissertação, UFPel, 1999."
+      },
+      "license_note": "AUDIT de domínio público (instrumento aprovado pela OMS); uso não comercial sem permissão."
+    },
+    {
+      "id": "auditscreen-faq",
+      "title": "AUDIT – Frequently Asked Questions (AUDIT use rights)",
+      "publisher": "auditscreen.org (site do AUDIT mantido por John B. Saunders, coautor do instrumento)",
+      "year": 2026,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://auditscreen.org/about/faqs/",
+      "retrieval": {
+        "kind": "html",
+        "url": "https://auditscreen.org/about/faqs/"
+      },
+      "license_note": "Termos de uso do AUDIT: domínio público; uso não comercial sem permissão, sem alterar o conteúdo e indicando que é instrumento aprovado pela OMS."
+    },
+    {
+      "id": "bradley-2007-auditc",
+      "title": "AUDIT-C as a brief screen for alcohol misuse in primary care",
+      "publisher": "Bradley KA, DeBenedetti AF, Volk RJ, Williams EC, Frank D, Kivlahan DR. Alcoholism: Clinical and Experimental Research 2007;31(7):1208-1217",
+      "year": 2007,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://doi.org/10.1111/j.1530-0277.2007.00403.x",
+      "retrieval": {
+        "kind": "file",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:17451397%20AND%20SRC:MED&resultType=core&format=json",
+        "note": "Só o resumo (MEDLINE), pela API do Europe PMC: o texto completo não é de acesso aberto e o PubMed exige CAPTCHA."
+      },
+      "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto."
+    },
+    {
+      "id": "osorio-2009-phq9",
+      "title": "Study of the discriminative validity of the PHQ-9 and PHQ-2 in a sample of Brazilian women in the context of primary health care",
+      "publisher": "de Lima Osório F, Vilela Mendes A, Crippa JA, Loureiro SR. Perspectives in Psychiatric Care 2009;45(3):216-227",
+      "year": 2009,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://doi.org/10.1111/j.1744-6163.2009.00224.x",
+      "retrieval": {
+        "kind": "file",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:19566694%20AND%20SRC:MED&resultType=core&format=json",
+        "note": "Só o resumo (MEDLINE), pela API do Europe PMC: o texto completo não é de acesso aberto e o PubMed exige CAPTCHA."
+      },
+      "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto."
+    },
+    {
+      "id": "supera-audit-ptbr",
+      "title": "AUDIT – Teste para Identificação de Problemas Relacionados ao Uso de Álcool (Kit Formatura do curso SUPERA)",
+      "publisher": "Secretaria Nacional de Políticas sobre Drogas (SENAD, Ministério da Justiça) e Universidade Federal de São Paulo (UNIFESP); adaptação brasileira de Méndez (1999)",
+      "year": 2016,
+      "kind": "instrument",
+      "language": "pt-BR",
+      "url": "https://www.supera.org.br/@/material/mtd/pdf/bloco_Audit.pdf",
+      "retrieval": {
+        "kind": "pdf",
+        "url": "https://www.supera.org.br/@/material/mtd/pdf/bloco_Audit.pdf",
+        "note": "Formulário em duas colunas: na extração de texto, a questão 3 sai intercalada com a 8. Ano pelos metadados do PDF."
+      },
+      "license_note": "Material de curso do governo federal (SENAD/UNIFESP); o AUDIT é de domínio público (instrumento aprovado pela OMS)."
+    },
+    {
+      "id": "horowitz-2020-asq",
+      "title": "Validation of the Ask Suicide-Screening Questions for Adult Medical Inpatients: A Brief Tool for All Ages",
+      "publisher": "Horowitz LM, Snyder DJ, Boudreaux ED, et al. Psychosomatics 2020;61(6):713-722",
+      "year": 2020,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://doi.org/10.1016/j.psym.2020.04.008",
+      "retrieval": {
+        "kind": "file",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:32487323%20AND%20SRC:MED&resultType=core&format=json",
+        "note": "Só o resumo (MEDLINE), pela API do Europe PMC: o texto completo (manuscrito no PMC) não sai pela API e o PubMed exige CAPTCHA."
+      },
+      "license_note": "Resumo público no MEDLINE."
+    },
+    {
+      "id": "gurgel-2012-mdq",
+      "title": "Brazilian Portuguese validation of Mood Disorder Questionnaire",
+      "publisher": "de Sousa Gurgel W, Rebouças DB, Negreiros de Matos KJ, Carneiro AH, Gomes de Matos e Souza F. Comprehensive Psychiatry 2012;53(3):308-312",
+      "year": 2012,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://doi.org/10.1016/j.comppsych.2011.04.059",
+      "retrieval": {
+        "kind": "file",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:21632039%20AND%20SRC:MED&resultType=core&format=json",
+        "note": "Só o resumo (MEDLINE), pela API do Europe PMC: o texto completo não é de acesso aberto e o PubMed exige CAPTCHA."
+      },
+      "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto."
+    },
+    {
+      "id": "meneses-gaya-2010-audit",
+      "title": "Is the full version of the AUDIT really necessary? Study of the validity and internal construct of its abbreviated versions",
+      "publisher": "Meneses-Gaya C, Zuardi AW, Loureiro SR, et al. Alcoholism: Clinical and Experimental Research 2010;34(8):1417-1424",
+      "year": 2010,
+      "kind": "instrument",
+      "language": "en",
+      "url": "https://doi.org/10.1111/j.1530-0277.2010.01225.x",
+      "retrieval": {
+        "kind": "file",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:20491736%20AND%20SRC:MED&resultType=core&format=json",
+        "note": "Só o resumo (MEDLINE), pela API do Europe PMC: o texto completo não é de acesso aberto e o PubMed exige CAPTCHA."
+      },
+      "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto."
     }
   ]
 }

@@ -207,6 +207,27 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "fatigue",
+      "sweating",
+      "nausea",
+      "appetite_decrease",
+      "sleepiness",
+      "dizziness",
+      "insomnia",
+      "tremor",
+      "nervousness",
+      "sexual_dysfunction"
+    ],
+    "cite": {
+      "source": "label-paroxetina",
+      "locator": "seção 6.1 Clinical Trials Experience (Most Common Adverse Reactions)",
+      "quote": "The most commonly observed adverse reactions associated with the use of PAXIL (incidence of 5% or greater and at least twice that for placebo) were: MDD: Asthenia, sweating, nausea, decreased appetite, somnolence, dizziness, insomnia, tremor, nervousness, ejaculatory disturbance, and other male genital disorders.",
+      "accessed": "2026-10-27"
+    },
+    "note": "Lista de TDM. \"Other male genital disorders\" inclui anorgasmia, dificuldade de ereção e impotência (nota b da Tabela 4), por isso entra em disfunção sexual."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

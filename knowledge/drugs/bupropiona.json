@@ -209,6 +209,11 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": ["appetite_decrease", "dry_mouth", "rash", "sweating", "tremor", "tinnitus"],
+    "cite": {"source": "label-bupropiona", "locator": "seção 6.1 Clinical Trials Experience (Commonly Observed Adverse Reactions in Controlled Clinical Trials of Sustained-Release Bupropion Hydrochloride)", "quote": "Adverse reactions that occurred in at least 5% of patients treated with bupropion HCl sustained-release (300 mg and 400 mg per day) and at a rate at least twice the placebo rate are listed below. 300 mg/day of bupropion HCl sustained-release: anorexia, dry mouth, rash, sweating, tinnitus, and tremor.", "accessed": "2026-10-27"},
+    "note": "Lista para 300 mg/dia nos estudos com a forma SR. Em 400 mg/dia a bula lista também insônia, náusea, tontura, ansiedade, agitação e outras. Sem id no vocabulário: zumbido."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

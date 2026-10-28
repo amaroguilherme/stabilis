@@ -279,6 +279,23 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "sleepiness",
+      "dry_mouth",
+      "dizziness",
+      "constipation",
+      "fatigue"
+    ],
+    "cite": {
+      "source": "label-quetiapina",
+      "locator": "seção 6.1 Clinical Study Experience (depressão bipolar)",
+      "quote": "In bipolar depression studies (up to 8 weeks), the most commonly observed adverse reactions associated with the use of SEROQUEL (incidence of 5% or greater) and observed at a rate on SEROQUEL at least twice that of placebo were somnolence (57%), dry mouth (44%), dizziness (18%), constipation (10%), and lethargy (5%).",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção, esquizofrenia e mania em monoterapia (análise conjunta): \"were somnolence (18%), dizziness (11%), dry mouth (9%), constipation (8%), ALT increased (5%), weight gain (5%), and dyspepsia (5%).\""
+    },
+    "note": "Depressão bipolar (estudos de até 8 semanas). Letargia entra como cansaço. Na mania em monoterapia (análise junto com esquizofrenia) aparecem também ganho de peso, dispepsia e aumento de ALT."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

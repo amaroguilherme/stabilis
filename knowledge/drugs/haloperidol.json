@@ -42,5 +42,6 @@
     {"tag": "discontinuation_syndrome", "severity": "info", "cite": {"source": "label-haloperidol", "locator": "seção ADVERSE REACTIONS: Withdrawal Emergent Neurological Signs", "quote": "However, some patients on maintenance treatment experience transient dyskinetic signs after abrupt withdrawal.", "accessed": "2026-10-27", "note": "Mesma seção: \"it seems reasonable to gradually withdraw use of haloperidol.\" Em tratamentos curtos, a bula diz que a retirada abrupta em geral não causa problemas."}}
   ],
   "monitoring": [],
+  "common_effects": {"effects": ["movement_symptoms", "restlessness"], "cite": {"source": "label-haloperidol", "locator": "seção ADVERSE REACTIONS: Extrapyramidal Symptoms (EPS)", "quote": "EPS during the administration of haloperidol have been reported frequently, often during the first few days of treatment. EPS can be categorized generally as Parkinson-like symptoms, akathisia, or dystonia (including opisthotonos and oculogyric crisis).", "accessed": "2026-10-27"}, "note": "Bula de haloperidol oral (transtornos psicóticos e Tourette). Não há lista de reações mais comuns: é a única frase sobre frequência e trata só dos sintomas extrapiramidais."},
   "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null}
 }

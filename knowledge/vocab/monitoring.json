@@ -1,19 +1,19 @@
 {
-  "description": "Exames e acompanhamentos que a bula ou a diretriz exigem (knowledge/drugs/*.json → monitoring[].id).",
+  "description": "Exames e acompanhamentos que a bula ou a diretriz exigem (knowledge/drugs/*.json → monitoring[].id). `blood_test`: exige exame de sangue (usado quando a pessoa prefere menos exames).",
   "monitoring": [
-    {"id": "lithium_levels", "label_pt": "Dosagem de lítio no sangue (litemia)"},
-    {"id": "valproate_levels", "label_pt": "Dosagem de valproato no sangue"},
-    {"id": "carbamazepine_levels", "label_pt": "Dosagem de carbamazepina no sangue"},
-    {"id": "blood_count", "label_pt": "Hemograma"},
-    {"id": "neutrophil_count", "label_pt": "Contagem de neutrófilos (hemograma frequente)"},
-    {"id": "liver_function", "label_pt": "Exames do fígado (enzimas hepáticas)"},
-    {"id": "renal_function", "label_pt": "Exames dos rins (creatinina)"},
-    {"id": "thyroid_function", "label_pt": "Exames da tireoide (TSH)"},
-    {"id": "sodium", "label_pt": "Dosagem de sódio no sangue"},
-    {"id": "ecg", "label_pt": "Eletrocardiograma"},
-    {"id": "metabolic_profile", "label_pt": "Peso, glicemia e colesterol"},
-    {"id": "blood_pressure", "label_pt": "Pressão arterial"},
-    {"id": "skin_rash", "label_pt": "Atenção a manchas ou bolhas na pele, sobretudo nas primeiras semanas"},
-    {"id": "mood_suicidality", "label_pt": "Acompanhamento próximo do humor e de pensamentos suicidas, sobretudo no início"}
+    {"id": "lithium_levels", "label_pt": "Dosagem de lítio no sangue (litemia)", "blood_test": true},
+    {"id": "valproate_levels", "label_pt": "Dosagem de valproato no sangue", "blood_test": true},
+    {"id": "carbamazepine_levels", "label_pt": "Dosagem de carbamazepina no sangue", "blood_test": true},
+    {"id": "blood_count", "label_pt": "Hemograma", "blood_test": true},
+    {"id": "neutrophil_count", "label_pt": "Contagem de neutrófilos (hemograma frequente)", "blood_test": true},
+    {"id": "liver_function", "label_pt": "Exames do fígado (enzimas hepáticas)", "blood_test": true},
+    {"id": "renal_function", "label_pt": "Exames dos rins (creatinina)", "blood_test": true},
+    {"id": "thyroid_function", "label_pt": "Exames da tireoide (TSH)", "blood_test": true},
+    {"id": "sodium", "label_pt": "Dosagem de sódio no sangue", "blood_test": true},
+    {"id": "ecg", "label_pt": "Eletrocardiograma", "blood_test": false},
+    {"id": "metabolic_profile", "label_pt": "Peso, glicemia e colesterol", "blood_test": true},
+    {"id": "blood_pressure", "label_pt": "Pressão arterial", "blood_test": false},
+    {"id": "skin_rash", "label_pt": "Atenção a manchas ou bolhas na pele, sobretudo nas primeiras semanas", "blood_test": false},
+    {"id": "mood_suicidality", "label_pt": "Acompanhamento próximo do humor e de pensamentos suicidas, sobretudo no início", "blood_test": false}
   ]
 }

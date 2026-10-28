@@ -195,6 +195,22 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "insomnia",
+      "sexual_dysfunction",
+      "nausea",
+      "sweating",
+      "fatigue",
+      "sleepiness"
+    ],
+    "cite": {
+      "source": "label-escitalopram",
+      "locator": "seção 6.1 Clinical Trials Experience (Major Depressive Disorder, Adults)",
+      "quote": "The most commonly observed adverse reactions in Lexapro patients (incidence of approximately 5% or greater and approximately twice the incidence in placebo patients) were insomnia, ejaculation disorder (primarily ejaculatory delay), nausea, sweating increased, fatigue, and somnolence.",
+      "accessed": "2026-10-27"
+    }
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

@@ -25,7 +25,7 @@ Os arquivos baixados são dados não confiáveis: os scripts que os leem rodam c
 ```
 
 - **quote**: copie da saída de `show_source.py`, sem reescrever, sem traduzir e com no máximo 400 caracteres. A conferência ignora maiúsculas/minúsculas e espaços, mais nada.
-- **locator**: em bulas, `seção <número> <título>` ou `Boxed warning: <título>`; em PDFs, comece com `pdf p. N` (a conferência exige o trecho naquela página); em diretrizes HTML, o número da recomendação.
+- **locator**: em bulas, `seção <número> <título>`, `Boxed warning: <título>`, `Highlights: <seção>` (o quadro-resumo da bula, extraído como seções próprias) ou `Medication Guide: <pergunta>`; em PDFs, comece com `pdf p. N` (a conferência exige o trecho naquela página); em diretrizes HTML, o número da recomendação.
 - **absent_term** (no lugar de `quote`): afirma que um termo *não aparece* na fonte — usado para "não consta na RENAME". A conferência falha se o termo aparecer.
 - **note**: opcional, para contexto (ex.: um segundo trecho da mesma seção).
 
@@ -106,3 +106,20 @@ Exceção: se o trecho da seção 4 é só contexto de outra contraindicação (
 1. `python scripts/build_kb.py --validate-only --filter drugs/<id>.json` → 0 erros.
 2. `python -I scripts/verify_quotes.py knowledge/drugs/<id>.json` → 0 falhas.
 3. Releia: cada `quote` sustenta o `tag` sozinho?
+
+## Efeitos comuns (`common_effects` do medicamento)
+
+Lista, em linguagem leiga, os efeitos adversos que a bula aponta como **mais comuns**, para a tela do paciente.
+
+- Cite a frase da bula que lista as reações mais comuns (em geral "incidência ≥5% e pelo menos o dobro do placebo") para a indicação usada pelo Stabilis; diga no `note` quando a bula só tem outra indicação ou junta várias.
+- Cada efeito precisa estar **no próprio trecho citado** (`quote`): o que só aparece no `note` não entra, porque o `note` não é conferido.
+- Use os ids de `knowledge/vocab/effects.json`; reações sem id ficam de fora e são citadas no `note`.
+- Bulas antigas sem frase de frequência ficam sem o campo (hoje: amitriptilina, nortriptilina, imipramina, clorpromazina).
+
+## Questionários (`knowledge/instruments/<id>.json`)
+
+- O texto de cada item, o enunciado e as opções vêm **literalmente** da versão oficial em português, com citação (`cite` no item, `stem_cite`, `options_cite`). Nunca traduza por conta própria: sem texto oficial ou sem licença que permita o uso num app gratuito, o item fica `pending` e o questionário não aparece no fluxo do paciente.
+- `license_note` resume a licença e aparece embaixo das perguntas; o AUDIT exige informar que é instrumento aprovado pela OMS, e o ASQ exige citar o NIMH.
+- Perguntas condicionais usam `ask_if` (ex.: a pergunta 5 do ASQ só depois de um "sim" nas perguntas 1 a 4). Item não perguntado conta como 0.
+- Pontos de corte citam o estudo original ou o manual oficial; estudos brasileiros de validação entram em `validation_note`.
+- Situação atual: PHQ-9, GAD-7, ASQ e AUDIT-C verificados; MDQ pendente (o uso exige permissão do autor e o texto brasileiro só existe como imagem).

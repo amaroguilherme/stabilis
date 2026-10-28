@@ -25,3 +25,12 @@ Todo conteúdo clínico cita uma fonte pública com localizador e trecho literal
 
 ## 8. Dados obrigatórios e dados ausentes
 Sem idade e sexo atribuído ao nascer, a ferramenta não mostra conteúdo sobre medicamentos, porque as regras de segurança dependem desses dados. Quando a situação de gravidez não é informada para alguém que pode engravidar, ela é tratada como "não sei". Dado ausente nunca é tratado como ausência de risco.
+
+## 9. Questionários no modo paciente
+Os questionários medem sintomas e servem de triagem; não fazem diagnóstico. A triagem de bipolaridade é usada apenas para decidir se informações sobre antidepressivos podem ser mostradas, e um resultado positivo leva à recomendação de avaliação especializada. Quando o item 9 do PHQ-9 ou o texto da pessoa indicam pensamentos de morte ou de se machucar, as perguntas de segurança são feitas de novo.
+
+## 10. Condições mostradas ao paciente
+Opções para depressão aparecem quando o PHQ-9 soma 5 pontos ou mais, ou quando a pessoa informa que já recebeu esse diagnóstico. Opções para ansiedade generalizada aparecem quando o GAD-7 soma 5 pontos ou mais, ou com diagnóstico informado. Triagem de bipolaridade positiva ou diagnóstico informado de transtorno bipolar levam a orientações de segurança e de encaminhamento.
+
+## 11. Dados no modo paciente
+As respostas ficam no aparelho da pessoa, só na aba aberta por padrão ou guardadas no aparelho por escolha dela, e podem ser apagadas a qualquer momento. Nada é enviado a servidores. Imprimir, baixar ou compartilhar o relatório só acontece por ação da pessoa, com aviso de que os dados saem do aparelho.

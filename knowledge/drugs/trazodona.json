@@ -207,6 +207,11 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": ["edema", "vision_blurred", "dizziness", "sleepiness", "fatigue", "diarrhea", "nasal_congestion", "weight_loss"],
+    "cite": {"source": "label-trazodona", "locator": "Medication Guide: What are the possible side effects of trazodone hydrochloride tablets?", "quote": "The most common side effects of trazodone hydrochloride tablets include: swelling blurred vision dizziness sleepiness tiredness diarrhea stuffy nose weight loss", "accessed": "2026-10-27"},
+    "note": "Frase do Guia de Medicação: a seção 6.1 só traz tabela, sem frase das reações mais comuns. Sem id no vocabulário: perda de peso."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

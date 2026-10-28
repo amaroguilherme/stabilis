@@ -54,13 +54,24 @@
     },
     {
       "id": "SR-GATE-CRISIS",
-      "title": "Linguagem de crise no relato do paciente: ocultar medicamentos e orientar ajuda imediata",
+      "title": "Risco de suicídio no relato ou na triagem: sem medicamentos e com ajuda imediata",
       "applies_to": "global",
       "modes": [
         "patient"
       ],
       "when": {
-        "signal": "crisis_language"
+        "any": [
+          {
+            "signal": "crisis_language"
+          },
+          {
+            "instrument": "asq",
+            "band_in": [
+              "low",
+              "high"
+            ]
+          }
+        ]
       },
       "then": [
         {
@@ -84,6 +95,13 @@
           "locator": "seção 3. Risco de suicídio",
           "quote": "Quando a triagem indica risco de suicídio, ou o texto da pessoa menciona pensamentos de morte ou de se machucar, o modo paciente oculta todo conteúdo sobre medicamentos e mostra recursos de ajuda imediata (CVV 188, SAMU 192, UPA ou pronto-socorro).",
           "accessed": "2026-10-27"
+        },
+        {
+          "source": "nimh-asq-pt",
+          "locator": "pdf p. 1 (Próximas etapas)",
+          "quote": "Caso o paciente responda “Sim” a qualquer uma das perguntas de 1 a 4, ou caso se recuse a responder, a triagem será considerada positiva. Faça a pergunta nº 5 para avaliar a acuidade: o “Sim” à pergunta nº 5 = triagem positiva aguda (risco iminente identificado)",
+          "accessed": "2026-10-27",
+          "note": "Faixa 'low' = triagem positiva não aguda; 'high' = positiva aguda."
         }
       ],
       "review": {
@@ -1398,9 +1416,7 @@
       "when": {
         "all": [
           {
-            "profile": "habits",
-            "op": "contains",
-            "value": "alcohol"
+            "derived": "alcohol_risk"
           },
           {
             "drug_fact": "cns_depressant"

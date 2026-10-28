@@ -28,6 +28,7 @@ SINGLE_FILES = {
     "vocab/classes.json": "vocab_classes",
     "vocab/comorbidities.json": "vocab_comorbidities",
     "vocab/monitoring.json": "vocab_monitoring",
+    "vocab/effects.json": "vocab_effects",
     "vocab/conditions.json": "vocab_conditions",
     "rules/safety.json": "rules_file",
     "rules/derived.json": "derived_file",
@@ -113,7 +114,7 @@ def load(root: Path = KNOWLEDGE_DIR) -> tuple[KnowledgeBase, list[str]]:
         kb.manifest = singles["manifest.json"]
     if singles["sources.json"]:
         kb.sources = singles["sources.json"]["sources"]
-    for name in ("facts", "classes", "comorbidities", "monitoring", "conditions"):
+    for name in ("facts", "classes", "comorbidities", "monitoring", "conditions", "effects"):
         if singles[f"vocab/{name}.json"]:
             kb.vocab[name] = singles[f"vocab/{name}.json"]
     if singles["rules/safety.json"]:
@@ -188,6 +189,7 @@ class _Refs:
         self.comorbidities = {c["id"] for c in comorbidities.get("comorbidities", [])}
         self.habits = {h["id"] for h in comorbidities.get("habits", [])}
         self.monitoring = {m["id"] for m in kb.vocab.get("monitoring", {}).get("monitoring", [])}
+        self.effects = {e["id"] for e in kb.vocab.get("effects", {}).get("effects", [])}
         self.conditions = {c["id"]: {p["id"] for p in c["phases"]} for c in kb.vocab.get("conditions", {}).get("conditions", [])}
         self.drugs = {d["id"] for d in kb.drugs}
         self.interactions = {i["id"] for i in kb.interactions}
@@ -196,7 +198,7 @@ class _Refs:
                 "bands": {b["id"] for b in i["scoring"].get("bands", [])}
                 | {b["id"] for bands in i["scoring"].get("bands_by_sex", {}).values() for b in bands}
                 | ({"positive", "negative"} if i["scoring"]["type"] == "mdq" else set())
-                | ({"none", "low", "high"} if i["scoring"]["type"] == "cssrs_screener" else set()),
+                | ({"none", "low", "high"} if i["scoring"]["type"] == "risk_screener" else set()),
                 "flags": {f["id"] for f in i["scoring"].get("flags", [])},
             }
             for i in kb.instruments
@@ -303,6 +305,9 @@ def integrity_errors(kb: KnowledgeBase) -> list[str]:
         for item in drug.get("monitoring", []):
             if item["id"] not in refs.monitoring:
                 errors.append(f"{where}: monitoramento '{item['id']}' não existe em vocab/monitoring.json")
+        for effect in drug.get("common_effects", {}).get("effects", []):
+            if effect not in refs.effects:
+                errors.append(f"{where}: efeito '{effect}' não existe em vocab/effects.json")
         if "label_source" in drug and drug["label_source"] not in refs.sources:
             errors.append(f"{where}: label_source '{drug['label_source']}' não registrada")
         dose = drug.get("dose_adult", {})
@@ -363,10 +368,25 @@ def integrity_errors(kb: KnowledgeBase) -> list[str]:
         referenced = [f["item"] for f in scoring.get("flags", []) if f["item"] != "total"]
         referenced += scoring.get("mdq", {}).get("symptom_items", [])
         referenced += [scoring[k][field] for k, field in (("mdq", "same_period_item"), ("mdq", "problem_item")) if k in scoring]
-        referenced += scoring.get("cssrs", {}).get("low_items", []) + scoring.get("cssrs", {}).get("high_items", [])
+        referenced += scoring.get("risk", {}).get("low_items", []) + scoring.get("risk", {}).get("high_items", [])
+        order = [i["id"] for i in instrument["items"]]
+        for entry in instrument["items"]:
+            ask_if = entry.get("ask_if")
+            if ask_if:
+                referenced += ask_if["items"]
+                if any(order.index(dep) >= order.index(entry["id"]) for dep in ask_if["items"] if dep in items):
+                    errors.append(f"{where}: '{entry['id']}' depende de item que vem depois dele")
+            if entry["text_status"] == "verified" and not (entry.get("text") and entry.get("cite")):
+                errors.append(f"{where}: item '{entry['id']}' verificado precisa de texto e citação")
+            if entry["text_status"] == "pending" and entry.get("text"):
+                errors.append(f"{where}: item '{entry['id']}' pendente não deve ter texto")
         for item in referenced:
             if item not in items:
                 errors.append(f"{where}: item '{item}' não existe no instrumento")
+        if scoring["type"] == "mdq" and "mdq" not in scoring:
+            errors.append(f"{where}: pontuação mdq sem regra 'mdq'")
+        if scoring["type"] == "risk_screener" and "risk" not in scoring:
+            errors.append(f"{where}: pontuação risk_screener sem regra 'risk'")
 
     for brand, drugs in kb.brands.items():
         for drug in drugs:

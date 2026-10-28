@@ -205,6 +205,25 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "nausea",
+      "dizziness",
+      "insomnia",
+      "sweating",
+      "constipation",
+      "sleepiness",
+      "appetite_decrease",
+      "nervousness",
+      "sexual_dysfunction"
+    ],
+    "cite": {
+      "source": "label-desvenlafaxina",
+      "locator": "seção 6.1 Clinical Studies Experience (Common Adverse Reactions in Placebo-Controlled MDD Studies)",
+      "quote": "The most commonly observed adverse reactions in PRISTIQ treated MDD patients in pre-marketing pooled 8-week, placebo-controlled, fixed-dose studies (incidence ≥ 5% and at least twice the rate of placebo in the 50 or 100 mg dose groups) were: nausea, dizziness, insomnia, hyperhidrosis, constipation, somnolence, decreased appetite, anxiety, and specific male sexual function disorders.",
+      "accessed": "2026-10-27"
+    }
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

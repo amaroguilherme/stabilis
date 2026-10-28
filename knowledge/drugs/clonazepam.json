@@ -47,5 +47,10 @@
     {"id": "blood_count", "note": "Em tratamento prolongado.", "cite": {"source": "label-clonazepam", "locator": "seção PRECAUTIONS: Laboratory Testing During Long-Term Therapy", "quote": "Periodic blood counts and liver function tests are advisable during long-term therapy with Klonopin.", "accessed": "2026-10-27"}},
     {"id": "liver_function", "note": "Em tratamento prolongado.", "cite": {"source": "label-clonazepam", "locator": "seção PRECAUTIONS: Laboratory Testing During Long-Term Therapy", "quote": "Periodic blood counts and liver function tests are advisable during long-term therapy with Klonopin.", "accessed": "2026-10-27"}}
   ],
+  "common_effects": {
+    "effects": ["sleepiness", "coordination", "low_mood"],
+    "cite": {"source": "label-clonazepam", "locator": "seção ADVERSE REACTIONS: Panic Disorder – Commonly Observed Adverse Events (Table 4)", "quote": "Table 4 Incidence of Most Commonly Observed Adverse Events Treatment-emergent events for which the incidence in the clonazepam patients was ≥5% and at least twice that in the placebo patients. in Acute Therapy in Pool of 6- to 9-Week Trials Adverse Event Clonazepam (N=574) Placebo (N=294) Somnolence 37% 10% Depression 7% 1% Coordination Abnormal 6% 0% Ataxia 5% 0%", "accessed": "2026-10-27", "note": "Mesma seção, epilepsia: \"drowsiness has occurred in approximately 50% of patients and ataxia in approximately 30%.\""},
+    "note": "Transtorno de pânico (estudos de 6 a 9 semanas). Depressão (7% contra 1% no placebo) não tem id."
+  },
   "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Bula KLONOPIN em formato antigo, sem numeração de seções. Fora por falta de id ou de suporte claro: suicidalidade dos antiepilépticos (não é o boxed de jovens; entra só como monitoramento), cautela na insuficiência respiratória (DPOC, apneia), piora de crises em quem tem vários tipos de convulsão, inibidores da CYP3A (a bula só pede cautela), superdosagem (fatal só em combinação com outros depressores)."}
 }

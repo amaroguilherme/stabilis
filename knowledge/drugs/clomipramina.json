@@ -287,6 +287,11 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": ["dry_mouth", "constipation", "nausea", "dyspepsia", "appetite_decrease", "sleepiness", "tremor", "dizziness", "nervousness", "sexual_dysfunction", "fatigue", "sweating", "appetite_increase", "weight_gain", "vision_blurred", "urinary_difficulty", "muscle_jerks"],
+    "cite": {"source": "label-clomipramina", "locator": "seção ADVERSE REACTIONS: Commonly Observed", "quote": "dry mouth, constipation, nausea, dyspepsia, and anorexia; nervous system complaints, including somnolence, tremor, dizziness, nervousness, and myoclonus; genitourinary complaints, including changed libido, ejaculatory failure, impotence, and micturition disorder; and other miscellaneous complaints, including fatigue, sweating, increased appetite, weight gain, and visual changes.", "accessed": "2026-10-27", "note": "Início da frase (o trecho citado é a continuação, cortado pelo limite de 400 caracteres): \"The most commonly observed adverse events associated with the use of Anafranil and not seen at an equivalent incidence among placebo-treated patients were gastrointestinal complaints, including\""},
+    "note": "A bula dos EUA só aprova a clomipramina para TOC; os estudos controlados descritos nela são em TOC, não em depressão. \"Visual changes\" virou visão turva. Sem id no vocabulário: mioclonia (abalos musculares) e distúrbio da micção."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

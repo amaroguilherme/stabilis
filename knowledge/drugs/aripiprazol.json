@@ -198,6 +198,22 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "restlessness",
+      "sleepiness",
+      "tremor",
+      "movement_symptoms"
+    ],
+    "cite": {
+      "source": "label-aripiprazol",
+      "locator": "seção 6.1 Clinical Trials Experience (Tabela 14)",
+      "quote": "Table 14: Commonly Observed Adverse Reactions in Short-Term, Placebo-Controlled Trials of Adult Patients with Bipolar Mania Treated with ABILIFY Monotherapy Preferred Term Percentage of Patients Reporting Reaction ABILIFY (n=917) Placebo (n=753) Akathisia 13 4 Sedation 8 3 Restlessness 6 3 Tremor 6 3 Extrapyramidal Disorder 5 2",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"Commonly observed adverse reactions associated with the use of ABILIFY in patients with bipolar mania (incidence of 5% or greater and ABILIFY incidence at least twice that for placebo) are shown in Table 14.\""
+    },
+    "note": "Mania em adultos, monoterapia (3 semanas). A frase geral de adultos (10% ou mais, todas as indicações, sem comparar com placebo) cita também náusea, vômito, constipação, dor de cabeça, tontura, ansiedade e insônia."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

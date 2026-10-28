@@ -283,6 +283,11 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": ["sleepiness", "dizziness", "headache", "tremor", "palpitations", "orthostatic_dizziness", "salivation", "sweating", "dry_mouth", "constipation", "nausea", "vision_blurred"],
+    "cite": {"source": "label-clozapina", "locator": "seção 6.1 Clinical Trials Experience", "quote": "adverse reactions (≥5%) across CLOZARIL clinical trials were: CNS reactions, including sedation, dizziness/vertigo, headache, and tremor; cardiovascular reactions, including tachycardia, hypotension, and syncope; autonomic nervous system reactions, including hypersalivation, sweating, dry mouth, and visual disturbances; gastrointestinal reactions, including constipation and nausea; and fever.", "accessed": "2026-10-27", "note": "A frase começa com \"The most commonly reported\" (cortado para caber em 400 caracteres). A bula descreve a hipotensão como ortostática no boxed warning e na seção 5.2."},
+    "note": "Todos os estudos de clozapina (esquizofrenia resistente; risco de suicídio na esquizofrenia). Hipotensão entra como tontura ao levantar. Sem id: síncope, febre e distúrbios visuais (o vocabulário só tem visão embaçada)."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

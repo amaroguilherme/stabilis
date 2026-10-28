@@ -288,6 +288,23 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "nausea",
+      "dry_mouth",
+      "sleepiness",
+      "constipation",
+      "appetite_decrease",
+      "sweating"
+    ],
+    "cite": {
+      "source": "label-duloxetina",
+      "locator": "seção 6.1 Clinical Trials Experience (Most Common Adverse Reactions in Adult Trials)",
+      "quote": "The most commonly observed adverse reactions in duloxetine delayed-release capsules -treated patients in all the pooled adult populations (i.e., MDD, GAD, DPNP, FM, OA, and CLBP) (incidence of at least 5% and at least twice the incidence in placebo-treated patients) were nausea, dry mouth, somnolence, constipation, decreased appetite, and hyperhidrosis.",
+      "accessed": "2026-10-27"
+    },
+    "note": "Dados combinados de todas as indicações em adultos (TDM, TAG, dor neuropática diabética, fibromialgia, osteoartrite e lombalgia crônica); a bula não traz frase só para TDM."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

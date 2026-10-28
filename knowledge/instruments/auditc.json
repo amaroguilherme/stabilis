@@ -1,0 +1,65 @@
+{
+  "id": "auditc",
+  "name": "AUDIT-C (três primeiras perguntas do AUDIT – Teste para Identificação de Problemas Relacionados ao Uso de Álcool)",
+  "instructions": "1 “DOSE” (contém 14g de álcool puro)\nCERVEJA: 1 lata ou 1 copo de chope (350 ml) = 1 “DOSE”; 1 garrafa (600 ml) = 2 “DOSES”; 1 garrafa (1 litro) = 3 “DOSES”\nVINHO: 1 taça (140 ml) = 1 “DOSE”; 1 garrafa (750 ml) = 5 “DOSES”\nCACHAÇA, VODCA, UÍSQUE ou CONHAQUE: “meio copo americano” (60 ml) = 1,5 “DOSES”; 1 garrafa (1 litro) = 25 “DOSES”\nUÍSQUE, RUM, LICOR etc.: 1 “dose de dosador”(40 ml) = 1 “DOSE”",
+  "instructions_cite": {"source": "supera-audit-ptbr", "locator": "pdf p. 1 (Equivalências de doses de diversas bebidas para doses padrão)", "quote": "1 “DOSE” (contém 14g de álcool puro) CERVEJA: 1 lata ou 1 copo de chope (350 ml) = 1 “DOSE”; 1 garrafa (600 ml) = 2 “DOSES”; 1 garrafa (1 litro) = 3 “DOSES” VINHO: 1 taça (140 ml) = 1 “DOSE”; 1 garrafa (750 ml) = 5 “DOSES” CACHAÇA, VODCA, UÍSQUE ou CONHAQUE: “meio copo americano” (60 ml) = 1,5 “DOSES”; 1 garrafa (1 litro) = 25 “DOSES” UÍSQUE, RUM, LICOR etc.: 1 “dose de dosador”(40 ml) = 1 “DOSE”", "accessed": "2026-10-27"},
+  "license_note": "Domínio público (instrumento aprovado pela OMS): uso não comercial sem permissão, sem alterar o conteúdo e informando que o AUDIT é instrumento aprovado pela OMS.",
+  "validation_note": "Versão brasileira do AUDIT: Méndez EB, dissertação de mestrado, UFPel, 1999 (não localizada online). As versões abreviadas, incluindo o AUDIT-C, foram validadas em duas amostras brasileiras (pronto-socorro e CAPS-AD) por Meneses-Gaya C et al., Alcohol Clin Exp Res 2010;34(8):1417-24; os pontos de corte desse estudo não foram conferidos porque o texto completo é fechado.",
+  "options": [
+    {"value": 0, "label": "Nunca"},
+    {"value": 1, "label": "Uma vez por mês ou menos"},
+    {"value": 2, "label": "Duas a quatro vezes por mês"},
+    {"value": 3, "label": "Duas a três vezes por semana"},
+    {"value": 4, "label": "Quatro ou mais vezes por semana"}
+  ],
+  "options_cite": {"source": "subpav-audit-ptbr", "locator": "pdf p. 1 (questão 1 e opções)", "quote": "1.Com que frequência você consome bebidas alcoólicas? (0) Nunca (1) Uma vez por mês ou menos (2) Duas a quatro vezes por mês (3) Duas a três vezes por semana (4) Quatro ou mais vezes por semana", "accessed": "2026-10-27"},
+  "items": [
+    {"id": "auditc_1", "text": "Com que frequência você consome bebidas alcoólicas?", "text_status": "verified",
+     "cite": {"source": "subpav-audit-ptbr", "locator": "pdf p. 1 (questão 1)", "quote": "1.Com que frequência você consome bebidas alcoólicas?", "accessed": "2026-10-27"}},
+    {"id": "auditc_2", "text": "Nas ocasiões em que bebe, quantas doses, copos ou garrafas você costuma tomar?", "text_status": "verified",
+     "ask_if": {"items": ["auditc_1"], "min_yes": 1},
+     "options": [
+       {"value": 0, "label": "1 ou 2 “doses”"},
+       {"value": 1, "label": "3 ou 4 “doses”"},
+       {"value": 2, "label": "5 ou 6 “doses”"},
+       {"value": 3, "label": "7 a 9 “doses”"},
+       {"value": 4, "label": "10 ou mais “doses”"}
+     ],
+     "cite": {"source": "subpav-audit-ptbr", "locator": "pdf p. 1 (questão 2 e opções)", "quote": "2. Nas ocasiões em que bebe, quantas doses, copos ou garrafas você costuma tomar? (0) 1 ou 2 “doses” (1) 3 ou 4 “doses” (2) 5 ou 6 “doses” (3) 7 a 9 “doses” (4) 10 ou mais “doses”", "accessed": "2026-10-27"}},
+    {"id": "auditc_3", "text": "Com que frequência você toma seis ou mais doses em uma ocasião?", "text_status": "verified",
+     "ask_if": {"items": ["auditc_1"], "min_yes": 1},
+     "options": [
+       {"value": 0, "label": "Nunca"},
+       {"value": 1, "label": "Menos que uma vez ao mês"},
+       {"value": 2, "label": "Uma vez ao mês"},
+       {"value": 3, "label": "Uma vez por semana"},
+       {"value": 4, "label": "Todos os dias ou quase todos"}
+     ],
+     "cite": {"source": "subpav-audit-ptbr", "locator": "pdf p. 1 (questão 3 e opções)", "quote": "3. Com que frequência você toma seis ou mais doses em uma ocasião? (0) Nunca (1) Menos que uma vez ao mês (2) Uma vez ao mês (3) Uma vez por semana (4) Todos os dias ou quase todos", "accessed": "2026-10-27"}}
+  ],
+  "scoring": {
+    "type": "sum",
+    "bands_by_sex": {
+      "female": [
+        {"id": "negative", "min": 0, "max": 2},
+        {"id": "positive", "min": 3, "max": 12}
+      ],
+      "male": [
+        {"id": "negative", "min": 0, "max": 3},
+        {"id": "positive", "min": 4, "max": 12}
+      ]
+    }
+  },
+  "sources": [
+    {"source": "bradley-2007-auditc", "locator": "Resumo (MEDLINE), Results", "quote": "The AUDIT-C screening thresholds that simultaneously maximized sensitivity and specificity were > or =4 in men (sensitivity 0.86, specificity 0.89) and > or =3 in women (sensitivity 0.73, specificity 0.91).", "accessed": "2026-10-27"},
+    {"source": "bradley-2007-auditc", "locator": "Resumo (MEDLINE), Conclusions", "quote": "Optimal screening thresholds for alcohol misuse among men (> or =4) and women (> or =3) were the same as in previously published VA studies.", "accessed": "2026-10-27"},
+    {"source": "supera-audit-ptbr", "locator": "pdf p. 1 (questão 1)", "quote": "1. Com que frequência você toma bebidas alcoólicas? (0) Nunca [vá para as questões 9-10]", "accessed": "2026-10-27", "note": "Base do pulo das questões 2 e 3 quando a 1 é 'Nunca' (ask_if): no AUDIT completo, a pessoa segue para as questões 9 e 10; no AUDIT-C, as questões 2 e 3 contam zero."},
+    {"source": "auditscreen-faq", "locator": "FAQ, AUDIT use rights", "quote": "As a World Health Organization (WHO)-approved instrument, the AUDIT is in the public domain.", "accessed": "2026-10-27"},
+    {"source": "auditscreen-faq", "locator": "FAQ, AUDIT use rights", "quote": "No permission is needed for the use of the AUDIT questionnaire for any non-commercial purpose. This means that someone who is completing the questionnaire should not be charged a fee.", "accessed": "2026-10-27"},
+    {"source": "auditscreen-faq", "locator": "FAQ, AUDIT use rights", "quote": "as long as it is not materially changed and that there is a note that it is a WHO-approved instrument", "accessed": "2026-10-27"},
+    {"source": "auditscreen-faq", "locator": "FAQ, AUDIT use rights", "quote": "It is sufficient to state: ”As a WHO-approved instrument, the AUDIT is in the public domain”.", "accessed": "2026-10-27", "note": "Frase a exibir junto do questionário."},
+    {"source": "subpav-audit-ptbr", "locator": "pdf p. 2 (referência)", "quote": "Referência: Méndez, E.B. (1999). Uma versão brasileira do AUDIT- Alcohol Use Disorders Identification Test. Dissertação de Mestrado, Universidade Federal de Pelotas, Pelotas.", "accessed": "2026-10-27"},
+    {"source": "meneses-gaya-2010-audit", "locator": "Resumo (MEDLINE), Conclusions", "quote": "The results obtained in this study confirm the validity of the abbreviated versions of the AUDIT for the screening of alcohol use disorders", "accessed": "2026-10-27"}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Itens da versão autoaplicável publicada pela SMS-Rio (SUBPAV), baseada em Méndez (1999). A versão federal do SUPERA (SENAD/UNIFESP) tem outra redação; dela vêm a tabela de doses (a da SUBPAV repete um trecho e passa de 400 caracteres) e o pulo das questões 2 e 3 após 'Nunca'. Conferir essa combinação. Cortes de Bradley 2007 (EUA; dose padrão de cerca de 14 g, como no SUPERA); não há corte brasileiro conferido para o AUDIT-C. Sem sexo informado, não há faixa. Exibir a frase de instrumento aprovado pela OMS."}
+}

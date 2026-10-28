@@ -218,6 +218,38 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "movement_symptoms",
+      "restlessness",
+      "tremor",
+      "sleepiness",
+      "dizziness",
+      "nervousness",
+      "vision_blurred",
+      "nausea",
+      "vomiting",
+      "abdominal_pain",
+      "dyspepsia",
+      "diarrhea",
+      "salivation",
+      "constipation",
+      "dry_mouth",
+      "appetite_increase",
+      "weight_gain",
+      "fatigue",
+      "rash",
+      "nasal_congestion"
+    ],
+    "cite": {
+      "source": "label-risperidona",
+      "locator": "seção 6 ADVERSE REACTIONS",
+      "quote": "The most common adverse reactions in clinical trials (>5% and twice placebo) were parkinsonism, akathisia, dystonia, tremor, sedation, dizziness, anxiety, blurred vision, nausea, vomiting, upper abdominal pain, stomach discomfort, dyspepsia, diarrhea, salivary hypersecretion, constipation, dry mouth, increased appetite, increased weight, fatigue, rash, nasal congestion",
+      "accessed": "2026-10-27",
+      "note": "A frase continua: \"upper respiratory tract infection, nasopharyngitis, and pharyngolaryngeal pain.\" Tabela 10 (mania em adultos, monoterapia; risperidona e placebo): parkinsonismo 25% e 9%, sedação 11% e 4%, acatisia 9% e 3%, tremor 6% e 3%, distonia 5% e 1%, náusea 5% e 2%."
+    },
+    "note": "Única frase de reações mais comuns da bula; junta todos os estudos (adultos e crianças, todas as indicações). Cortada em 400 caracteres: o resto (infecção respiratória alta, nasofaringite, dor de garganta) não tem id. Em adultos com mania predominam sintomas motores e sedação."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

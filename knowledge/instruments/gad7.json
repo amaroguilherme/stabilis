@@ -1,0 +1,53 @@
+{
+  "id": "gad7",
+  "name": "GAD-7 (Escala de Transtorno de Ansiedade Generalizada – 7)",
+  "stem": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a pelos problemas abaixo?",
+  "stem_cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (enunciado)", "quote": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a pelos problemas abaixo?", "accessed": "2026-10-27"},
+  "license_note": "Uso livre: não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",
+  "validation_note": "Moreno AL, DeSousa DA, Souza AMFLP, Manfro GG, Salum GA, Koller SH, Osório FL, Crippa JAS. Temas em Psicologia 2016;24(1):367-76: estrutura de fator único e boa confiabilidade (alfa de Cronbach 0,916) da versão brasileira em 206 adultos, a maioria universitários. O estudo não avaliou pontos de corte, e não foi encontrado estudo brasileiro de ponto de corte.",
+  "options": [
+    {"value": 0, "label": "Nenhuma vez"},
+    {"value": 1, "label": "Vários dias"},
+    {"value": 2, "label": "Mais da metade dos dias"},
+    {"value": 3, "label": "Quase todos os dias"}
+  ],
+  "options_cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (cabeçalho das opções e pontos do item 1)", "quote": "Nenhuma vez Vários dias Mais da metade dos dias Quase todos os dias 1. Sentir-se nervoso/a, ansioso/a ou muito tenso/a 0 1 2 3", "accessed": "2026-10-27"},
+  "items": [
+    {"id": "gad7_1", "text": "Sentir-se nervoso/a, ansioso/a ou muito tenso/a", "text_status": "verified",
+     "cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (item 1)", "quote": "1. Sentir-se nervoso/a, ansioso/a ou muito tenso/a", "accessed": "2026-10-27"}},
+    {"id": "gad7_2", "text": "Não ser capaz de impedir ou de controlar as preocupações", "text_status": "verified",
+     "cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (item 2)", "quote": "2. Não ser capaz de impedir ou de controlar as preocupações", "accessed": "2026-10-27"}},
+    {"id": "gad7_3", "text": "Preocupar-se muito com diversas coisas", "text_status": "verified",
+     "cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (item 3)", "quote": "3. Preocupar-se muito com diversas coisas", "accessed": "2026-10-27"}},
+    {"id": "gad7_4", "text": "Dificuldade para relaxar", "text_status": "verified",
+     "cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (item 4)", "quote": "4. Dificuldade para relaxar", "accessed": "2026-10-27"}},
+    {"id": "gad7_5", "text": "Ficar tão agitado/a que se torna difícil permanecer sentado/a", "text_status": "verified",
+     "cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (item 5)", "quote": "5. Ficar tão agitado/a que se torna difícil permanecer sentado/a", "accessed": "2026-10-27"}},
+    {"id": "gad7_6", "text": "Ficar facilmente aborrecido/a ou irritado/a", "text_status": "verified",
+     "cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (item 6)", "quote": "6. Ficar facilmente aborrecido/a ou irritado/a", "accessed": "2026-10-27"}},
+    {"id": "gad7_7", "text": "Sentir medo como se algo horrível fosse acontecer", "text_status": "verified",
+     "cite": {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (item 7)", "quote": "7. Sentir medo como se algo horrível fosse acontecer", "accessed": "2026-10-27"}}
+  ],
+  "scoring": {
+    "type": "sum",
+    "bands": [
+      {"id": "minimal", "min": 0, "max": 4},
+      {"id": "mild", "min": 5, "max": 9},
+      {"id": "moderate", "min": 10, "max": 14},
+      {"id": "severe", "min": 15, "max": 21}
+    ],
+    "flags": [
+      {"id": "further_evaluation", "item": "total", "op": "gte", "value": 10}
+    ]
+  },
+  "sources": [
+    {"source": "phq-gad7-manual", "locator": "pdf p. 6 (GAD-7 Anxiety Severity)", "quote": "GAD-7 total score for the seven items ranges from 0 to 21. Scores of 5, 10, and 15 represent cutpoints for mild, moderate, and severe anxiety, respectively.", "accessed": "2026-10-27"},
+    {"source": "phq-gad7-manual", "locator": "pdf p. 6 (GAD-7 Anxiety Severity)", "quote": "When screening for anxiety disorders, a recommended cutpoint for further evaluation is a score of 10 or greater.", "accessed": "2026-10-27"},
+    {"source": "gad7-ptbr-pfizer", "locator": "pdf p. 1 (rodapé: autoria e termos de uso)", "quote": "Desenvolvido pelos Drs. Robert L. Spitzer, Janet B.W. Williams, Kurt Kroenke e colegas, com um subsídio educacional da Pfizer Inc. Não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.", "accessed": "2026-10-27"},
+    {"source": "phq-gad7-manual", "locator": "pdf p. 8 (Questions regarding development, acknowledgments and use)", "quote": "All of the measures included in Table 1 are in the public domain. No permission is required to reproduce, translate, display or distribute.", "accessed": "2026-10-27"},
+    {"source": "phq-gad7-manual", "locator": "pdf p. 7 (Translations)", "quote": "Many of the translations have been developed by the MAPI Research Institute using an internationally accepted translation methodology. Thus, most of the translations are linguistically valid. However, unlike the English versions of the PHQ and GAD-7, few of the translations have been psychometrically validated against an independent structured psychiatric interview.", "accessed": "2026-10-27"},
+    {"source": "moreno-2016-gad7", "locator": "pdf p. 2 (Abstract)", "quote": "This study examined the psychometric properties of the Brazilian-Portuguese version of the Generalized Anxiety Disorder GAD-7 questionnaire in a community sample (n = 206) of Brazilian adults.", "accessed": "2026-10-27"},
+    {"source": "moreno-2016-gad7", "locator": "pdf p. 4 (Introduction)", "quote": "although there is a Brazilian-Portuguese version of the GAD-7 available online (Pfizer, 2013), no psychometric study has investigated the adequacy of the Brazilian version of the GAD-7.", "accessed": "2026-10-27", "note": "Nos métodos, o artigo diz que os itens foram traduzidos por dois tradutores independentes e revisados por especialistas e grupos focais; não fica claro se a redação aplicada é idêntica à do PDF da Pfizer."}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Enunciado, itens e opções copiados da versão oficial em português do Brasil (PDF da Pfizer em phqscreeners.com), com a grafia original ('freqüência'). Faixas e sinalizador de 10 ou mais vêm do manual oficial do PHQ e do GAD-7. Conferir se a redação usada por Moreno et al. (2016) é a mesma do PDF da Pfizer. A opção 'Vários dias' é a mesma que Piccolo (2026) questiona no PHQ-9."}
+}

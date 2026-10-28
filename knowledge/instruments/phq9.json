@@ -1,23 +1,36 @@
 {
   "id": "phq9",
   "name": "PHQ-9 (Questionário sobre a Saúde do Paciente – 9)",
-  "license_note": "Uso livre, sem necessidade de permissão.",
+  "stem": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a por qualquer um dos problemas abaixo?",
+  "stem_cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (enunciado)", "quote": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a por qualquer um dos problemas abaixo?", "accessed": "2026-10-27"},
+  "license_note": "Uso livre: não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",
+  "validation_note": "Versão da Pfizer validada por de Lima Osório F et al., Perspect Psychiatr Care 2009;45(3):216-27 (177 mulheres na atenção primária; melhor ponto de corte: 10 ou mais). Santos IS et al., Cad Saúde Pública 2013;29(8):1533-43, validaram na população geral de Pelotas uma versão com opções de resposta modificadas (ponto de corte > 9).",
   "options": [
     {"value": 0, "label": "Nenhuma vez"},
     {"value": 1, "label": "Vários dias"},
     {"value": 2, "label": "Mais da metade dos dias"},
     {"value": 3, "label": "Quase todos os dias"}
   ],
+  "options_cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (cabeçalho das opções e pontos do item 1)", "quote": "Nenhuma vez Vários dias Mais da metade dos dias Quase todos os dias 1. Pouco interesse ou pouco prazer em fazer as coisas 0 1 2 3", "accessed": "2026-10-27"},
   "items": [
-    {"id": "phq9_1", "text": null, "text_status": "pending"},
-    {"id": "phq9_2", "text": null, "text_status": "pending"},
-    {"id": "phq9_3", "text": null, "text_status": "pending"},
-    {"id": "phq9_4", "text": null, "text_status": "pending"},
-    {"id": "phq9_5", "text": null, "text_status": "pending"},
-    {"id": "phq9_6", "text": null, "text_status": "pending"},
-    {"id": "phq9_7", "text": null, "text_status": "pending"},
-    {"id": "phq9_8", "text": null, "text_status": "pending"},
-    {"id": "phq9_9", "text": null, "text_status": "pending"}
+    {"id": "phq9_1", "text": "Pouco interesse ou pouco prazer em fazer as coisas", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 1)", "quote": "1. Pouco interesse ou pouco prazer em fazer as coisas", "accessed": "2026-10-27"}},
+    {"id": "phq9_2", "text": "Se sentir “para baixo”, deprimido/a ou sem perspectiva", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 2)", "quote": "2. Se sentir “para baixo”, deprimido/a ou sem perspectiva", "accessed": "2026-10-27"}},
+    {"id": "phq9_3", "text": "Dificuldade para pegar no sono ou permanecer dormindo, ou dormir mais do que de costume", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 3)", "quote": "3. Dificuldade para pegar no sono ou permanecer dormindo, ou dormir mais do que de costume", "accessed": "2026-10-27"}},
+    {"id": "phq9_4", "text": "Se sentir cansado/a ou com pouca energia", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 4)", "quote": "4. Se sentir cansado/a ou com pouca energia", "accessed": "2026-10-27"}},
+    {"id": "phq9_5", "text": "Falta de apetite ou comendo demais", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 5)", "quote": "5. Falta de apetite ou comendo demais", "accessed": "2026-10-27"}},
+    {"id": "phq9_6", "text": "Se sentir mal consigo mesmo/a — ou achar que você é um fracasso ou que decepcionou sua família ou você mesmo/a", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 6)", "quote": "6. Se sentir mal consigo mesmo/a — ou achar que você é um fracasso ou que decepcionou sua família ou você mesmo/a", "accessed": "2026-10-27"}},
+    {"id": "phq9_7", "text": "Dificuldade para se concentrar nas coisas, como ler o jornal ou ver televisão", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 7)", "quote": "7. Dificuldade para se concentrar nas coisas, como ler o jornal ou ver televisão", "accessed": "2026-10-27"}},
+    {"id": "phq9_8", "text": "Lentidão para se movimentar ou falar, a ponto das outras pessoas perceberem? Ou o oposto – estar tão agitado/a ou irrequieto/a que você fica andando de um lado para o outro muito mais do que de costume", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 8)", "quote": "8. Lentidão para se movimentar ou falar, a ponto das outras pessoas perceberem? Ou o oposto – estar tão agitado/a ou irrequieto/a que você fica andando de um lado para o outro muito mais do que de costume", "accessed": "2026-10-27"}},
+    {"id": "phq9_9", "text": "Pensar em se ferir de alguma maneira ou que seria melhor estar morto/a", "text_status": "verified",
+     "cite": {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (item 9)", "quote": "9. Pensar em se ferir de alguma maneira ou que seria melhor estar morto/a", "accessed": "2026-10-27"}}
   ],
   "scoring": {
     "type": "sum",
@@ -35,7 +48,12 @@
   },
   "sources": [
     {"source": "kroenke-2001-phq9", "locator": "pdf p. 1 (resumo)", "quote": "PHQ-9 scores of 5, 10, 15, and 20 represented mild, moderate, moderately severe, and severe depression, respectively.", "accessed": "2026-10-27"},
-    {"source": "nice-ng222", "locator": "Context (definição de gravidade)", "quote": "with scores less than 16 defined as less severe depression, and scores of 16 or more defined as more severe depression", "accessed": "2026-10-27"}
+    {"source": "nice-ng222", "locator": "Context (definição de gravidade)", "quote": "with scores less than 16 defined as less severe depression, and scores of 16 or more defined as more severe depression", "accessed": "2026-10-27"},
+    {"source": "phq9-ptbr-pfizer", "locator": "pdf p. 1 (rodapé: autoria e termos de uso)", "quote": "Desenvolvido pelos Drs. Robert L. Spitzer, Janet B.W. Williams, Kurt Kroenke e colegas, com um subsídio educacional da Pfizer Inc. Não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.", "accessed": "2026-10-27"},
+    {"source": "phq-gad7-manual", "locator": "pdf p. 7 (Translations)", "quote": "Many of the translations have been developed by the MAPI Research Institute using an internationally accepted translation methodology. Thus, most of the translations are linguistically valid. However, unlike the English versions of the PHQ and GAD-7, few of the translations have been psychometrically validated against an independent structured psychiatric interview.", "accessed": "2026-10-27"},
+    {"source": "piccolo-2026-phq9", "locator": "carta aos editores, 1º parágrafo", "quote": "When describing the version used in their study, the authors refer to the version \"translated into Brazilian Portuguese by Pfizer, known in Brazil as the Questionário sobre a Saúde do Paciente - 9.\"", "accessed": "2026-10-27", "note": "Os autores são Osório et al. (2009): a validação brasileira usou esta versão da Pfizer."},
+    {"source": "osorio-2009-phq9", "locator": "Resumo (MEDLINE), Findings", "quote": "For the PHQ-9, a cutoff score equal to or higher than 10 proved to be the most adequate for the screening of depression", "accessed": "2026-10-27", "note": "Ponto de corte brasileiro informativo; coincide com o início da faixa 'moderate'."},
+    {"source": "santos-2013-phq9", "locator": "Resumo", "quote": "a análise contínua identificou o ponto de corte > 9 como de máxima sensibilidade (77,5%; 61,5-89,2) e especificidade (86,7%; 83,0-89,9)", "accessed": "2026-10-27", "note": "Informativo, não usado nas faixas: o estudo trocou as opções de resposta (por exemplo, 'vários dias' por 'menos de uma semana')."}
   ],
-  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Textos dos itens e das opções a conferir com a versão oficial em português (Fase 2). O item 9 trata de pensamentos de morte ou de se ferir."}
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Enunciado, itens e opções copiados da versão oficial em português do Brasil (PDF da Pfizer em phqscreeners.com), com a grafia original ('freqüência'). A pergunta final sobre dificuldade no dia a dia ficou de fora porque não entra na pontuação. Piccolo (Braz J Psychiatry 2026) alerta que 'Vários dias' pode ser mal compreendido no Brasil. O item 9 trata de pensamentos de morte ou de se ferir."}
 }

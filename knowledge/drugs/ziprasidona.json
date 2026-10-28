@@ -210,6 +210,11 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": ["sleepiness", "movement_symptoms", "dizziness"],
+    "cite": {"source": "label-ziprasidona", "locator": "seção 6.1 Clinical Trials Experience", "quote": "Bipolar trials (see Table 12) • Somnolence • Extrapyramidal Symptoms which includes the following adverse reaction terms: extrapyramidal syndrome, hypertonia, dystonia, dyskinesia, hypokinesia, tremor, paralysis and twitching. None of these adverse reactions occurred individually at an incidence greater than 10% in bipolar mania trials. • Dizziness", "accessed": "2026-10-27", "note": "A lista continua: \"which includes the adverse reaction terms dizziness and lightheadedness. • Akathisia • Abnormal Vision • Asthenia • Vomiting\". Critério da lista (mesma seção): incidência de 5% ou mais e pelo menos o dobro do placebo."},
+    "note": "Mania ou episódio misto (bipolar I), estudos de 3 semanas. A lista passa de 400 caracteres: acatisia, astenia (cansaço) e vômito vêm do fim dela, na nota da citação. Visão anormal ficou sem id (o vocabulário só tem visão embaçada)."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

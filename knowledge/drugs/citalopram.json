@@ -207,6 +207,18 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "sexual_dysfunction"
+    ],
+    "cite": {
+      "source": "label-citalopram",
+      "locator": "seção 6.1 Clinical Trials Experience",
+      "quote": "The most common adverse reaction that occurred in CELEXA-treated patients with an incidence of 5% or greater and at least twice the incidence in placebo patients was ejaculation disorder (primarily ejaculatory delay) in male patients",
+      "accessed": "2026-10-27"
+    },
+    "note": "É a única reação no critério da bula (≥5% e o dobro do placebo), só em homens. Na Tabela 3 (TDM), náusea, boca seca e sonolência são mais frequentes, mas não chegam ao dobro do placebo."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

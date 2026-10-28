@@ -316,7 +316,7 @@
     },
     {
       "id": "suicide_risk",
-      "label_pt": "Sinal de risco de suicídio (PHQ-9 item 9, relato ou avaliação profissional)",
+      "label_pt": "Sinal de risco de suicídio (triagem ASQ, PHQ-9 item 9, relato ou avaliação profissional)",
       "when": {
         "any": [
           {
@@ -330,6 +330,13 @@
             "profile": "suicide_risk_assessed",
             "op": "eq",
             "value": true
+          },
+          {
+            "instrument": "asq",
+            "band_in": [
+              "low",
+              "high"
+            ]
           }
         ]
       },
@@ -338,6 +345,46 @@
           "source": "nice-ng222",
           "locator": "recomendação 1.4.23",
           "quote": "Take into account toxicity in overdose when prescribing an antidepressant medication for people at significant risk of suicide.",
+          "accessed": "2026-10-27"
+        },
+        {
+          "source": "nimh-asq-pt",
+          "locator": "pdf p. 1 (Próximas etapas)",
+          "quote": "“Não” à pergunta nº 5 = triagem positiva não aguda (risco potencial identificado)",
+          "accessed": "2026-10-27"
+        }
+      ],
+      "review": {
+        "status": "draft",
+        "extracted_by": "ai",
+        "extracted_on": "2026-10-27",
+        "verified_by": null,
+        "verified_on": null
+      }
+    },
+    {
+      "id": "alcohol_risk",
+      "label_pt": "Consumo de álcool relevante (hábito informado ou AUDIT-C positivo)",
+      "when": {
+        "any": [
+          {
+            "profile": "habits",
+            "op": "contains",
+            "value": "alcohol"
+          },
+          {
+            "instrument": "auditc",
+            "band_in": [
+              "positive"
+            ]
+          }
+        ]
+      },
+      "sources": [
+        {
+          "source": "bradley-2007-auditc",
+          "locator": "Resumo (MEDLINE), Results",
+          "quote": "The AUDIT-C screening thresholds that simultaneously maximized sensitivity and specificity were > or =4 in men (sensitivity 0.86, specificity 0.89) and > or =3 in women (sensitivity 0.73, specificity 0.91).",
           "accessed": "2026-10-27"
         }
       ],

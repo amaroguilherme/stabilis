@@ -227,6 +227,24 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "nausea",
+      "sleepiness",
+      "dry_mouth",
+      "sweating",
+      "sexual_dysfunction",
+      "appetite_decrease",
+      "constipation"
+    ],
+    "cite": {
+      "source": "label-venlafaxina",
+      "locator": "seção 6.1 Clinical Studies Experience (Most Common Adverse Reactions)",
+      "quote": "The most commonly observed adverse reactions in the clinical study database in Effexor XR treated patients in MDD, GAD, SAD, and PD (incidence ≥5% and at least twice the rate of placebo) were: nausea (30.0%), somnolence (15.3%), dry mouth (14.8%), sweating (11.4%), abnormal ejaculation (9.9%), anorexia (9.8%), constipation (9.3%), impotence (5.3%), and decreased libido (5.1%).",
+      "accessed": "2026-10-27"
+    },
+    "note": "Dados combinados de TDM, TAG, TAS e pânico com Effexor XR (liberação prolongada); a bula não traz frase só para TDM."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

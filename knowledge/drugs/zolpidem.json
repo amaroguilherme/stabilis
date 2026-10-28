@@ -161,6 +161,21 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "sleepiness",
+      "dizziness",
+      "diarrhea"
+    ],
+    "cite": {
+      "source": "label-zolpidem",
+      "locator": "seção 6.1 Clinical Trials Experience (Most Commonly Observed Adverse Reactions in Controlled Trials)",
+      "quote": "During short-term treatment (up to 10 nights) with AMBIEN at doses up to 10 mg, the most commonly observed adverse reactions associated with the use of zolpidem and seen at statistically significant differences from placebo-treated patients were drowsiness (reported by 2% of zolpidem patients), dizziness (1%), and diarrhea (1%).",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"During longer-term treatment (28 to 35 nights) with zolpidem at doses up to 10 mg, the most commonly observed adverse reactions associated with the use of zolpidem and seen at statistically significant differences from placebo-treated patients were dizziness (5%) and drugged feelings (3%).\""
+    },
+    "note": "Insônia, uso curto (até 10 noites). No uso por 28 a 35 noites: tontura (5%) e sensação de estar drogado (3%), que não tem id."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

@@ -147,6 +147,25 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "dizziness",
+      "sleepiness",
+      "dry_mouth",
+      "edema",
+      "vision_blurred",
+      "weight_gain",
+      "memory"
+    ],
+    "cite": {
+      "source": "label-pregabalina",
+      "locator": "seção 6.1 Clinical Trials Experience (Most Common Adverse Reactions in All Controlled Clinical Studies in Adults)",
+      "quote": "dizziness, somnolence, dry mouth, edema, blurred vision, weight gain, and \"thinking abnormal\" (primarily difficulty with concentration/attention) were more commonly reported by subjects treated with LYRICA than by subjects treated with placebo (greater than or equal to 5% and twice the rate of that seen in placebo).",
+      "accessed": "2026-10-27",
+      "note": "Início da frase: \"In premarketing controlled trials of all adult patient populations combined (including DPN, PHN, and adult patients with partial-onset seizures),\""
+    },
+    "note": "Todos os estudos controlados em adultos (dor neuropática diabética, neuralgia pós-herpética, epilepsia); a bula americana não tem indicação para ansiedade. Pensamento anormal (sobretudo concentração) entra como memória ou concentração."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

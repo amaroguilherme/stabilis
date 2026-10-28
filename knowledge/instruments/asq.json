@@ -1,0 +1,41 @@
+{
+  "id": "asq",
+  "name": "ASQ – Perguntas para triagem de suicídio (NIMH)",
+  "license_note": "Domínio público (NIMH, governo dos EUA): pode ser reproduzido sem permissão, citando o NIMH como fonte, sem mudar o sentido e sem usar as imagens.",
+  "validation_note": "Não foi encontrado estudo de validação da versão em português. Validado em inglês por Horowitz LM et al.: Arch Pediatr Adolesc Med 2012;166(12):1170-6 (10 a 21 anos, pronto-socorro pediátrico) e Psychosomatics 2020;61(6):713-22 (727 adultos internados; sensibilidade 100%, especificidade 89%).",
+  "options": [
+    {"value": 1, "label": "Sim"},
+    {"value": 0, "label": "Não"}
+  ],
+  "options_cite": {"source": "nimh-asq-pt", "locator": "pdf p. 1 (pergunta 1 e opções)", "quote": "1. Nas últimas semanas, você desejou que estivesse morto? mSim m Não", "accessed": "2026-10-27", "note": "O 'm' antes de cada opção é a caixa de marcação do formulário, extraída como letra."},
+  "items": [
+    {"id": "asq_1", "text": "Nas últimas semanas, você desejou que estivesse morto?", "text_status": "verified",
+     "cite": {"source": "nimh-asq-pt", "locator": "pdf p. 1 (pergunta 1)", "quote": "1. Nas últimas semanas, você desejou que estivesse morto?", "accessed": "2026-10-27"}},
+    {"id": "asq_2", "text": "Nas últimas semanas, você sentiu que você ou sua família estariam em melhor situação se você estivesse morto?", "text_status": "verified",
+     "cite": {"source": "nimh-asq-pt", "locator": "pdf p. 1 (pergunta 2)", "quote": "2. Nas últimas semanas, você sentiu que você ou sua família estariam em melhor situação se você estivesse morto?", "accessed": "2026-10-27"}},
+    {"id": "asq_3", "text": "Na última semana, você tem tido pensamentos sobre se matar?", "text_status": "verified",
+     "cite": {"source": "nimh-asq-pt", "locator": "pdf p. 1 (pergunta 3)", "quote": "3. Na última semana, você tem tido pensamentos sobre se matar?", "accessed": "2026-10-27"}},
+    {"id": "asq_4", "text": "Você já tentou se matar?", "text_status": "verified",
+     "cite": {"source": "nimh-asq-pt", "locator": "pdf p. 1 (pergunta 4)", "quote": "4. Você já tentou se matar?", "accessed": "2026-10-27"}},
+    {"id": "asq_5", "text": "Você está tendo pensamentos sobre se matar agora?", "text_status": "verified",
+     "ask_if": {"items": ["asq_1", "asq_2", "asq_3", "asq_4"], "min_yes": 1},
+     "cite": {"source": "nimh-asq-pt", "locator": "pdf p. 1 (pergunta 5, de acuidade)", "quote": "Caso o paciente responda sim a qualquer uma das perguntas acima, faça a pergunta de acuidade a seguir: 5. Você está tendo pensamentos sobre se matar agora?", "accessed": "2026-10-27"}}
+  ],
+  "scoring": {
+    "type": "risk_screener",
+    "risk": {"low_items": ["asq_1", "asq_2", "asq_3", "asq_4"], "high_items": ["asq_5"]}
+  },
+  "sources": [
+    {"source": "nimh-asq-pt", "locator": "pdf p. 1 (Próximas etapas)", "quote": "Caso o paciente responda “Não” às perguntas de 1 a 4, a triagem está completa (não é necessário fazer a pergunta nº 5).", "accessed": "2026-10-27"},
+    {"source": "nimh-asq-pt", "locator": "pdf p. 1 (Próximas etapas)", "quote": "Caso o paciente responda “Sim” a qualquer uma das perguntas de 1 a 4, ou caso se recuse a responder, a triagem será considerada positiva. Faça a pergunta nº 5 para avaliar a acuidade: o “Sim” à pergunta nº 5 = triagem positiva aguda (risco iminente identificado)", "accessed": "2026-10-27", "note": "Faixa 'low' = triagem positiva não aguda; 'high' = positiva aguda."},
+    {"source": "nimh-asq-pt", "locator": "pdf p. 1 (Próximas etapas)", "quote": "“Não” à pergunta nº 5 = triagem positiva não aguda (risco potencial identificado)", "accessed": "2026-10-27"},
+    {"source": "nimh-asq-tool-en", "locator": "pdf p. 1 (If the patient refuses to answer)", "quote": "For adults, refusal is NOT considered a positive screen. No intervention is necessary at this time unless there are other safety concerns.", "accessed": "2026-10-27", "note": "Versão em inglês de 2025, mais nova que a tradução de 2017, que ainda trata a recusa como triagem positiva."},
+    {"source": "nimh-asq-info-sheet", "locator": "pdf p. 2 (rodapé)", "quote": "Public domain tool, free of charge", "accessed": "2026-10-27"},
+    {"source": "nimh-copyright-policy", "locator": "Copyright Policy (Permission to copy)", "quote": "The information on our website and in our materials is in the public domain. You may copy and reuse it without permission.", "accessed": "2026-10-27"},
+    {"source": "nimh-copyright-policy", "locator": "Copyright Policy (publicações)", "quote": "Please cite the National Institute of Mental Health as the source. Please note: You may not reuse or copy any of the publication images.", "accessed": "2026-10-27"},
+    {"source": "nimh-asq-info-sheet", "locator": "pdf p. 2 (asQ Development)", "quote": "Sound psychometric properties for youth and adult medical patients", "accessed": "2026-10-27"},
+    {"source": "horowitz-2020-asq", "locator": "Resumo (MEDLINE), Conclusions", "quote": "The ASQ is a valid and brief suicide risk-screening tool for use among adults.", "accessed": "2026-10-27"},
+    {"source": "nimh-asq-ed-pathway", "locator": "pdf p. 5 (C. How to initiate screening)", "quote": "The ASQ screen has been validated by means of a live person administering the questions; however, some centers have used tablets and self-report as ways of administering the scale.", "accessed": "2026-10-27", "note": "Autoaplicado no app, o ASQ fica fora da forma validada."}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Escolhido em vez do C-SSRS: PDF oficial do NIMH em domínio público. O NIMH rotula esta tradução (2017) só como 'Portuguese', mas há outra para Portugal; o rodapé tem resto de texto em holandês. Validado com uma pessoa fazendo as perguntas, não autoaplicado. Os telefones do PDF são dos EUA: mostrar CVV 188 e SAMU 192. Ficaram de fora o 'Pergunte ao paciente' (dirigido ao profissional) e as perguntas abertas do item 4. A recusa em responder não tem opção no motor."}
+}

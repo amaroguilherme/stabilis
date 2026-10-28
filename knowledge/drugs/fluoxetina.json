@@ -202,6 +202,11 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": ["sexual_dysfunction", "appetite_decrease", "diarrhea", "dyspepsia", "nausea", "vomiting", "fatigue", "dry_mouth", "insomnia", "sleepiness", "tremor", "sweating", "nervousness", "rash", "abnormal_dreams", "yawning", "hot_flashes"],
+    "cite": {"source": "label-fluoxetina", "locator": "Medication Guide: What are the possible side effects of PROZAC?", "quote": "Common possible side effects in people who take PROZAC include: unusual dreams sexual problems loss of appetite, diarrhea, indigestion, nausea or vomiting, weakness, or dry mouth flu symptoms feeling tired or fatigued change in sleep habits yawning sinus infection or sore throat tremor or shaking sweating feeling anxious or nervous hot flashes rash", "accessed": "2026-10-27"},
+    "note": "Frase do Guia de Medicação: a seção 6.1 só traz tabelas. Vale para todas as indicações. \"Change in sleep habits\" virou insônia e sonolência (ambas na Tabela 3 da seção 6.1). Sem id: sonhos anormais, sintomas de gripe, bocejo, sinusite ou dor de garganta, ondas de calor."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

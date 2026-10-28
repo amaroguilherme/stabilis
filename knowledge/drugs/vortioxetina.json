@@ -175,6 +175,19 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "nausea",
+      "constipation",
+      "vomiting"
+    ],
+    "cite": {
+      "source": "label-vortioxetina",
+      "locator": "seção 6.1 Clinical Studies Experience (Common Adverse Reactions in Placebo-Controlled MDD Studies)",
+      "quote": "The most commonly observed adverse reactions in MDD patients treated with TRINTELLIX in 6 to 8 week placebo-controlled studies (incidence ≥5% and at least twice the rate of placebo) were nausea, constipation and vomiting.",
+      "accessed": "2026-10-27"
+    }
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

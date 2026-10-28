@@ -196,6 +196,11 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": ["nausea", "diarrhea", "tremor", "dyspepsia", "appetite_decrease", "sweating", "sexual_dysfunction"],
+    "cite": {"source": "label-sertralina", "locator": "seção 6.1 Clinical Trials Experience", "quote": "The most common adverse reactions (≥5% and twice placebo) in all pooled placebo-controlled clinical trials of all ZOLOFT-treated patients with MDD, OCD, PD, PTSD, SAD and PMDD were nausea, diarrhea/loose stool, tremor, dyspepsia, decreased appetite, hyperhidrosis, ejaculation failure, and decreased libido (see Table 3).", "accessed": "2026-10-27", "note": "Frase seguinte da mesma seção (reações mais comuns por indicação, não citadas antes): \"MDD: somnolence\""},
+    "note": "A frase citada junta todas as indicações (TDM, TOC, pânico, TEPT, TAS e TDPM). Sonolência vem da frase seguinte, específica de TDM (ver nota da citação)."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

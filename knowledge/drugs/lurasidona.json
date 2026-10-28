@@ -211,6 +211,25 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "restlessness",
+      "movement_symptoms",
+      "sleepiness",
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "nervousness"
+    ],
+    "cite": {
+      "source": "label-lurasidona",
+      "locator": "seção 6.1 Clinical Trials Experience (Bipolar Depression, Monotherapy)",
+      "quote": "The most common adverse reactions (incidence ≥5%, in either dose group, and at least twice the rate of placebo) in patients treated with LATUDA were akathisia, extrapyramidal symptoms, somnolence, nausea, vomiting, diarrhea, and anxiety.",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção, adjuvante de lítio ou valproato: \"The most common adverse reactions (incidence ≥5% and at least twice the rate of placebo) in subjects treated with LATUDA were akathisia and somnolence.\""
+    },
+    "note": "Depressão bipolar em adultos, monoterapia. Ansiedade entra como nervosismo. Como adjuvante de lítio ou valproato, as mais comuns foram acatisia e sonolência."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

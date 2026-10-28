@@ -219,6 +219,26 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "nausea",
+      "sleepiness",
+      "dizziness",
+      "vomiting",
+      "fatigue",
+      "abdominal_pain",
+      "dyspepsia",
+      "rash"
+    ],
+    "cite": {
+      "source": "label-valproato",
+      "locator": "seção 6.1 Mania (Tabela 2)",
+      "quote": "Table 2. Adverse Reactions Reported by > 5% of Depakote-Treated Patients During Placebo-Controlled Trials of Acute Mania 1 Adverse Reaction Depakote (n = 89) % Placebo (n = 97) % Nausea 22 15 Somnolence 19 12 Dizziness 12 4 Vomiting 12 3 Accidental Injury 11 5 Asthenia 10 7 Abdominal Pain 9 8 Dyspepsia 9 8 Rash 6 3",
+      "accessed": "2026-10-27",
+      "note": "Mesma seção: \"Vomiting was the only reaction that was reported by significantly (p ≤ 0.05) more patients receiving Depakote compared to placebo.\" Tremor, dor de cabeça, constipação e diarreia tiveram incidência igual ou maior no placebo."
+    },
+    "note": "Mania aguda (2 estudos de 3 semanas): reações em mais de 5% e acima do placebo. Lesão acidental não tem id. Astenia entra como cansaço. Dor abdominal e dispepsia ficaram perto do placebo (9% contra 8%)."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

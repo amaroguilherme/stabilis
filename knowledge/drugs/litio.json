@@ -192,6 +192,21 @@
       }
     }
   ],
+  "common_effects": {
+    "effects": [
+      "tremor",
+      "urination_thirst",
+      "nausea"
+    ],
+    "cite": {
+      "source": "label-litio",
+      "locator": "Medication Guide",
+      "quote": "The most common side effects of Lithium and Lithium Carbonate, include: Adults with manic or mixed episodes of bipolar I disorder: hand trembling excessive urination increased thirst nausea general discomfort when you start treatment",
+      "accessed": "2026-10-27",
+      "note": "Seção 2.2: \"Fine hand tremor, polyuria, and thirst may occur during initial therapy for the acute manic phase and may persist throughout treatment. Nausea and general discomfort may also appear during the first few days of lithium administration.\""
+    },
+    "note": "Adultos com mania ou episódio misto (bipolar I). Mal-estar geral no início do tratamento não tem id. A seção 6.1 só lista as reações comuns de crianças e adolescentes (7 a 17 anos)."
+  },
   "review": {
     "status": "draft",
     "extracted_by": "ai",

@@ -1,0 +1,54 @@
+{
+  "id": "mdq",
+  "name": "MDQ (Questionário de Transtornos do Humor)",
+  "license_note": "O uso requer permissão do autor, segundo a Mental Health America. Textos não reproduzidos até haver permissão.",
+  "validation_note": "Castelo MS et al., Rev Bras Psiquiatr 2010;32(4):424-8: 114 pacientes de ambulatório psiquiátrico; melhor ponto de corte de 8 ou mais itens (sensibilidade 0,91, especificidade 0,70). de Sousa Gurgel W et al., Compr Psychiatry 2012;53(3):308-12: 153 pessoas de ambulatórios e controles; sensibilidade 0,72, especificidade 0,95.",
+  "options": [
+    {"value": 1, "label": "Sim"},
+    {"value": 0, "label": "Não"}
+  ],
+  "items": [
+    {"id": "mdq_1", "text": null, "text_status": "pending"},
+    {"id": "mdq_2", "text": null, "text_status": "pending"},
+    {"id": "mdq_3", "text": null, "text_status": "pending"},
+    {"id": "mdq_4", "text": null, "text_status": "pending"},
+    {"id": "mdq_5", "text": null, "text_status": "pending"},
+    {"id": "mdq_6", "text": null, "text_status": "pending"},
+    {"id": "mdq_7", "text": null, "text_status": "pending"},
+    {"id": "mdq_8", "text": null, "text_status": "pending"},
+    {"id": "mdq_9", "text": null, "text_status": "pending"},
+    {"id": "mdq_10", "text": null, "text_status": "pending"},
+    {"id": "mdq_11", "text": null, "text_status": "pending"},
+    {"id": "mdq_12", "text": null, "text_status": "pending"},
+    {"id": "mdq_13", "text": null, "text_status": "pending"},
+    {"id": "mdq_same_period", "text": null, "text_status": "pending",
+     "ask_if": {"items": ["mdq_1", "mdq_2", "mdq_3", "mdq_4", "mdq_5", "mdq_6", "mdq_7", "mdq_8", "mdq_9", "mdq_10", "mdq_11", "mdq_12", "mdq_13"], "min_yes": 2}},
+    {"id": "mdq_problem", "text": null, "text_status": "pending",
+     "options": [
+       {"value": 0, "label": "pendente (0)"},
+       {"value": 1, "label": "pendente (1)"},
+       {"value": 2, "label": "pendente (2)"},
+       {"value": 3, "label": "pendente (3)"}
+     ]}
+  ],
+  "scoring": {
+    "type": "mdq",
+    "mdq": {
+      "symptom_items": ["mdq_1", "mdq_2", "mdq_3", "mdq_4", "mdq_5", "mdq_6", "mdq_7", "mdq_8", "mdq_9", "mdq_10", "mdq_11", "mdq_12", "mdq_13"],
+      "min_yes": 7,
+      "same_period_item": "mdq_same_period",
+      "problem_item": "mdq_problem",
+      "problem_min_value": 2
+    }
+  },
+  "sources": [
+    {"source": "castelo-2010-mdq", "locator": "Methods, 1. Instruments and procedures", "quote": "The first session includes 13 Yes/No questions derived from the DSM-IV criteria and clinical experience. The second asks whether several symptoms have been experienced in the same period of time. The third part examines psychosocial impairment, classified as absent, minor, moderate or serious.", "accessed": "2026-10-27", "note": "Estrutura usada nos itens: 13 sintomas (sim/não), mesmo período e grau de problema com valores 0 a 3 nessa ordem."},
+    {"source": "castelo-2010-mdq", "locator": "Methods, 1. Instruments and procedures", "quote": "MDQ positive screening for BDs requires that seven or more positive symptoms are reported, with clustering within the same time period and causing moderate to severe problems.", "accessed": "2026-10-27", "note": "Regra do estudo original (Hirschfeld et al., Am J Psychiatry 2000), adotada aqui: 7 ou mais sintomas, mesmo período e problema moderado ou sério (valor 2 ou mais)."},
+    {"source": "castelo-2010-mdq", "locator": "Results, 4. Sensitivity, specificity and predictive values", "quote": "A MDQ screening score of 8 or higher was chosen as the optimal cutoff", "accessed": "2026-10-27", "note": "Corte brasileiro em ambulatório psiquiátrico, não adotado: aqui o MDQ é triagem de segurança e 7 é mais sensível. O artigo não informa se as perguntas 2 e 3 entraram nessa análise."},
+    {"source": "castelo-2010-mdq", "locator": "Methods, 1. Instruments and procedures", "quote": "The MDQ was first translated into Portuguese by two bilingual authors of the present study (psychiatrists).", "accessed": "2026-10-27"},
+    {"source": "gurgel-2012-mdq", "locator": "Resumo (MEDLINE), Results", "quote": "The sensitivity for bipolar disorder was 0.72 (bipolar I disorder, 0.81; bipolar II disorder, 0.58; and bipolar disorder not otherwise specified, 0.69), with specificity of 0.95.", "accessed": "2026-10-27"},
+    {"source": "canmat-isbd-2018", "locator": "pdf p. 7 (2.2.4 Screening and diagnosis of bipolar disorder)", "quote": "such as the MDQ should be used only as an adjunct for screening", "accessed": "2026-10-27", "note": "No PDF em duas colunas, a frase continua: 'clinical populations and not for diagnostic or treatment planning purposes'."},
+    {"source": "mha-screening-tests", "locator": "Bipolar Test: Mood Disorder Questionnaire (MDQ)", "quote": "The MDQ is widely available on the web and is included in the papers cited below. Use requires the permission of the author", "accessed": "2026-10-27"}
+  ],
+  "review": {"status": "draft", "extracted_by": "ai", "extracted_on": "2026-10-27", "verified_by": null, "verified_on": null, "notes": "Textos pendentes por dois motivos: a Mental Health America informa que o uso do MDQ requer permissão do autor, e a versão brasileira de Castelo et al. (2010) só existe como imagem no SciELO, sem texto conferível. Para liberar: obter a permissão e o texto oficial em português com os autores brasileiros. Os rótulos 'pendente' da pergunta 3 seguem a ordem absent, minor, moderate, serious de Castelo (2010). As perguntas sobre família e diagnóstico prévio ficaram de fora porque não pontuam."}
+}
