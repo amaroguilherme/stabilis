@@ -25,8 +25,9 @@ export function checkInvariants(kb: KnowledgeBase, input: EngineInput, output: E
   const ids = placed.map((p) => p.result.drug_id);
   if (new Set(ids).size !== ids.length) fail("INV-00", "fármaco repetido entre as linhas");
 
-  // INV-01: crisis language in patient mode hides every medication.
-  if (input.mode === "patient" && output.crisis.language && placed.length > 0) {
+  // INV-01: crisis language or a positive risk screener in patient mode hides every medication.
+  const screenerPositive = kb.data.instruments.some((i) => i.scoring.type === "risk_screener" && output.scores[i.id]?.answered && output.scores[i.id].band !== "none");
+  if (input.mode === "patient" && (output.crisis.language || screenerPositive) && placed.length > 0) {
     fail("INV-01", "crise no modo paciente com medicamentos na saída");
   }
 

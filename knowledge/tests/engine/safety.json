@@ -768,6 +768,213 @@
           ]
         }
       }
+    },
+    {
+      "id": "S22",
+      "title": "Preferência por menos exames de sangue reordena dentro da linha",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "bipolar_1",
+          "phase": "maintenance"
+        },
+        "profile": {
+          "age": 40
+        },
+        "concerns": [
+          "fewer_blood_tests"
+        ]
+      },
+      "expect": {
+        "tiers": {
+          "litio": "first_line",
+          "lamotrigina": "first_line"
+        },
+        "order": [
+          [
+            "lamotrigina",
+            "litio"
+          ],
+          [
+            "lamotrigina",
+            "valproato"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "S23",
+      "title": "Preferência pelo SUS põe por último quem não está na RENAME",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "bipolar_1",
+          "phase": "maintenance"
+        },
+        "profile": {
+          "age": 40
+        },
+        "concerns": [
+          "prefer_sus"
+        ]
+      },
+      "expect": {
+        "tiers": {
+          "aripiprazol": "first_line"
+        },
+        "order": [
+          [
+            "litio",
+            "aripiprazol"
+          ],
+          [
+            "valproato",
+            "aripiprazol"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "S24",
+      "title": "Paciente com triagem ASQ positiva: sem medicamentos e com ajuda imediata",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "depression_unipolar"
+        },
+        "profile": {
+          "age": 30
+        },
+        "instruments": {
+          "asq": {
+            "asq_1": 1,
+            "asq_2": 0,
+            "asq_3": 0,
+            "asq_4": 0,
+            "asq_5": 0
+          }
+        }
+      },
+      "expect": {
+        "derived": {
+          "suicide_risk": true
+        },
+        "no_drugs": true,
+        "medications_excluded": "all",
+        "alerts": [
+          "alert.crisis_patient"
+        ],
+        "referrals": [
+          "ref.crisis"
+        ]
+      }
+    },
+    {
+      "id": "S25",
+      "title": "Paciente com ASQ negativa e GAD-7 moderado: sem antidepressivo enquanto não há triagem de bipolaridade",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "gad"
+        },
+        "profile": {
+          "age": 30,
+          "sex_at_birth": "female",
+          "reproductive": {
+            "pregnant": "no",
+            "breastfeeding": false,
+            "planning": false
+          }
+        },
+        "instruments": {
+          "asq": {
+            "asq_1": 0,
+            "asq_2": 0,
+            "asq_3": 0,
+            "asq_4": 0
+          },
+          "gad7": {
+            "gad7_1": 2,
+            "gad7_2": 2,
+            "gad7_3": 2,
+            "gad7_4": 1,
+            "gad7_5": 1,
+            "gad7_6": 1,
+            "gad7_7": 1
+          }
+        }
+      },
+      "expect": {
+        "derived": {
+          "suicide_risk": false
+        },
+        "tiers": {
+          "pregabalina": "alternative"
+        },
+        "absent": [
+          "sertralina",
+          "escitalopram"
+        ],
+        "alerts": [
+          "alert.bipolar_screen"
+        ]
+      }
+    },
+    {
+      "id": "S26",
+      "title": "AUDIT-C positivo dispara o alerta de álcool com depressores do SNC",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "gad"
+        },
+        "profile": {
+          "age": 40
+        },
+        "instruments": {
+          "auditc": {
+            "auditc_1": 4,
+            "auditc_2": 2,
+            "auditc_3": 1
+          }
+        }
+      },
+      "expect": {
+        "derived": {
+          "alcohol_risk": true
+        },
+        "drug_alerts": {
+          "clonazepam": [
+            "alert.alcohol_cns"
+          ],
+          "pregabalina": [
+            "alert.alcohol_cns"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S27",
+      "title": "AUDIT-C com 'Nunca' na primeira pergunta pula as outras e fica negativo",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "gad"
+        },
+        "profile": {
+          "age": 40
+        },
+        "instruments": {
+          "auditc": {
+            "auditc_1": 0
+          }
+        }
+      },
+      "expect": {
+        "derived": {
+          "alcohol_risk": false
+        }
+      }
     }
   ]
 }

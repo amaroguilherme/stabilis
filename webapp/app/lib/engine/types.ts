@@ -13,8 +13,9 @@ export interface Cite {
   locator: string;
   quote?: string;
   absent_term?: string;
-  accessed: string;
+  accessed?: string;
   note?: string;
+  qid?: string; // browser bundle: quote, absent term, note and access date live in /kb-quotes.json
 }
 
 export interface Review {
@@ -53,6 +54,7 @@ export interface Drug {
   };
   facts: DrugFact[];
   monitoring?: { id: string; note?: string; cite: Cite }[];
+  common_effects?: { effects: string[]; cite: Cite; note?: string };
   review: Review;
 }
 
@@ -164,20 +166,34 @@ export interface Band {
   max: number;
 }
 
+export interface InstrumentItem {
+  id: string;
+  text: string | null;
+  text_status: "verified" | "pending";
+  options?: { value: number; label: string }[];
+  cite?: Cite;
+  ask_if?: { items: string[]; min_yes: number }; // asked only when enough of these items were positive
+}
+
 export interface Instrument {
   id: string;
   name: string;
   stem?: string;
+  stem_cite?: Cite;
+  instructions?: string;
+  instructions_cite?: Cite;
   license_note?: string;
+  validation_note?: string;
   options: { value: number; label: string }[];
-  items: { id: string; text: string | null; text_status: "verified" | "pending"; options?: { value: number; label: string }[] }[];
+  options_cite?: Cite;
+  items: InstrumentItem[];
   scoring: {
-    type: "sum" | "mdq" | "cssrs_screener";
+    type: "sum" | "mdq" | "risk_screener";
     bands?: Band[];
     bands_by_sex?: Record<string, Band[]>;
     flags?: { id: string; item: string; op: "gt" | "gte" | "eq"; value: number }[];
     mdq?: { symptom_items: string[]; min_yes: number; same_period_item: string; problem_item: string; problem_min_value: number };
-    cssrs?: { low_items: string[]; high_items: string[] };
+    risk?: { low_items: string[]; high_items: string[] };
   };
   sources: Cite[];
   review: Review;
@@ -208,7 +224,8 @@ export interface KnowledgeBaseData {
     facts: { facts: { id: string; category: string; label_pt: string }[] };
     classes: { classes: { id: string; label_pt: string; subclasses: { id: string; label_pt: string }[] }[] };
     comorbidities: { comorbidities: Concept[]; habits: Concept[] };
-    monitoring: { monitoring: { id: string; label_pt: string }[] };
+    monitoring: { monitoring: { id: string; label_pt: string; blood_test?: boolean }[] };
+    effects: { effects: { id: string; label_plain: string; label_clinical: string }[] };
     conditions: {
       conditions: {
         id: string;
@@ -263,7 +280,9 @@ export interface EngineInput {
   profile: Profile;
   instruments?: Record<string, InstrumentAnswers>;
   free_text?: string;
-  concerns?: string[]; // fact tags the person wants to avoid (e.g. "weight_gain_significant")
+  // What the person wants to avoid or prefer; orders drugs within a tier, never across tiers.
+  // Fact tags (e.g. "weight_gain_significant") or the preferences in PREFERENCE_CONCERNS.
+  concerns?: string[];
 }
 
 // ── Engine output ────────────────────────────────────────────────────────────

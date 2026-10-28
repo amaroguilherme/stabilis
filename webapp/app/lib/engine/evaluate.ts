@@ -31,6 +31,9 @@ import type {
 } from "./types.ts";
 
 export const TIER_ORDER: Tier[] = ["first_line", "second_line", "alternative", "not_recommended", "avoid_for_profile"];
+
+/** Preferences that are not drug facts: available through the SUS (RENAME), fewer blood tests. */
+export const PREFERENCE_CONCERNS = { prefer_sus: "prefer_sus", fewer_blood_tests: "fewer_blood_tests" } as const;
 const SEVERITY_RANK: Record<Severity, number> = { info: 0, warning: 1, major: 2, contraindicated: 3 };
 const LEVEL_RANK: Record<AlertLevel, number> = { info: 0, warning: 1, critical: 2 };
 
@@ -365,7 +368,11 @@ export function evaluate(kb: KnowledgeBase, input: EngineInput, options: EngineO
   // 10. Tier groups, ordered: within a tier by the person's concerns, then by the order in which the
   // guideline lists the options and their drugs (CANMAT lists first-line agents hierarchically), then name.
   const concerns = new Set(input.concerns ?? []);
-  const concernPenalty = (drug: Drug) => drug.facts.filter((f) => concerns.has(f.tag)).length;
+  const bloodTests = new Set(data.vocab.monitoring.monitoring.filter((m) => m.blood_test).map((m) => m.id));
+  const concernPenalty = (drug: Drug) =>
+    drug.facts.filter((f) => concerns.has(f.tag)).length +
+    (concerns.has(PREFERENCE_CONCERNS.prefer_sus) && (!drug.sus || drug.sus.component === "nao_consta") ? 1 : 0) +
+    (concerns.has(PREFERENCE_CONCERNS.fewer_blood_tests) && (drug.monitoring ?? []).some((m) => bloodTests.has(m.id)) ? 1 : 0);
   const guidelineRank = (result: DrugResult, drug: Drug) =>
     Math.min(
       ...result.reasons.map((r) => {

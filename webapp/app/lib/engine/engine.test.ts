@@ -296,3 +296,13 @@ test("5.000 perfis aleatórios com semente: nenhuma invariante violada e saída 
   // The sample must exercise the medication paths, not only gates.
   assert.ok(withDrugs > 500, `poucos perfis com medicamentos: ${withDrugs}`);
 });
+
+test("todo texto que o modo paciente pode mostrar tem versão em linguagem simples", () => {
+  const keys = new Set<string>();
+  for (const rule of kb.data.rules) if (rule.modes.includes("patient")) for (const a of rule.then) if ("message_key" in a) keys.add(a.message_key);
+  for (const c of kb.data.conditions) for (const o of c.options) if (o.modes.includes("patient")) keys.add(o.text_key);
+  for (const ix of kb.data.interactions) keys.add(ix.message_key);
+  for (const key of ["alert.missing_profile", "alert.unrecognized_med", "alert.dose_above_max", "alert.dose_above_usual", "alert.dose_below_usual", "alert.fail_closed"]) keys.add(key);
+  const missing = [...keys].filter((k) => !kb.data.messages[k]?.plain);
+  assert.deepEqual(missing, []);
+});
