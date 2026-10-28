@@ -219,6 +219,38 @@ export interface Concept {
   legacy_labels: string[];
 }
 
+export interface Trial {
+  id: string;
+  selector: Selector;
+  conditions?: string[]; // absent: applies to any condition; otherwise only when evaluating one of these
+  min_weeks?: number; // absent: a duration limit only (max_weeks), with no dose judged
+  max_weeks?: number;
+  min_mg_per_day?: number;
+  note?: string;
+  sources: Cite[];
+}
+
+export type TrialStatus = "adequate" | "low_dose" | "short_duration" | "beyond_recommended" | "within_recommended" | "unknown" | "no_criteria";
+
+export interface NextStep {
+  id: string;
+  status: "no_response_adequate" | "partial_response_adequate" | "low_dose" | "short_duration" | "beyond_recommended" | "unknown";
+  selector?: Selector;
+  condition?: string;
+  modes: Mode[];
+  message_key: string;
+  sources: Cite[];
+}
+
+export interface SafetyPlan {
+  title: string;
+  intro: string;
+  steps: { id: string; title: string; prompt: string; examples?: string[]; sources: Cite[] }[];
+  contacts: { label: string; phone: string; description: string; sources: Cite[] }[];
+  license_note?: string;
+  sources: Cite[];
+}
+
 export interface KnowledgeBaseData {
   manifest: { kb_version: string; schema_version: number; language: string };
   sources: Source[];
@@ -246,6 +278,10 @@ export interface KnowledgeBaseData {
   instruments: Instrument[];
   messages: Record<string, { plain?: string; clinical: string }>;
   brands: Record<string, string[]>;
+  trials: Trial[];
+  next_steps: NextStep[];
+  safety_plan: SafetyPlan | null;
+  tracking: { reassess_days: number; instruments: string[]; sources: Cite[] } | null;
 }
 
 export interface KnowledgeBase {
@@ -276,12 +312,25 @@ export interface Profile {
 
 export type InstrumentAnswers = Record<string, number>;
 
+/** A medicine the person took (or takes), as they remember it. */
+export interface HistoryEntry {
+  drug_id: string | null;
+  raw_text: string;
+  still_using: boolean | null;
+  mg_per_day: number | null;
+  duration_months: number | null;
+  response: "good" | "partial" | "none" | "unknown" | null;
+  side_effects: string[]; // ids from vocab/effects.json
+  stop_reason: "side_effects" | "no_effect" | "cost" | "ran_out" | "doctor_changed" | "felt_better" | "other" | null;
+}
+
 export interface EngineInput {
   mode: Mode;
   condition: { id: string; phase?: string | null } | null;
   profile: Profile;
   instruments?: Record<string, InstrumentAnswers>;
   free_text?: string;
+  history?: HistoryEntry[]; // treatments already tried, for the treatment review
   // What the person wants to avoid or prefer; orders drugs within a tier, never across tiers.
   // Fact tags (e.g. "weight_gain_significant") or the preferences in PREFERENCE_CONCERNS.
   concerns?: string[];
@@ -361,6 +410,22 @@ export interface MedReviewItem {
   monitoring: { id: string; note?: string; cite: Cite }[];
 }
 
+export interface TreatmentReviewItem {
+  raw_text: string;
+  drug_id: string | null;
+  status: TrialStatus;
+  response: HistoryEntry["response"];
+  mg_per_day: number | null;
+  weeks: number | null;
+  min_mg_per_day: number | null;
+  dose_basis: "rule" | "label" | null; // where the minimum dose comes from: the trial's sources or the drug label
+  min_weeks: number | null;
+  max_weeks: number | null;
+  trial_id: string | null;
+  sources: Cite[]; // the trial rule and, when the label gives the minimum dose, its citation
+  steps: { message: Message; origin: string; sources: Cite[] }[];
+}
+
 export interface InstrumentResult {
   instrument_id: string;
   answered: boolean;
@@ -383,6 +448,7 @@ export interface EngineOutput {
   referrals: { message: Message; urgent: boolean; origin: string; sources: Cite[] }[];
   questions: { message: Message; origin: string; sources: Cite[] }[];
   medication_review: MedReviewItem[];
+  treatment_review: TreatmentReviewItem[];
   interactions: InteractionFinding[];
   violations: string[];
   fail_closed: boolean;

@@ -138,7 +138,7 @@ interface VectorCase {
 const KNOWN_EXPECTATIONS = new Set([
   "fail_closed", "crisis", "derived", "tiers", "absent", "not_in_positive", "no_drugs", "in_use", "order",
   "drug_alerts", "drug_interactions", "no_drug_interactions", "alerts", "no_alerts", "referrals", "questions",
-  "options", "no_options", "review", "interactions", "medications_excluded",
+  "options", "no_options", "review", "interactions", "medications_excluded", "treatment",
 ]);
 
 function checkCase(out: EngineOutput, expect: Record<string, unknown>) {
@@ -197,6 +197,14 @@ function checkCase(out: EngineOutput, expect: Record<string, unknown>) {
     if (expected.dose_check) assert.equal(item.dose_check, expected.dose_check, `dose de ${expected.raw_text}`);
     const got = item.alerts.map((a) => a.message.key);
     for (const key of expected.alerts ?? []) assert.ok(got.includes(key), `${expected.raw_text} sem alerta ${key} (tem: ${got.join(", ")})`);
+  }
+  for (const [i, expected] of ((e.treatment ?? []) as { raw_text: string; status: string; dose_basis?: string | null; steps?: string[] }[]).entries()) {
+    const item = out.treatment_review[i];
+    assert.ok(item, `item ${i} da revisão de tratamento ausente`);
+    assert.equal(item.raw_text, expected.raw_text);
+    assert.equal(item.status, expected.status, `situação de ${expected.raw_text}`);
+    if ("dose_basis" in expected) assert.equal(item.dose_basis, expected.dose_basis, `origem da dose mínima de ${expected.raw_text}`);
+    if (expected.steps) assert.deepEqual(item.steps.map((s) => s.origin), expected.steps, `próximos passos de ${expected.raw_text}`);
   }
 }
 
@@ -279,6 +287,20 @@ function randomInput(rand: () => number): EngineInput {
     instruments,
     free_text: pick(TEXTS),
     concerns: some(["weight_gain_significant", "sedation_significant", "sexual_dysfunction", "prolactin_elevation"], 0.3),
+    // Treatments already tried, with the numbers the person reports (dose, months): never a "score".
+    history: Array.from({ length: Math.floor(rand() * 3) }, () => {
+      const drug = rand() < 0.1 ? null : pick(data.drugs);
+      return {
+        drug_id: drug?.id ?? null,
+        raw_text: drug?.names.display_pt ?? "remédio antigo",
+        still_using: pick([true, false, null]),
+        mg_per_day: rand() < 0.7 ? Math.round(rand() * 600) / 2 : null,
+        duration_months: rand() < 0.8 ? pick([0.25, 0.5, 1, 2, 3, 6, 12, 24]) : null,
+        response: pick(["good", "partial", "none", "unknown", null] as const),
+        side_effects: [],
+        stop_reason: null,
+      };
+    }),
   };
 }
 

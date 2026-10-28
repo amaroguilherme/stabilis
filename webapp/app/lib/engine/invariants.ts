@@ -3,9 +3,11 @@
 // engine) is caught instead of shown. Any violation makes the engine hide all medication content.
 
 import { drugHasFact, matchesClass } from "./predicates.ts";
-import type { Drug, EngineInput, EngineOutput, KnowledgeBase, Tier } from "./types.ts";
+import type { Drug, EngineInput, EngineOutput, KnowledgeBase, Tier, TreatmentReviewItem } from "./types.ts";
 
 const POSITIVE: Tier[] = ["first_line", "second_line", "alternative"];
+// Treatment review facts: what the person reported and the cited minimums/maximums (not scores).
+const REVIEW_NUMBERS = ["mg_per_day", "weeks", "min_mg_per_day", "min_weeks", "max_weeks"] as const;
 // Percentages, "x/100" and score words: the patient view never rates medications.
 const SCORE_LIKE = /\d\s*%|\d+\s*\/\s*100|\b(nota|pontua[çc][ãa]o|score|probabilidade)\b/i;
 const MONITORED_DRUGS = ["litio", "valproato", "clozapina"];
@@ -29,6 +31,9 @@ export function checkInvariants(kb: KnowledgeBase, input: EngineInput, output: E
   const screenerPositive = kb.data.instruments.some((i) => i.scoring.type === "risk_screener" && output.scores[i.id]?.answered && output.scores[i.id].band !== "none");
   if (input.mode === "patient" && (output.crisis.language || screenerPositive) && placed.length > 0) {
     fail("INV-01", "crise no modo paciente com medicamentos na saída");
+  }
+  if (input.mode === "patient" && (output.crisis.language || screenerPositive) && output.treatment_review.some((t) => t.steps.length > 0)) {
+    fail("INV-01", "crise no modo paciente com próximos passos de tratamento");
   }
 
   // INV-02: in patient mode, antidepressants only after a negative bipolar screen, never for bipolar disorder.
@@ -111,14 +116,23 @@ export function checkInvariants(kb: KnowledgeBase, input: EngineInput, output: E
   for (const alert of caseLevel) {
     if (!alert.origin.startsWith("engine:") && alert.sources.length === 0) fail("INV-08", `alerta sem fonte: ${alert.origin}`);
   }
-  for (const item of [...output.referrals, ...output.questions]) {
+  for (const item of [...output.referrals, ...output.questions, ...output.treatment_review.flatMap((t) => t.steps)]) {
     if (item.sources.length === 0) fail("INV-08", `item sem fonte: ${item.origin}`);
+  }
+  for (const t of output.treatment_review) {
+    if (t.trial_id && t.sources.length === 0) fail("INV-08", `critério de tentativa sem fonte: ${t.trial_id}`);
   }
 
   // INV-09: no scores of our own. The only numeric values in the output are validated instrument
-  // totals; patient-facing templates carry no percentages or score-like wording.
+  // totals and, in the treatment review, the dose and duration the person reported next to the cited
+  // minimums; patient-facing templates carry no percentages or score-like wording.
   const strayNumbers: string[] = [];
-  JSON.stringify(output, (key, value) => {
+  const reviewFacts = output.treatment_review.map((item) => {
+    const facts: Partial<TreatmentReviewItem> = { ...item };
+    for (const key of REVIEW_NUMBERS) delete facts[key];
+    return facts;
+  });
+  JSON.stringify({ ...output, treatment_review: reviewFacts }, (key, value) => {
     if (key === "scores" || key === "sources" || key === "cite") return undefined;
     if (typeof value === "number") strayNumbers.push(key);
     return value;
@@ -155,6 +169,7 @@ export function checkInvariants(kb: KnowledgeBase, input: EngineInput, output: E
     ...output.referrals.map((r) => r.message),
     ...output.questions.map((q) => q.message),
     ...output.interactions.map((i) => i.message),
+    ...output.treatment_review.flatMap((t) => t.steps.map((s) => s.message)),
   ];
   for (const message of allMessages) if (!kb.data.messages[message.key]) fail("INV-12", `mensagem inexistente: ${message.key}`);
 

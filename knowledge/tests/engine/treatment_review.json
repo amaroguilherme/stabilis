@@ -1,0 +1,414 @@
+{
+  "description": "Revisão de tratamento: se cada remédio já usado teve dose e tempo suficientes (knowledge/rules/treatment_review.json). Critérios ligados a uma condição só valem quando ela é avaliada; no modo paciente, cada seção de condição é avaliada separadamente. Limites de uso (benzodiazepínicos) julgam só o tempo.",
+  "profile_defaults": {
+    "age": 35,
+    "sex_at_birth": "male",
+    "reproductive": {
+      "pregnant": null,
+      "breastfeeding": null,
+      "planning": null
+    },
+    "conditions": [],
+    "habits": [],
+    "current_meds": []
+  },
+  "cases": [
+    {
+      "id": "TR1",
+      "title": "Depressão: fluoxetina 20 mg por 3 meses sem resposta é tentativa adequada",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar",
+          "phase": null
+        },
+        "history": [
+          {
+            "drug_id": "fluoxetina",
+            "raw_text": "fluoxetina 20 mg",
+            "still_using": false,
+            "mg_per_day": 20,
+            "duration_months": 3,
+            "response": "none",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "fluoxetina 20 mg",
+            "status": "adequate",
+            "steps": [
+              "NS-AD-NO-RESPONSE-PRO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR2",
+      "title": "Depressão: sertralina 25 mg está abaixo da dose mínima usual da bula",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar",
+          "phase": null
+        },
+        "history": [
+          {
+            "drug_id": "sertralina",
+            "raw_text": "sertralina 25",
+            "still_using": false,
+            "mg_per_day": 25,
+            "duration_months": 2,
+            "response": "partial",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "sertralina 25",
+            "status": "low_dose",
+            "dose_basis": "label",
+            "steps": [
+              "NS-AD-LOW-DOSE-PRO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR3",
+      "title": "Depressão: amitriptilina 50 mg fica abaixo dos 75 mg do MI-mhGAP, apesar da bula",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar",
+          "phase": null
+        },
+        "history": [
+          {
+            "drug_id": "amitriptilina",
+            "raw_text": "amitriptilina 50",
+            "still_using": false,
+            "mg_per_day": 50,
+            "duration_months": 3,
+            "response": "none",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "amitriptilina 50",
+            "status": "low_dose",
+            "dose_basis": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR4",
+      "title": "Depressão: duas semanas de escitalopram é pouco tempo para avaliar",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar",
+          "phase": null
+        },
+        "history": [
+          {
+            "drug_id": "escitalopram",
+            "raw_text": "escitalopram 10",
+            "still_using": false,
+            "mg_per_day": 10,
+            "duration_months": 0.5,
+            "response": "none",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "escitalopram 10",
+            "status": "short_duration",
+            "steps": [
+              "NS-AD-SHORT-PRO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR5",
+      "title": "Sem dose informada: revisão pede os dados que faltam",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "depression_unipolar",
+          "phase": null
+        },
+        "history": [
+          {
+            "drug_id": "escitalopram",
+            "raw_text": "escitalopram",
+            "still_using": false,
+            "mg_per_day": null,
+            "duration_months": 2,
+            "response": "none",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "escitalopram",
+            "status": "unknown",
+            "steps": [
+              "NS-UNKNOWN-PRO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR6",
+      "title": "Bipolar I: lítio 900 mg por 1 mês com resposta parcial lembra da litemia",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "bipolar_1",
+          "phase": "mania"
+        },
+        "history": [
+          {
+            "drug_id": "litio",
+            "raw_text": "lítio 900",
+            "still_using": false,
+            "mg_per_day": 900,
+            "duration_months": 1,
+            "response": "partial",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "lítio 900",
+            "status": "adequate",
+            "steps": [
+              "NS-LITHIUM-PARTIAL-PRO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR7",
+      "title": "Paciente: clonazepam por 6 meses passou do tempo recomendado, sem julgar a dose",
+      "input": {
+        "mode": "patient",
+        "condition": null,
+        "history": [
+          {
+            "drug_id": "clonazepam",
+            "raw_text": "Rivotril 2 mg",
+            "still_using": true,
+            "mg_per_day": 2,
+            "duration_months": 6,
+            "response": "good",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "Rivotril 2 mg",
+            "status": "beyond_recommended",
+            "dose_basis": null,
+            "steps": [
+              "NS-BZD-BEYOND-PT"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR8",
+      "title": "Paciente: clonazepam por duas semanas está dentro do tempo recomendado",
+      "input": {
+        "mode": "patient",
+        "condition": null,
+        "history": [
+          {
+            "drug_id": "clonazepam",
+            "raw_text": "clonazepam 0,5",
+            "still_using": false,
+            "mg_per_day": 0.5,
+            "duration_months": 0.5,
+            "response": "good",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "clonazepam 0,5",
+            "status": "within_recommended",
+            "steps": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR9",
+      "title": "Paciente sem condição avaliada: critério do antipsicótico (bipolar) não se aplica à quetiapina para dormir",
+      "input": {
+        "mode": "patient",
+        "condition": null,
+        "history": [
+          {
+            "drug_id": "quetiapina",
+            "raw_text": "quetiapina 25 para dormir",
+            "still_using": true,
+            "mg_per_day": 25,
+            "duration_months": 3,
+            "response": "good",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "quetiapina 25 para dormir",
+            "status": "no_criteria",
+            "steps": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR10",
+      "title": "Paciente na seção de depressão: fluoxetina sem resposta mostra os passos do paciente",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "depression_unipolar",
+          "phase": null
+        },
+        "history": [
+          {
+            "drug_id": "fluoxetina",
+            "raw_text": "fluoxetina",
+            "still_using": false,
+            "mg_per_day": 20,
+            "duration_months": 3,
+            "response": "none",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "fluoxetina",
+            "status": "adequate",
+            "steps": [
+              "NS-AD-NO-RESPONSE-PT"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR11",
+      "title": "Paciente com palavras de crise: a revisão mantém os fatos, sem próximos passos",
+      "input": {
+        "mode": "patient",
+        "condition": {
+          "id": "depression_unipolar",
+          "phase": null
+        },
+        "free_text": "às vezes penso que queria morrer",
+        "history": [
+          {
+            "drug_id": "fluoxetina",
+            "raw_text": "fluoxetina",
+            "still_using": false,
+            "mg_per_day": 20,
+            "duration_months": 3,
+            "response": "none",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "crisis": {
+          "language": true,
+          "negated_only": false
+        },
+        "no_drugs": true,
+        "treatment": [
+          {
+            "raw_text": "fluoxetina",
+            "status": "adequate",
+            "steps": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "TR12",
+      "title": "TAG: sem critério de tentativa para antidepressivo nas fontes",
+      "input": {
+        "mode": "professional",
+        "condition": {
+          "id": "gad",
+          "phase": null
+        },
+        "history": [
+          {
+            "drug_id": "sertralina",
+            "raw_text": "sertralina 50",
+            "still_using": false,
+            "mg_per_day": 50,
+            "duration_months": 3,
+            "response": "none",
+            "side_effects": [],
+            "stop_reason": null
+          }
+        ]
+      },
+      "expect": {
+        "treatment": [
+          {
+            "raw_text": "sertralina 50",
+            "status": "no_criteria",
+            "steps": []
+          }
+        ]
+      }
+    }
+  ]
+}

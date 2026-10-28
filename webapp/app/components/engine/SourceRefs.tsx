@@ -23,42 +23,67 @@ function Quote({ cite, entry }: { cite: Cite; entry: QuoteEntry | null | "error"
   );
 }
 
-// Each citation opens to show the exact quote it rests on and a link to the source.
+// Each reference opens to show the exact quotes it rests on and a link to the source. Citations of
+// the same place (source and locator) share one entry. With `collapse`, several references sit
+// behind one link (on patient pages, long source lists bury the content).
 export default function SourceRefs({
   cites,
   labels,
   className = "",
   size = "xs",
+  collapse,
 }: {
   cites: Cite[];
   labels: Labels;
   className?: string;
   size?: "xs" | "base"; // "base" on patient pages (text of at least 16 px)
+  collapse?: string; // summary text, e.g. "De onde vem esta orientação"
 }) {
   const [quotes, setQuotes] = useState<Record<string, QuoteEntry> | "error" | null>(null);
   if (cites.length === 0) return null;
+
+  const groups: { key: string; cites: Cite[] }[] = [];
+  for (const cite of cites) {
+    const key = `${cite.source}|${cite.locator}`;
+    const group = groups.find((g) => g.key === key);
+    if (group) group.cites.push(cite);
+    else groups.push({ key, cites: [cite] });
+  }
 
   function open(event: React.SyntheticEvent<HTMLDetailsElement>) {
     if (!event.currentTarget.open || quotes) return;
     loadQuotes().then(setQuotes, () => setQuotes("error"));
   }
 
+  if (collapse && groups.length > 1) {
+    return (
+      <details className={className}>
+        <summary className={`cursor-pointer select-none py-1 text-slate-700 hover:text-slate-900 marker:text-slate-400 ${size === "base" ? "text-base" : "text-xs"}`}>
+          {collapse} ({groups.length} fontes)
+        </summary>
+        <SourceRefs cites={cites} labels={labels} size={size} className="mt-1 ml-4" />
+      </details>
+    );
+  }
+
+  const entryOf = (cite: Cite) => (quotes === "error" ? "error" : cite.qid && quotes ? (quotes[cite.qid] ?? null) : null);
   return (
     <ul className={`space-y-1 ${size === "base" ? "text-base" : "text-xs"} text-slate-700 ${className}`}>
-      {cites.map((cite, i) => {
-        const source = labels.source(cite.source);
+      {groups.map(({ key, cites: group }) => {
+        const first = group[0];
+        const source = labels.source(first.source);
         const external = source?.url.startsWith("http");
-        const entry = quotes === "error" ? "error" : cite.qid && quotes ? (quotes[cite.qid] ?? null) : null;
-        const accessed = cite.accessed ?? (entry && entry !== "error" ? entry.accessed : undefined);
+        const firstEntry = entryOf(first);
+        const accessed = first.accessed ?? (firstEntry && firstEntry !== "error" ? firstEntry.accessed : undefined);
         return (
-          <li key={`${cite.source}-${cite.locator}-${i}`}>
+          <li key={key}>
             <details onToggle={open}>
-              <summary className="cursor-pointer select-none hover:text-slate-900 marker:text-slate-400">
-                <span className="font-medium">{source?.title ?? cite.source}</span>
-                <span> — {cite.locator}</span>
+              <summary className={`cursor-pointer select-none hover:text-slate-900 marker:text-slate-400 ${size === "xs" ? "py-1" : ""}`}>
+                <span className="font-medium">{source?.title ?? first.source}</span>
+                <span> — {first.locator}</span>
               </summary>
               <div className="mt-1 ml-4 border-l-2 border-slate-200 pl-3 space-y-1">
-                <Quote cite={cite} entry={entry} />
+                {group.map((cite, i) => <Quote key={cite.qid ?? i} cite={cite} entry={entryOf(cite)} />)}
                 <p>
                   {source?.publisher}
                   {source?.year ? `, ${source.year}` : ""}

@@ -4,6 +4,7 @@
 import { detectCrisis, summarizeCrisis, type CompiledLexicon } from "../safety/crisis.ts";
 import { scoreInstrument } from "./instruments.ts";
 import { renderMessage } from "./messages.ts";
+import { reviewTreatments } from "./treatment.ts";
 import { checkInvariants } from "./invariants.ts";
 import { evaluatePredicate, matchesClass, matchesSelector, type PredicateContext } from "./predicates.ts";
 import type {
@@ -442,6 +443,8 @@ export function evaluate(kb: KnowledgeBase, input: EngineInput, options: EngineO
     referrals,
     questions: uniqueQuestions,
     medication_review: medicationReview,
+    // When every medication is excluded (crisis, referral only), the review keeps the facts but no next steps.
+    treatment_review: reviewTreatments(data, input.history ?? [], mode, input.condition?.id ?? null).map((item) => (exclusions.all ? { ...item, steps: [] } : item)),
     interactions,
     violations: [],
     fail_closed: false,
@@ -467,6 +470,7 @@ function failClosed(output: EngineOutput, violations: string[]): EngineOutput {
     alerts: [failAlert, ...output.alerts.filter((a) => a.drug_id === undefined)],
     questions: output.questions.filter((q) => Object.keys(q.message.params).length === 0),
     medication_review: output.medication_review.map((item) => ({ ...item, dose_check: "no_label_data", alerts: [], monitoring: [] })),
+    treatment_review: output.treatment_review.map((item) => ({ ...item, steps: [] })),
     interactions: [],
     violations,
     fail_closed: true,
