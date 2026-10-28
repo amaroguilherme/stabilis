@@ -53,9 +53,17 @@ export interface Drug {
     cite: Cite;
   };
   facts: DrugFact[];
-  monitoring?: { id: string; note?: string; cite: Cite }[];
+  monitoring?: MonitoringItem[];
+  titration?: { kind: "titration" | "taper"; indication: string; steps: string; note?: string; cites: Cite[] }[];
   common_effects?: { effects: string[]; cite: Cite; note?: string };
   review: Review;
+}
+
+export interface MonitoringItem {
+  id: string;
+  note?: string;
+  cite: Cite;
+  schedule?: { text: string; cites: Cite[] }; // when to do it, every number backed by a quote
 }
 
 export type Selector = { drug: string } | { class: string; subclass?: string } | { fact: string };
@@ -380,7 +388,7 @@ export interface DrugResult {
   reasons: Reason[];
   alerts: Alert[];
   interactions: InteractionFinding[];
-  monitoring: { id: string; note?: string; cite: Cite }[];
+  monitoring: MonitoringItem[];
 }
 
 export interface OptionResult {
@@ -407,7 +415,7 @@ export interface MedReviewItem {
   status: "recognized" | "unrecognized";
   dose_check: DoseCheck;
   alerts: Alert[];
-  monitoring: { id: string; note?: string; cite: Cite }[];
+  monitoring: MonitoringItem[];
 }
 
 export interface TreatmentReviewItem {

@@ -173,6 +173,35 @@
         "locator": "Boxed warning: Suicidality and Antidepressant Drugs",
         "quote": "Patients of all ages who are started on antidepressant therapy should be monitored appropriately and observed closely for clinical worsening, suicidality, or unusual changes in behavior.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose, para mais ou para menos. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-nortriptilina",
+            "locator": "seção WARNINGS: Clinical Worsening and Suicide Risk",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -186,11 +215,84 @@
       }
     }
   ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão (adultos)",
+      "steps": "Começar com dose baixa e subir conforme necessário; dose habitual: 25 mg 3 ou 4x/dia (ou a dose total 1x/dia). Acima de 100 mg/dia, dosar o nível plasmático e mantê-lo entre 50 e 150 ng/mL. Doses acima de 150 mg/dia não são recomendadas.",
+      "cites": [
+        {
+          "source": "label-nortriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION",
+          "quote": "The physician should initiate dosage at a low level and increase it gradually, noting carefully the clinical response and any evidence of intolerance.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-nortriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION (Usual Adult Dose)",
+          "quote": "Usual Adult Dose – 25 mg three or four times daily; dosage should begin at a low level and be increased as required. As an alternate regimen, the total daily dosage may be given once a day. When doses above 100 mg daily are administered, plasma levels of nortriptyline should be monitored and maintained in the optimum range of 50 to 150 ng/mL. Doses above 150 mg/day are not recommended.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Depressão em idosos e adolescentes",
+      "steps": "30 a 50 mg/dia, em doses divididas ou em dose única diária.",
+      "cites": [
+        {
+          "source": "label-nortriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION (Elderly and Adolescent Patients)",
+          "quote": "Elderly and Adolescent Patients – 30 to 50 mg/day, in divided doses, or the total daily dosage may be given once a day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Depressão",
+      "steps": "A bula não traz esquema de retirada. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "A NICE inclui os tricíclicos entre os antidepressivos que podem causar sintomas de retirada. Com sintomas mais intensos, considerar voltar à dose anterior e depois reduzir mais devagar.",
+      "cites": [
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "withdrawal symptoms can be experienced with a wide range of antidepressant medication (including tricyclic antidepressants [TCAs], selective serotonin reuptake inhibitors [SSRIs], serotonin–norepinephrine reuptake inhibitors [SNRIs], and monoamine oxidase inhibitors [MAOIs]",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.21",
+          "quote": "If a person has more severe withdrawal symptoms, consider restarting the original antidepressant medication at the previous dose, and then attempt dose reduction at a slower rate with smaller decrements after symptoms have resolved.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    }
+  ],
   "review": {
     "status": "draft",
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

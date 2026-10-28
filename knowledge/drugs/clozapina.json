@@ -270,6 +270,36 @@
         "quote": "Prior to initiating CLOZARIL treatment, obtain a baseline ANC. CLOZARIL initiation is not recommended in patients with a baseline ANC less than 1500/μL. Throughout CLOZARIL treatment, regularly monitor ANC.",
         "accessed": "2026-10-27",
         "note": "Seção 2.3 (Tabela 1), com contagem normal: semanal do 1º ao 6º mês, a cada 2 semanas do 7º ao 12º mês e mensal depois."
+      },
+      "schedule": {
+        "text": "Bula: ANC antes de iniciar; com ANC normal, semanal do dia 1 ao mês 6, a cada 2 semanas do mês 7 ao 12 e mensal a partir do mês 13 (o risco é maior nas primeiras 18 semanas). PCDT: hemograma semanal nas 18 primeiras semanas e depois mensal enquanto durar o uso.",
+        "cites": [
+          {
+            "source": "label-clozapina",
+            "locator": "seção 5.1 Severe Neutropenia",
+            "quote": "Prior to initiating CLOZARIL treatment, obtain a baseline ANC. CLOZARIL initiation is not recommended in patients with a baseline ANC less than 1500/μL. Throughout CLOZARIL treatment, regularly monitor ANC.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-clozapina",
+            "locator": "seção 2.3 Dosage Modifications Based on ANC Results (Tabela 1)",
+            "quote": "ANC Within Normal Range (≥ 1500/μL) No dosage modification; continue treatment • Day 1 to Month 6: Weekly • Month 7 to Month 12: Every 2 weeks • Month 13 and thereafter: Every month",
+            "accessed": "2026-10-28",
+            "note": "A Tabela 1 traz outras frequências para neutropenia leve, moderada ou grave e para quem reinicia o tratamento; a Tabela 2, para neutropenia étnica benigna. A bula em cache (revisão de 6/2025) não menciona REMS."
+          },
+          {
+            "source": "label-clozapina",
+            "locator": "seção 5.1 Severe Neutropenia",
+            "quote": "The risk of severe neutropenia appears greatest during the first 18 weeks of CLOZARIL treatment.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, nota da Tabela 1)",
+            "quote": "* A clozapina exige a realização de hemograma semanal durante as 18 primeiras semanas de tratamento; após, deve ser realizado hemograma mensal enquanto durar o uso do medicamento.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -280,7 +310,130 @@
         "quote": "Clinical monitoring, including baseline and periodic follow-up lipid evaluations in patients using CLOZARIL, is recommended.",
         "accessed": "2026-10-27",
         "note": "Mesma seção: \"Monitor weight during treatment with CLOZARIL.\" Glicemia de jejum no início e periodicamente para quem tem fatores de risco para diabetes."
+      },
+      "schedule": {
+        "text": "Bula: lipídios e, se houver risco de diabetes, glicemia de jejum no início e periodicamente; acompanhar o peso. PCDT: antes de iniciar, peso, circunferência abdominal, glicemia de jejum e lipídios; peso em 3, 6 e 12 meses; glicemia e lipídios trimestralmente no primeiro ano e depois anualmente.",
+        "cites": [
+          {
+            "source": "label-clozapina",
+            "locator": "seção 5.10 Metabolic Changes",
+            "quote": "Clinical monitoring, including baseline and periodic follow-up lipid evaluations in patients using CLOZARIL, is recommended.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-clozapina",
+            "locator": "seção 5.10 Metabolic Changes",
+            "quote": "Patients with risk factors for diabetes mellitus (e.g., obesity, family history of diabetes) who are starting treatment with atypical antipsychotics should undergo fasting blood glucose testing at the beginning of treatment and periodically during treatment.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-clozapina",
+            "locator": "seção 5.10 Metabolic Changes",
+            "quote": "Monitor weight during treatment with CLOZARIL.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização, avaliação antes do início do tratamento com qualquer um dos medicamentos)",
+            "quote": "idade, medidas antropométricas (peso, altura, circunferência abdominal e do quadril), três medidas de pressão arterial em datas diferentes, exames sanguíneos de colesterol total e frações, triglicerídeos, glicemia de jejum, hemograma.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização)",
+            "quote": "Para monitorização dos efeitos adversos, devem ser repetidas as medidas",
+            "accessed": "2026-10-28",
+            "note": "A frase continua na p. 24 (próximo trecho)."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização)",
+            "quote": "antropométricas e de pressão arterial em 3, 6 e 12 meses.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Glicemia de jejum e perfil lipídico (primeiro ano). Glicemia de jejum, perfil lipídico e eletrocardiograma.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: na linha Antipsicóticos, coluna Trimestral: glicemia de jejum e perfil lipídico (primeiro ano); coluna Anual: glicemia de jejum, perfil lipídico e eletrocardiograma."
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Esquizofrenia resistente ao tratamento (esquema da bula)",
+      "steps": "Início: 12,5 mg 1 ou 2x/dia. Se bem tolerado, aumentar a dose diária total em 25 a 50 mg por dia até 150 a 225 mg 2x/dia ao fim de 2 semanas. Depois, aumentos de até 100 mg, 1 ou 2 vezes por semana. Máximo: 450 mg 2x/dia.",
+      "note": "Após interrupção: se faltou 1 dia, retomar com 40% a 50% da dose anterior; se faltaram 2 dias, com cerca de 25%; em interrupções mais longas, recomeçar com 12,5 mg 1 ou 2x/dia.",
+      "cites": [
+        {
+          "source": "label-clozapina",
+          "locator": "seção 2.2 Recommended Dosage and Administration",
+          "quote": "The recommended starting oral dosage of CLOZARIL is 12.5 mg once or twice daily. If well-tolerated, increase the total daily dose in increments of 25 mg to 50 mg per day to achieve a target dosage of 150 mg to 225 mg twice per day by the end of two weeks.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-clozapina",
+          "locator": "seção 2.2 Recommended Dosage and Administration",
+          "quote": "Subsequently, may increase the dosage in increments of up to 100 mg once weekly or twice weekly. The maximum recommended CLOZARIL oral dosage is 450 mg twice daily.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-clozapina",
+          "locator": "seção 2.6 Restarting CLOZARIL Treatment After Interrupting CLOZARIL",
+          "quote": "If one day’s dosage is missed, resume CLOZARIL treatment at 40% to 50% of the previous dosage. • If two days of dosing is missed, resume CLOZARIL treatment at approximately 25% of the previous dosage. • For longer interruptions, restart CLOZARIL treatment with a dosage of 12.5 mg once or twice daily.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar após falha de ao menos duas combinações (esquema do PCDT do Ministério da Saúde, 2016)",
+      "steps": "Início: 25 mg/dia; aumentar 25 mg a cada 1 a 2 dias até 300 a 400 mg/dia, em dose única à noite (acima de 400 mg, dividir de 12 em 12 horas). Máximo: 800 mg/dia.",
+      "note": "O PCDT começa com dose maior que a bula (12,5 mg 1 ou 2x/dia) e tem máximo menor (800 mg/dia contra 900 mg/dia).",
+      "cites": [
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 22 (7.6 Esquemas de administração, clozapina)",
+          "quote": "Clozapina - Dose inicial: 25 mg/dia. - Faixa de dose: 300-400 mg/dia. Dose única à noite – doses acima de 400 mg devem ser fracionadas de 12/12 horas. Incremento de 25 mg a cada 1-2 dias até atingir 300-400 mg/dia. - Dose máxima: 800 mg/dia.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 18 (7.3 Tratamento de manutenção)",
+          "quote": "a clozapina é indicada após a falha terapêutica de no mínimo duas combinações diferentes de estabilizadores de humor e antipsicóticos",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-clozapina",
+          "locator": "seção 2.2 Recommended Dosage and Administration",
+          "quote": "Subsequently, may increase the dosage in increments of up to 100 mg once weekly or twice weekly. The maximum recommended CLOZARIL oral dosage is 450 mg twice daily.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação, com ANC normal ou neutropenia leve",
+      "steps": "Reduzir a dose gradualmente ao longo de 1 a 2 semanas e seguir dosando o ANC até ≥ 1500/μL. Na neutropenia moderada ou grave, seguir a Tabela 1 da bula (interromper ou suspender).",
+      "note": "Ao suspender, observar sinais de recorrência psicótica e de rebote colinérgico (sudorese profusa, cefaleia, náusea, vômitos, diarreia).",
+      "cites": [
+        {
+          "source": "label-clozapina",
+          "locator": "seção 2.5 Discontinuation of CLOZARIL Treatment",
+          "quote": "Normal or mild neutropenia, reduce the dosage gradually over a period of 1 to 2 weeks, and continue monitoring ANC levels until their ANC is ≥1500/μL.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-clozapina",
+          "locator": "seção 2.5 Discontinuation of CLOZARIL Treatment",
+          "quote": "When discontinuing CLOZARIL, monitor patients for the symptoms related to psychotic recurrence and cholinergic rebound (e.g., profuse sweating, headache, nausea, vomiting, diarrhea).",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -293,6 +446,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

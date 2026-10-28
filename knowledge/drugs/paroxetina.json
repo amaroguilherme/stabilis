@@ -204,7 +204,135 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "Closely monitor all antidepressant-treated patients for clinical worsening, and for emergence of suicidal thoughts and behaviors",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-paroxetina",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Pediatric Patients and Young Adults",
+            "quote": "Closely monitor all antidepressant-treated patients for clinical worsening and emergence of suicidal thoughts and behaviors, especially during the initial few months of drug therapy, and at times of dosage changes.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior, TOC, pânico e TEPT (adultos)",
+      "steps": "Início: 20 mg 1x/dia (depressão, TOC, TEPT) ou 10 mg 1x/dia (pânico). Sem resposta adequada, aumentar 10 mg/dia a intervalos semanais, conforme a tolerância, até o máximo: 50 mg/dia (depressão, TEPT) ou 60 mg/dia (TOC, pânico).",
+      "note": "Idosos e insuficiência renal ou hepática grave: início com 10 mg/dia e máximo de 40 mg/dia.",
+      "cites": [
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.3 Recommended Dosage for MDD, OCD, PD, and PTSD (Tabela 1)",
+          "quote": "Table 1: Recommended Daily Dosage of PAXIL in Patients with MDD, OCD, PD, and PTSD Indication Starting Dosage Maximum Once Daily Dosage MDD 20 mg 50 mg OCD 20 mg 60 mg PD 10 mg 60 mg PTSD 20 mg 50 mg",
+          "accessed": "2026-10-28",
+          "note": "Colunas da Tabela 1: indicação; dose inicial; dose máxima (1x/dia)."
+        },
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.3 Recommended Dosage for MDD, OCD, PD, and PTSD",
+          "quote": "In patients with an inadequate response, increase PAXIL dosage by 10 mg/day at intervals of at weekly intervals (e.g., if the starting dosage is 20 mg/day increase the dosage the next week to 30 mg/day), depending on tolerability, up to the maximum recommended dosage.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.6 Recommended Dosage in Geriatric Patients, Patients with Severe Renal Impairment, and Patients with Severe Hepatic Impairment",
+          "quote": "The recommended starting PAXIL dosage is 10 mg/day in geriatric patients, patients with severe renal impairment, and patients with severe hepatic impairment. The maximum recommended dosage in these patients is 40 mg/day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Ansiedade generalizada e ansiedade social (adultos)",
+      "steps": "Ansiedade generalizada: 10 mg 1x/dia; após 1 semana, 20 mg 1x/dia; sem resposta adequada, +10 mg/dia por semana até 50 mg/dia. Ansiedade social: 20 mg 1x/dia; após 1 a 2 semanas, +10 mg/dia por semana até 60 mg 1x/dia. Nas duas, faltam evidências de benefício acima de 20 mg/dia.",
+      "note": "Idosos e insuficiência renal ou hepática grave: início com 10 mg/dia e máximo de 40 mg/dia.",
+      "cites": [
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.5 Recommended Dosage for GAD",
+          "quote": "The recommended starting PAXIL dosage in adult patients with generalized anxiety disorder (GAD) is 10 mg once daily. After one week, increase the PAXIL dosage to 20 mg once daily.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.5 Recommended Dosage for GAD",
+          "quote": "In patients with an inadequate response, may increase the PAXIL dosage by 10 mg/day at weekly intervals (e.g., after 1 week may increase the PAXIL dosage from 20 mg/day to 30 mg/day), depending on tolerability, up to a maximum of 50 mg/day.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.5 Recommended Dosage for GAD",
+          "quote": "There is not sufficient evidence to suggest a greater benefit with a PAXIL dosage higher than 20 mg once daily",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.4 Recommended Dosage for SAD",
+          "quote": "The starting and recommended starting dosage of PAXIL in adult patients with social anxiety disorder (SAD) is 20 mg once daily. After 1-2 weeks, may increase the PAXIL dosage by 10 mg/day in weekly intervals (e.g., after 1-2 weeks may increase the PAXIL dosage from 20 mg/day to 30 mg/day) up to a maximum dosage of 60 mg once daily.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.4 Recommended Dosage for SAD",
+          "quote": "Available information does not suggest any additional benefit for a PAXIL dosage above 20 mg once daily for the treatment of SAD",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.6 Recommended Dosage in Geriatric Patients, Patients with Severe Renal Impairment, and Patients with Severe Hepatic Impairment",
+          "quote": "The recommended starting PAXIL dosage is 10 mg/day in geriatric patients, patients with severe renal impairment, and patients with severe hepatic impairment. The maximum recommended dosage in these patients is 40 mg/day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Redução gradual, sem parada abrupta, sempre que possível. Nos estudos de ansiedade generalizada e TEPT, a dose diária foi reduzida em 10 mg/dia a intervalos semanais, com 1 semana a 20 mg/dia antes de suspender.",
+      "note": "A NICE cita a venlafaxina e a paroxetina entre os antidepressivos mais associados a sintomas de retirada, que pedem cuidado especial.",
+      "cites": [
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 2.8 Discontinuation of PAXIL Treatment",
+          "quote": "When discontinuing PAXIL treatment, gradually reduce the dosage rather than stopping PAXIL abruptly whenever possible",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-paroxetina",
+          "locator": "seção 5.7 Discontinuation Syndrome",
+          "quote": "During clinical trials of GAD and PTSD, gradual decreases in the daily PAXIL dosage by 10 mg/day at weekly intervals followed by 1 week at 20 mg/day was used before treatment was discontinued.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "some commonly used antidepressants such as paroxetine and venlafaxine, are more likely to be associated with withdrawal symptoms, so particular care is needed with them",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -233,6 +361,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

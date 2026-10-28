@@ -1,6 +1,9 @@
+"use client";
+
 import { renderMessage, type Variant } from "@/app/lib/engine/messages";
-import type { Drug, DrugResult, KnowledgeBaseData } from "@/app/lib/engine/types";
+import type { Drug, DrugResult, KnowledgeBaseData, MonitoringItem } from "@/app/lib/engine/types";
 import { SUS_LABELS, TIER_LABELS, type Labels } from "@/app/lib/kb/labels";
+import { useSchedules } from "@/app/lib/kb/schedules";
 import AlertList from "./AlertList";
 import SourceRefs from "./SourceRefs";
 
@@ -29,6 +32,46 @@ export function DoseLine({ drug, labels, size = "xs" }: { drug: Drug; labels: La
       {dose.note && <p className="mt-1 text-xs text-slate-600">{dose.note}</p>}
       <SourceRefs cites={[dose.cite]} labels={labels} className="mt-1" size={size} />
     </div>
+  );
+}
+
+/** How to start (titration) or stop (taper) the medicine, from the label or a guideline. */
+export function Regimens({ drug, labels, size = "xs" }: { drug: Drug; labels: Labels; size?: "xs" | "base" }) {
+  const loaded = useSchedules();
+  const regimens = drug.titration ?? loaded?.[drug.id]?.titration ?? [];
+  if (!regimens.length) return null;
+  return (
+    <div className="space-y-2 text-sm text-slate-700">
+      {regimens.map((regimen) => (
+        <div key={`${regimen.kind}-${regimen.indication}`}>
+          <p>
+            <span className="font-medium">{regimen.kind === "titration" ? "Titulação" : "Retirada gradual"}</span> · {regimen.indication}: {regimen.steps}
+          </p>
+          {regimen.note && <p className="mt-1 text-xs text-slate-600">{regimen.note}</p>}
+          <SourceRefs cites={regimen.cites} labels={labels} className="mt-1" size={size} collapse="Fontes" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Monitoring items with when to do each one, when a source gives the timing. */
+export function MonitoringList({ drugId, items, labels, size = "xs" }: { drugId: string; items: MonitoringItem[]; labels: Labels; size?: "xs" | "base" }) {
+  const loaded = useSchedules();
+  return (
+    <ul className="mt-1 space-y-1">
+      {items.map((m) => {
+        const schedule = m.schedule ?? loaded?.[drugId]?.schedules?.[m.id];
+        return (
+          <li key={m.id}>
+            <span>• {labels.monitoring(m.id)}</span>
+            {schedule && <span>: {schedule.text}</span>}
+            {m.note && <span className="text-xs text-slate-600"> — {m.note}</span>}
+            <SourceRefs cites={[m.cite, ...(schedule?.cites ?? [])]} labels={labels} className="ml-3" size={size} collapse="Fontes" />
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
@@ -89,6 +132,7 @@ export default function DrugCard({
         <AlertList alerts={result.alerts} kb={kb} labels={labels} variant={variant} compact />
 
         <DoseLine drug={drug} labels={labels} />
+        <Regimens drug={drug} labels={labels} />
 
         {drug.common_effects && (
           <div className="text-sm text-slate-700">
@@ -103,16 +147,8 @@ export default function DrugCard({
 
         {result.monitoring.length > 0 && (
           <div className="text-sm text-slate-700">
-            <p className="font-medium">Monitoramento indicado na bula</p>
-            <ul className="mt-1 space-y-1">
-              {result.monitoring.map((m) => (
-                <li key={m.id}>
-                  <span>• {labels.monitoring(m.id)}</span>
-                  {m.note && <span className="text-xs text-slate-600"> — {m.note}</span>}
-                  <SourceRefs cites={[m.cite]} labels={labels} className="ml-3" />
-                </li>
-              ))}
-            </ul>
+            <p className="font-medium">Monitoramento</p>
+            <MonitoringList drugId={result.drug_id} items={result.monitoring} labels={labels} />
           </div>
         )}
 

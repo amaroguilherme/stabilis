@@ -205,6 +205,35 @@
         "locator": "Boxed warning: Suicidality and Antidepressant Drugs",
         "quote": "Patients of all ages who are started on antidepressant therapy should be monitored appropriately and observed closely for clinical worsening, suicidality, or unusual changes in behavior.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose, para mais ou para menos. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-imipramina",
+            "locator": "seção WARNINGS: Clinical Worsening and Suicide Risk",
+            "quote": "All patients being treated with antidepressants ants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes , either increases or decreases .",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -215,6 +244,17 @@
         "locator": "seção PRECAUTIONS: General",
         "quote": "An ECG recording should be taken prior to the initiation of larger-than-usual doses of imipramine hydrochloride tablets, and at appropriate intervals thereafter until steady state is achieved.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Antes de iniciar doses maiores que as usuais e, depois, a intervalos apropriados até o estado de equilíbrio.",
+        "cites": [
+          {
+            "source": "label-imipramina",
+            "locator": "seção PRECAUTIONS: General",
+            "quote": "An ECG recording should be taken prior to the initiation of larger-than-usual doses of imipramine hydrochloride tablets, and at appropriate intervals thereafter until steady state is achieved.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -225,7 +265,103 @@
         "locator": "seção PRECAUTIONS: General",
         "quote": "Patients who develop a fever and a sore throat during therapy with imipramine hydrochloride should have leukocyte and differential blood counts performed.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Se surgirem febre e dor de garganta durante o tratamento (leucograma com diferencial).",
+        "cites": [
+          {
+            "source": "label-imipramina",
+            "locator": "seção PRECAUTIONS: General",
+            "quote": "Patients who develop a fever and a sore throat during therapy with imipramine hydrochloride should have leukocyte and differential blood counts performed.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão, adultos ambulatoriais",
+      "steps": "Começar com dose baixa e subir aos poucos. Início: 75 mg/dia, aumentando para 150 mg/dia; doses acima de 200 mg/dia não são recomendadas. Manutenção: 50 a 150 mg/dia, na menor dose que mantenha a remissão.",
+      "cites": [
+        {
+          "source": "label-imipramina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Depression",
+          "quote": "Dosage should be initiated at a low level and increased gradually, noting carefully the clinical response and any evidence of intolerance. Following remission, maintenance medication may be required for a longer period of time, at the lowest dose that will maintain remission.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-imipramina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Usual Adult Dose",
+          "quote": "Outpatients - Initially, 75 mg/day increased to 150 mg/day. Dosages over 200 mg/day are not recommended. Maintenance, 50 to 150 mg/day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Depressão, adultos internados",
+      "steps": "Início: 100 mg/dia em doses divididas, aumentando aos poucos até 200 mg/dia conforme necessário; sem resposta após 2 semanas, subir para 250 a 300 mg/dia.",
+      "cites": [
+        {
+          "source": "label-imipramina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Usual Adult Dose",
+          "quote": "Hospitalized Patients - Initially, 100 mg/day in divided doses gradually increased to 200 mg/day as required. If no response after two weeks, increase to 250 to 300 mg/day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Depressão em adolescentes e idosos",
+      "steps": "Início: 30 a 40 mg/dia; em geral, não é preciso passar de 100 mg/dia.",
+      "cites": [
+        {
+          "source": "label-imipramina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Usual Adult Dose",
+          "quote": "Adolescent and Geriatric Patients - Initially, 30 to 40 mg/day; it is generally not necessary to exceed 100 mg/day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Depressão",
+      "steps": "A bula não traz esquema de retirada. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "A NICE inclui os tricíclicos entre os antidepressivos que podem causar sintomas de retirada. Com sintomas mais intensos, considerar voltar à dose anterior e depois reduzir mais devagar. A frase da bula sobre retirada gradual está na seção de enurese infantil.",
+      "cites": [
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "withdrawal symptoms can be experienced with a wide range of antidepressant medication (including tricyclic antidepressants [TCAs], selective serotonin reuptake inhibitors [SSRIs], serotonin–norepinephrine reuptake inhibitors [SNRIs], and monoamine oxidase inhibitors [MAOIs]",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.21",
+          "quote": "If a person has more severe withdrawal symptoms, consider restarting the original antidepressant medication at the previous dose, and then attempt dose reduction at a slower rate with smaller decrements after symptoms have resolved.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "review": {
@@ -233,6 +369,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

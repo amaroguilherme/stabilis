@@ -185,6 +185,17 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors with antidepressant drugs",
         "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening, and for emergence of suicidal thoughts and behaviors.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Acompanhar de perto sobretudo nos primeiros meses de tratamento e a cada mudança de dose, para mais ou para menos.",
+        "cites": [
+          {
+            "source": "label-aripiprazol",
+            "locator": "seção 5.3 Suicidal Thoughts and Behaviors in Children, Adolescents, and Young Adults",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -195,7 +206,95 @@
         "quote": "Weight gain has been observed with atypical antipsychotic use. Clinical monitoring of weight is recommended.",
         "accessed": "2026-10-27",
         "note": "Mesma seção: glicemia de jejum no início e periodicamente para quem tem fatores de risco para diabetes, e acompanhamento do controle glicêmico em quem já tem diabetes."
+      },
+      "schedule": {
+        "text": "Bula: glicemia de jejum no início e periodicamente se houver risco de diabetes; peso regularmente. NICE (bipolar): antes de iniciar, peso/IMC, glicemia de jejum ou HbA1c e lipídios; peso semanal nas primeiras 6 semanas e na 12ª; glicemia/HbA1c e lipídios na 12ª semana; depois, ao menos anualmente.",
+        "cites": [
+          {
+            "source": "label-aripiprazol",
+            "locator": "seção 5.6 Metabolic Changes (Hyperglycemia and Diabetes Mellitus)",
+            "quote": "Patients with risk factors for diabetes mellitus (e.g., obesity, family history of diabetes) who are starting treatment with atypical antipsychotics should undergo fasting blood glucose testing at the beginning of treatment and periodically during treatment.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-aripiprazol",
+            "locator": "seção 5.6 Metabolic Changes (Weight Gain)",
+            "quote": "Weight gain has been observed with atypical antipsychotic use. Clinical monitoring of weight is recommended.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.5",
+            "quote": "Before starting antipsychotic medication, measure and record the person's: weight or BMI pulse blood pressure fasting blood glucose or HbA1c blood lipid profile.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.8",
+            "quote": "Monitor and record the following during dose titration and then regularly and systematically throughout treatment: pulse and blood pressure after each dose change weight or BMI weekly for the first 6 weeks, then at 12 weeks fasting blood glucose or HbA1c, and blood lipid profile at 12 weeks",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.2.12",
+            "quote": "Ensure that the physical health check for people with bipolar disorder, performed at least annually, includes: weight or BMI, diet, nutritional status and level of physical activity cardiovascular status, including pulse and blood pressure metabolic status, including fasting blood glucose or glycosylated haemoglobin (HbA1c), and blood lipid profile",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Mania ou episódio misto do transtorno bipolar I (adultos)",
+      "steps": "Início: 15 mg 1x/dia em monoterapia, ou 10 a 15 mg 1x/dia como adjuvante de lítio ou valproato. Dose-alvo: 15 mg/dia, que pode subir para 30 mg/dia conforme a resposta; a segurança acima de 30 mg/dia não foi avaliada.",
+      "cites": [
+        {
+          "source": "label-aripiprazol",
+          "locator": "seção 2.2 Bipolar I Disorder (Acute Treatment of Manic and Mixed Episodes, Adults)",
+          "quote": "Adults: The recommended starting dose in adults is 15 mg given once daily as monotherapy and 10 mg to 15 mg given once daily as adjunctive therapy with lithium or valproate.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-aripiprazol",
+          "locator": "seção 2.2 Bipolar I Disorder (Acute Treatment of Manic and Mixed Episodes, Adults)",
+          "quote": "The recommended target dose of ABILIFY is 15 mg/day, as monotherapy or as adjunctive therapy with lithium or valproate. The dose may be increased to 30 mg/day based on clinical response. The safety of doses above 30 mg/day has not been evaluated in clinical trials.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Depressão maior, como adjuvante de um antidepressivo (adultos)",
+      "steps": "Início: 2 a 5 mg/dia; faixa recomendada de 2 a 15 mg/dia. Ajustes de até 5 mg/dia, de forma gradual, com intervalos de pelo menos 1 semana.",
+      "cites": [
+        {
+          "source": "label-aripiprazol",
+          "locator": "seção 2.3 Adjunctive Treatment of Major Depressive Disorder",
+          "quote": "Adults The recommended starting dose for ABILIFY as adjunctive treatment for patients already taking an antidepressant is 2 to 5 mg/day. The recommended dosage range is 2 to 15 mg/day. Dosage adjustments of up to 5 mg/day should occur gradually, at intervals of no less than one week",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Transtorno bipolar e depressão",
+      "steps": "Reduzir a dose gradualmente ao longo de pelo menos 4 semanas, para diminuir o risco de recaída (NICE); na depressão, a NICE pede também que a retirada seja proporcional ao tempo de tratamento. A bula não traz esquema de retirada.",
+      "cites": [
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.13",
+          "quote": "If stopping an antipsychotic drug, reduce the dose gradually over at least 4 weeks to minimise the risk of relapse.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.37",
+          "quote": "When stopping antipsychotics, reduce doses gradually over at least 4 weeks and in proportion to the length of treatment.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -219,6 +318,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

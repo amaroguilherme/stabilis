@@ -44,6 +44,7 @@ check("valproato em evitar neste perfil", /Evitar neste perfil[\s\S]*Valproato/.
 check("texto digitado preservado", text.includes("Informado: “Depakote 500mg”"));
 check("não reconhecido visível", text.includes("Não reconhecido") && text.includes("remédio azul"));
 check("antidepressivos não recomendados agrupados", text.includes("Inclui:"));
+check("cartões mostram titulação e retirada com fonte (carregadas à parte)", text.includes("Titulação · ") && text.includes("Retirada gradual · "));
 
 await page.goto("/profissional/receita");
 await scan("receita");
@@ -53,6 +54,7 @@ await page.sleep(300);
 const review = await page.text();
 check("receita: interação lítio + ibuprofeno", /Ibuprofeno pode elevar a litemia/.test(review));
 check("receita: lítio 900 mg dentro da faixa", review.includes("Dentro da faixa usual da bula"));
+check("receita: quando dosar a litemia", /Litemia|litemia/.test(review) && review.includes("após 3 dias"));
 
 for (const path of ["/about", "/fontes", "/privacidade", "/ajuda-agora"]) {
   await page.goto(path);

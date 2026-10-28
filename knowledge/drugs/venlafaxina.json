@@ -215,6 +215,35 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "Closely monitor all antidepressant-treated patients for clinical worsening, and emergence of suicidal thoughts and behaviors",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-venlafaxina",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Adolescents and Young Adults",
+            "quote": "Monitor all antidepressant-treated patients for any indication for clinical worsening and emergence of suicidal thoughts and behaviors, especially during the initial few months of drug therapy, and at times of dosage changes.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -224,7 +253,86 @@
         "locator": "seção 5.3 Elevated Blood Pressure",
         "quote": "Monitor blood pressure before initiating treatment with Effexor XR and regularly during treatment.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Antes de iniciar e regularmente durante o tratamento.",
+        "cites": [
+          {
+            "source": "label-venlafaxina",
+            "locator": "seção 5.3 Elevated Blood Pressure",
+            "quote": "Monitor blood pressure before initiating treatment with Effexor XR and regularly during treatment.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior e ansiedade generalizada (adultos; cápsula de liberação prolongada)",
+      "steps": "Início: 75 mg/dia em dose única; para alguns, começar com 37,5 mg/dia por 4 a 7 dias antes de subir para 75 mg/dia. Sem resposta, aumentos de até 75 mg/dia em intervalos de pelo menos 4 dias, até o máximo de 225 mg/dia.",
+      "note": "Nos estudos de eficácia na depressão, os aumentos foram feitos a intervalos de 2 semanas ou mais.",
+      "cites": [
+        {
+          "source": "label-venlafaxina",
+          "locator": "seção 2.2 Major Depressive Disorder",
+          "quote": "For most patients, the recommended starting dose for Effexor XR is 75 mg per day, administered in a single dose. For some patients, it may be desirable to start at 37.5 mg per day for 4 to 7 days to allow new patients to adjust to the medication before increasing to 75 mg per day.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-venlafaxina",
+          "locator": "seção 2.2 Major Depressive Disorder",
+          "quote": "Patients not responding to the initial 75 mg per day dose may benefit from dose increases to a maximum of 225 mg per day. Dose increases should be in increments of up to 75 mg per day, as needed, and should be made at intervals of not less than 4 days. In the clinical studies establishing efficacy, upward titration was permitted at intervals of 2 weeks or more.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-venlafaxina",
+          "locator": "seção 2.3 Generalized Anxiety Disorder",
+          "quote": "Patients not responding to the initial 75 mg per day dose may benefit from dose increases to a maximum of 225 mg per day. Dose increases should be in increments of up to 75 mg per day, as needed, and should be made at intervals of not less than 4 days.",
+          "accessed": "2026-10-28",
+          "note": "A seção 2.3 repete o início da 2.2 (75 mg/dia, ou 37,5 mg/dia por 4 a 7 dias)."
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno de pânico (adultos; cápsula de liberação prolongada)",
+      "steps": "Início: 37,5 mg/dia por 7 dias; depois, 75 mg/dia. Sem resposta a 75 mg/dia, aumentos de até 75 mg/dia em intervalos de pelo menos 7 dias, até o máximo de cerca de 225 mg/dia.",
+      "cites": [
+        {
+          "source": "label-venlafaxina",
+          "locator": "seção 2.5 Panic Disorder",
+          "quote": "The recommended starting dose is 37.5 mg per day of Effexor XR for 7 days. Patients not responding to 75 mg per day may benefit from dose increases to a maximum of approximately 225 mg per day. Dose increases should be in increments of up to 75 mg per day, as needed, and should be made at intervals of not less than 7 days.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Redução gradual, sem parada abrupta; nos estudos, a dose diária foi reduzida em 75 mg a intervalos de 1 semana. Pode ser preciso individualizar; em alguns pacientes, a retirada leva vários meses. Se houver sintomas intoleráveis, considerar voltar à dose anterior e depois reduzir mais devagar.",
+      "note": "A NICE cita a venlafaxina e a paroxetina entre os antidepressivos mais associados a sintomas de retirada, que pedem cuidado especial.",
+      "cites": [
+        {
+          "source": "label-venlafaxina",
+          "locator": "seção 2.10 Discontinuing Treatment with Effexor XR",
+          "quote": "A gradual reduction in the dose, rather than abrupt cessation, is recommended when discontinuing therapy with Effexor XR. In clinical studies with Effexor XR, tapering was achieved by reducing the daily dose by 75 mg at one-week intervals. Individualization of tapering may be necessary. In some patients, discontinuation may need to occur over a period of several months",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-venlafaxina",
+          "locator": "seção 5.7 Discontinuation Syndrome",
+          "quote": "If intolerable symptoms occur following a decrease in the dose or upon discontinuation of treatment, then resuming the previously prescribed dose may be considered. Subsequently, the healthcare provider may continue decreasing the dose, but at a more gradual rate.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "some commonly used antidepressants such as paroxetine and venlafaxine, are more likely to be associated with withdrawal symptoms, so particular care is needed with them",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -250,6 +358,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

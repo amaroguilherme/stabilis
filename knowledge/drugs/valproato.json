@@ -178,6 +178,42 @@
         "locator": "Boxed warning: Hepatotoxicity",
         "quote": "Serum liver tests should be performed prior to therapy and at frequent intervals thereafter, especially during the first six months",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Antes de iniciar e a intervalos frequentes, sobretudo nos primeiros 6 meses (bula). PCDT: antes de iniciar e trimestralmente. NICE: no início, após 6 meses de tratamento e depois anualmente.",
+        "cites": [
+          {
+            "source": "label-valproato",
+            "locator": "Boxed warning: Hepatotoxicity",
+            "quote": "Serum liver tests should be performed prior to therapy and at frequent intervals thereafter, especially during the first six months",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização)",
+            "quote": "Antes do início do tratamento com ácido valproico, também é necessária a avaliação da função hepática.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Ácido valproico Hemograma, função hepática (ALT/TGP, AST/TGO). Ácido valproico sérico.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: colunas Mensal, Trimestral, Semestral e Anual; na linha do ácido valproico, hemograma e função hepática estão na coluna Trimestral e o nível sérico na Semestral."
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.29",
+            "quote": "When starting valproate , measure the person's weight or BMI and carry out a full blood count and liver function tests.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.33",
+            "quote": "Measure the person's weight or BMI and carry out liver function tests and a full blood count again after 6 months of treatment with valproate and repeat annually.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -187,6 +223,42 @@
         "locator": "seção 5.8 Bleeding and Other Hematopoietic Disorders",
         "quote": "measurements of complete blood counts and coagulation tests are recommended before initiating therapy and at periodic intervals",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Hemograma e coagulograma antes de iniciar e periodicamente, e também antes de cirurgia e na gestação (bula). PCDT: hemograma antes de iniciar e trimestralmente. NICE: no início, após 6 meses de tratamento e depois anualmente.",
+        "cites": [
+          {
+            "source": "label-valproato",
+            "locator": "seção 5.8 Bleeding and Other Hematopoietic Disorders",
+            "quote": "measurements of complete blood counts and coagulation tests are recommended before initiating therapy and at periodic intervals. It is recommended that patients receiving Depakote be monitored for blood counts and coagulation parameters prior to planned surgery and during pregnancy",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização, avaliação antes do início do tratamento com qualquer um dos medicamentos)",
+            "quote": "exames sanguíneos de colesterol total e frações, triglicerídeos, glicemia de jejum, hemograma.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Ácido valproico Hemograma, função hepática (ALT/TGP, AST/TGO). Ácido valproico sérico.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: colunas Mensal, Trimestral, Semestral e Anual; na linha do ácido valproico, hemograma e função hepática estão na coluna Trimestral e o nível sérico na Semestral."
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.29",
+            "quote": "When starting valproate , measure the person's weight or BMI and carry out a full blood count and liver function tests.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.33",
+            "quote": "Measure the person's weight or BMI and carry out liver function tests and a full blood count again after 6 months of treatment with valproate and repeat annually.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -196,6 +268,36 @@
         "locator": "seção 5.17 Monitoring: Drug Plasma Concentration",
         "quote": "Since valproate may interact with concurrently administered drugs which are capable of enzyme induction, periodic plasma concentration determinations of valproate and concomitant drugs are recommended during the early course of therapy",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: dosagens periódicas no início do tratamento, pelo risco de interação com indutores enzimáticos. PCDT: semestralmente, com a dose estável há pelo menos 5 a 7 dias e 12 h após a última dose. NICE: não dosar de rotina, só se houver ineficácia, má adesão ou toxicidade.",
+        "cites": [
+          {
+            "source": "label-valproato",
+            "locator": "seção 5.17 Monitoring: Drug Plasma Concentration",
+            "quote": "Since valproate may interact with concurrently administered drugs which are capable of enzyme induction, periodic plasma concentration determinations of valproate and concomitant drugs are recommended during the early course of therapy",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Ácido valproico Hemograma, função hepática (ALT/TGP, AST/TGO). Ácido valproico sérico.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: colunas Mensal, Trimestral, Semestral e Anual; na linha do ácido valproico, hemograma e função hepática estão na coluna Trimestral e o nível sérico na Semestral."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico, nota sobre o nível sérico)",
+            "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.32",
+            "quote": "Do not routinely measure plasma valproate levels unless there is evidence of ineffectiveness, poor adherence or toxicity.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -206,6 +308,17 @@
         "locator": "seção 5.7 Suicidal Behavior and Ideation",
         "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Desde o início e durante todo o tratamento: nos estudos, o aumento do risco apareceu já 1 semana após o início e persistiu por todo o período avaliado.",
+        "cites": [
+          {
+            "source": "label-valproato",
+            "locator": "seção 5.7 Suicidal Behavior and Ideation",
+            "quote": "The increased risk of suicidal thoughts or behavior with AEDs was observed as early as one week after starting drug treatment with AEDs and persisted for the duration of treatment assessed.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -217,6 +330,67 @@
         "accessed": "2026-10-27",
         "note": "Seção 17: \"Advise patients of the early signs and symptoms of severe cutaneous adverse reactions and to report any occurrence immediately to a healthcare provider\""
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Episódio maníaco, Depakote de liberação retardada (esquema da bula)",
+      "steps": "Início: 750 mg/dia em doses divididas; aumentar o mais rápido possível até a menor dose com o efeito clínico ou a concentração plasmática desejados. Nos estudos de mania aguda, a dose foi ajustada até a resposta, com nível de vale entre 50 e 125 mcg/mL; as concentrações máximas foram em geral atingidas em até 14 dias. Máximo: 60 mg/kg/dia.",
+      "cites": [
+        {
+          "source": "label-valproato",
+          "locator": "seção 2.1 Mania",
+          "quote": "The recommended initial dose is 750 mg daily in divided doses. The dose should be increased as rapidly as possible to achieve the lowest therapeutic dose which produces the desired clinical effect or the desired range of plasma concentrations.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-valproato",
+          "locator": "seção 2.1 Mania",
+          "quote": "In placebo-controlled clinical trials of acute mania, patients were dosed to a clinical response with a trough plasma concentration between 50 and 125 mcg/mL. Maximum concentrations were generally achieved within 14 days. The maximum recommended dosage is 60 mg/kg/day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar I, ácido valproico (esquema do PCDT do Ministério da Saúde, 2016)",
+      "steps": "Início: 250 mg/dia em dose única à noite; aumentar 250 mg a cada 2 dias até chegar a 750 mg e dosar o nível sérico. Depois, ajustar pelo nível sérico (faixa terapêutica de 50 a 125 mcg/mL), entre 250 e 2.000 mg/dia; máximo de 2.000 mg/dia.",
+      "note": "Dosar o nível sérico com a dose estável há pelo menos 5 a 7 dias, 12 horas após a última tomada. A dose inicial do PCDT é menor que a da bula americana (750 mg/dia).",
+      "cites": [
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico)",
+          "quote": "Ácido valproico - Dose inicial: 250 mg/dia. - Faixa de dose: 250-2.000 mg/dia (de acordo com o nível sérico), dose única à noite. Incremento de 250 mg a cada 2 dias até chegar a 750 mg. Dosar nível sérico. - Dose máxima: 2.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 50-125 mcg/mL).",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 20 (7.6 Esquemas de administração, ácido valproico, nota sobre o nível sérico)",
+          "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Transtorno bipolar, ao trocar por outro medicamento",
+      "steps": "Reduzir a dose gradualmente ao longo de pelo menos 4 semanas, para diminuir o risco de recaída.",
+      "note": "Em mulheres e meninas em idade fértil que já usam valproato, a NICE orienta retirar gradualmente, sob supervisão médica, pelo risco de malformações e de efeitos no neurodesenvolvimento.",
+      "cites": [
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.35",
+          "quote": "If stopping valproate, to change to an alternative medication, reduce the dose gradually over at least 4 weeks to minimise the risk of relapse.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.27",
+          "quote": "If a woman or girl of childbearing potential is already taking valproate, advise her to gradually stop the drug under medical supervision because of the risk of fetal malformations and adverse neurodevelopmental outcomes after any exposure in pregnancy .",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -244,6 +418,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

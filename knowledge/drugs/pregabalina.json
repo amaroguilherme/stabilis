@@ -144,6 +144,17 @@
         "locator": "seção 5.3 Suicidal Behavior and Ideation",
         "quote": "Monitor patients treated with any AED for any indication for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Desde o início e durante todo o tratamento: nos estudos, o aumento do risco apareceu já 1 semana após o início e persistiu por todo o período avaliado.",
+        "cites": [
+          {
+            "source": "label-pregabalina",
+            "locator": "seção 5.3 Suicidal Behavior and Ideation",
+            "quote": "The increased risk of suicidal thoughts or behavior with AEDs was observed as early as one week after starting drug treatment with AEDs and persisted for the duration of treatment assessed.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     }
   ],
@@ -172,6 +183,6 @@
     "extracted_on": "2026-10-27",
     "verified_by": null,
     "verified_on": null,
-    "notes": "Sem dose_adult: a bula LYRICA dos EUA não tem indicação psiquiátrica (só dor neuropática, fibromialgia e crises focais); a dose para TAG exigiria outra fonte. Fora por falta de id: angioedema (5.1), hipersensibilidade (5.2), edema periférico e cautela na insuficiência cardíaca (5.7), prolongamento do PR (5.13, não é QT), queda de plaquetas (5.12, sem aumento de sangramento), CK/rabdomiólise (5.11). overdose_toxicity_high e pregnancy_risk são decisões de leitura: conferir."
+    "notes": "Sem dose_adult: a bula LYRICA dos EUA não tem indicação psiquiátrica (só dor neuropática, fibromialgia e crises focais); a dose para TAG exigiria outra fonte. Fora por falta de id: angioedema (5.1), hipersensibilidade (5.2), edema periférico e cautela na insuficiência cardíaca (5.7), prolongamento do PR (5.13, não é QT), queda de plaquetas (5.12, sem aumento de sangramento), CK/rabdomiólise (5.11). overdose_toxicity_high e pregnancy_risk são decisões de leitura: conferir. Calendário de monitoramento adicionado por IA em 2026-10-28, pendente da segunda conferência humana."
   }
 }

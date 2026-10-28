@@ -264,6 +264,35 @@
         "locator": "Boxed warning: Suicidality and Antidepressant Drugs",
         "quote": "Patients of all ages who are started on antidepressant therapy should be monitored appropriately and observed closely for clinical worsening, suicidality, or unusual changes in behavior.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose, para mais ou para menos. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-clomipramina",
+            "locator": "seção WARNINGS: Clinical Worsening and Suicide Risk",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -274,6 +303,17 @@
         "locator": "seção PRECAUTIONS: Hepatic Changes",
         "quote": "Caution is indicated in treating patients with known liver disease, and periodic monitoring of hepatic enzyme levels is recommended in such patients.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Periodicamente, em quem tem doença hepática conhecida.",
+        "cites": [
+          {
+            "source": "label-clomipramina",
+            "locator": "seção PRECAUTIONS: Hepatic Changes",
+            "quote": "Caution is indicated in treating patients with known liver disease, and periodic monitoring of hepatic enzyme levels is recommended in such patients.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -284,7 +324,90 @@
         "locator": "seção PRECAUTIONS: Hematologic Changes",
         "quote": "leukocyte and differential blood counts should be obtained in patients who develop fever and sore throat during treatment with Anafranil.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Se surgirem febre e dor de garganta durante o tratamento (leucograma com diferencial).",
+        "cites": [
+          {
+            "source": "label-clomipramina",
+            "locator": "seção PRECAUTIONS: Hematologic Changes",
+            "quote": "leukocyte and differential blood counts should be obtained in patients who develop fever and sore throat during treatment with Anafranil.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Transtorno obsessivo-compulsivo (adultos)",
+      "steps": "Início: 25 mg/dia, aumentando aos poucos, conforme a tolerância, até cerca de 100 mg nas primeiras 2 semanas (em doses divididas, com as refeições). Depois, aumentos graduais nas semanas seguintes até o máximo de 250 mg/dia; após a titulação, a dose total pode ser dada 1x/dia ao deitar. Esperar 2 a 3 semanas entre os ajustes seguintes.",
+      "cites": [
+        {
+          "source": "label-clomipramina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Initial Treatment/Dose Adjustment (Adults)",
+          "quote": "Treatment with Anafranil should be initiated at a dosage of 25 mg daily and gradually increased, as tolerated, to approximately 100 mg during the first 2 weeks. During initial titration, Anafranil should be given in divided doses with meals to reduce gastrointestinal side effects.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-clomipramina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Initial Treatment/Dose Adjustment (Adults)",
+          "quote": "Thereafter, the dosage may be increased gradually over the next several weeks, up to a maximum of 250 mg daily. After titration, the total daily dose may be given once daily at bedtime to minimize daytime sedation.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-clomipramina",
+          "locator": "seção DOSAGE AND ADMINISTRATION",
+          "quote": "Therefore, after initial titration, it may be appropriate to wait 2 to 3 weeks between further dosage adjustments.",
+          "accessed": "2026-10-28",
+          "note": "Motivo dado na mesma seção: clomipramina e desmetilclomipramina têm meias-vidas longas, e o estado de equilíbrio pode levar 2 a 3 semanas após cada mudança de dose."
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Bula: reduzir a dose gradualmente e acompanhar o paciente de perto durante a retirada. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "A parada abrupta pode causar tontura, náusea, vômitos, cefaleia, mal-estar, distúrbio do sono, hipertermia, irritabilidade e piora psiquiátrica. O esquema em etapas é o geral da NICE para antidepressivos (diretriz de depressão).",
+      "cites": [
+        {
+          "source": "label-clomipramina",
+          "locator": "seção PRECAUTIONS: Withdrawal Symptoms",
+          "quote": "While the withdrawal effects of Anafranil have not been systematically evaluated in controlled trials, they are well known with closely related tricyclic antidepressants, and it is recommended that the dosage be tapered gradually and the patient monitored carefully during discontinuation",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-clomipramina",
+          "locator": "seção PRECAUTIONS: Withdrawal Symptoms",
+          "quote": "A variety of withdrawal symptoms have been reported in association with abrupt discontinuation of Anafranil, including dizziness, nausea, vomiting, headache, malaise, sleep disturbance, hyperthermia, and irritability. In addition, such patients may experience a worsening of psychiatric status.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "withdrawal symptoms can be experienced with a wide range of antidepressant medication (including tricyclic antidepressants [TCAs], selective serotonin reuptake inhibitors [SSRIs], serotonin–norepinephrine reuptake inhibitors [SNRIs], and monoamine oxidase inhibitors [MAOIs]",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -297,6 +420,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

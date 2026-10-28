@@ -257,6 +257,17 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening, and for emergence of suicidal thoughts and behaviors.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Acompanhar de perto sobretudo nos primeiros meses de tratamento e a cada mudança de dose, para mais ou para menos.",
+        "cites": [
+          {
+            "source": "label-quetiapina",
+            "locator": "seção 5.2 Suicidal Thoughts and Behaviors in Adolescents and Young Adults",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -267,6 +278,49 @@
         "quote": "Patients receiving quetiapine should receive regular monitoring of weight.",
         "accessed": "2026-10-27",
         "note": "Seção 17: \"Patients should have their lipid profile monitored at the beginning of and periodically during treatment\". Seção 5.5: glicemia de jejum no início e periodicamente em quem tem fatores de risco para diabetes."
+      },
+      "schedule": {
+        "text": "Bula: glicemia de jejum no início e periodicamente se houver risco de diabetes; peso regularmente. PCDT: antes de iniciar, peso, circunferência abdominal, glicemia de jejum e lipídios; peso e circunferências em 3, 6 e 12 meses; glicemia e lipídios trimestralmente no primeiro ano e depois anualmente.",
+        "cites": [
+          {
+            "source": "label-quetiapina",
+            "locator": "seção 5.5 Metabolic Changes (Hyperglycemia and Diabetes Mellitus)",
+            "quote": "Patients with risk factors for diabetes mellitus (e.g., obesity, family history of diabetes) who are starting treatment with atypical antipsychotics should undergo fasting blood glucose testing at the beginning of treatment and periodically during treatment.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-quetiapina",
+            "locator": "seção 5.5 Metabolic Changes (Weight Gain)",
+            "quote": "Patients receiving quetiapine should receive regular monitoring of weight.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização, avaliação antes do início do tratamento com qualquer um dos medicamentos)",
+            "quote": "idade, medidas antropométricas (peso, altura, circunferência abdominal e do quadril), três medidas de pressão arterial em datas diferentes, exames sanguíneos de colesterol total e frações, triglicerídeos, glicemia de jejum, hemograma.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização)",
+            "quote": "Para monitorização dos efeitos adversos, devem ser repetidas as medidas",
+            "accessed": "2026-10-28",
+            "note": "A frase continua na p. 24 (próximo trecho)."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização)",
+            "quote": "antropométricas e de pressão arterial em 3, 6 e 12 meses.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Glicemia de jejum e perfil lipídico (primeiro ano). Glicemia de jejum, perfil lipídico e eletrocardiograma.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: na linha Antipsicóticos, coluna Trimestral: glicemia de jejum e perfil lipídico (primeiro ano); coluna Anual: glicemia de jejum, perfil lipídico e eletrocardiograma."
+          }
+        ]
       }
     },
     {
@@ -276,7 +330,114 @@
         "locator": "seção 5.14 Hypothyroidism",
         "quote": "both TSH and free T 4 , in addition to clinical assessment, should be measured at baseline and at follow-up",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "TSH e T4 livre, além da avaliação clínica, no início e no seguimento. A queda de T4 foi máxima nas primeiras 6 semanas e depois se manteve estável.",
+        "cites": [
+          {
+            "source": "label-quetiapina",
+            "locator": "seção 5.14 Hypothyroidism",
+            "quote": "Therefore, both TSH and free T 4 , in addition to clinical assessment, should be measured at baseline and at follow-up.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-quetiapina",
+            "locator": "seção 5.14 Hypothyroidism",
+            "quote": "The reduction in total and free thyroxine (T 4 ) of approximately 20% at the higher end of the therapeutic dose range was maximal in the first six weeks of treatment and maintained without adaptation or progression during more chronic therapy.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão bipolar (adultos)",
+      "steps": "Dose única ao deitar. Dia 1: 50 mg; dia 2: 100 mg; dia 3: 200 mg; dia 4: 300 mg (dose recomendada e máxima).",
+      "note": "Se ficou mais de 1 semana sem quetiapina, recomeçar pelo esquema inicial; com menos de 1 semana, a dose de manutenção pode ser retomada sem nova titulação.",
+      "cites": [
+        {
+          "source": "label-quetiapina",
+          "locator": "seção 2.2 Recommended Dosing (Tabela 1)",
+          "quote": "Bipolar Depression - Adults Administer once daily at bedtime. Day 1: 50 mg Day 2: 100 mg Day 3: 200 mg Day 4: 300 mg 300 mg/day 300 mg/day",
+          "accessed": "2026-10-28",
+          "note": "Colunas da Tabela 1: indicação; dose inicial e titulação; dose recomendada; dose máxima."
+        },
+        {
+          "source": "label-quetiapina",
+          "locator": "seção 2.7 Re-initiation of Treatment in Patients Previously Discontinued",
+          "quote": "it is recommended that when restarting therapy of patients who have been off SEROQUEL for more than one-week, the initial dosing schedule should be followed. When restarting patients who have been off SEROQUEL for less than one-week, gradual dose escalation may not be required and the maintenance dose may be re-initiated.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Mania bipolar (adultos), em monoterapia ou associada a lítio ou divalproato",
+      "steps": "Em 2 tomadas diárias. Dia 1: 100 mg/dia; dia 2: 200 mg/dia; dia 3: 300 mg/dia; dia 4: 400 mg/dia. Depois, aumentos de no máximo 200 mg/dia, até 800 mg/dia no dia 6 se necessário. Dose recomendada: 400 a 800 mg/dia; máximo de 800 mg/dia.",
+      "note": "Se ficou mais de 1 semana sem quetiapina, recomeçar pelo esquema inicial; com menos de 1 semana, a dose de manutenção pode ser retomada sem nova titulação.",
+      "cites": [
+        {
+          "source": "label-quetiapina",
+          "locator": "seção 2.2 Recommended Dosing (Tabela 1)",
+          "quote": "Bipolar Mania - Adults Monotherapy or as an adjunct to lithium or divalproex Day 1: Twice daily dosing totaling 100 mg. Day 2: Twice daily dosing totaling 200 mg. Day 3: Twice daily dosing totaling 300 mg. Day 4: Twice daily dosing totaling 400 mg. Further dosage adjustments up to 800 mg/day by Day 6 should be in increments of no greater than 200 mg/day. 400-800 mg/day 800 mg/day",
+          "accessed": "2026-10-28",
+          "note": "Colunas da Tabela 1: indicação; dose inicial e titulação; dose recomendada; dose máxima."
+        },
+        {
+          "source": "label-quetiapina",
+          "locator": "seção 2.7 Re-initiation of Treatment in Patients Previously Discontinued",
+          "quote": "it is recommended that when restarting therapy of patients who have been off SEROQUEL for more than one-week, the initial dosing schedule should be followed. When restarting patients who have been off SEROQUEL for less than one-week, gradual dose escalation may not be required and the maintenance dose may be re-initiated.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar (esquema do PCDT do Ministério da Saúde, 2016)",
+      "steps": "Início: 25 mg/dia em dose única à noite; aumentar 25 a 50 mg por dose por dia até a dose-alvo (depressão: 300 a 600 mg/dia; mania: 600 a 800 mg/dia). Aumentos maiores são possíveis conforme a tolerância. Máximo: 800 mg/dia.",
+      "note": "Na depressão bipolar, a faixa do PCDT (300 a 600 mg/dia) vai além da dose recomendada e máxima da bula (300 mg/dia).",
+      "cites": [
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 22 (7.6 Esquemas de administração, quetiapina)",
+          "quote": "Quetiapina - Dose inicial: 25 mg/dia. - Faixa de dose: na depressão, a dose é de 300-600 mg/dia. Na mania, a dose utilizada é de 600-800 mg/dia. Dose única à noite. Incremento de 25 a 50 mg por dose por dia, com o objetivo de alcançar a dose-alvo. Incrementos maiores são possíveis de acordo com a tolerância individual do paciente. - Dose máxima: 800 mg/dia.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-quetiapina",
+          "locator": "seção 2.2 Recommended Dosing (Tabela 1)",
+          "quote": "Bipolar Depression - Adults Administer once daily at bedtime. Day 1: 50 mg Day 2: 100 mg Day 3: 200 mg Day 4: 300 mg 300 mg/day 300 mg/day",
+          "accessed": "2026-10-28",
+          "note": "Colunas da Tabela 1: indicação; dose inicial e titulação; dose recomendada; dose máxima."
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Retirada gradual (bula): após a parada abrupta houve sintomas agudos como insônia, náusea e vômitos. No transtorno bipolar, a NICE orienta reduzir a dose ao longo de pelo menos 4 semanas, para diminuir o risco de recaída.",
+      "cites": [
+        {
+          "source": "label-quetiapina",
+          "locator": "seção 5.19 Discontinuation Syndrome",
+          "quote": "Acute withdrawal symptoms, such as insomnia, nausea, and vomiting have been described after abrupt cessation of atypical antipsychotic drugs, including SEROQUEL.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-quetiapina",
+          "locator": "seção 5.19 Discontinuation Syndrome",
+          "quote": "usually resolved after 1 week post-discontinuation. Gradual withdrawal is advised",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.13",
+          "quote": "If stopping an antipsychotic drug, reduce the dose gradually over at least 4 weeks to minimise the risk of relapse.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -301,6 +462,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

@@ -216,7 +216,104 @@
         "quote": "Fasting blood glucose testing and lipid profile at the beginning of, and periodically during, treatment is recommended",
         "accessed": "2026-10-27",
         "note": "Seção 5.5: \"Patients receiving olanzapine should receive regular monitoring of weight\""
+      },
+      "schedule": {
+        "text": "Bula: glicemia de jejum e lipídios no início e periodicamente; peso regularmente. PCDT: antes de iniciar, peso, circunferência abdominal, glicemia de jejum e lipídios; peso e circunferências em 3, 6 e 12 meses; glicemia e lipídios trimestralmente no primeiro ano e depois anualmente.",
+        "cites": [
+          {
+            "source": "label-olanzapina",
+            "locator": "seção 5.17 Laboratory Tests",
+            "quote": "Fasting blood glucose testing and lipid profile at the beginning of, and periodically during, treatment is recommended",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-olanzapina",
+            "locator": "seção 5.5 Metabolic Changes (Weight Gain)",
+            "quote": "Patients receiving olanzapine should receive regular monitoring of weight",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização, avaliação antes do início do tratamento com qualquer um dos medicamentos)",
+            "quote": "idade, medidas antropométricas (peso, altura, circunferência abdominal e do quadril), três medidas de pressão arterial em datas diferentes, exames sanguíneos de colesterol total e frações, triglicerídeos, glicemia de jejum, hemograma.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização)",
+            "quote": "Para monitorização dos efeitos adversos, devem ser repetidas as medidas",
+            "accessed": "2026-10-28",
+            "note": "A frase continua na p. 24 (próximo trecho)."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização)",
+            "quote": "antropométricas e de pressão arterial em 3, 6 e 12 meses.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Glicemia de jejum e perfil lipídico (primeiro ano). Glicemia de jejum, perfil lipídico e eletrocardiograma.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: na linha Antipsicóticos, coluna Trimestral: glicemia de jejum e perfil lipídico (primeiro ano); coluna Anual: glicemia de jejum, perfil lipídico e eletrocardiograma."
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Mania ou episódio misto do transtorno bipolar I, monoterapia (adultos; esquema da bula)",
+      "steps": "Dose única diária, com ou sem alimento; início em geral com 10 ou 15 mg. Ajustes, se necessários, em intervalos de pelo menos 24 h, com passos de 5 mg 1x/dia. Faixa eficaz nos estudos: 5 a 20 mg/dia; a segurança acima de 20 mg/dia não foi avaliada.",
+      "note": "Como adjuvante de lítio ou valproato, começar em geral com 10 mg 1x/dia (faixa eficaz de 5 a 20 mg/dia).",
+      "cites": [
+        {
+          "source": "label-olanzapina",
+          "locator": "seção 2.2 Bipolar I Disorder (Manic or Mixed Episodes), Adults",
+          "quote": "Dose Selection for Monotherapy — Oral olanzapine should be administered on a once-a-day schedule without regard to meals, generally beginning with 10 mg or 15 mg. Dosage adjustments, if indicated, should generally occur at intervals of not less than 24 hours, reflecting the procedures in the placebo-controlled trials.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-olanzapina",
+          "locator": "seção 2.2 Bipolar I Disorder (Manic or Mixed Episodes), Adults",
+          "quote": "When dosage adjustments are necessary, dose increments/decrements of 5 mg once daily are recommended. Short-term (3-4 weeks) antimanic efficacy was demonstrated in a dose range of 5 mg/day to 20 mg/day in clinical trials. The safety of doses above 20 mg/day has not been evaluated in clinical trials",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-olanzapina",
+          "locator": "seção 2.2 Bipolar I Disorder (Manic or Mixed Episodes), Adults",
+          "quote": "Dose Selection for Adjunctive Treatment — When administered as adjunctive treatment to lithium or valproate, oral olanzapine dosing should generally begin with 10 mg once-a-day without regard to meals. Antimanic efficacy was demonstrated in a dose range of 5 mg/day to 20 mg/day in clinical trials",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar (esquema do PCDT do Ministério da Saúde, 2016)",
+      "steps": "Início: 5 mg/dia em dose única à noite; aumentar 5 mg/dia até a dose-alvo (faixa de 5 a 20 mg/dia). Máximo: 20 mg/dia.",
+      "cites": [
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 21 (7.6 Esquemas de administração, olanzapina)",
+          "quote": "Olanzapina - Dose inicial: 5 mg/dia. - Faixa de dose: 5-20 mg/dia, dose única à noite. Incremento de 5 mg/dia até chegar à dose-alvo. - Dose máxima: 20 mg/dia.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Transtorno bipolar",
+      "steps": "Reduzir a dose gradualmente ao longo de pelo menos 4 semanas, para diminuir o risco de recaída (NICE). A bula não traz esquema de retirada.",
+      "cites": [
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.13",
+          "quote": "If stopping an antipsychotic drug, reduce the dose gradually over at least 4 weeks to minimise the risk of relapse.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -244,6 +341,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

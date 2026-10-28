@@ -192,7 +192,103 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "Closely monitor all antidepressant-treated patients for clinical worsening, and for emergence of suicidal thoughts and behaviors",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-escitalopram",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Adolescents and Young Adults",
+            "quote": "Monitor all antidepressant-treated patients for any indication for clinical worsening and emergence of suicidal thoughts and behaviors, especially during the initial few months of drug therapy, and at times of dosage changes.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior e ansiedade generalizada (adultos)",
+      "steps": "Início: 10 mg 1x/dia. Conforme a resposta e a tolerância, pode subir para o máximo de 20 mg 1x/dia, com intervalo mínimo de 1 semana.",
+      "note": "Na depressão, um estudo de dose fixa não mostrou benefício maior de 20 mg sobre 10 mg. Para a maioria dos idosos e na insuficiência hepática, a dose recomendada é 10 mg 1x/dia.",
+      "cites": [
+        {
+          "source": "label-escitalopram",
+          "locator": "seção 2.1 Major Depressive Disorder",
+          "quote": "A fixed-dose trial of Lexapro demonstrated the effectiveness of both 10 mg and 20 mg of Lexapro, but failed to demonstrate a greater benefit of 20 mg over 10 mg",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-escitalopram",
+          "locator": "seção 2.2 Generalized Anxiety Disorder",
+          "quote": "Adults The recommended starting dosage of Lexapro in adults is 10 mg once daily. Depending on clinical response and tolerability, dosage may be increased to the maximum recommended dosage of 20 mg once daily at an interval of no less than 1 week.",
+          "accessed": "2026-10-28",
+          "note": "Seção 2.1 (depressão maior), adultos: mesma dose de 10 mg 1x/dia e mesmo aumento para até 20 mg 1x/dia após no mínimo 1 semana."
+        },
+        {
+          "source": "label-escitalopram",
+          "locator": "seção 2.1 Major Depressive Disorder",
+          "quote": "Depending on clinical response and tolerability, dosage may be increased to the maximum recommended dosage of 20 mg once daily at an interval of no less than 1 week.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-escitalopram",
+          "locator": "seção 2.5 Recommended Dosage for Specific Populations",
+          "quote": "The recommended dosage for most elderly patients and patients with hepatic impairment is 10 mg once daily",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Bula: redução gradual, sem parada abrupta, sempre que possível; com sintomas intoleráveis, considerar voltar à dose anterior e depois reduzir mais devagar. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "Etapas, proporções e intervalos vêm do esquema geral da NICE para antidepressivos; a bula não traz doses nem prazos.",
+      "cites": [
+        {
+          "source": "label-escitalopram",
+          "locator": "seção 2.6 Discontinuation of Treatment with Lexapro",
+          "quote": "A gradual reduction in the dose rather than abrupt cessation is recommended whenever possible. If intolerable symptoms occur following a decrease in the dose or upon discontinuation of treatment, then resuming the previously prescribed dose may be considered. Subsequently, the physician may continue decreasing the dose but at a more gradual rate.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -216,6 +312,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

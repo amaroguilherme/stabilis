@@ -197,6 +197,35 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening, and for emergence of suicidal thoughts and behaviors.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose, para mais ou para menos. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-bupropiona",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Children, Adolescents, and Young Adults",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -206,7 +235,84 @@
         "locator": "seção 5.4 Hypertension",
         "quote": "Assess blood pressure before initiating treatment with Wellbutrin XL, and monitor periodically during treatment.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Antes de iniciar e periodicamente durante o tratamento; com reposição de nicotina associada, a bula recomenda monitorar a pressão.",
+        "cites": [
+          {
+            "source": "label-bupropiona",
+            "locator": "seção 5.4 Hypertension",
+            "quote": "Assess blood pressure before initiating treatment with Wellbutrin XL, and monitor periodically during treatment.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-bupropiona",
+            "locator": "seção 5.4 Hypertension",
+            "quote": "Monitoring of blood pressure is recommended in patients who receive the combination of bupropion and nicotine replacement.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior (adultos; comprimido de liberação prolongada XL)",
+      "steps": "Início: 150 mg 1x/dia pela manhã; após 4 dias, pode subir para a dose-alvo de 300 mg 1x/dia pela manhã. Aumentar a dose de forma gradual, para reduzir o risco de convulsão.",
+      "cites": [
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 2.2 Dosage for Major Depressive Disorder (MDD)",
+          "quote": "The recommended starting dose for MDD is 150 mg once daily in the morning. After 4 days of dosing, the dose may be increased to the target dose of 300 mg once daily in the morning.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 2.1 General Instructions for Use",
+          "quote": "To minimize the risk of seizure, increase the dose gradually",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Prevenção de episódios depressivos sazonais (transtorno afetivo sazonal; XL)",
+      "steps": "Início: 150 mg 1x/dia; após 7 dias, pode subir para a dose-alvo de 300 mg 1x/dia pela manhã (doses acima de 300 mg não foram avaliadas). Começar no outono, antes dos sintomas, e manter durante o inverno.",
+      "note": "Retirar no início da primavera: quem usa 300 mg/dia reduz para 150 mg 1x/dia antes de suspender.",
+      "cites": [
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 2.3 Dosage for Seasonal Affective Disorder (SAD)",
+          "quote": "The recommended starting dose for SAD is 150 mg once daily. After 7 days of dosing, the dose may be increased to the target dose of 300 mg once daily in the morning. Doses above 300 mg of bupropion hydrochloride extended-release were not assessed in the SAD trials.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 2.3 Dosage for Seasonal Affective Disorder (SAD)",
+          "quote": "For the prevention of seasonal MDD episodes associated with SAD, initiate Wellbutrin XL in the autumn, prior to the onset of depressive symptoms. Continue treatment through the winter season. Taper and discontinue Wellbutrin XL in early spring. For patients treated with 300 mg per day, decrease the dose to 150 mg once daily before discontinuing Wellbutrin XL.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 2.1 General Instructions for Use",
+          "quote": "To minimize the risk of seizure, increase the dose gradually",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Depressão maior e transtorno afetivo sazonal (XL)",
+      "steps": "Em quem usa 300 mg 1x/dia, reduzir para 150 mg 1x/dia antes de suspender.",
+      "cites": [
+        {
+          "source": "label-bupropiona",
+          "locator": "seção 2.5 To Discontinue Wellbutrin XL, Taper the Dose",
+          "quote": "When discontinuing treatment in patients treated with Wellbutrin XL 300 mg once daily, decrease the dose to 150 mg once daily prior to discontinuation.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -219,6 +325,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

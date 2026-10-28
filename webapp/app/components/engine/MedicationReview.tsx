@@ -2,7 +2,7 @@ import { renderMessage, type Variant } from "@/app/lib/engine/messages";
 import type { DoseCheck, EngineOutput, KnowledgeBaseData } from "@/app/lib/engine/types";
 import type { Labels } from "@/app/lib/kb/labels";
 import AlertList from "./AlertList";
-import { DoseLine } from "./DrugCard";
+import { DoseLine, MonitoringList, Regimens } from "./DrugCard";
 import SourceRefs from "./SourceRefs";
 
 const DOSE_LABELS: Record<DoseCheck, { text: string; style: string }> = {
@@ -52,12 +52,19 @@ export default function MedicationReview({
               <div className="mt-3 space-y-3">
                 <AlertList alerts={item.alerts} kb={kb} labels={labels} variant={variant} compact />
                 {drug && item.dose_check !== "no_label_data" && <DoseLine drug={drug} labels={labels} size={variant === "plain" ? "base" : "xs"} />}
-                {item.monitoring.length > 0 && (
-                  <p className="text-sm text-slate-700">
-                    <span className="font-medium">Monitoramento: </span>
-                    {item.monitoring.map((m) => labels.monitoring(m.id)).join(" · ")}
-                  </p>
-                )}
+                {drug && variant === "clinical" && <Regimens drug={drug} labels={labels} />}
+                {item.monitoring.length > 0 &&
+                  (variant === "clinical" ? (
+                    <div className="text-sm text-slate-700">
+                      <p className="font-medium">Monitoramento</p>
+                      <MonitoringList drugId={item.drug_id ?? ""} items={item.monitoring} labels={labels} />
+                    </div>
+                  ) : (
+                    <p className="text-sm text-slate-700">
+                      <span className="font-medium">Monitoramento: </span>
+                      {item.monitoring.map((m) => labels.monitoring(m.id)).join(" · ")}
+                    </p>
+                  ))}
               </div>
             </li>
           );

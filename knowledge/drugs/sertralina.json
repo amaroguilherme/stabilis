@@ -193,7 +193,116 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "Closely monitor all antidepressant-treated patients for clinical worsening, and for emergence of suicidal thoughts and behaviors",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-sertralina",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Pediatric and Young Adult Patients",
+            "quote": "Monitor all antidepressant-treated patients for clinical worsening and emergence of suicidal thoughts and behaviors, especially during the initial few months of drug therapy and at times of dosage changes.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior e TOC (adultos)",
+      "steps": "Início: 50 mg/dia. Se a resposta for insuficiente, aumentos de 25 a 50 mg/dia uma vez por semana, conforme a tolerância, até o máximo de 200 mg/dia. Intervalo recomendado entre mudanças de dose: 1 semana (meia-vida de 24 h).",
+      "cites": [
+        {
+          "source": "label-sertralina",
+          "locator": "seção 2.1 Dosage in Patients with MDD, OCD, PD, PTSD, and SAD (Tabela 1)",
+          "quote": "Table 1: Recommended Daily Dosage of ZOLOFT in Patients with MDD, OCD, PD, PTSD, and SAD Indication Starting Dose Therapeutic Range Adults MDD 50 mg 50-200 mg OCD 50 mg PD, PTSD, SAD 25 mg",
+          "accessed": "2026-10-28",
+          "note": "Colunas da Tabela 1: indicação; dose inicial; faixa terapêutica (50 a 200 mg para adultos)."
+        },
+        {
+          "source": "label-sertralina",
+          "locator": "seção 2.1 Dosage in Patients with MDD, OCD, PD, PTSD, and SAD",
+          "quote": "A dosage of 25 mg or 50 mg per day is the initial therapeutic dosage. For adults and pediatric patients, subsequent dosages may be increased in case of an inadequate response in 25 to 50 mg per day increments once a week, depending on tolerability, up to a maximum of 200 mg per day. Given the 24-hour elimination half-life of ZOLOFT, the recommended interval between dose changes is one week.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Pânico, TEPT e ansiedade social (adultos)",
+      "steps": "Início: 25 mg/dia. Se a resposta for insuficiente, aumentos de 25 a 50 mg/dia uma vez por semana, conforme a tolerância, até o máximo de 200 mg/dia (faixa terapêutica de 50 a 200 mg/dia).",
+      "cites": [
+        {
+          "source": "label-sertralina",
+          "locator": "seção 2.1 Dosage in Patients with MDD, OCD, PD, PTSD, and SAD (Tabela 1)",
+          "quote": "Table 1: Recommended Daily Dosage of ZOLOFT in Patients with MDD, OCD, PD, PTSD, and SAD Indication Starting Dose Therapeutic Range Adults MDD 50 mg 50-200 mg OCD 50 mg PD, PTSD, SAD 25 mg",
+          "accessed": "2026-10-28",
+          "note": "Colunas da Tabela 1: indicação; dose inicial; faixa terapêutica (50 a 200 mg para adultos)."
+        },
+        {
+          "source": "label-sertralina",
+          "locator": "seção 2.1 Dosage in Patients with MDD, OCD, PD, PTSD, and SAD",
+          "quote": "A dosage of 25 mg or 50 mg per day is the initial therapeutic dosage. For adults and pediatric patients, subsequent dosages may be increased in case of an inadequate response in 25 to 50 mg per day increments once a week, depending on tolerability, up to a maximum of 200 mg per day. Given the 24-hour elimination half-life of ZOLOFT, the recommended interval between dose changes is one week.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Bula: reduzir a dose gradualmente, em vez de parar de forma abrupta, sempre que possível. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "Esquema geral da NICE para antidepressivos. Com sintomas de retirada mais intensos, considerar voltar à dose anterior e depois reduzir mais devagar, em passos menores.",
+      "cites": [
+        {
+          "source": "label-sertralina",
+          "locator": "seção 2.6 Discontinuation of Treatment with ZOLOFT",
+          "quote": "Gradually reduce the dosage rather than stopping ZOLOFT abruptly whenever possible.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.21",
+          "quote": "If a person has more severe withdrawal symptoms, consider restarting the original antidepressant medication at the previous dose, and then attempt dose reduction at a slower rate with smaller decrements after symptoms have resolved.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -206,6 +315,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

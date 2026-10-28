@@ -207,7 +207,83 @@
         "quote": "Weight gain has been observed with atypical antipsychotic use. Monitoring of weight is recommended.",
         "accessed": "2026-10-27",
         "note": "Mesma seção: glicemia de jejum no início e periodicamente para quem tem fatores de risco para diabetes, e acompanhamento do controle glicêmico em quem já tem diabetes."
+      },
+      "schedule": {
+        "text": "Bula: glicemia de jejum no início e periodicamente se houver risco de diabetes; peso regularmente. NICE (bipolar): antes de iniciar, peso/IMC, glicemia de jejum ou HbA1c e lipídios; peso semanal nas primeiras 6 semanas e na 12ª; glicemia/HbA1c e lipídios na 12ª semana; depois, ao menos anualmente.",
+        "cites": [
+          {
+            "source": "label-ziprasidona",
+            "locator": "seção 5.8 Metabolic Changes (Hyperglycemia and Diabetes Mellitus)",
+            "quote": "Patients with risk factors for diabetes mellitus (e.g., obesity, family history of diabetes) who are starting treatment with atypical antipsychotics should undergo fasting blood glucose testing at the beginning of treatment and periodically during treatment.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-ziprasidona",
+            "locator": "seção 5.8 Metabolic Changes (Weight Gain)",
+            "quote": "Weight gain has been observed with atypical antipsychotic use. Monitoring of weight is recommended.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.5",
+            "quote": "Before starting antipsychotic medication, measure and record the person's: weight or BMI pulse blood pressure fasting blood glucose or HbA1c blood lipid profile.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.8",
+            "quote": "Monitor and record the following during dose titration and then regularly and systematically throughout treatment: pulse and blood pressure after each dose change weight or BMI weekly for the first 6 weeks, then at 12 weeks fasting blood glucose or HbA1c, and blood lipid profile at 12 weeks",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.2.12",
+            "quote": "Ensure that the physical health check for people with bipolar disorder, performed at least annually, includes: weight or BMI, diet, nutritional status and level of physical activity cardiovascular status, including pulse and blood pressure metabolic status, including fasting blood glucose or glycosylated haemoglobin (HbA1c), and blood lipid profile",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Mania ou episódio misto do transtorno bipolar I (adultos)",
+      "steps": "Início: 40 mg 2x/dia, com alimento. No 2º dia, pode subir para 60 ou 80 mg 2x/dia; depois, ajustar pela tolerância e eficácia entre 40 e 80 mg 2x/dia. Nos estudos de dose flexível, a média foi de cerca de 120 mg/dia.",
+      "note": "Na manutenção, como adjuvante de lítio ou valproato, manter a dose em que o paciente se estabilizou, dentro da mesma faixa.",
+      "cites": [
+        {
+          "source": "label-ziprasidona",
+          "locator": "seção 2.3 Bipolar I Disorder: Acute Treatment of Manic or Mixed Episodes",
+          "quote": "In adults oral ziprasidone should be administered at an initial daily dose of 40 mg twice daily with food. The dose may then be increased to 60 mg or 80 mg twice daily on the second day of treatment and subsequently adjusted on the basis of tolerance and efficacy within the range 40 mg-80 mg twice daily.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-ziprasidona",
+          "locator": "seção 2.3 Bipolar I Disorder: Acute Treatment of Manic or Mixed Episodes",
+          "quote": "In the flexible-dose clinical trials, the mean daily dose administered was approximately 120 mg",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-ziprasidona",
+          "locator": "seção 2.3 Bipolar I Disorder: Maintenance Treatment (as an adjunct to lithium or valproate)",
+          "quote": "Continue treatment at the same dose on which the patient was initially stabilized, within the range of 40 mg-80 mg twice daily with food.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Transtorno bipolar",
+      "steps": "Reduzir a dose gradualmente ao longo de pelo menos 4 semanas, para diminuir o risco de recaída (NICE). A bula não traz esquema de retirada.",
+      "cites": [
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.13",
+          "quote": "If stopping an antipsychotic drug, reduce the dose gradually over at least 4 weeks to minimise the risk of relapse.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -220,6 +296,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

@@ -199,7 +199,146 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening and for emergence of suicidal thoughts and behaviors.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose, para mais ou para menos. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-fluoxetina",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Children, Adolescents, and Young Adults",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior (adultos)",
+      "steps": "Início: 20 mg/dia pela manhã. Se a melhora for insuficiente, considerar aumento após várias semanas; acima de 20 mg/dia, dar 1x/dia pela manhã ou 2x/dia (manhã e meio-dia). Máximo: 80 mg/dia.",
+      "note": "Na maioria dos casos, 20 mg/dia bastam; o efeito pleno pode levar 4 semanas ou mais.",
+      "cites": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 2.1 Major Depressive Disorder",
+          "quote": "Initial Treatment Adult — Initiate PROZAC 20 mg/day orally in the morning. Consider a dose increase after several weeks if insufficient clinical improvement is observed. Administer doses above 20 mg/day once daily in the morning or twice daily (i.e., morning and noon).The maximum fluoxetine dose should not exceed 80 mg/day.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 2.1 Major Depressive Disorder",
+          "quote": "Studies comparing fluoxetine 20, 40, and 60 mg/day to placebo indicate that 20 mg/day is sufficient to obtain a satisfactory response in Major Depressive Disorder in most cases",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 2.1 Major Depressive Disorder",
+          "quote": "the full effect may be delayed until 4 weeks of treatment or longer.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno de pânico (adultos)",
+      "steps": "Início: 10 mg/dia; após 1 semana, 20 mg/dia. Sem melhora, considerar aumento após várias semanas; doses acima de 60 mg/dia não foram avaliadas sistematicamente (nos estudos, 20 mg/dia foi a dose mais usada).",
+      "cites": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 2.4 Panic Disorder",
+          "quote": "Initial Treatment — Initiate treatment with PROZAC 10 mg/day. After one week, increase the dose to 20 mg/day. Consider a dose increase after several weeks if no clinical improvement is observed. Fluoxetine doses above 60 mg/day have not been systematically evaluated in patients with Panic Disorder.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 2.4 Panic Disorder",
+          "quote": "The most frequently administered dose in the 2 flexible-dose clinical trials was 20 mg/day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Depressão bipolar, sempre em associação (bula: com olanzapina; PCDT 2016: com olanzapina, lítio ou ácido valproico)",
+      "steps": "Não indicada em monoterapia. Bula: 20 mg de fluoxetina + 5 mg de olanzapina 1x/dia à noite; ajustar entre 20 e 50 mg de fluoxetina e 5 e 12,5 mg de olanzapina. PCDT: 20 mg/dia pela manhã, com aumentos de 20 mg a cada 1 a 2 semanas (faixa de 20 a 40 mg); máximo de 80 mg/dia.",
+      "cites": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 2.5 PROZAC and Olanzapine in Combination: Depressive Episodes Associated with Bipolar I Disorder",
+          "quote": "Adult — Administer fluoxetine in combination with oral olanzapine once daily in the evening, without regard to meals, generally beginning with 5 mg of oral olanzapine and 20 mg of fluoxetine. Make dosage adjustments, if indicated, according to efficacy and tolerability within dose ranges of fluoxetine 20 to 50 mg and oral olanzapine 5 to 12.5 mg.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 2.5 PROZAC and Olanzapine in Combination: Depressive Episodes Associated with Bipolar I Disorder",
+          "quote": "PROZAC monotherapy is not indicated for the treatment of depressive episodes associated with Bipolar I Disorder",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 22 (7.6 Esquemas de administração, fluoxetina)",
+          "quote": "Fluoxetina - Dose inicial: 20 mg/dia. - Faixa de dose: 20-40 mg, dose única pela manhã. Incremento de 20 mg a cada 1-2 semanas de acordo com resposta/tolerabilidade. - Dose máxima: 80 mg/dia.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 16 (7.2 Tratamento da depressão bipolar)",
+          "quote": "o agente dessa classe recomendado neste Protocolo é a fluoxetina, que deve ser utilizada sempre em combinação com a olanzapina, o carbonato de lítio ou o ácido valproico",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Bula: redução gradual, sem parada abrupta, sempre que possível; com sintomas intoleráveis, considerar voltar à dose anterior e depois reduzir mais devagar. NICE: com 20 mg/dia, um período em dias alternados pode bastar como redução; com 40 a 60 mg/dia, retirada gradual, esperando 1 a 2 semanas antes de cada nova redução.",
+      "note": "As concentrações de fluoxetina e norfluoxetina caem aos poucos ao fim do tratamento, o que pode reduzir o risco de sintomas de retirada.",
+      "cites": [
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.15 Discontinuation Adverse Reactions",
+          "quote": "A gradual reduction in the dose rather than abrupt cessation is recommended whenever possible. If intolerable symptoms occur following a decrease in the dose or upon discontinuation of treatment, then resuming the previously prescribed dose may be considered. Subsequently, the healthcare provider may continue decreasing the dose but at a more gradual rate.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-fluoxetina",
+          "locator": "seção 5.15 Discontinuation Adverse Reactions",
+          "quote": "Plasma fluoxetine and norfluoxetine concentration decrease gradually at the conclusion of therapy which may minimize the risk of discontinuation symptoms with this drug.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "fluoxetine's prolonged duration of action means that it can sometimes be safely stopped in the following way: in people taking 20 mg fluoxetine a day, a period of alternate day dosing can provide a suitable dose reduction in people taking higher doses (40 mg to 60 mg fluoxetine a day), use a gradual withdrawal schedule.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -212,6 +351,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

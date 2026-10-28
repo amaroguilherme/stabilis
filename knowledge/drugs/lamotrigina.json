@@ -140,6 +140,17 @@
         "quote": "Accordingly, LAMICTAL should ordinarily be discontinued at the first sign of rash, unless the rash is clearly not drug related.",
         "accessed": "2026-10-27",
         "note": "Mesmo boxed warning: \"Nearly all cases of life-threatening rashes caused by LAMICTAL have occurred within 2 to 8 weeks of treatment initiation.\""
+      },
+      "schedule": {
+        "text": "Sobretudo nas primeiras 2 a 8 semanas de tratamento, quando ocorreram quase todos os casos graves; houve casos isolados após uso prolongado (ex.: 6 meses).",
+        "cites": [
+          {
+            "source": "label-lamotrigina",
+            "locator": "Boxed warning: Serious skin rashes",
+            "quote": "Nearly all cases of life-threatening rashes caused by LAMICTAL have occurred within 2 to 8 weeks of treatment initiation. However, isolated cases have occurred after prolonged treatment (e.g., 6 months).",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -150,7 +161,151 @@
         "locator": "seção 5.6 Suicidal Behavior and Ideation",
         "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Desde o início e durante todo o tratamento: nos estudos, o aumento do risco apareceu já 1 semana após o início e persistiu por todo o período avaliado.",
+        "cites": [
+          {
+            "source": "label-lamotrigina",
+            "locator": "seção 5.6 Suicidal Behavior and Ideation",
+            "quote": "The increased risk of suicidal thoughts or behavior with AEDs was observed as early as 1 week after starting treatment with AEDs and persisted for the duration of treatment assessed.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar (adultos), sem valproato e sem indutores da glicuronidação",
+      "steps": "Semanas 1 e 2: 25 mg/dia; semanas 3 e 4: 50 mg/dia; semana 5: 100 mg/dia; semanas 6 e 7: 200 mg/dia (dose-alvo).",
+      "note": "Não exceder a dose inicial nem o ritmo de aumento (maior risco de erupção grave). Se ficou mais de 5 meias-vidas sem lamotrigina, recomeçar pelo esquema inicial.",
+      "cites": [
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder (Tabela 5, cabeçalho das colunas)",
+          "quote": "In Patients TAKING Valproate a In Patients NOT TAKING Carbamazepine, Phenytoin, Phenobarbital, Primidone, b or Valproate a In Patients TAKING Carbamazepine, Phenytoin, Phenobarbital, or Primidone b and NOT TAKING Valproate a",
+          "accessed": "2026-10-28",
+          "note": "Ordem das colunas da Tabela 5: com valproato; sem indutores e sem valproato (esta entrada, segunda coluna); com indutores e sem valproato."
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder (Tabela 5)",
+          "quote": "Weeks 1 and 2 25 mg every other day 25 mg daily 50 mg daily Weeks 3 and 4 25 mg daily 50 mg daily 100 mg daily, in divided doses Week 5 50 mg daily 100 mg daily 200 mg daily, in divided doses Week 6 100 mg daily 200 mg daily 300 mg daily, in divided doses Week 7 100 mg daily 200 mg daily up to 400 mg daily, in divided doses",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder",
+          "quote": "The target dose of LAMICTAL is 200 mg/day (100 mg/day in patients taking valproate, which decreases the apparent clearance of lamotrigine, and 400 mg/day in patients not taking valproate and taking either carbamazepine, phenytoin, phenobarbital, primidone, or other drugs such as rifampin and the protease inhibitor lopinavir/ritonavir that increase the apparent clearance of lamotrigine).",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder",
+          "quote": "To avoid an increased risk of rash, the recommended initial dose and subsequent dose escalations of LAMICTAL should not be exceeded",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.1 General Dosing Considerations",
+          "quote": "If a patient has discontinued lamotrigine for a period of more than 5 half-lives, it is recommended that initial dosing recommendations and guidelines be followed.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar (adultos), em uso de valproato",
+      "steps": "Semanas 1 e 2: 25 mg em dias alternados; semanas 3 e 4: 25 mg/dia; semana 5: 50 mg/dia; semanas 6 e 7: 100 mg/dia (dose-alvo).",
+      "note": "Se o valproato for suspenso depois, dobrar a dose de lamotrigina ao longo de 2 semanas, em aumentos semanais iguais (Tabela 6).",
+      "cites": [
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder (Tabela 5, cabeçalho das colunas)",
+          "quote": "In Patients TAKING Valproate a In Patients NOT TAKING Carbamazepine, Phenytoin, Phenobarbital, Primidone, b or Valproate a In Patients TAKING Carbamazepine, Phenytoin, Phenobarbital, or Primidone b and NOT TAKING Valproate a",
+          "accessed": "2026-10-28",
+          "note": "Ordem das colunas da Tabela 5: com valproato (esta entrada, primeira coluna); sem indutores e sem valproato; com indutores e sem valproato."
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder (Tabela 5)",
+          "quote": "Weeks 1 and 2 25 mg every other day 25 mg daily 50 mg daily Weeks 3 and 4 25 mg daily 50 mg daily 100 mg daily, in divided doses Week 5 50 mg daily 100 mg daily 200 mg daily, in divided doses Week 6 100 mg daily 200 mg daily 300 mg daily, in divided doses Week 7 100 mg daily 200 mg daily up to 400 mg daily, in divided doses",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder",
+          "quote": "The target dose of LAMICTAL is 200 mg/day (100 mg/day in patients taking valproate, which decreases the apparent clearance of lamotrigine, and 400 mg/day in patients not taking valproate and taking either carbamazepine, phenytoin, phenobarbital, primidone, or other drugs such as rifampin and the protease inhibitor lopinavir/ritonavir that increase the apparent clearance of lamotrigine).",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder",
+          "quote": "In patients discontinuing valproate, the dose of LAMICTAL should be doubled over a 2-week period in equal weekly increments (see Table 6 ).",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar (adultos), com carbamazepina, fenitoína, fenobarbital ou primidona e sem valproato",
+      "steps": "Semanas 1 e 2: 50 mg/dia; semanas 3 e 4: 100 mg/dia; semana 5: 200 mg/dia; semana 6: 300 mg/dia; semana 7: até 400 mg/dia (dose-alvo). Da semana 3 em diante, em doses divididas.",
+      "note": "Mesmo esquema com rifampicina e lopinavir/ritonavir. Se o indutor for suspenso, manter a dose na primeira semana e depois reduzi-la à metade ao longo de 2 semanas, em reduções semanais iguais (Tabela 6).",
+      "cites": [
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder (Tabela 5, cabeçalho das colunas)",
+          "quote": "In Patients TAKING Valproate a In Patients NOT TAKING Carbamazepine, Phenytoin, Phenobarbital, Primidone, b or Valproate a In Patients TAKING Carbamazepine, Phenytoin, Phenobarbital, or Primidone b and NOT TAKING Valproate a",
+          "accessed": "2026-10-28",
+          "note": "Ordem das colunas da Tabela 5: com valproato; sem indutores e sem valproato; com indutores e sem valproato (esta entrada, terceira coluna)."
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder (Tabela 5)",
+          "quote": "Weeks 1 and 2 25 mg every other day 25 mg daily 50 mg daily Weeks 3 and 4 25 mg daily 50 mg daily 100 mg daily, in divided doses Week 5 50 mg daily 100 mg daily 200 mg daily, in divided doses Week 6 100 mg daily 200 mg daily 300 mg daily, in divided doses Week 7 100 mg daily 200 mg daily up to 400 mg daily, in divided doses",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder (Tabela 5, nota b)",
+          "quote": "Patients on rifampin and the protease inhibitor lopinavir/ritonavir should follow the same dosing titration/maintenance regimen used with AEDs that induce glucuronidation and increase clearance",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.4 Bipolar Disorder",
+          "quote": "In patients discontinuing carbamazepine, phenytoin, phenobarbital, primidone, or other drugs such as rifampin and the protease inhibitors lopinavir/ritonavir and atazanavir/ritonavir that induce lamotrigine glucuronidation, the dose of LAMICTAL should remain constant for the first week and then should be decreased by half over a 2-week period in equal weekly decrements (see Table 6 ).",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Transtorno bipolar (adultos)",
+      "steps": "Bula: redução escalonada ao longo de pelo menos 2 semanas (cerca de 50% por semana), a menos que a segurança exija retirada mais rápida. NICE: reduzir gradualmente ao longo de pelo menos 4 semanas, para diminuir o risco de recaída.",
+      "note": "No programa clínico de bipolar em adultos, 2 pacientes tiveram convulsões logo após a retirada abrupta.",
+      "cites": [
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.1 General Dosing Considerations (Discontinuation Strategy: Bipolar Disorder)",
+          "quote": "Discontinuation of LAMICTAL should involve a step-wise reduction of dose over at least 2 weeks (approximately 50% per week) unless safety concerns require a more rapid withdrawal",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-lamotrigina",
+          "locator": "seção 2.1 General Dosing Considerations (Discontinuation Strategy: Bipolar Disorder)",
+          "quote": "In the clinical development program in adults with bipolar disorder, 2 patients experienced seizures shortly after abrupt withdrawal of LAMICTAL.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.39",
+          "quote": "If stopping lamotrigine, reduce the dose gradually over at least 4 weeks to minimise the risk of relapse.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -179,6 +334,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

@@ -771,6 +771,64 @@
               },
               "cite": {
                 "$ref": "#/$defs/cite"
+              },
+              "schedule": {
+                "type": "object",
+                "description": "Quando fazer o exame, em português. Todo número do texto precisa aparecer num trecho citado.",
+                "required": [
+                  "text",
+                  "cites"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 300
+                  },
+                  "cites": {
+                    "$ref": "#/$defs/cites"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "titration": {
+          "type": "array",
+          "maxItems": 4,
+          "description": "Esquemas para começar (titration) ou retirar (taper) o medicamento, da bula ou de diretriz. Todo número de `steps` precisa aparecer num trecho citado.",
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "indication",
+              "steps",
+              "cites"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "titration",
+                  "taper"
+                ]
+              },
+              "indication": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "steps": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 400
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "cites": {
+                "$ref": "#/$defs/cites"
               }
             },
             "additionalProperties": false

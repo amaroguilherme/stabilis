@@ -173,6 +173,37 @@
         "quote": "Complete pretreatment blood counts, including platelets and possibly reticulocytes and serum iron, should be obtained as a baseline.",
         "accessed": "2026-10-27",
         "note": "Mesma seção: \"If a patient in the course of treatment exhibits low or decreased white blood cell or platelet counts, the patient should be monitored closely.\""
+      },
+      "schedule": {
+        "text": "Bula: hemograma completo com plaquetas antes de iniciar; acompanhar de perto se leucócitos ou plaquetas caírem. PCDT: antes de iniciar, mensalmente nos 3 primeiros meses e depois anualmente.",
+        "cites": [
+          {
+            "source": "label-carbamazepina",
+            "locator": "PRECAUTIONS, Laboratory Tests",
+            "quote": "Complete pretreatment blood counts, including platelets and possibly reticulocytes and serum iron, should be obtained as a baseline. If a patient in the course of treatment exhibits low or decreased white blood cell or platelet counts, the patient should be monitored closely.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização, avaliação antes do início do tratamento com qualquer um dos medicamentos)",
+            "quote": "exames sanguíneos de colesterol total e frações, triglicerídeos, glicemia de jejum, hemograma.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Carbamazepina Mensal Hemograma, função hepática (ALT/TGP, AST/TGO) creatinina, ureia e eletrólitos (sódio e potássio) nos 3 primeiros meses. Carbamazepina sérica.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: na linha da carbamazepina, coluna Mensal: hemograma, função hepática, creatinina, ureia e eletrólitos nos 3 primeiros meses; coluna Semestral: carbamazepina sérica."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Anual Hemograma, função hepática (ALT/TGP, AST/TGO) creatinina, ureia e eletrólitos (sódio e potássio).",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: no texto extraído, \"Anual\" é o cabeçalho da coluna e o trecho que o segue é a célula da linha da carbamazepina."
+          }
+        ]
       }
     },
     {
@@ -182,6 +213,37 @@
         "locator": "PRECAUTIONS, Laboratory Tests",
         "quote": "Baseline and periodic evaluations of liver function, particularly in patients with a history of liver disease, must be performed during treatment with this drug since liver damage may occur",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Antes de iniciar e periodicamente durante o tratamento (bula). PCDT: antes de iniciar, mensalmente nos 3 primeiros meses e depois anualmente.",
+        "cites": [
+          {
+            "source": "label-carbamazepina",
+            "locator": "PRECAUTIONS, Laboratory Tests",
+            "quote": "Baseline and periodic evaluations of liver function, particularly in patients with a history of liver disease, must be performed during treatment with this drug since liver damage may occur",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização)",
+            "quote": "Antes do início do tratamento com carbamazepina, deve ser feita avaliação da função hepática [ALT/TGP, AST/TGO, creatinina, ureia e eletrólitos (sódio e potássio)].",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Carbamazepina Mensal Hemograma, função hepática (ALT/TGP, AST/TGO) creatinina, ureia e eletrólitos (sódio e potássio) nos 3 primeiros meses. Carbamazepina sérica.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: na linha da carbamazepina, coluna Mensal: hemograma, função hepática, creatinina, ureia e eletrólitos nos 3 primeiros meses; coluna Semestral: carbamazepina sérica."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Anual Hemograma, função hepática (ALT/TGP, AST/TGO) creatinina, ureia e eletrólitos (sódio e potássio).",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: no texto extraído, \"Anual\" é o cabeçalho da coluna e o trecho que o segue é a célula da linha da carbamazepina."
+          }
+        ]
       }
     },
     {
@@ -192,6 +254,30 @@
         "quote": "When carbamazepine is given with drugs that can increase or decrease carbamazepine levels, close monitoring of carbamazepine levels is indicated and dosage adjustment may be required.",
         "accessed": "2026-10-27",
         "note": "CLINICAL PHARMACOLOGY, Pharmacokinetics: \"Usual adult therapeutic levels are between 4 and 12 mcg/mL.\""
+      },
+      "schedule": {
+        "text": "Bula: monitorar de perto ao associar medicamentos que aumentam ou reduzem os níveis. PCDT: semestralmente, com a dose estável há pelo menos 5 a 7 dias e 12 h após a última dose.",
+        "cites": [
+          {
+            "source": "label-carbamazepina",
+            "locator": "PRECAUTIONS, Drug Interactions: Agents That May Affect Tegretol Plasma Levels",
+            "quote": "When carbamazepine is given with drugs that can increase or decrease carbamazepine levels, close monitoring of carbamazepine levels is indicated and dosage adjustment may be required.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Carbamazepina Mensal Hemograma, função hepática (ALT/TGP, AST/TGO) creatinina, ureia e eletrólitos (sódio e potássio) nos 3 primeiros meses. Carbamazepina sérica.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: na linha da carbamazepina, coluna Mensal: hemograma, função hepática, creatinina, ureia e eletrólitos nos 3 primeiros meses; coluna Semestral: carbamazepina sérica."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina, nota sobre o nível sérico)",
+            "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -202,6 +288,37 @@
         "locator": "PRECAUTIONS, Laboratory Tests",
         "quote": "Baseline and periodic complete urinalysis and BUN determinations are recommended for patients treated with this agent because of observed renal dysfunction.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: exame de urina e ureia (BUN) antes de iniciar e periodicamente. PCDT: creatinina, ureia e eletrólitos (sódio e potássio) antes de iniciar, mensalmente nos 3 primeiros meses e depois anualmente.",
+        "cites": [
+          {
+            "source": "label-carbamazepina",
+            "locator": "PRECAUTIONS, Laboratory Tests",
+            "quote": "Baseline and periodic complete urinalysis and BUN determinations are recommended for patients treated with this agent because of observed renal dysfunction.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização)",
+            "quote": "Antes do início do tratamento com carbamazepina, deve ser feita avaliação da função hepática [ALT/TGP, AST/TGO, creatinina, ureia e eletrólitos (sódio e potássio)].",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Carbamazepina Mensal Hemograma, função hepática (ALT/TGP, AST/TGO) creatinina, ureia e eletrólitos (sódio e potássio) nos 3 primeiros meses. Carbamazepina sérica.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: na linha da carbamazepina, coluna Mensal: hemograma, função hepática, creatinina, ureia e eletrólitos nos 3 primeiros meses; coluna Semestral: carbamazepina sérica."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Anual Hemograma, função hepática (ALT/TGP, AST/TGO) creatinina, ureia e eletrólitos (sódio e potássio).",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: no texto extraído, \"Anual\" é o cabeçalho da coluna e o trecho que o segue é a célula da linha da carbamazepina."
+          }
+        ]
       }
     },
     {
@@ -212,6 +329,17 @@
         "locator": "WARNINGS, Suicidal Behavior and Ideation",
         "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Desde o início e durante todo o tratamento: nos estudos, o aumento do risco apareceu já 1 semana após o início e persistiu por todo o período avaliado.",
+        "cites": [
+          {
+            "source": "label-carbamazepina",
+            "locator": "WARNINGS, Suicidal Behavior and Ideation",
+            "quote": "The increased risk of suicidal thoughts or behavior with AEDs was observed as early as one week after starting drug treatment with AEDs and persisted for the duration of treatment assessed.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -222,7 +350,72 @@
         "quote": "Tegretol should be discontinued at the first sign of a rash, unless the rash is clearly not drug related.",
         "accessed": "2026-10-27",
         "note": "WARNINGS, SJS/TEN and HLA-B*1502 Allele: \"Over 90% of Tegretol treated patients who will experience SJS/TEN have this reaction within the first few months of treatment.\""
+      },
+      "schedule": {
+        "text": "Sobretudo nos primeiros meses de tratamento: mais de 90% dos pacientes que terão SJS/NET apresentam a reação nesse período.",
+        "cites": [
+          {
+            "source": "label-carbamazepina",
+            "locator": "WARNINGS, SJS/TEN and HLA-B*1502 Allele",
+            "quote": "Over 90% of Tegretol treated patients who will experience SJS/TEN have this reaction within the first few months of treatment.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar I (esquema do PCDT do Ministério da Saúde, 2016; a bula de Tegretol não tem indicação para bipolar)",
+      "steps": "Início: 200 mg/dia em dose única à noite; aumentar 200 mg a cada 2 dias até chegar a 600 mg e dosar o nível sérico. Depois, ajustar pelo nível sérico (faixa terapêutica de 8 a 12 mcg/mL), entre 200 e 1.000 mg/dia; máximo de 1.000 mg/dia.",
+      "note": "Dosar o nível sérico com a dose estável há pelo menos 5 a 7 dias, 12 horas após a última tomada. A bula de Tegretol cita níveis terapêuticos usuais de 4 a 12 mcg/mL em adultos.",
+      "cites": [
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina)",
+          "quote": "Carbamazepina - Dose inicial: 200 mg/dia. - Faixa de dose: 200-1.000 mg/dia (de acordo com o nível sérico), dose única à noite. Incremento de 200 mg a cada 2 dias até chegar a 600 mg. Dosar nível sérico. - Dose máxima: 1.000 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 8-12 mcg/mL).",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 21 (7.6 Esquemas de administração, carbamazepina, nota sobre o nível sérico)",
+          "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-carbamazepina",
+          "locator": "CLINICAL PHARMACOLOGY, Pharmacokinetics",
+          "quote": "Usual adult therapeutic levels are between 4 and 12 mcg/mL.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Retirar gradualmente, para reduzir o risco de aumento das crises (bula). No transtorno bipolar, retirar aos poucos e acompanhar sinais de recaída (NICE).",
+      "note": "A NICE orienta seguir acompanhando sintomas, humor e estado mental por 2 anos depois da suspensão completa.",
+      "cites": [
+        {
+          "source": "label-carbamazepina",
+          "locator": "PRECAUTIONS, General",
+          "quote": "As with all antiepileptic drugs, Tegretol should be withdrawn gradually to minimize the potential of increased seizure frequency.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.7.11",
+          "quote": "If stopping long-term pharmacological treatment: discuss with the person how to recognise early signs of relapse and what to do if symptoms recur stop treatment gradually (see the section on how to use medication ) and monitor the person for signs of relapse.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.7.12",
+          "quote": "Continue monitoring symptoms, mood and mental state for 2 years after medication has stopped entirely.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -246,6 +439,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

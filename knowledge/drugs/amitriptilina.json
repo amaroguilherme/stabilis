@@ -229,7 +229,146 @@
         "locator": "Boxed warning: Suicidality and Antidepressant Drugs",
         "quote": "Patients of all ages who are started on antidepressant therapy should be monitored appropriately and observed closely for clinical worsening, suicidality, or unusual changes in behavior.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose, para mais ou para menos. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-amitriptilina",
+            "locator": "seção WARNINGS: Clinical Worsening and Suicide Risk",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão, adultos ambulatoriais",
+      "steps": "Começar com dose baixa e subir aos poucos. Habitual: 75 mg/dia em doses divididas, podendo chegar a 150 mg/dia (aumentos de preferência nas doses do fim da tarde e/ou de deitar). Alternativa: 50 a 100 mg ao deitar, com aumentos de 25 ou 50 mg na dose noturna até 150 mg/dia.",
+      "note": "O efeito antidepressivo pode levar até 30 dias. Manutenção habitual: 50 a 100 mg/dia (40 mg/dia bastam para alguns), em dose única ao deitar, por 3 meses ou mais.",
+      "cites": [
+        {
+          "source": "label-amitriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Oral Dosage",
+          "quote": "Dosage should be initiated at a low level and increased gradually, noting carefully the clinical response and any evidence of intolerance.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-amitriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Initial Dosage for Adults",
+          "quote": "For outpatients 75 mg of amitriptyline HCl a day in divided doses is usually satisfactory. If necessary, this may be increased to a total of 150 mg per day. Increases are made preferably in the late afternoon and/or bedtime doses.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-amitriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Initial Dosage for Adults",
+          "quote": "An alternate method of initiating therapy in outpatients is to begin with 50 to 100 mg amitriptyline HCl at bedtime. This may be increased by 25 or 50 mg as necessary in the bedtime dose to a total of 150 mg per day.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-amitriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Initial Dosage for Adults",
+          "quote": "A sedative effect may be apparent before the antidepressant effect is noted, but an adequate therapeutic effect may take as long as 30 days to develop.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-amitriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Maintenance",
+          "quote": "The usual maintenance dosage of amitriptyline HCl is 50 to 100 mg per day. In some patients 40 mg per day is sufficient. For maintenance therapy the total daily dosage may be given in a single dose preferably at bedtime.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-amitriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Maintenance",
+          "quote": "It is appropriate to continue maintenance therapy 3 months or longer, to lessen the possibility of relapse.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Depressão, adultos internados",
+      "steps": "Início: 100 mg/dia, aumentando aos poucos até 200 mg/dia, se necessário; alguns poucos precisam de até 300 mg/dia.",
+      "cites": [
+        {
+          "source": "label-amitriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Initial Dosage for Adults",
+          "quote": "Hospitalized patients may require 100 mg a day initially. This can be increased gradually to 200 mg a day if necessary. A small number of hospitalized patients may need as much as 300 mg a day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Depressão em adolescentes e idosos",
+      "steps": "Em geral, doses menores; 10 mg 3x/dia mais 20 mg ao deitar podem bastar para quem não tolera doses maiores.",
+      "cites": [
+        {
+          "source": "label-amitriptilina",
+          "locator": "seção DOSAGE AND ADMINISTRATION: Adolescent and Elderly Patients",
+          "quote": "In general, lower dosages are recommended for these patients. Ten mg 3 times a day with 20 mg at bedtime may be satisfactory in adolescent and elderly patients who do not tolerate higher dosages.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Depressão",
+      "steps": "A bula não traz esquema de retirada. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "A NICE inclui os tricíclicos entre os antidepressivos que podem causar sintomas de retirada. Com sintomas mais intensos, considerar voltar à dose anterior e depois reduzir mais devagar.",
+      "cites": [
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "withdrawal symptoms can be experienced with a wide range of antidepressant medication (including tricyclic antidepressants [TCAs], selective serotonin reuptake inhibitors [SSRIs], serotonin–norepinephrine reuptake inhibitors [SNRIs], and monoamine oxidase inhibitors [MAOIs]",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.21",
+          "quote": "If a person has more severe withdrawal symptoms, consider restarting the original antidepressant medication at the previous dose, and then attempt dose reduction at a slower rate with smaller decrements after symptoms have resolved.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "review": {
@@ -237,6 +376,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

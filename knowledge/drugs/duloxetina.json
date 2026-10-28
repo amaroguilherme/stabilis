@@ -276,6 +276,35 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening, and for emergence of suicidal thoughts and behaviors.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose, para mais ou para menos. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-duloxetina",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Children, Adolescents, and Young Adults",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -285,7 +314,108 @@
         "locator": "seção 5.11 Increases in Blood Pressure",
         "quote": "Blood pressure should be measured prior to initiating treatment and periodically measured throughout treatment",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Antes de iniciar e periodicamente durante o tratamento.",
+        "cites": [
+          {
+            "source": "label-duloxetina",
+            "locator": "seção 5.11 Increases in Blood Pressure",
+            "quote": "Blood pressure should be measured prior to initiating treatment and periodically measured throughout treatment",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior (adultos)",
+      "steps": "Início: 40 mg/dia (20 mg 2x/dia) a 60 mg/dia (1x/dia ou 30 mg 2x/dia); para alguns, 30 mg 1x/dia por 1 semana antes de subir para 60 mg 1x/dia. 120 mg/dia foi eficaz, mas não há evidência de benefício adicional acima de 60 mg/dia.",
+      "cites": [
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 2.2 Dosage for Treatment of Major Depressive Disorder in Adults",
+          "quote": "The recommended starting dosage in adults with MDD is 40 mg/day (given as 20 mg twice daily) to 60 mg/day (given either once daily or as 30 mg twice daily).",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 2.2 Dosage for Treatment of Major Depressive Disorder in Adults",
+          "quote": "For some patients, it may be desirable to start at 30 mg once daily for 1 week, to allow patients to adjust to duloxetine delayed-release capsules before increasing to 60 mg once daily. While a 120 mg/day dose was shown to be effective, there is no evidence that doses greater than 60 mg/day confer any additional benefits.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Ansiedade generalizada (adultos)",
+      "steps": "Menos de 65 anos: 60 mg 1x/dia; para alguns, 30 mg 1x/dia por 1 semana antes de subir para 60 mg. Sem evidência de benefício acima de 60 mg/dia; se aumentar, passos de 30 mg 1x/dia (máximo estudado: 120 mg/dia). Idosos: 30 mg 1x/dia por 2 semanas antes de considerar 60 mg/dia.",
+      "cites": [
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 2.3 Dosage for Treatment of Generalized Anxiety Disorder",
+          "quote": "For most adults less than 65 years of age with GAD, initiate duloxetine delayed-release capsules 60 mg once daily. For some patients, it may be desirable to start at 30 mg once daily for 1 week, to allow patients to adjust to duloxetine before increasing to 60 mg once daily.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 2.3 Dosage for Treatment of Generalized Anxiety Disorder",
+          "quote": "While a 120 mg once daily dosage was shown to be effective, there is no evidence that doses greater than 60 mg/day confer additional benefit. Nevertheless, if a decision is made to increase the dosage beyond 60 mg once daily, increase dosage in increments of 30 mg once daily.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 2.3 Dosage for Treatment of Generalized Anxiety Disorder",
+          "quote": "In geriatric patients with GAD, initiate duloxetine delayed-release capsules at a dosage of 30 mg once daily for 2 weeks before considering an increase to the target dose of 60 mg/day.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 2.3 Dosage for Treatment of Generalized Anxiety Disorder",
+          "quote": "The maximum dose studied was 120 mg per day.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Bula: redução gradual, sem parada abrupta, sempre que possível; com sintomas intoleráveis, considerar voltar à dose anterior e depois reduzir mais devagar. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "Etapas, proporções e intervalos vêm do esquema geral da NICE para antidepressivos; a bula não traz doses nem prazos.",
+      "cites": [
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 2.8 Discontinuing Duloxetine Delayed-Release Capsules",
+          "quote": "A gradual reduction in dosage rather than abrupt cessation is recommended whenever possible",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-duloxetina",
+          "locator": "seção 5.7 Discontinuation Syndrome",
+          "quote": "If intolerable symptoms occur following a decrease in the dose or upon discontinuation of treatment, then resuming the previously prescribed dose may be considered. Subsequently, the healthcare provider may continue decreasing the dose but at a more gradual rate",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -310,6 +440,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

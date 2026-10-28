@@ -157,6 +157,72 @@
       }
     }
   ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Transtorno de ansiedade generalizada (tratamento agudo, adultos)",
+      "steps": "Início: 0,25 a 0,5 mg 3x/dia; ajustar conforme a resposta a cada 3 a 4 dias. Máximo: 4 mg/dia, em doses divididas. Usar a menor dose eficaz e reavaliar com frequência a necessidade de continuar.",
+      "cites": [
+        {
+          "source": "label-alprazolam",
+          "locator": "seção 2.1 Dosage in Generalized Anxiety Disorder",
+          "quote": "The recommended starting oral dosage of XANAX for the acute treatment of patients with GAD is 0.25 mg to 0.5 mg administered three times daily. Depending upon the response, the dosage may be adjusted at intervals of every 3 to 4 days. The maximum recommended dosage is 4 mg daily (in divided doses). Use the lowest possible effective dose and frequently assess the need for continued treatment",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno de pânico (adultos)",
+      "steps": "Início: 0,5 mg 3x/dia; aumentar conforme a resposta a cada 3 a 4 dias, no máximo 1 mg/dia por vez. Nos estudos, 1 a 10 mg/dia (média de 5 a 6 mg/dia). Acima de 4 mg/dia, reavaliar periodicamente e considerar reduzir a dose.",
+      "cites": [
+        {
+          "source": "label-alprazolam",
+          "locator": "seção 2.2 Dosage in Panic Disorder",
+          "quote": "The recommended starting oral dosage of XANAX for the treatment of PD is 0.5 mg three times daily. Depending on the response, the dosage may be increased at intervals of every 3 to 4 days in increments of no more than 1 mg per day.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-alprazolam",
+          "locator": "seção 2.2 Dosage in Panic Disorder",
+          "quote": "Controlled trials of XANAX in the treatment of panic disorder included dosages in the range of 1 mg to 10 mg daily. The mean dosage was approximately 5 mg to 6 mg daily.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-alprazolam",
+          "locator": "seção 2.2 Dosage in Panic Disorder",
+          "quote": "For patients receiving doses greater than 4 mg per day, periodic reassessment and consideration of dosage reduction is advised.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Ansiedade generalizada e pânico",
+      "steps": "Reduzir no máximo 0,5 mg a cada 3 dias; alguns pacientes se beneficiam de retirada ainda mais lenta. Se surgirem sintomas de abstinência, pausar a redução ou voltar à dose anterior e depois reduzir mais devagar.",
+      "note": "Num estudo pós-comercialização no pânico, quem usava mais de 4 mg/dia por 3 meses conseguiu reduzir para 50% da dose de manutenção sem perda aparente de benefício.",
+      "cites": [
+        {
+          "source": "label-alprazolam",
+          "locator": "seção 2.3 Discontinuation or Dosage Reduction of XANAX",
+          "quote": "Reduced the dosage by no more than 0.5 mg every 3 days. Some patients may benefit from an even more gradual discontinuation.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-alprazolam",
+          "locator": "seção 2.3 Discontinuation or Dosage Reduction of XANAX",
+          "quote": "To reduce the risk of withdrawal reactions, use a gradual taper to discontinue XANAX or reduce the dosage. If a patient develops withdrawal reactions, consider pausing the taper or increasing the dosage to the previous tapered dosage level. Subsequently decrease the dosage more slowly",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-alprazolam",
+          "locator": "seção 2.2 Dosage in Panic Disorder",
+          "quote": "In a controlled postmarketing dose‑response study, patients treated with doses of XANAX greater than 4 mg per day for 3 months were able to taper to 50% of their total maintenance dose without apparent loss of clinical benefit.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    }
+  ],
   "common_effects": {
     "effects": ["coordination", "sexual_dysfunction", "hypotension", "slurred_speech"],
     "cite": {"source": "label-alprazolam", "locator": "Medication Guide", "quote": "The most common side effects of XANAX include: • problems with coordination • hypotension • trouble saying words clearly (dysarthria) • changes in sex drive (libido)", "accessed": "2026-10-27", "note": "Seção 6.1, Tabela 1 (ansiedade generalizada; colunas XANAX e placebo): \"Drowsiness Light-headedness Dizziness Akathisia 41% 21% 2% 2% 22% 19% 1% 1%\". A sonolência é a mais frequente, mas não chega ao dobro do placebo."},
@@ -168,6 +234,6 @@
     "extracted_on": "2026-10-27",
     "verified_by": null,
     "verified_on": null,
-    "notes": "Dose inicial 0,75 mg/dia = 0,25 mg três vezes ao dia (a bula dá 0,25–0,5 mg três vezes ao dia). Fora por falta de id ou de suporte claro: redução de dose na insuficiência hepática (hepatic_impairment_avoid exige evitar/contraindicar), risco na insuficiência respiratória grave (5.9), monitorar digoxina sérica (7.1), angioedema e Stevens-Johnson só na lista pós-comercialização, superdosagem (fatal só em combinação)."
+    "notes": "Dose inicial 0,75 mg/dia = 0,25 mg três vezes ao dia (a bula dá 0,25–0,5 mg três vezes ao dia). Fora por falta de id ou de suporte claro: redução de dose na insuficiência hepática (hepatic_impairment_avoid exige evitar/contraindicar), risco na insuficiência respiratória grave (5.9), monitorar digoxina sérica (7.1), angioedema e Stevens-Johnson só na lista pós-comercialização, superdosagem (fatal só em combinação). Titulação e retirada adicionadas por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

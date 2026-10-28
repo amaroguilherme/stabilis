@@ -37,7 +37,7 @@ export default function SourceRefs({
   labels: Labels;
   className?: string;
   size?: "xs" | "base"; // "base" on patient pages (text of at least 16 px)
-  collapse?: string; // summary text, e.g. "De onde vem esta orientação"
+  collapse?: string; // summary text, e.g. "De onde vem esta orientação" (or "Fontes" on clinical cards)
 }) {
   const [quotes, setQuotes] = useState<Record<string, QuoteEntry> | "error" | null>(null);
   if (cites.length === 0) return null;
@@ -59,7 +59,7 @@ export default function SourceRefs({
     return (
       <details className={className}>
         <summary className={`cursor-pointer select-none py-1 text-slate-700 hover:text-slate-900 marker:text-slate-400 ${size === "base" ? "text-base" : "text-xs"}`}>
-          {collapse} ({groups.length} fontes)
+          {collapse === "Fontes" ? `Fontes (${groups.length})` : `${collapse} (${groups.length} fontes)`}
         </summary>
         <SourceRefs cites={cites} labels={labels} size={size} className="mt-1 ml-4" />
       </details>

@@ -193,6 +193,35 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "In patients of all ages who are started on antidepressant therapy, monitor closely for worsening, and for emergence of suicidal thoughts and behaviors.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose, para mais ou para menos. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-desvenlafaxina",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Pediatric and Young Adult Patients",
+            "quote": "All patients being treated with antidepressants for any indication should be monitored appropriately and observed closely for clinical worsening, suicidality, and unusual changes in behavior, especially during the initial few months of a course of drug therapy, or at times of dose changes, either increases or decreases.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -202,7 +231,95 @@
         "locator": "seção 5.3 Elevated Blood Pressure",
         "quote": "Patients receiving PRISTIQ should have regular monitoring of blood pressure since increases in blood pressure were observed in clinical studies",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Controlar a hipertensão preexistente antes de iniciar e medir a pressão regularmente durante o tratamento.",
+        "cites": [
+          {
+            "source": "label-desvenlafaxina",
+            "locator": "seção 5.3 Elevated Blood Pressure",
+            "quote": "Pre-existing hypertension should be controlled before initiating treatment with PRISTIQ.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-desvenlafaxina",
+            "locator": "seção 5.3 Elevated Blood Pressure",
+            "quote": "Patients receiving PRISTIQ should have regular monitoring of blood pressure since increases in blood pressure were observed in clinical studies",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior (adultos)",
+      "steps": "50 mg 1x/dia, com ou sem alimento, no mesmo horário: é a dose inicial e a terapêutica, sem titulação. Nos estudos, 50 a 400 mg/dia foram eficazes, mas acima de 50 mg/dia não houve benefício adicional e houve mais efeitos adversos.",
+      "cites": [
+        {
+          "source": "label-desvenlafaxina",
+          "locator": "seção 2.1 General Instructions for Use",
+          "quote": "The recommended dose for PRISTIQ is 50 mg once daily, with or without food. The 50 mg dose is both a starting dose and the therapeutic dose.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-desvenlafaxina",
+          "locator": "seção 2.1 General Instructions for Use",
+          "quote": "In clinical studies, doses of 50 mg to 400 mg per day were shown to be effective, although no additional benefit was demonstrated at doses greater than 50 mg per day and adverse reactions and discontinuations were more frequent at higher doses.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Depressão maior",
+      "steps": "Bula: reduzir aos poucos, sem parada abrupta (a dose de 25 mg/dia serve para isso); a retirada pode levar vários meses. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "Com sintomas intoleráveis, considerar voltar à dose anterior e depois reduzir mais devagar (bula e NICE). As etapas e os intervalos vêm do esquema geral da NICE para antidepressivos.",
+      "cites": [
+        {
+          "source": "label-desvenlafaxina",
+          "locator": "seção 2.1 General Instructions for Use",
+          "quote": "The 25 mg per day dose is intended for a gradual reduction in dose when discontinuing treatment.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-desvenlafaxina",
+          "locator": "seção 2.5 Discontinuing PRISTIQ",
+          "quote": "Gradually reduce the dosage rather than stopping PRISTIQ abruptly when discontinuing therapy with PRISTIQ. In some patients, discontinuation may need to occur over a period of several months.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-desvenlafaxina",
+          "locator": "seção 5.7 Discontinuation Syndrome",
+          "quote": "If intolerable symptoms occur following a decrease in the dose or upon discontinuation of treatment, then resuming the previously prescribed dose may be considered . Subsequently, the healthcare provider may continue decreasing the dose, but at a more gradual rate.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.21",
+          "quote": "If a person has more severe withdrawal symptoms, consider restarting the original antidepressant medication at the previous dose, and then attempt dose reduction at a slower rate with smaller decrements after symptoms have resolved.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -229,6 +346,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

@@ -160,6 +160,49 @@
         "quote": "In addition to regular monitoring of serum lithium concentrations for patients on maintenance treatment, serum lithium concentrations should be monitored after any change in dosage, concurrent medication (e.g., diuretics, non-steroidal anti-inflammatory drugs, renin-angiotensin system antagonists, or metronidazole)",
         "accessed": "2026-10-27",
         "note": "Seção 2.2: \"Obtain serum lithium concentration assay after 3 days, drawn 12 hours after the last oral dose and regularly until patient is stabilized.\""
+      },
+      "schedule": {
+        "text": "Bula: após 3 dias (12 h após a última dose), regularmente até estabilizar e após mudanças de dose ou de medicação. NICE: 1 semana após iniciar e após cada mudança de dose, semanal até estabilizar; a cada 3 meses no 1º ano, depois a cada 6. PCDT: semestral.",
+        "cites": [
+          {
+            "source": "label-litio",
+            "locator": "seção 2.2 Recommended Dosage",
+            "quote": "Obtain serum lithium concentration assay after 3 days, drawn 12 hours after the last oral dose and regularly until patient is stabilized.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-litio",
+            "locator": "seção 2.3 Serum Lithium Monitoring",
+            "quote": "In addition to regular monitoring of serum lithium concentrations for patients on maintenance treatment, serum lithium concentrations should be monitored after any change in dosage, concurrent medication (e.g., diuretics, non-steroidal anti-inflammatory drugs, renin-angiotensin system antagonists, or metronidazole)",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.15",
+            "quote": "Measure plasma lithium levels 1 week after starting lithium and 1 week after every dose change, and weekly until the levels are stable.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.19",
+            "quote": "Measure the person's plasma lithium level every 3 months for the first year.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.20",
+            "quote": "After the first year, measure plasma lithium levels every 6 months, or every 3 months for people in any of the following groups: older people people taking drugs that interact with lithium people who are at risk of impaired renal or thyroid function, raised calcium levels or other complications",
+            "accessed": "2026-10-28",
+            "note": "A lista de grupos que fazem litemia a cada 3 meses continua: controle ruim dos sintomas, má adesão e última litemia de 0,8 mmol/L ou mais."
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Medicamento Trimestral Semestral Lítio Creatinina e uréia. TSH, cálcio sérico, litemia.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: colunas Mensal, Trimestral, Semestral e Anual; na linha do lítio, creatinina e ureia estão na coluna Trimestral e TSH, cálcio sérico e litemia na Semestral."
+          }
+        ]
       }
     },
     {
@@ -169,6 +212,36 @@
         "locator": "seção 5.4 Lithium-Induced Chronic Kidney Disease",
         "quote": "Kidney function should be assessed prior to and during lithium treatment.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Antes de iniciar e durante o tratamento (bula). PCDT: creatinina e ureia antes de iniciar e trimestralmente. NICE: TFGe, ureia e eletrólitos a cada 6 meses, e com mais frequência se houver piora da função renal.",
+        "cites": [
+          {
+            "source": "label-litio",
+            "locator": "seção 5.4 Lithium-Induced Chronic Kidney Disease",
+            "quote": "Kidney function should be assessed prior to and during lithium treatment.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização)",
+            "quote": "Antes do início do tratamento com carbonato de lítio, também é necessária a avaliação de hormônio tireotrófico (TSH), creatinina e ureia séricos.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Medicamento Trimestral Semestral Lítio Creatinina e uréia. TSH, cálcio sérico, litemia.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: colunas Mensal, Trimestral, Semestral e Anual; na linha do lítio, creatinina e ureia estão na coluna Trimestral e TSH, cálcio sérico e litemia na Semestral."
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.21",
+            "quote": "Measure the person's weight or BMI and arrange tests for urea and electrolytes including calcium, estimated glomerular filtration rate (eGFR) and thyroid function every 6 months, and more often if there is evidence of impaired renal or thyroid function, raised calcium levels or an increase in mood symptoms that might be related to impaired thyroid function.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -178,6 +251,30 @@
         "locator": "seção 5.7 Hypothyroidism or Hyperthyroidism",
         "quote": "Monitor thyroid function before the initiation of treatment, at three months and every six to twelve months while treatment is ongoing.",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: antes de iniciar, aos 3 meses e depois a cada 6 a 12 meses; com mais frequência se os exames preocuparem. PCDT: TSH antes de iniciar e semestralmente.",
+        "cites": [
+          {
+            "source": "label-litio",
+            "locator": "seção 5.7 Hypothyroidism or Hyperthyroidism",
+            "quote": "Monitor thyroid function before the initiation of treatment, at three months and every six to twelve months while treatment is ongoing. If serum thyroid tests warrant concern, monitoring should occur more frequently.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 23 (8. Monitorização)",
+            "quote": "Antes do início do tratamento com carbonato de lítio, também é necessária a avaliação de hormônio tireotrófico (TSH), creatinina e ureia séricos.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "pcdt-tab-2016",
+            "locator": "pdf p. 24 (8. Monitorização, Tabela 1 - Frequência de exames laboratoriais)",
+            "quote": "Medicamento Trimestral Semestral Lítio Creatinina e uréia. TSH, cálcio sérico, litemia.",
+            "accessed": "2026-10-28",
+            "note": "Tabela 1 conferida na página do PDF: colunas Mensal, Trimestral, Semestral e Anual; na linha do lítio, creatinina e ureia estão na coluna Trimestral e TSH, cálcio sérico e litemia na Semestral."
+          }
+        ]
       }
     },
     {
@@ -189,7 +286,92 @@
         "quote": "Before initiating treatment with lithium, renal function, vital signs, serum electrolytes, and thyroid function should be evaluated.",
         "accessed": "2026-10-27",
         "note": "Seção 7.1, Tabela 4 (diuréticos): \"More frequent monitoring of serum electrolyte and lithium concentrations.\""
+      },
+      "schedule": {
+        "text": "Antes de iniciar (bula). NICE: ureia e eletrólitos a cada 6 meses, com mais frequência se houver piora renal ou tireoidiana ou cálcio elevado. Com diurético, a bula pede eletrólitos com mais frequência.",
+        "cites": [
+          {
+            "source": "label-litio",
+            "locator": "seção 2.1 Pre-treatment Screening",
+            "quote": "Before initiating treatment with lithium, renal function, vital signs, serum electrolytes, and thyroid function should be evaluated.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-cg185",
+            "locator": "recomendação 1.10.21",
+            "quote": "Measure the person's weight or BMI and arrange tests for urea and electrolytes including calcium, estimated glomerular filtration rate (eGFR) and thyroid function every 6 months, and more often if there is evidence of impaired renal or thyroid function, raised calcium levels or an increase in mood symptoms that might be related to impaired thyroid function.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "label-litio",
+            "locator": "seção 7.1 Drugs Having Clinically Important Interactions with Lithium (Tabela 4, diuréticos)",
+            "quote": "More frequent monitoring of serum electrolyte and lithium concentrations.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar I, adultos e pacientes acima de 30 kg (esquema da bula)",
+      "steps": "Início: 300 mg 3x/dia; aumentar 300 mg a cada 3 dias. Fase aguda: litemia de 0,8 a 1,2 mEq/L (dose usual 600 mg 2 a 3x/dia). Manutenção: litemia de 0,8 a 1,0 mEq/L (dose usual 300 a 600 mg 2 a 3x/dia). Primeira litemia após 3 dias, 12 h após a última dose, e depois regularmente até estabilizar.",
+      "cites": [
+        {
+          "source": "label-litio",
+          "locator": "seção 2.2 Recommended Dosage (Tabela 1)",
+          "quote": "Patient Group Formulation Starting Dose Dose Titration Acute Goal Maintenance Goal Serum Level Usual Dose Serum Level Usual Dose Adult and Pediatric Patients over 30 kg Tablets or capsules 300 mg three times daily 300 mg every 3 days 0.8 to 1.2 mEq/L 600 mg two to three times daily 0.8 to 1.0 mEq/L 300 to 600 mg two to three times daily",
+          "accessed": "2026-10-28",
+          "note": "Colunas da Tabela 1: dose inicial; titulação; fase aguda (litemia-alvo, dose usual); manutenção (litemia-alvo, dose usual)."
+        },
+        {
+          "source": "label-litio",
+          "locator": "seção 2.2 Recommended Dosage",
+          "quote": "Obtain serum lithium concentration assay after 3 days, drawn 12 hours after the last oral dose and regularly until patient is stabilized.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "titration",
+      "indication": "Transtorno bipolar I (esquema do PCDT do Ministério da Saúde, 2016)",
+      "steps": "Início: 300 mg/dia em dose única à noite; aumentar 300 mg a cada 2 dias até chegar a 900 mg e dosar a litemia. Depois, ajustar pela litemia (faixa terapêutica de 0,6 a 1,2 mEq/L), entre 300 e 1.800 mg/dia; máximo de 1.800 mg/dia.",
+      "note": "Dosar a litemia com a dose estável há pelo menos 5 a 7 dias, 12 horas após a última tomada. A dose inicial do PCDT é menor que a da bula americana (300 mg 3x/dia).",
+      "cites": [
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 20 (7.6 Esquemas de administração, carbonato de lítio)",
+          "quote": "Carbonato de lítio - Dose inicial: 300 mg/dia. - Faixa de dose: 300-1.800 mg/dia (de acordo com o nível sérico), dose única à noite. Incremento de 300 mg a cada 2 dias até chegar a 900 mg. Dosar nível sérico. - Dose máxima: 1.800 mg/dia, com ajuste de dose de acordo com o nível sérico (nível sérico terapêutico: 0,6-1,2 mEq/L).",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "pcdt-tab-2016",
+          "locator": "pdf p. 20 (7.6 Esquemas de administração, nota sobre o nível sérico)",
+          "quote": "Nota: O nível sérico deve ser dosado com uso contínuo de dose estável do estabilizador por pelo menos 5-7 dias e intervalo de 12 horas da última administração até o horário da coleta de sangue.",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Transtorno bipolar",
+      "steps": "Reduzir a dose gradualmente ao longo de pelo menos 4 semanas e, de preferência, de até 3 meses, mesmo que outro antimaníaco já tenha sido iniciado.",
+      "note": "Durante a redução e por 3 meses após a suspensão, acompanhar de perto sinais precoces de mania e de depressão.",
+      "cites": [
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.25",
+          "quote": "If stopping lithium, reduce the dose gradually over at least 4 weeks, and preferably up to 3 months, even if the person has started taking another antimanic drug.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-cg185",
+          "locator": "recomendação 1.10.26",
+          "quote": "During dose reduction and for 3 months after lithium treatment is stopped, monitor the person closely for early signs of mania and depression.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -212,6 +394,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

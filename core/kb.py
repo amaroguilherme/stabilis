@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from collections.abc import Iterator
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -198,6 +199,34 @@ def _walk_cites(node, path: str = "") -> Iterator[tuple[str, dict]]:
             yield from _walk_cites(value, f"{path}/{index}")
 
 
+# Numbers in a Portuguese summary (titration steps, monitoring schedules) must appear in a cited
+# quote: a mechanical check against transcription errors. Number words of either language count.
+_NUMBER_WORDS = {
+    "once": "1", "twice": "2", "bid": "2", "tid": "3", "qid": "4", "one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7",
+    "eight": "8", "nine": "9", "ten": "10", "eleven": "11", "twelve": "12", "fourteen": "14", "fifteen": "15",
+    "twenty": "20", "thirty": "30", "forty": "40", "fifty": "50", "sixty": "60", "ninety": "90",
+    "um": "1", "uma": "1", "dois": "2", "duas": "2", "três": "3", "tres": "3", "quatro": "4", "cinco": "5", "seis": "6",
+    "sete": "7", "oito": "8", "nove": "9", "dez": "10", "doze": "12", "quinze": "15", "vinte": "20", "trinta": "30",
+}
+_THOUSANDS = re.compile(r"(?<![\d.,])[1-9]\d{0,2}(?:[.,]\d{3})+(?![\d.,]*\d)")
+
+
+def _numbers(text: str) -> set[str]:
+    text = re.sub(r"[^\W\d_]+", lambda m: f" {_NUMBER_WORDS.get(m.group(0).lower(), m.group(0))} ", text)
+    text = _THOUSANDS.sub(lambda m: re.sub(r"[.,]", "", m.group(0)), text)
+    found = set()
+    for raw in re.findall(r"\d+(?:[.,]\d+)?", text):
+        value = raw.replace(",", ".")
+        found.add(value.rstrip("0").rstrip(".") if "." in value else value)
+    return found
+
+
+def _check_numbers(text: str, cites: list[dict], where: str, errors: list[str]) -> None:
+    quoted = set().union(*(_numbers(c.get("quote", "")) for c in cites)) if cites else set()
+    for number in sorted(_numbers(text) - quoted):
+        errors.append(f"{where}: o número {number} não aparece em nenhum trecho citado")
+
+
 def _duplicates(ids: list[str]) -> set[str]:
     seen, dupes = set(), set()
     for item in ids:
@@ -344,6 +373,10 @@ def integrity_errors(kb: KnowledgeBase) -> list[str]:
         for item in drug.get("monitoring", []):
             if item["id"] not in refs.monitoring:
                 errors.append(f"{where}: monitoramento '{item['id']}' não existe em vocab/monitoring.json")
+            if "schedule" in item:
+                _check_numbers(item["schedule"]["text"], item["schedule"]["cites"], f"{where} (monitoramento {item['id']})", errors)
+        for regimen in drug.get("titration", []):
+            _check_numbers(regimen["steps"], regimen["cites"], f"{where} ({regimen['kind']}: {regimen['indication']})", errors)
         for effect in drug.get("common_effects", {}).get("effects", []):
             if effect not in refs.effects:
                 errors.append(f"{where}: efeito '{effect}' não existe em vocab/effects.json")

@@ -166,6 +166,17 @@
         "quote": "Patients treated with any AED for any indication should be monitored for the emergence or worsening of depression, suicidal thoughts or behavior, and/or any unusual changes in mood or behavior.",
         "accessed": "2026-10-27",
         "note": "Seção 5.6: \"Monitor patients for worsening of preexisting depression.\""
+      },
+      "schedule": {
+        "text": "Desde o início e durante todo o tratamento: nos estudos, o aumento do risco apareceu já 1 semana após o início e persistiu por todo o período avaliado.",
+        "cites": [
+          {
+            "source": "label-diazepam",
+            "locator": "seção 5.5 Suicidal Behavior and Ideation",
+            "quote": "The increased risk of suicidal thoughts or behavior with AEDs was observed as early as one week after starting drug treatment with AEDs and persisted for the duration of treatment assessed.",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     }
   ],
@@ -189,6 +200,6 @@
     "extracted_on": "2026-10-27",
     "verified_by": null,
     "verified_on": null,
-    "notes": "Doses de 2.1 convertidas para mg/dia (2–10 mg, 2 a 4 vezes ao dia). Fora por falta de id ou de suporte claro: inibidores/indutores da CYP2C19 (sem id próprio), piora de depressão preexistente, cautela na insuficiência respiratória, suicidalidade dos antiepilépticos (entra só como monitoramento), superdosagem (fatal só em combinação). Sem fato renal: a seção 12.3 diz que a depuração do diazepam livre na insuficiência renal crônica é semelhante à de voluntários saudáveis."
+    "notes": "Doses de 2.1 convertidas para mg/dia (2–10 mg, 2 a 4 vezes ao dia). Fora por falta de id ou de suporte claro: inibidores/indutores da CYP2C19 (sem id próprio), piora de depressão preexistente, cautela na insuficiência respiratória, suicidalidade dos antiepilépticos (entra só como monitoramento), superdosagem (fatal só em combinação). Sem fato renal: a seção 12.3 diz que a depuração do diazepam livre na insuficiência renal crônica é semelhante à de voluntários saudáveis. Calendário de monitoramento adicionado por IA em 2026-10-28, pendente da segunda conferência humana."
   }
 }

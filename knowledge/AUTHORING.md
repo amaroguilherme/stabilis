@@ -101,6 +101,13 @@ Exceção: se o trecho da seção 4 é só contexto de outra contraindicação (
 | `lithium_level_raiser` | diz que aumenta os níveis de lítio |
 | `hormonal_contraceptive_reducer` | diz que reduz a eficácia de anticoncepcionais hormonais |
 
+## Titulação, retirada e quando monitorar (`titration` e `monitoring[].schedule`)
+
+- `titration`: até 4 esquemas por medicamento, cada um com `kind` (`titration` para começar, `taper` para retirar), `indication`, `steps` (resumo em português) e `cites`.
+- `schedule` num item de `monitoring`: quando fazer o exame (`text`) e `cites`; pode repetir o `cite` do item se o trecho já tiver o tempo.
+- **Todo número do resumo precisa estar num trecho citado** (`core/kb.py` confere; números por extenso, em inglês ou português, valem, e `0,125` = `0.125`). Não numere passos e não escreva números que o trecho não tem.
+- Só entra o que a fonte diz explicitamente; esquema sem números ("reduzir aos poucos") pode entrar como texto.
+
 ## Antes de terminar
 
 1. `python scripts/build_kb.py --validate-only --filter drugs/<id>.json` → 0 erros.

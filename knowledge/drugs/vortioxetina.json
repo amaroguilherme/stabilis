@@ -172,7 +172,71 @@
         "locator": "Boxed warning: Suicidal thoughts and behaviors",
         "quote": "Closely monitor all antidepressant-treated patients for clinical worsening, and for emergence of suicidal thoughts and behaviors",
         "accessed": "2026-10-27"
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-vortioxetina",
+            "locator": "seção 5.1 Suicidal Thoughts and Behaviors in Adolescents and Young Adults",
+            "quote": "Monitor all antidepressant-treated patients for all approved populations for clinical worsening and emergence of suicidal thoughts and behaviors, especially during the initial few months of drug therapy, and at times of dosage changes.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior (adultos)",
+      "steps": "Início: 10 mg 1x/dia, com ou sem alimento; depois, subir para 20 mg/dia conforme a tolerância. Doses acima de 20 mg/dia não foram avaliadas; pode-se reduzir para 5 mg/dia em quem não tolera doses maiores.",
+      "cites": [
+        {
+          "source": "label-vortioxetina",
+          "locator": "seção 2.1 Recommended Dosage",
+          "quote": "The recommended starting dose is 10 mg administered orally once daily without regard to meals. Dosage should then be increased to 20 mg/day, as tolerated. The efficacy and safety of doses above 20 mg/day have not been evaluated in controlled clinical trials. A dose decrease down to 5 mg/day may be considered for patients who do not tolerate higher doses",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Depressão maior",
+      "steps": "Em quem usa 15 ou 20 mg/dia, reduzir para 10 mg/dia por 1 semana antes de suspender.",
+      "note": "A parada abrupta de 15 ou 20 mg/dia causou efeitos transitórios, como cefaleia e tensão muscular.",
+      "cites": [
+        {
+          "source": "label-vortioxetina",
+          "locator": "seção 2.3 Discontinuing Treatment",
+          "quote": "It is recommended that the dose be decreased to 10 mg/day for one week before full discontinuation of TRINTELLIX 15 mg/day or 20 mg/day",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-vortioxetina",
+          "locator": "seção 2.3 Discontinuing Treatment",
+          "quote": "Although TRINTELLIX can be abruptly discontinued, in placebo-controlled trials patients experienced transient adverse reactions such as headache and muscle tension following abrupt discontinuation of TRINTELLIX 15 mg/day or 20 mg/day",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -193,6 +257,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }

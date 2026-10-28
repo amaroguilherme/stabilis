@@ -194,6 +194,35 @@
         "quote": "Closely m onitor all antidepressant-treated patients for clinical worsening , and for emergence of suicidal thoughts and behaviors",
         "accessed": "2026-10-27",
         "note": "Os espaços em \"m onitor\" e \"worsening ,\" estão assim no texto extraído da fonte."
+      },
+      "schedule": {
+        "text": "Bula: acompanhar de perto sobretudo nos primeiros meses e a cada mudança de dose. NICE (depressão, 18 a 25 anos ou risco aumentado de suicídio): reavaliar 1 semana após iniciar ou aumentar a dose e, depois, quantas vezes for preciso, sem passar de 4 semanas após o início.",
+        "cites": [
+          {
+            "source": "label-citalopram",
+            "locator": "seção 5.1 Suicidal Thoughts and Behavior in Adolescents and Young Adults",
+            "quote": "Monitor all antidepressant-treated patients for clinical worsening and emergence of suicidal thoughts and behaviors, especially during the initial few months of drug therapy and at times of dosage changes.",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "When prescribing antidepressant medication for people with depression who are aged 18 to 25 years or are thought to be at increased risk of suicide:",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them 1 week after starting the antidepressant medication or increasing the dose for suicidality",
+            "accessed": "2026-10-28"
+          },
+          {
+            "source": "nice-ng222",
+            "locator": "recomendação 1.4.22",
+            "quote": "review them again after this as often as needed, but no later than 4 weeks after the appointment at which the antidepressant was started",
+            "accessed": "2026-10-28"
+          }
+        ]
       }
     },
     {
@@ -205,6 +234,71 @@
         "quote": "ECG monitoring is recommended in patients for whom CELEXA use is not recommended unless the benefits clearly outweigh the risks for a particular patient",
         "accessed": "2026-10-27"
       }
+    }
+  ],
+  "titration": [
+    {
+      "kind": "titration",
+      "indication": "Depressão maior (adultos)",
+      "steps": "Início: 20 mg 1x/dia; pode subir para o máximo de 40 mg 1x/dia após no mínimo 1 semana. Acima de 40 mg/dia não é recomendado (prolongamento do QT). Máximo de 20 mg/dia acima de 60 anos, na insuficiência hepática, em metabolizadores lentos da CYP2C19 e com inibidor da CYP2C19.",
+      "cites": [
+        {
+          "source": "label-citalopram",
+          "locator": "seção 2.1 Recommended Dosage",
+          "quote": "Administer CELEXA once daily, with or without food, at an initial dosage of 20 mg once daily, with an increase to a maximum dosage of 40 mg once daily at an interval of no less than one week. Dosages above 40 mg once daily are not recommended due to the risk of QT prolongation",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-citalopram",
+          "locator": "seção 2.3 Recommended Dosage for Specific Populations",
+          "quote": "The maximum recommended dosage of CELEXA for patients who are greater than 60 years of age, patients with hepatic impairment, and for CYP2C19 poor metabolizers is 20 mg once daily",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "label-citalopram",
+          "locator": "seção 2.4 Dosage Modifications with Concomitant Use of CYP2C19 Inhibitors",
+          "quote": "The maximum recommended dosage of CELEXA when used concomitantly with a CYP2C19 inhibitor is 20 mg once daily",
+          "accessed": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kind": "taper",
+      "indication": "Qualquer indicação",
+      "steps": "Bula: reduzir a dose gradualmente, em vez de parar de forma abrupta, sempre que possível. NICE: reduzir até zero em etapas de uma fração da dose anterior (ex.: 50%), com reduções menores (ex.: 25%) nas doses baixas, esperando 1 a 2 semanas entre as etapas; meia-vida curta pede retirada mais lenta.",
+      "note": "Esquema geral da NICE para antidepressivos. Com sintomas de retirada mais intensos, considerar voltar à dose anterior e depois reduzir mais devagar, em passos menores.",
+      "cites": [
+        {
+          "source": "label-citalopram",
+          "locator": "seção 2.6 Discontinuing Treatment with CELEXA",
+          "quote": "Gradually reduce the dosage rather than stopping CELEXA abruptly whenever possible.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "slowly reduce the dose to zero in a step-wise fashion, at each step prescribing a proportion of the previous dose (for example, 50% of previous dose) consider using smaller reductions (for example, 25%) as the dose becomes lower",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.16",
+          "quote": "take into account the pharmacokinetic profile (for example, the half-life of the medication as antidepressants with a short half-life will need to be tapered more slowly) and the duration of treatment",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.18",
+          "quote": "allow 1 to 2 weeks to evaluate the effects of dose reduction before considering further dose reductions.",
+          "accessed": "2026-10-28"
+        },
+        {
+          "source": "nice-ng222",
+          "locator": "recomendação 1.4.21",
+          "quote": "If a person has more severe withdrawal symptoms, consider restarting the original antidepressant medication at the previous dose, and then attempt dose reduction at a slower rate with smaller decrements after symptoms have resolved.",
+          "accessed": "2026-10-28"
+        }
+      ]
     }
   ],
   "common_effects": {
@@ -224,6 +318,7 @@
     "extracted_by": "ai",
     "extracted_on": "2026-10-27",
     "verified_by": null,
-    "verified_on": null
+    "verified_on": null,
+    "notes": "Titulação, retirada e calendário de monitoramento adicionados por IA em 2026-10-28, pendentes da segunda conferência humana."
   }
 }
