@@ -126,10 +126,8 @@ def _spl_section_text(section) -> str:
     return text.get_text(" ", strip=True) if text else ""
 
 
-def fetch_dailymed(retrieval: dict, folder: Path) -> tuple[str, Path]:
-    xml = folder / "source.xml"
-    _download(f"https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/{retrieval['setid']}.xml", xml)
-    soup = BeautifulSoup(xml.read_text(encoding="utf-8", errors="replace"), "html.parser")
+def _dailymed_text(xml_text: str) -> str:
+    soup = BeautifulSoup(xml_text, "html.parser")
     lines: list[str] = []
     title = soup.find("title")
     if title:
@@ -140,7 +138,18 @@ def fetch_dailymed(retrieval: dict, folder: Path) -> tuple[str, Path]:
         name = heading.get_text(" ", strip=True) if heading else (code.get("displayname", "") if code else "")
         lines.append(f"[[section {name}]]")
         lines.append(_spl_section_text(section))
-    return _clean_lines("\n".join(lines)), xml
+        # The label's Highlights live in each section's <excerpt>; keep them as their own sections.
+        excerpt = section.find("excerpt", recursive=False)
+        if excerpt:
+            lines.append(f"[[section Highlights: {name}]]")
+            lines.append(excerpt.get_text(" ", strip=True))
+    return _clean_lines("\n".join(lines))
+
+
+def fetch_dailymed(retrieval: dict, folder: Path) -> tuple[str, Path]:
+    xml = folder / "source.xml"
+    _download(f"https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/{retrieval['setid']}.xml", xml)
+    return _dailymed_text(xml.read_text(encoding="utf-8", errors="replace")), xml
 
 
 def fetch_file(retrieval: dict, folder: Path) -> tuple[str, Path]:
@@ -159,12 +168,15 @@ def fetch_local(retrieval: dict, folder: Path) -> tuple[str, Path]:
 
 FETCHERS = {"pdf": fetch_pdf, "html": fetch_html, "europepmc": fetch_europepmc, "dailymed": fetch_dailymed,
             "file": fetch_file, "local": fetch_local}
+# Rebuild text.txt from the document already in the cache (after a parser change), without downloading.
+REPARSERS = {"dailymed": lambda folder: _dailymed_text((folder / "source.xml").read_text(encoding="utf-8", errors="replace"))}
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("ids", nargs="*", help="ids de fontes (padrão: todas)")
     parser.add_argument("--force", action="store_true", help="baixa de novo mesmo se já estiver no cache")
+    parser.add_argument("--reparse", action="store_true", help="refaz o texto a partir do documento em cache, sem baixar")
     args = parser.parse_args()
 
     sources = json.loads(SOURCES_FILE.read_text(encoding="utf-8"))["sources"]
@@ -180,6 +192,13 @@ def main() -> int:
         folder = CACHE / source["id"]
         if not retrieval:
             print(f"- {source['id']}: sem recuperação automática (conferir manualmente)")
+            continue
+        if args.reparse:
+            reparse = REPARSERS.get(retrieval["kind"])
+            if reparse and (folder / "meta.json").exists():
+                text = reparse(folder)
+                (folder / "text.txt").write_text(text, encoding="utf-8")
+                print(f"~ {source['id']}: texto refeito ({len(text)} caracteres)")
             continue
         if (folder / "text.txt").exists() and not args.force:
             print(f"= {source['id']}: já no cache")

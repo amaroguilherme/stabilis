@@ -4,8 +4,12 @@ The canonical files live in knowledge/. The web app cannot import files outside 
 (Turbopack resolves only inside the project root), so the bundles below are generated into
 webapp/app/lib/kb/ — and committed — with a content hash:
 
-    kb.generated.json      the whole knowledge base (validated by core/kb.py)
-    crisis.generated.json  the crisis lexicon
+    kb.generated.json         the whole knowledge base (validated by core/kb.py); used by tests
+    kb.client.generated.json  the same without citation quotes, review metadata or brand names
+    brands.client.generated.json  brand names, loaded only by the medication search
+    crisis.generated.json     the crisis lexicon
+
+and webapp/public/kb-quotes.json, the quotes themselves, fetched only when someone opens a citation.
 
     python scripts/build_kb.py           # validate and regenerate after editing knowledge/
     python scripts/build_kb.py --check   # fail if invalid or if a generated file is stale (CI)
@@ -17,6 +21,7 @@ Citation quotes are checked separately against the downloaded sources:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -31,6 +36,10 @@ GENERATED_BY = "scripts/build_kb.py — não edite este arquivo; edite knowledge
 CRISIS_SOURCE = Path("knowledge/lexicons/crisis.pt-BR.json")
 CRISIS_TARGET = Path("webapp/app/lib/kb/crisis.generated.json")
 KB_TARGET = Path("webapp/app/lib/kb/kb.generated.json")
+KB_CLIENT_TARGET = Path("webapp/app/lib/kb/kb.client.generated.json")
+BRANDS_CLIENT_TARGET = Path("webapp/app/lib/kb/brands.client.generated.json")
+QUOTES_TARGET = Path("webapp/public/kb-quotes.json")
+QUOTE_FIELDS = ("quote", "absent_term", "note", "accessed")
 
 
 def validate_crisis_lexicon(data: dict) -> list[str]:
@@ -64,15 +73,51 @@ def validate_crisis_lexicon(data: dict) -> list[str]:
     return errors
 
 
-def render(source: str, data, extra: dict | None = None) -> str:
+def render(source: str, data, extra: dict | None = None, content_hash: str | None = None) -> str:
     bundle = {
         "_generated_by": GENERATED_BY,
         "_source": source,
         **(extra or {}),
-        "content_hash": kb_module.content_hash(data),
+        "content_hash": content_hash or kb_module.content_hash(data),
         "data": data,
     }
     return json.dumps(bundle, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+
+
+def split_quotes(node, quotes: dict):
+    """Copy of `node` where every citation keeps source/locator/accessed plus a `qid`; the quote,
+    absent term and note go to `quotes[qid]`."""
+    if isinstance(node, list):
+        return [split_quotes(item, quotes) for item in node]
+    if not isinstance(node, dict):
+        return node
+    if "source" in node and "locator" in node and any(k in node for k in QUOTE_FIELDS):
+        moved = {k: node[k] for k in QUOTE_FIELDS if k in node}
+        qid = hashlib.sha256(json.dumps([node["source"], node["locator"], moved], ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:12]
+        quotes[qid] = moved
+        return {**{k: v for k, v in node.items() if k not in QUOTE_FIELDS}, "qid": qid}
+    return {key: split_quotes(value, quotes) for key, value in node.items()}
+
+
+def slim_for_client(data: dict, quotes: dict) -> dict:
+    """What the browser needs: no quotes (fetched on demand), no review metadata, no notes on drug
+    facts (shown nowhere in the app)."""
+    slim = split_quotes(data, quotes)
+
+    def drop_reviews(node):
+        if isinstance(node, list):
+            return [drop_reviews(item) for item in node]
+        if isinstance(node, dict):
+            return {k: drop_reviews(v) for k, v in node.items() if k != "review"}
+        return node
+
+    slim = drop_reviews(slim)
+    # The engine needs only the tags; fact citations are not displayed (the full bundle keeps them).
+    for drug in slim["drugs"]:
+        drug["facts"] = [{k: v for k, v in fact.items() if k in ("tag", "severity")} for fact in drug["facts"]]
+    # Brand names are only needed by the medication search, which loads them separately.
+    slim["brands"] = {}
+    return slim
 
 
 def build() -> tuple[dict[Path, str], list[str]]:
@@ -91,7 +136,13 @@ def build() -> tuple[dict[Path, str], list[str]]:
         errors += exc.errors
     else:
         data = kb_module.bundle_data(kb)
-        outputs[KB_TARGET] = render("knowledge/", data, {"kb_version": kb.manifest["kb_version"]})
+        version = {"kb_version": kb.manifest["kb_version"]}
+        full_hash = kb_module.content_hash(data)
+        outputs[KB_TARGET] = render("knowledge/", data, version)
+        quotes: dict = {}
+        outputs[KB_CLIENT_TARGET] = render("knowledge/", slim_for_client(data, quotes), version, content_hash=full_hash)
+        outputs[BRANDS_CLIENT_TARGET] = json.dumps({"content_hash": full_hash, "brands": data["brands"]}, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n"
+        outputs[QUOTES_TARGET] = json.dumps({"content_hash": full_hash, "quotes": dict(sorted(quotes.items()))}, ensure_ascii=False, separators=(",", ":")) + "\n"
     return outputs, errors
 
 

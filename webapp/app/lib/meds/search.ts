@@ -30,13 +30,13 @@ interface Entry {
 
 const titleCase = (text: string) => text.replace(/(^|[\s-])(\p{L})/gu, (_, sep: string, letter: string) => sep + letter.toUpperCase());
 
-export function buildMedIndex(kb: KnowledgeBaseData): Entry[] {
+export function buildMedIndex(kb: KnowledgeBaseData, brands: Record<string, string[]> = kb.brands): Entry[] {
   const entries: Entry[] = [];
   for (const drug of kb.drugs) {
     const names = new Set([drug.names.display_pt, drug.names.dcb, drug.names.inn_en, ...(drug.names.aliases ?? []), ...drug.names.anvisa_principles]);
     for (const name of names) entries.push({ key: normalizeName(name), drug_id: drug.id, matched: name, kind: "name" });
   }
-  for (const [brand, ids] of Object.entries(kb.brands)) {
+  for (const [brand, ids] of Object.entries(brands)) {
     for (const id of ids) entries.push({ key: brand, drug_id: id, matched: titleCase(brand), kind: "brand" });
   }
   return entries;

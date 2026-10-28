@@ -1,7 +1,7 @@
 {
   "_generated_by": "scripts/build_kb.py — não edite este arquivo; edite knowledge/ e rode o script",
   "_source": "knowledge/",
-  "content_hash": "sha256:a3e78984e9843616203932ddaa91dd616c24752570685548edbd111a94062411",
+  "content_hash": "sha256:f3a81526d24a312bfab4cd1b21661f5541636928421d695da3c633d795c53f06",
   "data": {
     "brands": {
       "aas": [
@@ -6381,7 +6381,7 @@
       },
       {
         "id": "suicide_risk",
-        "label_pt": "Sinal de risco de suicídio (PHQ-9 item 9, relato ou avaliação profissional)",
+        "label_pt": "Sinal de risco de suicídio (triagem ASQ, PHQ-9 item 9, relato ou avaliação profissional)",
         "review": {
           "extracted_by": "ai",
           "extracted_on": "2026-10-27",
@@ -6395,6 +6395,12 @@
             "locator": "recomendação 1.4.23",
             "quote": "Take into account toxicity in overdose when prescribing an antidepressant medication for people at significant risk of suicide.",
             "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (Próximas etapas)",
+            "quote": "“Não” à pergunta nº 5 = triagem positiva não aguda (risco potencial identificado)",
+            "source": "nimh-asq-pt"
           }
         ],
         "when": {
@@ -6410,6 +6416,47 @@
               "op": "eq",
               "profile": "suicide_risk_assessed",
               "value": true
+            },
+            {
+              "band_in": [
+                "low",
+                "high"
+              ],
+              "instrument": "asq"
+            }
+          ]
+        }
+      },
+      {
+        "id": "alcohol_risk",
+        "label_pt": "Consumo de álcool relevante (hábito informado ou AUDIT-C positivo)",
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-27",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-27",
+            "locator": "Resumo (MEDLINE), Results",
+            "quote": "The AUDIT-C screening thresholds that simultaneously maximized sensitivity and specificity were > or =4 in men (sensitivity 0.86, specificity 0.89) and > or =3 in women (sensitivity 0.73, specificity 0.91).",
+            "source": "bradley-2007-auditc"
+          }
+        ],
+        "when": {
+          "any": [
+            {
+              "op": "contains",
+              "profile": "habits",
+              "value": "alcohol"
+            },
+            {
+              "band_in": [
+                "positive"
+              ],
+              "instrument": "auditc"
             }
           ]
         }
@@ -6471,6 +6518,22 @@
       },
       {
         "class": "anxiolytic_hypnotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "Medication Guide",
+            "note": "Seção 6.1, Tabela 1 (ansiedade generalizada; colunas XANAX e placebo): \"Drowsiness Light-headedness Dizziness Akathisia 41% 21% 2% 2% 22% 19% 1% 1%\". A sonolência é a mais frequente, mas não chega ao dobro do placebo.",
+            "quote": "The most common side effects of XANAX include: • problems with coordination • hypotension • trouble saying words clearly (dysarthria) • changes in sex drive (libido)",
+            "source": "label-alprazolam"
+          },
+          "effects": [
+            "coordination",
+            "sexual_dysfunction",
+            "hypotension",
+            "slurred_speech"
+          ],
+          "note": "A lista do guia repete o resumo da bula (Highlights): acima de 5% e pelo menos o dobro do placebo, em ansiedade generalizada e pânico. Sem id: hipotensão (o vocabulário só tem a ortostática) e disartria. Mudança na libido entra como vida sexual."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -6881,6 +6944,22 @@
       },
       {
         "class": "antipsychotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Tabela 14)",
+            "note": "Mesma seção: \"Commonly observed adverse reactions associated with the use of ABILIFY in patients with bipolar mania (incidence of 5% or greater and ABILIFY incidence at least twice that for placebo) are shown in Table 14.\"",
+            "quote": "Table 14: Commonly Observed Adverse Reactions in Short-Term, Placebo-Controlled Trials of Adult Patients with Bipolar Mania Treated with ABILIFY Monotherapy Preferred Term Percentage of Patients Reporting Reaction ABILIFY (n=917) Placebo (n=753) Akathisia 13 4 Sedation 8 3 Restlessness 6 3 Tremor 6 3 Extrapyramidal Disorder 5 2",
+            "source": "label-aripiprazol"
+          },
+          "effects": [
+            "restlessness",
+            "sleepiness",
+            "tremor",
+            "movement_symptoms"
+          ],
+          "note": "Mania em adultos, monoterapia (3 semanas). A frase geral de adultos (10% ou mais, todas as indicações, sem comparar com placebo) cita também náusea, vômito, constipação, dor de cabeça, tontura, ansiedade e insônia."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -7089,6 +7168,23 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Commonly Observed Adverse Reactions in Controlled Clinical Trials of Sustained-Release Bupropion Hydrochloride)",
+            "quote": "Adverse reactions that occurred in at least 5% of patients treated with bupropion HCl sustained-release (300 mg and 400 mg per day) and at a rate at least twice the placebo rate are listed below. 300 mg/day of bupropion HCl sustained-release: anorexia, dry mouth, rash, sweating, tinnitus, and tremor.",
+            "source": "label-bupropiona"
+          },
+          "effects": [
+            "appetite_decrease",
+            "dry_mouth",
+            "rash",
+            "sweating",
+            "tremor",
+            "tinnitus"
+          ],
+          "note": "Lista para 300 mg/dia nos estudos com a forma SR. Em 400 mg/dia a bula lista também insônia, náusea, tontura, ansiedade, agitação e outras. Sem id no vocabulário: zumbido."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -7355,6 +7451,22 @@
       },
       {
         "class": "mood_stabilizer",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "ADVERSE REACTIONS",
+            "quote": "The most frequently observed adverse reactions, particularly during the initial phases of therapy, are dizziness, drowsiness, unsteadiness, nausea, and vomiting.",
+            "source": "label-carbamazepina"
+          },
+          "effects": [
+            "dizziness",
+            "sleepiness",
+            "coordination",
+            "nausea",
+            "vomiting"
+          ],
+          "note": "Bula de Tegretol (epilepsia e neuralgia do trigêmeo; sem indicação para bipolar). A frase não separa por indicação e vale sobretudo para o início do tratamento. Desequilíbrio entra como falta de coordenação."
+        },
         "facts": [
           {
             "cite": {
@@ -7662,6 +7774,18 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience",
+            "quote": "The most common adverse reaction that occurred in CELEXA-treated patients with an incidence of 5% or greater and at least twice the incidence in placebo patients was ejaculation disorder (primarily ejaculatory delay) in male patients",
+            "source": "label-citalopram"
+          },
+          "effects": [
+            "sexual_dysfunction"
+          ],
+          "note": "É a única reação no critério da bula (≥5% e o dobro do placebo), só em homens. Na Tabela 3 (TDM), náusea, boca seca e sonolência são mais frequentes, mas não chegam ao dobro do placebo."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -7879,6 +8003,35 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção ADVERSE REACTIONS: Commonly Observed",
+            "note": "Início da frase (o trecho citado é a continuação, cortado pelo limite de 400 caracteres): \"The most commonly observed adverse events associated with the use of Anafranil and not seen at an equivalent incidence among placebo-treated patients were gastrointestinal complaints, including\"",
+            "quote": "dry mouth, constipation, nausea, dyspepsia, and anorexia; nervous system complaints, including somnolence, tremor, dizziness, nervousness, and myoclonus; genitourinary complaints, including changed libido, ejaculatory failure, impotence, and micturition disorder; and other miscellaneous complaints, including fatigue, sweating, increased appetite, weight gain, and visual changes.",
+            "source": "label-clomipramina"
+          },
+          "effects": [
+            "dry_mouth",
+            "constipation",
+            "nausea",
+            "dyspepsia",
+            "appetite_decrease",
+            "sleepiness",
+            "tremor",
+            "dizziness",
+            "nervousness",
+            "sexual_dysfunction",
+            "fatigue",
+            "sweating",
+            "appetite_increase",
+            "weight_gain",
+            "vision_blurred",
+            "urinary_difficulty",
+            "muscle_jerks"
+          ],
+          "note": "A bula dos EUA só aprova a clomipramina para TOC; os estudos controlados descritos nela são em TOC, não em depressão. \"Visual changes\" virou visão turva. Sem id no vocabulário: mioclonia (abalos musculares) e distúrbio da micção."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -8176,6 +8329,21 @@
       },
       {
         "class": "anxiolytic_hypnotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção ADVERSE REACTIONS: Panic Disorder – Commonly Observed Adverse Events (Table 4)",
+            "note": "Mesma seção, epilepsia: \"drowsiness has occurred in approximately 50% of patients and ataxia in approximately 30%.\"",
+            "quote": "Table 4 Incidence of Most Commonly Observed Adverse Events Treatment-emergent events for which the incidence in the clonazepam patients was ≥5% and at least twice that in the placebo patients. in Acute Therapy in Pool of 6- to 9-Week Trials Adverse Event Clonazepam (N=574) Placebo (N=294) Somnolence 37% 10% Depression 7% 1% Coordination Abnormal 6% 0% Ataxia 5% 0%",
+            "source": "label-clonazepam"
+          },
+          "effects": [
+            "sleepiness",
+            "coordination",
+            "low_mood"
+          ],
+          "note": "Transtorno de pânico (estudos de 6 a 9 semanas). Depressão (7% contra 1% no placebo) não tem id."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -8615,6 +8783,30 @@
       },
       {
         "class": "antipsychotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience",
+            "note": "A frase começa com \"The most commonly reported\" (cortado para caber em 400 caracteres). A bula descreve a hipotensão como ortostática no boxed warning e na seção 5.2.",
+            "quote": "adverse reactions (≥5%) across CLOZARIL clinical trials were: CNS reactions, including sedation, dizziness/vertigo, headache, and tremor; cardiovascular reactions, including tachycardia, hypotension, and syncope; autonomic nervous system reactions, including hypersalivation, sweating, dry mouth, and visual disturbances; gastrointestinal reactions, including constipation and nausea; and fever.",
+            "source": "label-clozapina"
+          },
+          "effects": [
+            "sleepiness",
+            "dizziness",
+            "headache",
+            "tremor",
+            "palpitations",
+            "orthostatic_dizziness",
+            "salivation",
+            "sweating",
+            "dry_mouth",
+            "constipation",
+            "nausea",
+            "vision_blurred"
+          ],
+          "note": "Todos os estudos de clozapina (esquizofrenia resistente; risco de suicídio na esquizofrenia). Hipotensão entra como tontura ao levantar. Sem id: síncope, febre e distúrbios visuais (o vocabulário só tem visão embaçada)."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -8981,6 +9173,25 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Studies Experience (Common Adverse Reactions in Placebo-Controlled MDD Studies)",
+            "quote": "The most commonly observed adverse reactions in PRISTIQ treated MDD patients in pre-marketing pooled 8-week, placebo-controlled, fixed-dose studies (incidence ≥ 5% and at least twice the rate of placebo in the 50 or 100 mg dose groups) were: nausea, dizziness, insomnia, hyperhidrosis, constipation, somnolence, decreased appetite, anxiety, and specific male sexual function disorders.",
+            "source": "label-desvenlafaxina"
+          },
+          "effects": [
+            "nausea",
+            "dizziness",
+            "insomnia",
+            "sweating",
+            "constipation",
+            "sleepiness",
+            "appetite_decrease",
+            "nervousness",
+            "sexual_dysfunction"
+          ]
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -9196,6 +9407,20 @@
       },
       {
         "class": "anxiolytic_hypnotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6 ADVERSE REACTIONS",
+            "quote": "Adverse reactions most commonly reported were drowsiness, fatigue, muscle weakness, and ataxia.",
+            "source": "label-diazepam"
+          },
+          "effects": [
+            "sleepiness",
+            "fatigue",
+            "coordination"
+          ],
+          "note": "A frase não separa por indicação (ansiedade, abstinência alcoólica, espasmo muscular, convulsões). Fraqueza muscular entra em cansaço ou fraqueza."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -9444,6 +9669,23 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Most Common Adverse Reactions in Adult Trials)",
+            "quote": "The most commonly observed adverse reactions in duloxetine delayed-release capsules -treated patients in all the pooled adult populations (i.e., MDD, GAD, DPNP, FM, OA, and CLBP) (incidence of at least 5% and at least twice the incidence in placebo-treated patients) were nausea, dry mouth, somnolence, constipation, decreased appetite, and hyperhidrosis.",
+            "source": "label-duloxetina"
+          },
+          "effects": [
+            "nausea",
+            "dry_mouth",
+            "sleepiness",
+            "constipation",
+            "appetite_decrease",
+            "sweating"
+          ],
+          "note": "Dados combinados de todas as indicações em adultos (TDM, TAG, dor neuropática diabética, fibromialgia, osteoartrite e lombalgia crônica); a bula não traz frase só para TDM."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -9791,6 +10033,22 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Major Depressive Disorder, Adults)",
+            "quote": "The most commonly observed adverse reactions in Lexapro patients (incidence of approximately 5% or greater and approximately twice the incidence in placebo patients) were insomnia, ejaculation disorder (primarily ejaculatory delay), nausea, sweating increased, fatigue, and somnolence.",
+            "source": "label-escitalopram"
+          },
+          "effects": [
+            "insomnia",
+            "sexual_dysfunction",
+            "nausea",
+            "sweating",
+            "fatigue",
+            "sleepiness"
+          ]
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -10038,6 +10296,34 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "Medication Guide: What are the possible side effects of PROZAC?",
+            "quote": "Common possible side effects in people who take PROZAC include: unusual dreams sexual problems loss of appetite, diarrhea, indigestion, nausea or vomiting, weakness, or dry mouth flu symptoms feeling tired or fatigued change in sleep habits yawning sinus infection or sore throat tremor or shaking sweating feeling anxious or nervous hot flashes rash",
+            "source": "label-fluoxetina"
+          },
+          "effects": [
+            "sexual_dysfunction",
+            "appetite_decrease",
+            "diarrhea",
+            "dyspepsia",
+            "nausea",
+            "vomiting",
+            "fatigue",
+            "dry_mouth",
+            "insomnia",
+            "sleepiness",
+            "tremor",
+            "sweating",
+            "nervousness",
+            "rash",
+            "abnormal_dreams",
+            "yawning",
+            "hot_flashes"
+          ],
+          "note": "Frase do Guia de Medicação: a seção 6.1 só traz tabelas. Vale para todas as indicações. \"Change in sleep habits\" virou insônia e sonolência (ambas na Tabela 3 da seção 6.1). Sem id: sonhos anormais, sintomas de gripe, bocejo, sinusite ou dor de garganta, ondas de calor."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -10250,6 +10536,19 @@
       },
       {
         "class": "antipsychotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção ADVERSE REACTIONS: Extrapyramidal Symptoms (EPS)",
+            "quote": "EPS during the administration of haloperidol have been reported frequently, often during the first few days of treatment. EPS can be categorized generally as Parkinson-like symptoms, akathisia, or dystonia (including opisthotonos and oculogyric crisis).",
+            "source": "label-haloperidol"
+          },
+          "effects": [
+            "movement_symptoms",
+            "restlessness"
+          ],
+          "note": "Bula de haloperidol oral (transtornos psicóticos e Tourette). Não há lista de reações mais comuns: é a única frase sobre frequência e trata só dos sintomas extrapiramidais."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -10776,6 +11075,27 @@
       },
       {
         "class": "mood_stabilizer",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trial Experience (Tabela 12, transtorno bipolar I em adultos)",
+            "note": "Mesma seção: \"The most common adverse reactions seen in association with the use of LAMICTAL as monotherapy (100 to 400 mg/day) in adult patients (aged 18 to 82 years) with bipolar disorder in the 2 double-blind, placebo-controlled trials of 18 months’ duration are included in Table 12\" Critério da tabela: ao menos 5% e acima do placebo. Colunas: LAMICTAL e placebo (%).",
+            "quote": "Percent of Patients Receiving LAMICTAL (n = 227) Percent of Patients Receiving Placebo (n = 190) General Back pain 8 6 Fatigue 8 5 Abdominal pain 6 3 Digestive Nausea 14 11 Constipation 5 2 Vomiting 5 2 Nervous System Insomnia 10 6 Somnolence 9 7 Xerostomia (dry mouth) 6 4 Respiratory Rhinitis 7 4 Exacerbation of cough 5 3 Pharyngitis 5 4 Skin Rash (nonserious) c 7 5",
+            "source": "label-lamotrigina"
+          },
+          "effects": [
+            "fatigue",
+            "abdominal_pain",
+            "nausea",
+            "constipation",
+            "vomiting",
+            "insomnia",
+            "sleepiness",
+            "dry_mouth",
+            "rash"
+          ],
+          "note": "Bipolar I em adultos, manutenção (18 meses). Sem id: dor nas costas, rinite, piora da tosse e faringite. Na fase de aumento da dose foram mais frequentes dor de cabeça (25%), rash, tontura e diarreia."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -10999,6 +11319,21 @@
       },
       {
         "class": "mood_stabilizer",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "Medication Guide",
+            "note": "Seção 2.2: \"Fine hand tremor, polyuria, and thirst may occur during initial therapy for the acute manic phase and may persist throughout treatment. Nausea and general discomfort may also appear during the first few days of lithium administration.\"",
+            "quote": "The most common side effects of Lithium and Lithium Carbonate, include: Adults with manic or mixed episodes of bipolar I disorder: hand trembling excessive urination increased thirst nausea general discomfort when you start treatment",
+            "source": "label-litio"
+          },
+          "effects": [
+            "tremor",
+            "urination_thirst",
+            "nausea"
+          ],
+          "note": "Adultos com mania ou episódio misto (bipolar I). Mal-estar geral no início do tratamento não tem id. A seção 6.1 só lista as reações comuns de crianças e adolescentes (7 a 17 anos)."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -11201,6 +11536,22 @@
       },
       {
         "class": "anxiolytic_hypnotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção ADVERSE REACTIONS",
+            "note": "Mesma seção: \"The incidence of sedation and unsteadiness increased with age.\"",
+            "quote": "In a sample of about 3500 patients treated for anxiety, the most frequent adverse reaction to Ativan (lorazepam) was sedation (15.9%), followed by dizziness (6.9%), weakness (4.2%), and unsteadiness (3.4%).",
+            "source": "label-lorazepam"
+          },
+          "effects": [
+            "sleepiness",
+            "dizziness",
+            "fatigue",
+            "coordination"
+          ],
+          "note": "Ansiedade (cerca de 3.500 pacientes). Fraqueza entra como cansaço ou fraqueza e desequilíbrio como falta de coordenação."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -11420,6 +11771,25 @@
       },
       {
         "class": "antipsychotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Bipolar Depression, Monotherapy)",
+            "note": "Mesma seção, adjuvante de lítio ou valproato: \"The most common adverse reactions (incidence ≥5% and at least twice the rate of placebo) in subjects treated with LATUDA were akathisia and somnolence.\"",
+            "quote": "The most common adverse reactions (incidence ≥5%, in either dose group, and at least twice the rate of placebo) in patients treated with LATUDA were akathisia, extrapyramidal symptoms, somnolence, nausea, vomiting, diarrhea, and anxiety.",
+            "source": "label-lurasidona"
+          },
+          "effects": [
+            "restlessness",
+            "movement_symptoms",
+            "sleepiness",
+            "nausea",
+            "vomiting",
+            "diarrhea",
+            "nervousness"
+          ],
+          "note": "Depressão bipolar em adultos, monoterapia. Ansiedade entra como nervosismo. Como adjuvante de lítio ou valproato, as mais comuns foram acatisia e sonolência."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -11641,6 +12011,20 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trial Experience (Common Adverse Reactions, Tabela 3)",
+            "quote": "The most common adverse reactions (≥5% and twice placebo) associated with the use of REMERON are listed in Table 3. Table 3: Adverse Reactions (≥5% and twice placebo) in 6-Week U.S. Clinical Trials of REMERON in Patients with MDD REMERON (n=453) Placebo (n=361) Somnolence 54% 18% Increased Appetite 17% 2% Weight Gain 12% 2% Dizziness 7% 3%",
+            "source": "label-mirtazapina"
+          },
+          "effects": [
+            "sleepiness",
+            "appetite_increase",
+            "weight_gain",
+            "dizziness"
+          ]
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -12167,6 +12551,26 @@
       },
       {
         "class": "antipsychotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Tabela 10)",
+            "note": "Frase que introduz as Tabelas 9 e 10: \"The most commonly observed adverse reactions associated with the use of oral olanzapine (incidence of 5% or greater) and not observed at an equivalent incidence among placebo-treated patients (olanzapine incidence at least twice that for placebo) were:\"",
+            "quote": "Table 10: Common Treatment-Emergent Adverse Reactions Associated with the Use of Oral Olanzapine in 3-Week and 4-Week Trials — Bipolar I Disorder (Manic or Mixed Episodes) Adverse Reaction Percentage of Patients Reporting Event Olanzapine (N=125) Placebo (N=129) Asthenia 15 6 Dry mouth 22 7 Constipation 11 5 Dyspepsia 11 5 Increased appetite 6 3 Somnolence 35 13 Dizziness 18 6 Tremor 6 3",
+            "source": "label-olanzapina"
+          },
+          "effects": [
+            "fatigue",
+            "dry_mouth",
+            "constipation",
+            "dyspepsia",
+            "appetite_increase",
+            "sleepiness",
+            "dizziness",
+            "tremor"
+          ],
+          "note": "Mania ou episódio misto (bipolar I), monoterapia por 3 a 4 semanas. Astenia entra como cansaço. O ganho de peso tem alerta próprio (seção 5); com lítio ou valproato (Tabela 13) apareceu em 26%, contra 7% no placebo."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -12396,6 +12800,27 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Most Common Adverse Reactions)",
+            "quote": "The most commonly observed adverse reactions associated with the use of PAXIL (incidence of 5% or greater and at least twice that for placebo) were: MDD: Asthenia, sweating, nausea, decreased appetite, somnolence, dizziness, insomnia, tremor, nervousness, ejaculatory disturbance, and other male genital disorders.",
+            "source": "label-paroxetina"
+          },
+          "effects": [
+            "fatigue",
+            "sweating",
+            "nausea",
+            "appetite_decrease",
+            "sleepiness",
+            "dizziness",
+            "insomnia",
+            "tremor",
+            "nervousness",
+            "sexual_dysfunction"
+          ],
+          "note": "Lista de TDM. \"Other male genital disorders\" inclui anorgasmia, dificuldade de ereção e impotência (nota b da Tabela 4), por isso entra em disfunção sexual."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -12613,6 +13038,25 @@
       },
       {
         "class": "anxiolytic_hypnotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Most Common Adverse Reactions in All Controlled Clinical Studies in Adults)",
+            "note": "Início da frase: \"In premarketing controlled trials of all adult patient populations combined (including DPN, PHN, and adult patients with partial-onset seizures),\"",
+            "quote": "dizziness, somnolence, dry mouth, edema, blurred vision, weight gain, and \"thinking abnormal\" (primarily difficulty with concentration/attention) were more commonly reported by subjects treated with LYRICA than by subjects treated with placebo (greater than or equal to 5% and twice the rate of that seen in placebo).",
+            "source": "label-pregabalina"
+          },
+          "effects": [
+            "dizziness",
+            "sleepiness",
+            "dry_mouth",
+            "edema",
+            "vision_blurred",
+            "weight_gain",
+            "memory"
+          ],
+          "note": "Todos os estudos controlados em adultos (dor neuropática diabética, neuralgia pós-herpética, epilepsia); a bula americana não tem indicação para ansiedade. Pensamento anormal (sobretudo concentração) entra como memória ou concentração."
+        },
         "facts": [
           {
             "cite": {
@@ -12771,6 +13215,23 @@
       },
       {
         "class": "antipsychotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Study Experience (depressão bipolar)",
+            "note": "Mesma seção, esquizofrenia e mania em monoterapia (análise conjunta): \"were somnolence (18%), dizziness (11%), dry mouth (9%), constipation (8%), ALT increased (5%), weight gain (5%), and dyspepsia (5%).\"",
+            "quote": "In bipolar depression studies (up to 8 weeks), the most commonly observed adverse reactions associated with the use of SEROQUEL (incidence of 5% or greater) and observed at a rate on SEROQUEL at least twice that of placebo were somnolence (57%), dry mouth (44%), dizziness (18%), constipation (10%), and lethargy (5%).",
+            "source": "label-quetiapina"
+          },
+          "effects": [
+            "sleepiness",
+            "dry_mouth",
+            "dizziness",
+            "constipation",
+            "fatigue"
+          ],
+          "note": "Depressão bipolar (estudos de até 8 semanas). Letargia entra como cansaço. Na mania em monoterapia (análise junto com esquizofrenia) aparecem também ganho de peso, dispepsia e aumento de ALT."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -13060,6 +13521,38 @@
       },
       {
         "class": "antipsychotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6 ADVERSE REACTIONS",
+            "note": "A frase continua: \"upper respiratory tract infection, nasopharyngitis, and pharyngolaryngeal pain.\" Tabela 10 (mania em adultos, monoterapia; risperidona e placebo): parkinsonismo 25% e 9%, sedação 11% e 4%, acatisia 9% e 3%, tremor 6% e 3%, distonia 5% e 1%, náusea 5% e 2%.",
+            "quote": "The most common adverse reactions in clinical trials (>5% and twice placebo) were parkinsonism, akathisia, dystonia, tremor, sedation, dizziness, anxiety, blurred vision, nausea, vomiting, upper abdominal pain, stomach discomfort, dyspepsia, diarrhea, salivary hypersecretion, constipation, dry mouth, increased appetite, increased weight, fatigue, rash, nasal congestion",
+            "source": "label-risperidona"
+          },
+          "effects": [
+            "movement_symptoms",
+            "restlessness",
+            "tremor",
+            "sleepiness",
+            "dizziness",
+            "nervousness",
+            "vision_blurred",
+            "nausea",
+            "vomiting",
+            "abdominal_pain",
+            "dyspepsia",
+            "diarrhea",
+            "salivation",
+            "constipation",
+            "dry_mouth",
+            "appetite_increase",
+            "weight_gain",
+            "fatigue",
+            "rash",
+            "nasal_congestion"
+          ],
+          "note": "Única frase de reações mais comuns da bula; junta todos os estudos (adultos e crianças, todas as indicações). Cortada em 400 caracteres: o resto (infecção respiratória alta, nasofaringite, dor de garganta) não tem id. Em adultos com mania predominam sintomas motores e sedação."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -13288,6 +13781,25 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience",
+            "note": "Frase seguinte da mesma seção (reações mais comuns por indicação, não citadas antes): \"MDD: somnolence\"",
+            "quote": "The most common adverse reactions (≥5% and twice placebo) in all pooled placebo-controlled clinical trials of all ZOLOFT-treated patients with MDD, OCD, PD, PTSD, SAD and PMDD were nausea, diarrhea/loose stool, tremor, dyspepsia, decreased appetite, hyperhidrosis, ejaculation failure, and decreased libido (see Table 3).",
+            "source": "label-sertralina"
+          },
+          "effects": [
+            "nausea",
+            "diarrhea",
+            "tremor",
+            "dyspepsia",
+            "appetite_decrease",
+            "sweating",
+            "sexual_dysfunction"
+          ],
+          "note": "A frase citada junta todas as indicações (TDM, TOC, pânico, TEPT, TAS e TDPM). Sonolência vem da frase seguinte, específica de TDM (ver nota da citação)."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -13642,6 +14154,25 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "Medication Guide: What are the possible side effects of trazodone hydrochloride tablets?",
+            "quote": "The most common side effects of trazodone hydrochloride tablets include: swelling blurred vision dizziness sleepiness tiredness diarrhea stuffy nose weight loss",
+            "source": "label-trazodona"
+          },
+          "effects": [
+            "edema",
+            "vision_blurred",
+            "dizziness",
+            "sleepiness",
+            "fatigue",
+            "diarrhea",
+            "nasal_congestion",
+            "weight_loss"
+          ],
+          "note": "Frase do Guia de Medicação: a seção 6.1 só traz tabela, sem frase das reações mais comuns. Sem id no vocabulário: perda de peso."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -13859,6 +14390,26 @@
       },
       {
         "class": "mood_stabilizer",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Mania (Tabela 2)",
+            "note": "Mesma seção: \"Vomiting was the only reaction that was reported by significantly (p ≤ 0.05) more patients receiving Depakote compared to placebo.\" Tremor, dor de cabeça, constipação e diarreia tiveram incidência igual ou maior no placebo.",
+            "quote": "Table 2. Adverse Reactions Reported by > 5% of Depakote-Treated Patients During Placebo-Controlled Trials of Acute Mania 1 Adverse Reaction Depakote (n = 89) % Placebo (n = 97) % Nausea 22 15 Somnolence 19 12 Dizziness 12 4 Vomiting 12 3 Accidental Injury 11 5 Asthenia 10 7 Abdominal Pain 9 8 Dyspepsia 9 8 Rash 6 3",
+            "source": "label-valproato"
+          },
+          "effects": [
+            "nausea",
+            "sleepiness",
+            "dizziness",
+            "vomiting",
+            "fatigue",
+            "abdominal_pain",
+            "dyspepsia",
+            "rash"
+          ],
+          "note": "Mania aguda (2 estudos de 3 semanas): reações em mais de 5% e acima do placebo. Lesão acidental não tem id. Astenia entra como cansaço. Dor abdominal e dispepsia ficaram perto do placebo (9% contra 8%)."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -14138,6 +14689,24 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Studies Experience (Most Common Adverse Reactions)",
+            "quote": "The most commonly observed adverse reactions in the clinical study database in Effexor XR treated patients in MDD, GAD, SAD, and PD (incidence ≥5% and at least twice the rate of placebo) were: nausea (30.0%), somnolence (15.3%), dry mouth (14.8%), sweating (11.4%), abnormal ejaculation (9.9%), anorexia (9.8%), constipation (9.3%), impotence (5.3%), and decreased libido (5.1%).",
+            "source": "label-venlafaxina"
+          },
+          "effects": [
+            "nausea",
+            "sleepiness",
+            "dry_mouth",
+            "sweating",
+            "sexual_dysfunction",
+            "appetite_decrease",
+            "constipation"
+          ],
+          "note": "Dados combinados de TDM, TAG, TAS e pânico com Effexor XR (liberação prolongada); a bula não traz frase só para TDM."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -14375,6 +14944,19 @@
       },
       {
         "class": "antidepressant",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Studies Experience (Common Adverse Reactions in Placebo-Controlled MDD Studies)",
+            "quote": "The most commonly observed adverse reactions in MDD patients treated with TRINTELLIX in 6 to 8 week placebo-controlled studies (incidence ≥5% and at least twice the rate of placebo) were nausea, constipation and vomiting.",
+            "source": "label-vortioxetina"
+          },
+          "effects": [
+            "nausea",
+            "constipation",
+            "vomiting"
+          ]
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -14560,6 +15142,21 @@
       },
       {
         "class": "antipsychotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience",
+            "note": "A lista continua: \"which includes the adverse reaction terms dizziness and lightheadedness. • Akathisia • Abnormal Vision • Asthenia • Vomiting\". Critério da lista (mesma seção): incidência de 5% ou mais e pelo menos o dobro do placebo.",
+            "quote": "Bipolar trials (see Table 12) • Somnolence • Extrapyramidal Symptoms which includes the following adverse reaction terms: extrapyramidal syndrome, hypertonia, dystonia, dyskinesia, hypokinesia, tremor, paralysis and twitching. None of these adverse reactions occurred individually at an incidence greater than 10% in bipolar mania trials. • Dizziness",
+            "source": "label-ziprasidona"
+          },
+          "effects": [
+            "sleepiness",
+            "movement_symptoms",
+            "dizziness"
+          ],
+          "note": "Mania ou episódio misto (bipolar I), estudos de 3 semanas. A lista passa de 400 caracteres: acatisia, astenia (cansaço) e vômito vêm do fim dela, na nota da citação. Visão anormal ficou sem id (o vocabulário só tem visão embaçada)."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -14780,6 +15377,21 @@
       },
       {
         "class": "anxiolytic_hypnotic",
+        "common_effects": {
+          "cite": {
+            "accessed": "2026-10-27",
+            "locator": "seção 6.1 Clinical Trials Experience (Most Commonly Observed Adverse Reactions in Controlled Trials)",
+            "note": "Mesma seção: \"During longer-term treatment (28 to 35 nights) with zolpidem at doses up to 10 mg, the most commonly observed adverse reactions associated with the use of zolpidem and seen at statistically significant differences from placebo-treated patients were dizziness (5%) and drugged feelings (3%).\"",
+            "quote": "During short-term treatment (up to 10 nights) with AMBIEN at doses up to 10 mg, the most commonly observed adverse reactions associated with the use of zolpidem and seen at statistically significant differences from placebo-treated patients were drowsiness (reported by 2% of zolpidem patients), dizziness (1%), and diarrhea (1%).",
+            "source": "label-zolpidem"
+          },
+          "effects": [
+            "sleepiness",
+            "dizziness",
+            "diarrhea"
+          ],
+          "note": "Insônia, uso curto (até 10 noites). No uso por 28 a 35 noites: tontura (5%) e sensação de estar drogado (3%), que não tem id."
+        },
         "dose_adult": {
           "cite": {
             "accessed": "2026-10-27",
@@ -14953,55 +15565,923 @@
     ],
     "instruments": [
       {
-        "id": "phq9",
+        "id": "asq",
         "items": [
           {
-            "id": "phq9_1",
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (pergunta 1)",
+              "quote": "1. Nas últimas semanas, você desejou que estivesse morto?",
+              "source": "nimh-asq-pt"
+            },
+            "id": "asq_1",
+            "text": "Nas últimas semanas, você desejou que estivesse morto?",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (pergunta 2)",
+              "quote": "2. Nas últimas semanas, você sentiu que você ou sua família estariam em melhor situação se você estivesse morto?",
+              "source": "nimh-asq-pt"
+            },
+            "id": "asq_2",
+            "text": "Nas últimas semanas, você sentiu que você ou sua família estariam em melhor situação se você estivesse morto?",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (pergunta 3)",
+              "quote": "3. Na última semana, você tem tido pensamentos sobre se matar?",
+              "source": "nimh-asq-pt"
+            },
+            "id": "asq_3",
+            "text": "Na última semana, você tem tido pensamentos sobre se matar?",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (pergunta 4)",
+              "quote": "4. Você já tentou se matar?",
+              "source": "nimh-asq-pt"
+            },
+            "id": "asq_4",
+            "text": "Você já tentou se matar?",
+            "text_status": "verified"
+          },
+          {
+            "ask_if": {
+              "items": [
+                "asq_1",
+                "asq_2",
+                "asq_3",
+                "asq_4"
+              ],
+              "min_yes": 1
+            },
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (pergunta 5, de acuidade)",
+              "quote": "Caso o paciente responda sim a qualquer uma das perguntas acima, faça a pergunta de acuidade a seguir: 5. Você está tendo pensamentos sobre se matar agora?",
+              "source": "nimh-asq-pt"
+            },
+            "id": "asq_5",
+            "text": "Você está tendo pensamentos sobre se matar agora?",
+            "text_status": "verified"
+          }
+        ],
+        "license_note": "Domínio público (NIMH, governo dos EUA): pode ser reproduzido sem permissão, citando o NIMH como fonte, sem mudar o sentido e sem usar as imagens.",
+        "name": "ASQ – Perguntas para triagem de suicídio (NIMH)",
+        "options": [
+          {
+            "label": "Sim",
+            "value": 1
+          },
+          {
+            "label": "Não",
+            "value": 0
+          }
+        ],
+        "options_cite": {
+          "accessed": "2026-10-27",
+          "locator": "pdf p. 1 (pergunta 1 e opções)",
+          "note": "O 'm' antes de cada opção é a caixa de marcação do formulário, extraída como letra.",
+          "quote": "1. Nas últimas semanas, você desejou que estivesse morto? mSim m Não",
+          "source": "nimh-asq-pt"
+        },
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-27",
+          "notes": "Escolhido em vez do C-SSRS: PDF oficial do NIMH em domínio público. O NIMH rotula esta tradução (2017) só como 'Portuguese', mas há outra para Portugal; o rodapé tem resto de texto em holandês. Validado com uma pessoa fazendo as perguntas, não autoaplicado. Os telefones do PDF são dos EUA: mostrar CVV 188 e SAMU 192. Ficaram de fora o 'Pergunte ao paciente' (dirigido ao profissional) e as perguntas abertas do item 4. A recusa em responder não tem opção no motor.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "scoring": {
+          "risk": {
+            "high_items": [
+              "asq_5"
+            ],
+            "low_items": [
+              "asq_1",
+              "asq_2",
+              "asq_3",
+              "asq_4"
+            ]
+          },
+          "type": "risk_screener"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (Próximas etapas)",
+            "quote": "Caso o paciente responda “Não” às perguntas de 1 a 4, a triagem está completa (não é necessário fazer a pergunta nº 5).",
+            "source": "nimh-asq-pt"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (Próximas etapas)",
+            "note": "Faixa 'low' = triagem positiva não aguda; 'high' = positiva aguda.",
+            "quote": "Caso o paciente responda “Sim” a qualquer uma das perguntas de 1 a 4, ou caso se recuse a responder, a triagem será considerada positiva. Faça a pergunta nº 5 para avaliar a acuidade: o “Sim” à pergunta nº 5 = triagem positiva aguda (risco iminente identificado)",
+            "source": "nimh-asq-pt"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (Próximas etapas)",
+            "quote": "“Não” à pergunta nº 5 = triagem positiva não aguda (risco potencial identificado)",
+            "source": "nimh-asq-pt"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (If the patient refuses to answer)",
+            "note": "Versão em inglês de 2025, mais nova que a tradução de 2017, que ainda trata a recusa como triagem positiva.",
+            "quote": "For adults, refusal is NOT considered a positive screen. No intervention is necessary at this time unless there are other safety concerns.",
+            "source": "nimh-asq-tool-en"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 2 (rodapé)",
+            "quote": "Public domain tool, free of charge",
+            "source": "nimh-asq-info-sheet"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Copyright Policy (Permission to copy)",
+            "quote": "The information on our website and in our materials is in the public domain. You may copy and reuse it without permission.",
+            "source": "nimh-copyright-policy"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Copyright Policy (publicações)",
+            "quote": "Please cite the National Institute of Mental Health as the source. Please note: You may not reuse or copy any of the publication images.",
+            "source": "nimh-copyright-policy"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 2 (asQ Development)",
+            "quote": "Sound psychometric properties for youth and adult medical patients",
+            "source": "nimh-asq-info-sheet"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Resumo (MEDLINE), Conclusions",
+            "quote": "The ASQ is a valid and brief suicide risk-screening tool for use among adults.",
+            "source": "horowitz-2020-asq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 5 (C. How to initiate screening)",
+            "note": "Autoaplicado no app, o ASQ fica fora da forma validada.",
+            "quote": "The ASQ screen has been validated by means of a live person administering the questions; however, some centers have used tablets and self-report as ways of administering the scale.",
+            "source": "nimh-asq-ed-pathway"
+          }
+        ],
+        "validation_note": "Não foi encontrado estudo de validação da versão em português. Validado em inglês por Horowitz LM et al.: Arch Pediatr Adolesc Med 2012;166(12):1170-6 (10 a 21 anos, pronto-socorro pediátrico) e Psychosomatics 2020;61(6):713-22 (727 adultos internados; sensibilidade 100%, especificidade 89%)."
+      },
+      {
+        "id": "auditc",
+        "instructions": "1 “DOSE” (contém 14g de álcool puro)\nCERVEJA: 1 lata ou 1 copo de chope (350 ml) = 1 “DOSE”; 1 garrafa (600 ml) = 2 “DOSES”; 1 garrafa (1 litro) = 3 “DOSES”\nVINHO: 1 taça (140 ml) = 1 “DOSE”; 1 garrafa (750 ml) = 5 “DOSES”\nCACHAÇA, VODCA, UÍSQUE ou CONHAQUE: “meio copo americano” (60 ml) = 1,5 “DOSES”; 1 garrafa (1 litro) = 25 “DOSES”\nUÍSQUE, RUM, LICOR etc.: 1 “dose de dosador”(40 ml) = 1 “DOSE”",
+        "instructions_cite": {
+          "accessed": "2026-10-27",
+          "locator": "pdf p. 1 (Equivalências de doses de diversas bebidas para doses padrão)",
+          "quote": "1 “DOSE” (contém 14g de álcool puro) CERVEJA: 1 lata ou 1 copo de chope (350 ml) = 1 “DOSE”; 1 garrafa (600 ml) = 2 “DOSES”; 1 garrafa (1 litro) = 3 “DOSES” VINHO: 1 taça (140 ml) = 1 “DOSE”; 1 garrafa (750 ml) = 5 “DOSES” CACHAÇA, VODCA, UÍSQUE ou CONHAQUE: “meio copo americano” (60 ml) = 1,5 “DOSES”; 1 garrafa (1 litro) = 25 “DOSES” UÍSQUE, RUM, LICOR etc.: 1 “dose de dosador”(40 ml) = 1 “DOSE”",
+          "source": "supera-audit-ptbr"
+        },
+        "items": [
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (questão 1)",
+              "quote": "1.Com que frequência você consome bebidas alcoólicas?",
+              "source": "subpav-audit-ptbr"
+            },
+            "id": "auditc_1",
+            "text": "Com que frequência você consome bebidas alcoólicas?",
+            "text_status": "verified"
+          },
+          {
+            "ask_if": {
+              "items": [
+                "auditc_1"
+              ],
+              "min_yes": 1
+            },
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (questão 2 e opções)",
+              "quote": "2. Nas ocasiões em que bebe, quantas doses, copos ou garrafas você costuma tomar? (0) 1 ou 2 “doses” (1) 3 ou 4 “doses” (2) 5 ou 6 “doses” (3) 7 a 9 “doses” (4) 10 ou mais “doses”",
+              "source": "subpav-audit-ptbr"
+            },
+            "id": "auditc_2",
+            "options": [
+              {
+                "label": "1 ou 2 “doses”",
+                "value": 0
+              },
+              {
+                "label": "3 ou 4 “doses”",
+                "value": 1
+              },
+              {
+                "label": "5 ou 6 “doses”",
+                "value": 2
+              },
+              {
+                "label": "7 a 9 “doses”",
+                "value": 3
+              },
+              {
+                "label": "10 ou mais “doses”",
+                "value": 4
+              }
+            ],
+            "text": "Nas ocasiões em que bebe, quantas doses, copos ou garrafas você costuma tomar?",
+            "text_status": "verified"
+          },
+          {
+            "ask_if": {
+              "items": [
+                "auditc_1"
+              ],
+              "min_yes": 1
+            },
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (questão 3 e opções)",
+              "quote": "3. Com que frequência você toma seis ou mais doses em uma ocasião? (0) Nunca (1) Menos que uma vez ao mês (2) Uma vez ao mês (3) Uma vez por semana (4) Todos os dias ou quase todos",
+              "source": "subpav-audit-ptbr"
+            },
+            "id": "auditc_3",
+            "options": [
+              {
+                "label": "Nunca",
+                "value": 0
+              },
+              {
+                "label": "Menos que uma vez ao mês",
+                "value": 1
+              },
+              {
+                "label": "Uma vez ao mês",
+                "value": 2
+              },
+              {
+                "label": "Uma vez por semana",
+                "value": 3
+              },
+              {
+                "label": "Todos os dias ou quase todos",
+                "value": 4
+              }
+            ],
+            "text": "Com que frequência você toma seis ou mais doses em uma ocasião?",
+            "text_status": "verified"
+          }
+        ],
+        "license_note": "Domínio público (instrumento aprovado pela OMS): uso não comercial sem permissão, sem alterar o conteúdo e informando que o AUDIT é instrumento aprovado pela OMS.",
+        "name": "AUDIT-C (três primeiras perguntas do AUDIT – Teste para Identificação de Problemas Relacionados ao Uso de Álcool)",
+        "options": [
+          {
+            "label": "Nunca",
+            "value": 0
+          },
+          {
+            "label": "Uma vez por mês ou menos",
+            "value": 1
+          },
+          {
+            "label": "Duas a quatro vezes por mês",
+            "value": 2
+          },
+          {
+            "label": "Duas a três vezes por semana",
+            "value": 3
+          },
+          {
+            "label": "Quatro ou mais vezes por semana",
+            "value": 4
+          }
+        ],
+        "options_cite": {
+          "accessed": "2026-10-27",
+          "locator": "pdf p. 1 (questão 1 e opções)",
+          "quote": "1.Com que frequência você consome bebidas alcoólicas? (0) Nunca (1) Uma vez por mês ou menos (2) Duas a quatro vezes por mês (3) Duas a três vezes por semana (4) Quatro ou mais vezes por semana",
+          "source": "subpav-audit-ptbr"
+        },
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-27",
+          "notes": "Itens da versão autoaplicável publicada pela SMS-Rio (SUBPAV), baseada em Méndez (1999). A versão federal do SUPERA (SENAD/UNIFESP) tem outra redação; dela vêm a tabela de doses (a da SUBPAV repete um trecho e passa de 400 caracteres) e o pulo das questões 2 e 3 após 'Nunca'. Conferir essa combinação. Cortes de Bradley 2007 (EUA; dose padrão de cerca de 14 g, como no SUPERA); não há corte brasileiro conferido para o AUDIT-C. Sem sexo informado, não há faixa. Exibir a frase de instrumento aprovado pela OMS.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "scoring": {
+          "bands_by_sex": {
+            "female": [
+              {
+                "id": "negative",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "id": "positive",
+                "max": 12,
+                "min": 3
+              }
+            ],
+            "male": [
+              {
+                "id": "negative",
+                "max": 3,
+                "min": 0
+              },
+              {
+                "id": "positive",
+                "max": 12,
+                "min": 4
+              }
+            ]
+          },
+          "type": "sum"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-27",
+            "locator": "Resumo (MEDLINE), Results",
+            "quote": "The AUDIT-C screening thresholds that simultaneously maximized sensitivity and specificity were > or =4 in men (sensitivity 0.86, specificity 0.89) and > or =3 in women (sensitivity 0.73, specificity 0.91).",
+            "source": "bradley-2007-auditc"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Resumo (MEDLINE), Conclusions",
+            "quote": "Optimal screening thresholds for alcohol misuse among men (> or =4) and women (> or =3) were the same as in previously published VA studies.",
+            "source": "bradley-2007-auditc"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (questão 1)",
+            "note": "Base do pulo das questões 2 e 3 quando a 1 é 'Nunca' (ask_if): no AUDIT completo, a pessoa segue para as questões 9 e 10; no AUDIT-C, as questões 2 e 3 contam zero.",
+            "quote": "1. Com que frequência você toma bebidas alcoólicas? (0) Nunca [vá para as questões 9-10]",
+            "source": "supera-audit-ptbr"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "FAQ, AUDIT use rights",
+            "quote": "As a World Health Organization (WHO)-approved instrument, the AUDIT is in the public domain.",
+            "source": "auditscreen-faq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "FAQ, AUDIT use rights",
+            "quote": "No permission is needed for the use of the AUDIT questionnaire for any non-commercial purpose. This means that someone who is completing the questionnaire should not be charged a fee.",
+            "source": "auditscreen-faq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "FAQ, AUDIT use rights",
+            "quote": "as long as it is not materially changed and that there is a note that it is a WHO-approved instrument",
+            "source": "auditscreen-faq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "FAQ, AUDIT use rights",
+            "note": "Frase a exibir junto do questionário.",
+            "quote": "It is sufficient to state: ”As a WHO-approved instrument, the AUDIT is in the public domain”.",
+            "source": "auditscreen-faq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 2 (referência)",
+            "quote": "Referência: Méndez, E.B. (1999). Uma versão brasileira do AUDIT- Alcohol Use Disorders Identification Test. Dissertação de Mestrado, Universidade Federal de Pelotas, Pelotas.",
+            "source": "subpav-audit-ptbr"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Resumo (MEDLINE), Conclusions",
+            "quote": "The results obtained in this study confirm the validity of the abbreviated versions of the AUDIT for the screening of alcohol use disorders",
+            "source": "meneses-gaya-2010-audit"
+          }
+        ],
+        "validation_note": "Versão brasileira do AUDIT: Méndez EB, dissertação de mestrado, UFPel, 1999 (não localizada online). As versões abreviadas, incluindo o AUDIT-C, foram validadas em duas amostras brasileiras (pronto-socorro e CAPS-AD) por Meneses-Gaya C et al., Alcohol Clin Exp Res 2010;34(8):1417-24; os pontos de corte desse estudo não foram conferidos porque o texto completo é fechado."
+      },
+      {
+        "id": "gad7",
+        "items": [
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 1)",
+              "quote": "1. Sentir-se nervoso/a, ansioso/a ou muito tenso/a",
+              "source": "gad7-ptbr-pfizer"
+            },
+            "id": "gad7_1",
+            "text": "Sentir-se nervoso/a, ansioso/a ou muito tenso/a",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 2)",
+              "quote": "2. Não ser capaz de impedir ou de controlar as preocupações",
+              "source": "gad7-ptbr-pfizer"
+            },
+            "id": "gad7_2",
+            "text": "Não ser capaz de impedir ou de controlar as preocupações",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 3)",
+              "quote": "3. Preocupar-se muito com diversas coisas",
+              "source": "gad7-ptbr-pfizer"
+            },
+            "id": "gad7_3",
+            "text": "Preocupar-se muito com diversas coisas",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 4)",
+              "quote": "4. Dificuldade para relaxar",
+              "source": "gad7-ptbr-pfizer"
+            },
+            "id": "gad7_4",
+            "text": "Dificuldade para relaxar",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 5)",
+              "quote": "5. Ficar tão agitado/a que se torna difícil permanecer sentado/a",
+              "source": "gad7-ptbr-pfizer"
+            },
+            "id": "gad7_5",
+            "text": "Ficar tão agitado/a que se torna difícil permanecer sentado/a",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 6)",
+              "quote": "6. Ficar facilmente aborrecido/a ou irritado/a",
+              "source": "gad7-ptbr-pfizer"
+            },
+            "id": "gad7_6",
+            "text": "Ficar facilmente aborrecido/a ou irritado/a",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 7)",
+              "quote": "7. Sentir medo como se algo horrível fosse acontecer",
+              "source": "gad7-ptbr-pfizer"
+            },
+            "id": "gad7_7",
+            "text": "Sentir medo como se algo horrível fosse acontecer",
+            "text_status": "verified"
+          }
+        ],
+        "license_note": "Uso livre: não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",
+        "name": "GAD-7 (Escala de Transtorno de Ansiedade Generalizada – 7)",
+        "options": [
+          {
+            "label": "Nenhuma vez",
+            "value": 0
+          },
+          {
+            "label": "Vários dias",
+            "value": 1
+          },
+          {
+            "label": "Mais da metade dos dias",
+            "value": 2
+          },
+          {
+            "label": "Quase todos os dias",
+            "value": 3
+          }
+        ],
+        "options_cite": {
+          "accessed": "2026-10-27",
+          "locator": "pdf p. 1 (cabeçalho das opções e pontos do item 1)",
+          "quote": "Nenhuma vez Vários dias Mais da metade dos dias Quase todos os dias 1. Sentir-se nervoso/a, ansioso/a ou muito tenso/a 0 1 2 3",
+          "source": "gad7-ptbr-pfizer"
+        },
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-27",
+          "notes": "Enunciado, itens e opções copiados da versão oficial em português do Brasil (PDF da Pfizer em phqscreeners.com), com a grafia original ('freqüência'). Faixas e sinalizador de 10 ou mais vêm do manual oficial do PHQ e do GAD-7. Conferir se a redação usada por Moreno et al. (2016) é a mesma do PDF da Pfizer. A opção 'Vários dias' é a mesma que Piccolo (2026) questiona no PHQ-9.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "scoring": {
+          "bands": [
+            {
+              "id": "minimal",
+              "max": 4,
+              "min": 0
+            },
+            {
+              "id": "mild",
+              "max": 9,
+              "min": 5
+            },
+            {
+              "id": "moderate",
+              "max": 14,
+              "min": 10
+            },
+            {
+              "id": "severe",
+              "max": 21,
+              "min": 15
+            }
+          ],
+          "flags": [
+            {
+              "id": "further_evaluation",
+              "item": "total",
+              "op": "gte",
+              "value": 10
+            }
+          ],
+          "type": "sum"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 6 (GAD-7 Anxiety Severity)",
+            "quote": "GAD-7 total score for the seven items ranges from 0 to 21. Scores of 5, 10, and 15 represent cutpoints for mild, moderate, and severe anxiety, respectively.",
+            "source": "phq-gad7-manual"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 6 (GAD-7 Anxiety Severity)",
+            "quote": "When screening for anxiety disorders, a recommended cutpoint for further evaluation is a score of 10 or greater.",
+            "source": "phq-gad7-manual"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (rodapé: autoria e termos de uso)",
+            "quote": "Desenvolvido pelos Drs. Robert L. Spitzer, Janet B.W. Williams, Kurt Kroenke e colegas, com um subsídio educacional da Pfizer Inc. Não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",
+            "source": "gad7-ptbr-pfizer"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 8 (Questions regarding development, acknowledgments and use)",
+            "quote": "All of the measures included in Table 1 are in the public domain. No permission is required to reproduce, translate, display or distribute.",
+            "source": "phq-gad7-manual"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 7 (Translations)",
+            "quote": "Many of the translations have been developed by the MAPI Research Institute using an internationally accepted translation methodology. Thus, most of the translations are linguistically valid. However, unlike the English versions of the PHQ and GAD-7, few of the translations have been psychometrically validated against an independent structured psychiatric interview.",
+            "source": "phq-gad7-manual"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 2 (Abstract)",
+            "quote": "This study examined the psychometric properties of the Brazilian-Portuguese version of the Generalized Anxiety Disorder GAD-7 questionnaire in a community sample (n = 206) of Brazilian adults.",
+            "source": "moreno-2016-gad7"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 4 (Introduction)",
+            "note": "Nos métodos, o artigo diz que os itens foram traduzidos por dois tradutores independentes e revisados por especialistas e grupos focais; não fica claro se a redação aplicada é idêntica à do PDF da Pfizer.",
+            "quote": "although there is a Brazilian-Portuguese version of the GAD-7 available online (Pfizer, 2013), no psychometric study has investigated the adequacy of the Brazilian version of the GAD-7.",
+            "source": "moreno-2016-gad7"
+          }
+        ],
+        "stem": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a pelos problemas abaixo?",
+        "stem_cite": {
+          "accessed": "2026-10-27",
+          "locator": "pdf p. 1 (enunciado)",
+          "quote": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a pelos problemas abaixo?",
+          "source": "gad7-ptbr-pfizer"
+        },
+        "validation_note": "Moreno AL, DeSousa DA, Souza AMFLP, Manfro GG, Salum GA, Koller SH, Osório FL, Crippa JAS. Temas em Psicologia 2016;24(1):367-76: estrutura de fator único e boa confiabilidade (alfa de Cronbach 0,916) da versão brasileira em 206 adultos, a maioria universitários. O estudo não avaliou pontos de corte, e não foi encontrado estudo brasileiro de ponto de corte."
+      },
+      {
+        "id": "mdq",
+        "items": [
+          {
+            "id": "mdq_1",
             "text": null,
             "text_status": "pending"
           },
           {
-            "id": "phq9_2",
+            "id": "mdq_2",
             "text": null,
             "text_status": "pending"
           },
           {
-            "id": "phq9_3",
+            "id": "mdq_3",
             "text": null,
             "text_status": "pending"
           },
           {
-            "id": "phq9_4",
+            "id": "mdq_4",
             "text": null,
             "text_status": "pending"
           },
           {
-            "id": "phq9_5",
+            "id": "mdq_5",
             "text": null,
             "text_status": "pending"
           },
           {
-            "id": "phq9_6",
+            "id": "mdq_6",
             "text": null,
             "text_status": "pending"
           },
           {
-            "id": "phq9_7",
+            "id": "mdq_7",
             "text": null,
             "text_status": "pending"
           },
           {
-            "id": "phq9_8",
+            "id": "mdq_8",
             "text": null,
             "text_status": "pending"
           },
           {
-            "id": "phq9_9",
+            "id": "mdq_9",
+            "text": null,
+            "text_status": "pending"
+          },
+          {
+            "id": "mdq_10",
+            "text": null,
+            "text_status": "pending"
+          },
+          {
+            "id": "mdq_11",
+            "text": null,
+            "text_status": "pending"
+          },
+          {
+            "id": "mdq_12",
+            "text": null,
+            "text_status": "pending"
+          },
+          {
+            "id": "mdq_13",
+            "text": null,
+            "text_status": "pending"
+          },
+          {
+            "ask_if": {
+              "items": [
+                "mdq_1",
+                "mdq_2",
+                "mdq_3",
+                "mdq_4",
+                "mdq_5",
+                "mdq_6",
+                "mdq_7",
+                "mdq_8",
+                "mdq_9",
+                "mdq_10",
+                "mdq_11",
+                "mdq_12",
+                "mdq_13"
+              ],
+              "min_yes": 2
+            },
+            "id": "mdq_same_period",
+            "text": null,
+            "text_status": "pending"
+          },
+          {
+            "id": "mdq_problem",
+            "options": [
+              {
+                "label": "pendente (0)",
+                "value": 0
+              },
+              {
+                "label": "pendente (1)",
+                "value": 1
+              },
+              {
+                "label": "pendente (2)",
+                "value": 2
+              },
+              {
+                "label": "pendente (3)",
+                "value": 3
+              }
+            ],
             "text": null,
             "text_status": "pending"
           }
         ],
-        "license_note": "Uso livre, sem necessidade de permissão.",
+        "license_note": "O uso requer permissão do autor, segundo a Mental Health America. Textos não reproduzidos até haver permissão.",
+        "name": "MDQ (Questionário de Transtornos do Humor)",
+        "options": [
+          {
+            "label": "Sim",
+            "value": 1
+          },
+          {
+            "label": "Não",
+            "value": 0
+          }
+        ],
+        "review": {
+          "extracted_by": "ai",
+          "extracted_on": "2026-10-27",
+          "notes": "Textos pendentes por dois motivos: a Mental Health America informa que o uso do MDQ requer permissão do autor, e a versão brasileira de Castelo et al. (2010) só existe como imagem no SciELO, sem texto conferível. Para liberar: obter a permissão e o texto oficial em português com os autores brasileiros. Os rótulos 'pendente' da pergunta 3 seguem a ordem absent, minor, moderate, serious de Castelo (2010). As perguntas sobre família e diagnóstico prévio ficaram de fora porque não pontuam.",
+          "status": "draft",
+          "verified_by": null,
+          "verified_on": null
+        },
+        "scoring": {
+          "mdq": {
+            "min_yes": 7,
+            "problem_item": "mdq_problem",
+            "problem_min_value": 2,
+            "same_period_item": "mdq_same_period",
+            "symptom_items": [
+              "mdq_1",
+              "mdq_2",
+              "mdq_3",
+              "mdq_4",
+              "mdq_5",
+              "mdq_6",
+              "mdq_7",
+              "mdq_8",
+              "mdq_9",
+              "mdq_10",
+              "mdq_11",
+              "mdq_12",
+              "mdq_13"
+            ]
+          },
+          "type": "mdq"
+        },
+        "sources": [
+          {
+            "accessed": "2026-10-27",
+            "locator": "Methods, 1. Instruments and procedures",
+            "note": "Estrutura usada nos itens: 13 sintomas (sim/não), mesmo período e grau de problema com valores 0 a 3 nessa ordem.",
+            "quote": "The first session includes 13 Yes/No questions derived from the DSM-IV criteria and clinical experience. The second asks whether several symptoms have been experienced in the same period of time. The third part examines psychosocial impairment, classified as absent, minor, moderate or serious.",
+            "source": "castelo-2010-mdq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Methods, 1. Instruments and procedures",
+            "note": "Regra do estudo original (Hirschfeld et al., Am J Psychiatry 2000), adotada aqui: 7 ou mais sintomas, mesmo período e problema moderado ou sério (valor 2 ou mais).",
+            "quote": "MDQ positive screening for BDs requires that seven or more positive symptoms are reported, with clustering within the same time period and causing moderate to severe problems.",
+            "source": "castelo-2010-mdq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Results, 4. Sensitivity, specificity and predictive values",
+            "note": "Corte brasileiro em ambulatório psiquiátrico, não adotado: aqui o MDQ é triagem de segurança e 7 é mais sensível. O artigo não informa se as perguntas 2 e 3 entraram nessa análise.",
+            "quote": "A MDQ screening score of 8 or higher was chosen as the optimal cutoff",
+            "source": "castelo-2010-mdq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Methods, 1. Instruments and procedures",
+            "quote": "The MDQ was first translated into Portuguese by two bilingual authors of the present study (psychiatrists).",
+            "source": "castelo-2010-mdq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Resumo (MEDLINE), Results",
+            "quote": "The sensitivity for bipolar disorder was 0.72 (bipolar I disorder, 0.81; bipolar II disorder, 0.58; and bipolar disorder not otherwise specified, 0.69), with specificity of 0.95.",
+            "source": "gurgel-2012-mdq"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 7 (2.2.4 Screening and diagnosis of bipolar disorder)",
+            "note": "No PDF em duas colunas, a frase continua: 'clinical populations and not for diagnostic or treatment planning purposes'.",
+            "quote": "such as the MDQ should be used only as an adjunct for screening",
+            "source": "canmat-isbd-2018"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Bipolar Test: Mood Disorder Questionnaire (MDQ)",
+            "quote": "The MDQ is widely available on the web and is included in the papers cited below. Use requires the permission of the author",
+            "source": "mha-screening-tests"
+          }
+        ],
+        "validation_note": "Castelo MS et al., Rev Bras Psiquiatr 2010;32(4):424-8: 114 pacientes de ambulatório psiquiátrico; melhor ponto de corte de 8 ou mais itens (sensibilidade 0,91, especificidade 0,70). de Sousa Gurgel W et al., Compr Psychiatry 2012;53(3):308-12: 153 pessoas de ambulatórios e controles; sensibilidade 0,72, especificidade 0,95."
+      },
+      {
+        "id": "phq9",
+        "items": [
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 1)",
+              "quote": "1. Pouco interesse ou pouco prazer em fazer as coisas",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_1",
+            "text": "Pouco interesse ou pouco prazer em fazer as coisas",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 2)",
+              "quote": "2. Se sentir “para baixo”, deprimido/a ou sem perspectiva",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_2",
+            "text": "Se sentir “para baixo”, deprimido/a ou sem perspectiva",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 3)",
+              "quote": "3. Dificuldade para pegar no sono ou permanecer dormindo, ou dormir mais do que de costume",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_3",
+            "text": "Dificuldade para pegar no sono ou permanecer dormindo, ou dormir mais do que de costume",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 4)",
+              "quote": "4. Se sentir cansado/a ou com pouca energia",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_4",
+            "text": "Se sentir cansado/a ou com pouca energia",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 5)",
+              "quote": "5. Falta de apetite ou comendo demais",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_5",
+            "text": "Falta de apetite ou comendo demais",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 6)",
+              "quote": "6. Se sentir mal consigo mesmo/a — ou achar que você é um fracasso ou que decepcionou sua família ou você mesmo/a",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_6",
+            "text": "Se sentir mal consigo mesmo/a — ou achar que você é um fracasso ou que decepcionou sua família ou você mesmo/a",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 7)",
+              "quote": "7. Dificuldade para se concentrar nas coisas, como ler o jornal ou ver televisão",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_7",
+            "text": "Dificuldade para se concentrar nas coisas, como ler o jornal ou ver televisão",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 8)",
+              "quote": "8. Lentidão para se movimentar ou falar, a ponto das outras pessoas perceberem? Ou o oposto – estar tão agitado/a ou irrequieto/a que você fica andando de um lado para o outro muito mais do que de costume",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_8",
+            "text": "Lentidão para se movimentar ou falar, a ponto das outras pessoas perceberem? Ou o oposto – estar tão agitado/a ou irrequieto/a que você fica andando de um lado para o outro muito mais do que de costume",
+            "text_status": "verified"
+          },
+          {
+            "cite": {
+              "accessed": "2026-10-27",
+              "locator": "pdf p. 1 (item 9)",
+              "quote": "9. Pensar em se ferir de alguma maneira ou que seria melhor estar morto/a",
+              "source": "phq9-ptbr-pfizer"
+            },
+            "id": "phq9_9",
+            "text": "Pensar em se ferir de alguma maneira ou que seria melhor estar morto/a",
+            "text_status": "verified"
+          }
+        ],
+        "license_note": "Uso livre: não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",
         "name": "PHQ-9 (Questionário sobre a Saúde do Paciente – 9)",
         "options": [
           {
@@ -15021,10 +16501,16 @@
             "value": 3
           }
         ],
+        "options_cite": {
+          "accessed": "2026-10-27",
+          "locator": "pdf p. 1 (cabeçalho das opções e pontos do item 1)",
+          "quote": "Nenhuma vez Vários dias Mais da metade dos dias Quase todos os dias 1. Pouco interesse ou pouco prazer em fazer as coisas 0 1 2 3",
+          "source": "phq9-ptbr-pfizer"
+        },
         "review": {
           "extracted_by": "ai",
           "extracted_on": "2026-10-27",
-          "notes": "Textos dos itens e das opções a conferir com a versão oficial em português (Fase 2). O item 9 trata de pensamentos de morte ou de se ferir.",
+          "notes": "Enunciado, itens e opções copiados da versão oficial em português do Brasil (PDF da Pfizer em phqscreeners.com), com a grafia original ('freqüência'). A pergunta final sobre dificuldade no dia a dia ficou de fora porque não entra na pontuação. Piccolo (Braz J Psychiatry 2026) alerta que 'Vários dias' pode ser mal compreendido no Brasil. O item 9 trata de pensamentos de morte ou de se ferir.",
           "status": "draft",
           "verified_by": null,
           "verified_on": null
@@ -15085,8 +16571,49 @@
             "locator": "Context (definição de gravidade)",
             "quote": "with scores less than 16 defined as less severe depression, and scores of 16 or more defined as more severe depression",
             "source": "nice-ng222"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (rodapé: autoria e termos de uso)",
+            "quote": "Desenvolvido pelos Drs. Robert L. Spitzer, Janet B.W. Williams, Kurt Kroenke e colegas, com um subsídio educacional da Pfizer Inc. Não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",
+            "source": "phq9-ptbr-pfizer"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 7 (Translations)",
+            "quote": "Many of the translations have been developed by the MAPI Research Institute using an internationally accepted translation methodology. Thus, most of the translations are linguistically valid. However, unlike the English versions of the PHQ and GAD-7, few of the translations have been psychometrically validated against an independent structured psychiatric interview.",
+            "source": "phq-gad7-manual"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "carta aos editores, 1º parágrafo",
+            "note": "Os autores são Osório et al. (2009): a validação brasileira usou esta versão da Pfizer.",
+            "quote": "When describing the version used in their study, the authors refer to the version \"translated into Brazilian Portuguese by Pfizer, known in Brazil as the Questionário sobre a Saúde do Paciente - 9.\"",
+            "source": "piccolo-2026-phq9"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Resumo (MEDLINE), Findings",
+            "note": "Ponto de corte brasileiro informativo; coincide com o início da faixa 'moderate'.",
+            "quote": "For the PHQ-9, a cutoff score equal to or higher than 10 proved to be the most adequate for the screening of depression",
+            "source": "osorio-2009-phq9"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "Resumo",
+            "note": "Informativo, não usado nas faixas: o estudo trocou as opções de resposta (por exemplo, 'vários dias' por 'menos de uma semana').",
+            "quote": "a análise contínua identificou o ponto de corte > 9 como de máxima sensibilidade (77,5%; 61,5-89,2) e especificidade (86,7%; 83,0-89,9)",
+            "source": "santos-2013-phq9"
           }
-        ]
+        ],
+        "stem": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a por qualquer um dos problemas abaixo?",
+        "stem_cite": {
+          "accessed": "2026-10-27",
+          "locator": "pdf p. 1 (enunciado)",
+          "quote": "Durante as últimas 2 semanas, com que freqüência você foi incomodado/a por qualquer um dos problemas abaixo?",
+          "source": "phq9-ptbr-pfizer"
+        },
+        "validation_note": "Versão da Pfizer validada por de Lima Osório F et al., Perspect Psychiatr Care 2009;45(3):216-27 (177 mulheres na atenção primária; melhor ponto de corte: 10 ou mais). Santos IS et al., Cad Saúde Pública 2013;29(8):1533-43, validaram na população geral de Pelotas uma versão com opções de resposta modificadas (ponto de corte > 9)."
       }
     ],
     "interactions": [
@@ -15941,6 +17468,13 @@
             "locator": "seção 3. Risco de suicídio",
             "quote": "Quando a triagem indica risco de suicídio, ou o texto da pessoa menciona pensamentos de morte ou de se machucar, o modo paciente oculta todo conteúdo sobre medicamentos e mostra recursos de ajuda imediata (CVV 188, SAMU 192, UPA ou pronto-socorro).",
             "source": "stabilis-escopo"
+          },
+          {
+            "accessed": "2026-10-27",
+            "locator": "pdf p. 1 (Próximas etapas)",
+            "note": "Faixa 'low' = triagem positiva não aguda; 'high' = positiva aguda.",
+            "quote": "Caso o paciente responda “Sim” a qualquer uma das perguntas de 1 a 4, ou caso se recuse a responder, a triagem será considerada positiva. Faça a pergunta nº 5 para avaliar a acuidade: o “Sim” à pergunta nº 5 = triagem positiva aguda (risco iminente identificado)",
+            "source": "nimh-asq-pt"
           }
         ],
         "then": [
@@ -15959,9 +17493,20 @@
             "urgent": true
           }
         ],
-        "title": "Linguagem de crise no relato do paciente: ocultar medicamentos e orientar ajuda imediata",
+        "title": "Risco de suicídio no relato ou na triagem: sem medicamentos e com ajuda imediata",
         "when": {
-          "signal": "crisis_language"
+          "any": [
+            {
+              "signal": "crisis_language"
+            },
+            {
+              "band_in": [
+                "low",
+                "high"
+              ],
+              "instrument": "asq"
+            }
+          ]
         }
       },
       {
@@ -17290,9 +18835,7 @@
         "when": {
           "all": [
             {
-              "op": "contains",
-              "profile": "habits",
-              "value": "alcohol"
+              "derived": "alcohol_risk"
             },
             {
               "drug_fact": "cns_depressant"
@@ -18116,6 +19659,216 @@
         "title": "The PHQ-9: validity of a brief depression severity measure",
         "url": "https://doi.org/10.1046/j.1525-1497.2001.016009606.x",
         "year": 2001
+      },
+      {
+        "id": "phq9-ptbr-pfizer",
+        "kind": "instrument",
+        "language": "pt-BR",
+        "license_note": "Uso livre: o próprio formulário diz que não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",
+        "publisher": "Pfizer Inc. (site oficial phqscreeners.com); desenvolvido por Spitzer RL, Williams JBW, Kroenke K e colegas",
+        "title": "Questionário sobre a Saúde do/a Paciente (PHQ-9) – versão oficial em português do Brasil",
+        "url": "https://www.phqscreeners.com/images/sites/g/files/g10060481/f/201412/PHQ9_Portuguese%20for%20Brazil.pdf",
+        "year": 2010
+      },
+      {
+        "id": "gad7-ptbr-pfizer",
+        "kind": "instrument",
+        "language": "pt-BR",
+        "license_note": "Uso livre: o próprio formulário diz que não é necessária permissão para reproduzir, traduzir, exibir ou distribuir.",
+        "publisher": "Pfizer Inc. (site oficial phqscreeners.com); desenvolvido por Spitzer RL, Williams JBW, Kroenke K e colegas",
+        "title": "GAD-7 – versão oficial em português do Brasil",
+        "url": "https://www.phqscreeners.com/images/sites/g/files/g10060481/f/201412/GAD7_Portuguese%20for%20Brazil.pdf",
+        "year": 2010
+      },
+      {
+        "id": "phq-gad7-manual",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Manual oficial; declara o PHQ e o GAD-7 de domínio público, sem necessidade de permissão.",
+        "publisher": "Pfizer Inc. (site oficial phqscreeners.com); manual dos autores do PHQ (Spitzer RL, Williams JBW, Kroenke K)",
+        "title": "Instruction Manual: Instructions for Patient Health Questionnaire (PHQ) and GAD-7 Measures",
+        "url": "https://www.phqscreeners.com/images/sites/g/files/g10016261/f/201412/instructions.pdf",
+        "year": 2010
+      },
+      {
+        "id": "moreno-2016-gad7",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Acesso aberto (Redalyc). Citações curtas com atribuição.",
+        "publisher": "Moreno AL, DeSousa DA, Souza AMFLP, Manfro GG, Salum GA, Koller SH, Osório FL, Crippa JAS. Temas em Psicologia 2016;24(1):367-376",
+        "title": "Factor Structure, Reliability, and Item Parameters of the Brazilian-Portuguese Version of the GAD-7 Questionnaire",
+        "url": "https://doi.org/10.9788/TP2016.1-25",
+        "year": 2016
+      },
+      {
+        "id": "santos-2013-phq9",
+        "kind": "instrument",
+        "language": "pt-BR",
+        "license_note": "CC BY-NC 4.0 (SciELO): uso não comercial, com atribuição.",
+        "publisher": "Santos IS, Tavares BF, Munhoz TN, et al. Cadernos de Saúde Pública 2013;29(8):1533-1543",
+        "title": "Sensibilidade e especificidade do Patient Health Questionnaire-9 (PHQ-9) entre adultos da população geral",
+        "url": "https://doi.org/10.1590/0102-311X00144612",
+        "year": 2013
+      },
+      {
+        "id": "piccolo-2026-phq9",
+        "kind": "review",
+        "language": "en",
+        "license_note": "Acesso aberto (Braz J Psychiatry). Citações curtas com atribuição.",
+        "publisher": "Piccolo M. Brazilian Journal of Psychiatry 2026;48:e20254635 (carta aos editores)",
+        "title": "Ensuring clinical validity: the case for reconsidering \"several days\" in the PHQ-9 Brazilian version",
+        "url": "https://doi.org/10.47626/1516-4446-2025-4635",
+        "year": 2026
+      },
+      {
+        "id": "nimh-asq-pt",
+        "kind": "instrument",
+        "language": "pt-BR",
+        "license_note": "Domínio público (NIMH, governo dos EUA): reprodução sem permissão, citando o NIMH e sem reutilizar imagens.",
+        "publisher": "National Institute of Mental Health (NIMH), EUA",
+        "title": "Perguntas para triagem de suicídio (ASQ) – Kit de ferramentas NIMH: Portuguese",
+        "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asqtranslations/asq-portuguese.pdf",
+        "year": 2017
+      },
+      {
+        "id": "nimh-asq-tool-en",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Domínio público (NIMH, governo dos EUA).",
+        "publisher": "National Institute of Mental Health (NIMH), EUA",
+        "title": "Suicide Risk Screening Tool (ASQ) – NIMH Toolkit: Screening Tool for Youth and Adults",
+        "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/screening-tool-asq-nimh-toolkit.pdf",
+        "year": 2025
+      },
+      {
+        "id": "nimh-asq-info-sheet",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Domínio público (NIMH, governo dos EUA).",
+        "publisher": "National Institute of Mental Health (NIMH), EUA",
+        "title": "Ask Suicide-Screening Questions (ASQ) – NIMH Toolkit Information Sheet",
+        "url": "https://www.nimh.nih.gov/sites/default/files/documents/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/information_sheet_asq_nimh_toolkit.pdf",
+        "year": 2020
+      },
+      {
+        "id": "nimh-asq-ed-pathway",
+        "kind": "guideline",
+        "language": "en",
+        "license_note": "Domínio público (NIMH, governo dos EUA).",
+        "publisher": "National Institute of Mental Health (NIMH), EUA; PaCC/AACAP",
+        "title": "Suicide Risk Screening Pathway – Emergency Department (ASQ Toolkit, com texto complementar)",
+        "url": "https://www.nimh.nih.gov/sites/default/files/documents/suicide_risk_screening_clinical_pathway_ed_final_with_supplement.pdf",
+        "year": 2019
+      },
+      {
+        "id": "nimh-copyright-policy",
+        "kind": "policy",
+        "language": "en",
+        "license_note": "Política de reutilização dos materiais do NIMH (domínio público).",
+        "publisher": "National Institute of Mental Health (NIMH), EUA",
+        "title": "Website Policies – Copyright Policy",
+        "url": "https://www.nimh.nih.gov/site-info/policies",
+        "year": 2026
+      },
+      {
+        "id": "castelo-2010-mdq",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "CC BY-NC 4.0 (SciELO): uso não comercial, com atribuição.",
+        "publisher": "Castelo MS, Carvalho ER, Gerhard ES, Costa CMC, Ferreira ED, Carvalho AF. Revista Brasileira de Psiquiatria 2010;32(4):424-428",
+        "title": "Validity of the Mood Disorder Questionnaire in a Brazilian psychiatric population",
+        "url": "https://doi.org/10.1590/S1516-44462010005000024",
+        "year": 2010
+      },
+      {
+        "id": "mha-screening-tests",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Página informativa da MHA sobre a origem e as condições de uso dos questionários que ela oferece.",
+        "publisher": "Mental Health America (MHA)",
+        "title": "About our mental health tests",
+        "url": "https://screening.mhanational.org/about-our-mental-health-tests/",
+        "year": 2024
+      },
+      {
+        "id": "subpav-audit-ptbr",
+        "kind": "instrument",
+        "language": "pt-BR",
+        "license_note": "AUDIT de domínio público (instrumento aprovado pela OMS); uso não comercial sem permissão.",
+        "publisher": "Secretaria Municipal de Saúde do Rio de Janeiro (SUBPAV); formulário de E. F. Furtado baseado na versão brasileira de Méndez (1999)",
+        "title": "AUDIT – Teste para Identificação de Problemas Relacionados ao uso de Álcool (versão autoaplicável)",
+        "url": "https://subpav.org/download/prot/Question%C3%A1rio%20AUDIT",
+        "year": 2016
+      },
+      {
+        "id": "auditscreen-faq",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Termos de uso do AUDIT: domínio público; uso não comercial sem permissão, sem alterar o conteúdo e indicando que é instrumento aprovado pela OMS.",
+        "publisher": "auditscreen.org (site do AUDIT mantido por John B. Saunders, coautor do instrumento)",
+        "title": "AUDIT – Frequently Asked Questions (AUDIT use rights)",
+        "url": "https://auditscreen.org/about/faqs/",
+        "year": 2026
+      },
+      {
+        "id": "bradley-2007-auditc",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto.",
+        "publisher": "Bradley KA, DeBenedetti AF, Volk RJ, Williams EC, Frank D, Kivlahan DR. Alcoholism: Clinical and Experimental Research 2007;31(7):1208-1217",
+        "title": "AUDIT-C as a brief screen for alcohol misuse in primary care",
+        "url": "https://doi.org/10.1111/j.1530-0277.2007.00403.x",
+        "year": 2007
+      },
+      {
+        "id": "osorio-2009-phq9",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto.",
+        "publisher": "de Lima Osório F, Vilela Mendes A, Crippa JA, Loureiro SR. Perspectives in Psychiatric Care 2009;45(3):216-227",
+        "title": "Study of the discriminative validity of the PHQ-9 and PHQ-2 in a sample of Brazilian women in the context of primary health care",
+        "url": "https://doi.org/10.1111/j.1744-6163.2009.00224.x",
+        "year": 2009
+      },
+      {
+        "id": "supera-audit-ptbr",
+        "kind": "instrument",
+        "language": "pt-BR",
+        "license_note": "Material de curso do governo federal (SENAD/UNIFESP); o AUDIT é de domínio público (instrumento aprovado pela OMS).",
+        "publisher": "Secretaria Nacional de Políticas sobre Drogas (SENAD, Ministério da Justiça) e Universidade Federal de São Paulo (UNIFESP); adaptação brasileira de Méndez (1999)",
+        "title": "AUDIT – Teste para Identificação de Problemas Relacionados ao Uso de Álcool (Kit Formatura do curso SUPERA)",
+        "url": "https://www.supera.org.br/@/material/mtd/pdf/bloco_Audit.pdf",
+        "year": 2016
+      },
+      {
+        "id": "horowitz-2020-asq",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Resumo público no MEDLINE.",
+        "publisher": "Horowitz LM, Snyder DJ, Boudreaux ED, et al. Psychosomatics 2020;61(6):713-722",
+        "title": "Validation of the Ask Suicide-Screening Questions for Adult Medical Inpatients: A Brief Tool for All Ages",
+        "url": "https://doi.org/10.1016/j.psym.2020.04.008",
+        "year": 2020
+      },
+      {
+        "id": "gurgel-2012-mdq",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto.",
+        "publisher": "de Sousa Gurgel W, Rebouças DB, Negreiros de Matos KJ, Carneiro AH, Gomes de Matos e Souza F. Comprehensive Psychiatry 2012;53(3):308-312",
+        "title": "Brazilian Portuguese validation of Mood Disorder Questionnaire",
+        "url": "https://doi.org/10.1016/j.comppsych.2011.04.059",
+        "year": 2012
+      },
+      {
+        "id": "meneses-gaya-2010-audit",
+        "kind": "instrument",
+        "language": "en",
+        "license_note": "Resumo público no MEDLINE; texto completo não é de acesso aberto.",
+        "publisher": "Meneses-Gaya C, Zuardi AW, Loureiro SR, et al. Alcoholism: Clinical and Experimental Research 2010;34(8):1417-1424",
+        "title": "Is the full version of the AUDIT really necessary? Study of the validity and internal construct of its abbreviated versions",
+        "url": "https://doi.org/10.1111/j.1530-0277.2010.01225.x",
+        "year": 2010
       }
     ],
     "vocab": {
@@ -18430,6 +20183,220 @@
           }
         ]
       },
+      "effects": {
+        "effects": [
+          {
+            "id": "nausea",
+            "label_clinical": "Náusea",
+            "label_plain": "Enjoo"
+          },
+          {
+            "id": "vomiting",
+            "label_clinical": "Vômito",
+            "label_plain": "Vômito"
+          },
+          {
+            "id": "diarrhea",
+            "label_clinical": "Diarreia",
+            "label_plain": "Diarreia"
+          },
+          {
+            "id": "constipation",
+            "label_clinical": "Constipação",
+            "label_plain": "Intestino preso"
+          },
+          {
+            "id": "abdominal_pain",
+            "label_clinical": "Dor abdominal",
+            "label_plain": "Dor de barriga"
+          },
+          {
+            "id": "dyspepsia",
+            "label_clinical": "Dispepsia",
+            "label_plain": "Má digestão"
+          },
+          {
+            "id": "dry_mouth",
+            "label_clinical": "Boca seca",
+            "label_plain": "Boca seca"
+          },
+          {
+            "id": "salivation",
+            "label_clinical": "Sialorreia",
+            "label_plain": "Salivação excessiva"
+          },
+          {
+            "id": "appetite_decrease",
+            "label_clinical": "Redução do apetite",
+            "label_plain": "Perda de apetite"
+          },
+          {
+            "id": "appetite_increase",
+            "label_clinical": "Aumento do apetite",
+            "label_plain": "Mais apetite"
+          },
+          {
+            "id": "weight_gain",
+            "label_clinical": "Ganho de peso",
+            "label_plain": "Ganho de peso"
+          },
+          {
+            "id": "sleepiness",
+            "label_clinical": "Sonolência",
+            "label_plain": "Sonolência"
+          },
+          {
+            "id": "insomnia",
+            "label_clinical": "Insônia",
+            "label_plain": "Dificuldade para dormir"
+          },
+          {
+            "id": "fatigue",
+            "label_clinical": "Fadiga ou astenia",
+            "label_plain": "Cansaço ou fraqueza"
+          },
+          {
+            "id": "dizziness",
+            "label_clinical": "Tontura",
+            "label_plain": "Tontura"
+          },
+          {
+            "id": "headache",
+            "label_clinical": "Cefaleia",
+            "label_plain": "Dor de cabeça"
+          },
+          {
+            "id": "sweating",
+            "label_clinical": "Hiperidrose",
+            "label_plain": "Suor excessivo"
+          },
+          {
+            "id": "tremor",
+            "label_clinical": "Tremor",
+            "label_plain": "Tremor"
+          },
+          {
+            "id": "restlessness",
+            "label_clinical": "Acatisia ou inquietação",
+            "label_plain": "Inquietação, dificuldade de ficar parado"
+          },
+          {
+            "id": "nervousness",
+            "label_clinical": "Nervosismo ou ansiedade",
+            "label_plain": "Nervosismo ou ansiedade"
+          },
+          {
+            "id": "sexual_dysfunction",
+            "label_clinical": "Disfunção sexual",
+            "label_plain": "Mudanças na vida sexual (desejo, ereção, orgasmo)"
+          },
+          {
+            "id": "movement_symptoms",
+            "label_clinical": "Sintomas extrapiramidais",
+            "label_plain": "Rigidez ou movimentos involuntários"
+          },
+          {
+            "id": "coordination",
+            "label_clinical": "Ataxia ou incoordenação",
+            "label_plain": "Falta de equilíbrio ou de coordenação"
+          },
+          {
+            "id": "memory",
+            "label_clinical": "Prejuízo de memória ou concentração",
+            "label_plain": "Dificuldade de memória ou de concentração"
+          },
+          {
+            "id": "vision_blurred",
+            "label_clinical": "Visão turva ou alterada",
+            "label_plain": "Visão embaçada ou alterada"
+          },
+          {
+            "id": "urination_thirst",
+            "label_clinical": "Poliúria e polidipsia",
+            "label_plain": "Muita sede e muita urina"
+          },
+          {
+            "id": "edema",
+            "label_clinical": "Edema",
+            "label_plain": "Inchaço"
+          },
+          {
+            "id": "rash",
+            "label_clinical": "Exantema ou prurido",
+            "label_plain": "Manchas ou coceira na pele"
+          },
+          {
+            "id": "palpitations",
+            "label_clinical": "Taquicardia ou palpitações",
+            "label_plain": "Coração acelerado"
+          },
+          {
+            "id": "orthostatic_dizziness",
+            "label_clinical": "Hipotensão ortostática",
+            "label_plain": "Tontura ao levantar"
+          },
+          {
+            "id": "nasal_congestion",
+            "label_clinical": "Congestão nasal",
+            "label_plain": "Nariz entupido"
+          },
+          {
+            "id": "hyperprolactinemia_effects",
+            "label_clinical": "Efeitos da hiperprolactinemia",
+            "label_plain": "Alterações na menstruação ou nas mamas"
+          },
+          {
+            "id": "weight_loss",
+            "label_clinical": "Perda de peso",
+            "label_plain": "Perda de peso"
+          },
+          {
+            "id": "tinnitus",
+            "label_clinical": "Zumbido",
+            "label_plain": "Zumbido no ouvido"
+          },
+          {
+            "id": "urinary_difficulty",
+            "label_clinical": "Distúrbio miccional ou retenção urinária",
+            "label_plain": "Dificuldade para urinar"
+          },
+          {
+            "id": "muscle_jerks",
+            "label_clinical": "Mioclonia",
+            "label_plain": "Espasmos ou trancos musculares"
+          },
+          {
+            "id": "abnormal_dreams",
+            "label_clinical": "Sonhos anormais",
+            "label_plain": "Sonhos estranhos ou muito vívidos"
+          },
+          {
+            "id": "yawning",
+            "label_clinical": "Bocejos",
+            "label_plain": "Bocejos frequentes"
+          },
+          {
+            "id": "hot_flashes",
+            "label_clinical": "Fogachos",
+            "label_plain": "Ondas de calor"
+          },
+          {
+            "id": "hypotension",
+            "label_clinical": "Hipotensão",
+            "label_plain": "Pressão baixa"
+          },
+          {
+            "id": "slurred_speech",
+            "label_clinical": "Disartria",
+            "label_plain": "Fala arrastada"
+          },
+          {
+            "id": "low_mood",
+            "label_clinical": "Humor deprimido",
+            "label_plain": "Tristeza ou desânimo"
+          }
+        ]
+      },
       "facts": {
         "facts": [
           {
@@ -18687,58 +20654,72 @@
       "monitoring": {
         "monitoring": [
           {
+            "blood_test": true,
             "id": "lithium_levels",
             "label_pt": "Dosagem de lítio no sangue (litemia)"
           },
           {
+            "blood_test": true,
             "id": "valproate_levels",
             "label_pt": "Dosagem de valproato no sangue"
           },
           {
+            "blood_test": true,
             "id": "carbamazepine_levels",
             "label_pt": "Dosagem de carbamazepina no sangue"
           },
           {
+            "blood_test": true,
             "id": "blood_count",
             "label_pt": "Hemograma"
           },
           {
+            "blood_test": true,
             "id": "neutrophil_count",
             "label_pt": "Contagem de neutrófilos (hemograma frequente)"
           },
           {
+            "blood_test": true,
             "id": "liver_function",
             "label_pt": "Exames do fígado (enzimas hepáticas)"
           },
           {
+            "blood_test": true,
             "id": "renal_function",
             "label_pt": "Exames dos rins (creatinina)"
           },
           {
+            "blood_test": true,
             "id": "thyroid_function",
             "label_pt": "Exames da tireoide (TSH)"
           },
           {
+            "blood_test": true,
             "id": "sodium",
             "label_pt": "Dosagem de sódio no sangue"
           },
           {
+            "blood_test": false,
             "id": "ecg",
             "label_pt": "Eletrocardiograma"
           },
           {
+            "blood_test": true,
             "id": "metabolic_profile",
             "label_pt": "Peso, glicemia e colesterol"
           },
           {
+            "blood_test": false,
             "id": "blood_pressure",
             "label_pt": "Pressão arterial"
           },
           {
+            "blood_test": false,
             "id": "skin_rash",
             "label_pt": "Atenção a manchas ou bolhas na pele, sobretudo nas primeiras semanas"
           },
           {
+            "blood_test": false,
             "id": "mood_suicidality",
             "label_pt": "Acompanhamento próximo do humor e de pensamentos suicidas, sobretudo no início"
           }
