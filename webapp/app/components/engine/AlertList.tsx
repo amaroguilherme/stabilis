@@ -28,16 +28,13 @@ export default function AlertList({
   return (
     <ul className="space-y-2">
       {alerts.map((alert, i) => (
-        <li
-          key={`${alert.origin}-${alert.message.key}-${i}`}
-          role={alert.level === "critical" ? "alert" : undefined}
-          className={`rounded-lg border ${compact ? "px-3 py-2" : "px-4 py-3"} text-sm ${LEVEL_STYLES[alert.level]}`}
-        >
-          <p>
+        <li key={`${alert.origin}-${alert.message.key}-${i}`} className={`rounded-lg border ${compact ? "px-3 py-2" : "px-4 py-3"} ${variant === "plain" ? "text-base" : "text-sm"} ${LEVEL_STYLES[alert.level]}`}>
+          {/* role="alert" on an inner element: on the <li> itself it would break the list semantics */}
+          <p role={alert.level === "critical" ? "alert" : undefined}>
             <span className="font-semibold">{LEVEL_LABELS[alert.level]}: </span>
             {renderMessage(kb, alert.message, variant)}
           </p>
-          <SourceRefs cites={alert.sources} labels={labels} className="mt-1" />
+          <SourceRefs cites={alert.sources} labels={labels} className="mt-1" size={variant === "plain" ? "base" : "xs"} />
         </li>
       ))}
     </ul>

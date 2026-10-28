@@ -8,14 +8,16 @@ function formatMg(value: number) {
   return value.toLocaleString("pt-BR");
 }
 
-export function DoseLine({ drug, labels }: { drug: Drug; labels: Labels }) {
+export function DoseLine({ drug, labels, size = "xs" }: { drug: Drug; labels: Labels; size?: "xs" | "base" }) {
   const dose = drug.dose_adult;
   if (!dose) return <p className="text-sm text-slate-600">Bula de referência sem faixa de dose para esta indicação.</p>;
   const parts = [
     dose.start !== undefined ? `início ${formatMg(dose.start)} mg/dia` : null,
-    dose.usual_min !== undefined || dose.usual_max !== undefined
-      ? `faixa usual ${dose.usual_min !== undefined ? formatMg(dose.usual_min) : "?"}–${dose.usual_max !== undefined ? formatMg(dose.usual_max) : "?"} mg/dia`
-      : null,
+    dose.usual_min !== undefined && dose.usual_min === dose.usual_max
+      ? `dose usual ${formatMg(dose.usual_min)} mg/dia`
+      : dose.usual_min !== undefined || dose.usual_max !== undefined
+        ? `faixa usual ${dose.usual_min !== undefined ? formatMg(dose.usual_min) : "?"}–${dose.usual_max !== undefined ? formatMg(dose.usual_max) : "?"} mg/dia`
+        : null,
     dose.max !== undefined ? `máxima ${formatMg(dose.max)} mg/dia` : null,
   ].filter(Boolean);
   return (
@@ -25,7 +27,7 @@ export function DoseLine({ drug, labels }: { drug: Drug; labels: Labels }) {
         {dose.indication ? ` (${dose.indication})` : ""}: {parts.join(" · ")}
       </p>
       {dose.note && <p className="mt-1 text-xs text-slate-600">{dose.note}</p>}
-      <SourceRefs cites={[dose.cite]} labels={labels} className="mt-1" />
+      <SourceRefs cites={[dose.cite]} labels={labels} className="mt-1" size={size} />
     </div>
   );
 }
@@ -87,6 +89,17 @@ export default function DrugCard({
         <AlertList alerts={result.alerts} kb={kb} labels={labels} variant={variant} compact />
 
         <DoseLine drug={drug} labels={labels} />
+
+        {drug.common_effects && (
+          <div className="text-sm text-slate-700">
+            <p>
+              <span className="font-medium">Efeitos adversos mais comuns na bula: </span>
+              {kb.vocab.effects.effects.filter((e) => drug.common_effects?.effects.includes(e.id)).map((e) => (variant === "plain" ? e.label_plain : e.label_clinical).toLowerCase()).join(", ")}.
+            </p>
+            {drug.common_effects.note && <p className="mt-1 text-xs text-slate-600">{drug.common_effects.note}</p>}
+            <SourceRefs cites={[drug.common_effects.cite]} labels={labels} className="mt-1" />
+          </div>
+        )}
 
         {result.monitoring.length > 0 && (
           <div className="text-sm text-slate-700">

@@ -51,7 +51,7 @@ export default function MedicationReview({
               </div>
               <div className="mt-3 space-y-3">
                 <AlertList alerts={item.alerts} kb={kb} labels={labels} variant={variant} compact />
-                {drug && item.dose_check !== "no_label_data" && <DoseLine drug={drug} labels={labels} />}
+                {drug && item.dose_check !== "no_label_data" && <DoseLine drug={drug} labels={labels} size={variant === "plain" ? "base" : "xs"} />}
                 {item.monitoring.length > 0 && (
                   <p className="text-sm text-slate-700">
                     <span className="font-medium">Monitoramento: </span>
@@ -71,14 +71,13 @@ export default function MedicationReview({
             {output.interactions.map((ix, i) => (
               <li
                 key={`${ix.interaction_id}-${i}`}
-                role={ix.severity === "contraindicated" ? "alert" : undefined}
                 className={`rounded-lg border px-3 py-2 text-sm ${ix.severity === "contraindicated" ? "border-rose-300 bg-rose-50" : ix.severity === "info" ? "border-slate-200 bg-white" : "border-amber-300 bg-amber-50"}`}
               >
-                <p>
+                <p role={ix.severity === "contraindicated" ? "alert" : undefined}>
                   <span className="font-semibold">{SEVERITY_LABELS[ix.severity]}: </span>
                   {renderMessage(kb, ix.message, variant)}
                 </p>
-                <SourceRefs cites={ix.sources} labels={labels} className="mt-1" />
+                <SourceRefs cites={ix.sources} labels={labels} className="mt-1" size={variant === "plain" ? "base" : "xs"} />
               </li>
             ))}
           </ul>

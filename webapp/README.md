@@ -14,7 +14,14 @@ Interface Next.js do Stabilis (hospedada na Vercel). Ferramenta experimental e e
 
 - **Serviço de linguagem** (Space no Hugging Face): só para “Extrair do texto” no modo profissional.
 
-Rotas: `/` (entrada), `/profissional` (formulário), `/profissional/resultado`, `/profissional/receita` (revisão de receita), `/ajuda-agora`, `/about`.
+Rotas:
+
+- `/`: as duas entradas.
+- Paciente (`/paciente/...`): consentimento e escolha de armazenamento, `seguranca` (triagem de risco primeiro), `crise`, `perfil`, `relato`, `questionarios/[instrumento]` (uma pergunta por tela), `historico`, `prioridades`, `resultado` e `relatorio` (para levar ao médico: imprimir, compartilhar com aviso, baixar o arquivo de respostas). As respostas ficam só no navegador (`app/lib/patient/store.ts`).
+- Profissional: `/profissional` (formulário), `/profissional/resultado`, `/profissional/receita` (revisão de receita).
+- `/fontes`, `/privacidade`, `/ajuda-agora`, `/about`.
+
+O pacote da base que vai ao navegador (`kb.client.generated.json`) não tem os trechos citados nem os nomes comerciais: os trechos vêm de `/kb-quotes.json` quando alguém abre uma citação, e as marcas de `brands.client.generated.json`, só na busca de medicamentos.
 
 ## Variáveis de ambiente
 
@@ -49,6 +56,8 @@ As extrações rodam como *jobs* (envia → consulta até terminar), o que sobre
 
 - os vetores de crise;
 - os testes do motor: unitários, os vetores de conformidade de `knowledge/tests/engine/*.json` (cenários do plano e os antigos T1–T11) e 5.000 perfis aleatórios com semente, conferindo invariantes e determinismo.
+
+Testes no navegador (jornadas do paciente e do profissional, com axe-core): veja `e2e/README.md`.
 
 ## Comandos
 

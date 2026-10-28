@@ -46,6 +46,11 @@ export default function RootLayout({
               {" · "}Apoio emocional 24h: <a href="tel:188" className="font-semibold underline underline-offset-2">CVV 188</a>
               {" · "}<Link href="/ajuda-agora" className="underline underline-offset-2">Ajuda agora</Link>
             </p>
+            <p className="text-sm text-slate-600 print:hidden">
+              <Link href="/privacidade" className="underline underline-offset-2">Privacidade</Link>
+              {" · "}<Link href="/fontes" className="underline underline-offset-2">Fontes</Link>
+              {" · "}<Link href="/about" className="underline underline-offset-2">Sobre</Link>
+            </p>
           </div>
         </footer>
       </body>

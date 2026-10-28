@@ -3,6 +3,7 @@
 import { useId, useMemo, useState } from "react";
 import type { MedEntry } from "@/app/lib/engine/types";
 import { knowledgeBase } from "@/app/lib/kb";
+import { useBrands } from "@/app/lib/kb/brands";
 import { buildMedIndex, parseDailyDoseMg, searchMeds, type MedMatch } from "@/app/lib/meds/search";
 
 const kb = knowledgeBase.data;
@@ -10,8 +11,18 @@ const labelOf = (id: string) => kb.drugs.find((d) => d.id === id)?.names.display
 
 // Current medications: search by name, ingredient or brand; unknown names can still be added and
 // are shown as "not recognized" in the result, never dropped.
-export default function MedicationPicker({ value, onChange }: { value: MedEntry[]; onChange: (meds: MedEntry[]) => void }) {
-  const index = useMemo(() => buildMedIndex(kb), []);
+export default function MedicationPicker({
+  value,
+  onChange,
+  variant = "clinical",
+}: {
+  value: MedEntry[];
+  onChange: (meds: MedEntry[]) => void;
+  variant?: "clinical" | "plain";
+}) {
+  const plain = variant === "plain";
+  const brands = useBrands();
+  const index = useMemo(() => buildMedIndex(kb, brands ?? {}), [brands]);
   const [text, setText] = useState("");
   const [dose, setDose] = useState("");
   const [selected, setSelected] = useState<MedMatch | null>(null);
@@ -43,7 +54,7 @@ export default function MedicationPicker({ value, onChange }: { value: MedEntry[
     }
     const drugId = unrecognized ? null : (selected?.drug_id ?? null);
     if (!unrecognized && !drugId) {
-      setError("Escolha uma sugestão da lista, ou adicione como não reconhecido.");
+      setError(plain ? "Escolha um nome da lista. Se o seu remédio não aparecer, adicione assim mesmo:" : "Escolha uma sugestão da lista, ou adicione como não reconhecido.");
       return;
     }
     if (drugId && value.some((m) => m.drug_id === drugId)) {
@@ -62,7 +73,9 @@ export default function MedicationPicker({ value, onChange }: { value: MedEntry[
     <div className="space-y-3">
       <div className="grid gap-3 sm:grid-cols-[1fr_9rem_auto] sm:items-end">
         <div className="relative">
-          <label htmlFor={ids.search} className="block text-sm font-medium text-slate-800">Medicamento (nome, princípio ativo ou marca)</label>
+          <label htmlFor={ids.search} className="block text-sm font-medium text-slate-800">
+            {plain ? "Nome do remédio (como está na caixa ou na receita)" : "Medicamento (nome, princípio ativo ou marca)"}
+          </label>
           <input
             id={ids.search}
             type="text"
@@ -97,7 +110,7 @@ export default function MedicationPicker({ value, onChange }: { value: MedEntry[
           )}
         </div>
         <div>
-          <label htmlFor={ids.dose} className="block text-sm font-medium text-slate-800">Dose total (mg/dia)</label>
+          <label htmlFor={ids.dose} className="block text-sm font-medium text-slate-800">{plain ? "Quantos mg por dia (se souber)" : "Dose total (mg/dia)"}</label>
           <input
             id={ids.dose}
             type="text"

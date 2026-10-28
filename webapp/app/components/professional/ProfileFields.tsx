@@ -94,9 +94,19 @@ function toggle(list: string[], id: string) {
   return list.includes(id) ? list.filter((x) => x !== id) : [...list, id];
 }
 
-export default function ProfileFields({ value, onChange }: { value: ProfileDraft; onChange: (draft: ProfileDraft) => void }) {
+export default function ProfileFields({
+  value,
+  onChange,
+  variant = "clinical",
+}: {
+  value: ProfileDraft;
+  onChange: (draft: ProfileDraft) => void;
+  variant?: "clinical" | "plain";
+}) {
   const id = useId();
   const set = (patch: Partial<ProfileDraft>) => onChange({ ...value, ...patch });
+  const plain = variant === "plain";
+  const label = (c: { label_plain: string; label_clinical: string }) => (plain ? c.label_plain : c.label_clinical);
   return (
     <div className="space-y-5">
       <div className="grid gap-4 sm:grid-cols-[8rem_1fr]">
@@ -106,6 +116,7 @@ export default function ProfileFields({ value, onChange }: { value: ProfileDraft
         </div>
         <fieldset>
           <legend className="text-sm font-medium text-slate-800">Sexo atribuído ao nascer</legend>
+          {plain && <p className="text-xs text-slate-600">Usado só para as regras sobre gravidez e remédios.</p>}
           <Radio
             name={`${id}-sex`}
             value={value.sex}
@@ -127,7 +138,9 @@ export default function ProfileFields({ value, onChange }: { value: ProfileDraft
       {asksReproductive(value) && (
         <fieldset className="rounded-xl border border-slate-200 bg-slate-50 p-4">
           <legend className="px-1 text-sm font-semibold text-slate-800">Gravidez e amamentação</legend>
-          <p className="text-xs text-slate-600">Sem resposta, a gravidez é tratada como “não sei” (regra de segurança).</p>
+          <p className="text-xs text-slate-600">
+            {plain ? "Se você não responder, consideramos que pode haver gravidez, por segurança." : "Sem resposta, a gravidez é tratada como “não sei” (regra de segurança)."}
+          </p>
           <div className="mt-3 grid gap-4 sm:grid-cols-3">
             <div>
               <p className="text-sm text-slate-800">Gravidez</p>
@@ -146,12 +159,12 @@ export default function ProfileFields({ value, onChange }: { value: ProfileDraft
       )}
 
       <fieldset>
-        <legend className="text-sm font-medium text-slate-800">Comorbidades</legend>
+        <legend className="text-sm font-medium text-slate-800">{plain ? "Outros problemas de saúde" : "Comorbidades"}</legend>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
           {vocab.comorbidities.map((c) => (
             <label key={c.id} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm">
               <input type="checkbox" checked={value.conditions.includes(c.id)} onChange={() => set({ conditions: toggle(value.conditions, c.id) })} className="accent-indigo-600" />
-              {c.label_clinical}
+              {label(c)}
             </label>
           ))}
         </div>
@@ -163,7 +176,7 @@ export default function ProfileFields({ value, onChange }: { value: ProfileDraft
           {vocab.habits.map((h) => (
             <label key={h.id} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm">
               <input type="checkbox" checked={value.habits.includes(h.id)} onChange={() => set({ habits: toggle(value.habits, h.id) })} className="accent-indigo-600" />
-              {h.label_clinical}
+              {label(h)}
             </label>
           ))}
         </div>
