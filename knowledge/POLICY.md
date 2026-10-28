@@ -43,3 +43,9 @@ A revisão diz se a dose e o tempo de um remédio já usado bastam para avaliar 
 
 ## 14. Plano de segurança
 O plano de segurança segue as etapas gerais do planejamento de segurança descritas em fontes abertas, com perguntas e exemplos escritos pelo projeto. Não reproduz o formulário Stanley-Brown, cujos autores exigem permissão por escrito para uso em sites e aplicativos. O plano pode ser feito sem responder ao guia, e o que a pessoa escreve nele não passa pelo detector de palavras de crise, porque falar dos sinais de alerta é o objetivo do plano.
+
+## 15. Modelo de linguagem no modo paciente
+As sugestões do modelo de linguagem no relato do paciente ficam desligadas até que um modelo passe em todos os portões de promoção (`eval/README.md`). Ligadas, são opcionais e pedem consentimento a cada envio: o texto vai ao servidor do Stabilis, fora do Brasil, é usado só para a leitura e descartado, sem ser guardado nem registrado. Nada entra nas respostas sem a pessoa marcar. O modelo pode acrescentar um sinal de risco, que faz as perguntas de segurança de novo, mas nunca retirar um sinal encontrado pelas regras. Com as sugestões desligadas, a jornada do paciente não faz nenhuma chamada ao servidor.
+
+## 16. Perguntas sobre remédios
+As respostas às perguntas sobre remédios vêm só da base de conhecimento: fatos de bula e alertas que as regras mostrariam naquela situação, sempre com a fonte. Nenhum texto é gerado na hora. Sem resposta com fonte, a ferramenta diz que não sabe e sugere levar a pergunta ao médico ou ao farmacêutico; a falta de um alerta nunca é apresentada como garantia de segurança. Perguntas com palavras ligadas a risco de suicídio mostram ajuda imediata em vez de resposta. A pergunta é processada no navegador e não é enviada a nenhum servidor.

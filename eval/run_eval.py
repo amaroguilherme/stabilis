@@ -1,15 +1,18 @@
 """Measures the extraction against a human-written gold set (see eval/README.md).
 
-    python eval/run_eval.py --gold eval/gold/v0.jsonl [--out report.json] [--gates] [--fake]
+    python eval/run_eval.py --gold eval/gold/v0.jsonl [--out report.json] [--gates] [--baseline prod.json] [--fake]
 
 With --fake a scripted model echoes the gold annotations (useful to test the harness itself);
 otherwise the model comes from the environment (MODEL_REPO_ID, MODEL_FILENAME, MODEL_REVISION).
-The report holds only metrics and gold ids, never the texts.
+With --baseline (the report of the model in production, on the same gold set) the gates also require
+F1 per group and improper suggestions to be no worse. The report holds only metrics and gold ids,
+never the texts.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import statistics
@@ -124,6 +127,7 @@ def evaluate(records: list[dict], extractor: Extractor) -> dict:
     ordered = sorted(latencies)
     return {
         "records": n,
+        "improper_count": len(improper),
         "schema_valid_rate": round(valid / n, 4) if n else 0.0,
         "unsupported_rate": round(unsupported / proposed, 4) if proposed else 0.0,
         "risk_recall": round(risk_hit / risk_pos, 4) if risk_pos else None,
@@ -140,7 +144,7 @@ def evaluate(records: list[dict], extractor: Extractor) -> dict:
     }
 
 
-def check_gates(report: dict) -> list[str]:
+def check_gates(report: dict, baseline: dict | None = None) -> list[str]:
     failures = []
     for metric, (op, target) in GATES.items():
         value = report.get(metric)
@@ -149,6 +153,16 @@ def check_gates(report: dict) -> list[str]:
         ok = value >= target if op == ">=" else value <= target
         if not ok:
             failures.append(f"{metric} = {value} (meta {op} {target})")
+    if baseline is not None:
+        if baseline.get("gold_sha256") != report.get("gold_sha256"):
+            failures.append("baseline medido em outro gold set: compare no mesmo arquivo")
+            return failures
+        for group, metrics in report["groups"].items():
+            before = baseline["groups"][group]["f1"]
+            if metrics["f1"] < before:
+                failures.append(f"F1 de {group} = {metrics['f1']} (baseline {before})")
+        if report["improper_count"] > baseline["improper_count"]:
+            failures.append(f"sugestões indevidas = {report['improper_count']} (baseline {baseline['improper_count']})")
     return failures
 
 
@@ -158,6 +172,7 @@ def main() -> int:
     parser.add_argument("--out", type=Path)
     parser.add_argument("--fake", action="store_true", help="modelo simulado que repete o gold (testa o harness)")
     parser.add_argument("--gates", action="store_true", help="falha se algum portão de promoção não for atingido")
+    parser.add_argument("--baseline", type=Path, help="relatório do modelo em produção, no mesmo gold set (portões relativos)")
     args = parser.parse_args()
 
     records = load_gold(args.gold)
@@ -172,6 +187,7 @@ def main() -> int:
             print(f"modelo indisponível: {llm.load_error}", file=sys.stderr)
             return 2
     report = evaluate(records, Extractor(llm, kb))
+    report["gold_sha256"] = hashlib.sha256(args.gold.read_bytes()).hexdigest()
     report["model"] = "fake" if args.fake else {k: os.getenv(v) for k, v in (("repo", "MODEL_REPO_ID"), ("file", "MODEL_FILENAME"), ("revision", "MODEL_REVISION"))}
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
     if args.out:
@@ -179,7 +195,8 @@ def main() -> int:
         args.out.write_text(rendered + "\n", encoding="utf-8")
     print(rendered)
     if args.gates:
-        failures = check_gates(report)
+        baseline = json.loads(args.baseline.read_text(encoding="utf-8")) if args.baseline else None
+        failures = check_gates(report, baseline)
         for failure in failures:
             print(f"PORTÃO NÃO ATINGIDO: {failure}", file=sys.stderr)
         return 1 if failures else 0

@@ -157,6 +157,8 @@ if (screenerAvailable) {
   check("resultado após triagem positiva esconde remédios", (await page.text()).includes("Suas respostas mostram sinais de risco"));
 }
 
+check("jornada do paciente sem nenhuma chamada ao servidor", !page.requests.some((url) => url.includes("/api/backend")), page.requests.filter((url) => url.includes("/api/backend")).join(", "));
+
 console.log(a11y.length ? `ACESSIBILIDADE (${a11y.length}):\n${a11y.join("\n")}` : "acessibilidade: nenhuma violação do axe");
 console.log(page.problems.length ? `CONSOLE:\n${page.problems.join("\n")}` : "console sem erros");
 await page.close();

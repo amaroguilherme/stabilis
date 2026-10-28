@@ -117,15 +117,21 @@ export default function AboutPage() {
         </p>
         <p>
           A próxima etapa é ajustar (fine-tuning) um modelo aberto para o português do dia a dia. Ele só substitui o atual se
-          passar por metas medidas num conjunto de textos escrito por pessoas, como recall de risco de pelo menos 98%.
+          passar por metas medidas num conjunto de textos escrito por pessoas, como recall de risco de pelo menos 98%. Só então a
+          ajuda para organizar o relato pode ser ligada no modo paciente, e mesmo assim cada envio pede consentimento.
+        </p>
+        <p>
+          As respostas a perguntas sobre remédios (em “Entender minha receita”) <strong>não usam IA</strong>: vêm da base de
+          conhecimento, com fonte, ou dizem que não sabem.
         </p>
       </Section>
 
       <Section id="privacidade" title="Privacidade">
         <p>
-          As regras rodam no seu navegador. Os dados ficam só nesta aba (são apagados ao fechá-la) e não são enviados a nenhum
-          servidor, com uma exceção: o texto enviado por “Extrair do texto”, que é processado e descartado, sem ser armazenado
-          nem registrado em log.
+          As regras rodam no seu navegador. Os dados ficam só nesta aba (são apagados ao fechá-la), ou no aparelho se você
+          escolher, e não são enviados a nenhum servidor, com uma exceção: o texto que você mesmo envia para um modelo de
+          linguagem (“Extrair do texto”, ou a ajuda do relato quando estiver disponível), que é processado e descartado, sem ser
+          armazenado nem registrado em log.
         </p>
       </Section>
 

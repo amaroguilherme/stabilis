@@ -1,9 +1,11 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import PatientShell, { StepButtons } from "@/app/components/patient/PatientShell";
+import { PATIENT_SUGGESTIONS } from "@/app/lib/flags";
 import { knowledgeBase } from "@/app/lib/kb";
 import { nextStep } from "@/app/lib/patient/flow";
 import { updatePatient, type PatientSessionV1 } from "@/app/lib/patient/store";
@@ -11,14 +13,18 @@ import { detectCrisis, summarizeCrisis } from "@/app/lib/safety/crisis";
 import { crisisLexicon } from "@/app/lib/safety/lexicon";
 
 const MAX_TEXT = 4000;
+// Loaded only when the switch is on: without it, the patient journey never talks to the server.
+const PatientSuggestions = dynamic(() => import("@/app/components/patient/PatientSuggestions"), { ssr: false });
 
 // The person's own words go to the report exactly as written. The crisis lexicon runs here, in the
-// browser; nothing is sent anywhere. (Language-model suggestions stay off in patient mode until a
-// fine-tuned model passes the promotion gates — see eval/README.md.)
+// browser. Language-model suggestions are optional, need consent each time and stay off until a
+// model passes the promotion gates (eval/README.md, POLICY §15).
 function Story({ session }: { session: PatientSessionV1 }) {
   const router = useRouter();
   const [text, setText] = useState(session.relato);
-  const crisis = useMemo(() => summarizeCrisis(detectCrisis(text, crisisLexicon, "patient")).crisis, [text]);
+  const lexiconCrisis = useMemo(() => summarizeCrisis(detectCrisis(text, crisisLexicon, "patient")).crisis, [text]);
+  const [modelRisk, setModelRisk] = useState(false); // the model can add a risk signal, never remove one
+  const crisis = lexiconCrisis || modelRisk;
 
   function save() {
     updatePatient((s) => ({ ...s, relato: text.slice(0, MAX_TEXT) }));
@@ -54,6 +60,7 @@ function Story({ session }: { session: PatientSessionV1 }) {
           </p>
         </div>
       )}
+      {PATIENT_SUGGESTIONS && <PatientSuggestions text={text} session={session} onRisk={() => setModelRisk(true)} />}
       <StepButtons onNext={save} nextLabel={text.trim() ? "Continuar" : "Pular por enquanto"} back="/paciente/perfil" />
     </div>
   );

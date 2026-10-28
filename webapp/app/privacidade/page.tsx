@@ -24,8 +24,13 @@ export default function PrivacyPage() {
           </li>
           <li>Os resultados são calculados no seu navegador. Nenhum servidor recebe suas respostas.</li>
           <li>
-            Exceção, só no modo profissional: o botão “Extrair do texto” envia a anamnese ao servidor do Stabilis para ser lida por um
+            Exceção, no modo profissional: o botão “Extrair do texto” envia a anamnese ao servidor do Stabilis para ser lida por um
             modelo de linguagem. O texto é processado e descartado, sem ser guardado nem registrado em log.
+          </li>
+          <li>
+            No modo paciente, a ajuda para organizar o relato, quando estiver disponível, só envia o texto se você marcar que concorda,
+            a cada vez. O servidor fica fora do Brasil, e o texto também é processado e descartado. As perguntas sobre remédios são
+            respondidas no seu navegador e não saem do aparelho.
           </li>
           <li>O site não usa cookies de rastreamento nem ferramentas de publicidade.</li>
         </ul>

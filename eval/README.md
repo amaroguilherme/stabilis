@@ -35,6 +35,7 @@ Veja `eval/gold/FORMAT.jsonl` (exemplos de formato, fora do gold set).
 | `expected.risk` | `true` se há risco de suicídio/autolesão da própria pessoa (atual ou passado), não negado |
 | `expected.critical_risk` | `true` para plano, intenção ou comportamento recente (subconjunto crítico) |
 | `expected.must_not_suggest` | `tipo:código` de itens mencionados mas negados, de outra pessoa ou hipotéticos |
+| `tags` (opcional) | `hard_negative` (linguagem parecida com risco que não é risco), `regional`, `brand_name`, `no_punctuation`, `abbreviations` |
 
 ### Regras de anotação
 
@@ -47,6 +48,12 @@ Veja `eval/gold/FORMAT.jsonl` (exemplos de formato, fora do gold set).
 4. Duas pessoas anotam cada texto de risco; divergências são discutidas antes de congelar.
 5. Ao congelar uma versão, registre a data e o hash do arquivo no topo deste README.
 
+Antes de usar ou congelar o arquivo, confira códigos, ids repetidos e as metas da versão 0:
+
+```bash
+python eval/check_gold.py eval/gold/v0.jsonl
+```
+
 ## Rodando
 
 ```bash
@@ -58,7 +65,7 @@ python eval/run_eval.py --gold eval/gold/v0.jsonl --out eval/reports/gemma2-9b.j
 
 # latência nas mesmas condições do Space (2 vCPUs)
 docker run --rm --cpus=2 --memory=16g -e HF_TOKEN -e MODEL_REPO_ID -e MODEL_FILENAME stabilis-api \
-  python eval/bench_latency.py --gold eval/gold/v0.jsonl --runs 20
+  python eval/bench_latency.py --gold eval/gold/v0.jsonl --runs 20 --gates
 ```
 
 ## Portões de promoção
@@ -74,3 +81,21 @@ Medidos no GGUF que vai para produção (veja o plano):
 | sugestões indevidas (negação/experienciador) | ≤ baseline |
 | p95 aquecido | ≤ 40 s (paciente) / 60 s (profissional) |
 | cold start | ≤ 3 min |
+
+`run_eval.py --gates --baseline <relatório do modelo em produção>` cobre os portões de qualidade, inclusive
+os relativos (F1 por grupo e sugestões indevidas não podem piorar; os dois relatórios precisam ser do mesmo
+gold set, conferido pelo hash). `bench_latency.py --gates` cobre p95 e cold start.
+
+## Promoção, passo a passo
+
+1. Gold set congelado: `check_gold.py` sem erros, data e hash registrados no topo deste arquivo.
+2. Baseline: com as variáveis do modelo atual do Space, `run_eval.py --gold eval/gold/v0.jsonl --out eval/reports/producao.json`.
+3. Candidato: com `MODEL_REPO_ID`, `MODEL_FILENAME` e `MODEL_REVISION` do GGUF novo e `EXTRACTION_PROMPT=short`,
+   `run_eval.py --gold eval/gold/v0.jsonl --out eval/reports/candidato.json --gates --baseline eval/reports/producao.json`.
+4. Latência: `bench_latency.py --gates` dentro do container com `--cpus=2 --memory=16g`.
+5. Tudo verde: troque as mesmas variáveis nas configurações do Space, reinicie e confira `/ready` e uma extração
+   de teste na tela do profissional.
+6. Só então, se quiser, ligue as sugestões no modo paciente (`NEXT_PUBLIC_PATIENT_SUGGESTIONS=on` na Vercel; veja
+   `knowledge/POLICY.md` §15) e publique de novo o frontend.
+7. Guarde os dois relatórios (sem textos) junto com o hash do modelo promovido.
+

@@ -12,6 +12,7 @@ export async function openPage({ base = "http://localhost:3100", port = 9223 } =
   let seq = 0;
   const pending = new Map();
   const problems = [];
+  const requests = []; // every URL the page requested, to prove what never reaches the server
   ws.onmessage = (m) => {
     const msg = JSON.parse(m.data);
     if (msg.id) {
@@ -21,6 +22,7 @@ export async function openPage({ base = "http://localhost:3100", port = 9223 } =
     }
     if (msg.method === "Runtime.exceptionThrown") problems.push(`exception: ${(msg.params.exceptionDetails.exception?.description ?? msg.params.exceptionDetails.text).slice(0, 300)}`);
     if (msg.method === "Runtime.consoleAPICalled" && msg.params.type === "error") problems.push(`console.error: ${msg.params.args.map((a) => a.value ?? a.description).join(" ").slice(0, 300)}`);
+    if (msg.method === "Network.requestWillBeSent") requests.push(msg.params.request.url);
   };
   const send = (method, params = {}) =>
     new Promise((resolve, reject) => {
@@ -36,6 +38,7 @@ export async function openPage({ base = "http://localhost:3100", port = 9223 } =
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   await send("Runtime.enable");
   await send("Page.enable");
+  await send("Network.enable");
 
   const helpers = `
     window.__setValue = (el, value) => {
@@ -49,6 +52,7 @@ export async function openPage({ base = "http://localhost:3100", port = 9223 } =
 
   const page = {
     problems,
+    requests,
     js,
     sleep,
     send,
