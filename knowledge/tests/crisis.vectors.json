@@ -195,6 +195,138 @@
       "text": "qual a dose máxima de sertralina?",
       "mode": "patient",
       "expect_hit": false
+    },
+    {
+      "text": "ando cansado de viver, não vejo graça em nada",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "sinceramente, queria nunca ter nascido",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "às vezes acho que seria melhor morrer do que continuar assim",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "peço todo dia que Deus me leve",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "não vejo mais sentido em viver depois da separação",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "queria desaparecer do mundo",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "ontem tomei uma cartela inteira de calmante",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "tomei um monte de comprimidos e vomitei tudo",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "pensei em pular do viaduto voltando do trabalho",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "me queimei com cigarro de novo",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "fico me arranhando até sangrar quando brigo em casa",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "consegui chumbinho com um conhecido",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "Pcte com TS prévia por intoxicação, acompanhada no CAPS.",
+      "mode": "professional",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "Nega TS.",
+      "mode": "professional",
+      "expect_hit": true,
+      "expect_negated_only": true
+    },
+    {
+      "text": "lesões autoinfligidas em antebraço esquerdo",
+      "mode": "professional",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "pra mim seria um grande alívio morrer dormindo",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "pensei em tomar veneno quando ele saiu de casa",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "cansado de trabalhar, preciso de férias",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "comprei uma corda pra pular corda com as crianças",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "TSH alterado no último exame",
+      "mode": "professional",
+      "expect_hit": false
+    },
+    {
+      "text": "tomei um comprimido de dipirona pra dor",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "me queimei no fogão fazendo o almoço",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "fui até a ponte ver o rio com meu filho",
+      "mode": "patient",
+      "expect_hit": false
     }
   ]
 }

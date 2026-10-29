@@ -1,6 +1,6 @@
 {
   "id": "crisis.pt-BR",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "language": "pt-BR",
   "description": "Expressões que indicam risco de suicídio ou autolesão. Detecção determinística, de alta sensibilidade: falso positivo mostra recursos de ajuda; falso negativo é o erro grave. Usado por core/safety/crisis.py e webapp/app/lib/safety/crisis.ts (mesmo algoritmo, mesmos vetores em knowledge/tests/crisis.vectors.json).",
   "matching": {
@@ -73,7 +73,46 @@
         "quero estar morto",
         "quero estar morta",
         "para morrer",
-        "pra morrer"
+        "pra morrer",
+        "cansado de viver",
+        "cansada de viver",
+        "cansei de viver",
+        "sem vontade de viver",
+        "perdi a vontade de viver",
+        "queria nunca ter nascido",
+        "queria não ter nascido",
+        "queria não existir",
+        "melhor eu não existir",
+        "melhor se eu não existisse",
+        "seria melhor morrer",
+        "melhor seria morrer",
+        "seria melhor eu morrer",
+        "seria um alívio morrer",
+        "alívio morrer",
+        "alívio se eu morresse",
+        "morte seria um alívio",
+        "morte seria um descanso",
+        "deus me leve",
+        "deus me levar",
+        "deus me levasse",
+        "não vejo motivo para viver",
+        "não vejo motivo pra viver",
+        "não vejo motivo para continuar vivendo",
+        "não vejo motivo pra continuar vivendo",
+        "não vejo sentido em viver",
+        "não vejo mais sentido em viver",
+        "sem motivo para viver",
+        "sem motivo pra viver",
+        "queria sumir",
+        "quero sumir",
+        "queria desaparecer",
+        "quero desaparecer",
+        "dar fim na minha vida",
+        "dar fim à minha vida",
+        "dar um fim na minha vida",
+        "dar cabo da minha vida",
+        "dar um fim em tudo",
+        "dar fim em tudo"
       ]
     },
     {
@@ -128,7 +167,33 @@
         "juntando remédios para",
         "juntando comprimidos para",
         "juntando remédios pra",
-        "juntando comprimidos pra"
+        "juntando comprimidos pra",
+        "tomei todos os comprimidos",
+        "tomei a cartela inteira",
+        "tomei uma cartela inteira",
+        "tomei a cartela toda",
+        "tomei uma cartela de remédio",
+        "tomei uma cartela de comprimidos",
+        "tomei vários comprimidos de uma vez",
+        "tomei muitos comprimidos de uma vez",
+        "tomei um monte de comprimidos",
+        "tomei um monte de remédios",
+        "tomei um monte de remédio",
+        "intoxicação intencional",
+        "autointoxicação",
+        "chumbinho",
+        "tomar veneno",
+        "tomei veneno",
+        "já comprei a corda",
+        "pular da ponte",
+        "pular do prédio",
+        "pular da janela",
+        "pular do viaduto",
+        "me jogar da ponte",
+        "me jogar do prédio",
+        "me jogar da janela",
+        "me jogar do viaduto",
+        "me jogar na frente"
       ]
     },
     {
@@ -148,7 +213,22 @@
         "me ferir de propósito",
         "automutilação",
         "autolesão",
-        "autoagressão"
+        "autoagressão",
+        "me queimo com cigarro",
+        "me queimei com cigarro",
+        "me queimar com cigarro",
+        "me queimo de propósito",
+        "me queimei de propósito",
+        "me arranho até sangrar",
+        "me arranhar até sangrar",
+        "me arranhando até sangrar",
+        "me arranhei até sangrar",
+        "autoinfligido",
+        "autoinfligidos",
+        "autoinfligida",
+        "autoinfligidas",
+        "autolesivo",
+        "autolesiva"
       ]
     },
     {
@@ -156,6 +236,16 @@
       "category": "suicidal_ideation",
       "phrases": [
         "IS"
+      ],
+      "modes": [
+        "professional"
+      ]
+    },
+    {
+      "id": "tentativa_sigla",
+      "category": "suicide_plan_or_attempt",
+      "phrases": [
+        "TS"
       ],
       "modes": [
         "professional"

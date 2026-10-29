@@ -18,7 +18,10 @@ tem limites que pesam na promoção:
 - a regra 4 (duas pessoas anotam cada texto de risco) não foi cumprida: antes de confiar nos portões,
   uma pessoa deve revisar pelo menos os 145 textos ligados a risco;
 - a próxima versão deve juntar textos **escritos por pessoas** (`"origin": "human"`), e os relatórios
-  passam a ser lidos separando as duas origens.
+  passam a ser lidos separando as duas origens;
+- depois de ver os erros da v0, o léxico de crise (versão 0.2.0) e a checagem de contexto dos remédios
+  achados sem o modelo foram ampliados: os números do léxico e dessa checagem na v0 deixaram de ser
+  independentes. Meça-os em textos novos.
 
 Depois de congelado, o gold set **nunca entra em treino** (`datagen/run.py` descarta textos parecidos com
 qualquer arquivo de `eval/gold/`). Metas da versão 0:
