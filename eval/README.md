@@ -5,8 +5,23 @@ Antes de qualquer fine-tuning, medimos o modelo atual e os candidatos no mesmo c
 
 ## O gold set
 
-`eval/gold/v0.jsonl` é escrito **por pessoas**, nunca gerado por modelo, e depois de congelado
-**nunca entra em treino**. Metas da versão 0:
+**Versão 0 congelada em 2026-10-28:** `eval/gold/v0.jsonl`, 330 textos (228 de paciente, 102 anamneses;
+66 com risco, 28 críticos, 79 negativos difíceis), sha256
+`57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81`.
+
+A v0 é **sintética**: por decisão do responsável pelo projeto, foi escrita e anotada por um modelo de
+linguagem (Claude), seguindo as metas e as regras abaixo, e cada linha traz `"origin": "synthetic"`. Isso
+tem limites que pesam na promoção:
+
+- os dados de treino também são sintéticos, então as métricas na v0 tendem a ser otimistas: o modelo pode
+  ir bem em texto "de modelo" e pior em texto de gente;
+- a regra 4 (duas pessoas anotam cada texto de risco) não foi cumprida: antes de confiar nos portões,
+  uma pessoa deve revisar pelo menos os 145 textos ligados a risco;
+- a próxima versão deve juntar textos **escritos por pessoas** (`"origin": "human"`), e os relatórios
+  passam a ser lidos separando as duas origens.
+
+Depois de congelado, o gold set **nunca entra em treino** (`datagen/run.py` descarta textos parecidos com
+qualquer arquivo de `eval/gold/`). Metas da versão 0:
 
 - **≥ 200 textos de paciente**, escritos como as pessoas escrevem de verdade: estilo WhatsApp, áudio
   transcrito sem pontuação, erros de digitação, nomes comerciais ("rivotril", "sertralina da farmácia
@@ -26,6 +41,7 @@ Veja `eval/gold/FORMAT.jsonl` (exemplos de formato, fora do gold set).
 | campo | conteúdo |
 |---|---|
 | `id` | identificador único e estável |
+| `origin` | `human` ou `synthetic` (quem escreveu e anotou o texto) |
 | `task` | `patient` ou `professional` |
 | `text` | o texto, exatamente como seria digitado |
 | `expected.conditions` | códigos de `knowledge/vocab/comorbidities.json` que o texto afirma sobre a própria pessoa |
