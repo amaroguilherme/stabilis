@@ -135,13 +135,15 @@ async function poll<T>(jobId: string, deadline: number, options: RunJobOptions):
 export async function runJob<T>(kind: JobKind, input: unknown, options: RunJobOptions = {}): Promise<T> {
   const deadline = Date.now() + (options.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   const jobId = await submit(kind, input, deadline, options);
+  // Best effort: the result quotes the text, so it is dropped on the server as soon as it is read
+  // (otherwise it would stay in memory until it expires).
+  const discard = () => fetch(`${BASE_URL}/jobs/${jobId}`, { method: "DELETE", keepalive: true }).catch(() => {});
   try {
-    return await poll<T>(jobId, deadline, options);
+    const result = await poll<T>(jobId, deadline, options);
+    discard();
+    return result;
   } catch (err) {
-    if (err instanceof BackendError && (err.code === "aborted" || err.code === "timeout")) {
-      // Best effort: free the queue slot and discard the result on the server.
-      fetch(`${BASE_URL}/jobs/${jobId}`, { method: "DELETE", keepalive: true }).catch(() => {});
-    }
+    if (err instanceof BackendError && (err.code === "aborted" || err.code === "timeout")) discard();
     throw err;
   }
 }

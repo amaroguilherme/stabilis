@@ -32,7 +32,7 @@ export default function PrescriptionReviewPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
       <header className="mb-6">
-        <p className="text-sm font-medium text-indigo-700">Modo profissional · experimental</p>
+        <p className="text-sm font-medium text-indigo-700">Modo profissional · experimental e não comercial</p>
         <h1 className="mt-1 text-2xl font-bold text-slate-900">Revisão de receita</h1>
         <p className="mt-2 text-sm text-slate-700">
           Confere cada medicamento contra a bula de referência (dose, alertas para o perfil, monitoramento) e as interações

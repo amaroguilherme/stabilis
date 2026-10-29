@@ -49,3 +49,15 @@ As sugestões do modelo de linguagem no relato do paciente ficam desligadas até
 
 ## 16. Perguntas sobre remédios
 As respostas às perguntas sobre remédios vêm só da base de conhecimento: fatos de bula e alertas que as regras mostrariam naquela situação, sempre com a fonte. Nenhum texto é gerado na hora. Sem resposta com fonte, a ferramenta diz que não sabe e sugere levar a pergunta ao médico ou ao farmacêutico; a falta de um alerta nunca é apresentada como garantia de segurança. Perguntas com palavras ligadas a risco de suicídio mostram ajuda imediata em vez de resposta. A pergunta é processada no navegador e não é enviada a nenhum servidor.
+
+## 17. Uso sem internet
+O navegador guarda cópias das páginas e dos arquivos do site que a pessoa já abriu, e a página de ajuda imediata fica guardada desde a primeira visita, para abrir mesmo sem internet. Sem conexão, uma página que ainda não foi aberta leva à ajuda imediata. Essas cópias não têm respostas da pessoa, e nada do que é enviado ao servidor fica guardado nelas.
+
+## 18. Ditado por voz
+O ditado por voz só aparece onde o navegador oferece esse recurso e só começa depois de a pessoa ler que o áudio é enviado à empresa do navegador, fora do Brasil, para virar texto. O Stabilis não recebe nem guarda o áudio. O texto ditado entra na caixa de texto e passa pelo mesmo detector de palavras de crise.
+
+## 19. Contagens anônimas
+As contagens de uso ficam desligadas até a pessoa ligar. Ligadas, registram apenas o nome de um evento de uma lista fechada (relatório impresso, baixado ou compartilhado; respostas a "levou o relatório ao médico?" e "sentiu que te ouviram?"), sem respostas do guia, sem identificador e sem data além do mês. São contagens de respostas, não de pessoas.
+
+## 20. Correções
+Quem encontrar um erro no conteúdo pode avisar pelo canal público indicado no site, informando a fonte que mostra o certo. Correções só entram com fonte e passam pelas mesmas conferências do resto da base. Os avisos não devem conter dados de pacientes.

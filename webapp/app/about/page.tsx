@@ -138,6 +138,10 @@ export default function AboutPage() {
       <Section id="limitacoes" title="Limitações">
         <ul className="list-disc space-y-2 pl-5">
           <li>Sem validação clínica: não é possível afirmar acurácia clínica. Use como material para conversar com quem cuida de você.</li>
+          <li>
+            O Stabilis não foi avaliado nem regularizado pela Anvisa como dispositivo médico. O modo profissional é experimental e
+            de uso não comercial.
+          </li>
           <li>As diretrizes usadas são para adultos; crianças e adolescentes têm recomendações diferentes.</li>
           <li>As bulas de referência são as aprovadas pela FDA (EUA), de domínio público; a bula brasileira pode diferir em detalhes.</li>
           <li>Psicose, mania aguda grave, transtornos alimentares, TDAH e dependência química recebem apenas orientação de encaminhamento.</li>

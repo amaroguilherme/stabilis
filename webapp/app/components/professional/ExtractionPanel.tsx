@@ -131,8 +131,9 @@ export default function ExtractionPanel({ text, onApply }: { text: string; onApp
         )}
       </div>
       <p className="text-xs text-slate-600">
-        Envia o texto ao servidor do Stabilis só para esta extração (modelo de linguagem). Nada é armazenado nem registrado,
-        e nada muda no formulário sem a sua confirmação.
+        Envia o texto ao servidor do Stabilis, que fica fora do Brasil, só para esta extração (modelo de linguagem). Nada é
+        armazenado nem registrado, e nada muda no formulário sem a sua confirmação. Não inclua nome, documentos nem outros
+        dados que identifiquem a pessoa.
       </p>
       {running && (
         <p aria-live="polite" className="text-sm text-slate-700">

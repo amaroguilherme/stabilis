@@ -35,6 +35,12 @@ export default function SourcesPage() {
           Toda opção, alerta e interação mostrada pelo Stabilis cita uma destas fontes, com o local e o trecho literal. Base de
           conhecimento versão {knowledgeBase.version}, código {knowledgeBase.hash.replace("sha256:", "").slice(0, 16)}.
         </p>
+        {process.env.NEXT_PUBLIC_REPORT_URL && (
+          <p className="mt-2 text-slate-700">
+            Encontrou um erro? <a href={process.env.NEXT_PUBLIC_REPORT_URL} target="_blank" rel="noreferrer" className="text-indigo-700 underline">Avise aqui</a>,
+            com a fonte que mostra o certo. Cada citação também tem um link “avisar um erro”. Não inclua dados de pacientes.
+          </p>
+        )}
       </header>
       {groups.map(([kind, sources]) => (
         <section key={kind} aria-labelledby={`k-${kind}`}>

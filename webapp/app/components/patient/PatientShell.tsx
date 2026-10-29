@@ -5,12 +5,37 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { knowledgeBase } from "@/app/lib/kb";
 import { steps } from "@/app/lib/patient/flow";
-import { usePatient, type PatientSessionV1 } from "@/app/lib/patient/store";
+import { CONSENT_VERSION, updatePatient, usePatient, type PatientSessionV1 } from "@/app/lib/patient/store";
 
 const allSteps = steps(knowledgeBase.data);
 
 // Frame of every step of the patient journey: guards against a missing session (back to the start),
 // shows where the person is, and keeps the text size and spacing comfortable on a phone.
+// Sessions saved under an older privacy notice see what changed and can agree again; nothing new
+// starts without its own opt-in, so the notice does not block the journey.
+function ConsentUpdate() {
+  return (
+    <section aria-labelledby="consent-update" className="mb-6 space-y-3 rounded-2xl border border-indigo-200 bg-indigo-50 p-5 text-slate-800">
+      <h2 id="consent-update" className="font-semibold text-slate-900">Atualizamos o aviso sobre os seus dados</h2>
+      <p>
+        Agora ele explica o ditado por voz, a ajuda para organizar o seu texto e as contagens anônimas. Tudo isso é opcional e só
+        começa se você escolher. Suas respostas continuam só neste aparelho.
+      </p>
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={() => updatePatient((s) => ({ ...s, consent: { version: CONSENT_VERSION, accepted_at: new Date().toISOString() } }))}
+          className="min-h-12 rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700"
+        >
+          Entendi e concordo
+        </button>
+        <Link href="/privacidade" className="min-h-12 py-3 text-indigo-700 underline underline-offset-2">Ver o que mudou</Link>
+      </div>
+      <p className="text-sm text-slate-600">Se não concordar, apague suas respostas na página inicial do paciente.</p>
+    </section>
+  );
+}
+
 export default function PatientShell({
   path,
   title,
@@ -45,7 +70,10 @@ export default function PatientShell({
       <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
       <div className="mt-4">
         {stored.status === "ready" ? (
-          children(stored.value)
+          <>
+            {stored.value.consent.version !== CONSENT_VERSION && <ConsentUpdate />}
+            {children(stored.value)}
+          </>
         ) : stored.status === "missing" ? (
           (missing ?? <p className="text-slate-700">
             Voltando para o início… <Link href="/paciente" className="text-indigo-700 underline">ir agora</Link>

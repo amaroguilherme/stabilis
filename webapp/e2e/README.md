@@ -26,4 +26,13 @@ node e2e/suggestions.mjs
 ```
 
 Depois, compile de novo sem a chave antes de rodar os outros testes.
+
+O uso sem internet (service worker) tem um teste em dois passos, com o servidor desligado no meio e o mesmo
+perfil do Chrome:
+
+```bash
+node e2e/offline.mjs prepare       # servidor ligado: instala o service worker e abre páginas
+# desligue o servidor (Ctrl+C no next start)
+node e2e/offline.mjs check         # servidor desligado: as páginas vêm do cache
+```
 A acessibilidade automática não substitui o teste com leitor de tela (TalkBack) nem as sessões com pessoas.

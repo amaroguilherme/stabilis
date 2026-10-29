@@ -88,7 +88,7 @@ export default function ProfessionalResultPage() {
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
       <header className="mb-6 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="text-sm font-medium text-indigo-700">Modo profissional · experimental</p>
+          <p className="text-sm font-medium text-indigo-700">Modo profissional · experimental e não comercial</p>
           <h1 className="mt-1 text-2xl font-bold text-slate-900">Opções por diretriz</h1>
           <p className="mt-1 text-sm text-slate-600">Ordenado por linha da diretriz; não é uma nota nem uma prescrição.</p>
         </div>

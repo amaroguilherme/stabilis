@@ -6,7 +6,8 @@
 //   node e2e/suggestions.mjs
 import { checker, openPage } from "./cdp.mjs";
 
-const { check, failures } = checker();
+const checks = checker();
+const { check } = checks;
 const page = await openPage();
 const a11y = [];
 async function scan(name) {
@@ -16,7 +17,7 @@ const now = new Date().toISOString();
 const session = {
   version: 1,
   value: {
-    started_at: now, storage: "session", consent: { version: "2026-10-27", accepted_at: now },
+    started_at: now, storage: "session", consent: { version: "2026-10-29", accepted_at: now },
     screening: { answers: { asq_1: 0, asq_2: 0, asq_3: 0, asq_4: 0 }, completed_at: now, repeat_reason: null },
     profile: { age: 34, sex_at_birth: "female", reproductive: { pregnant: "no", breastfeeding: false, planning: false }, conditions: [], habits: [] },
     gender_identity: "", known_diagnoses: [], current_meds: [], relato: "", instruments: {}, skipped: [], history: [], priorities: [],
@@ -43,6 +44,7 @@ for (let i = 0; i < 60; i++) {
 check("sugestões aparecem com o trecho escrito pela pessoa", text.includes("Uso: Sertralina · 50 mg por dia") && text.includes("Você escreveu: “Zoloft 50 mg”"));
 check("nada vem marcado", (await page.js(`[...document.querySelectorAll('fieldset input[type=checkbox]')].every(c => !c.checked)`)) === true);
 check("risco visto só pelo modelo também pede ajuda", text.includes("O que você escreveu nos preocupa"));
+check("o resultado é apagado do servidor assim que lido", page.requests.some((r) => r.startsWith("DELETE ") && r.includes("/api/backend/jobs/")));
 await scan("relato com sugestões");
 await page.clickLabel("Uso: Sertralina");
 await page.clickLabel("Pressão alta");
@@ -56,4 +58,4 @@ check("risco do modelo repete as perguntas de segurança", await page.waitForPat
 console.log(a11y.length ? `ACESSIBILIDADE (${a11y.length}):\n${a11y.join("\n")}` : "acessibilidade: nenhuma violação do axe");
 console.log(page.problems.length ? `CONSOLE:\n${page.problems.join("\n")}` : "console sem erros");
 await page.close();
-process.exit(failures || a11y.length || page.problems.length ? 1 : 0);
+process.exit(checks.failures || a11y.length || page.problems.length ? 1 : 0);

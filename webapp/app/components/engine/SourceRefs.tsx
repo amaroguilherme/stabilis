@@ -1,9 +1,20 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import type { Cite } from "@/app/lib/engine/types";
 import type { Labels } from "@/app/lib/kb/labels";
 import { loadQuotes, type QuoteEntry } from "@/app/lib/kb/quotes";
+
+// Public channel for reporting content errors (POLICY §20), e.g. the new-issue page of the public
+// mirror of knowledge/. Off unless set. The report carries the citation and the page, never answers.
+const REPORT_URL = process.env.NEXT_PUBLIC_REPORT_URL;
+
+function reportLink(cite: Cite, title: string, page: string): string {
+  const body = [`Fonte: ${cite.source} — ${cite.locator}`, `Página: ${page}`, "", "O que está errado:", "", "Fonte pública que mostra o certo (link, localizador e trecho):", "", "Não inclua dados de pacientes."].join("\n");
+  const join = REPORT_URL!.includes("?") ? "&" : "?";
+  return `${REPORT_URL}${join}title=${encodeURIComponent(`Erro: ${title} — ${cite.locator}`)}&body=${encodeURIComponent(body)}`;
+}
 
 function Quote({ cite, entry }: { cite: Cite; entry: QuoteEntry | null | "error" }) {
   if (entry === "error") return <p>Não foi possível carregar o trecho agora.</p>;
@@ -40,6 +51,7 @@ export default function SourceRefs({
   collapse?: string; // summary text, e.g. "De onde vem esta orientação" (or "Fontes" on clinical cards)
 }) {
   const [quotes, setQuotes] = useState<Record<string, QuoteEntry> | "error" | null>(null);
+  const page = usePathname();
   if (cites.length === 0) return null;
 
   const groups: { key: string; cites: Cite[] }[] = [];
@@ -93,6 +105,14 @@ export default function SourceRefs({
                       {" · "}
                       <a href={source?.url} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-indigo-700">
                         abrir fonte
+                      </a>
+                    </>
+                  )}
+                  {REPORT_URL && (
+                    <>
+                      {" · "}
+                      <a href={reportLink(first, source?.title ?? first.source, page)} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-indigo-700">
+                        avisar um erro
                       </a>
                     </>
                   )}
