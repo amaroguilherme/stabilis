@@ -71,7 +71,7 @@ Escala: probabilidade e impacto **baixo / médio / alto**, antes das medidas.
 | R1 | Outra pessoa vê as respostas num aparelho compartilhado | alta | alto | padrão só na aba; guardar no aparelho é escolha explícita, com aviso; "Apagar meus dados" em várias telas | médio: depende da escolha da pessoa |
 | R2 | O relatório compartilhado vaza no aplicativo de mensagem | média | alto | aviso antes de compartilhar; resumo limitado; compartilhar é opcional | médio |
 | R3a | Transferência internacional do relato enviado ao modelo (paciente) | média (quando ligado) | alto | desligado até a promoção; consentimento do próprio titular a cada envio, com aviso de "fora do Brasil"; texto descartado; resultado apagado ao ser lido; sem logs | baixo |
-| R3b | Transferência internacional da anamnese em "Extrair do texto" (profissional) | média | alto | aviso de "fora do Brasil" e orientação para não incluir nome nem documentos; texto descartado; resultado apagado ao ser lido; sem logs. **Falta um mecanismo legal**: anonimização efetiva antes do envio (art. 12), processamento no Brasil ou no navegador, ou cláusulas-padrão da ANPD (Res. 19/2024) | **alto até decidir**; ver plano de ação |
+| R3b | Transferência internacional da anamnese em "Extrair do texto" (profissional) | média (quando ligado) | alto | **desligado desde 29/10/2026** (chave `NEXT_PUBLIC_PROFESSIONAL_EXTRACTION`), até haver um mecanismo legal: anonimização efetiva antes do envio (art. 12), processamento no Brasil ou no navegador, ou cláusulas-padrão da ANPD (Res. 19/2024). Quando ligado: aviso de "fora do Brasil" e de não incluir nome nem documentos; texto descartado; resultado apagado ao ser lido; sem logs | baixo enquanto desligado; alto se for ligado sem mecanismo |
 | R4 | Áudio do ditado tratado pela empresa do navegador | média | médio | opcional; aviso antes do primeiro uso na aba; alternativa de escrever | baixo a médio |
 | R5 | Dados de terceiros (pacientes) no modo profissional | média | alto | o caso fica no navegador do profissional; aviso para não incluir nome nem documentos na extração; processamento transitório | médio: depende do profissional |
 | R6 | Registros técnicos das plataformas (IP, navegador, página) | alta | baixo | endereços das páginas sem dados de saúde; nenhum conteúdo nos logs do Stabilis | baixo |
@@ -86,7 +86,8 @@ Escala: probabilidade e impacto **baixo / médio / alto**, antes das medidas.
 |---|---|
 | Preencher controlador, contato e encarregado | **pendente: responsável** |
 | Configurar `NEXT_PUBLIC_CONTROLLER_NAME` e `NEXT_PUBLIC_CONTACT_EMAIL` na Vercel (aparecem em /privacidade) | **pendente: responsável** |
-| Decidir o mecanismo para "Extrair do texto" no modo profissional (R3b): desligar até decidir, anonimização efetiva, processamento no Brasil ou no navegador, ou cláusulas-padrão | **pendente: responsável, com revisão jurídica** |
+| Desligar "Extrair do texto" no modo profissional até decidir o mecanismo (R3b) | feito em 29/10/2026 |
+| Escolher o mecanismo para religar "Extrair do texto": anonimização efetiva, processamento no Brasil ou no navegador, ou cláusulas-padrão | **pendente: responsável, com revisão jurídica** |
 | Confirmar as bases legais (art. 11, I e art. 33, VIII), o alto risco e o papel do mantenedor no modo profissional (operador ou controlador) | **pendente: revisão jurídica** |
 | Verificar o que Vercel, Hugging Face e Upstash registram (IP, página, horário) e por quanto tempo | pendente: responsável |
 | Escrever um plano curto de resposta a incidentes (art. 48) | pendente |

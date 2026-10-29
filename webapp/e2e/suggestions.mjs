@@ -1,6 +1,7 @@
-// Language-model suggestions in the patient journey (POLICY §15), in a build with the switch on and a
-// scripted local backend (e2e/fake_backend.py):
-//   NEXT_PUBLIC_PATIENT_SUGGESTIONS=on npm run build
+// Language-model features behind switches, in a build with both switches on and a scripted local
+// backend (e2e/fake_backend.py): suggestions in the patient journey (POLICY §15) and "Extrair do
+// texto" in the professional form (§21).
+//   NEXT_PUBLIC_PATIENT_SUGGESTIONS=on NEXT_PUBLIC_PROFESSIONAL_EXTRACTION=on npm run build
 //   ../venv/bin/python e2e/fake_backend.py &
 //   STABILIS_API_URL=http://127.0.0.1:7861 HF_SPACE_TOKEN=teste npx next start -p 3100 &
 //   node e2e/suggestions.mjs
@@ -54,6 +55,23 @@ const value = await stored();
 check("só os itens marcados entram nas respostas", value.current_meds.some((m) => m.drug_id === "sertralina") && value.profile.conditions.includes("hypertension") && !value.profile.habits.includes("smoking"));
 await page.click("Continuar");
 check("risco do modelo repete as perguntas de segurança", await page.waitForPath("/paciente/seguranca"));
+
+// Professional extraction with its switch on: suggestions with evidence, confirmed before applying.
+await page.goto("/profissional");
+await page.js("sessionStorage.removeItem('stabilis_professional_case'); true");
+await page.goto("/profissional");
+await page.js(`__setValue(document.querySelector('textarea'), "Pcte 45a, HAS, nega epilepsia. Em uso de Zoloft 50 mg. Refere tristeza."); true`);
+await page.sleep(200);
+await page.click("Extrair do texto");
+let proText = "";
+for (let i = 0; i < 60; i++) {
+  await page.sleep(500);
+  proText = await page.text();
+  if (proText.includes("Aplicar selecionados")) break;
+}
+check("extração profissional ligada mostra sugestões com evidência", proText.includes("Hipertensão arterial") && proText.includes("Sertralina"));
+check("e avisa que o servidor fica fora do Brasil", proText.includes("que fica fora do Brasil"));
+await scan("extração profissional");
 
 console.log(a11y.length ? `ACESSIBILIDADE (${a11y.length}):\n${a11y.join("\n")}` : "acessibilidade: nenhuma violação do axe");
 console.log(page.problems.length ? `CONSOLE:\n${page.problems.join("\n")}` : "console sem erros");

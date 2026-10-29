@@ -1,20 +1,24 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useId, useMemo, useState } from "react";
-import ExtractionPanel, { type ExtractionChoice } from "@/app/components/professional/ExtractionPanel";
+import type { ExtractionChoice } from "@/app/components/professional/ExtractionPanel";
 import ImportPatient from "@/app/components/professional/ImportPatient";
 import MedicationPicker from "@/app/components/professional/MedicationPicker";
 import ProfileFields, { EMPTY_PROFILE, fromProfile, parseAge, toProfile, type ProfileDraft } from "@/app/components/professional/ProfileFields";
 import HistoryEditor from "@/app/components/shared/HistoryEditor";
 import type { EngineInput, HistoryEntry, MedEntry } from "@/app/lib/engine/types";
+import { PROFESSIONAL_EXTRACTION } from "@/app/lib/flags";
 import { knowledgeBase } from "@/app/lib/kb";
 import type { ImportedCase } from "@/app/lib/patient/import";
 import { professionalCase, type ProfessionalCase } from "@/app/lib/professional/store";
 import { detectCrisis, summarizeCrisis } from "@/app/lib/safety/crisis";
 import { crisisLexicon } from "@/app/lib/safety/lexicon";
 
+// Loaded only when the switch is on: without it, the professional form never talks to the server.
+const ExtractionPanel = dynamic(() => import("@/app/components/professional/ExtractionPanel"), { ssr: false });
 const kb = knowledgeBase.data;
 const CONDITIONS = kb.vocab.conditions.conditions;
 const MAX_TEXT = 4000;
@@ -254,7 +258,8 @@ function ProfessionalForm({ saved }: { saved?: ProfessionalCase }) {
             className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
           />
           <p id={`${id}-text-help`} className="mt-1 text-xs text-slate-600">
-            O texto fica no seu navegador e só sai dele se você usar “Extrair do texto”. {state.text.length.toLocaleString("pt-BR")} / {MAX_TEXT.toLocaleString("pt-BR")}
+            {PROFESSIONAL_EXTRACTION ? "O texto fica no seu navegador e só sai dele se você usar “Extrair do texto”." : "O texto fica no seu navegador e não é enviado a nenhum servidor."}{" "}
+            {state.text.length.toLocaleString("pt-BR")} / {MAX_TEXT.toLocaleString("pt-BR")}
           </p>
           {crisis.crisis && (
             <p role="alert" className="mt-2 rounded-lg border border-rose-300 bg-rose-50 px-3 py-2 text-sm text-rose-950">
@@ -264,7 +269,14 @@ function ProfessionalForm({ saved }: { saved?: ProfessionalCase }) {
           {!crisis.crisis && crisis.negated_only && (
             <p className="mt-2 text-sm text-slate-600">O texto registra ausência de ideação suicida.</p>
           )}
-          <ExtractionPanel text={state.text} onApply={applyExtraction} />
+          {PROFESSIONAL_EXTRACTION ? (
+            <ExtractionPanel text={state.text} onApply={applyExtraction} />
+          ) : (
+            <p className="mt-3 text-sm text-slate-600">
+              “Extrair do texto” está desligado: o envio da anamnese a um servidor fora do Brasil ainda não tem um mecanismo legal
+              definido (LGPD, art. 33). Preencha os campos abaixo à mão.
+            </p>
+          )}
         </div>
       </section>
 

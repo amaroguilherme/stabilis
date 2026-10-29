@@ -15,11 +15,11 @@ node e2e/tools.mjs     # receita, acompanhamento, plano de segurança e a ponte 
 Saem com código 1 se alguma checagem falhar, se o axe apontar violação ou se houver erro no console.
 O `patient.mjs` também confere que a jornada do paciente não faz nenhuma chamada ao servidor.
 
-As sugestões do modelo no modo paciente (desligadas por padrão) têm um teste à parte, com a chave ligada e um backend
-local que usa o app Flask de verdade com um modelo simulado:
+As sugestões do modelo no modo paciente e o "Extrair do texto" do modo profissional (os dois desligados por padrão)
+têm um teste à parte, com as chaves ligadas e um backend local que usa o app Flask de verdade com um modelo simulado:
 
 ```bash
-NEXT_PUBLIC_PATIENT_SUGGESTIONS=on npm run build
+NEXT_PUBLIC_PATIENT_SUGGESTIONS=on NEXT_PUBLIC_PROFESSIONAL_EXTRACTION=on npm run build
 ../venv/bin/python e2e/fake_backend.py &          # http://127.0.0.1:7861
 STABILIS_API_URL=http://127.0.0.1:7861 HF_SPACE_TOKEN=teste npx next start -p 3100 &
 node e2e/suggestions.mjs

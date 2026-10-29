@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PROFESSIONAL_EXTRACTION } from "@/app/lib/flags";
 import { knowledgeBase } from "@/app/lib/kb";
 
 export const metadata: Metadata = {
@@ -109,8 +110,9 @@ export default function AboutPage() {
 
       <Section id="ia" title="Onde entra a inteligência artificial">
         <p>
-          A IA <strong>só lida com linguagem</strong>: no botão “Extrair do texto”, um modelo de linguagem lê a anamnese e sugere
-          comorbidades, hábitos e medicamentos para o formulário. Cada sugestão precisa citar um trecho que esteja no texto (as
+          A IA <strong>só lida com linguagem</strong>: no botão “Extrair do texto”
+          {PROFESSIONAL_EXTRACTION ? "" : " (desligado por enquanto; veja Privacidade)"}, um modelo de linguagem lê a anamnese e
+          sugere comorbidades, hábitos e medicamentos para o formulário. Cada sugestão precisa citar um trecho que esteja no texto (as
           que não citam são descartadas), itens negados ou sobre outra pessoa são ignorados, e nada entra no formulário sem
           confirmação. O detector de crise é determinístico e sempre roda; o modelo pode acrescentar um sinal de risco, nunca
           retirá-lo. Nenhuma opção de tratamento sai do modelo.

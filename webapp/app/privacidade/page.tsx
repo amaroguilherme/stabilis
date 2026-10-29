@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import MetricsToggle from "@/app/components/MetricsToggle";
+import { PATIENT_SUGGESTIONS, PROFESSIONAL_EXTRACTION } from "@/app/lib/flags";
 
 export const metadata: Metadata = {
   title: "Privacidade — Stabilis",
@@ -52,9 +53,12 @@ export default function PrivacyPage() {
             Safari, à Apple), fora do Brasil. O Stabilis não recebe nem guarda o áudio.
           </li>
           <li>
-            Na ajuda para organizar o relato (quando estiver disponível) e em “Extrair do texto”, no modo profissional: o texto vai ao
-            servidor do Stabilis, que fica fora do Brasil, para ser lido por um modelo de linguagem, e é descartado em seguida, sem ser
-            guardado nem registrado. No modo paciente, isso só acontece se você marcar que concorda, a cada vez.
+            Na ajuda para organizar o relato, no modo paciente, e em “Extrair do texto”, no modo profissional: o texto vai ao servidor do
+            Stabilis, que fica fora do Brasil, para ser lido por um modelo de linguagem, e é descartado em seguida, sem ser guardado nem
+            registrado. No modo paciente, isso só acontece se você marcar que concorda, a cada vez.{" "}
+            {PATIENT_SUGGESTIONS || PROFESSIONAL_EXTRACTION
+              ? `No momento, ${[PATIENT_SUGGESTIONS ? "a ajuda do relato" : null, PROFESSIONAL_EXTRACTION ? "“Extrair do texto”" : null].filter(Boolean).join(" e ")} ${PATIENT_SUGGESTIONS && PROFESSIONAL_EXTRACTION ? "estão ligados" : "está ligado"}.`
+              : "No momento, os dois estão desligados."}
           </li>
           <li>As perguntas sobre remédios são respondidas no seu navegador e não saem do aparelho.</li>
         </ul>

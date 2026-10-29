@@ -61,3 +61,6 @@ As contagens de uso ficam desligadas até a pessoa ligar. Ligadas, registram ape
 
 ## 20. Correções
 Quem encontrar um erro no conteúdo pode avisar pelo canal público indicado no site, informando a fonte que mostra o certo. Correções só entram com fonte e passam pelas mesmas conferências do resto da base. Os avisos não devem conter dados de pacientes.
+
+## 21. Extração de texto no modo profissional
+"Extrair do texto" fica desligado até que se defina um mecanismo legal para enviar a anamnese ao servidor, que fica fora do Brasil. O titular desses dados é o paciente, e o clique do profissional não é o consentimento dele. Com a extração desligada, o formulário profissional não faz nenhuma chamada ao servidor.

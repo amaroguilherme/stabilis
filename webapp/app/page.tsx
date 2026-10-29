@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PROFESSIONAL_EXTRACTION } from "@/app/lib/flags";
 
 // Landing page: two entries. Server component, works without JavaScript.
 export default function Home() {
@@ -59,7 +60,10 @@ export default function Home() {
             As opções vêm de diretrizes e documentos públicos (NICE, CANMAT, MI-mhGAP da OPAS, PCDT e RENAME do
             Ministério da Saúde, bulas aprovadas). Cada item mostra a fonte e o trecho em que se baseia.
           </li>
-          <li>As regras rodam no seu navegador: os dados que você digita não são enviados a nenhum servidor, a não ser o texto que você mesmo enviar em “Extrair do texto”.</li>
+          <li>
+            As regras rodam no seu navegador: os dados que você digita não são enviados a nenhum servidor
+            {PROFESSIONAL_EXTRACTION ? ", a não ser o texto que você mesmo enviar em “Extrair do texto”." : "."}
+          </li>
           <li>
             Nada aqui foi revisado por um profissional de saúde ainda. É um material para conversar com quem cuida de
             você, não um diagnóstico nem uma prescrição.

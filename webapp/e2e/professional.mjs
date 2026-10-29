@@ -25,6 +25,7 @@ await page.goto("/profissional");
 await page.js("sessionStorage.clear(); true");
 await page.goto("/profissional");
 await scan("formulário");
+check("extração desligada: sem o botão e com o motivo", !(await page.js(`!!__button("Extrair do texto")`)) && (await page.text()).includes("“Extrair do texto” está desligado"));
 await page.js(`__setValue(document.querySelector('input[type=number]'), "30"); true`);
 await page.js(`document.querySelector('input[type=radio][value=female]').click(); true`);
 await page.sleep(200);
@@ -61,6 +62,8 @@ for (const path of ["/about", "/fontes", "/privacidade", "/ajuda-agora"]) {
   await page.goto(path);
   await scan(path);
 }
+
+check("modo profissional sem nenhuma chamada ao servidor", !page.requests.some((r) => r.includes("/api/backend")));
 
 console.log(a11y.length ? `ACESSIBILIDADE (${a11y.length}):\n${a11y.join("\n")}` : "acessibilidade: nenhuma violação do axe");
 console.log(page.problems.length ? `CONSOLE:\n${page.problems.join("\n")}` : "console sem erros");
