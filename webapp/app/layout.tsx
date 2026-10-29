@@ -2,13 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CrisisBar from "@/app/components/CrisisBar";
 import Disclaimer from "@/app/components/Disclaimer";
+import OfflineSupport from "@/app/components/OfflineSupport";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Stabilis — apoio à decisão em saúde mental (experimental)",
   description:
     "Ferramenta experimental e educacional de apoio à decisão em saúde mental. Não substitui avaliação profissional e não é prescrição.",
+  icons: { icon: "/icons/icon-192.png", apple: "/icons/apple-touch-icon.png" },
 };
+
+export const viewport = { themeColor: "#4f46e5" };
 
 export default function RootLayout({
   children,
@@ -19,6 +23,7 @@ export default function RootLayout({
     <html lang="pt-BR" className="h-full">
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 antialiased">
         <CrisisBar />
+        <OfflineSupport />
         <nav className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50 print:hidden">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center gap-3">
             <Link href="/" className="text-xl font-bold tracking-tight text-indigo-700 hover:text-indigo-800 transition-colors">
