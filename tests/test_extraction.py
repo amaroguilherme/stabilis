@@ -87,6 +87,36 @@ def test_lexicon_fills_medications_the_model_missed(kb):
     assert fluox["mg_per_day"] == 20 and fluox["status"] == "unknown"
 
 
+@pytest.mark.parametrize(
+    "task,text,drug,reason",
+    [
+        ("patient", "minha mãe tem depressão e toma fluoxetina, acho que herdei isso dela", "fluoxetina", "other_person"),
+        ("professional", "M, 42a, irmão em uso de lítio por TAB. Pcte sem diagnóstico prévio.", "litio", "other_person"),
+        ("patient", "a médica disse que se não melhorar vai me passar sertralina", "sertralina", "hypothetical"),
+        ("professional", "TDM leve. Conduta: iniciar escitalopram 10mg e retorno em 4 semanas.", "escitalopram", "hypothetical"),
+        ("professional", "TAB I. Avaliar início de lítio vs valproato.", "valproato", "hypothetical"),
+        ("patient", "o médico falou em lítio mas eu não quis tomar", "litio", "negated"),
+        ("patient", "nunca tomei fluoxetina", "fluoxetina", "negated"),
+    ],
+)
+def test_lexicon_names_about_others_refused_or_planned_are_not_suggested(kb, task, text, drug, reason):
+    out = Extractor(FakeLlm(model_output()), kb).extract(text, task)
+    assert drug not in {m["drug_id"] for m in out["suggestions"]["medications"]}
+    assert any(e["kind"] == "medication" and e["code"] == drug and e["reason"] == reason for e in out["excluded"])
+
+
+def test_first_person_after_another_person_keeps_the_persons_medicine(kb):
+    out = Extractor(FakeLlm(model_output()), kb).extract("minha mãe toma fluoxetina e eu tomo sertralina 50 mg", "patient")
+    assert {m["drug_id"] for m in out["suggestions"]["medications"]} == {"sertralina"}
+
+
+def test_items_the_model_lists_are_not_second_guessed(kb):
+    text = "tomo o mesmo remédio da minha mãe, fluoxetina 20 mg"
+    llm = FakeLlm(model_output(medications=[{"name": "fluoxetina", "evidence": "fluoxetina 20 mg", "status": "current", "dose_mg_per_day": 20}]))
+    meds = Extractor(llm, kb).extract(text, "patient")["suggestions"]["medications"]
+    assert [(m["drug_id"], m["source"]) for m in meds] == [("fluoxetina", "llm")]
+
+
 def test_model_down_gives_degraded_but_useful_result(kb):
     out = Extractor(FakeLlm(error=LlmError("down")), kb).extract("quero morrer, tomo Depakote 500 mg 2x", "patient")
     assert out["degraded"] is True

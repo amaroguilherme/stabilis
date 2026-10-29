@@ -18,6 +18,7 @@ import logging
 
 from jsonschema import Draft202012Validator
 
+from core.extraction.context import lexicon_context
 from core.extraction.meds import MedicationIndex
 from core.extraction.prompt import TASKS, build_prompt, build_short_prompt
 from core.extraction.schema import SCHEMA_VERSION, build_schema
@@ -187,9 +188,14 @@ class _Assembler:
                 unrecognized.append({"drug_id": None, "candidates": list(match.drug_ids), **entry})
             else:
                 out.setdefault(match.drug_ids[0], {"drug_id": match.drug_ids[0], "candidates": [], **entry})
-        # Names found without the model fill in what it missed (and everything when it is down).
+        # Names found without the model fill in what it missed (and everything when it is down), unless
+        # the words around them say the medicine is someone else's, refused or only a plan.
         for found in meds.scan(self.text):
             if len(found["drug_ids"]) == 1 and found["drug_ids"][0] not in out:
+                reason = lexicon_context(self.text, found["start"], found["end"])
+                if reason:
+                    self.excluded.append({"kind": "medication", "code": found["drug_ids"][0], "evidence": found["evidence"], "reason": reason})
+                    continue
                 out[found["drug_ids"][0]] = {
                     "drug_id": found["drug_ids"][0],
                     "candidates": [],

@@ -74,6 +74,8 @@ class MedicationIndex:
                     "raw_text": text[start:end],
                     "evidence": text[start : dose.end() if dose else end].strip(),
                     "mg_per_day": parse_daily_dose_mg(dose.group(0)) if dose else None,
+                    "start": start,
+                    "end": end,
                 })
                 used.update(range(i, i + size))
         return sorted(found, key=lambda f: text.find(f["raw_text"]))
