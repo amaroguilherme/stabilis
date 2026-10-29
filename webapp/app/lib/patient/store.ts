@@ -1,6 +1,7 @@
 import { useMemo, useSyncExternalStore } from "react";
 import type { HistoryEntry, MedEntry, Profile } from "../engine/types.ts";
 import type { Stored } from "../storage/sessionStore.ts";
+import { METRICS_KEY } from "../metrics.ts";
 import { DATA_CLEARED_EVENT, SAFETY_PLAN_KEY } from "./safetyPlan.ts";
 import type { TrackingData } from "./tracking.ts";
 
@@ -8,7 +9,8 @@ import type { TrackingData } from "./tracking.ts";
 // Kept in this tab's sessionStorage by default; in localStorage only when the person chooses to
 // keep them on the device (shared phones are common, so it is opt-in).
 
-export const CONSENT_VERSION = "2026-10-27";
+// Version of the privacy notice the person agreed to (dated; the changes are listed on /privacidade).
+export const CONSENT_VERSION = "2026-10-29";
 
 export type TreatmentHistoryEntry = HistoryEntry;
 
@@ -27,9 +29,13 @@ export interface PatientSessionV1 {
   history: TreatmentHistoryEntry[];
   priorities: string[];
   tracking?: TrackingData; // only kept when the person chose to store the answers on the device
+  report_made_at?: string; // first time the doctor report was printed, shared or downloaded
+  visit_feedback?: { took_to_doctor: "yes" | "not_yet" | "no"; felt_heard: "yes" | "partly" | "no" | null; answered_at: string };
 }
 
 const KEY = "stabilis_patient";
+/** Only that the dictation warning was read, in this tab (components/patient/Dictation.tsx). */
+export const DICTATION_WARNING_KEY = "stabilis_dictation_ok";
 const VERSION = 1;
 const PROFESSIONAL_KEY = "stabilis_professional_case";
 const listeners = new Set<() => void>();
@@ -95,6 +101,8 @@ export function clearAllData(): void {
     storage.removeItem(KEY);
     storage.removeItem(PROFESSIONAL_KEY);
     storage.removeItem(SAFETY_PLAN_KEY);
+    storage.removeItem(METRICS_KEY);
+    storage.removeItem(DICTATION_WARNING_KEY);
   }
   notify();
   window.dispatchEvent(new Event(DATA_CLEARED_EVENT));

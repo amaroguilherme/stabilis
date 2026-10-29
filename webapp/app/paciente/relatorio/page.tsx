@@ -4,9 +4,10 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import PatientShell from "@/app/components/patient/PatientShell";
 import { knowledgeBase } from "@/app/lib/kb";
+import { track } from "@/app/lib/metrics";
 import { usePatientOutputs } from "@/app/lib/patient/outputs";
 import { buildDoctorReport, exportSession, reportText, type DoctorReport } from "@/app/lib/patient/report";
-import type { PatientSessionV1 } from "@/app/lib/patient/store";
+import { updatePatient, type PatientSessionV1 } from "@/app/lib/patient/store";
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -96,7 +97,18 @@ function Report({ session }: { session: PatientSessionV1 }) {
   const [understood, setUnderstood] = useState(false);
   const text = reportText(report);
 
+  // The first print, share or download marks that the report was made (asks "Depois da consulta" later).
+  const madeReport = () => updatePatient((s) => (s.report_made_at ? s : { ...s, report_made_at: new Date().toISOString() }));
+
+  function print() {
+    madeReport();
+    track("report_printed");
+    window.print();
+  }
+
   async function share() {
+    madeReport();
+    track("report_shared");
     if (navigator.share) {
       await navigator.share({ title: "Relatório para a consulta", text }).catch(() => {});
     } else {
@@ -105,6 +117,8 @@ function Report({ session }: { session: PatientSessionV1 }) {
   }
 
   async function download() {
+    madeReport();
+    track("report_downloaded");
     const json = await exportSession(session, knowledgeBase, new Date());
     const url = URL.createObjectURL(new Blob([json], { type: "application/json" }));
     const link = document.createElement("a");
@@ -117,7 +131,7 @@ function Report({ session }: { session: PatientSessionV1 }) {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-3 print:hidden">
-        <button type="button" onClick={() => window.print()} className="min-h-12 rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700">
+        <button type="button" onClick={print} className="min-h-12 rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700">
           Imprimir ou salvar como PDF
         </button>
         <button type="button" onClick={() => setSharing(!sharing)} className="min-h-12 rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800">

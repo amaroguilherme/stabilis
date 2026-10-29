@@ -4,7 +4,8 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { checker, openPage } from "./cdp.mjs";
 
-const { check, failures } = checker();
+const checks = checker();
+const { check } = checks;
 const page = await openPage();
 const a11y = [];
 const downloads = "/tmp/stabilis-e2e-downloads";
@@ -40,7 +41,7 @@ function seededSession(storage = "session") {
     value: {
       started_at: today.toISOString(),
       storage,
-      consent: { version: "2026-10-27", accepted_at: today.toISOString() },
+      consent: { version: "2026-10-29", accepted_at: today.toISOString() },
       screening: { answers: {}, completed_at: null, repeat_reason: null },
       profile: { age: 34, sex_at_birth: "female", reproductive: { pregnant: "no", breastfeeding: false, planning: false }, conditions: [], habits: [] },
       gender_identity: "",
@@ -229,6 +230,38 @@ await page.click("Baixar arquivo para o profissional");
 const file = `${downloads}/stabilis-respostas.json`;
 for (let i = 0; i < 50 && !existsSync(file); i++) await page.sleep(100);
 check("relatório baixa o arquivo de respostas", existsSync(file));
+check("contagens desligadas: nada é enviado", !page.requests.some((r) => r.includes("/api/metrics")));
+
+// ── Anonymous counts (opt-in) and "Depois da consulta" ─────────────────────────────────────
+const metricsApi = await page.js(`Promise.all([
+  fetch('/api/metrics', { method: 'POST', body: JSON.stringify({ event: 'report_printed' }) }).then(r => r.status),
+  fetch('/api/metrics', { method: 'POST', body: JSON.stringify({ event: 'qualquer_coisa' }) }).then(r => r.status),
+])`);
+check("rota de contagens aceita só eventos da lista", metricsApi[0] === 204 && metricsApi[1] === 400, JSON.stringify(metricsApi));
+await page.goto("/privacidade");
+await scan("privacidade");
+await page.clickLabel("Enviar contagens anônimas");
+await page.sleep(200);
+check("contagens ligadas pela página de privacidade", (await page.js(`localStorage.getItem('stabilis_metrics')`)) === "on");
+const before = page.requests.filter((r) => r.includes("/api/metrics")).length;
+await page.goto("/paciente/relatorio");
+await page.click("Compartilhar");
+await page.clickLabel("Entendi");
+await page.click("Baixar arquivo para o profissional");
+await page.sleep(800);
+check("com as contagens ligadas, baixar o relatório conta uma vez", page.requests.filter((r) => r.includes("/api/metrics")).length === before + 1);
+check("o relatório feito fica marcado na sessão", typeof (await stored("sessionStorage"))?.report_made_at === "string");
+await page.goto("/paciente");
+check("depois do relatório, a página inicial pergunta sobre a consulta", (await page.text()).includes("Você levou o relatório ao médico?"));
+await scan("depois da consulta");
+await page.click("Sim");
+await page.sleep(200);
+await page.click("Em parte");
+await page.sleep(500);
+const feedback = (await stored("sessionStorage"))?.visit_feedback;
+check("resposta guardada no aparelho e agradecimento", feedback?.took_to_doctor === "yes" && feedback?.felt_heard === "partly" && (await page.text()).includes("Obrigado pela resposta."));
+check("e contada de forma anônima (duas contagens)", page.requests.filter((r) => r.includes("/api/metrics")).length === before + 3);
+await page.js("localStorage.removeItem('stabilis_metrics'); true");
 
 async function upload(path) {
   const { root } = await page.send("DOM.getDocument", { depth: -1 });
@@ -258,7 +291,19 @@ if (existsSync(file)) {
   await scan("resultado do profissional com importação");
 }
 
+// ── Privacy notice updated: sessions saved under the previous version see what changed ──────
+const oldNotice = seededSession("session");
+oldNotice.value.consent.version = "2026-10-27";
+await page.goto("/paciente");
+await page.js(`localStorage.clear(); sessionStorage.clear(); sessionStorage.setItem('stabilis_patient', ${JSON.stringify(JSON.stringify(oldNotice))}); true`);
+await page.goto("/paciente/relato");
+check("sessão com aviso antigo vê o que mudou", (await page.text()).includes("Atualizamos o aviso sobre os seus dados"));
+await scan("aviso de privacidade atualizado");
+await page.click("Entendi e concordo");
+await page.sleep(300);
+check("concordar registra a versão nova e some o aviso", (await stored("sessionStorage"))?.consent?.version !== "2026-10-27" && !(await page.text()).includes("Atualizamos o aviso sobre os seus dados"));
+
 console.log(a11y.length ? `ACESSIBILIDADE (${a11y.length}):\n${a11y.join("\n")}` : "acessibilidade: nenhuma violação do axe");
 console.log(page.problems.length ? `CONSOLE:\n${page.problems.join("\n")}` : "console sem erros");
 await page.close();
-process.exit(failures || a11y.length || page.problems.length ? 1 : 0);
+process.exit(checks.failures || a11y.length || page.problems.length ? 1 : 0);

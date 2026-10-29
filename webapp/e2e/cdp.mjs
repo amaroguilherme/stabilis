@@ -22,7 +22,7 @@ export async function openPage({ base = "http://localhost:3100", port = 9223 } =
     }
     if (msg.method === "Runtime.exceptionThrown") problems.push(`exception: ${(msg.params.exceptionDetails.exception?.description ?? msg.params.exceptionDetails.text).slice(0, 300)}`);
     if (msg.method === "Runtime.consoleAPICalled" && msg.params.type === "error") problems.push(`console.error: ${msg.params.args.map((a) => a.value ?? a.description).join(" ").slice(0, 300)}`);
-    if (msg.method === "Network.requestWillBeSent") requests.push(msg.params.request.url);
+    if (msg.method === "Network.requestWillBeSent") requests.push(`${msg.params.request.method} ${msg.params.request.url}`);
   };
   const send = (method, params = {}) =>
     new Promise((resolve, reject) => {

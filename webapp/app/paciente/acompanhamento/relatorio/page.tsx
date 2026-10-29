@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import PatientShell from "@/app/components/patient/PatientShell";
 import { DiaryCharts, InstrumentChart } from "@/app/components/patient/TrackingCharts";
 import { knowledgeBase } from "@/app/lib/kb";
+import { track } from "@/app/lib/metrics";
 import { buildEvolutionReport, PERIODS } from "@/app/lib/patient/evolution";
 import type { PatientSessionV1 } from "@/app/lib/patient/store";
 import { EMPTY_TRACKING, localDay } from "@/app/lib/patient/tracking";
@@ -48,7 +49,14 @@ function Evolution({ session }: { session: PatientSessionV1 }) {
           </label>
         </div>
         <div className="flex flex-wrap gap-3">
-          <button type="button" onClick={() => window.print()} className="min-h-12 rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700">
+          <button
+            type="button"
+            onClick={() => {
+              track("evolution_printed");
+              window.print();
+            }}
+            className="min-h-12 rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700"
+          >
             Imprimir ou salvar como PDF
           </button>
           <Link href="/paciente/acompanhamento" className="min-h-12 px-3 py-3 text-slate-700 underline underline-offset-2">Voltar ao acompanhamento</Link>

@@ -1,7 +1,8 @@
 // Professional journey in a real browser: form → result → prescription review, with axe-core.
 import { checker, openPage } from "./cdp.mjs";
 
-const { check, failures } = checker();
+const checks = checker();
+const { check } = checks;
 const page = await openPage();
 const a11y = [];
 async function scan(name) {
@@ -64,4 +65,4 @@ for (const path of ["/about", "/fontes", "/privacidade", "/ajuda-agora"]) {
 console.log(a11y.length ? `ACESSIBILIDADE (${a11y.length}):\n${a11y.join("\n")}` : "acessibilidade: nenhuma violação do axe");
 console.log(page.problems.length ? `CONSOLE:\n${page.problems.join("\n")}` : "console sem erros");
 await page.close();
-process.exit(failures || a11y.length || page.problems.length ? 1 : 0);
+process.exit(checks.failures || a11y.length || page.problems.length ? 1 : 0);

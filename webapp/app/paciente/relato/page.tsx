@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
+import Dictation from "@/app/components/patient/Dictation";
 import PatientShell, { StepButtons } from "@/app/components/patient/PatientShell";
 import { PATIENT_SUGGESTIONS } from "@/app/lib/flags";
 import { knowledgeBase } from "@/app/lib/kb";
@@ -51,6 +52,7 @@ function Story({ session }: { session: PatientSessionV1 }) {
       <p className="mt-1 text-right text-sm text-slate-600">
         {text.length.toLocaleString("pt-BR")} / {MAX_TEXT.toLocaleString("pt-BR")}
       </p>
+      <Dictation onText={(spoken) => setText((current) => (current.trim() ? `${current.trim()} ${spoken}` : spoken).slice(0, MAX_TEXT))} />
       {crisis && (
         <div role="alert" className="mt-4 rounded-xl border-2 border-rose-300 bg-rose-50 p-4 text-rose-950">
           <p className="font-semibold">O que você escreveu nos preocupa.</p>

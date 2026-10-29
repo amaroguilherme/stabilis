@@ -3,7 +3,8 @@
 // (axe-core, WCAG 2.x A/AA) on every page.
 import { checker, openPage } from "./cdp.mjs";
 
-const { check, failures } = checker();
+const checks = checker();
+const { check } = checks;
 const page = await openPage();
 const a11y = [];
 
@@ -63,6 +64,15 @@ await page.click("Continuar");
 check("vai para o relato", await page.waitForPath("/paciente/relato"));
 
 await scan("relato");
+if (await page.js(`!!__button("Falar em vez de escrever")`)) {
+  await page.click("Falar em vez de escrever");
+  await page.sleep(200);
+  check("ditado avisa antes que o áudio vai à empresa do navegador", (await page.text()).includes("fora do Brasil. O Stabilis não recebe nem guarda o áudio"));
+  await scan("relato com aviso do ditado");
+  await page.click("Prefiro escrever");
+  await page.sleep(200);
+  check("e dá para desistir sem falar", !(await page.text()).includes("O Stabilis não recebe nem guarda o áudio"));
+} else console.log("ditado por voz indisponível neste navegador: checagem pulada");
 await page.js(`__setValue(document.querySelector('textarea'), "faz dois meses que durmo mal, choro à toa e não tenho vontade de sair de casa"); true`);
 await page.sleep(200);
 await page.click("Continuar");
@@ -162,4 +172,4 @@ check("jornada do paciente sem nenhuma chamada ao servidor", !page.requests.some
 console.log(a11y.length ? `ACESSIBILIDADE (${a11y.length}):\n${a11y.join("\n")}` : "acessibilidade: nenhuma violação do axe");
 console.log(page.problems.length ? `CONSOLE:\n${page.problems.join("\n")}` : "console sem erros");
 await page.close();
-process.exit(failures || a11y.length || page.problems.length ? 1 : 0);
+process.exit(checks.failures || a11y.length || page.problems.length ? 1 : 0);

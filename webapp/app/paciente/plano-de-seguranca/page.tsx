@@ -6,6 +6,7 @@ import SourceRefs from "@/app/components/engine/SourceRefs";
 import type { SafetyPlan } from "@/app/lib/engine/types";
 import { knowledgeBase } from "@/app/lib/kb";
 import { createLabels } from "@/app/lib/kb/labels";
+import { track } from "@/app/lib/metrics";
 import planBundle from "@/app/lib/kb/safety_plan.client.generated.json";
 import { addItem, deleteSafetyPlan, phoneParts, planItems, saveSafetyPlan, useSafetyPlan, type SafetyPlanDraft } from "@/app/lib/patient/safetyPlan";
 
@@ -196,7 +197,16 @@ function PlanBody({ draft }: { draft: SafetyPlanDraft | null }) {
           você confia.
         </p>
         <div className="flex flex-wrap gap-3">
-          <button type="button" onClick={() => window.print()} className={button}>Imprimir ou salvar como PDF</button>
+          <button
+            type="button"
+            onClick={() => {
+              track("safety_plan_printed");
+              window.print();
+            }}
+            className={button}
+          >
+            Imprimir ou salvar como PDF
+          </button>
           {draft && (
             <button type="button" onClick={() => setConfirmDelete(true)} className={secondary}>Apagar o plano</button>
           )}

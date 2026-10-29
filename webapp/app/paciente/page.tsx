@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import VisitFeedback from "@/app/components/patient/VisitFeedback";
 import { clearAllData, newPatientSession, savePatient, usePatient } from "@/app/lib/patient/store";
 
 export default function PatientIntroPage() {
@@ -48,13 +49,21 @@ export default function PatientIntroPage() {
         </section>
       )}
 
+      {stored.status === "ready" && (
+        <div className="mt-6">
+          <VisitFeedback session={stored.value} />
+        </div>
+      )}
+
       {stored.status === "missing" && (
         <section aria-labelledby="privacidade" className="mt-8 space-y-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 id="privacidade" className="text-lg font-semibold text-slate-900">Seus dados</h2>
           <p className="text-slate-700">
-            Suas respostas são dados de saúde. Elas ficam só neste aparelho e não são enviadas a nenhum servidor. Você pode
-            apagar tudo a qualquer momento. <Link href="/privacidade" className="text-indigo-700 underline">Como tratamos seus dados</Link>
+            Suas respostas são dados de saúde. Elas ficam só neste aparelho e não são enviadas a nenhum servidor, a não ser que
+            você mesmo escolha usar o ditado por voz ou a ajuda para organizar o seu texto, que avisam antes. Você pode apagar
+            tudo a qualquer momento. <Link href="/privacidade" className="text-indigo-700 underline">Como tratamos seus dados</Link>
           </p>
+          <p className="text-slate-700">Se você tem menos de 18 anos, use junto com um adulto de confiança.</p>
           <fieldset>
             <legend className="font-medium text-slate-900">Onde guardar as respostas</legend>
             <div className="mt-3 grid gap-3">

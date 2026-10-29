@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import SourceRefs from "@/app/components/engine/SourceRefs";
+import Dictation from "@/app/components/patient/Dictation";
+import VisitFeedback from "@/app/components/patient/VisitFeedback";
 import PatientShell from "@/app/components/patient/PatientShell";
 import { DiaryCharts, InstrumentChart, scoreText, trackedTitle } from "@/app/components/patient/TrackingCharts";
 import { knowledgeBase } from "@/app/lib/kb";
@@ -138,6 +140,7 @@ function CheckinForm({ session, date }: { session: PatientSessionV1; date: strin
           onChange={(e) => { setNote(e.target.value); setSaved(false); }}
           className="mt-2 w-full rounded-xl border-2 border-slate-300 bg-white px-4 py-3 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-200"
         />
+        <Dictation onText={(spoken) => { setNote((current) => (current.trim() ? `${current.trim()} ${spoken}` : spoken).slice(0, MAX_NOTE)); setSaved(false); }} />
       </div>
       {crisis && (
         <div role="alert" className="rounded-xl border-2 border-rose-300 bg-rose-50 p-4 text-rose-950">
@@ -242,6 +245,8 @@ function Hub({ session }: { session: PatientSessionV1 }) {
           </p>
         </section>
       )}
+
+      <VisitFeedback session={session} />
 
       <p className="text-slate-700">
         Registre como você está a cada dia e refaça os questionários de tempos em tempos. Na consulta, o relatório de evolução mostra ao
