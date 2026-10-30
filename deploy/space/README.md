@@ -38,6 +38,7 @@ knowledge/         (sem knowledge/tests)
 | variable | `MODEL_REPO_ID` | repositório do GGUF |
 | variable | `MODEL_FILENAME` | arquivo GGUF |
 | variable | `MODEL_REVISION` | hash do commit do modelo aprovado nos portões (opcional, recomendado) |
+| variable | `EXTRACTION_PROMPT` | `short` só para um modelo ajustado com o prompt curto (finetune/); sem a variável, usa o prompt completo |
 | variable | `LLM_THREADS` | `2` (CPU Basic) |
 
 Não é mais preciso o secret `GITHUB_TOKEN` (a dependência privada `qyra` saiu do projeto).
@@ -56,4 +57,12 @@ Nada é gravado em disco nem registrado em log além de contagens e tipos de err
 
 Feita a partir do repositório principal, só com autorização do responsável. O histórico atual do
 Space contém arquivos de dados com licença que proíbe uso clínico (Broad Repurposing Hub, SIDER);
-a publicação recomendada é um commit único com a árvore acima, substituindo o histórico (`push --force`).
+a publicação recomendada é um commit único com a árvore acima, substituindo o histórico (`push --force`):
+
+```bash
+python scripts/build_space.py --out /tmp/stabilis-space      # monta a árvore acima e valida a base
+cd /tmp/stabilis-space && git init -b main && git add -A && git commit -m "Deploy the language service"
+git push --force https://huggingface.co/spaces/amaroguilherme/stabilis-api main
+```
+
+O `git push` pede usuário e senha: use o seu usuário do Hugging Face e um token com escrita no Space.

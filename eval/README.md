@@ -1,7 +1,8 @@
 # Avaliação da extração (trilha LLM, etapa L1)
 
 Antes de qualquer fine-tuning, medimos o modelo atual e os candidatos no mesmo conjunto de textos.
-É isso que mostra se um modelo treinado ganhou de verdade.
+É isso que mostra se um modelo treinado ganhou de verdade. O passo a passo completo, do Space ao modelo
+promovido, está em [docs/roteiro-modelo-de-linguagem.md](../docs/roteiro-modelo-de-linguagem.md).
 
 ## O gold set
 
@@ -82,10 +83,15 @@ python eval/run_eval.py --gold eval/gold/FORMAT.jsonl --fake
 # modelo real (variáveis MODEL_REPO_ID, MODEL_FILENAME, MODEL_REVISION, HF_TOKEN)
 python eval/run_eval.py --gold eval/gold/v0.jsonl --out eval/reports/gemma2-9b.json --gates
 
-# latência nas mesmas condições do Space (2 vCPUs)
-docker run --rm --cpus=2 --memory=16g -e HF_TOKEN -e MODEL_REPO_ID -e MODEL_FILENAME stabilis-api \
-  python eval/bench_latency.py --gold eval/gold/v0.jsonl --runs 20 --gates
+# latência no próprio Space (2 vCPUs): reinicie o Space logo antes para medir o cold start
+STABILIS_API_URL=https://amaroguilherme-stabilis-api.hf.space HF_SPACE_TOKEN=hf_... \
+  python eval/bench_space.py --gold eval/gold/v0.jsonl --runs 20 --gates --out eval/reports/latencia.json
 ```
+
+A latência vale medida no Space, que é onde o modelo roda. `bench_latency.py` mede no próprio computador e
+só se aproxima do Space numa máquina x86 com `docker run --cpus=2 --memory=16g` e a pasta `eval/` montada
+(`-v "$PWD/eval:/home/user/app/eval:ro"`), porque a imagem não inclui `eval/`. Num Mac com chip Apple, a
+imagem não compila com as instruções de CPU do Space (AVX2), e a emulação não mede o mesmo hardware.
 
 ## Portões de promoção
 
@@ -111,7 +117,8 @@ gold set, conferido pelo hash). `bench_latency.py --gates` cobre p95 e cold star
 2. Baseline: com as variáveis do modelo atual do Space, `run_eval.py --gold eval/gold/v0.jsonl --out eval/reports/producao.json`.
 3. Candidato: com `MODEL_REPO_ID`, `MODEL_FILENAME` e `MODEL_REVISION` do GGUF novo e `EXTRACTION_PROMPT=short`,
    `run_eval.py --gold eval/gold/v0.jsonl --out eval/reports/candidato.json --gates --baseline eval/reports/producao.json`.
-4. Latência: `bench_latency.py --gates` dentro do container com `--cpus=2 --memory=16g`.
+4. Latência: com o candidato publicado no Space, `bench_space.py --gates` (reinicie o Space antes, para medir
+   o cold start). Se não passar, volte as variáveis do modelo anterior.
 5. Tudo verde: troque as mesmas variáveis nas configurações do Space, reinicie e confira `/ready` e uma extração
    de teste na tela do profissional.
 6. Só então, se quiser, ligue as sugestões no modo paciente (`NEXT_PUBLIC_PATIENT_SUGGESTIONS=on` na Vercel; veja

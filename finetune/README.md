@@ -1,5 +1,7 @@
 # Fine-tuning do extrator (trilha LLM, etapa L3)
 
+Passo a passo completo, das contas à promoção: [docs/roteiro-modelo-de-linguagem.md](../docs/roteiro-modelo-de-linguagem.md).
+
 1. **Dados:** gere com `datagen/` e converta para o formato de chat:
    `python finetune/prepare.py --data datagen/out/v1 --out finetune/data/v1`
 2. **Treino (Kaggle, GPU):** importe `finetune/kaggle_train.ipynb` no Kaggle (acelerador GPU T4 ×2, internet ligada,
