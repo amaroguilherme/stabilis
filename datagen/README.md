@@ -27,10 +27,16 @@ export DATAGEN_TEACHER_BASE_URL=https://api.groq.com/openai/v1
 export DATAGEN_TEACHER_MODEL=openai/gpt-oss-120b     # Apache 2.0
 export DATAGEN_TEACHER_API_KEY=...                    # nunca comitar
 export DATAGEN_JUDGE_BASE_URL=https://api.groq.com/openai/v1
-export DATAGEN_JUDGE_MODEL=qwen/qwen3-32b             # outra família, Apache 2.0
+export DATAGEN_JUDGE_MODEL=qwen/qwen3.8-27b           # outra família (confira a licença no model card)
 export DATAGEN_JUDGE_API_KEY=...
 python -m datagen.run --n 500 --seed 1 --out datagen/out/v1
 ```
+
+Cada exemplo é gravado em `datagen/out/<versão>/progress.jsonl` assim que fica pronto. Planos gratuitos têm
+limite por minuto e por dia: o cliente espera o tempo que o provedor pede (`Retry-After`) e, se o provedor
+continuar falhando, a geração para e o mesmo comando continua de onde parou, com o mesmo resultado de uma
+geração sem interrupção. Um `--n` maior estende uma geração já terminada. Comece com `--n 100` e leia
+`stats.json` (taxa de aprovação e motivos de rejeição) antes de gerar milhares.
 
 Saída em `datagen/out/<versão>/` (fora do git): `train.jsonl`, `validation.jsonl`, `test.jsonl`,
 `rejected.jsonl` e `stats.json`. O conjunto vai para um dataset **privado** no Hugging Face Hub, com o

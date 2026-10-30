@@ -123,3 +123,92 @@ def test_fine_tuning_examples_use_the_inference_prompt(kb):
     chat = prepare.to_chat(accepted[0])
     assert chat["messages"][0]["content"] == build_short_prompt("patient", accepted[0]["text"])
     assert json.loads(chat["messages"][1]["content"]) == accepted[0]["label"]
+
+
+class FlakyTeacher(ScriptedTeacher):
+    """Fails like a provider out of quota after `ok` successful calls."""
+
+    def __init__(self, ok):
+        self.ok = ok
+
+    def complete_json(self, prompt, temperature):
+        from datagen.llm_client import ProviderError
+
+        if self.ok == 0:
+            raise ProviderError("cota esgotada")
+        self.ok -= 1
+        return super().complete_json(prompt, temperature)
+
+
+def test_resume_after_provider_failure_gives_the_same_dataset(kb, tmp_path):
+    from datagen.llm_client import ProviderError
+
+    args = SimpleNamespace(n=24, seed=7, patient_share=0.6)
+    expected = generate(args, kb, ScriptedTeacher(), ScriptedJudge())
+    progress = tmp_path / "progress.jsonl"
+    with pytest.raises(ProviderError):
+        generate(args, kb, FlakyTeacher(ok=9), ScriptedJudge(), progress)
+    assert len(progress.read_text(encoding="utf-8").splitlines()) == 1 + 9, "cabeçalho e os exemplos feitos"
+    assert generate(args, kb, ScriptedTeacher(), ScriptedJudge(), progress) == expected
+    longer = SimpleNamespace(n=30, seed=7, patient_share=0.6)
+    assert generate(longer, kb, ScriptedTeacher(), ScriptedJudge(), progress) == generate(longer, kb, ScriptedTeacher(), ScriptedJudge())
+
+
+def test_progress_from_another_configuration_is_refused(kb, tmp_path):
+    progress = tmp_path / "progress.jsonl"
+    generate(SimpleNamespace(n=3, seed=1, patient_share=0.6), kb, ScriptedTeacher(), ScriptedJudge(), progress)
+    with pytest.raises(SystemExit):
+        generate(SimpleNamespace(n=3, seed=2, patient_share=0.6), kb, ScriptedTeacher(), ScriptedJudge(), progress)
+
+
+def test_bad_output_rejects_only_that_example(kb):
+    from datagen.llm_client import BadOutput
+
+    class SometimesBroken(ScriptedTeacher):
+        calls = 0
+
+        def complete_json(self, prompt, temperature):
+            self.calls += 1
+            if self.calls == 2:
+                raise BadOutput("sem JSON")
+            return super().complete_json(prompt, temperature)
+
+    accepted, rejected = generate(SimpleNamespace(n=5, seed=3, patient_share=0.6), kb, SometimesBroken(), ScriptedJudge())
+    assert len(accepted) == 4 and [r["reason"] for r in rejected] == ["resposta inválida do professor"]
+
+
+def test_rate_limits_wait_and_permanent_errors_fail_fast(monkeypatch):
+    import io
+    import urllib.error
+
+    from datagen.llm_client import ChatClient, ProviderError
+
+    monkeypatch.setenv("DATAGEN_TEACHER_BASE_URL", "https://exemplo.invalid/v1")
+    monkeypatch.setenv("DATAGEN_TEACHER_MODEL", "teacher-family/teacher-a")
+    client = ChatClient("teacher")
+    waits = []
+    client.sleep = waits.append
+
+    def http_error(code, retry_after=None):
+        headers = {"retry-after": str(retry_after)} if retry_after is not None else {}
+        return urllib.error.HTTPError("https://exemplo.invalid", code, "erro", headers, io.BytesIO(b""))
+
+    answers = [http_error(429, 7), http_error(503), {"choices": [{"message": {"content": '{"ok": true}'}}]}]
+
+    def scripted(path, body=None):
+        answer = answers.pop(0)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    monkeypatch.setattr(client, "_request", scripted)
+    assert client.complete_json("oi", temperature=0) == {"ok": True}
+    assert waits == [7.0, 4.0], "respeita o Retry-After e depois espera cada vez mais"
+
+    answers[:] = [http_error(401)]
+    with pytest.raises(urllib.error.HTTPError):
+        client.complete_json("oi", temperature=0)
+
+    monkeypatch.setattr(client, "_request", lambda path, body=None: (_ for _ in ()).throw(http_error(429)))
+    with pytest.raises(ProviderError):
+        client.complete_json("oi", temperature=0)

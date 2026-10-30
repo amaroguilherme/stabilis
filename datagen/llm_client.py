@@ -20,12 +20,33 @@ class ModelUnavailable(RuntimeError):
     pass
 
 
+class ProviderError(RuntimeError):
+    """The provider kept failing (rate limit or outage): stop, keep the progress, resume later."""
+
+
+class BadOutput(ValueError):
+    """The model answered, but not with usable JSON: reject that example and go on."""
+
+
+# Errors worth waiting for. Others (400, 401, 403, 404) will not improve by retrying.
+TRANSIENT = {408, 409, 425, 429, 500, 502, 503, 504}
+MAX_WAIT_S = 120
+
+
+def _retry_after(error: urllib.error.HTTPError) -> float | None:
+    try:
+        return float(error.headers.get("retry-after", ""))
+    except (TypeError, ValueError):
+        return None
+
+
 class ChatClient:
     def __init__(self, role: str):
         prefix = f"DATAGEN_{role.upper()}_"
         self.base_url = os.environ.get(prefix + "BASE_URL", "").rstrip("/")
         self.model = os.environ.get(prefix + "MODEL", "")
         self.api_key = os.environ.get(prefix + "API_KEY", "")
+        self.sleep = time.sleep  # replaced in tests
         if not self.base_url or not self.model:
             raise ModelUnavailable(f"{prefix}BASE_URL e {prefix}MODEL são obrigatórios")
 
@@ -49,6 +70,24 @@ class ChatClient:
         if ids and self.model not in ids:
             raise ModelUnavailable(f"modelo {self.model} não existe no provedor")
 
+    def _post(self, body: dict, attempts: int = 8) -> dict:
+        """Waits out rate limits and outages (honouring Retry-After); gives up with ProviderError."""
+        delay = 2.0
+        for attempt in range(attempts):
+            try:
+                return self._request("/chat/completions", body)
+            except urllib.error.HTTPError as exc:
+                if exc.code not in TRANSIENT:
+                    raise
+                wait = _retry_after(exc) or delay
+            except (urllib.error.URLError, TimeoutError):
+                wait = delay
+            if attempt == attempts - 1:
+                break
+            self.sleep(min(wait, MAX_WAIT_S))
+            delay = min(delay * 2, 60.0)
+        raise ProviderError(f"{self.model}: o provedor continuou falhando depois de {attempts} tentativas")
+
     def complete_json(self, prompt: str, *, temperature: float, retries: int = 3) -> dict:
         body = {
             "model": self.model,
@@ -56,12 +95,10 @@ class ChatClient:
             "temperature": temperature,
             "response_format": {"type": "json_object"},
         }
-        for attempt in range(retries):
+        for _ in range(retries):
             try:
-                content = self._request("/chat/completions", body)["choices"][0]["message"]["content"]
+                content = self._post(body)["choices"][0]["message"]["content"]
                 return json.loads(content[content.find("{") : content.rfind("}") + 1])
-            except (urllib.error.HTTPError, urllib.error.URLError, json.JSONDecodeError, KeyError, ValueError):
-                if attempt == retries - 1:
-                    raise
-                time.sleep(2 ** (attempt + 1))
-        raise RuntimeError("unreachable")
+            except (json.JSONDecodeError, KeyError, IndexError, TypeError, ValueError):
+                continue
+        raise BadOutput(f"{self.model}: resposta sem JSON válido")
