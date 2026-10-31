@@ -16,7 +16,8 @@ export interface CrisisLexiconSource {
 
 export interface CompiledLexicon {
   // `modes`: where the term applies (abbreviations like "IS" only in professional text).
-  terms: { id: string; category: string; phrases: string[][]; modes: CrisisMode[] }[];
+  // A number in a phrase is a count: any whole number from that value up.
+  terms: { id: string; category: string; phrases: (string | number)[][]; modes: CrisisMode[] }[];
   negationCues: string[][];
   terminators: Set<string>;
   window: number;
@@ -34,6 +35,7 @@ export interface CrisisSummary {
 }
 
 const SEGMENT_SPLIT = /[.!?;:\n]+/;
+const COUNT = /^\{(\d+)\+\}$/; // "{10+}" in a phrase: any whole number from 10 up
 
 export function normalize(text: string): string {
   return text
@@ -49,12 +51,23 @@ function tokenize(text: string): string[] {
   return normalized ? normalized.split(" ") : [];
 }
 
+/** Tokens of a lexicon phrase; "{10+}" becomes the count 10 ("tomei {10+} comprimidos"). */
+function compilePhrase(raw: string): (string | number)[] {
+  return raw
+    .split(/\s+/)
+    .filter(Boolean)
+    .flatMap((part): (string | number)[] => {
+      const count = COUNT.exec(part);
+      return count ? [Number(count[1])] : tokenize(part);
+    });
+}
+
 export function compileLexicon(raw: CrisisLexiconSource): CompiledLexicon {
   return {
     terms: raw.terms.map((term) => ({
       id: term.id,
       category: term.category,
-      phrases: term.phrases.map(tokenize).filter((p) => p.length > 0),
+      phrases: term.phrases.map(compilePhrase).filter((p) => p.length > 0),
       modes: term.modes ?? ["patient", "professional"],
     })),
     negationCues: raw.negation_cues.map(tokenize).filter((c) => c.length > 0),
@@ -63,9 +76,12 @@ export function compileLexicon(raw: CrisisLexiconSource): CompiledLexicon {
   };
 }
 
-function matchesAt(tokens: string[], start: number, phrase: string[]): boolean {
+function matchesAt(tokens: string[], start: number, phrase: (string | number)[]): boolean {
   if (start + phrase.length > tokens.length) return false;
-  return phrase.every((token, i) => tokens[start + i] === token);
+  return phrase.every((token, i) => {
+    const word = tokens[start + i];
+    return typeof token === "number" ? /^\d+$/.test(word) && Number(word) >= token : word === token;
+  });
 }
 
 function isNegated(tokens: string[], start: number, lexicon: CompiledLexicon): boolean {

@@ -24,6 +24,7 @@ LEXICON_PATH = Path(__file__).resolve().parents[2] / "knowledge" / "lexicons" / 
 
 _SEGMENT_SPLIT = re.compile(r"[.!?;:\n]+")
 _NON_ALNUM = re.compile(r"[^0-9a-z]+")
+_COUNT = re.compile(r"^\{(\d+)\+\}$")  # "{10+}" in a phrase: any whole number from 10 up
 
 
 @dataclass(frozen=True)
@@ -37,7 +38,7 @@ class CrisisHit:
 class _Term:
     id: str
     category: str
-    phrases: tuple[tuple[str, ...], ...]
+    phrases: tuple[tuple[str | int, ...], ...]  # an int is a count: any number from that value up
     modes: frozenset[str]  # modes where the term applies (abbreviations like "IS" only in professional text)
 
 
@@ -61,12 +62,28 @@ def _tokens(text: str) -> tuple[str, ...]:
     return tuple(normalized.split(" ")) if normalized else ()
 
 
+def _phrase(raw: str) -> tuple[str | int, ...]:
+    """Tokens of a lexicon phrase; "{10+}" becomes the count 10 ("tomei {10+} comprimidos")."""
+    out: list[str | int] = []
+    for part in raw.split():
+        count = _COUNT.match(part)
+        out.extend((int(count.group(1)),) if count else _tokens(part))
+    return tuple(out)
+
+
+def _matches(tokens: tuple[str, ...], start: int, phrase: tuple[str | int, ...]) -> bool:
+    return all(
+        tokens[start + i] == p if isinstance(p, str) else tokens[start + i].isdigit() and int(tokens[start + i]) >= p
+        for i, p in enumerate(phrase)
+    )
+
+
 def compile_lexicon(raw: dict) -> CompiledLexicon:
     terms = tuple(
         _Term(
             id=term["id"],
             category=term["category"],
-            phrases=tuple(p for p in (_tokens(phrase) for phrase in term["phrases"]) if p),
+            phrases=tuple(p for p in (_phrase(phrase) for phrase in term["phrases"]) if p),
             modes=frozenset(term.get("modes", ("patient", "professional"))),
         )
         for term in raw["terms"]
@@ -109,7 +126,7 @@ def detect_crisis(text: str, mode: Mode = "patient", lexicon: CompiledLexicon | 
             for p_idx, phrase in enumerate(term.phrases):
                 size = len(phrase)
                 for start in range(len(tokens) - size + 1):
-                    if tokens[start:start + size] == phrase:
+                    if _matches(tokens, start, phrase):
                         matches.append((start, start + size, t_idx, p_idx))
         matches.sort(key=lambda m: (-(m[1] - m[0]), m[0], m[2], m[3]))
         kept: list[tuple[int, int, int, int]] = []

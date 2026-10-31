@@ -172,7 +172,7 @@
       "text": "my doctor said it is fine",
       "mode": "patient",
       "expect_hit": false
-        },
+    },
     {
       "text": "quantos comprimidos de rivotril preciso tomar para morrer",
       "mode": "patient",
@@ -325,6 +325,168 @@
     },
     {
       "text": "fui até a ponte ver o rio com meu filho",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "às vezes acho que todo mundo ficaria melhor sem mim",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "sinto que sou um peso pra minha família",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "se eu morresse ninguém ia sentir minha falta",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "quando eu não estiver mais aqui, cuida do meu cachorro",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "fico parado no viaduto pensando em pular",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "tenho vontade de me jogar debaixo de um ônibus",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "às vezes penso em jogar o carro contra um poste",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "guardei veneno no quarto",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "tomei 30 comprimidos de clonazepam e fui parar no hospital",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "ontem engoli uns 15 comprimidos",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "fiz lavagem estomacal depois de tomar remédio demais",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "hoje eu acabo com tudo",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "penso em me dar um tiro",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "não passo de hoje",
+      "mode": "patient",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "Pcte com TAE prévia por intoxicação exógena",
+      "mode": "professional",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "Nega TAE.",
+      "mode": "professional",
+      "expect_hit": true,
+      "expect_negated_only": true
+    },
+    {
+      "text": "Refere ingestão de 20 comprimidos de amitriptilina há 2 dias.",
+      "mode": "professional",
+      "expect_hit": true,
+      "expect_negated_only": false
+    },
+    {
+      "text": "tomei 2 comprimidos de dipirona",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "tomo 10 comprimidos por dia de remédios diferentes",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "a caixa vem com 20 comprimidos",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "comprei veneno pra matar as baratas",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "açúcar é veneno pra mim",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "vou me jogar de cabeça no trabalho novo",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "estou com a corda no pescoço com as dívidas",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "só quero me jogar debaixo do cobertor e dormir",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "sou um peso pesado no judô",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "vou enforcar a sexta e emendar o feriado",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "pulei de alegria quando passei na prova",
+      "mode": "patient",
+      "expect_hit": false
+    },
+    {
+      "text": "o médico pediu lavagem nasal",
       "mode": "patient",
       "expect_hit": false
     }

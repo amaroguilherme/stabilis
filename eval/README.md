@@ -22,7 +22,7 @@ tem limites que pesam na promoção:
   e uma revisão humana veio depois (2026-10-30);
 - a próxima versão deve juntar textos **escritos por pessoas** (`"origin": "human"`), e os relatórios
   passam a ser lidos separando as duas origens;
-- depois de ver os erros da v0, o léxico de crise (versão 0.2.0) e a checagem de contexto dos remédios
+- depois de ver os erros da v0, o léxico de crise (versões 0.2.0 e 0.3.0) e a checagem de contexto dos remédios
   achados sem o modelo foram ampliados: os números do léxico e dessa checagem na v0 deixaram de ser
   independentes. Meça-os em textos novos.
 
