@@ -37,9 +37,13 @@ def load_knowledge_base(root: Path = KNOWLEDGE_DIR):
         raise
 
 
+def prompt_style_from_env() -> str:
+    """EXTRACTION_PROMPT=short only with a model fine-tuned on the short prompt (see finetune/README.md).
+    The evaluation harness reads it through here too, so a model is measured with the prompt it serves."""
+    return "short" if os.getenv("EXTRACTION_PROMPT", "").strip() == "short" else "full"
+
+
 def build_default_service() -> LanguageService:
     from core.llm.llamacpp import LlamaCppClient
 
-    # EXTRACTION_PROMPT=short only with a model fine-tuned on the short prompt (see finetune/README.md).
-    style = "short" if os.getenv("EXTRACTION_PROMPT", "").strip() == "short" else "full"
-    return LanguageService(load_knowledge_base(), LlamaCppClient(), prompt_style=style)
+    return LanguageService(load_knowledge_base(), LlamaCppClient(), prompt_style=prompt_style_from_env())

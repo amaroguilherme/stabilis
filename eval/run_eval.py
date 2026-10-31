@@ -1,9 +1,10 @@
-"""Measures the extraction against a human-written gold set (see eval/README.md).
+"""Measures the extraction against the frozen gold set (see eval/README.md).
 
     python eval/run_eval.py --gold eval/gold/v0.jsonl [--out report.json] [--gates] [--baseline prod.json] [--fake]
 
 With --fake a scripted model echoes the gold annotations (useful to test the harness itself);
-otherwise the model comes from the environment (MODEL_REPO_ID, MODEL_FILENAME, MODEL_REVISION).
+otherwise the model comes from the environment (MODEL_REPO_ID, MODEL_FILENAME, MODEL_REVISION), and so
+does the prompt (EXTRACTION_PROMPT, read exactly as the Space reads it). Progress goes to stderr.
 With --baseline (the report of the model in production, on the same gold set) the gates also require
 F1 per group and improper suggestions to be no worse. The report holds only metrics and gold ids,
 never the texts.
@@ -25,6 +26,7 @@ sys.path.insert(0, str(ROOT))
 
 from core.extraction.extract import Extractor  # noqa: E402
 from core.kb import load_and_validate  # noqa: E402
+from core.service import prompt_style_from_env  # noqa: E402
 
 GATES = {
     "schema_valid_rate": (">=", 1.0),
@@ -79,7 +81,7 @@ def summarize_f1(tp: int, fp: int, fn: int) -> dict:
     return {"precision": round(precision, 4), "recall": round(recall, 4), "f1": round(score, 4), "tp": tp, "fp": fp, "fn": fn}
 
 
-def evaluate(records: list[dict], extractor: Extractor) -> dict:
+def evaluate(records: list[dict], extractor: Extractor, progress=None) -> dict:
     groups = {"conditions": [0, 0, 0], "habits": [0, 0, 0], "medications": [0, 0, 0]}
     valid = proposed = unsupported = 0
     risk_pos = risk_hit = crit_pos = crit_hit = neg_total = neg_false_alarm = 0
@@ -88,7 +90,7 @@ def evaluate(records: list[dict], extractor: Extractor) -> dict:
     latencies: list[float] = []
     missed_risk: list[str] = []
 
-    for record in records:
+    for done, record in enumerate(records, 1):
         expected = record["expected"]
         started = time.perf_counter()
         out = extractor.extract(record["text"], record["task"])
@@ -122,6 +124,8 @@ def evaluate(records: list[dict], extractor: Extractor) -> dict:
         if "pregnancy" in expected:
             pregnancy_total += 1
             pregnancy_ok += (s["pregnancy"] or {}).get("status") == expected["pregnancy"]
+        if progress:
+            progress(done, len(records), sum(latencies))
 
     n = len(records)
     ordered = sorted(latencies)
@@ -166,6 +170,14 @@ def check_gates(report: dict, baseline: dict | None = None) -> list[str]:
     return failures
 
 
+def print_progress(done: int, total: int, elapsed_s: float) -> None:
+    """Every 10 texts, on stderr (stdout carries the report), with a rough estimate of the time left."""
+    if done % 10 and done != total:
+        return
+    left_s = elapsed_s / done * (total - done)
+    print(f"{done}/{total} textos, {elapsed_s / 60:.0f} min até aqui, faltam ~{left_s / 60:.0f} min", file=sys.stderr, flush=True)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--gold", type=Path, required=True)
@@ -177,6 +189,7 @@ def main() -> int:
 
     records = load_gold(args.gold)
     kb = load_and_validate()
+    style = "full"
     if args.fake:
         llm = echo_model(records)
     else:
@@ -186,9 +199,14 @@ def main() -> int:
         if llm.status != "ready":
             print(f"modelo indisponível: {llm.load_error}", file=sys.stderr)
             return 2
-    report = evaluate(records, Extractor(llm, kb))
+        style = prompt_style_from_env()
+    report = evaluate(records, Extractor(llm, kb, prompt_style=style), progress=print_progress)
     report["gold_sha256"] = hashlib.sha256(args.gold.read_bytes()).hexdigest()
-    report["model"] = "fake" if args.fake else {k: os.getenv(v) for k, v in (("repo", "MODEL_REPO_ID"), ("file", "MODEL_FILENAME"), ("revision", "MODEL_REVISION"))}
+    if args.fake:
+        report["model"] = "fake"
+    else:
+        report["model"] = {k: os.getenv(v) for k, v in (("repo", "MODEL_REPO_ID"), ("file", "MODEL_FILENAME"), ("revision", "MODEL_REVISION"))}
+        report["model"]["prompt"] = style
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)

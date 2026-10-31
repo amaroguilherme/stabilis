@@ -1,6 +1,8 @@
 """The evaluation harness runs end to end with the echo model (no real model)."""
 
 import importlib.util
+import json
+import sys
 from pathlib import Path
 
 from core.extraction.extract import Extractor
@@ -27,6 +29,32 @@ def test_harness_reports_metrics_and_gates():
     assert report["improper_suggestions"] == []
     assert harness.check_gates(report) == []
     assert "text" not in str(report.keys())  # the report never carries the texts
+
+
+def test_real_runs_measure_the_prompt_the_space_serves(monkeypatch, tmp_path):
+    """EXTRACTION_PROMPT reaches the harness the same way it reaches the Space (core/service.py)."""
+    import core.llm.llamacpp as llamacpp
+    from core.extraction.prompt import build_short_prompt
+    from core.extraction.text import sanitize_user_text
+
+    prompts = []
+
+    class RecordingModel:
+        status, load_error = "ready", None
+
+        def complete_json(self, prompt, schema, *, max_tokens):
+            prompts.append(prompt)
+            return "{}"  # out of schema: the run degrades, which does not matter here
+
+    monkeypatch.setattr(llamacpp, "LlamaCppClient", RecordingModel)
+    monkeypatch.setenv("EXTRACTION_PROMPT", "short")
+    gold, out = ROOT / "eval" / "gold" / "FORMAT.jsonl", tmp_path / "report.json"
+    monkeypatch.setattr(sys, "argv", ["run_eval.py", "--gold", str(gold), "--out", str(out)])
+    harness = _harness()
+    assert harness.main() == 0
+    records = harness.load_gold(gold)
+    assert prompts == [build_short_prompt(r["task"], sanitize_user_text(r["text"], 4000)) for r in records]
+    assert json.loads(out.read_text(encoding="utf-8"))["model"]["prompt"] == "short"
 
 
 def _module(name: str):
