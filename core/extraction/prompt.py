@@ -21,12 +21,13 @@ Regras:
 1. Extraia apenas o que está escrito. Não deduza diagnósticos nem complete o que falta.
 2. Em todo item, "evidence" é uma cópia literal do trecho do texto que sustenta o item, sem corrigir nada.
 3. "negated": true quando o texto diz que aquilo NÃO acontece (ex.: "nega ideação suicida", "sem insônia").
-4. "experiencer": "other" quando o trecho fala de outra pessoa (ex.: "minha mãe tem depressão").
+4. "experiencer": "patient" quando o trecho fala da própria pessoa (quem escreve o relato, ou o paciente da anamnese); "other" só quando fala de outra pessoa (ex.: "minha mãe tem depressão").
 5. "temporality": "current" (agora ou nas últimas semanas), "past" (já passou), "hypothetical" (medo, dúvida, possibilidade).
 6. Medicamentos: "name" como está escrito; "dose_mg_per_day" é a dose total do dia em mg, só se der para calcular; "status": "current" se usa hoje, "past" se já usou e parou.
 7. Condições e substâncias: use só os códigos das listas abaixo. Sem código adequado, não inclua.
 8. Risco (morte, suicídio, autolesão): inclua sempre que aparecer, inclusive quando negado (marque "negated").
 9. Gravidez: "unknown" se o texto não fala disso.
+10. Não repita: cada trecho entra uma vez em cada lista, com o código que melhor o descreve.
 
 Domínios de sintomas:
 {_codes(SYMPTOM_DOMAINS)}

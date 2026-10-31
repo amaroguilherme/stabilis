@@ -165,6 +165,13 @@ def test_control_tokens_and_delimiters_never_reach_the_prompt(kb):
     assert body.count("TEXTO>>>") == 1 and "<<<" not in body
 
 
+def test_prompt_says_who_the_patient_is(kb):
+    """Defining only "other" made small models mark every item as someone else's, so all were dropped."""
+    llm = FakeLlm(model_output())
+    Extractor(llm, kb).extract("tenho pressão alta", "patient")
+    assert '"experiencer": "patient" quando o trecho fala da própria pessoa' in llm.prompts[0]
+
+
 def test_text_is_truncated_to_the_limit(kb):
     llm = FakeLlm(model_output())
     Extractor(llm, kb, max_text_chars=50).extract("a" * 500, "patient")
