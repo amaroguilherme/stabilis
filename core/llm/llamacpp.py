@@ -12,6 +12,7 @@ from __future__ import annotations
 import logging
 import os
 import threading
+import time
 
 from core.llm.base import LlmError
 
@@ -42,11 +43,20 @@ class LlamaCppClient:
             options = dict(n_ctx=N_CTX, n_gpu_layers=-1, n_threads=threads, n_threads_batch=threads, verbose=False)
             repo_id, filename = os.getenv("MODEL_REPO_ID"), os.getenv("MODEL_FILENAME")
             revision = os.getenv("MODEL_REVISION", "").strip()
-            if revision:
-                from huggingface_hub import hf_hub_download
+            started = time.perf_counter()
+            if not revision:
+                llama = Llama.from_pretrained(repo_id=repo_id, filename=filename, **options)
+                logger.info("llm_loaded s=%.0f", time.perf_counter() - started)
+                return llama
+            from huggingface_hub import hf_hub_download
 
-                return Llama(model_path=hf_hub_download(repo_id=repo_id, filename=filename, revision=revision), **options)
-            return Llama.from_pretrained(repo_id=repo_id, filename=filename, **options)
+            # Timed separately: the cold start (a promotion gate) is download plus load.
+            path = hf_hub_download(repo_id=repo_id, filename=filename, revision=revision)
+            downloaded = time.perf_counter()
+            logger.info("llm_downloaded s=%.0f", downloaded - started)
+            llama = Llama(model_path=path, **options)
+            logger.info("llm_loaded s=%.0f", time.perf_counter() - downloaded)
+            return llama
         except Exception as exc:
             self.load_error = type(exc).__name__
             logger.error("llm_load_failed error=%s", self.load_error)
