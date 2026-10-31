@@ -1,0 +1,64 @@
+{
+  "records": 330,
+  "improper_count": 14,
+  "schema_valid_rate": 0.997,
+  "unsupported_rate": 0.0289,
+  "risk_recall": 1.0,
+  "critical_risk_recall": 1.0,
+  "risk_false_alarm_rate": 0.3144,
+  "missed_risk_ids": [],
+  "groups": {
+    "conditions": {
+      "precision": 0.6354,
+      "recall": 0.8714,
+      "f1": 0.7349,
+      "tp": 61,
+      "fp": 35,
+      "fn": 9
+    },
+    "habits": {
+      "precision": 0.7419,
+      "recall": 0.92,
+      "f1": 0.8214,
+      "tp": 23,
+      "fp": 8,
+      "fn": 2
+    },
+    "medications": {
+      "precision": 0.9548,
+      "recall": 1.0,
+      "f1": 0.9769,
+      "tp": 169,
+      "fp": 8,
+      "fn": 0
+    }
+  },
+  "improper_suggestions": [
+    "v0-pac-098:habit:alcohol",
+    "v0-pac-121:medication:fluoxetina",
+    "v0-pac-122:habit:alcohol",
+    "v0-pac-123:medication:valproato",
+    "v0-pac-125:habit:cannabis",
+    "v0-pac-126:medication:sertralina",
+    "v0-pac-127:medication:clonazepam",
+    "v0-pac-130:medication:litio",
+    "v0-pac-131:condition:dementia",
+    "v0-pac-132:condition:epilepsy",
+    "v0-pac-132:condition:respiratory_disease",
+    "v0-pro-016:medication:bupropiona",
+    "v0-pro-066:medication:litio",
+    "v0-pro-069:medication:escitalopram"
+  ],
+  "pregnancy_accuracy": 0.9515,
+  "latency_s": {
+    "p50": 7.647,
+    "p95": 11.793
+  },
+  "gold_sha256": "57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81",
+  "model": {
+    "repo": "unsloth/gemma-4-E2B-it-GGUF",
+    "file": "gemma-4-E2B-it-Q4_K_M.gguf",
+    "revision": "0314792d7f1f7e229411f620751375812bb9faf2",
+    "prompt": "full"
+  }
+}

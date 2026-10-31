@@ -1,0 +1,57 @@
+{
+  "records": 330,
+  "improper_count": 3,
+  "schema_valid_rate": 1.0,
+  "unsupported_rate": 0.4562,
+  "risk_recall": 0.9545,
+  "critical_risk_recall": 0.8929,
+  "risk_false_alarm_rate": 0.0947,
+  "missed_risk_ids": [
+    "v0-pac-175",
+    "v0-pac-177",
+    "v0-pac-182"
+  ],
+  "groups": {
+    "conditions": {
+      "precision": 0.75,
+      "recall": 0.2143,
+      "f1": 0.3333,
+      "tp": 15,
+      "fp": 5,
+      "fn": 55
+    },
+    "habits": {
+      "precision": 0.8,
+      "recall": 0.16,
+      "f1": 0.2667,
+      "tp": 4,
+      "fp": 1,
+      "fn": 21
+    },
+    "medications": {
+      "precision": 0.9816,
+      "recall": 0.9467,
+      "f1": 0.9639,
+      "tp": 160,
+      "fp": 3,
+      "fn": 9
+    }
+  },
+  "improper_suggestions": [
+    "v0-pac-121:medication:fluoxetina",
+    "v0-pac-123:medication:valproato",
+    "v0-pac-126:medication:sertralina"
+  ],
+  "pregnancy_accuracy": 0.9727,
+  "latency_s": {
+    "p50": 6.518,
+    "p95": 12.291
+  },
+  "gold_sha256": "57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81",
+  "model": {
+    "repo": "amaroguilherme/gemma-2-9b-stabilis-gguf",
+    "file": "gemma-2-9b-it.Q4_K_M.gguf",
+    "revision": "ef68b7b363ee50a86aabca562152753cd77e9d89",
+    "prompt": "full"
+  }
+}

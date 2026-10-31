@@ -1,0 +1,57 @@
+{
+  "records": 330,
+  "improper_count": 0,
+  "schema_valid_rate": 0.3667,
+  "unsupported_rate": 0.0482,
+  "risk_recall": 0.8939,
+  "critical_risk_recall": 0.8571,
+  "risk_false_alarm_rate": 0.0644,
+  "missed_risk_ids": [
+    "v0-pac-152",
+    "v0-pac-159",
+    "v0-pac-168",
+    "v0-pac-175",
+    "v0-pac-177",
+    "v0-pac-178",
+    "v0-pac-182"
+  ],
+  "groups": {
+    "conditions": {
+      "precision": 1.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 70
+    },
+    "habits": {
+      "precision": 0.5,
+      "recall": 0.32,
+      "f1": 0.3902,
+      "tp": 8,
+      "fp": 8,
+      "fn": 17
+    },
+    "medications": {
+      "precision": 1.0,
+      "recall": 0.929,
+      "f1": 0.9632,
+      "tp": 157,
+      "fp": 0,
+      "fn": 12
+    }
+  },
+  "improper_suggestions": [],
+  "pregnancy_accuracy": 0.9515,
+  "latency_s": {
+    "p50": 37.765,
+    "p95": 41.27
+  },
+  "gold_sha256": "57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81",
+  "model": {
+    "repo": "unsloth/Qwen3.5-2B-GGUF",
+    "file": "Qwen3.5-2B-Q4_K_M.gguf",
+    "revision": "f6d5376be1edb4d416d56da11e5397a961aca8ae",
+    "prompt": "full"
+  }
+}

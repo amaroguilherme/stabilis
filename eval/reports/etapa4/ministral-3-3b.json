@@ -1,0 +1,54 @@
+{
+  "records": 330,
+  "improper_count": 1,
+  "schema_valid_rate": 1.0,
+  "unsupported_rate": 0.0972,
+  "risk_recall": 0.9697,
+  "critical_risk_recall": 0.9643,
+  "risk_false_alarm_rate": 0.1212,
+  "missed_risk_ids": [
+    "v0-pac-159",
+    "v0-pac-182"
+  ],
+  "groups": {
+    "conditions": {
+      "precision": 0.6818,
+      "recall": 0.4286,
+      "f1": 0.5263,
+      "tp": 30,
+      "fp": 14,
+      "fn": 40
+    },
+    "habits": {
+      "precision": 0.3922,
+      "recall": 0.8,
+      "f1": 0.5263,
+      "tp": 20,
+      "fp": 31,
+      "fn": 5
+    },
+    "medications": {
+      "precision": 1.0,
+      "recall": 0.9408,
+      "f1": 0.9695,
+      "tp": 159,
+      "fp": 0,
+      "fn": 10
+    }
+  },
+  "improper_suggestions": [
+    "v0-pac-125:habit:cannabis"
+  ],
+  "pregnancy_accuracy": 0.9515,
+  "latency_s": {
+    "p50": 3.091,
+    "p95": 7.057
+  },
+  "gold_sha256": "57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81",
+  "model": {
+    "repo": "mistralai/Ministral-3-3B-Instruct-2512-GGUF",
+    "file": "Ministral-3-3B-Instruct-2512-Q4_K_M.gguf",
+    "revision": "eb599d408350ea2bb60452cb86be7c7b2fc28227",
+    "prompt": "full"
+  }
+}

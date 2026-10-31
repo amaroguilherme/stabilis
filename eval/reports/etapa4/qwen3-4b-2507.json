@@ -1,0 +1,60 @@
+{
+  "records": 330,
+  "improper_count": 6,
+  "schema_valid_rate": 0.9061,
+  "unsupported_rate": 0.1948,
+  "risk_recall": 0.9545,
+  "critical_risk_recall": 0.9286,
+  "risk_false_alarm_rate": 0.1742,
+  "missed_risk_ids": [
+    "v0-pac-168",
+    "v0-pac-177",
+    "v0-pac-182"
+  ],
+  "groups": {
+    "conditions": {
+      "precision": 0.2626,
+      "recall": 0.7429,
+      "f1": 0.3881,
+      "tp": 52,
+      "fp": 146,
+      "fn": 18
+    },
+    "habits": {
+      "precision": 0.3878,
+      "recall": 0.76,
+      "f1": 0.5135,
+      "tp": 19,
+      "fp": 30,
+      "fn": 6
+    },
+    "medications": {
+      "precision": 0.9711,
+      "recall": 0.9941,
+      "f1": 0.9825,
+      "tp": 168,
+      "fp": 5,
+      "fn": 1
+    }
+  },
+  "improper_suggestions": [
+    "v0-pac-121:medication:fluoxetina",
+    "v0-pac-125:habit:cannabis",
+    "v0-pac-126:medication:sertralina",
+    "v0-pac-127:medication:clonazepam",
+    "v0-pac-130:medication:litio",
+    "v0-pro-069:medication:escitalopram"
+  ],
+  "pregnancy_accuracy": 0.9515,
+  "latency_s": {
+    "p50": 7.67,
+    "p95": 47.276
+  },
+  "gold_sha256": "57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81",
+  "model": {
+    "repo": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
+    "file": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "revision": "a06e946bb6b655725eafa393f4a9745d460374c9",
+    "prompt": "full"
+  }
+}

@@ -115,12 +115,15 @@ latência de 2 vCPUs) com licença permissiva (Apache 2.0). Os candidatos do pla
 2B/4B, Tucano2-qwen e Ministral 3 3B. Use a versão GGUF Q4_K_M de cada um no Hugging Face e o mesmo comando,
 trocando `MODEL_REPO_ID` e `MODEL_FILENAME` e salvando em `eval/reports/<nome>.json`.
 
-- Se aparecer "modelo indisponível", a versão fixada do `llama-cpp-python` (0.3.18) talvez não suporte a
-  arquitetura. Tente outro candidato, ou me peça para atualizar a versão (precisa de teste).
+- Se aparecer "modelo indisponível", a versão fixada do `llama-cpp-python` talvez não suporte a arquitetura.
+  Tente outro candidato, ou me peça para atualizar a versão (precisa de teste).
 - Confira a licença no model card antes de escolher.
 
 **Escolha** o modelo base pelo recall de risco (no geral e no subconjunto crítico), depois pelo F1 por grupo e
 pelas sugestões indevidas. O ajuste da etapa 6 tem de superar `producao.json`, não esses números sem ajuste.
+
+**Feito em 2026-10-31:** o escolhido foi o Gemma 4 E2B, e o `llama-cpp-python` passou para 0.3.36, que suporta a
+arquitetura dele. Os números e os motivos estão em `eval/reports/README.md`.
 
 ## 5. Gerar os dados sintéticos
 
