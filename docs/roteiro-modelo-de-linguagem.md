@@ -145,9 +145,14 @@ modelo não existe, troque pelo nome que aparece no console da Groq.
 Depois, a geração de verdade:
 
 ```bash
-python -m datagen.run --n 3000 --seed 1 --out datagen/out/v1
+export DATAGEN_TEACHER_REASONING_EFFORT=low
+until python -m datagen.run --n 1000 --seed 1 --out datagen/out/v1; [ $? -ne 3 ]; do sleep 1800; done
 python finetune/prepare.py --data datagen/out/v1 --out finetune/data/v1
 ```
+
+No plano gratuito da Groq, o professor tem 200 mil tokens por dia, umas 100 tentativas. Por isso a v1 tem
+1.000 tentativas, cerca de uma semana; se os portões da etapa 7 pedirem mais dados, um `--n` maior estende a
+mesma geração.
 
 - Se o plano gratuito esgotar, a geração para e avisa. Rode **o mesmo comando** mais tarde: ela continua de onde
   parou, com o mesmo resultado.

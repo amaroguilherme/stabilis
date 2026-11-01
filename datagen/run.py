@@ -29,7 +29,7 @@ from datagen.dedupe import dedupe  # noqa: E402
 from datagen.llm_client import BadOutput, ProviderError  # noqa: E402
 from datagen.noise import noisy_example  # noqa: E402
 from datagen.profiles import FactSheet, ProfileSampler, expected_extraction  # noqa: E402
-from datagen.prompts import judge_prompt, parse_items, teacher_prompt  # noqa: E402
+from datagen.prompts import PROMPT_VERSION, judge_prompt, parse_items, teacher_prompt  # noqa: E402
 from datagen.split import split  # noqa: E402
 
 MIN_CHARS, MAX_CHARS = 60, 2000
@@ -109,16 +109,27 @@ def _load_progress(path: Path | None, header: dict) -> dict[int, dict]:
         return {}
     lines = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
     if not lines or lines[0].get("header") != header:
-        raise SystemExit(f"{path} é de outra configuração (semente, proporção ou modelos): use outra pasta --out")
+        raise SystemExit(f"{path} é de outra configuração (semente, proporção, modelos ou versão do prompt): use outra pasta --out")
     return {entry["i"]: entry for entry in lines[1:]}
 
 
 def generate(args, kb, teacher, judge, progress: Path | None = None) -> tuple[list[dict], list[dict]]:
-    conditions = {c["id"]: c["label_plain"] for c in kb.vocab["comorbidities"]["comorbidities"]}
-    habits = {h["id"]: h["label_plain"] for h in kb.vocab["comorbidities"]["habits"]}
+    vocab = kb.vocab["comorbidities"]
+    # Patients describe their conditions in plain words; anamneses use the clinical labels.
+    labels = {
+        task: ({c["id"]: c[key] for c in vocab["comorbidities"]}, {h["id"]: h[key] for h in vocab["habits"]})
+        for task, key in (("patient", "label_plain"), ("professional", "label_clinical"))
+    }
     sampler = ProfileSampler(kb, args.seed)
     rng = random.Random(args.seed)
-    header = {"seed": args.seed, "patient_share": args.patient_share, "teacher": teacher.model, "judge": judge.model}
+    header = {
+        "seed": args.seed,
+        "patient_share": args.patient_share,
+        "teacher": teacher.model,
+        "judge": judge.model,
+        "prompt_version": PROMPT_VERSION,
+        "teacher_reasoning": getattr(teacher, "reasoning_effort", None),
+    }
     done = _load_progress(progress, header)
     log = None
     if progress is not None:
@@ -137,7 +148,7 @@ def generate(args, kb, teacher, judge, progress: Path | None = None) -> tuple[li
                 if outcome == "accepted" and task == "patient":
                     rng.choice(NOISE_LEVELS)  # keep the random stream aligned with an uninterrupted run
             else:
-                outcome, record = _one(i, task, sheet, args, rng, teacher, judge, conditions, habits)
+                outcome, record = _one(i, task, sheet, args, rng, teacher, judge, *labels[task])
                 if log:
                     log.write(json.dumps({"i": i, "outcome": outcome, "record": record}, ensure_ascii=False) + "\n")
                     log.flush()

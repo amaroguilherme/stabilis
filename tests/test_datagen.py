@@ -87,7 +87,9 @@ class ScriptedTeacher:
     def complete_json(self, prompt, temperature):
         items = re.findall(r"^(\d+)\. (.+)$", prompt, flags=re.MULTILINE)
         sentences = [f"Item {i}: {desc}" for i, desc in items]
-        return {"text": ". ".join(sentences) + ".", "evidence": [{"index": int(i), "evidence": f"Item {i}: {desc}"} for i, desc in items]}
+        # The opening sentence keeps one-item texts above the minimum length, as a real teacher's would be.
+        text = "Relato escrito pelo professor simulado. " + ". ".join(sentences) + "."
+        return {"text": text, "evidence": [{"index": int(i), "evidence": f"Item {i}: {desc}"} for i, desc in items]}
 
 
 class ScriptedJudge:
@@ -212,3 +214,83 @@ def test_rate_limits_wait_and_permanent_errors_fail_fast(monkeypatch):
     monkeypatch.setattr(client, "_request", lambda path, body=None: (_ for _ in ()).throw(http_error(429)))
     with pytest.raises(ProviderError):
         client.complete_json("oi", temperature=0)
+
+
+def test_requests_identify_the_client(monkeypatch):
+    """Groq answers urllib's default User-Agent with HTTP 403; the client says who it is."""
+    import io
+
+    from datagen import llm_client
+
+    seen = {}
+
+    def fake_urlopen(request, timeout):
+        seen["user_agent"] = request.get_header("User-agent")
+        return io.BytesIO(b'{"data": []}')
+
+    monkeypatch.setattr(llm_client.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setenv("DATAGEN_TEACHER_BASE_URL", "https://exemplo.invalid/v1")
+    monkeypatch.setenv("DATAGEN_TEACHER_MODEL", "modelo")
+    llm_client.ChatClient("teacher").check()
+    assert seen["user_agent"] == "stabilis-datagen"
+
+
+def test_json_refused_by_the_provider_is_a_bad_sample(monkeypatch):
+    """Groq answers HTTP 400 json_validate_failed when the model's JSON is broken: retry, then reject the example."""
+    import io
+    import urllib.error
+
+    from datagen.llm_client import BadOutput, ChatClient
+
+    monkeypatch.setenv("DATAGEN_TEACHER_BASE_URL", "https://exemplo.invalid/v1")
+    monkeypatch.setenv("DATAGEN_TEACHER_MODEL", "teacher-family/teacher-a")
+    client = ChatClient("teacher")
+    client.sleep = lambda seconds: None
+
+    def refused():
+        body = b'{"error": {"code": "json_validate_failed", "message": "Failed to generate JSON"}}'
+        return urllib.error.HTTPError("https://exemplo.invalid", 400, "Bad Request", {}, io.BytesIO(body))
+
+    answers = [refused(), {"choices": [{"message": {"content": '{"ok": true}'}}]}]
+
+    def scripted(path, body=None):
+        answer = answers.pop(0)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    monkeypatch.setattr(client, "_request", scripted)
+    assert client.complete_json("oi", temperature=0.9) == {"ok": True}
+
+    monkeypatch.setattr(client, "_request", lambda path, body=None: (_ for _ in ()).throw(refused()))
+    with pytest.raises(BadOutput):
+        client.complete_json("oi", temperature=0.9)
+
+
+def test_anamneses_get_clinical_terms_and_patients_plain_meanings(kb):
+    """Copied PHQ-9 glosses made anamneses read like a form; patients get the meaning, not the instrument."""
+    from datagen.prompts import CLINICAL_RISKS, CLINICAL_SYMPTOMS, describe
+    from core.extraction.schema import RISK_KINDS, SYMPTOM_DOMAINS
+
+    assert set(CLINICAL_SYMPTOMS) == set(SYMPTOM_DOMAINS) and set(CLINICAL_RISKS) == set(RISK_KINDS)
+    sampler = ProfileSampler(kb, 4)
+    for i in range(40):
+        for task in ("patient", "professional"):
+            lines = "\n".join(describe(sampler.sample(i, task), {}, {}))
+            assert "PHQ-9" not in lines and "GAD-7" not in lines
+            if task == "professional":
+                assert not any(gloss in lines for gloss in (SYMPTOM_DOMAINS["anhedonia"], RISK_KINDS["suicide_plan"]))
+
+
+def test_reasoning_effort_is_sent_only_when_configured(monkeypatch):
+    from datagen.llm_client import ChatClient
+
+    monkeypatch.setenv("DATAGEN_TEACHER_BASE_URL", "https://exemplo.invalid/v1")
+    monkeypatch.setenv("DATAGEN_TEACHER_MODEL", "teacher-family/teacher-a")
+    bodies = []
+    for effort in ("", "low"):
+        monkeypatch.setenv("DATAGEN_TEACHER_REASONING_EFFORT", effort)
+        client = ChatClient("teacher")
+        monkeypatch.setattr(client, "_request", lambda path, body=None: bodies.append(body) or {"choices": [{"message": {"content": "{}"}}]})
+        client.complete_json("oi", temperature=0.9)
+    assert "reasoning_effort" not in bodies[0] and bodies[1]["reasoning_effort"] == "low"
