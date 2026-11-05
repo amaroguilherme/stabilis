@@ -170,11 +170,11 @@ mesma geração.
      (o `finetune/train_qlora.py`, porque o repositório do GitHub é privado e o Kaggle não consegue cloná-lo).
 3. Confira a célula de configuração:
    - `BASE_MODEL`: o modelo escolhido na etapa 4, na versão do Hugging Face/Unsloth, não o GGUF;
-   - `DATA_DIR`: `/kaggle/input/<nome do dataset>`;
-   - `HF_MODEL_REPO`: por exemplo `amaroguilherme/stabilis-extrator`, privado;
-   - `CODE_DIR`: o dataset com o script. Se o `train_qlora.py` mudar, publique uma versão nova desse dataset
-     (`kaggle datasets version`). Sem ele anexado, o notebook clona `REPO_URL`, o que só funciona com o
-     repositório público.
+   - `HF_MODEL_REPO`: por exemplo `amaroguilherme/stabilis-extrator`, privado.
+
+   Os dois datasets são procurados em `/kaggle/input`, qualquer que seja o caminho de montagem. Se o
+   `train_qlora.py` mudar, publique uma versão nova do dataset de código (`kaggle datasets version`) e atualize a
+   versão anexada ao notebook.
 4. Rode tudo. No fim, o notebook mostra `MODEL_REPO_ID`, `MODEL_FILENAME` e `MODEL_REVISION`: anote os três.
 
 O notebook nunca rodou de ponta a ponta. Se alguma célula falhar, me mande a mensagem de erro.

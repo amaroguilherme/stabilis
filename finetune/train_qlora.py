@@ -15,10 +15,17 @@ model's own chat template.
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 from pathlib import Path
 
 PROBE = "STABILIS_PROBE"
+
+
+def supported_name(func, new: str, old: str) -> str:
+    """TRL renamed arguments between versions (max_seq_length → max_length, tokenizer → processing_class):
+    use whichever the installed version takes."""
+    return new if new in inspect.signature(func).parameters else old
 
 
 def bos_token(tokenizer) -> str:
@@ -57,10 +64,11 @@ def main() -> int:
     parser.add_argument("--grad-accum", type=int, default=8)
     args = parser.parse_args()
 
-    from datasets import load_dataset
-    from trl import SFTConfig, SFTTrainer
+    # Unsloth first: it patches trl and transformers when imported.
     from unsloth import FastModel
     from unsloth.chat_templates import get_chat_template, train_on_responses_only
+    from datasets import load_dataset
+    from trl import SFTConfig, SFTTrainer
 
     args.out.mkdir(parents=True, exist_ok=True)
     record = {k: str(v) for k, v in vars(args).items()}
@@ -96,12 +104,13 @@ def main() -> int:
 
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        **{supported_name(SFTTrainer.__init__, "processing_class", "tokenizer"): tokenizer},
         train_dataset=data["train"],
         eval_dataset=data["validation"],
         args=SFTConfig(
             dataset_text_field="text",
-            max_seq_length=args.max_seq,
+            # Without it, recent TRL truncates at 1024 tokens and cuts the JSON answers.
+            **{supported_name(SFTConfig.__init__, "max_length", "max_seq_length"): args.max_seq},
             per_device_train_batch_size=args.batch,
             gradient_accumulation_steps=args.grad_accum,
             num_train_epochs=args.epochs,

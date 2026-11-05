@@ -42,3 +42,16 @@ def test_processors_expose_the_bos_token_of_their_tokenizer():
         tokenizer = GEMMA4
 
     assert train.bos_token(Processor()) == "<bos>"
+
+
+def test_trl_argument_names_follow_the_installed_version():
+    def new_trl(self, model=None, processing_class=None, max_length=1024):
+        pass
+
+    def old_trl(self, model=None, tokenizer=None, max_seq_length=1024):
+        pass
+
+    assert train.supported_name(new_trl, "max_length", "max_seq_length") == "max_length"
+    assert train.supported_name(old_trl, "max_length", "max_seq_length") == "max_seq_length"
+    assert train.supported_name(new_trl, "processing_class", "tokenizer") == "processing_class"
+    assert train.supported_name(old_trl, "processing_class", "tokenizer") == "tokenizer"
