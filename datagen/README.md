@@ -53,8 +53,8 @@ O progresso registra a versão do prompt (`PROMPT_VERSION` em `prompts.py`). Mud
 retomada recusa misturar versões na mesma pasta.
 
 Saída em `datagen/out/<versão>/` (fora do git): `train.jsonl`, `validation.jsonl`, `test.jsonl`,
-`rejected.jsonl` e `stats.json`. O conjunto vai para um dataset **privado** no Hugging Face Hub, com o
-datasheet abaixo preenchido.
+`rejected.jsonl` e `stats.json`. Depois de `finetune/prepare.py`, o conjunto vai para um dataset **privado** no
+Kaggle, de onde o notebook de treino o lê, com o datasheet abaixo preenchido.
 
 ## Licenças
 
@@ -64,6 +64,8 @@ nome do modelo derivado. Confira a licença no model card antes de cada rodada.
 
 ## Datasheet (preencher a cada versão)
 
+Modelo para as próximas versões:
+
 - **Versão, data e semente:**
 - **Professor e juiz** (modelo, provedor, licença):
 - **Tamanho** por divisão e taxa de rejeição (de `stats.json`):
@@ -71,3 +73,34 @@ nome do modelo derivado. Confira a licença no model card antes de cada rodada.
 - **Usos previstos:** treinar e validar o extrator do Stabilis. Não usar para diagnóstico.
 - **Limitações:** texto sintético não cobre toda a variação real; o gold set humano é a medida de verdade.
 - **Dados pessoais:** nenhum (fichas sorteadas, textos gerados).
+
+### v1
+
+- **Versão, data e semente:** v1, gerada de 2026-10-31 a 2026-11-05, semente 1, `PROMPT_VERSION` 2, professor
+  com raciocínio baixo. Comando: `--n 1000 --seed 1 --out datagen/out/v1`.
+- **Professor e juiz:** `openai/gpt-oss-120b` e `qwen/qwen3.8-27b`, os dois no plano gratuito da Groq e com
+  licença Apache 2.0 (conferida no model card em 2026-11-05).
+- **Tamanho:** 1.000 tentativas e 529 exemplos aprovados (360 de treino, 49 de validação, 120 de teste). Os 471
+  reprovados se dividem em 383 pelo juiz, 87 por evidência fora do texto e 1 por resposta inválida do juiz.
+  Nenhuma duplicata.
+- **Composição:**
+  - 70% relatos de paciente e 30% anamneses;
+  - sete estilos (WhatsApp, áudio transcrito, texto cuidadoso, curto, evolução estruturada, anotação
+    telegráfica, carta de encaminhamento) e cinco regiões, cerca de 20% cada;
+  - ruído de digitação: nenhum em 46% (todas as anamneses ficam sem ruído), leve em 18%, médio em 19% e
+    forte em 17%;
+  - 2.975 itens, dos quais 14% negados, 8% sobre outra pessoa, 14% passados e 3% hipotéticos;
+  - 191 exemplos com risco, 119 deles com risco não negado da própria pessoa, e 41 com gravidez informada.
+- **Usos previstos:** treinar e validar o extrator do Stabilis. Não usar para diagnóstico.
+- **Limitações:**
+  - texto sintético não cobre toda a variação real; o gold set é a medida de verdade, mas também é sintético
+    (revisado por pessoa);
+  - 6% dos sintomas e riscos ainda repetem palavras das descrições do schema;
+  - algumas anamneses soam como formulário;
+  - alguns remédios aparecem com o nome em inglês;
+  - o nome do remédio no rótulo fica sem o ruído aplicado ao texto, então o modelo aprende a devolver o
+    nome correto de uma marca digitada com erro;
+  - o juiz às vezes não reconhece uma abreviação ("HAS") como o item da ficha e reprova sem motivo (cerca
+    de 1,5% das tentativas).
+- **Dados pessoais:** nenhum (fichas sorteadas, textos gerados). Os nomes que aparecem em cartas de
+  encaminhamento são inventados.
