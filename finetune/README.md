@@ -6,7 +6,8 @@ Passo a passo completo, das contas à promoção: [docs/roteiro-modelo-de-lingua
    `python finetune/prepare.py --data datagen/out/v1 --out finetune/data/v1`
 2. **Treino (Kaggle, GPU):** importe `finetune/kaggle_train.ipynb` no Kaggle (acelerador GPU T4 ×2, internet ligada,
    segredo `HF_TOKEN` com escrita no repositório privado do modelo) e anexe os dados de `finetune/data/<versão>` como
-   dataset privado. O notebook roda `finetune/train_qlora.py` com o modelo base escolhido na etapa 4 (Gemma 4 E2B,
+   dataset privado. Como o repositório do GitHub é privado, o `train_qlora.py` vai num segundo dataset privado
+   (`CODE_DIR` no notebook). O notebook roda `finetune/train_qlora.py` com o modelo base escolhido na etapa 4 (Gemma 4 E2B,
    `unsloth/gemma-4-E2B-it`; a comparação está em `eval/reports/README.md`), guarda semente, hiperparâmetros e os
    marcadores de turno do template em `run.json` e envia o GGUF para o repositório privado, mostrando o hash do commit. Nem o script nem o notebook rodam no CI (precisam de GPU), e
    ainda não foram testados de ponta a ponta.
