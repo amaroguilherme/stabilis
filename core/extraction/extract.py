@@ -123,15 +123,25 @@ class _Assembler:
             return False
         return True
 
+    def in_context(self, kind: str, code: str, item: dict, name: str | None = None) -> bool:
+        """The words around the item, as for names found by the lexicon. Medication and substance items carry
+        no experiencer, and the model mislabels some conditions ("minha mãe tem alzheimer")."""
+        where = _locate(self.text, item.get("evidence", ""), name)
+        reason = lexicon_context(self.text, *where) if where else None
+        if reason:
+            self.excluded.append({"kind": kind, "code": code, "evidence": item["evidence"], "reason": reason})
+            return False
+        return True
+
     def run(self, data: dict | None, meds: MedicationIndex) -> dict:
         data = data or {"symptoms": [], "risk": [], "medications": [], "conditions": [], "substances": [], "pregnancy": {"status": "unknown"}}
 
         conditions, habits, symptoms = [], [], []
         for item in data["conditions"]:
-            if self.supported(item) and self.keep("condition", item, "id"):
+            if self.supported(item) and self.keep("condition", item, "id") and self.in_context("condition", item["id"], item):
                 conditions.append({"id": item["id"], "evidence": item["evidence"]})
         for item in data["substances"]:
-            if self.supported(item) and self.keep("habit", item, "id"):
+            if self.supported(item) and self.keep("habit", item, "id") and self.in_context("habit", item["id"], item):
                 habits.append({"id": item["id"], "evidence": item["evidence"]})
         for item in data["symptoms"]:
             if self.supported(item) and self.keep("symptom", item, "domain"):
@@ -171,10 +181,15 @@ class _Assembler:
     def medications(self, items: list[dict], meds: MedicationIndex) -> list[dict]:
         out: dict[str, dict] = {}
         unrecognized: list[dict] = []
+        left_out: set[str] = set()  # excluded by context: the lexicon pass below must not bring them back
         for item in items:
             if not self.supported(item):
                 continue
             match = meds.lookup(item["name"]) or meds.lookup(item["evidence"])
+            code = match.drug_ids[0] if match and len(match.drug_ids) == 1 else item["name"]
+            if not self.in_context("medication", code, item, name=item["name"]):
+                left_out.add(code)
+                continue
             entry = {
                 "raw_text": item["name"],
                 "evidence": item["evidence"],
@@ -191,7 +206,7 @@ class _Assembler:
         # Names found without the model fill in what it missed (and everything when it is down), unless
         # the words around them say the medicine is someone else's, refused or only a plan.
         for found in meds.scan(self.text):
-            if len(found["drug_ids"]) == 1 and found["drug_ids"][0] not in out:
+            if len(found["drug_ids"]) == 1 and found["drug_ids"][0] not in out and found["drug_ids"][0] not in left_out:
                 reason = lexicon_context(self.text, found["start"], found["end"])
                 if reason:
                     self.excluded.append({"kind": "medication", "code": found["drug_ids"][0], "evidence": found["evidence"], "reason": reason})
@@ -206,6 +221,25 @@ class _Assembler:
                     "source": "lexicon",
                 }
         return list(out.values()) + unrecognized
+
+
+def _locate(text: str, evidence: str, name: str | None = None) -> tuple[int, int] | None:
+    """Where an item sits in the text, for the context check: its name inside the evidence, else the name
+    anywhere in the text (the model sometimes quotes a span without it: "Avaliar bupropiona? Contraindicada"
+    with the evidence "contraindicada"), else the end of the evidence, so words like "meu marido" inside the
+    span count. None when neither is found verbatim (accents or spacing differ): the item is then kept."""
+    lowered = text.lower()
+    at = lowered.find(evidence.lower()) if evidence else -1
+    if name:
+        inner = lowered.find(name.lower(), at, at + len(evidence)) if at >= 0 else -1
+        if inner < 0:
+            inner = lowered.find(name.lower())
+        if inner >= 0:
+            return inner, inner + len(name)
+    if at < 0:
+        return None
+    end = at + len(evidence)
+    return end, end
 
 
 def _unique(items: list[dict], key: str) -> list[dict]:

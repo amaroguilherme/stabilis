@@ -229,3 +229,41 @@ def test_short_prompt_for_fine_tuned_models(kb):
     llm = FakeLlm(model_output())
     Extractor(llm, kb, prompt_style="short").extract("durmo mal", "patient")
     assert llm.prompts[0] == "<tarefa:paciente>\n<<<TEXTO\ndurmo mal\nTEXTO>>>"
+
+
+def test_model_items_about_others_refused_or_planned_are_left_out(kb):
+    """Medication and substance items carry no experiencer, and the model mislabels some conditions: the
+    context check that already guards lexicon matches backs them up."""
+    text = "meu irmão toma depakote, meu marido bebe muito e a médica vai me passar sertralina. Minha mãe tem alzheimer."
+    llm = FakeLlm(model_output(
+        medications=[{"name": "depakote", "evidence": "depakote", "status": "current"},
+                     {"name": "sertralina", "evidence": "sertralina", "status": "current"}],
+        substances=[{"id": "alcohol", "evidence": "meu marido bebe muito", "negated": False, "temporality": "current"}],
+        conditions=[item("id", "dementia", "alzheimer")],
+    ))
+    out = Extractor(llm, kb).extract(text, "patient")
+    suggestions = out["suggestions"]
+    assert suggestions["medications"] == [] and suggestions["habits"] == [] and suggestions["conditions"] == []
+    reasons = {(e["kind"], e["reason"]) for e in out["excluded"]}
+    assert {("medication", "other_person"), ("medication", "hypothetical"), ("habit", "other_person"), ("condition", "other_person")} <= reasons
+    assert len([e for e in out["excluded"] if e["kind"] == "medication"]) == 2  # not excluded again by the lexicon pass
+
+
+def test_the_persons_own_items_survive_the_context_check(kb):
+    text = "desde que meu pai morreu tenho pressão alta e tomo sertralina 50 mg"
+    llm = FakeLlm(model_output(
+        conditions=[item("id", "hypertension", "pressão alta")],
+        medications=[{"name": "sertralina", "evidence": "tomo sertralina 50 mg", "status": "current"}],
+    ))
+    suggestions = Extractor(llm, kb).extract(text, "patient")["suggestions"]
+    assert [c["id"] for c in suggestions["conditions"]] == ["hypertension"]
+    assert [m["drug_id"] for m in suggestions["medications"]] == ["sertralina"]
+
+
+def test_context_is_read_around_the_name_when_the_evidence_leaves_it_out(kb):
+    """Seen in the fine-tuned model: the right name with an evidence span that does not contain it."""
+    text = "F, 36a, TDM atual. Avaliar bupropiona? Contraindicada pela história de transtorno alimentar."
+    llm = FakeLlm(model_output(medications=[{"name": "bupropiona", "evidence": "contraindicada", "status": "past"}]))
+    out = Extractor(llm, kb).extract(text, "professional")
+    assert out["suggestions"]["medications"] == []
+    assert [(e["kind"], e["reason"]) for e in out["excluded"]] == [("medication", "hypothetical")]

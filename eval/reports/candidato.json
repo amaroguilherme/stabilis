@@ -1,0 +1,65 @@
+{
+  "records": 330,
+  "improper_count": 13,
+  "schema_valid_rate": 0.9939,
+  "unsupported_rate": 0.2569,
+  "risk_recall": 0.9848,
+  "critical_risk_recall": 1.0,
+  "risk_false_alarm_rate": 0.0758,
+  "missed_risk_ids": [
+    "v0-pac-159"
+  ],
+  "groups": {
+    "conditions": {
+      "precision": 0.4932,
+      "recall": 0.5143,
+      "f1": 0.5035,
+      "tp": 36,
+      "fp": 37,
+      "fn": 34
+    },
+    "habits": {
+      "precision": 0.6129,
+      "recall": 0.76,
+      "f1": 0.6786,
+      "tp": 19,
+      "fp": 12,
+      "fn": 6
+    },
+    "medications": {
+      "precision": 0.9486,
+      "recall": 0.9822,
+      "f1": 0.9651,
+      "tp": 166,
+      "fp": 9,
+      "fn": 3
+    }
+  },
+  "improper_suggestions": [
+    "v0-pac-098:habit:alcohol",
+    "v0-pac-121:medication:fluoxetina",
+    "v0-pac-122:habit:alcohol",
+    "v0-pac-123:medication:valproato",
+    "v0-pac-125:habit:cannabis",
+    "v0-pac-126:medication:sertralina",
+    "v0-pac-130:medication:litio",
+    "v0-pac-131:condition:dementia",
+    "v0-pro-016:medication:bupropiona",
+    "v0-pro-066:medication:litio",
+    "v0-pro-069:medication:escitalopram",
+    "v0-pro-094:medication:litio",
+    "v0-pro-094:medication:valproato"
+  ],
+  "pregnancy_accuracy": 0.9667,
+  "latency_s": {
+    "p50": 5.235,
+    "p95": 13.27
+  },
+  "gold_sha256": "57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81",
+  "model": {
+    "repo": "amaroguilherme/stabilis-extrator",
+    "file": "stabilis-extrator-v1.Q4_K_M.gguf",
+    "revision": "e4fc3d1fc405e27809570f851e4c653743e853ab",
+    "prompt": "short"
+  }
+}

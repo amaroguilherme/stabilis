@@ -1,0 +1,16 @@
+{
+  "cold_start_s": 1.0,
+  "tasks": {
+    "patient": {
+      "n": 20,
+      "p50_s": 24.41,
+      "p95_s": 39.51
+    },
+    "professional": {
+      "n": 20,
+      "p50_s": 38.91,
+      "p95_s": 220.71
+    }
+  },
+  "where": "https://amaroguilherme-stabilis-api.hf.space"
+}

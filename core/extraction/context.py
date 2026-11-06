@@ -1,10 +1,10 @@
-"""Context of a medication name found by the lexicon, without the model.
+"""Context of an item in the text: another person, a negation or a plan.
 
-The model's medication items carry no negation or experiencer, so a name it left out on purpose
-("minha mãe toma fluoxetina") would come back from the lexicon. Before a lexicon match becomes a
-suggestion, the words around it in the same clause are checked for another person, a negation or a
-plan ("iniciar", "vai me passar"). Conservative: a first-person word between the cue and the name
-("minha mãe toma fluoxetina e eu tomo sertralina") cancels the cue.
+The model's medication and substance items carry no negation or experiencer, so neither a name the
+lexicon finds nor one the model proposes may become a suggestion before the words around it in the
+same clause are checked for another person, a negation or a plan ("iniciar", "vai me passar"). The same
+check backs up the model's own labels on conditions and habits. Conservative: a first-person word
+between the cue and the item ("minha mãe toma fluoxetina e eu tomo sertralina") cancels the cue.
 """
 
 from __future__ import annotations
@@ -24,7 +24,8 @@ OTHER_PERSON = {
     "sobrinho", "sobrinha", "cunhado", "cunhada", "sogro", "sogra", "colega", "neto", "neta",
 }
 # Words that put the person back as the subject ("uso" is left out: "em uso de" is a noun in notes).
-FIRST_PERSON = {"eu", "tomo", "tomei", "usei", "estou", "to", "faco", "pcte", "paciente"}
+# "tenho", "bebo", "fumo"... keep "desde que meu pai morreu tenho pressão alta" about the person.
+FIRST_PERSON = {"eu", "tomo", "tomei", "usei", "estou", "to", "faco", "pcte", "paciente", "tenho", "sou", "bebo", "fumo", "sinto", "fico", "ando"}
 NEGATION_BEFORE = [("nao", "tomo"), ("nao", "uso"), ("nao", "tomei"), ("nao", "usei"), ("nunca", "tomei"), ("nunca", "usei"), ("nega", "uso"), ("sem", "uso")]
 NEGATION_AFTER = [("nao", "quis"), ("nao", "tomei"), ("nao", "aceitei"), ("nao", "comecei"), ("recusei",), ("recusou",)]
 PLAN_BEFORE = [
