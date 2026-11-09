@@ -7,18 +7,42 @@ Cada `*.json` é a saída de `eval/run_eval.py`: só métricas e ids do gold set
   relativos da etapa 7 usam (`run_eval.py --baseline eval/reports/producao.json`).
 - `etapa4/`: a comparação que escolheu o modelo base, descrita abaixo.
 
-## Linha de base atual (2026-10-31)
+## Linha de base atual (2026-11-06)
 
-`producao.json` é o Gemma 2 9B do Space com o prompt corrigido, o léxico de crise 0.3.0 e o `llama-cpp-python`
-0.3.36, o que está no ar desde 2026-10-31.
+`producao.json` é o Gemma 2 9B do Space com o prompt corrigido, o léxico de crise 0.3.0, o `llama-cpp-python`
+0.3.36 e a checagem de contexto valendo também para os itens do modelo (publicada no Space em 2026-11-06).
 
 | riscos perdidos (de 66) | críticos perdidos (de 28) | alarme falso | itens sem evidência | F1 condições | F1 hábitos | F1 remédios | sugestões indevidas |
 |---|---|---|---|---|---|---|---|
-| 1 | 1 | 9% | 46% | 0,33 | 0,27 | 0,96 | 3 |
+| 1 | 1 | 9% | 46% | 0,33 | 0,27 | 0,97 | 0 |
 
-As métricas do próprio modelo são idênticas às medidas com a 0.3.18 na etapa 4, ou seja, a atualização não
-mudou o que ele responde. O ganho em risco (eram 3 perdidos) veio do léxico 0.3.0. O texto que continua perdido
-é o crítico do veneno de rato guardado.
+Na linha de base anterior (2026-10-31), a checagem de contexto só valia para os remédios achados pelo léxico,
+e o modelo sugeria 3 itens indevidos. O texto que continua perdido é o crítico do veneno de rato guardado.
+
+## Etapa 7, rodada 1: Gemma 4 E2B ajustado com a v1 (2026-11-05)
+
+`candidato.json` (qualidade, no Mac, com `EXTRACTION_PROMPT=short`) e `latencia-candidato.json` (no Space, com
+o modelo trocado temporariamente e depois devolvido ao de produção). O candidato **não** foi promovido.
+
+| portão | meta | candidato | situação |
+|---|---|---|---|
+| recall de risco, no geral e no subconjunto crítico | ≥ 0,98 e 100% | 65 de 66, 28 de 28 | passa |
+| F1 por grupo | ≥ linha de base | condições 0,51, hábitos 0,73, remédios 0,99 | passa |
+| sugestões indevidas | ≤ linha de base | 1, já corrigida no código (eram 13 antes da checagem de contexto) | quase |
+| p95 aquecido do paciente | ≤ 40 s | 39,5 s (mediana 24 s) | passa, no limite |
+| p95 aquecido do profissional | ≤ 60 s | 221 s (mediana 39 s) | falha |
+| partida | ≤ 3 min | cerca de 74 s (download 65 s, carga 2 s) | passa |
+| JSON válido | 100% | 99,4% | falha |
+| itens sem evidência | ≤ 1% | 26% | falha |
+
+- **Causa comum das três falhas:** a v1 não tem textos sem nada sobre a própria pessoa. Diante deles, o modelo
+  inventa itens com evidência "nenhuma" ou "não especificado" e às vezes repete até o limite de tokens, o que
+  também explica a cauda de 221 s nas anamneses.
+- **Sugestões indevidas:** eram remédios e hábitos de terceiros, recusados ou só planejados, que o schema não
+  marca e a v1 não mostra. A checagem de contexto passou a valer para os itens do modelo, e a v2 dos dados traz
+  esses casos fora do rótulo (`datagen/README.md`).
+- **Comparação com a produção:** o candidato não perde nenhum texto crítico, enquanto a produção perde um. O
+  alarme falso também é menor, 7,6% contra 9,5%.
 
 ## Etapa 4: linha de base e escolha do modelo base (2026-10-31)
 
