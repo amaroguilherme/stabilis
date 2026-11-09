@@ -88,7 +88,7 @@ class ScriptedTeacher:
         items = re.findall(r"^(\d+)\. (.+)$", prompt, flags=re.MULTILINE)
         sentences = [f"Item {i}: {desc}" for i, desc in items]
         # The opening sentence keeps one-item texts above the minimum length, as a real teacher's would be.
-        text = "Relato escrito pelo professor simulado. " + ". ".join(sentences) + "."
+        text = "Relato escrito pelo professor simulado para o teste do gerador de dados. " + ". ".join(sentences) + "."
         return {"text": text, "evidence": [{"index": int(i), "evidence": f"Item {i}: {desc}"} for i, desc in items]}
 
 
@@ -294,3 +294,50 @@ def test_reasoning_effort_is_sent_only_when_configured(monkeypatch):
         monkeypatch.setattr(client, "_request", lambda path, body=None: bodies.append(body) or {"choices": [{"message": {"content": "{}"}}]})
         client.complete_json("oi", temperature=0.9)
     assert "reasoning_effort" not in bodies[0] and bodies[1]["reasoning_effort"] == "low"
+
+
+def test_default_sampler_still_draws_the_v1_sheets(kb):
+    """v1 (datagen/README.md) must stay reproducible from its seed: new options draw nothing when off."""
+    import hashlib
+    import json
+
+    sampler = ProfileSampler(kb, 1)
+    sheets = [sampler.sample(i, "patient" if i % 3 else "professional").to_dict() for i in range(60)]
+    digest = hashlib.sha256(json.dumps(sheets, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    assert digest == "f387acbfb3b4b585a84d282e8e3b5553c7904df1e29be52e2e9f3a34e7377bcd"
+
+
+def test_distractors_reach_the_text_but_never_the_label(kb):
+    from datagen.profiles import expected_extraction, in_label
+    from datagen.prompts import describe
+
+    sampler = ProfileSampler(kb, 9, distractors=1.0)
+    sheets = [sampler.sample(i, "patient") for i in range(40)]
+    distractors = [(s, m) for s in sheets for m in s.mentions if not in_label(m)]
+    assert len(distractors) >= 30 and {m.kind for _, m in distractors} == {"medication", "habit"}
+    for sheet, mention in distractors:
+        lines = "\n".join(describe(sheet, {}, {}))
+        assert mention.kind != "medication" or any(w in lines for w in ("outra pessoa", "recusou", "só um plano"))
+        labelled = expected_extraction(sheet)
+        if mention.kind == "medication":
+            assert mention.code not in {m["drug_id"] for m in labelled["medications"]}
+    evidences = [f"trecho {i}" for i in range(len(sheets[0].mentions))]
+    assert sum(len(v) for k, v in label(sheets[0], evidences).items() if isinstance(v, list)) == sum(in_label(m) and m.kind != "pregnancy" for m in sheets[0].mentions)
+
+
+def test_sheets_with_nothing_about_the_person_suggest_nothing(kb):
+    from datagen.profiles import expected_extraction
+
+    sampler = ProfileSampler(kb, 10, empty_share=1.0)
+    for i in range(60):
+        labelled = expected_extraction(sampler.sample(i, "patient"))
+        assert labelled["medications"] == [] and labelled["substances"] == [] and labelled["pregnancy"] == {"status": "unknown"}
+        for group in ("symptoms", "conditions", "risk"):
+            assert all(item["negated"] or item["experiencer"] == "other" for item in labelled[group])
+
+
+def test_full_run_with_distractors_and_empty_sheets(kb):
+    args = SimpleNamespace(n=30, seed=4, patient_share=0.6, distractors=0.5, empty_share=0.3)
+    accepted, rejected = generate(args, kb, ScriptedTeacher(), ScriptedJudge())
+    assert accepted and not rejected
+    assert any(all(not v for k, v in e["label"].items() if isinstance(v, list)) for e in accepted), "some labels are empty"

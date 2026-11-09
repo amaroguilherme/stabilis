@@ -43,8 +43,25 @@ class FactSheet:
         return asdict(self)
 
 
+def in_label(m: Mention) -> bool:
+    """Medicines the person does not take (someone else's, refused, only planned) and other people's habits
+    appear in the text but not in the label: medication and substance items carry no experiencer, so the
+    model has to learn to leave them out (the fine-tuned v1 suggested them, see eval/reports/README.md)."""
+    if m.kind == "medication":
+        return m.experiencer == "patient" and not m.negated and m.temporality != "hypothetical"
+    if m.kind == "habit":
+        return m.experiencer == "patient"
+    return True
+
+
 class ProfileSampler:
-    def __init__(self, kb, seed: int):
+    """`distractors`: share of sheets that also mention a medicine or habit that is not the person's.
+    `empty_share`: share of sheets with nothing about the person (other people, denials, those
+    distractors), so the model learns to answer with empty lists. Both 0 reproduce the v1 sheets."""
+
+    def __init__(self, kb, seed: int, *, distractors: float = 0.0, empty_share: float = 0.0):
+        self.distractors = distractors
+        self.empty_share = empty_share
         self.rng = random.Random(seed)
         vocab = kb.vocab["comorbidities"]
         self.conditions = [c["id"] for c in vocab["comorbidities"]]
@@ -79,21 +96,63 @@ class ProfileSampler:
         status = "past" if self.rng.random() < 0.3 else "current"
         return Mention("medication", drug["id"], temporality=status, extra={"written_as": written, "mg_per_day": mg})
 
+    def _distractor(self, taken: set[str]) -> Mention:
+        """A medicine or habit the text mentions but that is not the person's (left out of the label), never
+        one already in the sheet: "eu tomo varfarina e minha mãe também" would muddle text and label."""
+        if self.rng.random() < 0.3:
+            free = [h for h in self.habits if h not in taken]
+            if free:
+                return Mention("habit", self.rng.choice(free), experiencer="other")
+        medication = self._medication()
+        for _ in range(5):
+            if medication.code not in taken:
+                break
+            medication = self._medication()
+        way = self.rng.choice(["other", "refused", "planned"])
+        if way == "other":
+            medication.experiencer = "other"
+        elif way == "refused":
+            medication.negated = True
+        else:
+            medication.temporality = "hypothetical"
+        return medication
+
+    def _nothing_about_the_person(self) -> list[Mention]:
+        rng = self.rng
+        if rng.random() < 0.1:
+            return []  # no clinical content at all
+        aside = [{"experiencer": "other"}, {"negated": True}]
+        mentions = [Mention("symptom", code, **rng.choice(aside)) for code in rng.sample(list(SYMPTOM_DOMAINS)[:-1], k=rng.randint(0, 2))]
+        if rng.random() < 0.4:
+            mentions.append(Mention("condition", rng.choice(self.conditions), experiencer="other"))
+        if rng.random() < 0.3:
+            mentions.append(Mention("risk", rng.choice(list(RISK_KINDS)), **rng.choice(aside)))
+        for _ in range(rng.choice([1, 1, 2])):
+            mentions.append(self._distractor({m.code for m in mentions}))
+        return mentions
+
     def sample(self, index: int, task: str) -> FactSheet:
         rng = self.rng
-        mentions: list[Mention] = []
-        for code in rng.sample(list(SYMPTOM_DOMAINS)[:-1], k=rng.randint(1, 4)):
-            mentions.append(Mention("symptom", code, **self._attributes()))
-        for code in rng.sample(self.conditions, k=rng.choice([0, 0, 1, 2])):
-            mentions.append(Mention("condition", code, **self._attributes()))
-        for code in rng.sample(self.habits, k=rng.choice([0, 1])):
-            mentions.append(Mention("habit", code, **self._attributes(allow_other=False)))
-        for _ in range(rng.choice([0, 1, 1, 2, 3])):
-            mentions.append(self._medication())
-        if rng.random() < 0.35:  # risk, often negated or about someone else (hard negatives)
-            mentions.append(Mention("risk", rng.choice(list(RISK_KINDS)), **self._attributes()))
+        # No random draw for an option set to 0: the v1 sheets come out exactly as they were.
+        empty = bool(self.empty_share) and rng.random() < self.empty_share
+        if empty:
+            mentions = self._nothing_about_the_person()
+        else:
+            mentions = []
+            for code in rng.sample(list(SYMPTOM_DOMAINS)[:-1], k=rng.randint(1, 4)):
+                mentions.append(Mention("symptom", code, **self._attributes()))
+            for code in rng.sample(self.conditions, k=rng.choice([0, 0, 1, 2])):
+                mentions.append(Mention("condition", code, **self._attributes()))
+            for code in rng.sample(self.habits, k=rng.choice([0, 1])):
+                mentions.append(Mention("habit", code, **self._attributes(allow_other=False)))
+            for _ in range(rng.choice([0, 1, 1, 2, 3])):
+                mentions.append(self._medication())
+            if rng.random() < 0.35:  # risk, often negated or about someone else (hard negatives)
+                mentions.append(Mention("risk", rng.choice(list(RISK_KINDS)), **self._attributes()))
+            if self.distractors and rng.random() < self.distractors:
+                mentions.append(self._distractor({m.code for m in mentions}))
         sex = rng.choice(["female", "male"])
-        if sex == "female" and rng.random() < 0.15:
+        if not empty and sex == "female" and rng.random() < 0.15:
             mentions.append(Mention("pregnancy", rng.choice(["pregnant", "planning", "breastfeeding"])))
         rng.shuffle(mentions)
         return FactSheet(
@@ -112,6 +171,8 @@ def expected_extraction(sheet: FactSheet) -> dict:
     out = {"symptoms": [], "risk": [], "medications": [], "conditions": [], "substances": [], "pregnancy": {"status": "unknown"}}
     attrs = lambda m: {"negated": m.negated, "experiencer": m.experiencer, "temporality": m.temporality}  # noqa: E731
     for m in sheet.mentions:
+        if not in_label(m):
+            continue
         if m.kind == "symptom":
             out["symptoms"].append({"domain": m.code, **attrs(m)})
         elif m.kind == "risk":

@@ -52,6 +52,14 @@ until python -m datagen.run --n 1000 --seed 1 --out datagen/out/v1; [ $? -ne 3 ]
 O progresso registra a versão do prompt (`PROMPT_VERSION` em `prompts.py`). Mudou o prompt, mude a versão: a
 retomada recusa misturar versões na mesma pasta.
 
+**Opções da v2** (as duas valem 0 por padrão, o que reproduz as fichas da v1):
+- `--distractors 0.5`: metade das fichas cita também um remédio de outra pessoa, recusado ou só planejado, ou um
+  hábito de outra pessoa. Ele aparece no texto e fica **fora** do rótulo, porque os itens de remédio e de
+  substância não têm o campo "outra pessoa" e o modelo precisa aprender a não listá-los.
+- `--empty-share 0.3`: 30% das fichas não têm nada sobre a própria pessoa, só terceiros, negações e esses
+  distratores, e algumas nem têm informação clínica. Sem esses casos, o modelo ajustado com a v1 inventava itens
+  com evidência "nenhuma" (`eval/reports/README.md`).
+
 Saída em `datagen/out/<versão>/` (fora do git): `train.jsonl`, `validation.jsonl`, `test.jsonl`,
 `rejected.jsonl` e `stats.json`. Depois de `finetune/prepare.py`, o conjunto vai para um dataset **privado** no
 Kaggle, de onde o notebook de treino o lê, com o datasheet abaixo preenchido.
@@ -104,3 +112,26 @@ Modelo para as próximas versões:
     de 1,5% das tentativas).
 - **Dados pessoais:** nenhum (fichas sorteadas, textos gerados). Os nomes que aparecem em cartas de
   encaminhamento são inventados.
+
+### v2
+
+- **Versão, data e semente:** v2, gerada de 2026-11-06 a 2026-11-07, semente 2, `PROMPT_VERSION` 3, professor
+  com raciocínio baixo. Comando: `--n 500 --seed 2 --distractors 0.5 --empty-share 0.3 --out datagen/out/v2`.
+- **Professor e juiz:** os mesmos da v1, `openai/gpt-oss-120b` e `qwen/qwen3.8-27b`, ambos Apache 2.0, no plano
+  gratuito da Groq.
+- **Tamanho:** 500 tentativas e 306 exemplos aprovados (196 de treino, 32 de validação, 74 de teste). Outros 4
+  saíram do treino porque repetiam combinações de fatos do teste. Os 194 reprovados se dividem em 149 pelo juiz
+  e 45 por evidência fora do texto. Nenhuma duplicata.
+- **Composição:**
+  - 72% relatos de paciente e 28% anamneses;
+  - 198 exemplos com distrator fora do rótulo: 70 hábitos de outra pessoa, 59 remédios recusados, 44 remédios
+    só planejados e 42 remédios de outra pessoa;
+  - 88 exemplos sem nada a sugerir para a própria pessoa, 14 deles com o rótulo totalmente vazio.
+- **Uso no treino:** junto com a v1, em `finetune/data/v1v2` (556 de treino e 81 de validação, com os ids
+  prefixados por `v1-` e `v2-`).
+- **Limitações:**
+  - as da v1;
+  - para fichas com pouco conteúdo, o professor costuma preencher o texto com cenas do dia a dia ("hoje acordei
+    cedo, tomei um cafezinho...");
+  - 7% dos sintomas e riscos repetem palavras das descrições do schema.
+- **Dados pessoais:** nenhum.

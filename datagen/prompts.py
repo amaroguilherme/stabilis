@@ -9,7 +9,7 @@ from core.extraction.schema import RISK_KINDS, SYMPTOM_DOMAINS
 from datagen.profiles import FactSheet
 
 # Bump on any change to the prompts below: a resumed generation never mixes versions.
-PROMPT_VERSION = 2
+PROMPT_VERSION = 3
 
 # Anamneses speak in clinical terms. Given the PHQ-9/GAD-7 glosses instead, the teacher wrote notes like a
 # form ("nega falta de apetite ou comer em excesso"), as seen in the first pilot.
@@ -88,10 +88,20 @@ def describe(sheet: FactSheet, conditions: dict[str, str], habits: dict[str, str
             what = f"hábito: {habits.get(m.code, m.code)}"
         elif m.kind == "medication":
             dose = f", {m.extra['mg_per_day']} mg por dia" if m.extra.get("mg_per_day") else ""
-            what = f"remédio escrito exatamente como \"{m.extra['written_as']}\"{dose}, {'já usou e parou' if m.temporality == 'past' else 'usa atualmente'}"
+            if m.experiencer == "other":
+                use = "usado por outra pessoa (um familiar), não por quem escreve"
+            elif m.negated:
+                use = "oferecido à pessoa, que recusou e não toma"
+            elif m.temporality == "hypothetical":
+                use = "ainda não começado: só um plano ou uma possibilidade"
+            else:
+                use = "já usou e parou" if m.temporality == "past" else "usa atualmente"
+            what = f"remédio escrito exatamente como \"{m.extra['written_as']}\"{dose}, {use}"
         else:
             what = {"pregnant": "está grávida", "planning": "planeja engravidar", "breastfeeding": "está amamentando"}[m.code]
-        flags = [ATTRIBUTE_TEXT[k] for k, on in (("negated", m.negated), ("other", m.experiencer == "other"), ("past", m.temporality == "past" and m.kind != "medication"), ("hypothetical", m.temporality == "hypothetical")) if on]
+        # Medicines carry their way of appearing in `use` above.
+        attributes = (("negated", m.negated), ("other", m.experiencer == "other"), ("past", m.temporality == "past"), ("hypothetical", m.temporality == "hypothetical"))
+        flags = [] if m.kind == "medication" else [ATTRIBUTE_TEXT[k] for k, on in attributes if on]
         lines.append(f"{i}. {what}" + (f" — {'; '.join(flags)}" if flags else ""))
     return lines
 
@@ -104,17 +114,24 @@ VOICE = {
 }
 
 
+NO_ITEMS = ("O texto não traz nenhuma informação clínica (nenhum sintoma, doença, remédio, hábito ou risco): é uma mensagem "
+            "sobre outro assunto do atendimento, como marcar consulta ou tirar uma dúvida.")
+
+
 def teacher_prompt(sheet: FactSheet, conditions: dict[str, str], habits: dict[str, str]) -> str:
     author = "a própria pessoa" if sheet.task == "patient" else "um profissional de saúde"
+    items = describe(sheet, conditions, habits)
+    content = NO_ITEMS if not items else (
+        "O texto deve expressar TODOS estes itens, cada um com a forma indicada (negado, sobre outra pessoa, passado,\n"
+        "hipotético, remédio que a pessoa não toma), e nenhuma outra informação clínica (nenhum outro sintoma, doença,\n"
+        "remédio ou risco):\n" + "\n".join(items))
     return f"""Escreva um texto em português do Brasil, como se fosse escrito por {author}.
 Estilo: {STYLE_HINTS[sheet.style]}. Região: {REGION_HINTS[sheet.region]}.
 Pessoa: {sheet.age} anos, sexo {'feminino' if sheet.sex == 'female' else 'masculino'}.
 {VOICE[sheet.task]} As descrições dos itens abaixo dizem o que cada um significa: não copie essas palavras.
 A região e o estilo valem só para o jeito de escrever; o texto não diz de onde a pessoa é nem como ela escreve.
 
-O texto deve expressar TODOS estes itens, cada um com a forma indicada depois do travessão (negado, sobre outra pessoa,
-passado, hipotético), e nenhuma outra informação clínica (nenhum outro sintoma, doença, remédio ou risco):
-{chr(10).join(describe(sheet, conditions, habits))}
+{content}
 
 Responda só com JSON: {{"text": "<o texto>", "evidence": [{{"index": <número do item>, "evidence": "<trecho copiado literalmente do texto que expressa o item>"}}]}}
 Cada item precisa de exatamente um trecho de evidência, copiado sem nenhuma alteração do texto."""
@@ -129,7 +146,7 @@ Texto:
 >>>
 
 Itens (com o modo como devem aparecer):
-{chr(10).join(describe(sheet, conditions, habits))}
+{chr(10).join(describe(sheet, conditions, habits)) or "(nenhum: o texto não deve ter informação clínica)"}
 
 Para cada item, diga se o texto o expressa do jeito indicado (inclusive negação, pessoa e tempo). Depois liste qualquer
 sintoma, doença, remédio ou risco de suicídio que esteja no texto e não esteja na lista.

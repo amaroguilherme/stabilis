@@ -28,7 +28,7 @@ from core.kb import load_and_validate  # noqa: E402
 from datagen.dedupe import dedupe  # noqa: E402
 from datagen.llm_client import BadOutput, ProviderError  # noqa: E402
 from datagen.noise import noisy_example  # noqa: E402
-from datagen.profiles import FactSheet, ProfileSampler, expected_extraction  # noqa: E402
+from datagen.profiles import FactSheet, ProfileSampler, expected_extraction, in_label  # noqa: E402
 from datagen.prompts import PROMPT_VERSION, judge_prompt, parse_items, teacher_prompt  # noqa: E402
 from datagen.split import split  # noqa: E402
 
@@ -59,6 +59,8 @@ def label(sheet: FactSheet, evidences: list[str]) -> dict:
     out["pregnancy"] = expected["pregnancy"]
     field = {"symptom": "symptoms", "risk": "risk", "condition": "conditions", "habit": "substances", "medication": "medications"}
     for mention, evidence in zip(sheet.mentions, evidences):
+        if not in_label(mention):  # in the text on purpose, never a suggestion
+            continue
         if mention.kind == "pregnancy":
             out["pregnancy"] = {"status": mention.code, "evidence": evidence}
             continue
@@ -120,11 +122,14 @@ def generate(args, kb, teacher, judge, progress: Path | None = None) -> tuple[li
         task: ({c["id"]: c[key] for c in vocab["comorbidities"]}, {h["id"]: h[key] for h in vocab["habits"]})
         for task, key in (("patient", "label_plain"), ("professional", "label_clinical"))
     }
-    sampler = ProfileSampler(kb, args.seed)
+    distractors, empty_share = getattr(args, "distractors", 0.0), getattr(args, "empty_share", 0.0)
+    sampler = ProfileSampler(kb, args.seed, distractors=distractors, empty_share=empty_share)
     rng = random.Random(args.seed)
     header = {
         "seed": args.seed,
         "patient_share": args.patient_share,
+        "distractors": distractors,
+        "empty_share": empty_share,
         "teacher": teacher.model,
         "judge": judge.model,
         "prompt_version": PROMPT_VERSION,
@@ -164,6 +169,8 @@ def main() -> int:
     parser.add_argument("--n", type=int, default=100)
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--patient-share", type=float, default=0.65)
+    parser.add_argument("--distractors", type=float, default=0.0, help="fichas com remédio ou hábito que não é da pessoa (fora do rótulo)")
+    parser.add_argument("--empty-share", type=float, default=0.0, help="fichas sem nada sobre a própria pessoa (rótulo sem sugestões)")
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
 
