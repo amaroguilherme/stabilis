@@ -166,8 +166,9 @@ mesma geração.
 2. Nas configurações do notebook:
    - acelerador **GPU T4 ×2** e internet ligada;
    - em Add-ons → Secrets, `HF_TOKEN` com o token de escrita do modelo;
-   - em Add data, os dois datasets privados: `stabilis-extracao-v1` (os dados da etapa 5) e `stabilis-codigo`
-     (o `finetune/train_qlora.py`, porque o repositório do GitHub é privado e o Kaggle não consegue cloná-lo).
+   - em Add data, dois datasets privados: o de dados mais recente (`stabilis-extracao-v2`, com a v1 e a v2 da
+     etapa 5; só um dataset de dados por vez) e `stabilis-codigo` (o `finetune/train_qlora.py`, porque o
+     repositório do GitHub é privado e o Kaggle não consegue cloná-lo).
 3. Confira a célula de configuração:
    - `BASE_MODEL`: o modelo escolhido na etapa 4, na versão do Hugging Face/Unsloth, não o GGUF;
    - `HF_MODEL_REPO`: por exemplo `amaroguilherme/stabilis-extrator`, privado.

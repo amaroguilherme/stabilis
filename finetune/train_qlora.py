@@ -5,7 +5,8 @@
       --data finetune/data/v1 --out runs/gemma4-e2b-v1
 
 Not run in this repository's CI (needs a GPU). Records seed, hyperparameters and the turn markers in
-<out>/run.json, trains on the model's answers only, and exports a GGUF (Q4_K_M) for llama.cpp. The base
+<out>/run.json, trains on the model's answers only, saves the adapter with its tokenizer in <out>/lora, and
+exports a GGUF (Q4_K_M) for llama.cpp to <out>/gguf/<--gguf-name>. The base
 model was chosen in eval/reports/README.md; another one needs a permissive license (check its model
 card) and an architecture the pinned llama-cpp-python supports. Follows Unsloth's Gemma 4 guide:
 FastModel with the vision layers frozen, the BOS token left to the trainer, and the turn markers of the
@@ -17,6 +18,8 @@ from __future__ import annotations
 import argparse
 import inspect
 import json
+import shutil
+import tempfile
 from pathlib import Path
 
 PROBE = "STABILIS_PROBE"
@@ -49,6 +52,15 @@ def turn_markers(tokenizer) -> tuple[str, str]:
     return without_bos(closed[: closed.index(PROBE)], bos_token(tokenizer)), opened[len(closed):]
 
 
+def pick_q4_k_m(folder: Path) -> Path:
+    """The Q4_K_M file Unsloth wrote somewhere under `folder`. It also writes an f16 GGUF and, for Gemma 4, an
+    mmproj for images, which the text-only service does not use."""
+    found = sorted(p for p in folder.rglob("*.gguf") if "q4_k_m" in p.name.lower() and "mmproj" not in p.name.lower())
+    if not found:
+        raise SystemExit(f"nenhum GGUF Q4_K_M em {folder}")
+    return found[0]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--base", required=True)
@@ -62,6 +74,7 @@ def main() -> int:
     parser.add_argument("--max-seq", type=int, default=3072)
     parser.add_argument("--batch", type=int, default=2)
     parser.add_argument("--grad-accum", type=int, default=8)
+    parser.add_argument("--gguf-name", default="stabilis-extrator.Q4_K_M.gguf", help="nome do arquivo GGUF final")
     args = parser.parse_args()
 
     # Unsloth first: it patches trl and transformers when imported.
@@ -130,8 +143,16 @@ def main() -> int:
     trainer.train()
 
     model.save_pretrained(str(args.out / "lora"))
-    model.save_pretrained_gguf(str(args.out / "gguf"), tokenizer, quantization_method="q4_k_m")
-    print(f"GGUF em {args.out / 'gguf'}: avalie com eval/run_eval.py antes de publicar.")
+    tokenizer.save_pretrained(str(args.out / "lora"))  # the GGUF can be redone from here without the session
+    # /kaggle/working holds about 20 GB and the export needs about 21 (a 16-bit merge plus an f16 GGUF before the
+    # quants): convert in the system temp directory and keep only the Q4_K_M file.
+    scratch = Path(tempfile.mkdtemp(prefix="stabilis-gguf-"))
+    model.save_pretrained_gguf(str(scratch / "gguf"), tokenizer, quantization_method="q4_k_m")
+    target = args.out / "gguf" / args.gguf_name
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.move(str(pick_q4_k_m(scratch)), target)
+    shutil.rmtree(scratch, ignore_errors=True)
+    print(f"GGUF em {target}: avalie com eval/run_eval.py antes de publicar.")
     return 0
 
 

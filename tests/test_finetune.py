@@ -55,3 +55,16 @@ def test_trl_argument_names_follow_the_installed_version():
     assert train.supported_name(old_trl, "max_length", "max_seq_length") == "max_seq_length"
     assert train.supported_name(new_trl, "processing_class", "tokenizer") == "processing_class"
     assert train.supported_name(old_trl, "processing_class", "tokenizer") == "tokenizer"
+
+
+def test_the_q4_k_m_file_is_picked_among_the_export_outputs(tmp_path):
+    """What Unsloth left in /tmp/gguf_gguf for Gemma 4 E2B: an f16, an image projector and the Q4_K_M."""
+    import pytest
+
+    exported = tmp_path / "gguf_gguf"
+    exported.mkdir()
+    for name in ("gemma-4-E2B-it.F16.gguf", "gemma-4-E2B-it.F16-mmproj.gguf", "gemma-4-E2B-it.Q4_K_M.gguf"):
+        (exported / name).write_bytes(b"")
+    assert train.pick_q4_k_m(tmp_path).name == "gemma-4-E2B-it.Q4_K_M.gguf"
+    with pytest.raises(SystemExit):
+        train.pick_q4_k_m(tmp_path / "vazio")
