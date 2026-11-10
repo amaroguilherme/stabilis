@@ -341,3 +341,27 @@ def test_full_run_with_distractors_and_empty_sheets(kb):
     accepted, rejected = generate(args, kb, ScriptedTeacher(), ScriptedJudge())
     assert accepted and not rejected
     assert any(all(not v for k, v in e["label"].items() if isinstance(v, list)) for e in accepted), "some labels are empty"
+
+
+def test_training_answers_follow_the_schema_order(kb):
+    """llama.cpp's grammar writes fields in schema order (evidence second); the answers the model learns must too."""
+    import importlib.util
+    import json
+    from pathlib import Path
+
+    from core.extraction.schema import build_schema
+
+    spec = importlib.util.spec_from_file_location("prepare", Path(__file__).resolve().parents[1] / "finetune" / "prepare.py")
+    prepare = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(prepare)
+    schema = build_schema([c["id"] for c in kb.vocab["comorbidities"]["comorbidities"]], [h["id"] for h in kb.vocab["comorbidities"]["habits"]])
+    accepted, _ = generate(SimpleNamespace(n=12, seed=6, patient_share=0.6, distractors=0.5, empty_share=0.2), kb, ScriptedTeacher(), ScriptedJudge())
+    for example in accepted:
+        answer = json.loads(prepare.to_chat(example)["messages"][1]["content"])
+        Draft202012Validator(schema).validate(answer)
+        assert list(answer) == list(schema["properties"])
+        for group in ("symptoms", "risk", "medications", "conditions", "substances"):
+            order = list(schema["properties"][group]["items"]["properties"])
+            for item in answer[group]:
+                assert list(item) == [f for f in order if f in item]
+                assert list(item)[1] == "evidence"
