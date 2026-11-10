@@ -112,3 +112,26 @@ No modo paciente, o questionário de risco (ASQ) continua sendo a triagem princi
 - **Vetores:** 29 novos, positivos e negativos difíceis, escritos fora da v0.
 - **Resultado sozinho na v0:** perde 2 dos 66 textos de risco e 1 dos 28 críticos (eram 7 e 4), sem alarme falso
   a mais. Não é um número independente, porque os erros da v0 eram conhecidos.
+
+## Etapa 7, rodada 2: Gemma 4 E2B ajustado com a v1 e a v2 (2026-11-09)
+
+`candidato-v2.json`: `stabilis-extrator-v2.Q4_K_M.gguf`, commit `01785fd6`, 3 épocas, 556 exemplos de treino.
+Medido no Mac com `EXTRACTION_PROMPT=short`. O candidato **não** foi promovido.
+
+| | JSON válido | riscos perdidos (críticos) | alarme falso | itens sem evidência | F1 condições | F1 hábitos | F1 remédios | sugestões indevidas |
+|---|---|---|---|---|---|---|---|---|
+| produção | 100% | 1 (1) | 9,5% | 46% | 0,33 | 0,27 | 0,970 | 0 |
+| rodada 1 | 99,4% | 1 (0) | 7,6% | 26% | 0,51 | 0,73 | 0,988 | 0 (com a checagem final) |
+| rodada 2 | 100% | 2 (1) | 6,8% | 17% | 0,71 | 0,56 | 0,966 | 0 |
+
+- **O que a v2 resolveu:** o JSON ficou 100% válido, não há sugestões indevidas, e os itens de preenchimento
+  ("nenhuma") quase sumiram.
+- **Portões que falharam:**
+  - recall de risco 0,97 e crítico 0,96: perdeu o texto do veneno de rato, que a rodada 1 pegava;
+  - itens sem evidência: 17%;
+  - F1 de remédios: 0,966 contra 0,970 da produção.
+- **Causa encontrada:** os rótulos de treino traziam a evidência como último campo de cada item. A gramática do
+  llama.cpp, porém, impõe a ordem do schema, com a evidência em segundo lugar. Na posição em que a gramática
+  pedia a evidência, o modelo escrevia o campo que aprendeu a pôr ali, como a situação do remédio
+  (`"evidence": "current"`). Isso afetou as duas rodadas. `finetune/prepare.py` agora grava as respostas de treino
+  na ordem do schema, sem precisar gerar dados de novo.
