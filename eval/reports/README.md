@@ -135,3 +135,24 @@ Medido no Mac com `EXTRACTION_PROMPT=short`. O candidato **não** foi promovido.
   pedia a evidência, o modelo escrevia o campo que aprendeu a pôr ali, como a situação do remédio
   (`"evidence": "current"`). Isso afetou as duas rodadas. `finetune/prepare.py` agora grava as respostas de treino
   na ordem do schema, sem precisar gerar dados de novo.
+
+## Etapa 7, rodada 3: com as respostas de treino na ordem do schema (2026-11-10)
+
+`candidato-v3.json`: `stabilis-extrator-v3.Q4_K_M.gguf`, commit `39055227`, os mesmos 556 exemplos da rodada 2 com a
+evidência em segundo lugar. O candidato **não** foi promovido.
+
+| | JSON válido | riscos perdidos (críticos) | alarme falso | itens sem evidência | F1 condições | F1 hábitos | F1 remédios | sugestões indevidas |
+|---|---|---|---|---|---|---|---|---|
+| produção | 100% | 1 (1) | 9,5% | 46% | 0,33 | 0,27 | 0,970 | 0 |
+| rodada 3 | 100% | 2 (1) | 6,4% | 15% | 0,67 | 0,56 | 0,976 | 0 |
+
+- **Passa agora:** o F1 de remédios supera a produção, e o alarme falso é o menor de todas as rodadas.
+- **Ainda falha:**
+  - recall de risco: os textos do veneno de rato (crítico) e de "tomar todos os rivotril de uma vez";
+  - itens sem evidência: 15%.
+- **O que o diagnóstico mostrou:**
+  - num texto com remédio e sem sintomas, o modelo lista sintomas com a evidência "não há menção", porque nos dados
+    toda ficha comum tinha ao menos um sintoma;
+  - alguns remédios ainda saem com a evidência errada (`"patient_report"`, `"uso atual"`), com o nome correto e
+    presente no texto;
+  - risco dito de forma indireta, pelo meio ou pelo plano, quase não aparece nos dados de treino.
