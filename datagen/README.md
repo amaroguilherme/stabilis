@@ -60,6 +60,14 @@ retomada recusa misturar versões na mesma pasta.
   distratores, e algumas nem têm informação clínica. Sem esses casos, o modelo ajustado com a v1 inventava itens
   com evidência "nenhuma" (`eval/reports/README.md`).
 
+**Opções da v3** (também valem o padrão da v1 quando omitidas):
+- `--no-symptoms 0.3`: 30% das fichas comuns ficam sem nenhum sintoma, só com remédios, condições ou hábitos. Sem
+  isso, o modelo ajustado listava sintomas com a evidência "não há menção" num texto que não tinha nenhum.
+- `--risk-share 0.5`: metade das fichas cita risco (o padrão é 35%).
+- `--indirect-risk 0.6`: 60% do risco da própria pessoa é escrito de forma indireta, pelo meio, pela preparação
+  ou pelo plano, sem as palavras "suicídio", "se matar" ou "morrer". O léxico de crise não cobre esse jeito de
+  falar, e a v1 e a v2 quase não o tinham.
+
 Saída em `datagen/out/<versão>/` (fora do git): `train.jsonl`, `validation.jsonl`, `test.jsonl`,
 `rejected.jsonl` e `stats.json`. Depois de `finetune/prepare.py`, o conjunto vai para um dataset **privado** no
 Kaggle, de onde o notebook de treino o lê, com o datasheet abaixo preenchido.
@@ -134,4 +142,20 @@ Modelo para as próximas versões:
   - para fichas com pouco conteúdo, o professor costuma preencher o texto com cenas do dia a dia ("hoje acordei
     cedo, tomei um cafezinho...");
   - 7% dos sintomas e riscos repetem palavras das descrições do schema.
+- **Dados pessoais:** nenhum.
+
+### v3
+
+- **Versão, data e semente:** v3, gerada de 2026-11-10 a 2026-11-11, semente 3, `PROMPT_VERSION` 4. Comando:
+  `--n 500 --seed 3 --distractors 0.3 --empty-share 0.15 --no-symptoms 0.3 --risk-share 0.5 --indirect-risk 0.6
+  --out datagen/out/v3`.
+- **Professor e juiz:** os mesmos da v1 e da v2.
+- **Tamanho:** 500 tentativas e 291 exemplos (204 de treino, 27 de validação, 60 de teste). O juiz reprovou 166
+  tentativas.
+- **Composição:**
+  - 68% relatos de paciente e 32% anamneses;
+  - 64 exemplos sem sintoma, mas com outros fatos;
+  - 93 com risco da própria pessoa, 52 deles dito de forma indireta (nenhum com as palavras proibidas).
+- **Uso no treino:** junto com a v1 e a v2, em `finetune/data/v1v2v3` (760 de treino e 108 de validação).
+- **Limitações:** as da v2. O risco indireto às vezes fica vago demais ("plano de saída de seus problemas").
 - **Dados pessoais:** nenhum.

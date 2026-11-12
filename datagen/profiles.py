@@ -57,11 +57,20 @@ def in_label(m: Mention) -> bool:
 class ProfileSampler:
     """`distractors`: share of sheets that also mention a medicine or habit that is not the person's.
     `empty_share`: share of sheets with nothing about the person (other people, denials, those
-    distractors), so the model learns to answer with empty lists. Both 0 reproduce the v1 sheets."""
+    distractors), so the model learns to answer with empty lists.
+    `no_symptoms`: share of the other sheets without any symptom (only medicines, conditions, habits), so
+    an empty symptom list next to other facts is seen too (v3; the v2 model filled it with "não há menção").
+    `risk_share`: share of sheets with a risk mention. `indirect_risk`: share of the person's own risk
+    mentions written indirectly (by the means, the preparation or the plan).
+    The defaults reproduce the v1 sheets: an option left at its default draws no random number."""
 
-    def __init__(self, kb, seed: int, *, distractors: float = 0.0, empty_share: float = 0.0):
+    def __init__(self, kb, seed: int, *, distractors: float = 0.0, empty_share: float = 0.0,
+                 no_symptoms: float = 0.0, risk_share: float = 0.35, indirect_risk: float = 0.0):
         self.distractors = distractors
         self.empty_share = empty_share
+        self.no_symptoms = no_symptoms
+        self.risk_share = risk_share
+        self.indirect_risk = indirect_risk
         self.rng = random.Random(seed)
         vocab = kb.vocab["comorbidities"]
         self.conditions = [c["id"] for c in vocab["comorbidities"]]
@@ -139,7 +148,8 @@ class ProfileSampler:
             mentions = self._nothing_about_the_person()
         else:
             mentions = []
-            for code in rng.sample(list(SYMPTOM_DOMAINS)[:-1], k=rng.randint(1, 4)):
+            symptoms = 0 if self.no_symptoms and rng.random() < self.no_symptoms else rng.randint(1, 4)
+            for code in rng.sample(list(SYMPTOM_DOMAINS)[:-1], k=symptoms):
                 mentions.append(Mention("symptom", code, **self._attributes()))
             for code in rng.sample(self.conditions, k=rng.choice([0, 0, 1, 2])):
                 mentions.append(Mention("condition", code, **self._attributes()))
@@ -147,8 +157,12 @@ class ProfileSampler:
                 mentions.append(Mention("habit", code, **self._attributes(allow_other=False)))
             for _ in range(rng.choice([0, 1, 1, 2, 3])):
                 mentions.append(self._medication())
-            if rng.random() < 0.35:  # risk, often negated or about someone else (hard negatives)
-                mentions.append(Mention("risk", rng.choice(list(RISK_KINDS)), **self._attributes()))
+            if rng.random() < self.risk_share:  # risk, often negated or about someone else (hard negatives)
+                risk = Mention("risk", rng.choice(list(RISK_KINDS)), **self._attributes())
+                own = risk.experiencer == "patient" and not risk.negated and risk.temporality != "hypothetical"
+                if own and self.indirect_risk and rng.random() < self.indirect_risk:
+                    risk.extra["indirect"] = True
+                mentions.append(risk)
             if self.distractors and rng.random() < self.distractors:
                 mentions.append(self._distractor({m.code for m in mentions}))
         sex = rng.choice(["female", "male"])

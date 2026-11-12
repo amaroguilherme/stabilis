@@ -9,7 +9,7 @@ from core.extraction.schema import RISK_KINDS, SYMPTOM_DOMAINS
 from datagen.profiles import FactSheet
 
 # Bump on any change to the prompts below: a resumed generation never mixes versions.
-PROMPT_VERSION = 3
+PROMPT_VERSION = 4
 
 # Anamneses speak in clinical terms. Given the PHQ-9/GAD-7 glosses instead, the teacher wrote notes like a
 # form ("nega falta de apetite ou comer em excesso"), as seen in the first pilot.
@@ -64,6 +64,9 @@ REGION_HINTS = {
     "norte": "português coloquial do Norte",
     "centro-oeste": "português coloquial do Centro-Oeste",
 }
+# Risk said indirectly is what neither the lexicon nor the v1-v2 data covered well (eval/reports/README.md).
+INDIRECT_RISK = ("dito de forma indireta, pelo meio, pela preparação ou pelo plano, sem as palavras "
+                 "'suicídio', 'se matar', 'me matar' ou 'morrer'")
 ATTRIBUTE_TEXT = {
     "negated": "dito como algo que NÃO acontece (negado)",
     "other": "sobre outra pessoa (familiar), não sobre quem escreve",
@@ -102,6 +105,8 @@ def describe(sheet: FactSheet, conditions: dict[str, str], habits: dict[str, str
         # Medicines carry their way of appearing in `use` above.
         attributes = (("negated", m.negated), ("other", m.experiencer == "other"), ("past", m.temporality == "past"), ("hypothetical", m.temporality == "hypothetical"))
         flags = [] if m.kind == "medication" else [ATTRIBUTE_TEXT[k] for k, on in attributes if on]
+        if m.extra.get("indirect"):
+            flags.append(INDIRECT_RISK)
         lines.append(f"{i}. {what}" + (f" — {'; '.join(flags)}" if flags else ""))
     return lines
 

@@ -122,14 +122,19 @@ def generate(args, kb, teacher, judge, progress: Path | None = None) -> tuple[li
         task: ({c["id"]: c[key] for c in vocab["comorbidities"]}, {h["id"]: h[key] for h in vocab["habits"]})
         for task, key in (("patient", "label_plain"), ("professional", "label_clinical"))
     }
-    distractors, empty_share = getattr(args, "distractors", 0.0), getattr(args, "empty_share", 0.0)
-    sampler = ProfileSampler(kb, args.seed, distractors=distractors, empty_share=empty_share)
+    options = {
+        "distractors": getattr(args, "distractors", 0.0),
+        "empty_share": getattr(args, "empty_share", 0.0),
+        "no_symptoms": getattr(args, "no_symptoms", 0.0),
+        "risk_share": getattr(args, "risk_share", 0.35),
+        "indirect_risk": getattr(args, "indirect_risk", 0.0),
+    }
+    sampler = ProfileSampler(kb, args.seed, **options)
     rng = random.Random(args.seed)
     header = {
         "seed": args.seed,
         "patient_share": args.patient_share,
-        "distractors": distractors,
-        "empty_share": empty_share,
+        **options,
         "teacher": teacher.model,
         "judge": judge.model,
         "prompt_version": PROMPT_VERSION,
@@ -171,6 +176,9 @@ def main() -> int:
     parser.add_argument("--patient-share", type=float, default=0.65)
     parser.add_argument("--distractors", type=float, default=0.0, help="fichas com remédio ou hábito que não é da pessoa (fora do rótulo)")
     parser.add_argument("--empty-share", type=float, default=0.0, help="fichas sem nada sobre a própria pessoa (rótulo sem sugestões)")
+    parser.add_argument("--no-symptoms", type=float, default=0.0, help="fichas comuns sem nenhum sintoma")
+    parser.add_argument("--risk-share", type=float, default=0.35, help="fichas com menção a risco")
+    parser.add_argument("--indirect-risk", type=float, default=0.0, help="risco da própria pessoa dito de forma indireta")
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
 

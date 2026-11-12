@@ -365,3 +365,24 @@ def test_training_answers_follow_the_schema_order(kb):
             for item in answer[group]:
                 assert list(item) == [f for f in order if f in item]
                 assert list(item)[1] == "evidence"
+
+
+def test_v3_sheets_without_symptoms_and_with_indirect_risk(kb):
+    from datagen.profiles import expected_extraction
+    from datagen.prompts import INDIRECT_RISK, describe
+
+    sampler = ProfileSampler(kb, 12, no_symptoms=0.5, risk_share=1.0, indirect_risk=1.0)
+    sheets = [sampler.sample(i, "patient") for i in range(60)]
+    no_symptoms = [s for s in sheets if not any(m.kind == "symptom" for m in s.mentions)]
+    assert any(any(m.kind != "symptom" for m in s.mentions) for s in no_symptoms), "facts without any symptom"
+    indirect = [(s, m) for s in sheets for m in s.mentions if m.extra.get("indirect")]
+    assert indirect and all(m.kind == "risk" and m.experiencer == "patient" and not m.negated for _, m in indirect)
+    sheet, mention = indirect[0]
+    assert INDIRECT_RISK in "\n".join(describe(sheet, {}, {}))
+    assert mention.code in {r["kind"] for r in expected_extraction(sheet)["risk"]}  # still in the label, as real risk
+
+
+def test_full_run_with_the_v3_options(kb):
+    args = SimpleNamespace(n=20, seed=5, patient_share=0.7, distractors=0.3, empty_share=0.1, no_symptoms=0.3, risk_share=0.5, indirect_risk=0.6)
+    accepted, rejected = generate(args, kb, ScriptedTeacher(), ScriptedJudge())
+    assert accepted and not rejected
