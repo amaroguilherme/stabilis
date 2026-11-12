@@ -2,7 +2,8 @@
   "records": 330,
   "improper_count": 0,
   "schema_valid_rate": 1.0,
-  "unsupported_rate": 0.4562,
+  "unsupported_rate": 0.3687,
+  "evidence_repaired_rate": 0.0876,
   "risk_recall": 0.9848,
   "critical_risk_recall": 0.9643,
   "risk_false_alarm_rate": 0.0947,
@@ -28,18 +29,18 @@
     },
     "medications": {
       "precision": 1.0,
-      "recall": 0.9408,
-      "f1": 0.9695,
-      "tp": 159,
+      "recall": 0.9586,
+      "f1": 0.9789,
+      "tp": 162,
       "fp": 0,
-      "fn": 10
+      "fn": 7
     }
   },
   "improper_suggestions": [],
   "pregnancy_accuracy": 0.9727,
   "latency_s": {
-    "p50": 6.681,
-    "p95": 12.945
+    "p50": 6.407,
+    "p95": 12.236
   },
   "gold_sha256": "57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81",
   "model": {

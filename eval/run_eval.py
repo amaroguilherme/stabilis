@@ -83,7 +83,7 @@ def summarize_f1(tp: int, fp: int, fn: int) -> dict:
 
 def evaluate(records: list[dict], extractor: Extractor, progress=None) -> dict:
     groups = {"conditions": [0, 0, 0], "habits": [0, 0, 0], "medications": [0, 0, 0]}
-    valid = proposed = unsupported = 0
+    valid = proposed = unsupported = repaired = 0
     risk_pos = risk_hit = crit_pos = crit_hit = neg_total = neg_false_alarm = 0
     improper: list[str] = []
     pregnancy_ok = pregnancy_total = 0
@@ -98,6 +98,7 @@ def evaluate(records: list[dict], extractor: Extractor, progress=None) -> dict:
         valid += not out["degraded"]
         proposed += out["items_proposed"]
         unsupported += out["discarded_unsupported"]
+        repaired += out.get("evidence_repaired", 0)
         s = out["suggestions"]
         got = {
             "conditions": {c["id"] for c in s["conditions"]},
@@ -134,6 +135,8 @@ def evaluate(records: list[dict], extractor: Extractor, progress=None) -> dict:
         "improper_count": len(improper),
         "schema_valid_rate": round(valid / n, 4) if n else 0.0,
         "unsupported_rate": round(unsupported / proposed, 4) if proposed else 0.0,
+        # Medication items whose evidence the pipeline replaced with the name's span: model errors, kept visible.
+        "evidence_repaired_rate": round(repaired / proposed, 4) if proposed else 0.0,
         "risk_recall": round(risk_hit / risk_pos, 4) if risk_pos else None,
         "critical_risk_recall": round(crit_hit / crit_pos, 4) if crit_pos else None,
         "risk_false_alarm_rate": round(neg_false_alarm / neg_total, 4) if neg_total else None,

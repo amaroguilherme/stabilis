@@ -100,6 +100,7 @@ class _Assembler:
         self.normalized = normalize(text)
         self.proposed = 0
         self.discarded = 0
+        self.repaired = 0
         self.excluded: list[dict] = []
 
     def supported(self, item: dict) -> bool:
@@ -175,14 +176,27 @@ class _Assembler:
             "excluded": self.excluded,
             "items_proposed": self.proposed,
             "discarded_unsupported": self.discarded,
+            "evidence_repaired": self.repaired,
             "_llm_risk": llm_risk,
         }
+
+    def repair_medication_evidence(self, item: dict) -> dict:
+        """A medication whose name is in the text but whose evidence is not (the fine-tuned model sometimes
+        writes "current" or "patient_report" there) gets the name's own span as evidence. Counted apart, in
+        `evidence_repaired`, so the model's error stays visible."""
+        name, evidence = item.get("name", ""), item.get("evidence", "")
+        if evidence_supported(evidence, self.normalized) or len(name) < 3 or not evidence_supported(name, self.normalized):
+            return item
+        at = self.text.lower().find(name.lower())
+        self.repaired += 1
+        return {**item, "evidence": self.text[at : at + len(name)] if at >= 0 else name}
 
     def medications(self, items: list[dict], meds: MedicationIndex) -> list[dict]:
         out: dict[str, dict] = {}
         unrecognized: list[dict] = []
         left_out: set[str] = set()  # excluded by context: the lexicon pass below must not bring them back
         for item in items:
+            item = self.repair_medication_evidence(item)
             if not self.supported(item):
                 continue
             match = meds.lookup(item["name"]) or meds.lookup(item["evidence"])

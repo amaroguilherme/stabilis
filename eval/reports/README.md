@@ -156,3 +156,20 @@ evidência em segundo lugar. O candidato **não** foi promovido.
   - alguns remédios ainda saem com a evidência errada (`"patient_report"`, `"uso atual"`), com o nome correto e
     presente no texto;
   - risco dito de forma indireta, pelo meio ou pelo plano, quase não aparece nos dados de treino.
+
+## Reparo da evidência dos remédios (2026-11-10)
+
+Quando o modelo propõe um remédio cujo nome está no texto mas cita um trecho que não está, o pipeline usa o trecho
+do próprio nome como evidência (`core/extraction/extract.py`). Esses casos são contados à parte, em
+`evidence_repaired_rate`, para o erro do modelo continuar visível. `producao.json` foi medida de novo com o reparo
+e é a linha de base atual. `candidato-v3-reparo.json` é a rodada 3 com o mesmo pipeline.
+
+| | itens sem evidência | reparados | F1 remédios |
+|---|---|---|---|
+| produção, antes | 46% | — | 0,970 |
+| produção, com reparo | 37% | 8,8% | 0,979 |
+| rodada 3, antes | 15% | — | 0,976 |
+| rodada 3, com reparo | 10% | 4,5% | 0,991 |
+
+Os portões de risco continuam iguais, e os 10% restantes da rodada 3 são quase todos sintomas inventados com
+"não há menção", que os dados v3 tratam.

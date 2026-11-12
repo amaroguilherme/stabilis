@@ -267,3 +267,15 @@ def test_context_is_read_around_the_name_when_the_evidence_leaves_it_out(kb):
     out = Extractor(llm, kb).extract(text, "professional")
     assert out["suggestions"]["medications"] == []
     assert [(e["kind"], e["reason"]) for e in out["excluded"]] == [("medication", "hypothetical")]
+
+
+def test_medication_evidence_is_repaired_from_its_name_and_counted(kb):
+    """Seen in the fine-tuned model: the right name with the status where the evidence goes."""
+    llm = FakeLlm(model_output(medications=[
+        {"name": "sertralina", "evidence": "current", "status": "current"},
+        {"name": "remedio inventado", "evidence": "current", "status": "current"},
+    ]))
+    out = Extractor(llm, kb).extract("tomo Sertralina 50 mg de manhã", "patient")
+    meds = out["suggestions"]["medications"]
+    assert [(m["drug_id"], m["evidence"]) for m in meds] == [("sertralina", "Sertralina")]
+    assert out["evidence_repaired"] == 1 and out["discarded_unsupported"] == 1  # the invented one is still dropped

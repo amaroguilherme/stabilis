@@ -1,0 +1,53 @@
+{
+  "records": 330,
+  "improper_count": 0,
+  "schema_valid_rate": 1.0,
+  "unsupported_rate": 0.1034,
+  "evidence_repaired_rate": 0.0452,
+  "risk_recall": 0.9697,
+  "critical_risk_recall": 0.9643,
+  "risk_false_alarm_rate": 0.0644,
+  "missed_risk_ids": [
+    "v0-pac-159",
+    "v0-pac-175"
+  ],
+  "groups": {
+    "conditions": {
+      "precision": 0.6447,
+      "recall": 0.7,
+      "f1": 0.6712,
+      "tp": 49,
+      "fp": 27,
+      "fn": 21
+    },
+    "habits": {
+      "precision": 0.7857,
+      "recall": 0.44,
+      "f1": 0.5641,
+      "tp": 11,
+      "fp": 3,
+      "fn": 14
+    },
+    "medications": {
+      "precision": 1.0,
+      "recall": 0.9822,
+      "f1": 0.991,
+      "tp": 166,
+      "fp": 0,
+      "fn": 3
+    }
+  },
+  "improper_suggestions": [],
+  "pregnancy_accuracy": 0.9697,
+  "latency_s": {
+    "p50": 4.213,
+    "p95": 9.355
+  },
+  "gold_sha256": "57bc8845604ec22f15b597683a7bb470d0ddadaf82f1432864d624610c327c81",
+  "model": {
+    "repo": "amaroguilherme/stabilis-extrator",
+    "file": "stabilis-extrator-v3.Q4_K_M.gguf",
+    "revision": "3905522762aa7fd98d9f333bb1cd766356cf6f2c",
+    "prompt": "short"
+  }
+}
